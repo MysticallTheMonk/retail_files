@@ -1,0 +1,23 @@
+
+TomCats_Account = {
+	["notifications"] = {
+		["NZOTHLAUNCH"] = true,
+	},
+	["tutorials"] = {
+		["Rares Log Toggle"] = true,
+	},
+	["preferences"] = {
+		["TomCatsWorldmapRaresButton1462"] = {
+			["position"] = -2.657094713232146,
+		},
+		["TomCatsWorldmapRaresButton1355"] = {
+			["position"] = -2.657094713232146,
+		},
+		["TomCatsMinimapButton"] = {
+			["position"] = 3,
+		},
+		["TomCatsWorldmapRaresButton"] = {
+			["position"] = -2.657094713232146,
+		},
+	},
+}

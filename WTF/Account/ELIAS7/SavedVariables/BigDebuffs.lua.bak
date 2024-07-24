@@ -1,0 +1,410 @@
+
+BigDebuffsDB = {
+["namespaces"] = {
+["LibDualSpec-1.0"] = {
+},
+},
+["profileKeys"] = {
+["Hystoricall - Tichondrius"] = "Default",
+["Soullkeeper - Sargeras"] = "Mysticall",
+["Mstcll - Borean Tundra"] = "Default",
+["Mstcll - Garrosh"] = "Default",
+["Onlyplaypala - Sargeras"] = "Default",
+["Yungmyst - Area 52"] = "Default",
+["Réðçräñé - Sargeras"] = "Mysticall",
+["Representing - Area 52"] = "Default",
+["Badplat - Sargeras"] = "Mysticall",
+["Lotusflowers - Sargeras"] = "Default",
+["Nerfmw - Moon Guard"] = "Default",
+["Vivifying - Sentinels"] = "Default",
+["Mysticallx - Tichondrius"] = "Default",
+["Flowerlotus - Sentinels"] = "Default",
+["Mw - Tichondrius"] = "Mysticall",
+["Hordebanker - Sargeras"] = "Default",
+["Mystweaver - Area 52"] = "Default",
+["Cocoonjkdead - Sentinels"] = "Mysticall",
+["Chithion - Zul'jin"] = "Default",
+["Mysticall - Bleeding Hollow"] = "Mysticall",
+["Harambad - Sargeras"] = "Mysticall",
+["Onlyplaydh - Sargeras"] = "Default",
+["Gréëñðrägoñ - Sargeras"] = "Mysticall",
+["Trialfornowa - Cenarius"] = "Default",
+["Yungmyst - Sentinels"] = "Default",
+["Gréëñðrägøñ - Sargeras"] = "Default",
+["Mysticbankk - Area 52"] = "Default",
+["Mysticall - Moon Guard"] = "Default",
+["Enveloping - Area 52"] = "Default",
+["Justinjames - Sargeras"] = "Default",
+["Mysticallxd - Sargeras"] = "Default",
+["Darkapostle - Tichondrius"] = "Default",
+["Coocoocachu - Sargeras"] = "Default",
+["Zft - Sentinels"] = "Default",
+["Buffmwpls - Sargeras"] = "Default",
+["Onlyplaymonk - Sargeras"] = "Default",
+["Yungmyst - Sargeras"] = "Default",
+["Cocoonjkdead - Bleeding Hollow"] = "Default",
+["Onlyplayfury - Sargeras"] = "Default",
+["Mstcll - Sargeras"] = "Default",
+["Mysticallx - Area 52"] = "Mysticall",
+["Nerfmw - Sargeras"] = "Default",
+["Mysticall - Sentinels"] = "Mysticall",
+["Soullkeeper - Tichondrius"] = "Mysticall",
+["Cocoonjkdead - Area 52"] = "Mysticall",
+["Ashdfh - Mythic Dungeon Heroes - US"] = "Default",
+["Mwreroll - Sargeras"] = "Default",
+["Moosticall - Sentinels"] = "Mysticall",
+["Mysticbankk - Sargeras"] = "Default",
+["Soullstëaler - Sentinels"] = "Default",
+["Representing - Sargeras"] = "Mysticall",
+["Mysticbankk - Sentinels"] = "Default",
+["Mysticbankk - Tichondrius"] = "Default",
+["Iamdeadinsid - Sentinels"] = "Default",
+["Weavethemist - Azjol-Nerub"] = "Mysticall",
+["Healjkoom - Sargeras"] = "Mysticall",
+["Mstcll - Aerie Peak"] = "Default",
+["Sevenseconds - Area 52"] = "Default",
+["Vezimmarr - Aerie Peak"] = "Default",
+["Coccoon - Area 52"] = "Default",
+["Onlyplaymonk - Area 52"] = "Default",
+["Bovadeez - Bleeding Hollow"] = "Mysticall",
+["Thunderbadx - Sargeras"] = "Mysticall",
+["Stylle - Sentinels"] = "Default",
+["Onlyplaydru - Sargeras"] = "Default",
+["Onlyplaymage - Sargeras"] = "Default",
+["Weavethemist - Sargeras"] = "Mysticall",
+["Mysticallx - Sargeras"] = "Mysticall",
+["Hydraxises - Lightning's Blade"] = "Default",
+["Mstcll - Blackwater Raiders"] = "Default",
+["Mediumvibes - Sentinels"] = "Default",
+["Cincinatizoo - Sargeras"] = "Mysticall",
+["Mysticbollt - Garrosh"] = "Default",
+["Nightmares - Sentinels"] = "Mysticall",
+["Mstcll - Area 52"] = "Default",
+["Mysticbollt - Area 52"] = "Default",
+["Lifedestroys - Tichondrius"] = "Default",
+["Mstcll - Echo Isles"] = "Default",
+["Mysticallxy - Area 52"] = "Mysticall",
+["Rsk - Sentinels"] = "Mysticall",
+["Mysticallx - Emerald Dream"] = "Default",
+["Representing - Blackhand"] = "Default",
+["Thunderbad - Sentinels"] = "Mysticall",
+["Mstcll - Sentinels"] = "Default",
+["Onlyplaysub - Sargeras"] = "Default",
+["Réðçräñé - Sentinels"] = "Mysticall",
+["Cocoonjkdead - Aerie Peak"] = "Default",
+["Kickthesun - Sargeras"] = "Mysticall",
+["Hystoricall - Sentinels"] = "Default",
+["Ggs - Detheroc"] = "Mysticall",
+["Misstickle - Sargeras"] = "Default",
+["Nightbllade - Area 52"] = "Default",
+["Sevenseconds - Sargeras"] = "Default",
+["Vivifying - Area 52"] = "Default",
+["Enveloping - Sentinels"] = "Mysticall",
+},
+["profiles"] = {
+["Mysticall"] = {
+["raidFrames"] = {
+["dispellable"] = {
+["cc"] = 72,
+["roots"] = 46,
+},
+["maxDebuffs"] = 20,
+["cc"] = 68,
+["anchor"] = "LEFT",
+["increaseBuffs"] = true,
+["warning"] = 71,
+["inRaid"] = {
+["size"] = 10,
+["hide"] = true,
+},
+["hideBliz"] = false,
+["cooldownFontSize"] = 15,
+["warningList"] = {
+[233499] = true,
+[323673] = true,
+[354788] = true,
+},
+["roots"] = 35,
+["cooldownFont"] = "2002 Bold",
+},
+["nameplates"] = {
+["tooltips"] = false,
+["enemy"] = false,
+["buffs_speed_boost"] = false,
+["enemyAnchor"] = {
+["size"] = 30,
+},
+["buffs_other"] = false,
+["enabled"] = false,
+["friendly"] = false,
+["roots"] = false,
+["immunities_spells"] = false,
+["buffs_defensive"] = false,
+["buffs_offensive"] = false,
+},
+["priority"] = {
+["cc"] = 100,
+},
+["spells"] = {
+[129597] = {
+["nameplates"] = 0,
+["unitFrames"] = 0,
+["raidFrames"] = 0,
+},
+[360194] = {
+["customSize"] = true,
+["priority"] = 100,
+["customPriority"] = true,
+["size"] = 100,
+},
+[335467] = {
+["customSize"] = true,
+["size"] = 50,
+},
+[79140] = {
+["customSize"] = true,
+["customPriority"] = false,
+["size"] = 76,
+},
+[307871] = {
+["customPriority"] = false,
+["unitFrames"] = 1,
+},
+[34914] = {
+["customSize"] = true,
+["size"] = 50,
+},
+[319504] = {
+["customSize"] = true,
+["customPriority"] = true,
+["priority"] = 81,
+["size"] = 73,
+},
+[316099] = {
+["customSize"] = true,
+["size"] = 50,
+},
+[343527] = {
+["customSize"] = true,
+["customPriority"] = true,
+["priority"] = 100,
+["size"] = 75,
+},
+[375901] = {
+["customSize"] = true,
+["size"] = 50,
+},
+[227847] = {
+["customPriority"] = false,
+},
+[196364] = {
+["customSize"] = false,
+["customPriority"] = false,
+},
+[212431] = {
+["customSize"] = true,
+["size"] = 50,
+},
+[356567] = {
+["customPriority"] = false,
+},
+[116841] = {
+},
+[198817] = {
+["customSize"] = true,
+["customPriority"] = true,
+["priority"] = 100,
+["size"] = 100,
+},
+},
+["unitFrames"] = {
+["party3"] = {
+["position"] = {
+"BOTTOM",
+nil,
+"BOTTOM",
+-292,
+201.9999694824219,
+},
+},
+["party"] = {
+["anchor"] = "manual",
+},
+["buffs_offensive"] = false,
+["party4"] = {
+},
+["arena5"] = {
+["position"] = {
+"CENTER",
+nil,
+"CENTER",
+-128.9995880126953,
+84.00032806396484,
+},
+},
+["buffs_defensive"] = false,
+["enabled"] = false,
+["immunities"] = false,
+["arena1"] = {
+},
+["party1"] = {
+["position"] = {
+"LEFT",
+nil,
+"LEFT",
+182.6001281738281,
+243.6000518798828,
+},
+},
+["player"] = {
+["position"] = {
+"CENTER",
+nil,
+"CENTER",
+-135.9994354248047,
+-110.0001754760742,
+},
+},
+["immunities_spells"] = false,
+["buffs_speed_boost"] = false,
+["arena2"] = {
+},
+["party2"] = {
+},
+["arena3"] = {
+},
+["arena4"] = {
+["position"] = {
+"BOTTOM",
+nil,
+"BOTTOM",
+-292.9999084472656,
+145.0000305175781,
+},
+},
+},
+},
+["Mysticallx - Sargeras"] = {
+},
+["Default"] = {
+["nameplates"] = {
+["enabled"] = false,
+["npc"] = false,
+["enemy"] = false,
+},
+["unitFrames"] = {
+["party3"] = {
+},
+["arena1"] = {
+},
+["arena3"] = {
+},
+["party1"] = {
+},
+["arena2"] = {
+},
+["buffs_offensive"] = false,
+["buffs_defensive"] = false,
+["party2"] = {
+},
+["party4"] = {
+},
+["arena5"] = {
+},
+["arena4"] = {
+},
+},
+["raidFrames"] = {
+["increaseBuffs"] = true,
+["cooldownFont"] = "2002 Bold",
+["inRaid"] = {
+["hide"] = true,
+["size"] = 10,
+},
+["maxDebuffs"] = 20,
+["dispellable"] = {
+["cc"] = 85,
+["roots"] = 46,
+},
+["warningList"] = {
+[233499] = true,
+},
+["cc"] = 68,
+["interrupts"] = 40,
+["anchor"] = "LEFT",
+["roots"] = 35,
+["cooldownFontSize"] = 15,
+["warning"] = 68,
+},
+},
+["rbgs"] = {
+["raidFrames"] = {
+["increaseBuffs"] = true,
+["cooldownFont"] = "2002 Bold",
+["inRaid"] = {
+["hide"] = true,
+["size"] = 10,
+},
+["maxDebuffs"] = 7,
+["cc"] = 68,
+["warning"] = 71,
+["warningList"] = {
+[81261] = false,
+[233499] = true,
+[323673] = true,
+},
+["roots"] = 35,
+["cooldownFontSize"] = 15,
+["dispellable"] = {
+["cc"] = 72,
+["roots"] = 46,
+},
+},
+["nameplates"] = {
+["enabled"] = false,
+["npc"] = false,
+["enemy"] = false,
+},
+["spells"] = {
+[129597] = {
+["nameplates"] = 0,
+["raidFrames"] = 0,
+["unitFrames"] = 0,
+},
+[227847] = {
+["customPriority"] = false,
+},
+[196364] = {
+["customSize"] = false,
+["customPriority"] = false,
+},
+},
+["priority"] = {
+["cc"] = 100,
+},
+["unitFrames"] = {
+["party3"] = {
+},
+["immunities"] = false,
+["buffs_defensive"] = false,
+["buffs_offensive"] = false,
+["party4"] = {
+},
+["party1"] = {
+["position"] = {
+"LEFT",
+nil,
+"LEFT",
+182.6001281738281,
+243.6000518798828,
+},
+},
+["party2"] = {
+},
+["immunities_spells"] = false,
+["arena1"] = {
+},
+},
+},
+},
+}

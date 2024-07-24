@@ -1,0 +1,15 @@
+
+kgPanelsDB = {
+	["namespaces"] = {
+		["LibDualSpec-1.0"] = {
+		},
+	},
+	["profileKeys"] = {
+		["Thunderbad - Sentinels"] = "Default",
+		["Mysticallx - Sargeras"] = "Default",
+	},
+	["profiles"] = {
+		["Default"] = {
+		},
+	},
+}

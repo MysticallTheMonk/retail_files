@@ -1,0 +1,466 @@
+
+HandyNotesDB = {
+["profileKeys"] = {
+["Cocoonjkdead - Aerie Peak"] = "Cocoonjkdead - Aerie Peak",
+["Justinjames - Sentinels"] = "Justinjames - Sentinels",
+["Mstcll - Borean Tundra"] = "Mstcll - Borean Tundra",
+["Mstcll - Garrosh"] = "Mstcll - Garrosh",
+["Onlyplaymage - Sargeras"] = "Onlyplaymage - Sargeras",
+["Réðçräñé - Sargeras"] = "Réðçräñé - Sargeras",
+["Representing - Area 52"] = "Representing - Area 52",
+["Nerfmw - Moon Guard"] = "Nerfmw - Moon Guard",
+["Vivifying - Sentinels"] = "Vivifying - Sentinels",
+["Mysticallx - Tichondrius"] = "Mysticallx - Tichondrius",
+["Flowerlotus - Sentinels"] = "Flowerlotus - Sentinels",
+["Mw - Tichondrius"] = "Mw - Tichondrius",
+["Hordebanker - Sargeras"] = "Hordebanker - Sargeras",
+["Mystweaver - Area 52"] = "Mystweaver - Area 52",
+["Cocoonjkdead - Sentinels"] = "Cocoonjkdead - Sentinels",
+["Chithion - Zul'jin"] = "Chithion - Zul'jin",
+["Mysticall - Bleeding Hollow"] = "Mysticall - Bleeding Hollow",
+["Onlyplaydh - Sargeras"] = "Onlyplaydh - Sargeras",
+["Trialfornowa - Cenarius"] = "Trialfornowa - Cenarius",
+["Yungmyst - Sentinels"] = "Yungmyst - Sentinels",
+["Mysticbankk - Area 52"] = "Mysticbankk - Area 52",
+["Hystoricall - Sentinels"] = "Hystoricall - Sentinels",
+["Enveloping - Area 52"] = "Enveloping - Area 52",
+["Nerfmw - Sargeras"] = "Nerfmw - Sargeras",
+["Mysticallxd - Sargeras"] = "Mysticallxd - Sargeras",
+["Coocoocachu - Sargeras"] = "Coocoocachu - Sargeras",
+["Mwreroll - Sentinels"] = "Mwreroll - Sentinels",
+["Triallocktom - Cenarius"] = "Triallocktom - Cenarius",
+["Réðçräñé - Sentinels"] = "Réðçräñé - Sentinels",
+["Yungmyst - Sargeras"] = "Yungmyst - Sargeras",
+["Cocoonjkdead - Bleeding Hollow"] = "Cocoonjkdead - Bleeding Hollow",
+["Mysticallx - Area 52"] = "Mysticallx - Area 52",
+["Zft - Area 52"] = "Zft - Area 52",
+["Mysticbankk - Sargeras"] = "Mysticbankk - Sargeras",
+["Soullstëaler - Sentinels"] = "Soullstëaler - Sentinels",
+["Mysticbankk - Sentinels"] = "Mysticbankk - Sentinels",
+["Mysticbankk - Tichondrius"] = "Mysticbankk - Tichondrius",
+["Mstcll - Aerie Peak"] = "Mstcll - Aerie Peak",
+["Sevenseconds - Area 52"] = "Sevenseconds - Area 52",
+["Coccoon - Area 52"] = "Coccoon - Area 52",
+["Enveloping - Sentinels"] = "Enveloping - Sentinels",
+["Bovadeez - Bleeding Hollow"] = "Bovadeez - Bleeding Hollow",
+["Onlyplaymonk - Area 52"] = "Onlyplaymonk - Area 52",
+["Mstcll - Sentinels"] = "Mstcll - Sentinels",
+["Onlyplaydru - Sargeras"] = "Onlyplaydru - Sargeras",
+["Mysticall - Moon Guard"] = "Mysticall - Moon Guard",
+["Mysticall - Sentinels"] = "Mysticall - Sentinels",
+["Onlyplaymonk - Sargeras"] = "Onlyplaymonk - Sargeras",
+["Zft - Sentinels"] = "Zft - Sentinels",
+["Mstcll - Blackwater Raiders"] = "Mstcll - Blackwater Raiders",
+["Yungmyst - Area 52"] = "Yungmyst - Area 52",
+["Nightmares - Sentinels"] = "Nightmares - Sentinels",
+["Mysticbollt - Garrosh"] = "Mysticbollt - Garrosh",
+["Vezimmarr - Aerie Peak"] = "Vezimmarr - Aerie Peak",
+["Mstcll - Area 52"] = "Mstcll - Area 52",
+["Mysticallxy - Area 52"] = "Mysticallxy - Area 52",
+["Mstcll - Echo Isles"] = "Mstcll - Echo Isles",
+["Mediumvibes - Sentinels"] = "Mediumvibes - Sentinels",
+["Mysticallx - Emerald Dream"] = "Mysticallx - Emerald Dream",
+["Hydraxises - Lightning's Blade"] = "Hydraxises - Lightning's Blade",
+["Mysticallx - Sargeras"] = "Mysticallx - Sargeras",
+["Representing - Blackhand"] = "Representing - Blackhand",
+["Thunderbad - Sentinels"] = "Thunderbad - Sentinels",
+["Vivifying - Area 52"] = "Vivifying - Area 52",
+["Onlyplaysub - Sargeras"] = "Onlyplaysub - Sargeras",
+["Stylle - Sentinels"] = "Stylle - Sentinels",
+["Soullstëaler - Blackhand"] = "Soullstëaler - Blackhand",
+["Mysticbollt - Area 52"] = "Mysticbollt - Area 52",
+["Cincinatizoo - Sargeras"] = "Cincinatizoo - Sargeras",
+["Mstcll - Sargeras"] = "Mstcll - Sargeras",
+["Misstickle - Sargeras"] = "Misstickle - Sargeras",
+["Nightbllade - Area 52"] = "Nightbllade - Area 52",
+["Kickthesun - Sargeras"] = "Kickthesun - Sargeras",
+["Moosticall - Sentinels"] = "Moosticall - Sentinels",
+["Cocoonjkdead - Area 52"] = "Cocoonjkdead - Area 52",
+},
+["profiles"] = {
+["Cocoonjkdead - Aerie Peak"] = {
+},
+["Justinjames - Sentinels"] = {
+},
+["Mstcll - Borean Tundra"] = {
+},
+["Mstcll - Garrosh"] = {
+},
+["Onlyplaymage - Sargeras"] = {
+},
+["Réðçräñé - Sargeras"] = {
+},
+["Representing - Area 52"] = {
+},
+["Nerfmw - Moon Guard"] = {
+},
+["Vivifying - Sentinels"] = {
+},
+["Mysticallx - Tichondrius"] = {
+},
+["Flowerlotus - Sentinels"] = {
+},
+["Mw - Tichondrius"] = {
+},
+["Hordebanker - Sargeras"] = {
+},
+["Mystweaver - Area 52"] = {
+},
+["Cocoonjkdead - Sentinels"] = {
+},
+["Chithion - Zul'jin"] = {
+},
+["Mysticall - Bleeding Hollow"] = {
+},
+["Onlyplaydh - Sargeras"] = {
+},
+["Trialfornowa - Cenarius"] = {
+},
+["Yungmyst - Sentinels"] = {
+},
+["Mysticbankk - Area 52"] = {
+},
+["Hystoricall - Sentinels"] = {
+},
+["Enveloping - Area 52"] = {
+},
+["Nerfmw - Sargeras"] = {
+},
+["Mysticallxd - Sargeras"] = {
+},
+["Coocoocachu - Sargeras"] = {
+},
+["Mwreroll - Sentinels"] = {
+},
+["Triallocktom - Cenarius"] = {
+},
+["Réðçräñé - Sentinels"] = {
+},
+["Yungmyst - Sargeras"] = {
+},
+["Cocoonjkdead - Bleeding Hollow"] = {
+},
+["Mysticallx - Area 52"] = {
+["icon_scale_minimap"] = 0.65,
+},
+["Zft - Area 52"] = {
+},
+["Mysticbankk - Sargeras"] = {
+},
+["Soullstëaler - Sentinels"] = {
+},
+["Mysticbankk - Sentinels"] = {
+},
+["Mysticbankk - Tichondrius"] = {
+},
+["Mstcll - Aerie Peak"] = {
+},
+["Sevenseconds - Area 52"] = {
+},
+["Coccoon - Area 52"] = {
+},
+["Enveloping - Sentinels"] = {
+},
+["Bovadeez - Bleeding Hollow"] = {
+},
+["Onlyplaymonk - Area 52"] = {
+},
+["Mstcll - Sentinels"] = {
+},
+["Onlyplaydru - Sargeras"] = {
+},
+["Mysticall - Moon Guard"] = {
+},
+["Mysticall - Sentinels"] = {
+["icon_scale_minimap"] = 1.04,
+["icon_alpha_minimap"] = 0,
+},
+["Onlyplaymonk - Sargeras"] = {
+},
+["Zft - Sentinels"] = {
+},
+["Mstcll - Blackwater Raiders"] = {
+},
+["Yungmyst - Area 52"] = {
+},
+["Nightmares - Sentinels"] = {
+},
+["Mysticbollt - Garrosh"] = {
+},
+["Vezimmarr - Aerie Peak"] = {
+},
+["Mstcll - Area 52"] = {
+},
+["Mysticallxy - Area 52"] = {
+},
+["Mstcll - Echo Isles"] = {
+},
+["Mediumvibes - Sentinels"] = {
+},
+["Mysticallx - Emerald Dream"] = {
+},
+["Hydraxises - Lightning's Blade"] = {
+},
+["Mysticallx - Sargeras"] = {
+},
+["Representing - Blackhand"] = {
+},
+["Thunderbad - Sentinels"] = {
+},
+["Vivifying - Area 52"] = {
+},
+["Onlyplaysub - Sargeras"] = {
+},
+["Stylle - Sentinels"] = {
+},
+["Soullstëaler - Blackhand"] = {
+},
+["Mysticbollt - Area 52"] = {
+},
+["Cincinatizoo - Sargeras"] = {
+},
+["Mstcll - Sargeras"] = {
+},
+["Misstickle - Sargeras"] = {
+},
+["Nightbllade - Area 52"] = {
+},
+["Kickthesun - Sargeras"] = {
+},
+["Moosticall - Sentinels"] = {
+},
+["Cocoonjkdead - Area 52"] = {
+},
+},
+}
+HandyNotes_HandyNotesDB = {
+["profileKeys"] = {
+["Cocoonjkdead - Aerie Peak"] = "Cocoonjkdead - Aerie Peak",
+["Justinjames - Sentinels"] = "Justinjames - Sentinels",
+["Mstcll - Borean Tundra"] = "Mstcll - Borean Tundra",
+["Mstcll - Garrosh"] = "Mstcll - Garrosh",
+["Onlyplaymage - Sargeras"] = "Onlyplaymage - Sargeras",
+["Réðçräñé - Sargeras"] = "Réðçräñé - Sargeras",
+["Representing - Area 52"] = "Representing - Area 52",
+["Nerfmw - Moon Guard"] = "Nerfmw - Moon Guard",
+["Vivifying - Sentinels"] = "Vivifying - Sentinels",
+["Mysticallx - Tichondrius"] = "Mysticallx - Tichondrius",
+["Flowerlotus - Sentinels"] = "Flowerlotus - Sentinels",
+["Mw - Tichondrius"] = "Mw - Tichondrius",
+["Hordebanker - Sargeras"] = "Hordebanker - Sargeras",
+["Mystweaver - Area 52"] = "Mystweaver - Area 52",
+["Cocoonjkdead - Sentinels"] = "Cocoonjkdead - Sentinels",
+["Chithion - Zul'jin"] = "Chithion - Zul'jin",
+["Mysticall - Bleeding Hollow"] = "Mysticall - Bleeding Hollow",
+["Onlyplaydh - Sargeras"] = "Onlyplaydh - Sargeras",
+["Trialfornowa - Cenarius"] = "Trialfornowa - Cenarius",
+["Yungmyst - Sentinels"] = "Yungmyst - Sentinels",
+["Mysticbankk - Area 52"] = "Mysticbankk - Area 52",
+["Hystoricall - Sentinels"] = "Hystoricall - Sentinels",
+["Enveloping - Area 52"] = "Enveloping - Area 52",
+["Nerfmw - Sargeras"] = "Nerfmw - Sargeras",
+["Mysticallxd - Sargeras"] = "Mysticallxd - Sargeras",
+["Coocoocachu - Sargeras"] = "Coocoocachu - Sargeras",
+["Mwreroll - Sentinels"] = "Mwreroll - Sentinels",
+["Triallocktom - Cenarius"] = "Triallocktom - Cenarius",
+["Réðçräñé - Sentinels"] = "Réðçräñé - Sentinels",
+["Yungmyst - Sargeras"] = "Yungmyst - Sargeras",
+["Cocoonjkdead - Bleeding Hollow"] = "Cocoonjkdead - Bleeding Hollow",
+["Mysticallx - Area 52"] = "Mysticallx - Area 52",
+["Zft - Area 52"] = "Zft - Area 52",
+["Mysticbankk - Sargeras"] = "Mysticbankk - Sargeras",
+["Soullstëaler - Sentinels"] = "Soullstëaler - Sentinels",
+["Mysticbankk - Sentinels"] = "Mysticbankk - Sentinels",
+["Mysticbankk - Tichondrius"] = "Mysticbankk - Tichondrius",
+["Mstcll - Aerie Peak"] = "Mstcll - Aerie Peak",
+["Sevenseconds - Area 52"] = "Sevenseconds - Area 52",
+["Coccoon - Area 52"] = "Coccoon - Area 52",
+["Enveloping - Sentinels"] = "Enveloping - Sentinels",
+["Bovadeez - Bleeding Hollow"] = "Bovadeez - Bleeding Hollow",
+["Onlyplaymonk - Area 52"] = "Onlyplaymonk - Area 52",
+["Mstcll - Sentinels"] = "Mstcll - Sentinels",
+["Onlyplaydru - Sargeras"] = "Onlyplaydru - Sargeras",
+["Mysticall - Moon Guard"] = "Mysticall - Moon Guard",
+["Mysticall - Sentinels"] = "Mysticall - Sentinels",
+["Onlyplaymonk - Sargeras"] = "Onlyplaymonk - Sargeras",
+["Zft - Sentinels"] = "Zft - Sentinels",
+["Mstcll - Blackwater Raiders"] = "Mstcll - Blackwater Raiders",
+["Yungmyst - Area 52"] = "Yungmyst - Area 52",
+["Nightmares - Sentinels"] = "Nightmares - Sentinels",
+["Mysticbollt - Garrosh"] = "Mysticbollt - Garrosh",
+["Vezimmarr - Aerie Peak"] = "Vezimmarr - Aerie Peak",
+["Mstcll - Area 52"] = "Mstcll - Area 52",
+["Mysticallxy - Area 52"] = "Mysticallxy - Area 52",
+["Mstcll - Echo Isles"] = "Mstcll - Echo Isles",
+["Mediumvibes - Sentinels"] = "Mediumvibes - Sentinels",
+["Mysticallx - Emerald Dream"] = "Mysticallx - Emerald Dream",
+["Hydraxises - Lightning's Blade"] = "Hydraxises - Lightning's Blade",
+["Mysticallx - Sargeras"] = "Mysticallx - Sargeras",
+["Representing - Blackhand"] = "Representing - Blackhand",
+["Thunderbad - Sentinels"] = "Thunderbad - Sentinels",
+["Vivifying - Area 52"] = "Vivifying - Area 52",
+["Onlyplaysub - Sargeras"] = "Onlyplaysub - Sargeras",
+["Stylle - Sentinels"] = "Stylle - Sentinels",
+["Soullstëaler - Blackhand"] = "Soullstëaler - Blackhand",
+["Mysticbollt - Area 52"] = "Mysticbollt - Area 52",
+["Cincinatizoo - Sargeras"] = "Cincinatizoo - Sargeras",
+["Mstcll - Sargeras"] = "Mstcll - Sargeras",
+["Misstickle - Sargeras"] = "Misstickle - Sargeras",
+["Nightbllade - Area 52"] = "Nightbllade - Area 52",
+["Kickthesun - Sargeras"] = "Kickthesun - Sargeras",
+["Moosticall - Sentinels"] = "Moosticall - Sentinels",
+["Cocoonjkdead - Area 52"] = "Cocoonjkdead - Area 52",
+},
+["profiles"] = {
+["Cocoonjkdead - Aerie Peak"] = {
+},
+["Justinjames - Sentinels"] = {
+},
+["Mstcll - Borean Tundra"] = {
+},
+["Mstcll - Garrosh"] = {
+},
+["Onlyplaymage - Sargeras"] = {
+},
+["Réðçräñé - Sargeras"] = {
+},
+["Representing - Area 52"] = {
+},
+["Nerfmw - Moon Guard"] = {
+},
+["Vivifying - Sentinels"] = {
+},
+["Mysticallx - Tichondrius"] = {
+},
+["Flowerlotus - Sentinels"] = {
+},
+["Mw - Tichondrius"] = {
+},
+["Hordebanker - Sargeras"] = {
+},
+["Mystweaver - Area 52"] = {
+},
+["Cocoonjkdead - Sentinels"] = {
+},
+["Chithion - Zul'jin"] = {
+},
+["Mysticall - Bleeding Hollow"] = {
+},
+["Onlyplaydh - Sargeras"] = {
+},
+["Trialfornowa - Cenarius"] = {
+},
+["Yungmyst - Sentinels"] = {
+},
+["Mysticbankk - Area 52"] = {
+},
+["Hystoricall - Sentinels"] = {
+},
+["Enveloping - Area 52"] = {
+},
+["Nerfmw - Sargeras"] = {
+},
+["Mysticallxd - Sargeras"] = {
+},
+["Coocoocachu - Sargeras"] = {
+},
+["Mwreroll - Sentinels"] = {
+},
+["Triallocktom - Cenarius"] = {
+},
+["Réðçräñé - Sentinels"] = {
+},
+["Yungmyst - Sargeras"] = {
+},
+["Cocoonjkdead - Bleeding Hollow"] = {
+},
+["Mysticallx - Area 52"] = {
+},
+["Zft - Area 52"] = {
+},
+["Mysticbankk - Sargeras"] = {
+},
+["Soullstëaler - Sentinels"] = {
+},
+["Mysticbankk - Sentinels"] = {
+},
+["Mysticbankk - Tichondrius"] = {
+},
+["Mstcll - Aerie Peak"] = {
+},
+["Sevenseconds - Area 52"] = {
+},
+["Coccoon - Area 52"] = {
+},
+["Enveloping - Sentinels"] = {
+},
+["Bovadeez - Bleeding Hollow"] = {
+},
+["Onlyplaymonk - Area 52"] = {
+},
+["Mstcll - Sentinels"] = {
+},
+["Onlyplaydru - Sargeras"] = {
+},
+["Mysticall - Moon Guard"] = {
+},
+["Mysticall - Sentinels"] = {
+},
+["Onlyplaymonk - Sargeras"] = {
+},
+["Zft - Sentinels"] = {
+},
+["Mstcll - Blackwater Raiders"] = {
+},
+["Yungmyst - Area 52"] = {
+},
+["Nightmares - Sentinels"] = {
+},
+["Mysticbollt - Garrosh"] = {
+},
+["Vezimmarr - Aerie Peak"] = {
+},
+["Mstcll - Area 52"] = {
+},
+["Mysticallxy - Area 52"] = {
+},
+["Mstcll - Echo Isles"] = {
+},
+["Mediumvibes - Sentinels"] = {
+},
+["Mysticallx - Emerald Dream"] = {
+},
+["Hydraxises - Lightning's Blade"] = {
+},
+["Mysticallx - Sargeras"] = {
+},
+["Representing - Blackhand"] = {
+},
+["Thunderbad - Sentinels"] = {
+},
+["Vivifying - Area 52"] = {
+},
+["Onlyplaysub - Sargeras"] = {
+},
+["Stylle - Sentinels"] = {
+},
+["Soullstëaler - Blackhand"] = {
+},
+["Mysticbollt - Area 52"] = {
+},
+["Cincinatizoo - Sargeras"] = {
+},
+["Mstcll - Sargeras"] = {
+},
+["Misstickle - Sargeras"] = {
+},
+["Nightbllade - Area 52"] = {
+},
+["Kickthesun - Sargeras"] = {
+},
+["Moosticall - Sentinels"] = {
+},
+["Cocoonjkdead - Area 52"] = {
+},
+},
+}

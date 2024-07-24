@@ -1,0 +1,42 @@
+
+UnitInCombatDB = {
+	["profileKeys"] = {
+		["Cincinatizoo - Sargeras"] = "Default",
+		["Mysticallx - Sargeras"] = "Default",
+		["Thunderbad - Sentinels"] = "Default",
+		["Mw - Tichondrius"] = "Default",
+	},
+	["profiles"] = {
+		["Default"] = {
+			["onlyShowWhenNewVersion"] = true,
+			["raidframes"] = {
+				["Enabled"] = false,
+			},
+			["targetoftarget"] = {
+				["Enabled"] = false,
+			},
+			["player"] = {
+				["Ofsx"] = 53,
+				["PositionSetting"] = "BOTTOM",
+				["Ofsy"] = 25,
+				["Scale"] = 1.2,
+			},
+			["nameplates"] = {
+				["Enabled"] = false,
+			},
+			["focus"] = {
+				["Enabled"] = false,
+			},
+			["target"] = {
+				["Enabled"] = false,
+			},
+			["lastReadVersion"] = "10.0.2.8",
+			["ArenaEnemies"] = {
+				["Enabled"] = false,
+			},
+			["PartyMembers"] = {
+				["Enabled"] = false,
+			},
+		},
+	},
+}

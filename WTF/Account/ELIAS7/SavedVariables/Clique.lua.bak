@@ -1,0 +1,278 @@
+
+CliqueDB = nil
+CliqueDB3 = {
+	["char"] = {
+		["Kickthesun - Sargeras"] = {
+			["spec1_profileKey"] = "Kickthesun - Sargeras",
+			["specswap"] = false,
+			["downclick"] = false,
+			["fastooc"] = false,
+			["spec3_profileKey"] = "Kickthesun - Sargeras",
+			["spec2_profileKey"] = "Kickthesun - Sargeras",
+		},
+		["Moosticall - Sentinels"] = {
+			["spec1_profileKey"] = "Moosticall - Sentinels",
+			["spec3_profileKey"] = "Moosticall - Sentinels",
+			["downclick"] = false,
+			["fastooc"] = false,
+			["specswap"] = false,
+			["spec2_profileKey"] = "Moosticall - Sentinels",
+		},
+		["Mw - Tichondrius"] = {
+			["spec1_profileKey"] = "Mw - Tichondrius",
+			["spec3_profileKey"] = "Mw - Tichondrius",
+			["downclick"] = false,
+			["fastooc"] = false,
+			["spec2_profileKey"] = "Mw - Tichondrius",
+			["specswap"] = false,
+		},
+		["Gréëñðrägoñ - Sargeras"] = {
+			["spec1_profileKey"] = "Gréëñðrägoñ - Sargeras",
+			["spec3_profileKey"] = "Gréëñðrägoñ - Sargeras",
+			["downclick"] = false,
+			["fastooc"] = false,
+			["spec2_profileKey"] = "Gréëñðrägoñ - Sargeras",
+			["specswap"] = false,
+		},
+		["Mysticallx - Sargeras"] = {
+			["spec1_profileKey"] = "Mysticallx - Sargeras",
+			["fastooc"] = false,
+			["alerthidden"] = true,
+			["downclick"] = false,
+			["spec3_profileKey"] = "Mysticallx - Sargeras",
+			["spec2_profileKey"] = "Mysticallx - Sargeras",
+			["specswap"] = false,
+		},
+		["Réðçräñé - Sargeras"] = {
+			["spec1_profileKey"] = "Réðçräñé - Sargeras",
+			["specswap"] = false,
+			["downclick"] = false,
+			["fastooc"] = false,
+			["spec2_profileKey"] = "Réðçräñé - Sargeras",
+			["spec3_profileKey"] = "Réðçräñé - Sargeras",
+		},
+	},
+	["profileKeys"] = {
+		["Kickthesun - Sargeras"] = "Kickthesun - Sargeras",
+		["Moosticall - Sentinels"] = "Moosticall - Sentinels",
+		["Thunderbad - Sentinels"] = "Thunderbad - Sentinels",
+		["Soullkeeper - Sargeras"] = "Soullkeeper - Sargeras",
+		["Gréëñðrägoñ - Sargeras"] = "Gréëñðrägoñ - Sargeras",
+		["Representing - Sargeras"] = "Representing - Sargeras",
+		["Mw - Tichondrius"] = "Mw - Tichondrius",
+		["Mysticbankk - Sargeras"] = "Mysticbankk - Sargeras",
+		["Darkapostle - Tichondrius"] = "Darkapostle - Tichondrius",
+		["Mysticallx - Sargeras"] = "Mysticallx - Sargeras",
+		["Réðçräñé - Sargeras"] = "Réðçräñé - Sargeras",
+	},
+	["profiles"] = {
+		["Kickthesun - Sargeras"] = {
+			["bindings"] = {
+				{
+					["sets"] = {
+						["default"] = true,
+					},
+					["type"] = "target",
+					["key"] = "BUTTON1",
+					["unit"] = "mouseover",
+				}, -- [1]
+				{
+					["type"] = "menu",
+					["key"] = "BUTTON2",
+					["sets"] = {
+						["default"] = true,
+					},
+				}, -- [2]
+			},
+		},
+		["Moosticall - Sentinels"] = {
+			["bindings"] = {
+				{
+					["type"] = "target",
+					["sets"] = {
+						["default"] = true,
+					},
+					["key"] = "BUTTON1",
+					["unit"] = "mouseover",
+				}, -- [1]
+				{
+					["type"] = "menu",
+					["key"] = "BUTTON2",
+					["sets"] = {
+						["default"] = true,
+					},
+				}, -- [2]
+			},
+		},
+		["Thunderbad - Sentinels"] = {
+			["bindings"] = {
+				{
+					["sets"] = {
+						["default"] = true,
+					},
+					["type"] = "target",
+					["key"] = "BUTTON1",
+					["unit"] = "mouseover",
+				}, -- [1]
+				{
+					["type"] = "menu",
+					["key"] = "BUTTON2",
+					["sets"] = {
+						["default"] = true,
+					},
+				}, -- [2]
+			},
+		},
+		["Soullkeeper - Sargeras"] = {
+			["bindings"] = {
+				{
+					["type"] = "target",
+					["sets"] = {
+						["default"] = true,
+					},
+					["key"] = "BUTTON1",
+					["unit"] = "mouseover",
+				}, -- [1]
+				{
+					["type"] = "menu",
+					["key"] = "BUTTON2",
+					["sets"] = {
+						["default"] = true,
+					},
+				}, -- [2]
+			},
+		},
+		["Gréëñðrägoñ - Sargeras"] = {
+			["bindings"] = {
+				{
+					["type"] = "menu",
+					["key"] = "BUTTON2",
+					["sets"] = {
+						["default"] = true,
+					},
+				}, -- [1]
+				{
+					["type"] = "target",
+					["key"] = "BUTTON1",
+					["sets"] = {
+						["default"] = true,
+					},
+				}, -- [2]
+			},
+		},
+		["Representing - Sargeras"] = {
+			["bindings"] = {
+				{
+					["type"] = "target",
+					["sets"] = {
+						["default"] = true,
+					},
+					["key"] = "BUTTON1",
+					["unit"] = "mouseover",
+				}, -- [1]
+				{
+					["type"] = "menu",
+					["key"] = "BUTTON2",
+					["sets"] = {
+						["default"] = true,
+					},
+				}, -- [2]
+			},
+		},
+		["Mw - Tichondrius"] = {
+			["bindings"] = {
+				{
+					["sets"] = {
+						["default"] = true,
+					},
+					["type"] = "target",
+					["key"] = "BUTTON1",
+					["unit"] = "mouseover",
+				}, -- [1]
+				{
+					["type"] = "menu",
+					["key"] = "BUTTON2",
+					["sets"] = {
+						["default"] = true,
+					},
+				}, -- [2]
+			},
+		},
+		["Mysticbankk - Sargeras"] = {
+			["bindings"] = {
+				{
+					["type"] = "target",
+					["sets"] = {
+						["default"] = true,
+					},
+					["key"] = "BUTTON1",
+					["unit"] = "mouseover",
+				}, -- [1]
+				{
+					["type"] = "menu",
+					["key"] = "BUTTON2",
+					["sets"] = {
+						["default"] = true,
+					},
+				}, -- [2]
+			},
+		},
+		["Darkapostle - Tichondrius"] = {
+			["bindings"] = {
+				{
+					["type"] = "target",
+					["sets"] = {
+						["default"] = true,
+					},
+					["key"] = "BUTTON1",
+					["unit"] = "mouseover",
+				}, -- [1]
+				{
+					["type"] = "menu",
+					["key"] = "BUTTON2",
+					["sets"] = {
+						["default"] = true,
+					},
+				}, -- [2]
+			},
+		},
+		["Mysticallx - Sargeras"] = {
+			["bindings"] = {
+				{
+					["sets"] = {
+						["default"] = true,
+					},
+					["type"] = "target",
+					["key"] = "BUTTON1",
+					["unit"] = "mouseover",
+				}, -- [1]
+				{
+					["type"] = "menu",
+					["key"] = "BUTTON2",
+					["sets"] = {
+						["default"] = true,
+					},
+				}, -- [2]
+			},
+		},
+		["Réðçräñé - Sargeras"] = {
+			["bindings"] = {
+				{
+					["sets"] = {
+						["default"] = true,
+					},
+					["type"] = "target",
+					["key"] = "BUTTON1",
+					["unit"] = "mouseover",
+				}, -- [1]
+				{
+					["type"] = "menu",
+					["key"] = "BUTTON2",
+					["sets"] = {
+						["default"] = true,
+					},
+				}, -- [2]
+			},
+		},
+	},
+}

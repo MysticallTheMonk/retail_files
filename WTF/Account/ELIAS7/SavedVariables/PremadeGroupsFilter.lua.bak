@@ -1,0 +1,15 @@
+
+PremadeGroupsFilterSettings = {
+["signupOnEnter"] = false,
+["ratingInfo"] = true,
+["classNamesInTooltip"] = true,
+["oneClickSignUp"] = true,
+["coloredGroupTexts"] = true,
+["leaderCrown"] = false,
+["classCircle"] = false,
+["classBar"] = false,
+["version"] = 3,
+["persistSignUpNote"] = true,
+["skipSignUpDialog"] = false,
+["dialogMovable"] = false,
+}

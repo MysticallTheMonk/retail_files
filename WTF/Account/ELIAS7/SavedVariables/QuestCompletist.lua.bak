@@ -1,0 +1,26 @@
+
+qcSettings = {
+	["QC_L_HIDE_LOWLEVEL"] = 0,
+	["PURGED"] = 109.41,
+	["QC_M_HIDE_COMPLETED"] = 1,
+	["QC_L_HIDE_DAILYQUEST"] = 1,
+	["QC_L_HIDE_COMPLETED"] = 1,
+	["QC_M_SHOW_ICONS"] = 1,
+	["QC_ML_HIDE_COVENANTS"] = 1,
+	["QC_M_HIDE_INPROGRESS"] = 0,
+	["QC_L_HIDE_PROFESSION"] = 1,
+	["QC_SERVER_QUERY_COMPLETE"] = 0,
+	["QC_M_HIDE_PROFESSION"] = 1,
+	["QC_L_HIDE_WORLDQUEST"] = 1,
+	["QC_M_HIDE_LOWLEVEL"] = 0,
+	["SORT"] = 1,
+	["QC_ML_HIDE_FACTION"] = 1,
+	["QC_M_HIDE_SEASONAL"] = 1,
+	["QC_M_HIDE_WORLDQUEST"] = 1,
+	["QC_ML_HIDE_RACECLASS"] = 1,
+	["QC_M_HIDE_DAILYREPEATABLE"] = 0,
+}
+qcWorkingDB = {
+}
+qcWorkingLog = {
+}

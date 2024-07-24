@@ -1,0 +1,93 @@
+
+JiberishIconsDB = {
+	["profileKeys"] = {
+		["Mysticallx - Sargeras"] = "Mysticallx - Sargeras",
+		["Thunderbad - Sentinels"] = "Thunderbad - Sentinels",
+		["Gréëñðrägoñ - Sargeras"] = "Gréëñðrägoñ - Sargeras",
+		["Healjkoom - Sargeras"] = "Healjkoom - Sargeras",
+		["Réðçräñé - Sargeras"] = "Mw - Tichondrius",
+		["Mw - Tichondrius"] = "Mw - Tichondrius",
+		["Mysticbankk - Sargeras"] = "Mysticbankk - Sargeras",
+		["Sevenseconds - Sargeras"] = "Sevenseconds - Sargeras",
+		["Badplat - Sargeras"] = "Badplat - Sargeras",
+		["Soullkeeper - Tichondrius"] = "Soullkeeper - Tichondrius",
+	},
+	["profiles"] = {
+		["Mysticallx - Sargeras"] = {
+		},
+		["Thunderbad - Sentinels"] = {
+		},
+		["Gréëñðrägoñ - Sargeras"] = {
+		},
+		["Healjkoom - Sargeras"] = {
+		},
+		["Réðçräñé - Sargeras"] = {
+		},
+		["Mw - Tichondrius"] = {
+			["blizzard"] = {
+				["player"] = {
+					["portrait"] = {
+						["enable"] = true,
+						["background"] = {
+							["colorOverride"] = 1,
+						},
+						["style"] = "fabledrealm",
+					},
+				},
+				["focus"] = {
+					["portrait"] = {
+						["enable"] = true,
+						["background"] = {
+							["colorOverride"] = 2,
+						},
+						["style"] = "fabledrealm",
+					},
+				},
+				["target"] = {
+					["portrait"] = {
+						["enable"] = true,
+						["background"] = {
+							["colorOverride"] = 2,
+						},
+						["style"] = "fabledrealm",
+					},
+				},
+				["focustarget"] = {
+					["portrait"] = {
+						["enable"] = true,
+						["background"] = {
+							["colorOverride"] = 2,
+						},
+						["style"] = "fabledrealm",
+					},
+				},
+				["targettarget"] = {
+					["portrait"] = {
+						["enable"] = true,
+						["background"] = {
+							["colorOverride"] = 2,
+						},
+						["style"] = "fabledrealm",
+					},
+				},
+				["party"] = {
+					["portrait"] = {
+						["enable"] = true,
+						["background"] = {
+							["colorOverride"] = 2,
+						},
+						["style"] = "fabledrealm",
+					},
+				},
+			},
+		},
+		["Mysticbankk - Sargeras"] = {
+		},
+		["Sevenseconds - Sargeras"] = {
+		},
+		["Badplat - Sargeras"] = {
+		},
+		["Soullkeeper - Tichondrius"] = {
+		},
+	},
+}

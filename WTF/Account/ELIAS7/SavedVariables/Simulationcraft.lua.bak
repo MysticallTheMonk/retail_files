@@ -1,0 +1,91 @@
+
+SimulationCraftDB = {
+["profileKeys"] = {
+["Harambad - Sargeras"] = "Harambad - Sargeras",
+["Onlyplaydh - Sargeras"] = "Onlyplaydh - Sargeras",
+["Gréëñðrägoñ - Sargeras"] = "Gréëñðrägoñ - Sargeras",
+["Representing - Sargeras"] = "Representing - Sargeras",
+["Sevenseconds - Sargeras"] = "Sevenseconds - Sargeras",
+["Yungmyst - Sentinels"] = "Yungmyst - Sentinels",
+["Onlyplaymage - Sargeras"] = "Onlyplaymage - Sargeras",
+["Réðçräñé - Sargeras"] = "Réðçräñé - Sargeras",
+["Lifedestroys - Tichondrius"] = "Lifedestroys - Tichondrius",
+["Iamdeadinsid - Sentinels"] = "Iamdeadinsid - Sentinels",
+["Soullkeeper - Tichondrius"] = "Soullkeeper - Tichondrius",
+["Nerfmw - Sargeras"] = "Nerfmw - Sargeras",
+["Badplat - Sargeras"] = "Badplat - Sargeras",
+["Moosticall - Sentinels"] = "Moosticall - Sentinels",
+["Thunderbad - Sentinels"] = "Thunderbad - Sentinels",
+["Coocoocachu - Sargeras"] = "Coocoocachu - Sargeras",
+["Vivifying - Sentinels"] = "Vivifying - Sentinels",
+["Mysticbankk - Tichondrius"] = "Mysticbankk - Tichondrius",
+["Kickthesun - Sargeras"] = "Kickthesun - Sargeras",
+["Healjkoom - Sargeras"] = "Healjkoom - Sargeras",
+["Cincinatizoo - Sargeras"] = "Cincinatizoo - Sargeras",
+["Mysticbankk - Sargeras"] = "Mysticbankk - Sargeras",
+["Mw - Tichondrius"] = "Mw - Tichondrius",
+["Mediumvibes - Sentinels"] = "Mediumvibes - Sentinels",
+["Mysticallx - Sargeras"] = "Mysticallx - Sargeras",
+["Zft - Sentinels"] = "Zft - Sentinels",
+["Enveloping - Sentinels"] = "Enveloping - Sentinels",
+},
+["profiles"] = {
+["Harambad - Sargeras"] = {
+},
+["Onlyplaydh - Sargeras"] = {
+},
+["Gréëñðrägoñ - Sargeras"] = {
+},
+["Representing - Sargeras"] = {
+},
+["Sevenseconds - Sargeras"] = {
+},
+["Yungmyst - Sentinels"] = {
+},
+["Onlyplaymage - Sargeras"] = {
+},
+["Réðçräñé - Sargeras"] = {
+},
+["Lifedestroys - Tichondrius"] = {
+["minimap"] = {
+["minimapPos"] = 257.9786285531592,
+},
+},
+["Iamdeadinsid - Sentinels"] = {
+},
+["Soullkeeper - Tichondrius"] = {
+},
+["Nerfmw - Sargeras"] = {
+},
+["Badplat - Sargeras"] = {
+},
+["Moosticall - Sentinels"] = {
+},
+["Thunderbad - Sentinels"] = {
+},
+["Coocoocachu - Sargeras"] = {
+},
+["Vivifying - Sentinels"] = {
+},
+["Mysticbankk - Tichondrius"] = {
+},
+["Kickthesun - Sargeras"] = {
+},
+["Healjkoom - Sargeras"] = {
+},
+["Cincinatizoo - Sargeras"] = {
+},
+["Mysticbankk - Sargeras"] = {
+},
+["Mw - Tichondrius"] = {
+},
+["Mediumvibes - Sentinels"] = {
+},
+["Mysticallx - Sargeras"] = {
+},
+["Zft - Sentinels"] = {
+},
+["Enveloping - Sentinels"] = {
+},
+},
+}

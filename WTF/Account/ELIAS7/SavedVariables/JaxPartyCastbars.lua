@@ -1,0 +1,36 @@
+
+jpcbDB = {
+	["profileKeys"] = {
+		["Mstcll - Sentinels"] = "Default",
+		["Onlyplaymonk - Area 52"] = "Default",
+		["Cocoonjkdead - Sentinels"] = "Default",
+		["Cincinatizoo - Sargeras"] = "Default",
+		["Mysticallx - Area 52"] = "Default",
+		["Yungmyst - Sentinels"] = "Default",
+		["Onlyplaymage - Sargeras"] = "Default",
+		["Mysticbankk - Area 52"] = "Default",
+		["Anonymage - Blackhand"] = "Default",
+		["Réðçräñé - Sargeras"] = "Default",
+		["Representing - Area 52"] = "Default",
+		["Mysticallx - Sargeras"] = "Default",
+		["Moosticall - Sentinels"] = "Default",
+		["Mysticbankk - Garrosh"] = "Default",
+		["Mysticbankk - Sentinels"] = "Default",
+		["Iamdeadinsid - Sentinels"] = "Default",
+		["Kickthesun - Sargeras"] = "Default",
+		["Mysticbankk - Sargeras"] = "Default",
+		["Mw - Tichondrius"] = "Default",
+		["Mysticall - Sentinels"] = "Default",
+		["Mysticallxy - Area 52"] = "Default",
+		["Thunderbad - Sentinels"] = "Default",
+		["Cocoonjkdead - Area 52"] = "Default",
+	},
+	["profiles"] = {
+		["Default"] = {
+			["scale"] = 0.8578300476074219,
+			["offsetY"] = 13.5848388671875,
+			["offsetX"] = 7.547119140625,
+			["attachPointFrame"] = "LEFT",
+		},
+	},
+}

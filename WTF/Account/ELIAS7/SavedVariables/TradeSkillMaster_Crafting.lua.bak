@@ -1,0 +1,2 @@
+
+TradeSkillMaster_CraftingDB = nil

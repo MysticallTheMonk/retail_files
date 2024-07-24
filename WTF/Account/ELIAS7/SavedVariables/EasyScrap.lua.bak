@@ -1,0 +1,27 @@
+
+EasyScrap_SaveData = {
+	["addonSettings"] = {
+		["defaultFilter"] = 1,
+		["canScrapTooltip"] = false,
+	},
+	["addonVersion"] = 31,
+	["customFilters"] = {
+		{
+			["name"] = "Tailoring",
+			["rules"] = {
+				{
+					["filterType"] = "equipmentSet",
+				}, -- [1]
+				{
+					["data"] = {
+						false, -- [1]
+						true, -- [2]
+						false, -- [3]
+						false, -- [4]
+					},
+					["filterType"] = "itemQuality",
+				}, -- [2]
+			},
+		}, -- [1]
+	},
+}

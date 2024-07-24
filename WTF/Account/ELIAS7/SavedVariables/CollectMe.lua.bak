@@ -1,0 +1,52 @@
+
+CollectMeDB = {
+	["profileKeys"] = {
+		["Mstcll - Sargeras"] = "Mstcll - Sargeras",
+		["Mysticbankk - Sargeras"] = "Mysticbankk - Sargeras",
+		["Representing - Blackhand"] = "Representing - Blackhand",
+		["Onlyplaymonk - Sargeras"] = "Onlyplaymonk - Sargeras",
+		["Chithion - Zul'jin"] = "Chithion - Zul'jin",
+		["Mysticallx - Tichondrius"] = "Mysticallx - Tichondrius",
+		["Soullstëaler - Blackhand"] = "Soullstëaler - Blackhand",
+		["Trialfornowa - Cenarius"] = "Trialfornowa - Cenarius",
+		["Mysticbollt - Garrosh"] = "Mysticbollt - Garrosh",
+		["Onlyplayfury - Sargeras"] = "Onlyplayfury - Sargeras",
+		["Mw - Tichondrius"] = "Mw - Tichondrius",
+		["Mysticallx - Sargeras"] = "Mysticallx - Sargeras",
+		["Misstickle - Sargeras"] = "Misstickle - Sargeras",
+		["Onlyplaydru - Sargeras"] = "Onlyplaydru - Sargeras",
+		["Enveloping - Area 52"] = "Enveloping - Area 52",
+	},
+	["profiles"] = {
+		["Mstcll - Sargeras"] = {
+		},
+		["Mysticbankk - Sargeras"] = {
+		},
+		["Representing - Blackhand"] = {
+		},
+		["Onlyplaymonk - Sargeras"] = {
+		},
+		["Chithion - Zul'jin"] = {
+		},
+		["Mysticallx - Tichondrius"] = {
+		},
+		["Soullstëaler - Blackhand"] = {
+		},
+		["Trialfornowa - Cenarius"] = {
+		},
+		["Mysticbollt - Garrosh"] = {
+		},
+		["Onlyplayfury - Sargeras"] = {
+		},
+		["Mw - Tichondrius"] = {
+		},
+		["Mysticallx - Sargeras"] = {
+		},
+		["Misstickle - Sargeras"] = {
+		},
+		["Onlyplaydru - Sargeras"] = {
+		},
+		["Enveloping - Area 52"] = {
+		},
+	},
+}

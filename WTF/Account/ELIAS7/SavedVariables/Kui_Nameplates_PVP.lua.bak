@@ -1,0 +1,9 @@
+
+KuiPVPSaved = {
+	["Debugger"] = false,
+	["iconNPC"] = false,
+	["iconSize"] = 24,
+	["iconFaction"] = true,
+	["iconOwnFaction"] = false,
+	["iconAnchor"] = "RIGHT",
+}

@@ -1,0 +1,36 @@
+
+LS_GLASS_GLOBAL_CONFIG = {
+	["profileKeys"] = {
+		["Mstcll - Sentinels"] = "Default",
+		["Cocoonjkdead - Sentinels"] = "Default",
+		["Justinjames - Sentinels"] = "Default",
+		["Nightmares - Sentinels"] = "Default",
+		["Yungmyst - Sentinels"] = "Default",
+		["Mstcll - Area 52"] = "Default",
+		["Mysticallxy - Area 52"] = "Default",
+		["Lifedestroys - Tichondrius"] = "Default",
+		["Mysticbollt - Area 52"] = "Default",
+		["Mstcll - Blackhand"] = "Default",
+		["Representing - Area 52"] = "Default",
+		["Onlyplaymage - Sargeras"] = "Default",
+		["Soullstëaler - Sentinels"] = "Default",
+		["Darkapostle - Tichondrius"] = "Default",
+		["Coocoocachu - Sargeras"] = "Default",
+		["Vivifying - Sentinels"] = "Default",
+		["Mysticallx - Tichondrius"] = "Default",
+		["Mysticall - Sentinels"] = "Default",
+		["Onlyplaydh - Sargeras"] = "Default",
+		["Mstcll - Aerie Peak"] = "Default",
+		["Sevenseconds - Area 52"] = "Default",
+		["Mw - Tichondrius"] = "Default",
+		["Mediumvibes - Sentinels"] = "Default",
+		["Mysticbankk - Sentinels"] = "Default",
+		["Zft - Sentinels"] = "Default",
+		["Enveloping - Sentinels"] = "Default",
+	},
+	["profiles"] = {
+		["Default"] = {
+			["version"] = 10000005,
+		},
+	},
+}

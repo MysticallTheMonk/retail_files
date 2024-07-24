@@ -1,0 +1,848 @@
+
+EditModeExpandedADB = {
+["profileKeys"] = {
+["Nerfmw - Sargeras"] = "Nerfmw - Sargeras",
+["Mysticallx - Sargeras"] = "Mysticallx - Sargeras",
+},
+["global"] = {
+["PetActionBar"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["MultiBarBottomLeft"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["MultiBarLeft"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["TalkingHeadFrame"] = {
+["y"] = 96,
+["x"] = 781.6666870117188,
+["profiles"] = {
+["1-main"] = {
+["y"] = 96,
+["x"] = 781.6666870117188,
+["settings"] = {
+},
+},
+["1-big-raid"] = {
+["y"] = 96,
+["x"] = 781.6666870117188,
+["settings"] = {
+},
+},
+},
+},
+["MainStatusTrackingBarContainer"] = {
+["profiles"] = {
+["1-main"] = {
+["y"] = 1181.000122070313,
+["x"] = 1.966671228408814,
+["settings"] = {
+},
+},
+["1-big-raid"] = {
+["y"] = 0,
+["x"] = 0,
+["settings"] = {
+},
+},
+},
+},
+["PlayerFrame"] = {
+["profiles"] = {
+["1-main"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+["1-big-raid"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+},
+},
+["TotemFrame"] = {
+["profiles"] = {
+["1-main"] = {
+["defaultScale"] = 1,
+["defaultY"] = 1015,
+["defaultX"] = 454.1999816894531,
+["x"] = 454.1999816894531,
+["y"] = 1015,
+["enabled"] = true,
+["clamped"] = 1,
+},
+["1-big-raid"] = {
+["defaultScale"] = 1,
+["defaultY"] = 1037.5,
+["defaultX"] = 382,
+["x"] = 382,
+["y"] = 1037.5,
+["enabled"] = true,
+["clamped"] = 1,
+},
+},
+},
+["DebuffFrame"] = {
+["profiles"] = {
+["1-main"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+["1-big-raid"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+},
+},
+["ChatFrameMenuButton"] = {
+["profiles"] = {
+["1-main"] = {
+["defaultScale"] = 1,
+["defaultY"] = 87.20001983642578,
+["defaultX"] = -1.500001192092896,
+["x"] = 0,
+["y"] = 87.20001983642578,
+["enabled"] = true,
+["clamped"] = 1,
+},
+["1-big-raid"] = {
+["defaultScale"] = 1,
+["defaultY"] = 86.19999694824219,
+["defaultX"] = -3.499999761581421,
+["x"] = 0,
+["y"] = 86.19999694824219,
+["enabled"] = false,
+["clamped"] = 1,
+},
+},
+},
+["VehicleSeatIndicator"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["QueueStatusButton"] = {
+["profiles"] = {
+["1-main"] = {
+["defaultScale"] = 0.5,
+["defaultY"] = 53.0000114440918,
+["settings"] = {
+[12] = {
+},
+},
+["defaultX"] = 456.7999877929688,
+["x"] = 456.7999877929688,
+["y"] = 53.0000114440918,
+["enabled"] = true,
+["clamped"] = 1,
+},
+["1-big-raid"] = {
+["defaultScale"] = 0.5,
+["defaultY"] = 55.50004196166992,
+["settings"] = {
+[12] = {
+},
+},
+["defaultX"] = 456.7999877929688,
+["x"] = 456.7999877929688,
+["y"] = 55.50004196166992,
+["enabled"] = true,
+["clamped"] = 1,
+},
+},
+},
+["TargetFrame"] = {
+["profiles"] = {
+["1-main"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+["1-big-raid"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+},
+},
+["BagsBar"] = {
+["profiles"] = {
+["1-main"] = {
+["settings"] = {
+},
+},
+["1-big-raid"] = {
+["settings"] = {
+},
+},
+},
+},
+["ContainerFrameCombinedBags"] = {
+["profiles"] = {
+["1-main"] = {
+["defaultScale"] = 1,
+["enabled"] = true,
+["clamped"] = 1,
+},
+},
+},
+["CompactArenaFrame"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["PartyFrame"] = {
+["settings"] = {
+[12] = {
+},
+},
+["profiles"] = {
+["1-main"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+["1-big-raid"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+},
+},
+["ExtraAbilityContainer"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["FocusSpellBar"] = {
+["profiles"] = {
+["1-main"] = {
+["defaultScale"] = 1,
+["defaultY"] = 645.199951171875,
+["settings"] = {
+[16] = 100,
+[17] = {
+["AnchorToDropdown"] = {
+},
+},
+},
+["defaultX"] = 613.3667602539062,
+["x"] = 613.3667602539062,
+["y"] = 645.199951171875,
+["enabled"] = true,
+["clamped"] = 1,
+},
+["1-big-raid"] = {
+["defaultScale"] = 1,
+["defaultY"] = 627.9999389648438,
+["settings"] = {
+[16] = 100,
+[17] = {
+["AnchorToDropdown"] = {
+},
+},
+},
+["defaultX"] = 463.5000305175781,
+["x"] = 636.8331909179688,
+["y"] = 682.9999389648438,
+["enabled"] = true,
+["clamped"] = 1,
+},
+},
+},
+["FocusToT"] = {
+["profiles"] = {
+["1-main"] = {
+["defaultScale"] = 1,
+["defaultY"] = 611.2000122070312,
+["settings"] = {
+[12] = {
+},
+[17] = {
+["AnchorToDropdown"] = {
+},
+},
+},
+["defaultX"] = 694.3666381835938,
+["x"] = 706.666748046875,
+["y"] = 622.5,
+["enabled"] = true,
+["clamped"] = 1,
+},
+["1-big-raid"] = {
+["defaultScale"] = 1,
+["defaultY"] = 605.4999389648438,
+["settings"] = {
+[12] = {
+},
+[17] = {
+["AnchorToDropdown"] = {
+},
+},
+},
+["defaultX"] = 556.5,
+["x"] = 556.5,
+["y"] = 605.4999389648438,
+["enabled"] = true,
+["clamped"] = 1,
+},
+},
+},
+["Achievements"] = {
+["profiles"] = {
+["1-main"] = {
+["defaultScale"] = 1,
+["defaultY"] = 128,
+["defaultX"] = 1061.666625976563,
+["x"] = 1061.666625976563,
+["y"] = 128,
+["enabled"] = true,
+["clamped"] = 1,
+},
+["1-big-raid"] = {
+["defaultScale"] = 1,
+["defaultY"] = 128,
+["defaultX"] = 1061.666625976563,
+["x"] = 1061.666625976563,
+["y"] = 128,
+["enabled"] = true,
+["clamped"] = 1,
+},
+},
+},
+["FocusFrame"] = {
+["profiles"] = {
+["1-main"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+["1-big-raid"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+},
+},
+["MirrorTimerContainer"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["ChatFrame1"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["DurabilityFrame"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["MainMenuBar"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["PlayerCastingBarFrame"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["TargetSpellBar"] = {
+["profiles"] = {
+["1-main"] = {
+["defaultScale"] = 1,
+["defaultY"] = 681.137939453125,
+["settings"] = {
+[17] = {
+["AnchorToDropdown"] = {
+},
+},
+},
+["defaultX"] = 306.72412109375,
+["x"] = 306.72412109375,
+["y"] = 681.137939453125,
+["enabled"] = true,
+["clamped"] = 1,
+},
+["1-big-raid"] = {
+["defaultScale"] = 1,
+["defaultY"] = 811.0001220703125,
+["settings"] = {
+[17] = {
+["AnchorToDropdown"] = {
+},
+},
+},
+["defaultX"] = 326.6000671386719,
+["x"] = 326.6000671386719,
+["y"] = 811.0001220703125,
+["enabled"] = false,
+["clamped"] = 1,
+},
+},
+},
+["GameTooltipDefaultContainer"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["StanceBar"] = {
+["profiles"] = {
+["1-main"] = {
+["settings"] = {
+},
+},
+["1-big-raid"] = {
+["settings"] = {
+},
+},
+},
+},
+["MainMenuBarVehicleLeaveButton"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["MultiBar6"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["MultiBarRight"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["QuickJoinToastButton"] = {
+["profiles"] = {
+["1-main"] = {
+["defaultScale"] = 1,
+["defaultY"] = 260.2000427246094,
+["defaultX"] = 0,
+["x"] = 0,
+["y"] = 260.2000427246094,
+["enabled"] = true,
+["clamped"] = 1,
+},
+["1-big-raid"] = {
+["defaultScale"] = 1,
+["defaultY"] = 259.2000122070313,
+["defaultX"] = -2.000000715255737,
+["x"] = 0,
+["y"] = 259.2000122070313,
+["enabled"] = false,
+["clamped"] = 1,
+},
+},
+},
+["SecondaryStatusTrackingBarContainer"] = {
+["profiles"] = {
+["1-main"] = {
+["y"] = 1181.000122070313,
+["x"] = 1.966671228408814,
+["settings"] = {
+},
+},
+["1-big-raid"] = {
+["y"] = 17,
+["x"] = 0,
+["settings"] = {
+},
+},
+},
+},
+["CompactRaidFrameManager"] = {
+["defaultScale"] = 1,
+["defaultY"] = 915,
+["profiles"] = {
+["1-main"] = {
+["y"] = 904.9999389648438,
+["x"] = -182.0000152587891,
+["defaultX"] = -182.0000152587891,
+["defaultY"] = 915,
+["enabled"] = true,
+},
+["1-big-raid"] = {
+["y"] = 904.9999389648438,
+["x"] = -182.0000152587891,
+["defaultX"] = -182.0000152587891,
+["defaultY"] = 904.9999389648438,
+["enabled"] = false,
+},
+},
+["defaultX"] = -182.0000152587891,
+["x"] = -182.0000152587891,
+["enabled"] = true,
+["y"] = 915,
+["clamped"] = 0,
+},
+["PetFrame"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["MultiBar5"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["EncounterBar"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["ExpansionLandingPageMinimapButton"] = {
+["profiles"] = {
+["1-main"] = {
+["defaultScale"] = 1,
+["defaultY"] = 1002.499267578125,
+["settings"] = {
+[12] = {
+},
+},
+["defaultX"] = 1910.373657226563,
+["x"] = 1910.373657226563,
+["y"] = 1002.499267578125,
+["enabled"] = true,
+["clamped"] = 1,
+},
+["1-big-raid"] = {
+["defaultScale"] = 1,
+["defaultY"] = 966.9999389648438,
+["settings"] = {
+[12] = {
+},
+},
+["defaultX"] = 1912.833129882813,
+["x"] = 1912.833129882813,
+["y"] = 966.9999389648438,
+["enabled"] = false,
+["clamped"] = 1,
+},
+},
+},
+["ChatFrameChannelButton"] = {
+["profiles"] = {
+["1-main"] = {
+["defaultScale"] = 1,
+["defaultY"] = 181.2000274658203,
+["defaultX"] = 0.9999992251396179,
+["x"] = 0.9999992251396179,
+["y"] = 181.2000274658203,
+["enabled"] = true,
+["clamped"] = 1,
+},
+["1-big-raid"] = {
+["defaultScale"] = 1,
+["defaultY"] = 180.1999816894531,
+["defaultX"] = -1.000001549720764,
+["x"] = 0,
+["y"] = 180.1999816894531,
+["enabled"] = false,
+["clamped"] = 1,
+},
+},
+},
+["ToT"] = {
+["profiles"] = {
+["1-main"] = {
+["defaultScale"] = 1,
+["defaultY"] = 647.1378784179688,
+["settings"] = {
+[12] = {
+},
+[17] = {
+["AnchorToDropdown"] = {
+},
+},
+},
+["defaultX"] = 387.72412109375,
+["x"] = 387.72412109375,
+["y"] = 647.1378784179688,
+["enabled"] = true,
+["clamped"] = 1,
+},
+["1-big-raid"] = {
+["defaultScale"] = 1,
+["defaultY"] = 788.5001220703125,
+["settings"] = {
+[12] = {
+},
+[17] = {
+["AnchorToDropdown"] = {
+},
+},
+},
+["defaultX"] = 419.6000366210938,
+["x"] = 449.6001281738281,
+["y"] = 791.1669921875,
+["enabled"] = true,
+["clamped"] = 1,
+},
+},
+},
+["PossessActionBar"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["ObjectiveTrackerFrame"] = {
+["profiles"] = {
+["1-main"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+["1-big-raid"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+},
+},
+["MicroMenuContainer"] = {
+["profiles"] = {
+["1-main"] = {
+["settings"] = {
+[17] = {
+["PaddingDropdown"] = {
+},
+},
+[12] = {
+},
+},
+},
+["1-big-raid"] = {
+["settings"] = {
+[17] = {
+["PaddingDropdown"] = {
+},
+},
+[12] = {
+},
+},
+},
+},
+},
+["CompactRaidFrameContainer"] = {
+["settings"] = {
+[12] = {
+},
+},
+["profiles"] = {
+["1-main"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+["1-big-raid"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+},
+},
+["Chi"] = {
+["profiles"] = {
+["1-main"] = {
+["defaultScale"] = 1,
+["settings"] = {
+[17] = {
+["AnchorToDropdown"] = {
+},
+},
+},
+["enabled"] = true,
+["clamped"] = 1,
+},
+["1-big-raid"] = {
+["enabled"] = true,
+["defaultScale"] = 1,
+["settings"] = {
+[17] = {
+["AnchorToDropdown"] = {
+},
+},
+},
+["clamped"] = 1,
+},
+},
+},
+["BuffFrame"] = {
+["profiles"] = {
+["1-main"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+["1-big-raid"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+},
+},
+["LootFrame"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["ArcheologyDigsiteProgressBar"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["BossTargetFrameContainer"] = {
+["profiles"] = {
+["1-main"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+["1-big-raid"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+},
+},
+["MultiBar7"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["MultiBarBottomRight"] = {
+["profiles"] = {
+["1-main"] = {
+},
+["1-big-raid"] = {
+},
+},
+},
+["GroupLootContainer"] = {
+["profiles"] = {
+["1-main"] = {
+["defaultScale"] = 1,
+["defaultY"] = 45.0000114440918,
+["defaultX"] = 938.6665649414062,
+["x"] = 938.6665649414062,
+["y"] = 45,
+["enabled"] = true,
+["clamped"] = 1,
+},
+},
+},
+["MinimapCluster"] = {
+["profiles"] = {
+["1-main"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+["1-big-raid"] = {
+["settings"] = {
+[12] = {
+},
+},
+},
+},
+},
+},
+}

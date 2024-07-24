@@ -1,0 +1,22 @@
+
+SweepyBoopDB = {
+	["profileKeys"] = {
+		["Mysticallx - Sargeras"] = "Default",
+		["Moosticall - Sentinels"] = "Default",
+		["Thunderbad - Sentinels"] = "Default",
+		["Soullkeeper - Tichondrius"] = "Default",
+		["Representing - Sargeras"] = "Default",
+		["Cincinatizoo - Sargeras"] = "Default",
+		["Buffmwpls - Sargeras"] = "Default",
+		["Mw - Tichondrius"] = "Default",
+		["Mysticbankk - Sargeras"] = "Default",
+		["Kickthesun - Sargeras"] = "Default",
+		["Zft - Sentinels"] = "Default",
+		["Réðçräñé - Sargeras"] = "Default",
+	},
+	["profiles"] = {
+		["Default"] = {
+			["classIconScale"] = 75,
+		},
+	},
+}

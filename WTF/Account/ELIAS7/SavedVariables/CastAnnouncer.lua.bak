@@ -1,0 +1,228 @@
+
+CastAnnouncerDB = {
+	["profileKeys"] = {
+		["Onlyplaymonk - Sargeras"] = "Default",
+		["Hystoricall - Tichondrius"] = "Default",
+		["Yungmyst - Sargeras"] = "Default",
+		["Justinjames - Sentinels"] = "Default",
+		["Mysticallx - Area 52"] = "Default",
+		["Yungmyst - Area 52"] = "Default",
+		["Mstcll - Sargeras"] = "Default",
+		["Mysticbankk - Sargeras"] = "Default",
+		["Soullstëaler - Sentinels"] = "Default",
+		["Mysticallx - Tichondrius"] = "Default",
+		["Mw - Tichondrius"] = "Default",
+		["Coccoon - Area 52"] = "Default",
+		["Hordebanker - Sargeras"] = "Default",
+		["Mstcll - Sentinels"] = "Default",
+		["Onlyplaymonk - Area 52"] = "Default",
+		["Chithion - Zul'jin"] = "Default",
+		["Mysticall - Bleeding Hollow"] = "Default",
+		["Onlyplaydh - Sargeras"] = "Default",
+		["Onlyplayfury - Sargeras"] = "Default",
+		["Trialfornowa - Cenarius"] = "Default",
+		["Mysticbollt - Garrosh"] = "Default",
+		["Lifedestroys - Tichondrius"] = "Default",
+		["Mstcll - Area 52"] = "Default",
+		["Mysticbankk - Area 52"] = "Default",
+		["Hystoricall - Sentinels"] = "Default",
+		["Mysticbankk - Tichondrius"] = "Default",
+		["Enveloping - Area 52"] = "Default",
+		["Hydraxises - Lightning's Blade"] = "Default",
+		["Mysticallxd - Sargeras"] = "Default",
+		["Representing - Blackhand"] = "Default",
+		["Darkapostle - Tichondrius"] = "Default",
+		["Coocoocachu - Sargeras"] = "Default",
+		["Onlyplaysub - Sargeras"] = "Default",
+		["Onlyplaydru - Sargeras"] = "Default",
+		["Soullstëaler - Blackhand"] = "Default",
+		["Mysticallx - Sargeras"] = "Default",
+		["Onlyplaymage - Sargeras"] = "Default",
+		["Mysticallxy - Area 52"] = "Default",
+		["Misstickle - Sargeras"] = "Default",
+		["Nightbllade - Area 52"] = "Default",
+		["Vivifying - Area 52"] = "Default",
+		["Cocoonjkdead - Bleeding Hollow"] = "Default",
+		["Cocoonjkdead - Area 52"] = "Default",
+	},
+	["global"] = {
+		["debugMode"] = false,
+		["Minimap"] = {
+			["minimapPos"] = 156.630862476563,
+			["hide"] = false,
+		},
+	},
+	["profiles"] = {
+		["Default"] = {
+			["TargetOnly"] = true,
+			["SpellCasts"] = {
+				["Hex"] = {
+					["Color"] = "AQUA",
+				},
+				["Resurrection"] = {
+					["Color"] = "GREEN",
+				},
+				["Glacial Spike"] = {
+					["Color"] = "WHITE",
+				},
+				["Redemption"] = {
+					["Color"] = "GREEN",
+				},
+				["Cyclone"] = {
+					["Color"] = "ORANGE",
+				},
+				["Leg Sweep"] = {
+					["Color"] = "TAN",
+				},
+				["Chaos Bolt"] = {
+					["Color"] = "VIOLET",
+				},
+				["Entangling Roots"] = {
+					["Color"] = "ORANGE",
+				},
+				["Polymorph"] = {
+					["Color"] = "TURQUOISE",
+				},
+				["Ancestral Spirit"] = {
+					["Color"] = "GREEN",
+				},
+				["Mind Control"] = {
+					["Color"] = "TURQUOISE",
+				},
+				["Revive"] = {
+					["Color"] = "GREEN",
+				},
+				["Fear"] = {
+					["Color"] = "VIOLET",
+				},
+			},
+			["CategorySelect"] = "FriendlyDebuffs",
+			["Filters"] = {
+				["FriendlyDebuffs"] = {
+					["NPCs"] = false,
+				},
+				["SpellCasts"] = {
+					["NPCs"] = false,
+					["TargetIsSelf"] = true,
+				},
+				["EnemyBuffs"] = {
+					["NPCs"] = false,
+				},
+			},
+			["FriendlyDebuffs"] = {
+				["Strangulate"] = {
+					["Color"] = "RED",
+				},
+				["Intimidating Shout"] = {
+					["Color"] = "TAN",
+				},
+				["Howl of Terror"] = {
+					["Color"] = "VIOLET",
+				},
+				["Storm Bolt"] = {
+					["Color"] = "TAN",
+				},
+				["Psychic Scream"] = {
+					["Color"] = "WHITE",
+				},
+				["Hammer of Justice"] = {
+					["Color"] = "PINK",
+				},
+				["Silence"] = {
+					["Color"] = "WHITE",
+				},
+				["Asphyxiate"] = {
+					["Color"] = "RED",
+				},
+				["Dragon's Breath"] = {
+					["Color"] = "AQUA",
+				},
+				["Psyfiend"] = {
+					["Color"] = "WHITE",
+				},
+				["Dark Simulacrum"] = {
+					["Color"] = "RED",
+				},
+			},
+			["Ignores"] = {
+				["Counterstrike Totem"] = "Counterstrike Totem",
+				["Howl of Terror"] = "Howl of Terror",
+				["Ice Form"] = "Ice Form",
+				["Spirit Link Totem"] = "Spirit Link Totem",
+				["Fortifying Brew"] = "Fortifying Brew",
+				["Skyfury Totem"] = "Skyfury Totem",
+				["Tranquility"] = "Tranquility",
+				["Spell Reflection"] = "Spell Reflection",
+				["Unending Resolve"] = "Unending Resolve",
+				["Ice Block"] = "Ice Block",
+				["Capacitor Totem"] = "Capacitor Totem",
+				["Icebound Fortitude"] = "Icebound Fortitude",
+				["Psychic Scream"] = "Psychic Scream",
+				["Windfury Totem"] = "Windfury Totem",
+				["Grounding Totem"] = "Grounding Totem",
+			},
+			["EnemyBuffs"] = {
+				["Divine Shield"] = {
+					["Color"] = "PINK",
+				},
+				["Power Infusion"] = {
+					["Color"] = "WHITE",
+				},
+				["Unending Resolve"] = {
+					["Color"] = "VIOLET",
+				},
+				["Icebound Fortitude"] = {
+					["Color"] = "RED",
+				},
+				["Dispersion"] = {
+					["Color"] = "WHITE",
+				},
+				["Ice Form"] = {
+					["Color"] = "AQUA",
+				},
+				["Icy Veins"] = {
+					["Color"] = "AQUA",
+				},
+				["Anti-Magic Shell"] = {
+					["Color"] = "RED",
+				},
+				["Barkskin"] = {
+					["Color"] = "ORANGE",
+				},
+				["Spell Reflection"] = {
+					["Color"] = "TAN",
+				},
+				["Blessing of Protection"] = {
+					["Color"] = "PINK",
+				},
+				["Blessing of Freedom"] = {
+					["Color"] = "PINK",
+				},
+				["Survival Instincts"] = {
+					["Color"] = "ORANGE",
+				},
+				["Ironbark"] = {
+					["Color"] = "ORANGE",
+				},
+				["Die by the Sword"] = {
+					["Color"] = "TAN",
+				},
+				["Blessing of Sacrifice"] = {
+					["Color"] = "PINK",
+				},
+				["Temporal Shield"] = {
+					["Color"] = "AQUA",
+				},
+			},
+			["Positions"] = {
+				["CastAnnouncerFrameAnchor"] = {
+					nil, -- [1]
+					nil, -- [2]
+					nil, -- [3]
+					76.99946594238281, -- [4]
+					187, -- [5]
+				},
+			},
+		},
+	},
+}
