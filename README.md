@@ -6,6 +6,7 @@
     <li>Make a copy of your WTF folder. This is done just in case something
     changed by accident or isn't compatible.</li>
     <li>Download the following addons:<ul>
+        <li><a href="https://www.curseforge.com/wow/addons/advancedinterfaceoptions">Advanced Interface Options</a>  
         <li>[Advanced Interface Options](https://www.curseforge.com/wow/addons/advancedinterfaceoptions)
         <li>[BetterCharacterPanel](https://www.curseforge.com/wow/addons/bettercharacterpanel)
         <li>[Details](https://www.curseforge.com/wow/addons/details)
