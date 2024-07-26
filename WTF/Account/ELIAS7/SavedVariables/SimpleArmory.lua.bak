@@ -1,2 +1,0 @@
-
-SimpleArmory = nil

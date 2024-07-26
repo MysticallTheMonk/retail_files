@@ -1,9 +1,0 @@
-
-BetterAddonListDB = {
-	["sets"] = {
-	},
-	["nested"] = {
-	},
-	["protected"] = {
-	},
-}

@@ -1,2 +1,0 @@
-
-TradeSkillMaster_AuctioningDB = nil

@@ -1,2 +1,0 @@
-
-CMH_DB = nil

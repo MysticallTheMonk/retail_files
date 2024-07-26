@@ -1,2 +1,0 @@
-
-addonConfig = nil

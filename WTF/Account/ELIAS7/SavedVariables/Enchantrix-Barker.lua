@@ -1,4 +1,0 @@
-
-EnchantrixBarkerConfig = nil
-EnchantrixBarkerSavedInfo = {
-}
