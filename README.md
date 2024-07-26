@@ -1,6 +1,6 @@
 # Mysticall's Addon/UI Imports & Files
 
-## Follow the following instructions to import all of my profiles
+## Follow the instructions below to import all of my profiles/addons
 
 <ol>
     <li>Make a copy of your WTF folder. This is done just in case something
