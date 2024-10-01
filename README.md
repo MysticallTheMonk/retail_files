@@ -8,7 +8,7 @@
     <li>Download the following addons:<ul>
         <li><a href="https://www.curseforge.com/wow/addons/advancedinterfaceoptions">Advanced Interface Options</a>
         <li><a href="https://www.curseforge.com/wow/addons/bettercharacterpanel">BetterCharacterPanel</a> 
-        <li><a href="https://www.curseforge.com/wow/addons/details">Diminish</a> 
+        <li><a href="https://www.curseforge.com/wow/addons/details">Details!</a> 
         <li><a href="https://www.curseforge.com/wow/addons/easy-frames">Easy Frames</a> 
         <li><a href="https://www.curseforge.com/wow/addons/leatrix-plus">Leatrix Plus</a> 
         <li><a href="https://www.curseforge.com/wow/addons/masque">Masque</a>
