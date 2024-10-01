@@ -12,14 +12,17 @@ OmniAurasDB = {
 ["Nerfmw - Sargeras"] = "SkillCapped",
 ["Mysticallx - Sargeras"] = "mysticall_main",
 ["Coocoocachu - Sargeras"] = "Default",
+["Mw - Sargeras"] = "Default",
 ["Jayjay - Detheroc"] = "mysticall_main",
-["Healjkoom - Sargeras"] = "Default",
-["Badplat - Sargeras"] = "Default",
-["Ggs - Detheroc"] = "mysticall_main",
-["Mw - Tichondrius"] = "mysticall_main",
 ["Kickthesun - Sargeras"] = "Default",
 ["Mysticbankk - Sargeras"] = "Default",
+["Healjkoom - Sargeras"] = "Default",
 ["Cincinatizoo - Sargeras"] = "Default",
+["Ggs - Detheroc"] = "mysticall_main",
+["Mw - Tichondrius"] = "mysticall_main",
+["Badplat - Sargeras"] = "Default",
+["Soullkeeper - Tichondrius"] = "Default",
+["Lifedestroys - Tichondrius"] = "Default",
 ["Thunderbadx - Sargeras"] = "Default",
 },
 ["namespaces"] = {
@@ -63,7 +66,7 @@ OmniAurasDB = {
 ["HARMFUL"] = {
 ["point"] = "BOTTOMLEFT",
 ["scale"] = 0.5,
-["offsetX"] = 18,
+["largerIcon"] = 1.4,
 ["relativePoint"] = "TOPLEFT",
 ["swipeAlpha"] = 1,
 ["typeScale"] = {
@@ -75,7 +78,7 @@ OmniAurasDB = {
 ["maxIcons"] = 4,
 ["relativeFrame"] = "debuffFrame",
 ["offsetY"] = -1,
-["largerIcon"] = 1.4,
+["offsetX"] = 18,
 },
 ["visibility"] = {
 ["scenario"] = true,
@@ -83,13 +86,11 @@ OmniAurasDB = {
 },
 ["disableMinions"] = false,
 },
-["unitFrame"] = {
-["enabled"] = false,
-["player"] = {
-["HARMFUL"] = {
-["swipeAlpha"] = 0.6000000000000001,
-},
-},
+["ArenaPartyCastBars"] = {
+["point"] = "TOPRIGHT",
+["relativePoint"] = "TOPLEFT",
+["offsetY"] = -5,
+["preset"] = "TL",
 },
 ["auras"] = {
 ["202346"] = {
@@ -167,9 +168,9 @@ OmniAurasDB = {
 },
 ["360966"] = {
 ["nameplate"] = false,
+["arenaFrame"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
-["arenaFrame"] = false,
 },
 ["385954"] = {
 ["nameplate"] = false,
@@ -1455,8 +1456,6 @@ OmniAurasDB = {
 ["friendlyNameplate"] = false,
 },
 ["48265"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 },
@@ -1782,6 +1781,11 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["largerIcon"] = true,
 },
+["334320"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["arenaFrame"] = false,
+},
 ["234084"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
@@ -1793,9 +1797,20 @@ OmniAurasDB = {
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
+["20707"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
+},
 ["118922"] = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
+},
+["208997"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
+},
+["392360"] = {
+["playerFrame"] = false,
 },
 ["356356"] = {
 ["nameplate"] = false,
@@ -1815,10 +1830,6 @@ OmniAurasDB = {
 ["raidFrame"] = false,
 ["largerIcon"] = false,
 },
-["19647"] = {
-["unitFrame"] = false,
-["friendlyNameplate"] = false,
-},
 ["357170"] = {
 ["unitFrame"] = false,
 ["playerFrame"] = false,
@@ -1828,10 +1839,6 @@ OmniAurasDB = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 ["largerIcon"] = false,
-},
-["20707"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
 },
 ["206803"] = {
 ["nameplate"] = false,
@@ -1845,23 +1852,26 @@ OmniAurasDB = {
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 },
-["386770"] = {
+["411038"] = {
+["largerIcon"] = false,
+},
+["5384"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
+},
+["54216"] = {
+["unitFrame"] = false,
+["raidFrame"] = false,
+["largerIcon"] = true,
+},
+["116706"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["378441"] = {
-["glow"] = false,
-["unitFrame"] = false,
-["playerFrame"] = false,
-},
-["5384"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
-},
-["212431"] = {
+["33763"] = {
 ["nameplate"] = false,
 },
 ["201787"] = {
@@ -1871,45 +1881,30 @@ OmniAurasDB = {
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
+["207167"] = {
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["57994"] = {
+["unitFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["116705"] = {
+["unitFrame"] = false,
+["friendlyNameplate"] = false,
+},
 ["210256"] = {
 ["unitFrame"] = false,
 ["playerFrame"] = false,
 ["raidFrame"] = false,
 ["largerIcon"] = true,
 },
-["328530"] = {
+["375901"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
-["raidFrame"] = false,
+["playerFrame"] = false,
 ["arenaFrame"] = false,
-},
-["207167"] = {
-["unitFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["12472"] = {
-["unitFrame"] = false,
-["raidFrame"] = false,
-["largerIcon"] = true,
-},
-["116705"] = {
-["unitFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["217824"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["10326"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
 },
 ["344566"] = {
 ["nameplate"] = false,
@@ -1917,11 +1912,9 @@ OmniAurasDB = {
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 },
-["267171"] = {
+["212580"] = {
 ["nameplate"] = false,
-["unitFrame"] = false,
 ["raidFrame"] = false,
-["arenaFrame"] = false,
 },
 ["213871"] = {
 ["nameplate"] = false,
@@ -1935,12 +1928,14 @@ OmniAurasDB = {
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["232708"] = {
+["30283"] = {
 ["unitFrame"] = false,
-["playerFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
 },
-["392360"] = {
-["playerFrame"] = false,
+["45181"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
 },
 ["157997"] = {
 ["nameplate"] = false,
@@ -1949,42 +1944,36 @@ OmniAurasDB = {
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["334320"] = {
-["nameplate"] = false,
+["1833"] = {
 ["unitFrame"] = false,
-["arenaFrame"] = false,
-},
-["57994"] = {
-["unitFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["118699"] = {
-["unitFrame"] = false,
+["playerFrame"] = true,
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["260881"] = {
+["289655"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 },
-["853"] = {
-["unitFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
+["130"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
 },
-["108194"] = {
-["unitFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["354610"] = {
+["212638"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["187707"] = {
+["unitFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["385627"] = {
+["nameplate"] = false,
 ["raidFrame"] = false,
 ["largerIcon"] = false,
-["arenaFrame"] = false,
 },
 ["10060"] = {
 ["unitFrame"] = false,
@@ -1997,12 +1986,12 @@ OmniAurasDB = {
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["23333"] = {
+["389831"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
-["largerIcon"] = false,
 ["arenaFrame"] = false,
+["friendlyNameplate"] = false,
 },
 ["271466"] = {
 ["nameplate"] = false,
@@ -2010,10 +1999,10 @@ OmniAurasDB = {
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 },
-["31661"] = {
+["190319"] = {
 ["unitFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
+["raidFrame"] = false,
+["largerIcon"] = true,
 },
 ["63560"] = {
 ["nameplate"] = false,
@@ -2026,38 +2015,42 @@ OmniAurasDB = {
 ["raidFrame"] = false,
 ["largerIcon"] = false,
 },
-["217832"] = {
-["unitFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["96231"] = {
-["unitFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["45334"] = {
+["377048"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["372245"] = {
+["213491"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["236077"] = {
 ["unitFrame"] = false,
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["122783"] = {
+["10326"] = {
+["nameplate"] = false,
 ["unitFrame"] = false,
-["largerIcon"] = true,
+["raidFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["202164"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
 },
 ["116189"] = {
 ["nameplate"] = true,
 ["largerIcon"] = false,
 },
-["187707"] = {
-["unitFrame"] = false,
-["friendlyNameplate"] = false,
+["1714"] = {
+["raidFrame"] = true,
 },
 ["386997"] = {
 ["nameplate"] = false,
@@ -2073,28 +2066,19 @@ OmniAurasDB = {
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 },
-["199483"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
-},
-["378078"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-["arenaFrame"] = false,
-},
-["285515"] = {
+["386770"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["45181"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
+["6940"] = {
+["unitFrame"] = false,
+["playerFrame"] = false,
+["largerIcon"] = true,
 },
-["358861"] = {
+["285515"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
@@ -2109,10 +2093,23 @@ OmniAurasDB = {
 ["largerIcon"] = false,
 ["arenaFrame"] = false,
 },
-["190319"] = {
+["358861"] = {
+["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
-["largerIcon"] = true,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["45334"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["47528"] = {
+["unitFrame"] = false,
+["friendlyNameplate"] = false,
 },
 ["91797"] = {
 ["nameplate"] = false,
@@ -2121,9 +2118,10 @@ OmniAurasDB = {
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["132409"] = {
+["12472"] = {
 ["unitFrame"] = false,
-["friendlyNameplate"] = false,
+["raidFrame"] = false,
+["largerIcon"] = true,
 },
 ["33786"] = {
 ["unitFrame"] = false,
@@ -2133,14 +2131,14 @@ OmniAurasDB = {
 ["124280"] = {
 ["largerIcon"] = true,
 },
-["202164"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
-},
-["212638"] = {
+["108281"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
+["raidFrame"] = false,
 ["arenaFrame"] = false,
+},
+["132409"] = {
+["unitFrame"] = false,
 ["friendlyNameplate"] = false,
 },
 ["702"] = {
@@ -2150,21 +2148,20 @@ OmniAurasDB = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["33763"] = {
-["nameplate"] = false,
-},
-["213491"] = {
-["nameplate"] = false,
+["96231"] = {
 ["unitFrame"] = false,
-["raidFrame"] = false,
-["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
+},
+["378441"] = {
+["glow"] = false,
+["unitFrame"] = false,
+["playerFrame"] = false,
 },
 ["227847"] = {
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 },
-["51690"] = {
+["198144"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
@@ -2174,13 +2171,16 @@ OmniAurasDB = {
 ["nameplate"] = false,
 ["largerIcon"] = true,
 },
-["196364"] = {
+["269513"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+["largerIcon"] = false,
+["arenaFrame"] = false,
+},
+["356727"] = {
 ["unitFrame"] = false,
 ["arenaFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["47528"] = {
-["unitFrame"] = false,
 ["friendlyNameplate"] = false,
 },
 ["267218"] = {
@@ -2189,10 +2189,10 @@ OmniAurasDB = {
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 },
-["343527"] = {
+["354896"] = {
 ["nameplate"] = false,
+["playerFrame"] = false,
 ["raidFrame"] = false,
-["largerIcon"] = false,
 },
 ["82691"] = {
 ["unitFrame"] = false,
@@ -2203,10 +2203,10 @@ OmniAurasDB = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["57934"] = {
-["nameplate"] = false,
-["playerFrame"] = false,
-["raidFrame"] = false,
+["31661"] = {
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
 },
 ["407032"] = {
 ["nameplate"] = false,
@@ -2215,16 +2215,14 @@ OmniAurasDB = {
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["377048"] = {
+["51690"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
-["friendlyNameplate"] = false,
 },
-["356727"] = {
+["351338"] = {
 ["unitFrame"] = false,
-["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
 ["20066"] = {
@@ -2232,15 +2230,15 @@ OmniAurasDB = {
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["79206"] = {
+["111400"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
+},
+["64843"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
-},
-["111400"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
 },
 ["194844"] = {
 ["nameplate"] = false,
@@ -2255,8 +2253,11 @@ OmniAurasDB = {
 ["largerIcon"] = false,
 ["arenaFrame"] = false,
 },
-["1714"] = {
-["raidFrame"] = true,
+["267171"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+["arenaFrame"] = false,
 },
 ["211881"] = {
 ["unitFrame"] = false,
@@ -2270,17 +2271,14 @@ OmniAurasDB = {
 ["largerIcon"] = false,
 ["arenaFrame"] = false,
 },
-["33395"] = {
-["nameplate"] = false,
+["853"] = {
 ["unitFrame"] = false,
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["194249"] = {
-["nameplate"] = false,
+["48707"] = {
 ["unitFrame"] = false,
-["raidFrame"] = false,
-["arenaFrame"] = false,
+["largerIcon"] = true,
 },
 ["186265"] = {
 ["unitFrame"] = false,
@@ -2293,16 +2291,15 @@ OmniAurasDB = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["132168"] = {
-["unitFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["108839"] = {
+["256948"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
+},
+["407582"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
 },
 ["1966"] = {
 ["nameplate"] = false,
@@ -2317,11 +2314,13 @@ OmniAurasDB = {
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["48707"] = {
+["353646"] = {
+["nameplate"] = false,
 ["unitFrame"] = false,
-["largerIcon"] = true,
+["raidFrame"] = false,
+["arenaFrame"] = false,
 },
-["256948"] = {
+["208963"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
@@ -2331,12 +2330,10 @@ OmniAurasDB = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["233582"] = {
-["nameplate"] = false,
+["204018"] = {
 ["unitFrame"] = false,
-["raidFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
+["playerFrame"] = false,
+["largerIcon"] = true,
 },
 ["417537"] = {
 ["nameplate"] = false,
@@ -2347,17 +2344,17 @@ OmniAurasDB = {
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["212283"] = {
+["385149"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
+["friendlyNameplate"] = false,
 },
-["186289"] = {
-["nameplate"] = false,
+["47476"] = {
 ["unitFrame"] = false,
-["raidFrame"] = false,
 ["arenaFrame"] = false,
+["friendlyNameplate"] = false,
 },
 ["145629"] = {
 ["nameplate"] = false,
@@ -2365,12 +2362,12 @@ OmniAurasDB = {
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 },
-["204018"] = {
+["207685"] = {
 ["unitFrame"] = false,
-["playerFrame"] = false,
-["largerIcon"] = true,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
 },
-["228354"] = {
+["131894"] = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
@@ -2412,10 +2409,11 @@ OmniAurasDB = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["118905"] = {
+["19574"] = {
+["nameplate"] = false,
 ["unitFrame"] = false,
+["raidFrame"] = false,
 ["arenaFrame"] = false,
-["friendlyNameplate"] = false,
 },
 ["199085"] = {
 ["nameplate"] = false,
@@ -2424,17 +2422,16 @@ OmniAurasDB = {
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["404977"] = {
+["6770"] = {
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["202748"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
-},
-["114404"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
 },
 ["203554"] = {
 ["nameplate"] = false,
@@ -2456,10 +2453,8 @@ OmniAurasDB = {
 ["largerIcon"] = false,
 ["arenaFrame"] = false,
 },
-["91800"] = {
-["nameplate"] = false,
+["118905"] = {
 ["unitFrame"] = false,
-["raidFrame"] = false,
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
@@ -2468,24 +2463,6 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
-},
-["6770"] = {
-["unitFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["202748"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-["arenaFrame"] = false,
-},
-["357021"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
 },
 ["370970"] = {
 ["nameplate"] = false,
@@ -2504,15 +2481,35 @@ OmniAurasDB = {
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["356824"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
-},
-["19574"] = {
+["404977"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
+},
+["114404"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["91800"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["356824"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
+},
+["357021"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
 },
 ["393879"] = {
 ["nameplate"] = false,
@@ -2540,26 +2537,26 @@ OmniAurasDB = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["385149"] = {
+["36554"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
+},
+["228354"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
+},
+["233582"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["47476"] = {
-["unitFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["207685"] = {
-["unitFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["131894"] = {
+["212283"] = {
 ["nameplate"] = false,
+["unitFrame"] = false,
 ["raidFrame"] = false,
+["arenaFrame"] = false,
 },
 ["324382"] = {
 ["nameplate"] = false,
@@ -2568,64 +2565,120 @@ OmniAurasDB = {
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["36554"] = {
+["186289"] = {
 ["nameplate"] = false,
+["unitFrame"] = false,
 ["raidFrame"] = false,
+["arenaFrame"] = false,
 },
 ["132403"] = {
 ["playerFrame"] = false,
 ["raidFrame"] = false,
 },
-["407582"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
-},
-["353646"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-["arenaFrame"] = false,
-},
-["208963"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-["arenaFrame"] = false,
-},
 ["221715"] = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
+},
+["194249"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+["arenaFrame"] = false,
+},
+["132168"] = {
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["108839"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+["arenaFrame"] = false,
 },
 ["99"] = {
 ["unitFrame"] = false,
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["385627"] = {
+["199545"] = {
 ["nameplate"] = false,
+["unitFrame"] = false,
 ["raidFrame"] = false,
-["largerIcon"] = false,
+["arenaFrame"] = false,
 },
 ["29166"] = {
 ["unitFrame"] = false,
 ["playerFrame"] = false,
 ["largerIcon"] = true,
 },
-["546"] = {
+["196555"] = {
+["unitFrame"] = false,
+["largerIcon"] = true,
+},
+["372245"] = {
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["57934"] = {
 ["nameplate"] = false,
+["playerFrame"] = false,
 ["raidFrame"] = false,
 },
-["198144"] = {
+["871"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 },
-["347008"] = {
+["1719"] = {
+["nameplate"] = false,
 ["unitFrame"] = false,
+["raidFrame"] = false,
+["arenaFrame"] = false,
+},
+["118699"] = {
+["unitFrame"] = false,
+["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["871"] = {
+["116014"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+["arenaFrame"] = false,
+},
+["127797"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["108194"] = {
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["202425"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+["arenaFrame"] = false,
+},
+["354610"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+["largerIcon"] = false,
+["arenaFrame"] = false,
+},
+["217832"] = {
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["378078"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
@@ -2635,56 +2688,9 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["203123"] = {
-["unitFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["6940"] = {
-["unitFrame"] = false,
-["playerFrame"] = false,
-["largerIcon"] = true,
-},
-["127797"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["1160"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
-},
-["202425"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-["arenaFrame"] = false,
-},
-["322431"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-["arenaFrame"] = false,
-},
-["208997"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
-},
-["1766"] = {
-["unitFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["196555"] = {
+["122783"] = {
 ["unitFrame"] = false,
 ["largerIcon"] = true,
-},
-["116706"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
 },
 ["403760"] = {
 ["nameplate"] = false,
@@ -2692,17 +2698,16 @@ OmniAurasDB = {
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 },
-["199545"] = {
+["33395"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
-["raidFrame"] = false,
 ["arenaFrame"] = false,
+["friendlyNameplate"] = false,
 },
-["116014"] = {
-["nameplate"] = false,
+["196364"] = {
 ["unitFrame"] = false,
-["raidFrame"] = false,
 ["arenaFrame"] = false,
+["friendlyNameplate"] = false,
 },
 ["31850"] = {
 ["nameplate"] = false,
@@ -2710,7 +2715,7 @@ OmniAurasDB = {
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 },
-["130"] = {
+["1160"] = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
@@ -2726,7 +2731,7 @@ OmniAurasDB = {
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["378081"] = {
+["328530"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
@@ -2735,55 +2740,15 @@ OmniAurasDB = {
 ["356723"] = {
 ["largerIcon"] = true,
 },
-["351338"] = {
-["unitFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["354896"] = {
-["nameplate"] = false,
-["playerFrame"] = false,
-["raidFrame"] = false,
-},
-["411038"] = {
-["largerIcon"] = false,
-},
-["108281"] = {
+["322431"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 },
-["391109"] = {
+["199483"] = {
 ["nameplate"] = false,
-["unitFrame"] = false,
 ["raidFrame"] = false,
-["arenaFrame"] = false,
-},
-["360827"] = {
-["nameplate"] = false,
-},
-["1833"] = {
-["unitFrame"] = false,
-["playerFrame"] = true,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["1719"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-["arenaFrame"] = false,
-},
-["383269"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-["arenaFrame"] = false,
-},
-["236077"] = {
-["unitFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
 },
 ["184662"] = {
 ["nameplate"] = false,
@@ -2791,16 +2756,57 @@ OmniAurasDB = {
 ["raidFrame"] = false,
 ["largerIcon"] = true,
 },
-["212580"] = {
+["347008"] = {
+["unitFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["391109"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+["arenaFrame"] = false,
+},
+["1766"] = {
+["unitFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["203123"] = {
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["360827"] = {
+["nameplate"] = false,
+},
+["383269"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+["arenaFrame"] = false,
+},
+["23333"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+["largerIcon"] = false,
+["arenaFrame"] = false,
+},
+["546"] = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["389831"] = {
+["199042"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
+},
+["260881"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+["arenaFrame"] = false,
 },
 ["47585"] = {
 ["unitFrame"] = false,
@@ -2811,42 +2817,36 @@ OmniAurasDB = {
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 },
-["289655"] = {
+["217824"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["378081"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 ["arenaFrame"] = false,
 },
-["30283"] = {
+["19647"] = {
 ["unitFrame"] = false,
-["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["269513"] = {
+["79206"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
+["raidFrame"] = false,
+["arenaFrame"] = false,
+},
+["212431"] = {
+["nameplate"] = false,
+},
+["343527"] = {
+["nameplate"] = false,
 ["raidFrame"] = false,
 ["largerIcon"] = false,
-["arenaFrame"] = false,
-},
-["64843"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-["arenaFrame"] = false,
-},
-["199042"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["375901"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["playerFrame"] = false,
-["arenaFrame"] = false,
 },
 ["343721"] = {
 ["nameplate"] = false,
@@ -2856,10 +2856,9 @@ OmniAurasDB = {
 ["largerIcon"] = false,
 ["arenaFrame"] = false,
 },
-["54216"] = {
+["232708"] = {
 ["unitFrame"] = false,
-["raidFrame"] = false,
-["largerIcon"] = true,
+["playerFrame"] = false,
 },
 ["354788"] = {
 ["nameplate"] = false,
@@ -2888,7 +2887,7 @@ OmniAurasDB = {
 ["detachRelativeFrame"] = "debuffFrame",
 ["detachPoint"] = "BOTTOMRIGHT",
 ["counterScale"] = 0.6,
-["detachRelativePoint"] = "BOTTOMLEFT",
+["point"] = "BOTTOMRIGHT",
 ["scale"] = 1.3,
 ["sortby"] = "scalePrioNew",
 ["largerIcon"] = 1.5,
@@ -2900,7 +2899,7 @@ OmniAurasDB = {
 ["disarmRoot"] = 1.8,
 },
 ["hideNonCCCounter"] = false,
-["point"] = "BOTTOMRIGHT",
+["detachRelativePoint"] = "BOTTOMLEFT",
 },
 ["priority"] = {
 ["debuff"] = 60,
@@ -2932,11 +2931,13 @@ OmniAurasDB = {
 },
 },
 },
-["ArenaPartyCastBars"] = {
-["point"] = "TOPRIGHT",
-["relativePoint"] = "TOPLEFT",
-["preset"] = "TL",
-["offsetY"] = -5,
+["unitFrame"] = {
+["enabled"] = false,
+["player"] = {
+["HARMFUL"] = {
+["swipeAlpha"] = 0.6000000000000001,
+},
+},
 },
 ["modules"] = {
 ["ArenaPartyCastBars"] = false,
@@ -5945,7 +5946,7 @@ OmniAurasDB = {
 ["167152"] = {
 ["unitFrame"] = false,
 },
-["356727"] = {
+["162480"] = {
 ["unitFrame"] = false,
 },
 ["5246"] = {
@@ -6005,7 +6006,7 @@ OmniAurasDB = {
 ["200196"] = {
 ["unitFrame"] = false,
 },
-["125174"] = {
+["108281"] = {
 ["unitFrame"] = false,
 },
 ["339"] = {
@@ -6083,7 +6084,7 @@ OmniAurasDB = {
 ["404977"] = {
 ["unitFrame"] = false,
 },
-["114404"] = {
+["217824"] = {
 ["unitFrame"] = false,
 },
 ["194223"] = {
@@ -6128,7 +6129,7 @@ OmniAurasDB = {
 ["247483"] = {
 ["unitFrame"] = false,
 },
-["57994"] = {
+["236273"] = {
 ["unitFrame"] = false,
 },
 ["89766"] = {
@@ -6158,7 +6159,7 @@ OmniAurasDB = {
 ["353646"] = {
 ["unitFrame"] = false,
 },
-["204018"] = {
+["347765"] = {
 ["unitFrame"] = false,
 },
 ["205025"] = {
@@ -6209,7 +6210,7 @@ OmniAurasDB = {
 ["389714"] = {
 ["unitFrame"] = false,
 },
-["47536"] = {
+["203123"] = {
 ["unitFrame"] = false,
 },
 ["377540"] = {
@@ -6296,10 +6297,7 @@ OmniAurasDB = {
 ["202244"] = {
 ["unitFrame"] = false,
 },
-["387184"] = {
-["unitFrame"] = false,
-},
-["1098"] = {
+["31661"] = {
 ["unitFrame"] = false,
 },
 ["163505"] = {
@@ -6320,25 +6318,25 @@ OmniAurasDB = {
 ["205191"] = {
 ["unitFrame"] = false,
 },
-["605"] = {
+["1098"] = {
 ["unitFrame"] = false,
 },
-["203123"] = {
+["116849"] = {
 ["unitFrame"] = false,
 },
-["207289"] = {
+["125174"] = {
 ["unitFrame"] = false,
 },
 ["322460"] = {
+["unitFrame"] = false,
+},
+["207289"] = {
 ["unitFrame"] = false,
 },
 ["236321"] = {
 ["unitFrame"] = false,
 },
 ["210141"] = {
-["unitFrame"] = false,
-},
-["347765"] = {
 ["unitFrame"] = false,
 },
 ["387157"] = {
@@ -6371,16 +6369,16 @@ OmniAurasDB = {
 ["212295"] = {
 ["unitFrame"] = false,
 },
+["325202"] = {
+["unitFrame"] = false,
+},
 ["377362"] = {
 ["unitFrame"] = false,
 },
-["3355"] = {
+["204490"] = {
 ["unitFrame"] = false,
 },
-["47585"] = {
-["unitFrame"] = false,
-},
-["33395"] = {
+["10326"] = {
 ["unitFrame"] = false,
 },
 ["234084"] = {
@@ -6392,16 +6390,16 @@ OmniAurasDB = {
 ["424752"] = {
 ["unitFrame"] = false,
 },
-["354610"] = {
+["33395"] = {
 ["unitFrame"] = false,
 },
 ["199545"] = {
 ["unitFrame"] = false,
 },
-["6940"] = {
+["354610"] = {
 ["unitFrame"] = false,
 },
-["201633"] = {
+["3355"] = {
 ["unitFrame"] = false,
 },
 ["104773"] = {
@@ -6413,34 +6411,34 @@ OmniAurasDB = {
 ["122"] = {
 ["unitFrame"] = false,
 },
+["201633"] = {
+["unitFrame"] = false,
+},
 ["96231"] = {
+["unitFrame"] = false,
+},
+["45334"] = {
 ["unitFrame"] = false,
 },
 ["383269"] = {
 ["unitFrame"] = false,
 },
-["64901"] = {
-["unitFrame"] = false,
-},
-["55233"] = {
-["unitFrame"] = false,
-},
 ["322507"] = {
 ["unitFrame"] = false,
 },
-["31224"] = {
+["1719"] = {
 ["unitFrame"] = false,
 },
-["197871"] = {
+["605"] = {
 ["unitFrame"] = false,
 },
 ["47528"] = {
 ["unitFrame"] = false,
 },
-["87204"] = {
+["197871"] = {
 ["unitFrame"] = false,
 },
-["404381"] = {
+["87204"] = {
 ["unitFrame"] = false,
 },
 ["206803"] = {
@@ -6449,46 +6447,46 @@ OmniAurasDB = {
 ["114050"] = {
 ["unitFrame"] = false,
 },
-["288613"] = {
+["31224"] = {
+["unitFrame"] = false,
+},
+["370960"] = {
 ["unitFrame"] = false,
 },
 ["372048"] = {
 ["unitFrame"] = false,
 },
-["202748"] = {
-["unitFrame"] = false,
-},
 ["115078"] = {
 ["unitFrame"] = false,
 },
-["48265"] = {
+["404381"] = {
 ["unitFrame"] = false,
 },
-["113862"] = {
+["47788"] = {
+["unitFrame"] = false,
+},
+["328530"] = {
 ["unitFrame"] = false,
 },
 ["93985"] = {
 ["unitFrame"] = false,
 },
-["12472"] = {
+["162264"] = {
 ["unitFrame"] = false,
 },
 ["394112"] = {
 ["unitFrame"] = false,
 },
-["285515"] = {
-["unitFrame"] = false,
-},
 ["207167"] = {
 ["unitFrame"] = false,
 },
-["105421"] = {
+["31850"] = {
 ["unitFrame"] = false,
 },
 ["197214"] = {
 ["unitFrame"] = false,
 },
-["108416"] = {
+["105421"] = {
 ["unitFrame"] = false,
 },
 ["147833"] = {
@@ -6497,7 +6495,7 @@ OmniAurasDB = {
 ["344566"] = {
 ["unitFrame"] = false,
 },
-["247563"] = {
+["378081"] = {
 ["unitFrame"] = false,
 },
 ["213871"] = {
@@ -6506,7 +6504,7 @@ OmniAurasDB = {
 ["351338"] = {
 ["unitFrame"] = false,
 },
-["122783"] = {
+["247563"] = {
 ["unitFrame"] = false,
 },
 ["421453"] = {
@@ -6518,7 +6516,7 @@ OmniAurasDB = {
 ["118"] = {
 ["unitFrame"] = false,
 },
-["2094"] = {
+["410651"] = {
 ["unitFrame"] = false,
 },
 ["179057"] = {
@@ -6527,7 +6525,7 @@ OmniAurasDB = {
 ["77505"] = {
 ["unitFrame"] = false,
 },
-["20549"] = {
+["2094"] = {
 ["unitFrame"] = false,
 },
 ["233759"] = {
@@ -6539,22 +6537,22 @@ OmniAurasDB = {
 ["10060"] = {
 ["unitFrame"] = false,
 },
-["410651"] = {
+["20549"] = {
 ["unitFrame"] = false,
 },
-["23333"] = {
+["108416"] = {
 ["unitFrame"] = false,
 },
 ["132578"] = {
 ["unitFrame"] = false,
 },
-["184662"] = {
+["23333"] = {
 ["unitFrame"] = false,
 },
 ["63560"] = {
 ["unitFrame"] = false,
 },
-["227847"] = {
+["64843"] = {
 ["unitFrame"] = false,
 },
 ["13750"] = {
@@ -6563,10 +6561,13 @@ OmniAurasDB = {
 ["190925"] = {
 ["unitFrame"] = false,
 },
-["365362"] = {
+["202425"] = {
 ["unitFrame"] = false,
 },
-["64843"] = {
+["288613"] = {
+["unitFrame"] = false,
+},
+["187707"] = {
 ["unitFrame"] = false,
 },
 ["19236"] = {
@@ -6575,10 +6576,7 @@ OmniAurasDB = {
 ["376103"] = {
 ["unitFrame"] = false,
 },
-["347008"] = {
-["unitFrame"] = false,
-},
-["357170"] = {
+["5484"] = {
 ["unitFrame"] = false,
 },
 ["122278"] = {
@@ -6587,13 +6585,13 @@ OmniAurasDB = {
 ["188501"] = {
 ["unitFrame"] = false,
 },
-["204361"] = {
+["114052"] = {
+["unitFrame"] = false,
+},
+["57994"] = {
 ["unitFrame"] = false,
 },
 ["197862"] = {
-["unitFrame"] = false,
-},
-["408558"] = {
 ["unitFrame"] = false,
 },
 ["29166"] = {
@@ -6602,10 +6600,10 @@ OmniAurasDB = {
 ["358861"] = {
 ["unitFrame"] = false,
 },
-["114052"] = {
+["408558"] = {
 ["unitFrame"] = false,
 },
-["378081"] = {
+["33786"] = {
 ["unitFrame"] = false,
 },
 ["91797"] = {
@@ -6617,22 +6615,22 @@ OmniAurasDB = {
 ["333957"] = {
 ["unitFrame"] = false,
 },
-["410201"] = {
-["unitFrame"] = false,
-},
 ["116705"] = {
 ["unitFrame"] = false,
 },
-["236273"] = {
+["410201"] = {
 ["unitFrame"] = false,
 },
-["118699"] = {
+["372245"] = {
 ["unitFrame"] = false,
 },
-["1719"] = {
+["387184"] = {
 ["unitFrame"] = false,
 },
-["207736"] = {
+["184662"] = {
+["unitFrame"] = false,
+},
+["210256"] = {
 ["unitFrame"] = false,
 },
 ["45438"] = {
@@ -6641,25 +6639,25 @@ OmniAurasDB = {
 ["198144"] = {
 ["unitFrame"] = false,
 },
-["219809"] = {
+["267171"] = {
 ["unitFrame"] = false,
 },
 ["271466"] = {
 ["unitFrame"] = false,
 },
-["217824"] = {
+["51690"] = {
 ["unitFrame"] = false,
 },
 ["207498"] = {
 ["unitFrame"] = false,
 },
-["328620"] = {
+["207736"] = {
 ["unitFrame"] = false,
 },
 ["199844"] = {
 ["unitFrame"] = false,
 },
-["47476"] = {
+["20066"] = {
 ["unitFrame"] = false,
 },
 ["102359"] = {
@@ -6674,7 +6672,7 @@ OmniAurasDB = {
 ["199448"] = {
 ["unitFrame"] = false,
 },
-["210256"] = {
+["47476"] = {
 ["unitFrame"] = false,
 },
 ["31935"] = {
@@ -6683,28 +6681,28 @@ OmniAurasDB = {
 ["194249"] = {
 ["unitFrame"] = false,
 },
-["19647"] = {
-["unitFrame"] = false,
-},
-["403631"] = {
-["unitFrame"] = false,
-},
-["194844"] = {
-["unitFrame"] = false,
-},
-["409293"] = {
+["114404"] = {
 ["unitFrame"] = false,
 },
 ["155835"] = {
 ["unitFrame"] = false,
 },
-["211881"] = {
+["194844"] = {
 ["unitFrame"] = false,
 },
 ["256948"] = {
 ["unitFrame"] = false,
 },
-["233582"] = {
+["79206"] = {
+["unitFrame"] = false,
+},
+["211881"] = {
+["unitFrame"] = false,
+},
+["403631"] = {
+["unitFrame"] = false,
+},
+["287712"] = {
 ["unitFrame"] = false,
 },
 ["202274"] = {
@@ -6722,52 +6720,52 @@ OmniAurasDB = {
 ["23335"] = {
 ["unitFrame"] = false,
 },
-["209584"] = {
+["357021"] = {
 ["unitFrame"] = false,
 },
 ["1966"] = {
 ["unitFrame"] = false,
 },
-["287712"] = {
+["409293"] = {
 ["unitFrame"] = false,
 },
 ["19574"] = {
 ["unitFrame"] = false,
 },
-["117526"] = {
+["118905"] = {
 ["unitFrame"] = false,
 },
 ["81256"] = {
 ["unitFrame"] = false,
 },
-["79206"] = {
-["unitFrame"] = false,
-},
-["51690"] = {
-["unitFrame"] = false,
-},
-["213691"] = {
-["unitFrame"] = false,
-},
-["116706"] = {
-["unitFrame"] = false,
-},
-["386770"] = {
-["unitFrame"] = false,
-},
-["267218"] = {
+["117526"] = {
 ["unitFrame"] = false,
 },
 ["82691"] = {
 ["unitFrame"] = false,
 },
-["86659"] = {
+["213691"] = {
+["unitFrame"] = false,
+},
+["97463"] = {
+["unitFrame"] = false,
+},
+["55233"] = {
+["unitFrame"] = false,
+},
+["407032"] = {
+["unitFrame"] = false,
+},
+["201787"] = {
+["unitFrame"] = false,
+},
+["281195"] = {
 ["unitFrame"] = false,
 },
 ["213688"] = {
 ["unitFrame"] = false,
 },
-["710"] = {
+["86659"] = {
 ["unitFrame"] = false,
 },
 ["289655"] = {
@@ -6776,16 +6774,16 @@ OmniAurasDB = {
 ["31884"] = {
 ["unitFrame"] = false,
 },
-["202162"] = {
+["359816"] = {
 ["unitFrame"] = false,
 },
 ["199261"] = {
 ["unitFrame"] = false,
 },
-["407032"] = {
+["202162"] = {
 ["unitFrame"] = false,
 },
-["281195"] = {
+["233582"] = {
 ["unitFrame"] = false,
 },
 ["64044"] = {
@@ -6794,13 +6792,13 @@ OmniAurasDB = {
 ["395296"] = {
 ["unitFrame"] = false,
 },
-["325202"] = {
+["356727"] = {
 ["unitFrame"] = false,
 },
-["47788"] = {
+["185422"] = {
 ["unitFrame"] = false,
 },
-["51271"] = {
+["385149"] = {
 ["unitFrame"] = false,
 },
 ["34976"] = {
@@ -6815,28 +6813,28 @@ OmniAurasDB = {
 ["202335"] = {
 ["unitFrame"] = false,
 },
-["359816"] = {
+["710"] = {
 ["unitFrame"] = false,
 },
-["45334"] = {
-["unitFrame"] = false,
-},
-["385149"] = {
-["unitFrame"] = false,
-},
-["119381"] = {
+["365362"] = {
 ["unitFrame"] = false,
 },
 ["325174"] = {
 ["unitFrame"] = false,
 },
-["54216"] = {
+["119381"] = {
+["unitFrame"] = false,
+},
+["19647"] = {
+["unitFrame"] = false,
+},
+["207777"] = {
 ["unitFrame"] = false,
 },
 ["199085"] = {
 ["unitFrame"] = false,
 },
-["357021"] = {
+["209584"] = {
 ["unitFrame"] = false,
 },
 ["6358"] = {
@@ -6845,7 +6843,7 @@ OmniAurasDB = {
 ["91807"] = {
 ["unitFrame"] = false,
 },
-["118905"] = {
+["54216"] = {
 ["unitFrame"] = false,
 },
 ["373447"] = {
@@ -6854,34 +6852,34 @@ OmniAurasDB = {
 ["232708"] = {
 ["unitFrame"] = false,
 },
-["20066"] = {
+["328620"] = {
 ["unitFrame"] = false,
 },
 ["145629"] = {
 ["unitFrame"] = false,
 },
-["207777"] = {
+["116706"] = {
 ["unitFrame"] = false,
 },
-["201787"] = {
+["267218"] = {
 ["unitFrame"] = false,
 },
 ["324382"] = {
 ["unitFrame"] = false,
 },
-["267171"] = {
-["unitFrame"] = false,
-},
 ["6770"] = {
 ["unitFrame"] = false,
 },
-["108194"] = {
+["219809"] = {
+["unitFrame"] = false,
+},
+["202748"] = {
 ["unitFrame"] = false,
 },
 ["42650"] = {
 ["unitFrame"] = false,
 },
-["209749"] = {
+["204361"] = {
 ["unitFrame"] = false,
 },
 ["102342"] = {
@@ -6890,10 +6888,10 @@ OmniAurasDB = {
 ["99"] = {
 ["unitFrame"] = false,
 },
-["33786"] = {
+["204018"] = {
 ["unitFrame"] = false,
 },
-["108281"] = {
+["6789"] = {
 ["unitFrame"] = false,
 },
 ["193530"] = {
@@ -6908,37 +6906,37 @@ OmniAurasDB = {
 ["378441"] = {
 ["unitFrame"] = false,
 },
-["204490"] = {
+["47536"] = {
 ["unitFrame"] = false,
 },
 ["871"] = {
 ["unitFrame"] = false,
 },
-["372245"] = {
+["357170"] = {
 ["unitFrame"] = false,
 },
-["162480"] = {
+["122783"] = {
 ["unitFrame"] = false,
 },
-["370970"] = {
+["12472"] = {
 ["unitFrame"] = false,
 },
 ["127797"] = {
 ["unitFrame"] = false,
 },
-["10326"] = {
+["22703"] = {
 ["unitFrame"] = false,
 },
-["202425"] = {
+["227847"] = {
+["unitFrame"] = false,
+},
+["209749"] = {
+["unitFrame"] = false,
+},
+["108194"] = {
 ["unitFrame"] = false,
 },
 ["853"] = {
-["unitFrame"] = false,
-},
-["162264"] = {
-["unitFrame"] = false,
-},
-["187707"] = {
 ["unitFrame"] = false,
 },
 ["212638"] = {
@@ -6950,16 +6948,16 @@ OmniAurasDB = {
 ["403760"] = {
 ["unitFrame"] = false,
 },
-["6789"] = {
+["386770"] = {
 ["unitFrame"] = false,
 },
-["186289"] = {
+["118699"] = {
 ["unitFrame"] = false,
 },
-["31850"] = {
+["285515"] = {
 ["unitFrame"] = false,
 },
-["5484"] = {
+["347008"] = {
 ["unitFrame"] = false,
 },
 ["215769"] = {
@@ -6968,13 +6966,13 @@ OmniAurasDB = {
 ["24394"] = {
 ["unitFrame"] = false,
 },
-["31661"] = {
+["370970"] = {
 ["unitFrame"] = false,
 },
-["22703"] = {
+["255941"] = {
 ["unitFrame"] = false,
 },
-["45182"] = {
+["196364"] = {
 ["unitFrame"] = false,
 },
 ["322431"] = {
@@ -6995,16 +6993,16 @@ OmniAurasDB = {
 ["106951"] = {
 ["unitFrame"] = false,
 },
-["255941"] = {
+["228050"] = {
 ["unitFrame"] = false,
 },
 ["260881"] = {
 ["unitFrame"] = false,
 },
-["370960"] = {
+["64901"] = {
 ["unitFrame"] = false,
 },
-["228050"] = {
+["51271"] = {
 ["unitFrame"] = false,
 },
 ["196555"] = {
@@ -7013,7 +7011,7 @@ OmniAurasDB = {
 ["132409"] = {
 ["unitFrame"] = false,
 },
-["185422"] = {
+["47585"] = {
 ["unitFrame"] = false,
 },
 ["414658"] = {
@@ -7022,16 +7020,16 @@ OmniAurasDB = {
 ["191634"] = {
 ["unitFrame"] = false,
 },
-["328530"] = {
+["113862"] = {
 ["unitFrame"] = false,
 },
 ["391528"] = {
 ["unitFrame"] = false,
 },
-["196364"] = {
+["186289"] = {
 ["unitFrame"] = false,
 },
-["97463"] = {
+["6940"] = {
 ["unitFrame"] = false,
 },
 ["30283"] = {
@@ -7043,7 +7041,7 @@ OmniAurasDB = {
 ["77616"] = {
 ["unitFrame"] = false,
 },
-["116849"] = {
+["45182"] = {
 ["unitFrame"] = false,
 },
 },
@@ -7060,23 +7058,24 @@ OmniAurasDB = {
 ["preset"] = "debuffFrameLeft",
 ["maxIcons"] = 4,
 ["frameLevel"] = 9,
-["largerIcon"] = 1.4,
+["offsetX"] = 18,
 ["relativePoint"] = "TOPLEFT",
 ["swipeAlpha"] = 1,
 ["offsetY"] = -1,
 ["relativeFrame"] = "debuffFrame",
-["offsetX"] = 18,
+["largerIcon"] = 1.4,
 },
 ["visibility"] = {
 ["scenario"] = true,
 ["raid"] = true,
 },
 },
-["ArenaPartyCastBars"] = {
-["preset"] = "TL",
-["offsetY"] = -5,
-["point"] = "TOPRIGHT",
-["relativePoint"] = "TOPLEFT",
+["unitFrame"] = {
+["player"] = {
+["HARMFUL"] = {
+["swipeAlpha"] = 0.6000000000000001,
+},
+},
 },
 ["raidFrame"] = {
 ["MYHELPFUL"] = {
@@ -7100,10 +7099,10 @@ OmniAurasDB = {
 ["point"] = "BOTTOMRIGHT",
 ["scale"] = 1.2,
 ["preset"] = "raidFrameLeft",
-["offsetX"] = 3,
+["detachRelativeFrame"] = "debuffFrame",
 ["swipeAlpha"] = 1,
 ["detachPreset"] = "raidFrameLeft",
-["detachRelativeFrame"] = "debuffFrame",
+["offsetX"] = 3,
 ["showTooltip"] = false,
 ["alwaysShowMaxNumIcons"] = true,
 ["redirectBlizzardDebuffs"] = false,
@@ -7144,12 +7143,11 @@ OmniAurasDB = {
 },
 },
 },
-["unitFrame"] = {
-["player"] = {
-["HARMFUL"] = {
-["swipeAlpha"] = 0.6000000000000001,
-},
-},
+["ArenaPartyCastBars"] = {
+["offsetY"] = -5,
+["preset"] = "TL",
+["point"] = "TOPRIGHT",
+["relativePoint"] = "TOPLEFT",
 },
 ["auras"] = {
 ["202346"] = {
@@ -7817,8 +7815,8 @@ OmniAurasDB = {
 ["114050"] = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
-["unitFrame"] = false,
 ["largerIcon"] = true,
+["unitFrame"] = false,
 },
 ["115078"] = {
 ["arenaFrame"] = false,
@@ -8042,8 +8040,8 @@ OmniAurasDB = {
 ["31884"] = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
-["unitFrame"] = false,
 ["largerIcon"] = true,
+["unitFrame"] = false,
 },
 ["64044"] = {
 ["arenaFrame"] = false,
@@ -8241,8 +8239,8 @@ OmniAurasDB = {
 ["391528"] = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
-["unitFrame"] = false,
 ["largerIcon"] = true,
+["unitFrame"] = false,
 },
 ["196937"] = {
 ["nameplate"] = false,
@@ -8405,8 +8403,8 @@ OmniAurasDB = {
 ["51271"] = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
-["unitFrame"] = false,
 ["largerIcon"] = true,
+["unitFrame"] = false,
 },
 ["200587"] = {
 ["nameplate"] = false,
@@ -8545,10 +8543,8 @@ OmniAurasDB = {
 ["raidFrame"] = false,
 },
 ["48265"] = {
-["nameplate"] = false,
-["arenaFrame"] = false,
-["unitFrame"] = false,
 ["raidFrame"] = false,
+["arenaFrame"] = false,
 },
 ["6770"] = {
 ["arenaFrame"] = false,
@@ -8925,36 +8921,34 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 },
-["130"] = {
+["322431"] = {
 ["nameplate"] = false,
+["arenaFrame"] = false,
+["unitFrame"] = false,
 ["raidFrame"] = false,
 },
-["378441"] = {
-["glow"] = false,
+["370970"] = {
+["nameplate"] = false,
+["arenaFrame"] = false,
 ["unitFrame"] = false,
-["playerFrame"] = false,
+["friendlyNameplate"] = false,
 },
 ["5384"] = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["116849"] = {
-["unitFrame"] = false,
-["largerIcon"] = true,
-},
-["354610"] = {
+["121557"] = {
 ["nameplate"] = false,
-["unitFrame"] = false,
-["arenaFrame"] = false,
 ["raidFrame"] = false,
-["largerIcon"] = false,
 },
-["12472"] = {
+["375234"] = {
+["nameplate"] = false,
 ["raidFrame"] = false,
-["unitFrame"] = false,
-["largerIcon"] = true,
 },
-["162264"] = {
+["41425"] = {
+["nameplate"] = false,
+},
+["289655"] = {
 ["nameplate"] = false,
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
@@ -8975,14 +8969,15 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["6789"] = {
+["162480"] = {
+["nameplate"] = false,
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["414664"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
+["370960"] = {
+["unitFrame"] = false,
+["largerIcon"] = true,
 },
 ["344566"] = {
 ["nameplate"] = false,
@@ -8990,9 +8985,10 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 },
-["5215"] = {
-["nameplate"] = false,
+["12472"] = {
 ["raidFrame"] = false,
+["unitFrame"] = false,
+["largerIcon"] = true,
 },
 ["213871"] = {
 ["nameplate"] = false,
@@ -9006,13 +9002,13 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["80240"] = {
+["407582"] = {
 ["nameplate"] = false,
-["playerFrame"] = false,
+["raidFrame"] = false,
 },
-["370960"] = {
-["unitFrame"] = false,
-["largerIcon"] = true,
+["205629"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
 },
 ["157997"] = {
 ["nameplate"] = false,
@@ -9021,13 +9017,13 @@ OmniAurasDB = {
 ["friendlyNameplate"] = false,
 ["raidFrame"] = false,
 },
-["407582"] = {
+["199483"] = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["201447"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
+["196555"] = {
+["unitFrame"] = false,
+["largerIcon"] = true,
 },
 ["384100"] = {
 ["nameplate"] = false,
@@ -9039,17 +9035,20 @@ OmniAurasDB = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["207771"] = {
+["386770"] = {
 ["nameplate"] = false,
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
 ["raidFrame"] = false,
 },
 ["187707"] = {
 ["unitFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["199483"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
+["96231"] = {
+["unitFrame"] = false,
+["friendlyNameplate"] = false,
 },
 ["10060"] = {
 ["raidFrame"] = false,
@@ -9057,15 +9056,17 @@ OmniAurasDB = {
 ["largerIcon"] = true,
 ["playerFrame"] = false,
 },
-["410651"] = {
+["20549"] = {
 ["nameplate"] = false,
-["arenaFrame"] = false,
 ["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
 ["raidFrame"] = false,
 },
-["203819"] = {
-["raidFrame"] = false,
-["playerFrame"] = false,
+["30283"] = {
+["arenaFrame"] = false,
+["unitFrame"] = false,
+["friendlyNameplate"] = false,
 },
 ["271466"] = {
 ["nameplate"] = false,
@@ -9073,11 +9074,9 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 },
-["378081"] = {
-["nameplate"] = false,
-["arenaFrame"] = false,
+["232708"] = {
 ["unitFrame"] = false,
-["raidFrame"] = false,
+["playerFrame"] = false,
 },
 ["63560"] = {
 ["nameplate"] = false,
@@ -9090,43 +9089,39 @@ OmniAurasDB = {
 ["largerIcon"] = false,
 ["raidFrame"] = false,
 },
+["203819"] = {
+["raidFrame"] = false,
+["playerFrame"] = false,
+},
+["212431"] = {
+["nameplate"] = false,
+},
+["236273"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["raidFrame"] = false,
+["playerFrame"] = false,
+},
 ["64901"] = {
 ["nameplate"] = false,
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 },
-["200183"] = {
-["unitFrame"] = false,
-["largerIcon"] = true,
-},
 ["356528"] = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["162480"] = {
-["nameplate"] = false,
-["arenaFrame"] = false,
-["unitFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["64843"] = {
-["nameplate"] = false,
-["arenaFrame"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-},
-["1160"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
-},
-["383005"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
+["116189"] = {
+["nameplate"] = true,
 ["largerIcon"] = false,
+},
+["281195"] = {
+["nameplate"] = false,
 ["arenaFrame"] = false,
+["unitFrame"] = false,
 ["raidFrame"] = false,
-["playerFrame"] = false,
 },
 ["386997"] = {
 ["nameplate"] = false,
@@ -9142,13 +9137,17 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 },
-["205629"] = {
+["10326"] = {
 ["nameplate"] = false,
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
 ["raidFrame"] = false,
 },
-["36554"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
+["47788"] = {
+["unitFrame"] = false,
+["largerIcon"] = true,
+["playerFrame"] = false,
 },
 ["31850"] = {
 ["nameplate"] = false,
@@ -9156,10 +9155,8 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 },
-["47788"] = {
-["unitFrame"] = false,
-["largerIcon"] = true,
-["playerFrame"] = false,
+["217694"] = {
+["nameplate"] = false,
 },
 ["358861"] = {
 ["nameplate"] = false,
@@ -9168,14 +9165,14 @@ OmniAurasDB = {
 ["friendlyNameplate"] = false,
 ["raidFrame"] = false,
 },
-["192081"] = {
-["raidFrame"] = false,
-["playerFrame"] = false,
+["390612"] = {
+["nameplate"] = false,
 },
-["30283"] = {
+["404381"] = {
+["nameplate"] = false,
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
-["friendlyNameplate"] = false,
+["raidFrame"] = false,
 },
 ["91797"] = {
 ["nameplate"] = false,
@@ -9184,12 +9181,9 @@ OmniAurasDB = {
 ["friendlyNameplate"] = false,
 ["raidFrame"] = false,
 },
-["386770"] = {
-["nameplate"] = false,
+["132409"] = {
 ["unitFrame"] = false,
-["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
-["raidFrame"] = false,
 },
 ["33786"] = {
 ["arenaFrame"] = false,
@@ -9199,15 +9193,13 @@ OmniAurasDB = {
 ["124280"] = {
 ["largerIcon"] = true,
 },
-["97463"] = {
+["1160"] = {
 ["nameplate"] = false,
-["arenaFrame"] = false,
-["unitFrame"] = false,
-["playerFrame"] = false,
+["raidFrame"] = false,
 },
-["232708"] = {
+["61336"] = {
 ["unitFrame"] = false,
-["playerFrame"] = false,
+["largerIcon"] = true,
 },
 ["702"] = {
 ["raidFrame"] = true,
@@ -9216,16 +9208,15 @@ OmniAurasDB = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["132409"] = {
-["unitFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["269513"] = {
+["12323"] = {
 ["nameplate"] = false,
-["unitFrame"] = false,
-["arenaFrame"] = false,
 ["raidFrame"] = false,
-["largerIcon"] = false,
+},
+["12051"] = {
+["nameplate"] = false,
+["arenaFrame"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
 },
 ["202425"] = {
 ["nameplate"] = false,
@@ -9233,7 +9224,7 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 },
-["198144"] = {
+["51690"] = {
 ["nameplate"] = false,
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
@@ -9247,28 +9238,24 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["largerIcon"] = true,
 },
-["325174"] = {
-["nameplate"] = false,
-["arenaFrame"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-},
-["236273"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["arenaFrame"] = false,
-["raidFrame"] = false,
+["392360"] = {
 ["playerFrame"] = false,
+},
+["269513"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["raidFrame"] = false,
+["largerIcon"] = false,
 },
 ["111400"] = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["281195"] = {
-["nameplate"] = false,
-["arenaFrame"] = false,
+["378441"] = {
+["glow"] = false,
 ["unitFrame"] = false,
-["raidFrame"] = false,
+["playerFrame"] = false,
 },
 ["82691"] = {
 ["arenaFrame"] = false,
@@ -9279,9 +9266,10 @@ OmniAurasDB = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["61336"] = {
-["unitFrame"] = false,
-["largerIcon"] = true,
+["57934"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
+["playerFrame"] = false,
 },
 ["407032"] = {
 ["nameplate"] = false,
@@ -9290,14 +9278,16 @@ OmniAurasDB = {
 ["friendlyNameplate"] = false,
 ["raidFrame"] = false,
 },
-["10326"] = {
+["204361"] = {
 ["nameplate"] = false,
-["unitFrame"] = false,
 ["arenaFrame"] = false,
-["friendlyNameplate"] = false,
+["unitFrame"] = false,
 ["raidFrame"] = false,
 },
-["45182"] = {
+["264173"] = {
+["nameplate"] = false,
+},
+["194249"] = {
 ["nameplate"] = false,
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
@@ -9308,12 +9298,11 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["116189"] = {
-["nameplate"] = true,
-["largerIcon"] = false,
-},
-["217694"] = {
+["184662"] = {
 ["nameplate"] = false,
+["raidFrame"] = false,
+["largerIcon"] = true,
+["unitFrame"] = false,
 },
 ["194844"] = {
 ["nameplate"] = false,
@@ -9326,9 +9315,10 @@ OmniAurasDB = {
 ["largerIcon"] = true,
 ["playerFrame"] = false,
 },
-["375234"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
+["22703"] = {
+["arenaFrame"] = false,
+["unitFrame"] = false,
+["friendlyNameplate"] = false,
 },
 ["211881"] = {
 ["arenaFrame"] = false,
@@ -9348,7 +9338,7 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 },
-["132168"] = {
+["108194"] = {
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
 ["friendlyNameplate"] = false,
@@ -9364,14 +9354,13 @@ OmniAurasDB = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["205630"] = {
+["389714"] = {
 ["nameplate"] = false,
-["unitFrame"] = false,
 ["arenaFrame"] = false,
-["friendlyNameplate"] = false,
+["unitFrame"] = false,
 ["raidFrame"] = false,
 },
-["217824"] = {
+["372245"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
 ["arenaFrame"] = false,
@@ -9391,29 +9380,31 @@ OmniAurasDB = {
 ["friendlyNameplate"] = false,
 ["raidFrame"] = false,
 },
-["6940"] = {
-["unitFrame"] = false,
-["largerIcon"] = true,
-["playerFrame"] = false,
-},
-["108194"] = {
+["132168"] = {
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
 ["friendlyNameplate"] = false,
+},
+["205630"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+["raidFrame"] = false,
 },
 ["2983"] = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["383269"] = {
+["111759"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
+},
+["328620"] = {
 ["nameplate"] = false,
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
-},
-["351338"] = {
-["unitFrame"] = false,
-["friendlyNameplate"] = false,
 },
 ["213691"] = {
 ["arenaFrame"] = false,
@@ -9424,13 +9415,13 @@ OmniAurasDB = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["1833"] = {
-["unitFrame"] = false,
+["79206"] = {
+["nameplate"] = false,
 ["arenaFrame"] = false,
-["friendlyNameplate"] = false,
-["playerFrame"] = true,
+["unitFrame"] = false,
+["raidFrame"] = false,
 },
-["186289"] = {
+["383269"] = {
 ["nameplate"] = false,
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
@@ -9441,8 +9432,9 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["1714"] = {
-["raidFrame"] = true,
+["351338"] = {
+["unitFrame"] = false,
+["friendlyNameplate"] = false,
 },
 ["410598"] = {
 ["nameplate"] = false,
@@ -9482,8 +9474,10 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 },
-["115804"] = {
+["199545"] = {
 ["nameplate"] = false,
+["arenaFrame"] = false,
+["unitFrame"] = false,
 ["raidFrame"] = false,
 },
 ["118905"] = {
@@ -9497,10 +9491,12 @@ OmniAurasDB = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["217832"] = {
-["arenaFrame"] = false,
+["357021"] = {
+["nameplate"] = false,
 ["unitFrame"] = false,
+["arenaFrame"] = false,
 ["friendlyNameplate"] = false,
+["raidFrame"] = false,
 },
 ["203554"] = {
 ["nameplate"] = false,
@@ -9524,15 +9520,30 @@ OmniAurasDB = {
 ["raidFrame"] = false,
 ["largerIcon"] = false,
 },
-["19647"] = {
+["55233"] = {
+["nameplate"] = false,
+["arenaFrame"] = false,
 ["unitFrame"] = false,
-["friendlyNameplate"] = false,
+["raidFrame"] = false,
 },
 ["202335"] = {
 ["nameplate"] = false,
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
+},
+["115804"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
+},
+["217832"] = {
+["arenaFrame"] = false,
+["unitFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["19647"] = {
+["unitFrame"] = false,
+["friendlyNameplate"] = false,
 },
 ["47568"] = {
 ["nameplate"] = false,
@@ -9547,24 +9558,6 @@ OmniAurasDB = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["199545"] = {
-["nameplate"] = false,
-["arenaFrame"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-},
-["19574"] = {
-["nameplate"] = false,
-["arenaFrame"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-},
-["55233"] = {
-["nameplate"] = false,
-["arenaFrame"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-},
 ["199085"] = {
 ["nameplate"] = false,
 ["unitFrame"] = false,
@@ -9572,11 +9565,10 @@ OmniAurasDB = {
 ["friendlyNameplate"] = false,
 ["raidFrame"] = false,
 },
-["357021"] = {
+["19574"] = {
 ["nameplate"] = false,
-["unitFrame"] = false,
 ["arenaFrame"] = false,
-["friendlyNameplate"] = false,
+["unitFrame"] = false,
 ["raidFrame"] = false,
 },
 ["393879"] = {
@@ -9607,9 +9599,11 @@ OmniAurasDB = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["111759"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
+["1833"] = {
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+["playerFrame"] = true,
 },
 ["145629"] = {
 ["nameplate"] = false,
@@ -9621,7 +9615,7 @@ OmniAurasDB = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
-["328620"] = {
+["186289"] = {
 ["nameplate"] = false,
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
@@ -9634,11 +9628,8 @@ OmniAurasDB = {
 ["friendlyNameplate"] = false,
 ["raidFrame"] = false,
 },
-["79206"] = {
-["nameplate"] = false,
-["arenaFrame"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
+["1714"] = {
+["raidFrame"] = true,
 },
 ["132403"] = {
 ["raidFrame"] = false,
@@ -9651,10 +9642,11 @@ OmniAurasDB = {
 ["friendlyNameplate"] = false,
 ["raidFrame"] = false,
 },
-["389714"] = {
+["217824"] = {
 ["nameplate"] = false,
-["arenaFrame"] = false,
 ["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
 ["raidFrame"] = false,
 },
 ["287712"] = {
@@ -9664,29 +9656,26 @@ OmniAurasDB = {
 ["friendlyNameplate"] = false,
 ["raidFrame"] = false,
 },
-["372245"] = {
-["nameplate"] = false,
+["6940"] = {
 ["unitFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
-["raidFrame"] = false,
+["largerIcon"] = true,
+["playerFrame"] = false,
 },
 ["99"] = {
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["51690"] = {
+["33395"] = {
 ["nameplate"] = false,
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
-["raidFrame"] = false,
+["friendlyNameplate"] = false,
 },
-["12051"] = {
+["354896"] = {
 ["nameplate"] = false,
-["arenaFrame"] = false,
-["unitFrame"] = false,
 ["raidFrame"] = false,
+["playerFrame"] = false,
 },
 ["408558"] = {
 ["nameplate"] = false,
@@ -9695,13 +9684,31 @@ OmniAurasDB = {
 ["raidFrame"] = false,
 ["largerIcon"] = false,
 },
-["194249"] = {
+["198144"] = {
 ["nameplate"] = false,
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 },
-["131894"] = {
+["201447"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
+},
+["5215"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
+},
+["871"] = {
+["nameplate"] = false,
+["arenaFrame"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+},
+["80240"] = {
+["nameplate"] = false,
+["playerFrame"] = false,
+},
+["414664"] = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
@@ -9710,60 +9717,47 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["871"] = {
-["nameplate"] = false,
-["arenaFrame"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-},
-["390612"] = {
-["nameplate"] = false,
-},
-["204018"] = {
-["unitFrame"] = false,
-["largerIcon"] = true,
-["playerFrame"] = false,
-},
-["358267"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
-},
 ["127797"] = {
 ["nameplate"] = false,
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["54216"] = {
-["raidFrame"] = false,
+["162264"] = {
+["nameplate"] = false,
+["arenaFrame"] = false,
 ["unitFrame"] = false,
-["largerIcon"] = true,
+["raidFrame"] = false,
 },
 ["227847"] = {
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 },
+["116849"] = {
+["unitFrame"] = false,
+["largerIcon"] = true,
+},
+["354610"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["raidFrame"] = false,
+["largerIcon"] = false,
+},
 ["45181"] = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
-},
-["96231"] = {
-["unitFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["322431"] = {
-["nameplate"] = false,
-["arenaFrame"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-},
-["41425"] = {
-["nameplate"] = false,
 },
 ["207736"] = {
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
 ["friendlyNameplate"] = false,
+},
+["410651"] = {
+["nameplate"] = false,
+["arenaFrame"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
 },
 ["403760"] = {
 ["nameplate"] = false,
@@ -9771,15 +9765,16 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 },
-["404381"] = {
+["97463"] = {
 ["nameplate"] = false,
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
-["raidFrame"] = false,
+["playerFrame"] = false,
 },
-["12323"] = {
-["nameplate"] = false,
+["54216"] = {
 ["raidFrame"] = false,
+["unitFrame"] = false,
+["largerIcon"] = true,
 },
 ["285515"] = {
 ["nameplate"] = false,
@@ -9788,8 +9783,9 @@ OmniAurasDB = {
 ["friendlyNameplate"] = false,
 ["raidFrame"] = false,
 },
-["212431"] = {
+["36554"] = {
 ["nameplate"] = false,
+["raidFrame"] = false,
 },
 ["215769"] = {
 ["nameplate"] = false,
@@ -9803,51 +9799,20 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["233759"] = {
-["arenaFrame"] = false,
-["unitFrame"] = false,
-["friendlyNameplate"] = false,
+["131894"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
 },
 ["356723"] = {
 ["largerIcon"] = true,
 },
-["287254"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
-["raidFrame"] = false,
-},
-["354896"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
-["playerFrame"] = false,
-},
-["20549"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
-["raidFrame"] = false,
-},
-["199042"] = {
-["nameplate"] = false,
-["unitFrame"] = false,
-["arenaFrame"] = false,
-["friendlyNameplate"] = false,
-["raidFrame"] = false,
-},
-["391109"] = {
+["45182"] = {
 ["nameplate"] = false,
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 },
-["347008"] = {
-["unitFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["121557"] = {
+["358267"] = {
 ["nameplate"] = false,
 ["raidFrame"] = false,
 },
@@ -9857,32 +9822,61 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["friendlyNameplate"] = false,
 },
+["383005"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["largerIcon"] = false,
+["arenaFrame"] = false,
+["raidFrame"] = false,
+["playerFrame"] = false,
+},
+["391109"] = {
+["nameplate"] = false,
+["arenaFrame"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+},
+["378081"] = {
+["nameplate"] = false,
+["arenaFrame"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+},
+["233759"] = {
+["arenaFrame"] = false,
+["unitFrame"] = false,
+["friendlyNameplate"] = false,
+},
+["200183"] = {
+["unitFrame"] = false,
+["largerIcon"] = true,
+},
 ["260881"] = {
 ["nameplate"] = false,
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 },
-["33395"] = {
-["nameplate"] = false,
-["arenaFrame"] = false,
+["204018"] = {
 ["unitFrame"] = false,
-["friendlyNameplate"] = false,
+["largerIcon"] = true,
+["playerFrame"] = false,
 },
-["22703"] = {
-["arenaFrame"] = false,
-["unitFrame"] = false,
-["friendlyNameplate"] = false,
-},
-["184662"] = {
-["nameplate"] = false,
+["192081"] = {
 ["raidFrame"] = false,
-["unitFrame"] = false,
-["largerIcon"] = true,
+["playerFrame"] = false,
 },
-["196555"] = {
+["31661"] = {
+["arenaFrame"] = false,
 ["unitFrame"] = false,
-["largerIcon"] = true,
+["friendlyNameplate"] = false,
+},
+["199042"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+["raidFrame"] = false,
 },
 ["47585"] = {
 ["unitFrame"] = false,
@@ -9893,29 +9887,32 @@ OmniAurasDB = {
 ["unitFrame"] = false,
 ["raidFrame"] = false,
 },
-["31661"] = {
+["207771"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
+},
+["325174"] = {
+["nameplate"] = false,
 ["arenaFrame"] = false,
+["unitFrame"] = false,
+["raidFrame"] = false,
+},
+["130"] = {
+["nameplate"] = false,
+["raidFrame"] = false,
+},
+["287254"] = {
+["nameplate"] = false,
+["unitFrame"] = false,
+["arenaFrame"] = false,
+["friendlyNameplate"] = false,
+["raidFrame"] = false,
+},
+["347008"] = {
 ["unitFrame"] = false,
 ["friendlyNameplate"] = false,
 },
-["264173"] = {
-["nameplate"] = false,
-},
-["57934"] = {
-["nameplate"] = false,
-["raidFrame"] = false,
-["playerFrame"] = false,
-},
-["392360"] = {
-["playerFrame"] = false,
-},
-["204361"] = {
-["nameplate"] = false,
-["arenaFrame"] = false,
-["unitFrame"] = false,
-["raidFrame"] = false,
-},
-["289655"] = {
+["64843"] = {
 ["nameplate"] = false,
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
@@ -9929,8 +9926,7 @@ OmniAurasDB = {
 ["raidFrame"] = false,
 ["playerFrame"] = false,
 },
-["370970"] = {
-["nameplate"] = false,
+["6789"] = {
 ["arenaFrame"] = false,
 ["unitFrame"] = false,
 ["friendlyNameplate"] = false,
