@@ -41,12 +41,6 @@ VER 3 00000000000001A3 "BoK" "134400"
 /cast Blackout kick
 /targetlasttarget
 END
-VER 3 00000000000001B3 "BURST" "134400"
-#showtooltip Bestial Wrath
-/use Obsidian Gladiator's Badge of Ferocity
-/use Obsidian Aspirant's Badge of Ferocity
-/use Bestial Wrath
-END
 VER 3 0000000000000153 "Chi-Torpedo" "INV_MISC_QUESTIONMARK"
 #showtooltip roll
 /use Prismatic Bauble
@@ -57,9 +51,13 @@ VER 3 00000000000001B0 "chiji-rop" "134400"
 #showtooltip
 /cast [known: Song of Chi-ji] Song of Chi-ji; [known: Ring of Peace, @cursor] Ring of Peace;
 END
-VER 3 00000000000001C3 "chun-bk" "134400"
-#showtooltip [harm] Chi Wave; [help] vivify; [target=none] vivify
-/cast [harm] blackout kick; [help,nochanneling] soothing mist; [help,channeling] vivify
+VER 3 00000000000001D8 "CJL" "134400"
+#showtooltip
+/cast [@targettarget,harm,nodead][harm] Crackling Jade Lightning
+/stopmacro [harm]
+/targetenemy
+/cast Crackling Jade Lightning 
+/targetlasttarget
 END
 VER 3 00000000000001D3 "clash1" "134400"
 #showtooltip Clash
@@ -84,21 +82,13 @@ VER 3 0000000000000164 "DRINK" "INV_MISC_QUESTIONMARK"
 /use Delicious Dragon Spittle
 /use Lava Cola
 END
-VER 3 00000000000001C4 "EF" "132343"
-#showtooltip Grapple Weapon
-/use Essence Font
-END
 VER 3 000000000000016B "EF" "132343"
 #showtooltip Grapple Weapon
 /use Zen Sphere
 END
-VER 3 00000000000001D8 "FJL" "134400"
-#showtooltip
-/cast [@targettarget,harm,nodead][harm] Crackling Jade Lightning
-/stopmacro [harm]
-/targetenemy
-/cast Crackling Jade Lightning 
-/targetlasttarget
+VER 3 00000000000001C4 "EF" "132343"
+#showtooltip Grapple Weapon
+/use Essence Font
 END
 VER 3 00000000000001CD "focus_frame" "134400"
 /run FocusFrame.maxDebuffs = 0
@@ -123,21 +113,12 @@ VER 3 000000000000019C "grapple3" "134400"
 /stopcasting
 /cast [target=Arena3] Grapple Weapon
 END
-VER 3 00000000000001C9 "HE" "134400"
-#showtooltip Healing Elixir
-END
 VER 3 000000000000011D "Healing Elixirs" "INV_MISC_QUESTIONMARK"
 #showtooltip Healing Elixirs
 /use Spinning Crane Kick
 END
 VER 3 0000000000000155 "hide chat" "INV_MISC_QUESTIONMARK"
 /run _CHATHIDE=not _CHATHIDE for i=1,NUM_CHAT_WINDOWS do for _,v in pairs{"","Tab"}do local f=_G["ChatFrame"..i..v]if _CHATHIDE then f.v=f:IsVisible()end f.ORShow=f.ORShow or f.Show f.Show=_CHATHIDE and f.Hide or f.ORShow if f.v then f:Show()end end end
-END
-VER 3 0000000000000154 "hide minimap" "INV_MISC_QUESTIONMARK"
-/run local m = Minimap if m:IsShown() then m:Hide() else m:Show() end
-END
-VER 3 00000000000001BF "hide-menus" "134400"
-/run local t,f={"Character","Spellbook","Talent","Achievement","QuestLog","Guild","LFD","Collections","EJ","Store","MainMenu"}for i=1,#t do f=_G[t[i].."MicroButton"]f:SetScale(.001)end;MicroButtonAndBagsBar:Hide()
 END
 VER 3 00000000000001B7 "Hide-PvP-Frames" "134400"
 /run CompactArenaFrame:HookScript("OnShow", function(self) CompactArenaFrame:Hide() end)
@@ -150,21 +131,11 @@ VER 3 000000000000016D "human" "INV_MISC_QUESTIONMARK"
 /cancelaura Travel Form
 /cancelaura Treant Form
 END
-VER 3 0000000000000146 "infernal" "INV_MISC_QUESTIONMARK"
-#showtooltip Provoke
-/tar Infernal
-/tar Shadowfiend
-/tar Greater Earth
-/tar Water Elemental
-/tar Xuen
-/cast Provoke
-END
 VER 3 0000000000000191 "invoke" "134400"
 #showtooltip
 /cast [known: 322118] invoke yu'lon, the jade serpent; /cast [known: 325197] invoke chi-ji, the red crane
 /use 14
 /use Big Red Raygun
-/sw play
 END
 VER 3 00000000000001D2 "kick" "134400"
 #showtooltip
@@ -189,14 +160,6 @@ VER 3 000000000000019F "kick3" "134400"
 #showtooltip Spear Hand Strike
 /stopcasting
 /cast [target=Arena3] Spear Hand Strike
-END
-VER 3 00000000000001CE "lc" "134400"
-#showtooltip Life Cocoon
-/cast Renewing Mist
-END
-VER 3 0000000000000128 "LEAVEEE" "132352"
-/clap
-/script U=UnitIsDeadOrGhost if U("player")or GetBattlefieldWinner()then LeaveBattlefield()elseif IsActiveBattlefieldArena()then for i=1,4 do if U("party"..i)then SurrenderArena()return end end StaticPopup_Show("CONFIRM_SURRENDER_ARENA")end
 END
 VER 3 00000000000001D1 "lesser keyflames" "134400"
 /run local coords={{61.5,17.4},{64.3,18.7},{65.8,24.4},{63.3,29.4},{64.5,30.5},{65.3,28.1},{63.6,33.6},{64.4,30.9},{65.4,32.2}} for i=1,#coords do TomTom:AddWaypoint(2215,coords[i][1]/100,coords[i][2]/100,{title="Keyflames"}) end
@@ -228,11 +191,6 @@ VER 3 00000000000001CC "marks" "134400"
 /script SetRaidTarget("Réðçräñé",4)
 /script SetRaidTarget("Sniffingglue",3)
 /script SetRaidTarget("Mysticallx", 4)
-END
-VER 3 000000000000018D "meld" "INV_MISC_QUESTIONMARK"
-#showtooltip Shadowmeld
-/cancelaura Kevin's Oozeling
-/use Shadowmeld
 END
 VER 3 00000000000000F5 "Mistwalk" "INV_MISC_QUESTIONMARK"
 #showtooltip [talent:1/1]Chi Burst;[talent:1/2]Zen Pulse;[talent:1/3]Mistwalk
@@ -275,10 +233,7 @@ VER 3 0000000000000172 "mount" "INV_MISC_QUESTIONMARK"
 /cast [noflyable] Swift Zulian Tiger
 END
 VER 3 0000000000000103 "MoVivify" "628675"
-/use Vivify
-END
-VER 3 000000000000010A "Mystic123" "1002600"
-/run local U=UnitIsUnit hooksecurefunc("CompactUnitFrame_UpdateName",function(F)if IsActiveBattlefieldArena()and F.unit:find("nameplate")then for i=1,5 do if U(F.unit,"arena"..i)then F.name:SetText(i)F.name:SetTextColor(1,1,0)break end end end end)
+/cast [target=mouseover] Vivify
 END
 VER 3 0000000000000152 "names" "INV_MISC_QUESTIONMARK"
 /run NamePlateFrame.name.SetAlpha = 0
@@ -292,14 +247,6 @@ VER 3 0000000000000106 "orbs" "606546"
 #showtooltip
 /cast [@cursor] Healing Sphere
 /wm [@cursor] 3
-END
-VER 3 0000000000000168 "orbs-player" "INV_MISC_QUESTIONMARK"
-#showtooltip
-/cast [@player] Healing Sphere
-END
-VER 3 0000000000000110 "paralysis" "INV_MISC_QUESTIONMARK"
-#showtooltip Fortifying Brew
-/cast Paralysis
 END
 VER 3 00000000000000BD "Paralysis" "INV_MISC_QUESTIONMARK"
 #showtooltip Paralysis
@@ -318,21 +265,15 @@ VER 3 00000000000001AC "PET" "134400"
 /target ebonwing
 /target lithen
 /target scarlapod
+/tar Demonic Tyrant
+/tar skr
+/tar Xuen
 /script SetRaidTarget("target", 8);
 END
 VER 3 00000000000001B4 "pet-attack" "134400"
 #showtooltip
 /cast Kill Command
 /petattack
-END
-VER 3 00000000000001B5 "petattack" "134400"
-#showootlip
-/use 
-END
-VER 3 000000000000015A "pod" "INV_MISC_QUESTIONMARK"
-/cleartarget
-/target Lunarlight
-/run SetRaidTarget("target", 8)
 END
 VER 3 0000000000000118 "port" "INV_MISC_QUESTIONMARK"
 #showtooltip Transcendence: Transfer
@@ -348,14 +289,17 @@ VER 3 0000000000000119 "port_back" "INV_MISC_QUESTIONMARK"
 END
 VER 3 00000000000000F3 "Provoke" "INV_MISC_QUESTIONMARK"
 #showtooltip
+/tar Infernal
+/tar Xuen
+/tar Voidwraith
+/tar Shadowfiend
+/tar Spirit Wolf
+/cast [exists] Provoke
+/stopmacro [exists]
 /cast [@arenapet1] provoke
 /cast [@arenapet2] provoke
 /cast [@arenapet3] provoke
 /cast provoke
-END
-VER 3 0000000000000083 "Purity" "INV_MISC_QUESTIONMARK"
-#showtooltip guild
-/1 <Purity> is strictly a PvP guild looking to recruit active and friendly players for PvP. we will be focusing on 3's and rated bg's. We will begin forming a core group when we have more members, pst for invite
 END
 VER 3 00000000000001B9 "PvE-FW" "628135"
 /equipset Mythic+
@@ -364,9 +308,6 @@ END
 VER 3 00000000000001A6 "PvP-FW" "134400"
 /equipset Shuffle
 /loadoutname PvP-FW
-END
-VER 3 00000000000001BB "quest" "134400"
-/script print(IsQuestFlaggedCompleted(50553))
 END
 VER 3 0000000000000173 "queue" "988198"
 /click PVEFrameTab2
@@ -413,43 +354,14 @@ VER 3 00000000000001A4 "RSK" "134400"
 /cast Rising Sun Kick
 /targetlasttarget
 END
-VER 3 0000000000000160 "rsk" "INV_MISC_QUESTIONMARK"
+VER 3 00000000000001D9 "RWK" "134400"
 #showtooltip
-/tar regenerating wildseed
-/use Rising Sun Kick
-END
-VER 3 0000000000000196 "RSK-ChiWave" "134400"
-#showtooltip
-/cast [known: 107428] Rising Sun Kick;
-/cast [known: 115098] Chi Wave
-END
-VER 3 00000000000001D7 "RWK" "134400"
-#showtooltip
+/stopcasting
+/cast [@target,harm] Rushing Wind Kick;
+/stopmacro [harm]
+/targetenemy
 /cast Rushing Wind Kick
 /targetlasttarget
-END
-VER 3 00000000000000F9 "Script_bottom" "1002600"
-/run LoadAddOn("Blizzard_CompactRaidFrames") CRFSort_Group=function(t1, t2) if UnitIsUnit(t1,"player") then return false elseif UnitIsUnit(t2,"player") then return true else return t1 < t2 end end CompactRaidFrameContainer.flowSortFunc=CRFSort_Group 
-END
-VER 3 0000000000000195 "serenity" "134400"
-#showtooltip
-/use Serenity
-/use Crimson Aspirant's Badge of Ferocity
-END
-VER 3 0000000000000177 "sig" "INV_MISC_QUESTIONMARK"
-#showtooltip
-/use Bonedust Brew
-/use Door of Shadows
-END
-VER 3 0000000000000175 "signature-abilit" "INV_MISC_QUESTIONMARK"
-#showtooltip
-/use Fallen Order
-/use Fleshcraft
-END
-VER 3 0000000000000189 "Smash" "INV_MISC_QUESTIONMARK"
-#showtooltip Keg Smash
-/use Keg Smash
-/use Fire-Eater's Vial
 END
 VER 3 00000000000001AB "song/rop" "134400"
 #showtooltip
@@ -520,21 +432,9 @@ VER 3 000000000000018E "TigersLustSelf" "134400"
 #showtooltip Tiger's Lust
 /cast [target=player] Tiger's Lust
 END
-VER 3 0000000000000129 "tod" "INV_MISC_QUESTIONMARK"
-#showtooltip touch of death
-/use [@target,exists]touch of death
-END
 VER 3 00000000000001C6 "ToT-Crackle" "INV_Misc_QuestionMark"
 #showtooltip Transcendence: Transfer
 /cast [@targettarget, harm] Crackling Jade Lightning; [harm] Crackling Jade Lightning; Crackling Jade Lightning
-END
-VER 3 00000000000001C8 "ToT-RSK" "134400"
-#showtooltip Rising Sun Kick
-/cast [@targettarget, harm] Rising Sun Kick; [harm] Rising Sun Kick
-END
-VER 3 00000000000001C7 "ToT-ToD" "134400"
-#showtooltip Touch of Death
-/cast [@targettarget, harm] Touch of Death; [harm] Touch of Death
 END
 VER 3 00000000000001B1 "ToT-ZF" "5094560"
 #showtooltip
@@ -563,10 +463,6 @@ VER 3 0000000000000151 "UI" "132311"
 /run CompactArenaFrame:SetAlpha(0)
 /console CameraKeepCharacterCentered 0
 /run MainStatusTrackingBar:SetAlpha(0)
-END
-VER 3 000000000000013F "Vitality" "INV_MISC_QUESTIONMARK"
-#showtooltip Vitality Conduit
-/cast [nomod, @target, help, nodead, exists] Vitality Conduit
 END
 VER 3 0000000000000141 "vmo" "INV_MISC_QUESTIONMARK"
 #showtooltip Vivify
