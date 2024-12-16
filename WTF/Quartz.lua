@@ -14,7 +14,7 @@ Quartz3DB = {
 ["Default"] = {
 ["x"] = 966.666748046875,
 },
-["df-profile"] = {
+["mysticall-main-tww"] = {
 ["y"] = 477.0000305175781,
 ["hideblizz"] = false,
 ["x"] = 1454.000732421875,
@@ -23,22 +23,9 @@ Quartz3DB = {
 },
 ["LibDualSpec-1.0"] = {
 },
+["Mirror"] = {
+},
 ["EnemyCasts"] = {
-},
-["Player"] = {
-["profiles"] = {
-["Default"] = {
-["w"] = 205,
-["x"] = 941.666748046875,
-},
-["df-profile"] = {
-["h"] = 22,
-["w"] = 260,
-["y"] = 120.0008163452148,
-["x"] = 0.000244140625,
-["point"] = "BOTTOM",
-},
-},
 },
 ["GCD"] = {
 },
@@ -47,7 +34,7 @@ Quartz3DB = {
 ["Default"] = {
 ["x"] = 966.666748046875,
 },
-["df-profile"] = {
+["mysticall-main-tww"] = {
 ["h"] = 29,
 ["w"] = 175,
 ["y"] = 145.5001831054688,
@@ -63,7 +50,7 @@ Quartz3DB = {
 ["Default"] = {
 ["x"] = 966.666748046875,
 },
-["df-profile"] = {
+["mysticall-main-tww"] = {
 ["h"] = 50,
 ["showfriendly"] = false,
 ["w"] = 265,
@@ -76,56 +63,46 @@ Quartz3DB = {
 },
 ["Range"] = {
 },
-["Mirror"] = {
+["Player"] = {
+["profiles"] = {
+["Default"] = {
+["w"] = 205,
+["x"] = 941.666748046875,
+},
+["mysticall-main-tww"] = {
+["h"] = 22,
+["w"] = 260,
+["y"] = 120.0008163452148,
+["x"] = 0.000244140625,
+["point"] = "BOTTOM",
+},
+},
 },
 ["Latency"] = {
 },
 },
 ["profileKeys"] = {
-["Buffmwpls - Sargeras"] = "df-profile",
-["Réðçräñé - Sentinels"] = "df-profile",
-["Soullkeeper - Sargeras"] = "df-profile",
-["Mwreroll - Sargeras"] = "df-profile",
-["Lotusflower - Dalvengyr"] = "Default",
-["Réðçräñé - Sargeras"] = "df-profile",
 ["Tealcrayon - Anetheron"] = "Default",
-["Badplat - Sargeras"] = "df-profile",
-["Moosticall - Sentinels"] = "df-profile",
+["Mysticallx - Sargeras"] = "mysticall-main-tww",
 ["Iamdeadinsid - Sentinels"] = "Default",
-["Healjkoom - Sargeras"] = "df-profile",
-["Mw - Tichondrius"] = "df-profile",
-["Thunderbadx - Sargeras"] = "df-profile",
-["Weavethemist - Sargeras"] = "df-profile",
-["Weavethemist - Azjol-Nerub"] = "df-profile",
-["Harambad - Sargeras"] = "df-profile",
-["Onlyplaydh - Sargeras"] = "Default",
-["Gréëñðrägoñ - Sargeras"] = "df-profile",
-["Cincinatizoo - Sargeras"] = "df-profile",
 ["Craaruun - Eitrigg"] = "Default",
-["Sevenseconds - Sargeras"] = "df-profile",
-["Rsk - Sentinels"] = "df-profile",
-["Soullkeeper - Tichondrius"] = "df-profile",
-["Jje - Vek'nilash"] = "Default",
-["Mysticallx - Emerald Dream"] = "df-profile",
-["Rsk - Shandris"] = "Default",
-["Thunderbad - Sentinels"] = "df-profile",
+["Onlyplaydh - Sargeras"] = "Default",
+["Baotu - Sargeras"] = "Default",
 ["Mw - Turalyon"] = "Default",
-["Jayjay - Detheroc"] = "df-profile",
-["Nightmares - Sentinels"] = "df-profile",
-["Lifedestroys - Tichondrius"] = "Default",
-["Mysticallx - Sargeras"] = "df-profile",
-["Nerfmw - Sargeras"] = "Default",
-["Ggs - Detheroc"] = "df-profile",
-["Kickthesun - Sargeras"] = "df-profile",
-["Mysticall - Sentinels"] = "df-profile",
-["Representing - Sargeras"] = "df-profile",
 ["Onlyplaymw - Durotan"] = "Default",
+["Nerfmw - Sargeras"] = "Default",
+["Rsk - Shandris"] = "Default",
+["Curtimer - Emerald Dream"] = "Default",
+["Jje - Vek'nilash"] = "Default",
+["Elamatrenn - Emerald Dream"] = "Default",
+["Lifedestroys - Tichondrius"] = "Default",
+["Lotusflower - Dalvengyr"] = "Default",
 ["Enveloping - Sentinels"] = "Default",
 },
 ["profiles"] = {
 ["Default"] = {
 },
-["df-profile"] = {
+["mysticall-main-tww"] = {
 ["modules"] = {
 ["Tradeskill"] = false,
 ["Buff"] = false,

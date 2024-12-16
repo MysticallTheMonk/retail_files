@@ -11,6 +11,7 @@ BigDebuffsDB = {
 ["Mstcll - Garrosh"] = "Default",
 ["Onlyplaypala - Sargeras"] = "Default",
 ["Yungmyst - Area 52"] = "Default",
+["Lotusflower - Dalvengyr"] = "Default",
 ["Réðçräñé - Sargeras"] = "Mysticall",
 ["Representing - Area 52"] = "Default",
 ["Badplat - Sargeras"] = "Mysticall",
@@ -38,68 +39,76 @@ BigDebuffsDB = {
 ["Mysticallxd - Sargeras"] = "Default",
 ["Darkapostle - Tichondrius"] = "Default",
 ["Coocoocachu - Sargeras"] = "Default",
+["Enveloping - Sentinels"] = "Mysticall",
+["Onlyplaymw - Durotan"] = "Default",
+["Kickthesun - Sargeras"] = "Mysticall",
+["Nightbllade - Area 52"] = "Default",
 ["Zft - Sentinels"] = "Default",
+["Mstcll - Sargeras"] = "Default",
+["Nerfmw - Sargeras"] = "Default",
 ["Buffmwpls - Sargeras"] = "Default",
+["Sevenseconds - Sargeras"] = "Default",
 ["Onlyplaymonk - Sargeras"] = "Default",
+["Cocoonjkdead - Area 52"] = "Mysticall",
 ["Yungmyst - Sargeras"] = "Default",
 ["Cocoonjkdead - Bleeding Hollow"] = "Default",
-["Onlyplayfury - Sargeras"] = "Default",
-["Mstcll - Sargeras"] = "Default",
-["Mysticallx - Area 52"] = "Mysticall",
-["Nerfmw - Sargeras"] = "Default",
-["Mysticall - Sentinels"] = "Mysticall",
-["Soullkeeper - Tichondrius"] = "Mysticall",
-["Cocoonjkdead - Area 52"] = "Mysticall",
-["Ashdfh - Mythic Dungeon Heroes - US"] = "Default",
 ["Mwreroll - Sargeras"] = "Default",
+["Cocoonjkdead - Aerie Peak"] = "Default",
+["Mysticallx - Area 52"] = "Mysticall",
+["Representing - Sargeras"] = "Mysticall",
+["Weavethemist - Azjol-Nerub"] = "Mysticall",
 ["Moosticall - Sentinels"] = "Mysticall",
+["Mw - Sargeras"] = "Default",
+["Ashdfh - Mythic Dungeon Heroes - US"] = "Default",
+["Mysticallx - Emerald Dream"] = "Default",
+["Tealcrayon - Anetheron"] = "Default",
 ["Mysticbankk - Sargeras"] = "Default",
 ["Soullstëaler - Sentinels"] = "Default",
-["Representing - Sargeras"] = "Mysticall",
+["Rsk - Sentinels"] = "Mysticall",
 ["Mysticbankk - Sentinels"] = "Default",
-["Mysticbankk - Tichondrius"] = "Default",
 ["Iamdeadinsid - Sentinels"] = "Default",
-["Weavethemist - Azjol-Nerub"] = "Mysticall",
+["Mw - Turalyon"] = "Default",
+["Mstcll - Sentinels"] = "Default",
 ["Healjkoom - Sargeras"] = "Mysticall",
 ["Mstcll - Aerie Peak"] = "Default",
 ["Sevenseconds - Area 52"] = "Default",
-["Vezimmarr - Aerie Peak"] = "Default",
+["Mstcll - Echo Isles"] = "Default",
 ["Coccoon - Area 52"] = "Default",
-["Onlyplaymonk - Area 52"] = "Default",
+["Mysticallxy - Area 52"] = "Mysticall",
 ["Bovadeez - Bleeding Hollow"] = "Mysticall",
 ["Thunderbadx - Sargeras"] = "Mysticall",
 ["Stylle - Sentinels"] = "Default",
-["Onlyplaydru - Sargeras"] = "Default",
+["Onlyplaymonk - Area 52"] = "Default",
 ["Onlyplaymage - Sargeras"] = "Default",
+["Craaruun - Eitrigg"] = "Default",
 ["Weavethemist - Sargeras"] = "Mysticall",
-["Mysticallx - Sargeras"] = "Mysticall",
-["Hydraxises - Lightning's Blade"] = "Default",
-["Mstcll - Blackwater Raiders"] = "Default",
 ["Mediumvibes - Sentinels"] = "Default",
+["Mstcll - Blackwater Raiders"] = "Default",
 ["Cincinatizoo - Sargeras"] = "Mysticall",
-["Mysticbollt - Garrosh"] = "Default",
 ["Nightmares - Sentinels"] = "Mysticall",
+["Mysticbollt - Garrosh"] = "Default",
+["Onlyplaydru - Sargeras"] = "Default",
 ["Mstcll - Area 52"] = "Default",
 ["Mysticbollt - Area 52"] = "Default",
 ["Lifedestroys - Tichondrius"] = "Default",
-["Mstcll - Echo Isles"] = "Default",
-["Mysticallxy - Area 52"] = "Mysticall",
-["Rsk - Sentinels"] = "Mysticall",
-["Mysticallx - Emerald Dream"] = "Default",
+["Vezimmarr - Aerie Peak"] = "Default",
+["Mysticbankk - Tichondrius"] = "Default",
+["Hydraxises - Lightning's Blade"] = "Default",
+["Mysticallx - Sargeras"] = "Mysticall",
 ["Representing - Blackhand"] = "Default",
 ["Thunderbad - Sentinels"] = "Mysticall",
-["Mstcll - Sentinels"] = "Default",
-["Onlyplaysub - Sargeras"] = "Default",
 ["Réðçräñé - Sentinels"] = "Mysticall",
-["Cocoonjkdead - Aerie Peak"] = "Default",
-["Kickthesun - Sargeras"] = "Mysticall",
-["Hystoricall - Sentinels"] = "Default",
+["Onlyplaysub - Sargeras"] = "Default",
+["Rsk - Shandris"] = "Default",
+["Baotu - Sargeras"] = "Default",
+["Soullkeeper - Tichondrius"] = "Mysticall",
+["Vivifying - Area 52"] = "Default",
 ["Ggs - Detheroc"] = "Mysticall",
 ["Misstickle - Sargeras"] = "Default",
-["Nightbllade - Area 52"] = "Default",
-["Sevenseconds - Sargeras"] = "Default",
-["Vivifying - Area 52"] = "Default",
-["Enveloping - Sentinels"] = "Mysticall",
+["Mysticall - Sentinels"] = "Mysticall",
+["Hystoricall - Sentinels"] = "Default",
+["Jje - Vek'nilash"] = "Default",
+["Onlyplayfury - Sargeras"] = "Default",
 },
 ["profiles"] = {
 ["Mysticall"] = {
@@ -114,8 +123,8 @@ BigDebuffsDB = {
 ["increaseBuffs"] = true,
 ["warning"] = 71,
 ["inRaid"] = {
-["size"] = 10,
 ["hide"] = true,
+["size"] = 10,
 },
 ["hideBliz"] = false,
 ["cooldownFontSize"] = 15,
@@ -134,13 +143,13 @@ BigDebuffsDB = {
 ["enemyAnchor"] = {
 ["size"] = 30,
 },
-["buffs_other"] = false,
+["buffs_defensive"] = false,
 ["enabled"] = false,
 ["friendly"] = false,
-["roots"] = false,
 ["immunities_spells"] = false,
-["buffs_defensive"] = false,
+["roots"] = false,
 ["buffs_offensive"] = false,
+["buffs_other"] = false,
 },
 ["priority"] = {
 ["cc"] = 100,
@@ -148,8 +157,8 @@ BigDebuffsDB = {
 ["spells"] = {
 [129597] = {
 ["nameplates"] = 0,
-["unitFrames"] = 0,
 ["raidFrames"] = 0,
+["unitFrames"] = 0,
 },
 [360194] = {
 ["customSize"] = true,
@@ -157,9 +166,11 @@ BigDebuffsDB = {
 ["customPriority"] = true,
 ["size"] = 100,
 },
-[335467] = {
+[198817] = {
 ["customSize"] = true,
-["size"] = 50,
+["customPriority"] = true,
+["priority"] = 100,
+["size"] = 100,
 },
 [79140] = {
 ["customSize"] = true,
@@ -167,8 +178,8 @@ BigDebuffsDB = {
 ["size"] = 76,
 },
 [307871] = {
-["customPriority"] = false,
 ["unitFrames"] = 1,
+["customPriority"] = false,
 },
 [34914] = {
 ["customSize"] = true,
@@ -180,7 +191,7 @@ BigDebuffsDB = {
 ["priority"] = 81,
 ["size"] = 73,
 },
-[316099] = {
+[375901] = {
 ["customSize"] = true,
 ["size"] = 50,
 },
@@ -190,9 +201,7 @@ BigDebuffsDB = {
 ["priority"] = 100,
 ["size"] = 75,
 },
-[375901] = {
-["customSize"] = true,
-["size"] = 50,
+[116841] = {
 },
 [227847] = {
 ["customPriority"] = false,
@@ -208,13 +217,13 @@ BigDebuffsDB = {
 [356567] = {
 ["customPriority"] = false,
 },
-[116841] = {
-},
-[198817] = {
+[316099] = {
 ["customSize"] = true,
-["customPriority"] = true,
-["priority"] = 100,
-["size"] = 100,
+["size"] = 50,
+},
+[335467] = {
+["customSize"] = true,
+["size"] = 50,
 },
 },
 ["unitFrames"] = {
@@ -245,16 +254,16 @@ nil,
 ["buffs_defensive"] = false,
 ["enabled"] = false,
 ["immunities"] = false,
-["arena1"] = {
-},
-["party1"] = {
+["arena4"] = {
 ["position"] = {
-"LEFT",
+"BOTTOM",
 nil,
-"LEFT",
-182.6001281738281,
-243.6000518798828,
+"BOTTOM",
+-292.9999084472656,
+145.0000305175781,
 },
+},
+["party2"] = {
 },
 ["player"] = {
 ["position"] = {
@@ -265,22 +274,22 @@ nil,
 -110.0001754760742,
 },
 },
-["immunities_spells"] = false,
-["buffs_speed_boost"] = false,
+["party1"] = {
+["position"] = {
+"LEFT",
+nil,
+"LEFT",
+182.6001281738281,
+243.6000518798828,
+},
+},
 ["arena2"] = {
 },
-["party2"] = {
-},
+["buffs_speed_boost"] = false,
+["immunities_spells"] = false,
 ["arena3"] = {
 },
-["arena4"] = {
-["position"] = {
-"BOTTOM",
-nil,
-"BOTTOM",
--292.9999084472656,
-145.0000305175781,
-},
+["arena1"] = {
 },
 },
 },
@@ -292,49 +301,49 @@ nil,
 ["npc"] = false,
 ["enemy"] = false,
 },
-["unitFrames"] = {
-["party3"] = {
-},
-["arena1"] = {
-},
-["arena3"] = {
-},
-["party1"] = {
-},
-["arena2"] = {
-},
-["buffs_offensive"] = false,
-["buffs_defensive"] = false,
-["party2"] = {
-},
-["party4"] = {
-},
-["arena5"] = {
-},
-["arena4"] = {
-},
-},
 ["raidFrames"] = {
 ["increaseBuffs"] = true,
-["cooldownFont"] = "2002 Bold",
-["inRaid"] = {
-["hide"] = true,
-["size"] = 10,
-},
-["maxDebuffs"] = 20,
 ["dispellable"] = {
 ["cc"] = 85,
 ["roots"] = 46,
 },
-["warningList"] = {
-[233499] = true,
+["inRaid"] = {
+["size"] = 10,
+["hide"] = true,
 },
+["maxDebuffs"] = 20,
+["warning"] = 68,
+["cooldownFontSize"] = 15,
 ["cc"] = 68,
 ["interrupts"] = 40,
 ["anchor"] = "LEFT",
 ["roots"] = 35,
-["cooldownFontSize"] = 15,
-["warning"] = 68,
+["warningList"] = {
+[233499] = true,
+},
+["cooldownFont"] = "2002 Bold",
+},
+["unitFrames"] = {
+["party3"] = {
+},
+["buffs_defensive"] = false,
+["arena5"] = {
+},
+["party4"] = {
+},
+["party2"] = {
+},
+["arena2"] = {
+},
+["arena1"] = {
+},
+["buffs_offensive"] = false,
+["party1"] = {
+},
+["arena3"] = {
+},
+["arena4"] = {
+},
 },
 },
 ["rbgs"] = {
@@ -342,12 +351,15 @@ nil,
 ["increaseBuffs"] = true,
 ["cooldownFont"] = "2002 Bold",
 ["inRaid"] = {
-["hide"] = true,
 ["size"] = 10,
+["hide"] = true,
 },
 ["maxDebuffs"] = 7,
 ["cc"] = 68,
-["warning"] = 71,
+["dispellable"] = {
+["cc"] = 72,
+["roots"] = 46,
+},
 ["warningList"] = {
 [81261] = false,
 [233499] = true,
@@ -355,10 +367,7 @@ nil,
 },
 ["roots"] = 35,
 ["cooldownFontSize"] = 15,
-["dispellable"] = {
-["cc"] = 72,
-["roots"] = 46,
-},
+["warning"] = 71,
 },
 ["nameplates"] = {
 ["enabled"] = false,
@@ -368,8 +377,8 @@ nil,
 ["spells"] = {
 [129597] = {
 ["nameplates"] = 0,
-["raidFrames"] = 0,
 ["unitFrames"] = 0,
+["raidFrames"] = 0,
 },
 [227847] = {
 ["customPriority"] = false,
@@ -386,10 +395,12 @@ nil,
 ["party3"] = {
 },
 ["immunities"] = false,
-["buffs_defensive"] = false,
-["buffs_offensive"] = false,
-["party4"] = {
+["arena1"] = {
 },
+["buffs_offensive"] = false,
+["party2"] = {
+},
+["immunities_spells"] = false,
 ["party1"] = {
 ["position"] = {
 "LEFT",
@@ -399,11 +410,9 @@ nil,
 243.6000518798828,
 },
 },
-["party2"] = {
+["party4"] = {
 },
-["immunities_spells"] = false,
-["arena1"] = {
-},
+["buffs_defensive"] = false,
 },
 },
 },

@@ -1,16 +1,5473 @@
 
 DetailsDataStorage = {
-	["saved_encounters"] = {
-	},
-	[15] = {
-	},
-	["VERSION"] = 6,
-	[16] = {
-	},
-	[14] = {
-	},
-	["mythic_plus"] = {
-	},
-	["Data"] = {
-	},
+["normal"] = {
+[2917] = {
+{
+["time"] = 1726967575,
+["guild"] = "Zero Percent Wipe",
+["elapsed"] = 150.7039999999979,
+["date"] = "21:12 21/09/24",
+["servertime"] = 1726967575,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 101642206,
+["itemLevel"] = 606.3125,
+["classId"] = 10,
+},
+["Zheysmeilian"] = {
+["total"] = 91927363,
+["itemLevel"] = 602.75,
+["classId"] = 2,
+},
+["Rainbolt-Zul'jin"] = {
+["total"] = 91200794,
+["itemLevel"] = 605.0625,
+["classId"] = 7,
+},
+["Totemicy"] = {
+["total"] = 84731092,
+["itemLevel"] = 600.625,
+["classId"] = 7,
+},
+["Lurosaurus"] = {
+["total"] = 68215308,
+["itemLevel"] = 588.1875,
+["classId"] = 5,
+},
+},
+["DAMAGER"] = {
+["Thginkhtaeda-Proudmoore"] = {
+["total"] = 62622712,
+["itemLevel"] = 599.5,
+["classId"] = 6,
+},
+["Gauz"] = {
+["total"] = 108147941,
+["itemLevel"] = 595.125,
+["classId"] = 9,
+},
+["Daddykncha"] = {
+["total"] = 122776806,
+["itemLevel"] = 602.0625,
+["classId"] = 7,
+},
+["Mixiburn"] = {
+["total"] = 105175994,
+["itemLevel"] = 606.6875,
+["classId"] = 9,
+},
+["Puddiñgpop"] = {
+["total"] = 93774188,
+["itemLevel"] = 606.6875,
+["classId"] = 2,
+},
+["Maldh"] = {
+["total"] = 88564612,
+["itemLevel"] = 607.625,
+["classId"] = 12,
+},
+["Steehlock"] = {
+["total"] = 138757957,
+["itemLevel"] = 608.625,
+["classId"] = 9,
+},
+["Nathedruid"] = {
+["total"] = 119501749,
+["itemLevel"] = 595.125,
+["classId"] = 11,
+},
+["Vèlossa"] = {
+["total"] = 85928582,
+["itemLevel"] = 603.75,
+["classId"] = 8,
+},
+["Outerheaven"] = {
+["total"] = 126026632,
+["itemLevel"] = 610,
+["classId"] = 6,
+},
+["Theracute"] = {
+["total"] = 116511191,
+["itemLevel"] = 597.1875,
+["classId"] = 1,
+},
+["Kopaka"] = {
+["total"] = 108871224,
+["itemLevel"] = 602.3125,
+["classId"] = 4,
+},
+["Gamezzs"] = {
+["total"] = 79880946,
+["itemLevel"] = 586.3125,
+["classId"] = 8,
+},
+["Xcato"] = {
+["total"] = 162565032,
+["itemLevel"] = 615.875,
+["classId"] = 3,
+},
+["Bubzdragon"] = {
+["total"] = 50838471,
+["itemLevel"] = 600,
+["classId"] = 13,
+},
+["Okboomie"] = {
+["total"] = 147184836,
+["itemLevel"] = 609,
+["classId"] = 11,
+},
+["Arlandriya"] = {
+["total"] = 90875181,
+["itemLevel"] = 594.5625,
+["classId"] = 11,
+},
+["Colbake-Aegwynn"] = {
+["total"] = 104339637,
+["itemLevel"] = 608.25,
+["classId"] = 2,
+},
+["Hiiruma"] = {
+["total"] = 95880772,
+["itemLevel"] = 597.125,
+["classId"] = 3,
+},
+["Mobbeus"] = {
+["total"] = 92786461,
+["itemLevel"] = 592,
+["classId"] = 5,
+},
+["Viralstrix"] = {
+["total"] = 90391891,
+["itemLevel"] = 593.8125,
+["classId"] = 3,
+},
+["Atraxias"] = {
+["total"] = 97758284,
+["itemLevel"] = 601,
+["classId"] = 12,
+},
+["Mitsunami"] = {
+["total"] = 66129091,
+["itemLevel"] = 586.625,
+["classId"] = 3,
+},
+["Ivanstone"] = {
+["total"] = 44846689,
+["itemLevel"] = 596.6875,
+["classId"] = 1,
+},
+},
+},
+{
+["guild"] = "Zero Percent Wipe",
+["time"] = 1731810307,
+["elapsed"] = 278.9199999999837,
+["DAMAGER"] = {
+["Donutpriest"] = {
+["total"] = 70183486,
+["itemLevel"] = 635.5625,
+["classId"] = 5,
+},
+["Xcato"] = {
+["total"] = 235475402,
+["itemLevel"] = 635.1875,
+["classId"] = 3,
+},
+["Qõtsa"] = {
+["total"] = 170958829,
+["itemLevel"] = 621.9375,
+["classId"] = 3,
+},
+["Viraleagle"] = {
+["total"] = 60946141,
+["itemLevel"] = 635,
+["classId"] = 2,
+},
+["Mixiburn"] = {
+["total"] = 38687630,
+["itemLevel"] = 626.3125,
+["classId"] = 9,
+},
+["Dragau"] = {
+["total"] = 72693209,
+["itemLevel"] = 632,
+["classId"] = 13,
+},
+["Shotss"] = {
+["total"] = 291094099,
+["itemLevel"] = 627.625,
+["classId"] = 3,
+},
+["Kncha"] = {
+["total"] = 211490810,
+["itemLevel"] = 634.1875,
+["classId"] = 1,
+},
+["Kopaka"] = {
+["total"] = 119648408,
+["itemLevel"] = 619.4375,
+["classId"] = 4,
+},
+["Ivanstone"] = {
+["total"] = 88099016,
+["itemLevel"] = 621.875,
+["classId"] = 1,
+},
+["Paleshaman"] = {
+["total"] = 183847165,
+["itemLevel"] = 633.75,
+["classId"] = 7,
+},
+["Atraxias"] = {
+["total"] = 70648276,
+["itemLevel"] = 618.25,
+["classId"] = 12,
+},
+["Jimmyleggs"] = {
+["total"] = 166273803,
+["itemLevel"] = 633.3125,
+["classId"] = 9,
+},
+["Maldrin"] = {
+["total"] = 162106397,
+["itemLevel"] = 623.0625,
+["classId"] = 2,
+},
+["Rhaeisxalnym"] = {
+["total"] = 103117197,
+["itemLevel"] = 632,
+["classId"] = 6,
+},
+["Blessbaby"] = {
+["total"] = 51755220,
+["itemLevel"] = 614.875,
+["classId"] = 11,
+},
+["Bubzmage"] = {
+["total"] = 61812237,
+["itemLevel"] = 623.75,
+["classId"] = 8,
+},
+["Mitsunami"] = {
+["total"] = 103654422,
+["itemLevel"] = 621.9375,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 161019683,
+["itemLevel"] = 633.3125,
+["classId"] = 1,
+},
+},
+["servertime"] = 1731810307,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 116401722,
+["itemLevel"] = 622.0625,
+["classId"] = 10,
+},
+["Frizle"] = {
+["total"] = 134519234,
+["itemLevel"] = 615.875,
+["classId"] = 2,
+},
+["Lurosaurus"] = {
+["total"] = 150139761,
+["itemLevel"] = 613.5,
+["classId"] = 5,
+},
+["Ayaliss"] = {
+["total"] = 258611071,
+["itemLevel"] = 633.5,
+["classId"] = 11,
+},
+["Nathesham"] = {
+["total"] = 151844289,
+["itemLevel"] = 599.3125,
+["classId"] = 7,
+},
+},
+["date"] = "21:25 16/11/24",
+},
+},
+[2918] = {
+{
+["time"] = 1726968852,
+["guild"] = "Zero Percent Wipe",
+["elapsed"] = 172.1359999999986,
+["date"] = "21:34 21/09/24",
+["servertime"] = 1726968852,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 117419645,
+["itemLevel"] = 605.75,
+["classId"] = 10,
+},
+["Zheysmeilian"] = {
+["total"] = 86438700,
+["itemLevel"] = 602.75,
+["classId"] = 2,
+},
+["Rainbolt-Zul'jin"] = {
+["total"] = 114871397,
+["itemLevel"] = 605.0625,
+["classId"] = 7,
+},
+["Totemicy"] = {
+["total"] = 104484849,
+["itemLevel"] = 600.625,
+["classId"] = 7,
+},
+["Lurosaurus"] = {
+["total"] = 48724128,
+["itemLevel"] = 588.1875,
+["classId"] = 5,
+},
+},
+["DAMAGER"] = {
+["Thginkhtaeda-Proudmoore"] = {
+["total"] = 71491199,
+["itemLevel"] = 599.5,
+["classId"] = 6,
+},
+["Gauz"] = {
+["total"] = 116253856,
+["itemLevel"] = 595.125,
+["classId"] = 9,
+},
+["Daddykncha"] = {
+["total"] = 112051082,
+["itemLevel"] = 602.0625,
+["classId"] = 7,
+},
+["Mixiburn"] = {
+["total"] = 129214489,
+["itemLevel"] = 606.6875,
+["classId"] = 9,
+},
+["Puddiñgpop"] = {
+["total"] = 85019304,
+["itemLevel"] = 606.6875,
+["classId"] = 2,
+},
+["Maldh"] = {
+["total"] = 94435438,
+["itemLevel"] = 607.625,
+["classId"] = 12,
+},
+["Steehlock"] = {
+["total"] = 177591494,
+["itemLevel"] = 608.625,
+["classId"] = 9,
+},
+["Nathedruid"] = {
+["total"] = 119282189,
+["itemLevel"] = 595.125,
+["classId"] = 11,
+},
+["Vèlossa"] = {
+["total"] = 114536540,
+["itemLevel"] = 604,
+["classId"] = 8,
+},
+["Outerheaven"] = {
+["total"] = 156528825,
+["itemLevel"] = 610,
+["classId"] = 6,
+},
+["Theracute"] = {
+["total"] = 140176110,
+["itemLevel"] = 596.8125,
+["classId"] = 1,
+},
+["Kopaka"] = {
+["total"] = 127898998,
+["itemLevel"] = 602.3125,
+["classId"] = 4,
+},
+["Gamezzs"] = {
+["total"] = 98078141,
+["itemLevel"] = 587.375,
+["classId"] = 8,
+},
+["Xcato"] = {
+["total"] = 184510185,
+["itemLevel"] = 615.875,
+["classId"] = 3,
+},
+["Bubzdragon"] = {
+["total"] = 48190263,
+["itemLevel"] = 600,
+["classId"] = 13,
+},
+["Okboomie"] = {
+["total"] = 147496831,
+["itemLevel"] = 609,
+["classId"] = 11,
+},
+["Arlandriya"] = {
+["total"] = 118986214,
+["itemLevel"] = 595.625,
+["classId"] = 11,
+},
+["Colbake-Aegwynn"] = {
+["total"] = 136590262,
+["itemLevel"] = 608.25,
+["classId"] = 2,
+},
+["Hiiruma"] = {
+["total"] = 99818744,
+["itemLevel"] = 597.125,
+["classId"] = 3,
+},
+["Mobbeus"] = {
+["total"] = 118320315,
+["itemLevel"] = 592,
+["classId"] = 5,
+},
+["Viralstrix"] = {
+["total"] = 96095556,
+["itemLevel"] = 593.8125,
+["classId"] = 3,
+},
+["Atraxias"] = {
+["total"] = 111964884,
+["itemLevel"] = 601.4375,
+["classId"] = 12,
+},
+["Mitsunami"] = {
+["total"] = 91274003,
+["itemLevel"] = 586.625,
+["classId"] = 3,
+},
+["Ivanstone"] = {
+["total"] = 56697977,
+["itemLevel"] = 597.5,
+["classId"] = 1,
+},
+},
+},
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 58744919,
+["itemLevel"] = 610,
+["classId"] = 1,
+},
+["Billyhitter"] = {
+["total"] = 90971403,
+["itemLevel"] = 589.125,
+["classId"] = 4,
+},
+["Nathedruid"] = {
+["total"] = 109604740,
+["itemLevel"] = 597.5625,
+["classId"] = 11,
+},
+["Kopaka"] = {
+["total"] = 135479395,
+["itemLevel"] = 611.1875,
+["classId"] = 4,
+},
+["Gauz"] = {
+["total"] = 94624004,
+["itemLevel"] = 603.625,
+["classId"] = 9,
+},
+["Bubzmage"] = {
+["total"] = 99978045,
+["itemLevel"] = 602,
+["classId"] = 8,
+},
+["Viralstrix"] = {
+["total"] = 126883282,
+["itemLevel"] = 603.75,
+["classId"] = 3,
+},
+["Rhaeisxalnym"] = {
+["total"] = 146078563,
+["itemLevel"] = 615.375,
+["classId"] = 6,
+},
+["Qotsaog"] = {
+["total"] = 74778973,
+["itemLevel"] = 601.5625,
+["classId"] = 3,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 122739050,
+["itemLevel"] = 594.5625,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 112010168,
+["itemLevel"] = 610.125,
+["classId"] = 7,
+},
+["Elsecallers"] = {
+["total"] = 139913403,
+["itemLevel"] = 605.8125,
+["classId"] = 8,
+},
+["Shotss"] = {
+["total"] = 125028224,
+["itemLevel"] = 609.8125,
+["classId"] = 3,
+},
+["Maldh"] = {
+["total"] = 107959422,
+["itemLevel"] = 617.75,
+["classId"] = 12,
+},
+["Mitsunami"] = {
+["total"] = 108711454,
+["itemLevel"] = 604.25,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 113843623,
+["itemLevel"] = 623.0625,
+["classId"] = 1,
+},
+},
+["time"] = 1728178355,
+["date"] = "21:32 05/10/24",
+["elapsed"] = 152.7789999999804,
+["servertime"] = 1728178355,
+["HEALER"] = {
+["Alenio"] = {
+["total"] = 42347519,
+["itemLevel"] = 606.6875,
+["classId"] = 5,
+},
+["Mysticallx"] = {
+["total"] = 85920920,
+["itemLevel"] = 614.625,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 68178189,
+["itemLevel"] = 624.25,
+["classId"] = 11,
+},
+["Frizle"] = {
+["total"] = 48034205,
+["itemLevel"] = 605.25,
+["classId"] = 2,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+{
+["guild"] = "Zero Percent Wipe",
+["time"] = 1731811718,
+["elapsed"] = 107.7229999999981,
+["DAMAGER"] = {
+["Donutpriest"] = {
+["total"] = 159949272,
+["itemLevel"] = 635.5625,
+["classId"] = 5,
+},
+["Xcato"] = {
+["total"] = 177298900,
+["itemLevel"] = 635.1875,
+["classId"] = 3,
+},
+["Qõtsa"] = {
+["total"] = 122698841,
+["itemLevel"] = 621.9375,
+["classId"] = 3,
+},
+["Viraleagle"] = {
+["total"] = 72889163,
+["itemLevel"] = 635,
+["classId"] = 2,
+},
+["Mixiburn"] = {
+["total"] = 108669549,
+["itemLevel"] = 626.3125,
+["classId"] = 9,
+},
+["Dragau"] = {
+["total"] = 73894715,
+["itemLevel"] = 632,
+["classId"] = 13,
+},
+["Shotss"] = {
+["total"] = 158470604,
+["itemLevel"] = 627.625,
+["classId"] = 3,
+},
+["Kncha"] = {
+["total"] = 99334412,
+["itemLevel"] = 634.1875,
+["classId"] = 1,
+},
+["Nathesham"] = {
+["total"] = 86303450,
+["itemLevel"] = 606,
+["classId"] = 7,
+},
+["Frizle"] = {
+["total"] = 102878981,
+["itemLevel"] = 616.875,
+["classId"] = 2,
+},
+["Ivanstone"] = {
+["total"] = 55899323,
+["itemLevel"] = 621.875,
+["classId"] = 1,
+},
+["Paleshaman"] = {
+["total"] = 189286839,
+["itemLevel"] = 633.75,
+["classId"] = 7,
+},
+["Atraxias"] = {
+["total"] = 90550507,
+["itemLevel"] = 618.25,
+["classId"] = 12,
+},
+["Maldrin"] = {
+["total"] = 91472031,
+["itemLevel"] = 623.0625,
+["classId"] = 2,
+},
+["Kopaka"] = {
+["total"] = 105765863,
+["itemLevel"] = 618.625,
+["classId"] = 4,
+},
+["Jimmyleggs"] = {
+["total"] = 162044611,
+["itemLevel"] = 633.3125,
+["classId"] = 9,
+},
+["Blessbaby"] = {
+["total"] = 93126611,
+["itemLevel"] = 614.875,
+["classId"] = 11,
+},
+["Rhaeisxalnym"] = {
+["total"] = 122392822,
+["itemLevel"] = 632,
+["classId"] = 6,
+},
+["Lurosaurus"] = {
+["total"] = 80472904,
+["itemLevel"] = 613.5,
+["classId"] = 5,
+},
+["Bubzmage"] = {
+["total"] = 75365571,
+["itemLevel"] = 623.75,
+["classId"] = 8,
+},
+["Mitsunami"] = {
+["total"] = 107440535,
+["itemLevel"] = 621.9375,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 81123233,
+["itemLevel"] = 633.3125,
+["classId"] = 1,
+},
+},
+["servertime"] = 1731811718,
+["HEALER"] = {
+["Ayaliss"] = {
+["total"] = 134842145,
+["itemLevel"] = 633.5,
+["classId"] = 11,
+},
+["Mysticallx"] = {
+["total"] = 85779851,
+["itemLevel"] = 622.0625,
+["classId"] = 10,
+},
+},
+["date"] = "21:48 16/11/24",
+},
+},
+[2898] = {
+{
+["time"] = 1726968313,
+["guild"] = "Zero Percent Wipe",
+["elapsed"] = 150.43299999999,
+["date"] = "21:25 21/09/24",
+["servertime"] = 1726968313,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 134309978,
+["itemLevel"] = 605.75,
+["classId"] = 10,
+},
+["Zheysmeilian"] = {
+["total"] = 79827205,
+["itemLevel"] = 602.75,
+["classId"] = 2,
+},
+["Rainbolt-Zul'jin"] = {
+["total"] = 117336827,
+["itemLevel"] = 605.0625,
+["classId"] = 7,
+},
+["Totemicy"] = {
+["total"] = 79981337,
+["itemLevel"] = 600.625,
+["classId"] = 7,
+},
+["Lurosaurus"] = {
+["total"] = 78000877,
+["itemLevel"] = 588.1875,
+["classId"] = 5,
+},
+},
+["DAMAGER"] = {
+["Thginkhtaeda-Proudmoore"] = {
+["total"] = 54042910,
+["itemLevel"] = 599.5,
+["classId"] = 6,
+},
+["Gauz"] = {
+["total"] = 97440051,
+["itemLevel"] = 595.125,
+["classId"] = 9,
+},
+["Daddykncha"] = {
+["total"] = 116232219,
+["itemLevel"] = 602.0625,
+["classId"] = 7,
+},
+["Mixiburn"] = {
+["total"] = 121624289,
+["itemLevel"] = 606.6875,
+["classId"] = 9,
+},
+["Puddiñgpop"] = {
+["total"] = 79039316,
+["itemLevel"] = 606.6875,
+["classId"] = 2,
+},
+["Maldh"] = {
+["total"] = 85207724,
+["itemLevel"] = 607.625,
+["classId"] = 12,
+},
+["Steehlock"] = {
+["total"] = 133222971,
+["itemLevel"] = 608.625,
+["classId"] = 9,
+},
+["Nathedruid"] = {
+["total"] = 105954726,
+["itemLevel"] = 595.125,
+["classId"] = 11,
+},
+["Vèlossa"] = {
+["total"] = 104252616,
+["itemLevel"] = 604,
+["classId"] = 8,
+},
+["Outerheaven"] = {
+["total"] = 126212165,
+["itemLevel"] = 610,
+["classId"] = 6,
+},
+["Theracute"] = {
+["total"] = 88903039,
+["itemLevel"] = 596.8125,
+["classId"] = 1,
+},
+["Kopaka"] = {
+["total"] = 95512489,
+["itemLevel"] = 602.3125,
+["classId"] = 4,
+},
+["Gamezzs"] = {
+["total"] = 75503314,
+["itemLevel"] = 587.375,
+["classId"] = 8,
+},
+["Xcato"] = {
+["total"] = 170256978,
+["itemLevel"] = 615.875,
+["classId"] = 3,
+},
+["Bubzdragon"] = {
+["total"] = 50134918,
+["itemLevel"] = 600,
+["classId"] = 13,
+},
+["Okboomie"] = {
+["total"] = 149413920,
+["itemLevel"] = 609,
+["classId"] = 11,
+},
+["Arlandriya"] = {
+["total"] = 116337611,
+["itemLevel"] = 595.625,
+["classId"] = 11,
+},
+["Colbake-Aegwynn"] = {
+["total"] = 106197919,
+["itemLevel"] = 608.25,
+["classId"] = 2,
+},
+["Hiiruma"] = {
+["total"] = 86200342,
+["itemLevel"] = 597.125,
+["classId"] = 3,
+},
+["Mobbeus"] = {
+["total"] = 101709038,
+["itemLevel"] = 592,
+["classId"] = 5,
+},
+["Viralstrix"] = {
+["total"] = 82324051,
+["itemLevel"] = 593.8125,
+["classId"] = 3,
+},
+["Atraxias"] = {
+["total"] = 80693495,
+["itemLevel"] = 601,
+["classId"] = 12,
+},
+["Mitsunami"] = {
+["total"] = 83746566,
+["itemLevel"] = 586.625,
+["classId"] = 3,
+},
+["Ivanstone"] = {
+["total"] = 45436903,
+["itemLevel"] = 597.5,
+["classId"] = 1,
+},
+},
+},
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 57402845,
+["itemLevel"] = 610,
+["classId"] = 1,
+},
+["Billyhitter"] = {
+["total"] = 57252904,
+["itemLevel"] = 589.125,
+["classId"] = 4,
+},
+["Nathedruid"] = {
+["total"] = 103999513,
+["itemLevel"] = 597.5625,
+["classId"] = 11,
+},
+["Kopaka"] = {
+["total"] = 112066477,
+["itemLevel"] = 611.1875,
+["classId"] = 4,
+},
+["Gauz"] = {
+["total"] = 89415336,
+["itemLevel"] = 603.625,
+["classId"] = 9,
+},
+["Bubzmage"] = {
+["total"] = 105708785,
+["itemLevel"] = 602,
+["classId"] = 8,
+},
+["Viralstrix"] = {
+["total"] = 98205957,
+["itemLevel"] = 603.75,
+["classId"] = 3,
+},
+["Rhaeisxalnym"] = {
+["total"] = 123937462,
+["itemLevel"] = 615.375,
+["classId"] = 6,
+},
+["Qotsaog"] = {
+["total"] = 67398472,
+["itemLevel"] = 601.5625,
+["classId"] = 3,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 75526714,
+["itemLevel"] = 594.5625,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 109961985,
+["itemLevel"] = 610.125,
+["classId"] = 7,
+},
+["Elsecallers"] = {
+["total"] = 133721736,
+["itemLevel"] = 605.8125,
+["classId"] = 8,
+},
+["Shotss"] = {
+["total"] = 120755423,
+["itemLevel"] = 609.8125,
+["classId"] = 3,
+},
+["Maldh"] = {
+["total"] = 107253585,
+["itemLevel"] = 617.75,
+["classId"] = 12,
+},
+["Mitsunami"] = {
+["total"] = 117734648,
+["itemLevel"] = 604.25,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 86923613,
+["itemLevel"] = 623.0625,
+["classId"] = 1,
+},
+},
+["time"] = 1728177890,
+["date"] = "21:24 05/10/24",
+["elapsed"] = 139.5899999999965,
+["servertime"] = 1728177890,
+["HEALER"] = {
+["Alenio"] = {
+["total"] = 53751613,
+["itemLevel"] = 606.6875,
+["classId"] = 5,
+},
+["Mysticallx"] = {
+["total"] = 90902009,
+["itemLevel"] = 614.625,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 81914798,
+["itemLevel"] = 624.25,
+["classId"] = 11,
+},
+["Frizle"] = {
+["total"] = 56175607,
+["itemLevel"] = 605.25,
+["classId"] = 2,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+{
+["guild"] = "Zero Percent Wipe",
+["time"] = 1731811267,
+["elapsed"] = 204.2840000000142,
+["DAMAGER"] = {
+["Donutpriest"] = {
+["total"] = 149018888,
+["itemLevel"] = 635.5625,
+["classId"] = 5,
+},
+["Xcato"] = {
+["total"] = 120865853,
+["itemLevel"] = 635.1875,
+["classId"] = 3,
+},
+["Qõtsa"] = {
+["total"] = 194519426,
+["itemLevel"] = 621.9375,
+["classId"] = 3,
+},
+["Viraleagle"] = {
+["total"] = 69186833,
+["itemLevel"] = 635,
+["classId"] = 2,
+},
+["Mixiburn"] = {
+["total"] = 57541376,
+["itemLevel"] = 626.3125,
+["classId"] = 9,
+},
+["Dragau"] = {
+["total"] = 37302832,
+["itemLevel"] = 632,
+["classId"] = 13,
+},
+["Shotss"] = {
+["total"] = 104841817,
+["itemLevel"] = 627.625,
+["classId"] = 3,
+},
+["Kncha"] = {
+["total"] = 66414609,
+["itemLevel"] = 634.1875,
+["classId"] = 1,
+},
+["Frizle"] = {
+["total"] = 53731413,
+["itemLevel"] = 616.875,
+["classId"] = 2,
+},
+["Ivanstone"] = {
+["total"] = 80775371,
+["itemLevel"] = 621.875,
+["classId"] = 1,
+},
+["Paleshaman"] = {
+["total"] = 143090168,
+["itemLevel"] = 633.75,
+["classId"] = 7,
+},
+["Atraxias"] = {
+["total"] = 40728841,
+["itemLevel"] = 618.25,
+["classId"] = 12,
+},
+["Maldrin"] = {
+["total"] = 170156258,
+["itemLevel"] = 623.0625,
+["classId"] = 2,
+},
+["Kopaka"] = {
+["total"] = 158566246,
+["itemLevel"] = 618.625,
+["classId"] = 4,
+},
+["Jimmyleggs"] = {
+["total"] = 228997119,
+["itemLevel"] = 633.3125,
+["classId"] = 9,
+},
+["Blessbaby"] = {
+["total"] = 67997125,
+["itemLevel"] = 614.875,
+["classId"] = 11,
+},
+["Rhaeisxalnym"] = {
+["total"] = 78483394,
+["itemLevel"] = 632,
+["classId"] = 6,
+},
+["Lurosaurus"] = {
+["total"] = 56616787,
+["itemLevel"] = 613.5,
+["classId"] = 5,
+},
+["Bubzmage"] = {
+["total"] = 45171864,
+["itemLevel"] = 623.75,
+["classId"] = 8,
+},
+["Mitsunami"] = {
+["total"] = 99515944,
+["itemLevel"] = 621.9375,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 116599395,
+["itemLevel"] = 633.3125,
+["classId"] = 1,
+},
+},
+["servertime"] = 1731811267,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 166947118,
+["itemLevel"] = 622.0625,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 278948905,
+["itemLevel"] = 633.5,
+["classId"] = 11,
+},
+["Nathesham"] = {
+["total"] = 139405790,
+["itemLevel"] = 599.1875,
+["classId"] = 7,
+},
+},
+["date"] = "21:41 16/11/24",
+},
+},
+[2920] = {
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 54369826,
+["itemLevel"] = 610,
+["classId"] = 1,
+},
+["Billyhitter"] = {
+["total"] = 94951140,
+["itemLevel"] = 589.125,
+["classId"] = 4,
+},
+["Nathedruid"] = {
+["total"] = 125023995,
+["itemLevel"] = 598.1875,
+["classId"] = 11,
+},
+["Kopaka"] = {
+["total"] = 117936221,
+["itemLevel"] = 610.375,
+["classId"] = 4,
+},
+["Gauz"] = {
+["total"] = 102298293,
+["itemLevel"] = 603.625,
+["classId"] = 9,
+},
+["Bubzmage"] = {
+["total"] = 110001162,
+["itemLevel"] = 603.375,
+["classId"] = 8,
+},
+["Viralstrix"] = {
+["total"] = 119942163,
+["itemLevel"] = 603.5625,
+["classId"] = 3,
+},
+["Rhaeisxalnym"] = {
+["total"] = 140933939,
+["itemLevel"] = 615.375,
+["classId"] = 6,
+},
+["Qotsaog"] = {
+["total"] = 86489771,
+["itemLevel"] = 602.5625,
+["classId"] = 3,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 92629684,
+["itemLevel"] = 594.5625,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 116171888,
+["itemLevel"] = 610.125,
+["classId"] = 7,
+},
+["Elsecallers"] = {
+["total"] = 162815024,
+["itemLevel"] = 605.8125,
+["classId"] = 8,
+},
+["Shotss"] = {
+["total"] = 142900481,
+["itemLevel"] = 610.375,
+["classId"] = 3,
+},
+["Maldh"] = {
+["total"] = 113987456,
+["itemLevel"] = 617.75,
+["classId"] = 12,
+},
+["Mitsunami"] = {
+["total"] = 116757334,
+["itemLevel"] = 605.125,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 100364318,
+["itemLevel"] = 623.0625,
+["classId"] = 1,
+},
+},
+["time"] = 1728179554,
+["date"] = "21:52 05/10/24",
+["elapsed"] = 154.2200000000012,
+["servertime"] = 1728179554,
+["HEALER"] = {
+["Alenio"] = {
+["total"] = 36725144,
+["itemLevel"] = 606.6875,
+["classId"] = 5,
+},
+["Mysticallx"] = {
+["total"] = 71838793,
+["itemLevel"] = 614.625,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 56695647,
+["itemLevel"] = 624.25,
+["classId"] = 11,
+},
+["Frizle"] = {
+["total"] = 51392312,
+["itemLevel"] = 605.25,
+["classId"] = 2,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+{
+["guild"] = "Zero Percent Wipe",
+["time"] = 1731812604,
+["elapsed"] = 105.6579999999958,
+["DAMAGER"] = {
+["Donutpriest"] = {
+["total"] = 131816897,
+["itemLevel"] = 635.5625,
+["classId"] = 5,
+},
+["Xcato"] = {
+["total"] = 131408537,
+["itemLevel"] = 635.1875,
+["classId"] = 3,
+},
+["Qõtsa"] = {
+["total"] = 89095626,
+["itemLevel"] = 621.9375,
+["classId"] = 3,
+},
+["Viraleagle"] = {
+["total"] = 147283783,
+["itemLevel"] = 635,
+["classId"] = 2,
+},
+["Mixiburn"] = {
+["total"] = 124011732,
+["itemLevel"] = 626.3125,
+["classId"] = 9,
+},
+["Dragau"] = {
+["total"] = 64698569,
+["itemLevel"] = 632,
+["classId"] = 13,
+},
+["Shotss"] = {
+["total"] = 157698496,
+["itemLevel"] = 627.625,
+["classId"] = 3,
+},
+["Kncha"] = {
+["total"] = 137763349,
+["itemLevel"] = 634.1875,
+["classId"] = 1,
+},
+["Nathesham"] = {
+["total"] = 105728459,
+["itemLevel"] = 606,
+["classId"] = 7,
+},
+["Frizle"] = {
+["total"] = 108661072,
+["itemLevel"] = 616.875,
+["classId"] = 2,
+},
+["Ivanstone"] = {
+["total"] = 33529148,
+["itemLevel"] = 621.875,
+["classId"] = 1,
+},
+["Paleshaman"] = {
+["total"] = 116050815,
+["itemLevel"] = 633.75,
+["classId"] = 7,
+},
+["Atraxias"] = {
+["total"] = 95508634,
+["itemLevel"] = 618.25,
+["classId"] = 12,
+},
+["Maldrin"] = {
+["total"] = 103921989,
+["itemLevel"] = 623.0625,
+["classId"] = 2,
+},
+["Kopaka"] = {
+["total"] = 108210926,
+["itemLevel"] = 618.625,
+["classId"] = 4,
+},
+["Jimmyleggs"] = {
+["total"] = 167533356,
+["itemLevel"] = 633.3125,
+["classId"] = 9,
+},
+["Blessbaby"] = {
+["total"] = 126037484,
+["itemLevel"] = 614.875,
+["classId"] = 11,
+},
+["Rhaeisxalnym"] = {
+["total"] = 122034478,
+["itemLevel"] = 632,
+["classId"] = 6,
+},
+["Lurosaurus"] = {
+["total"] = 85878228,
+["itemLevel"] = 613.5,
+["classId"] = 5,
+},
+["Bubzmage"] = {
+["total"] = 93220611,
+["itemLevel"] = 623.75,
+["classId"] = 8,
+},
+["Mitsunami"] = {
+["total"] = 123528516,
+["itemLevel"] = 621.9375,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 80642340,
+["itemLevel"] = 633.3125,
+["classId"] = 1,
+},
+},
+["servertime"] = 1731812604,
+["HEALER"] = {
+["Ayaliss"] = {
+["total"] = 96663994,
+["itemLevel"] = 633.5,
+["classId"] = 11,
+},
+["Mysticallx"] = {
+["total"] = 33073049,
+["itemLevel"] = 622.0625,
+["classId"] = 10,
+},
+},
+["date"] = "22:03 16/11/24",
+},
+},
+[2921] = {
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 116674399,
+["itemLevel"] = 610,
+["classId"] = 1,
+},
+["Gauz"] = {
+["total"] = 246082023,
+["itemLevel"] = 603.625,
+["classId"] = 9,
+},
+["Shotss"] = {
+["total"] = 225643027,
+["itemLevel"] = 610.375,
+["classId"] = 3,
+},
+["Maldh"] = {
+["total"] = 272902691,
+["itemLevel"] = 617.75,
+["classId"] = 12,
+},
+["Nathedruid"] = {
+["total"] = 247131303,
+["itemLevel"] = 598.8125,
+["classId"] = 11,
+},
+["Billyhitter"] = {
+["total"] = 189552413,
+["itemLevel"] = 589.125,
+["classId"] = 4,
+},
+["Kopaka"] = {
+["total"] = 217226996,
+["itemLevel"] = 610.375,
+["classId"] = 4,
+},
+["Donutpriest"] = {
+["total"] = 378406690,
+["itemLevel"] = 626.1875,
+["classId"] = 5,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 147175966,
+["itemLevel"] = 594.5625,
+["classId"] = 1,
+},
+["Qotsaog"] = {
+["total"] = 159263462,
+["itemLevel"] = 602.5625,
+["classId"] = 3,
+},
+["Jimmyleggs"] = {
+["total"] = 398619691,
+["itemLevel"] = 623.0625,
+["classId"] = 9,
+},
+["Bancho-Area52"] = {
+["total"] = 234950181,
+["itemLevel"] = 610.125,
+["classId"] = 7,
+},
+["Rhaeisxalnym"] = {
+["total"] = 285710018,
+["itemLevel"] = 615.375,
+["classId"] = 6,
+},
+["Viralstrix"] = {
+["total"] = 177382766,
+["itemLevel"] = 604.75,
+["classId"] = 3,
+},
+["Bubzmage"] = {
+["total"] = 234035593,
+["itemLevel"] = 603.8125,
+["classId"] = 8,
+},
+["Mitsunami"] = {
+["total"] = 181134789,
+["itemLevel"] = 605.125,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 212524786,
+["itemLevel"] = 623.0625,
+["classId"] = 1,
+},
+},
+["time"] = 1728180299,
+["date"] = "22:04 05/10/24",
+["elapsed"] = 257.4969999999739,
+["servertime"] = 1728180299,
+["HEALER"] = {
+["Alenio"] = {
+["total"] = 106938327,
+["itemLevel"] = 606.6875,
+["classId"] = 5,
+},
+["Mysticallx"] = {
+["total"] = 155509364,
+["itemLevel"] = 614.625,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 171520337,
+["itemLevel"] = 624.25,
+["classId"] = 11,
+},
+["Frizle"] = {
+["total"] = 71667308,
+["itemLevel"] = 605.25,
+["classId"] = 2,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+{
+["guild"] = "Zero Percent Wipe",
+["time"] = 1731813049,
+["elapsed"] = 217.2350000000151,
+["DAMAGER"] = {
+["Donutpriest"] = {
+["total"] = 364338057,
+["itemLevel"] = 635.5625,
+["classId"] = 5,
+},
+["Xcato"] = {
+["total"] = 301203744,
+["itemLevel"] = 635.1875,
+["classId"] = 3,
+},
+["Qõtsa"] = {
+["total"] = 166724143,
+["itemLevel"] = 621.9375,
+["classId"] = 3,
+},
+["Viraleagle"] = {
+["total"] = 319537507,
+["itemLevel"] = 635,
+["classId"] = 2,
+},
+["Ayaliss"] = {
+["total"] = 238256083,
+["itemLevel"] = 633.5,
+["classId"] = 11,
+},
+["Mixiburn"] = {
+["total"] = 153857301,
+["itemLevel"] = 626.3125,
+["classId"] = 9,
+},
+["Dragau"] = {
+["total"] = 135573422,
+["itemLevel"] = 632,
+["classId"] = 13,
+},
+["Shotss"] = {
+["total"] = 265492148,
+["itemLevel"] = 627.625,
+["classId"] = 3,
+},
+["Kncha"] = {
+["total"] = 315504908,
+["itemLevel"] = 634.1875,
+["classId"] = 1,
+},
+["Nathesham"] = {
+["total"] = 209145167,
+["itemLevel"] = 606,
+["classId"] = 7,
+},
+["Frizle"] = {
+["total"] = 237847437,
+["itemLevel"] = 616.875,
+["classId"] = 2,
+},
+["Ivanstone"] = {
+["total"] = 98331775,
+["itemLevel"] = 621.875,
+["classId"] = 1,
+},
+["Paleshaman"] = {
+["total"] = 387610190,
+["itemLevel"] = 633.75,
+["classId"] = 7,
+},
+["Atraxias"] = {
+["total"] = 198280331,
+["itemLevel"] = 618.25,
+["classId"] = 12,
+},
+["Maldrin"] = {
+["total"] = 207875136,
+["itemLevel"] = 623.0625,
+["classId"] = 2,
+},
+["Kopaka"] = {
+["total"] = 203497890,
+["itemLevel"] = 619.4375,
+["classId"] = 4,
+},
+["Jimmyleggs"] = {
+["total"] = 394111369,
+["itemLevel"] = 633.3125,
+["classId"] = 9,
+},
+["Blessbaby"] = {
+["total"] = 262807578,
+["itemLevel"] = 614.875,
+["classId"] = 11,
+},
+["Rhaeisxalnym"] = {
+["total"] = 270976630,
+["itemLevel"] = 632,
+["classId"] = 6,
+},
+["Lurosaurus"] = {
+["total"] = 178858924,
+["itemLevel"] = 613.5,
+["classId"] = 5,
+},
+["Bubzmage"] = {
+["total"] = 168605102,
+["itemLevel"] = 623.75,
+["classId"] = 8,
+},
+["Mitsunami"] = {
+["total"] = 171326987,
+["itemLevel"] = 621.9375,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 200035950,
+["itemLevel"] = 633.3125,
+["classId"] = 1,
+},
+},
+["servertime"] = 1731813049,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 170666670,
+["itemLevel"] = 622.0625,
+["classId"] = 10,
+},
+},
+["date"] = "22:10 16/11/24",
+},
+},
+[2922] = {
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 65536142,
+["itemLevel"] = 610,
+["classId"] = 1,
+},
+["Gauz"] = {
+["total"] = 156263373,
+["itemLevel"] = 603.625,
+["classId"] = 9,
+},
+["Elsecallers"] = {
+["total"] = 218301111,
+["itemLevel"] = 605.8125,
+["classId"] = 8,
+},
+["Shotss"] = {
+["total"] = 170988408,
+["itemLevel"] = 610.375,
+["classId"] = 3,
+},
+["Maldh"] = {
+["total"] = 212028034,
+["itemLevel"] = 617.75,
+["classId"] = 12,
+},
+["Nathedruid"] = {
+["total"] = 181028306,
+["itemLevel"] = 603.1875,
+["classId"] = 11,
+},
+["Billyhitter"] = {
+["total"] = 72262561,
+["itemLevel"] = 589.125,
+["classId"] = 4,
+},
+["Kopaka"] = {
+["total"] = 145688828,
+["itemLevel"] = 611.1875,
+["classId"] = 4,
+},
+["Donutpriest"] = {
+["total"] = 291611841,
+["itemLevel"] = 626.1875,
+["classId"] = 5,
+},
+["Qotsaog"] = {
+["total"] = 56017710,
+["itemLevel"] = 602.5625,
+["classId"] = 3,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 142051646,
+["itemLevel"] = 594.5625,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 173931424,
+["itemLevel"] = 610.125,
+["classId"] = 7,
+},
+["Rhaeisxalnym"] = {
+["total"] = 163231549,
+["itemLevel"] = 615.375,
+["classId"] = 6,
+},
+["Viralstrix"] = {
+["total"] = 156671035,
+["itemLevel"] = 604.75,
+["classId"] = 3,
+},
+["Bubzmage"] = {
+["total"] = 149407398,
+["itemLevel"] = 603.8125,
+["classId"] = 8,
+},
+["Mitsunami"] = {
+["total"] = 59044897,
+["itemLevel"] = 605.125,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 158475230,
+["itemLevel"] = 623.0625,
+["classId"] = 1,
+},
+},
+["time"] = 1728181002,
+["date"] = "22:16 05/10/24",
+["elapsed"] = 278.5920000000042,
+["servertime"] = 1728181002,
+["HEALER"] = {
+["Alenio"] = {
+["total"] = 63233088,
+["itemLevel"] = 606.6875,
+["classId"] = 5,
+},
+["Mysticallx"] = {
+["total"] = 120425775,
+["itemLevel"] = 615.625,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 188429562,
+["itemLevel"] = 624.25,
+["classId"] = 11,
+},
+["Frizle"] = {
+["total"] = 37824528,
+["itemLevel"] = 605.25,
+["classId"] = 2,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+{
+["guild"] = "Zero Percent Wipe",
+["time"] = 1731813632,
+["elapsed"] = 264.2969999999914,
+["DAMAGER"] = {
+["Donutpriest"] = {
+["total"] = 200144806,
+["itemLevel"] = 635.5625,
+["classId"] = 5,
+},
+["Xcato"] = {
+["total"] = 210104655,
+["itemLevel"] = 635.1875,
+["classId"] = 3,
+},
+["Qõtsa"] = {
+["total"] = 114102752,
+["itemLevel"] = 621.9375,
+["classId"] = 3,
+},
+["Viraleagle"] = {
+["total"] = 150175604,
+["itemLevel"] = 635,
+["classId"] = 2,
+},
+["Mixiburn"] = {
+["total"] = 140217632,
+["itemLevel"] = 626.3125,
+["classId"] = 9,
+},
+["Dragau"] = {
+["total"] = 86491015,
+["itemLevel"] = 632,
+["classId"] = 13,
+},
+["Shotss"] = {
+["total"] = 214382907,
+["itemLevel"] = 627.625,
+["classId"] = 3,
+},
+["Kncha"] = {
+["total"] = 196374809,
+["itemLevel"] = 634.1875,
+["classId"] = 1,
+},
+["Nathesham"] = {
+["total"] = 114016810,
+["itemLevel"] = 606.375,
+["classId"] = 7,
+},
+["Frizle"] = {
+["total"] = 153593199,
+["itemLevel"] = 616.875,
+["classId"] = 2,
+},
+["Paleshaman"] = {
+["total"] = 218092491,
+["itemLevel"] = 633.75,
+["classId"] = 7,
+},
+["Ivanstone"] = {
+["total"] = 75654210,
+["itemLevel"] = 621.875,
+["classId"] = 1,
+},
+["Atraxias"] = {
+["total"] = 60078555,
+["itemLevel"] = 618.25,
+["classId"] = 12,
+},
+["Maldrin"] = {
+["total"] = 228061241,
+["itemLevel"] = 623.0625,
+["classId"] = 2,
+},
+["Kopaka"] = {
+["total"] = 102646648,
+["itemLevel"] = 619.4375,
+["classId"] = 4,
+},
+["Jimmyleggs"] = {
+["total"] = 198848803,
+["itemLevel"] = 633.3125,
+["classId"] = 9,
+},
+["Blessbaby"] = {
+["total"] = 130200158,
+["itemLevel"] = 614.875,
+["classId"] = 11,
+},
+["Rhaeisxalnym"] = {
+["total"] = 150587188,
+["itemLevel"] = 632,
+["classId"] = 6,
+},
+["Lurosaurus"] = {
+["total"] = 73076215,
+["itemLevel"] = 613.5,
+["classId"] = 5,
+},
+["Bubzmage"] = {
+["total"] = 136777106,
+["itemLevel"] = 623.75,
+["classId"] = 8,
+},
+["Mitsunami"] = {
+["total"] = 105449900,
+["itemLevel"] = 621.9375,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 140491815,
+["itemLevel"] = 633.3125,
+["classId"] = 1,
+},
+},
+["servertime"] = 1731813632,
+["HEALER"] = {
+["Ayaliss"] = {
+["total"] = 290355873,
+["itemLevel"] = 633.5,
+["classId"] = 11,
+},
+["Mysticallx"] = {
+["total"] = 155820951,
+["itemLevel"] = 622.0625,
+["classId"] = 10,
+},
+},
+["date"] = "22:20 16/11/24",
+},
+},
+[2902] = {
+{
+["time"] = 1726966923,
+["guild"] = "Zero Percent Wipe",
+["elapsed"] = 177.5919999999751,
+["date"] = "21:02 21/09/24",
+["servertime"] = 1726966923,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 100806516,
+["itemLevel"] = 606.3125,
+["classId"] = 10,
+},
+["Zheysmeilian"] = {
+["total"] = 62898594,
+["itemLevel"] = 602.75,
+["classId"] = 2,
+},
+["Rainbolt-Zul'jin"] = {
+["total"] = 83009147,
+["itemLevel"] = 605.0625,
+["classId"] = 7,
+},
+["Totemicy"] = {
+["total"] = 58357390,
+["itemLevel"] = 600.625,
+["classId"] = 7,
+},
+["Lurosaurus"] = {
+["total"] = 45945334,
+["itemLevel"] = 588.1875,
+["classId"] = 5,
+},
+},
+["DAMAGER"] = {
+["Bubzdragon"] = {
+["total"] = 48832006,
+["itemLevel"] = 600,
+["classId"] = 13,
+},
+["Gauz"] = {
+["total"] = 125226755,
+["itemLevel"] = 595.125,
+["classId"] = 9,
+},
+["Daddykncha"] = {
+["total"] = 115915483,
+["itemLevel"] = 602.0625,
+["classId"] = 7,
+},
+["Mixiburn"] = {
+["total"] = 119957646,
+["itemLevel"] = 606.6875,
+["classId"] = 9,
+},
+["Hiiruma"] = {
+["total"] = 90534865,
+["itemLevel"] = 597.125,
+["classId"] = 3,
+},
+["Maldh"] = {
+["total"] = 79197015,
+["itemLevel"] = 607.625,
+["classId"] = 12,
+},
+["Nathedruid"] = {
+["total"] = 113099196,
+["itemLevel"] = 594.875,
+["classId"] = 11,
+},
+["Steehlock"] = {
+["total"] = 150745282,
+["itemLevel"] = 608.625,
+["classId"] = 9,
+},
+["Vèlossa"] = {
+["total"] = 79024839,
+["itemLevel"] = 603.75,
+["classId"] = 8,
+},
+["Outerheaven"] = {
+["total"] = 131402188,
+["itemLevel"] = 610,
+["classId"] = 6,
+},
+["Theracute"] = {
+["total"] = 107275019,
+["itemLevel"] = 597.1875,
+["classId"] = 1,
+},
+["Kopaka"] = {
+["total"] = 67620522,
+["itemLevel"] = 602.3125,
+["classId"] = 4,
+},
+["Gamezzs"] = {
+["total"] = 68067596,
+["itemLevel"] = 586.3125,
+["classId"] = 8,
+},
+["Thginkhtaeda-Proudmoore"] = {
+["total"] = 55443407,
+["itemLevel"] = 599.5,
+["classId"] = 6,
+},
+["Puddiñgpop"] = {
+["total"] = 91171070,
+["itemLevel"] = 606.6875,
+["classId"] = 2,
+},
+["Okboomie"] = {
+["total"] = 150788543,
+["itemLevel"] = 609,
+["classId"] = 11,
+},
+["Arlandriya"] = {
+["total"] = 103460153,
+["itemLevel"] = 594.5625,
+["classId"] = 11,
+},
+["Colbake-Aegwynn"] = {
+["total"] = 116505242,
+["itemLevel"] = 608.25,
+["classId"] = 2,
+},
+["Ivanstone"] = {
+["total"] = 38224635,
+["itemLevel"] = 596.6875,
+["classId"] = 1,
+},
+["Mobbeus"] = {
+["total"] = 97273659,
+["itemLevel"] = 592,
+["classId"] = 5,
+},
+["Viralstrix"] = {
+["total"] = 87766892,
+["itemLevel"] = 593.8125,
+["classId"] = 3,
+},
+["Atraxias"] = {
+["total"] = 99367031,
+["itemLevel"] = 601,
+["classId"] = 12,
+},
+["Mitsunami"] = {
+["total"] = 71899780,
+["itemLevel"] = 586.625,
+["classId"] = 3,
+},
+["Xcato"] = {
+["total"] = 168838839,
+["itemLevel"] = 615.875,
+["classId"] = 3,
+},
+},
+},
+{
+["guild"] = "Zero Percent Wipe",
+["time"] = 1731808996,
+["elapsed"] = 69.48099999999977,
+["DAMAGER"] = {
+["Donutpriest"] = {
+["total"] = 90915289,
+["itemLevel"] = 635.5625,
+["classId"] = 5,
+},
+["Xcato"] = {
+["total"] = 135866610,
+["itemLevel"] = 635.1875,
+["classId"] = 3,
+},
+["Qõtsa"] = {
+["total"] = 69584276,
+["itemLevel"] = 621.9375,
+["classId"] = 3,
+},
+["Viraleagle"] = {
+["total"] = 90192993,
+["itemLevel"] = 635,
+["classId"] = 2,
+},
+["Ayaliss"] = {
+["total"] = 70103485,
+["itemLevel"] = 633.5,
+["classId"] = 11,
+},
+["Mixiburn"] = {
+["total"] = 61138747,
+["itemLevel"] = 626.3125,
+["classId"] = 9,
+},
+["Dragau"] = {
+["total"] = 50301096,
+["itemLevel"] = 632,
+["classId"] = 13,
+},
+["Shotss"] = {
+["total"] = 126482855,
+["itemLevel"] = 627.625,
+["classId"] = 3,
+},
+["Kncha"] = {
+["total"] = 89683648,
+["itemLevel"] = 634.1875,
+["classId"] = 1,
+},
+["Nathesham"] = {
+["total"] = 66306835,
+["itemLevel"] = 606.125,
+["classId"] = 7,
+},
+["Frizle"] = {
+["total"] = 67620713,
+["itemLevel"] = 616.875,
+["classId"] = 2,
+},
+["Ivanstone"] = {
+["total"] = 35244258,
+["itemLevel"] = 621.875,
+["classId"] = 1,
+},
+["Paleshaman"] = {
+["total"] = 106574676,
+["itemLevel"] = 633.75,
+["classId"] = 7,
+},
+["Atraxias"] = {
+["total"] = 62459843,
+["itemLevel"] = 618.25,
+["classId"] = 12,
+},
+["Maldrin"] = {
+["total"] = 67811112,
+["itemLevel"] = 623.0625,
+["classId"] = 2,
+},
+["Kopaka"] = {
+["total"] = 63376661,
+["itemLevel"] = 619.4375,
+["classId"] = 4,
+},
+["Jimmyleggs"] = {
+["total"] = 103434277,
+["itemLevel"] = 633.3125,
+["classId"] = 9,
+},
+["Blessbaby"] = {
+["total"] = 77896811,
+["itemLevel"] = 614.875,
+["classId"] = 11,
+},
+["Rhaeisxalnym"] = {
+["total"] = 61381204,
+["itemLevel"] = 630.375,
+["classId"] = 6,
+},
+["Lurosaurus"] = {
+["total"] = 68376587,
+["itemLevel"] = 613.5,
+["classId"] = 5,
+},
+["Bubzmage"] = {
+["total"] = 72497746,
+["itemLevel"] = 623.75,
+["classId"] = 8,
+},
+["Mitsunami"] = {
+["total"] = 111298647,
+["itemLevel"] = 621.9375,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 61385327,
+["itemLevel"] = 633.3125,
+["classId"] = 1,
+},
+},
+["servertime"] = 1731808996,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 37380269,
+["itemLevel"] = 622.0625,
+["classId"] = 10,
+},
+},
+["date"] = "21:03 16/11/24",
+},
+},
+[2919] = {
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 79305745,
+["itemLevel"] = 610,
+["classId"] = 1,
+},
+["Billyhitter"] = {
+["total"] = 136981345,
+["itemLevel"] = 589.125,
+["classId"] = 4,
+},
+["Nathedruid"] = {
+["total"] = 135107608,
+["itemLevel"] = 598.1875,
+["classId"] = 11,
+},
+["Kopaka"] = {
+["total"] = 156175556,
+["itemLevel"] = 610.375,
+["classId"] = 4,
+},
+["Gauz"] = {
+["total"] = 143537873,
+["itemLevel"] = 603.625,
+["classId"] = 9,
+},
+["Bubzmage"] = {
+["total"] = 143385334,
+["itemLevel"] = 603,
+["classId"] = 8,
+},
+["Viralstrix"] = {
+["total"] = 133435567,
+["itemLevel"] = 603.5625,
+["classId"] = 3,
+},
+["Rhaeisxalnym"] = {
+["total"] = 188024694,
+["itemLevel"] = 615.375,
+["classId"] = 6,
+},
+["Qotsaog"] = {
+["total"] = 98950606,
+["itemLevel"] = 601.5625,
+["classId"] = 3,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 99119866,
+["itemLevel"] = 594.5625,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 146611710,
+["itemLevel"] = 610.125,
+["classId"] = 7,
+},
+["Elsecallers"] = {
+["total"] = 185548516,
+["itemLevel"] = 605.8125,
+["classId"] = 8,
+},
+["Shotss"] = {
+["total"] = 145731127,
+["itemLevel"] = 609.8125,
+["classId"] = 3,
+},
+["Maldh"] = {
+["total"] = 160721563,
+["itemLevel"] = 617.75,
+["classId"] = 12,
+},
+["Mitsunami"] = {
+["total"] = 114740682,
+["itemLevel"] = 605.125,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 131662000,
+["itemLevel"] = 623.0625,
+["classId"] = 1,
+},
+},
+["time"] = 1728179047,
+["date"] = "21:44 05/10/24",
+["elapsed"] = 176.1160000000091,
+["servertime"] = 1728179047,
+["HEALER"] = {
+["Alenio"] = {
+["total"] = 47866568,
+["itemLevel"] = 606.6875,
+["classId"] = 5,
+},
+["Mysticallx"] = {
+["total"] = 74310872,
+["itemLevel"] = 614.625,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 56531047,
+["itemLevel"] = 624.25,
+["classId"] = 11,
+},
+["Frizle"] = {
+["total"] = 39182187,
+["itemLevel"] = 605.25,
+["classId"] = 2,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+{
+["guild"] = "Zero Percent Wipe",
+["time"] = 1731812272,
+["elapsed"] = 135.6460000000079,
+["DAMAGER"] = {
+["Donutpriest"] = {
+["total"] = 165904481,
+["itemLevel"] = 635.5625,
+["classId"] = 5,
+},
+["Xcato"] = {
+["total"] = 154819703,
+["itemLevel"] = 635.1875,
+["classId"] = 3,
+},
+["Qõtsa"] = {
+["total"] = 133377430,
+["itemLevel"] = 621.9375,
+["classId"] = 3,
+},
+["Viraleagle"] = {
+["total"] = 154188984,
+["itemLevel"] = 635,
+["classId"] = 2,
+},
+["Mixiburn"] = {
+["total"] = 155506346,
+["itemLevel"] = 626.3125,
+["classId"] = 9,
+},
+["Dragau"] = {
+["total"] = 75666322,
+["itemLevel"] = 632,
+["classId"] = 13,
+},
+["Shotss"] = {
+["total"] = 160312379,
+["itemLevel"] = 627.625,
+["classId"] = 3,
+},
+["Kncha"] = {
+["total"] = 123026212,
+["itemLevel"] = 634.1875,
+["classId"] = 1,
+},
+["Nathesham"] = {
+["total"] = 102819443,
+["itemLevel"] = 606,
+["classId"] = 7,
+},
+["Frizle"] = {
+["total"] = 88849722,
+["itemLevel"] = 616.875,
+["classId"] = 2,
+},
+["Ivanstone"] = {
+["total"] = 66955547,
+["itemLevel"] = 621.875,
+["classId"] = 1,
+},
+["Paleshaman"] = {
+["total"] = 154890296,
+["itemLevel"] = 633.75,
+["classId"] = 7,
+},
+["Atraxias"] = {
+["total"] = 83789481,
+["itemLevel"] = 618.25,
+["classId"] = 12,
+},
+["Maldrin"] = {
+["total"] = 117670745,
+["itemLevel"] = 623.0625,
+["classId"] = 2,
+},
+["Kopaka"] = {
+["total"] = 137087050,
+["itemLevel"] = 618.625,
+["classId"] = 4,
+},
+["Jimmyleggs"] = {
+["total"] = 187046715,
+["itemLevel"] = 633.3125,
+["classId"] = 9,
+},
+["Blessbaby"] = {
+["total"] = 98328141,
+["itemLevel"] = 614.875,
+["classId"] = 11,
+},
+["Rhaeisxalnym"] = {
+["total"] = 139619065,
+["itemLevel"] = 632,
+["classId"] = 6,
+},
+["Lurosaurus"] = {
+["total"] = 92324757,
+["itemLevel"] = 613.5,
+["classId"] = 5,
+},
+["Bubzmage"] = {
+["total"] = 100485921,
+["itemLevel"] = 623.75,
+["classId"] = 8,
+},
+["Mitsunami"] = {
+["total"] = 152896297,
+["itemLevel"] = 621.9375,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 103233275,
+["itemLevel"] = 633.3125,
+["classId"] = 1,
+},
+},
+["servertime"] = 1731812272,
+["HEALER"] = {
+["Ayaliss"] = {
+["total"] = 114035015,
+["itemLevel"] = 633.5,
+["classId"] = 11,
+},
+["Mysticallx"] = {
+["total"] = 60700873,
+["itemLevel"] = 622.0625,
+["classId"] = 10,
+},
+},
+["date"] = "21:57 16/11/24",
+},
+},
+},
+["mythic"] = {
+[2284] = {
+{
+["guild"] = "Zero Percent Wipe",
+["time"] = 1723473087,
+["elapsed"] = 54.38799999999174,
+["DAMAGER"] = {
+},
+["servertime"] = 1723473086,
+["HEALER"] = {
+},
+["date"] = "10:31 12/08/24",
+},
+},
+[2135] = {
+},
+[2145] = {
+},
+[2122] = {
+},
+[2268] = {
+{
+["guild"] = "Zero Percent Wipe",
+["time"] = 1723473364,
+["elapsed"] = 49.78099999998813,
+["DAMAGER"] = {
+},
+["servertime"] = 1723473363,
+["HEALER"] = {
+},
+["date"] = "10:36 12/08/24",
+},
+},
+[2276] = {
+},
+[2134] = {
+},
+[2136] = {
+},
+[2285] = {
+{
+["guild"] = "Zero Percent Wipe",
+["time"] = 1723472973,
+["elapsed"] = 79.28600000000733,
+["DAMAGER"] = {
+},
+["servertime"] = 1723472972,
+["HEALER"] = {
+},
+["date"] = "10:29 12/08/24",
+},
+},
+[2128] = {
+},
+[2271] = {
+{
+["guild"] = "Zero Percent Wipe",
+["time"] = 1723473248,
+["elapsed"] = 73.80299999999988,
+["DAMAGER"] = {
+},
+["servertime"] = 1723473247,
+["HEALER"] = {
+},
+["date"] = "10:34 12/08/24",
+},
+},
+[2144] = {
+},
+[2272] = {
+},
+[2265] = {
+{
+["guild"] = "Zero Percent Wipe",
+["time"] = 1723472595,
+["elapsed"] = 21.17799999999988,
+["DAMAGER"] = {
+},
+["servertime"] = 1723472594,
+["HEALER"] = {
+},
+["date"] = "10:23 12/08/24",
+},
+},
+[2141] = {
+},
+[2280] = {
+},
+},
+["saved_encounters"] = {
+},
+["raidfinder"] = {
+[2280] = {
+},
+[2281] = {
+},
+[2135] = {
+},
+[2276] = {
+},
+[2921] = {
+},
+[2922] = {
+},
+[2122] = {
+},
+},
+["VERSION"] = 7,
+["heroic"] = {
+[2917] = {
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 97569101,
+["itemLevel"] = 610,
+["classId"] = 1,
+},
+["Harambê-Area52"] = {
+["total"] = 233147197,
+["itemLevel"] = 614.0625,
+["classId"] = 9,
+},
+["Gauz"] = {
+["total"] = 179416660,
+["itemLevel"] = 603.625,
+["classId"] = 9,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 163200538,
+["itemLevel"] = 623.0625,
+["classId"] = 1,
+},
+["Nathedruid"] = {
+["total"] = 223095901,
+["itemLevel"] = 604,
+["classId"] = 11,
+},
+["Bubzmage"] = {
+["total"] = 167249061,
+["itemLevel"] = 605.625,
+["classId"] = 8,
+},
+["Rhaeisxalnym"] = {
+["total"] = 259710309,
+["itemLevel"] = 615.375,
+["classId"] = 6,
+},
+["Qotsaog"] = {
+["total"] = 139376306,
+["itemLevel"] = 602.9375,
+["classId"] = 3,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 147421819,
+["itemLevel"] = 598.875,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 206601959,
+["itemLevel"] = 610.125,
+["classId"] = 7,
+},
+["Elsecallers"] = {
+["total"] = 250225298,
+["itemLevel"] = 605.8125,
+["classId"] = 8,
+},
+["Viralstrix"] = {
+["total"] = 170885597,
+["itemLevel"] = 606.375,
+["classId"] = 3,
+},
+["Maldh"] = {
+["total"] = 205341320,
+["itemLevel"] = 617.75,
+["classId"] = 12,
+},
+["Mitsunami"] = {
+["total"] = 180142995,
+["itemLevel"] = 605.125,
+["classId"] = 3,
+},
+["Outerheaven"] = {
+["total"] = 244552068,
+["itemLevel"] = 616.1875,
+["classId"] = 6,
+},
+},
+["time"] = 1728183268,
+["date"] = "22:54 05/10/24",
+["elapsed"] = 275.6190000000061,
+["servertime"] = 1728183268,
+["HEALER"] = {
+["Alenio"] = {
+["total"] = 8610030,
+["itemLevel"] = 606.6875,
+["classId"] = 5,
+},
+["Mysticallx"] = {
+["total"] = 169185351,
+["itemLevel"] = 615.625,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 324060569,
+["itemLevel"] = 624.25,
+["classId"] = 11,
+},
+["Frizle"] = {
+["total"] = 118651495,
+["itemLevel"] = 606.4375,
+["classId"] = 2,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+{
+["time"] = 1731204873,
+["guild"] = "Zero Percent Wipe",
+["elapsed"] = 161.5120000001043,
+["date"] = "21:14 09/11/24",
+["servertime"] = 1731204873,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 68221789,
+["itemLevel"] = 619.375,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 91245805,
+["itemLevel"] = 632.875,
+["classId"] = 11,
+},
+["Bubblz"] = {
+["total"] = 167211562,
+["itemLevel"] = 604.0625,
+["classId"] = 5,
+},
+},
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 66392112,
+["itemLevel"] = 583.5625,
+["classId"] = 1,
+},
+["Maldrin"] = {
+["total"] = 127105682,
+["itemLevel"] = 617.875,
+["classId"] = 2,
+},
+["Mixiburn"] = {
+["total"] = 140275369,
+["itemLevel"] = 624.5,
+["classId"] = 9,
+},
+["Elsecallers"] = {
+["total"] = 169044700,
+["itemLevel"] = 615.1875,
+["classId"] = 8,
+},
+["Shotss"] = {
+["total"] = 201939274,
+["itemLevel"] = 625.5,
+["classId"] = 3,
+},
+["Nathepal"] = {
+["total"] = 141264941,
+["itemLevel"] = 632.625,
+["classId"] = 2,
+},
+["Kopaka"] = {
+["total"] = 143385225,
+["itemLevel"] = 618.75,
+["classId"] = 4,
+},
+["Azderpker"] = {
+["total"] = 72708149,
+["itemLevel"] = 632.125,
+["classId"] = 13,
+},
+["Lurosaurus"] = {
+["total"] = 112512175,
+["itemLevel"] = 611.625,
+["classId"] = 5,
+},
+["Dkncha"] = {
+["total"] = 201511974,
+["itemLevel"] = 625,
+["classId"] = 6,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 215341411,
+["itemLevel"] = 624.5625,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 178080082,
+["itemLevel"] = 624.5,
+["classId"] = 7,
+},
+["Rhaeisxalnym"] = {
+["total"] = 212475602,
+["itemLevel"] = 630.8125,
+["classId"] = 6,
+},
+["Viralstrix"] = {
+["total"] = 203930164,
+["itemLevel"] = 619.3125,
+["classId"] = 3,
+},
+["Arlandriya"] = {
+["total"] = 188687228,
+["itemLevel"] = 625.3125,
+["classId"] = 11,
+},
+["Mitsunami"] = {
+["total"] = 173802768,
+["itemLevel"] = 620.6875,
+["classId"] = 3,
+},
+["Dragau"] = {
+["total"] = 175173586,
+["itemLevel"] = 631.5625,
+["classId"] = 13,
+},
+},
+},
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 70689273,
+["itemLevel"] = 622.625,
+["classId"] = 1,
+},
+["Kopaka"] = {
+["total"] = 156775960,
+["itemLevel"] = 618.8125,
+["classId"] = 4,
+},
+["Qõtsa"] = {
+["total"] = 177372662,
+["itemLevel"] = 622.8125,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 109937685,
+["itemLevel"] = 634.125,
+["classId"] = 1,
+},
+["Gauz"] = {
+["total"] = 152572580,
+["itemLevel"] = 622.25,
+["classId"] = 9,
+},
+["Gamezzs"] = {
+["total"] = 196039292,
+["itemLevel"] = 624.9375,
+["classId"] = 8,
+},
+["Herbnmine"] = {
+["total"] = 29452171,
+["itemLevel"] = 560.4375,
+["classId"] = 11,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 177641242,
+["itemLevel"] = 627.0625,
+["classId"] = 1,
+},
+["Maldrin"] = {
+["total"] = 182680495,
+["itemLevel"] = 626.375,
+["classId"] = 2,
+},
+["Rhaeisxalnym"] = {
+["total"] = 175008518,
+["itemLevel"] = 632.9375,
+["classId"] = 6,
+},
+["Jimmyleggs"] = {
+["total"] = 194215751,
+["itemLevel"] = 634.375,
+["classId"] = 9,
+},
+["Kncha"] = {
+["total"] = 255770845,
+["itemLevel"] = 635.4375,
+["classId"] = 1,
+},
+["Frizle"] = {
+["total"] = 183421558,
+["itemLevel"] = 617.3125,
+["classId"] = 2,
+},
+["Aleusa"] = {
+["total"] = 233148462,
+["itemLevel"] = 633.125,
+["classId"] = 3,
+},
+},
+["time"] = 1732414684,
+["date"] = "21:18 23/11/24",
+["elapsed"] = 164.1689999999944,
+["servertime"] = 1732414685,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 120648034,
+["itemLevel"] = 622.875,
+["classId"] = 10,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+},
+[2918] = {
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 121740128,
+["itemLevel"] = 610.4375,
+["classId"] = 1,
+},
+["Harambê-Area52"] = {
+["total"] = 264382740,
+["itemLevel"] = 614.0625,
+["classId"] = 9,
+},
+["Gauz"] = {
+["total"] = 199475161,
+["itemLevel"] = 603.625,
+["classId"] = 9,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 213019240,
+["itemLevel"] = 623.0625,
+["classId"] = 1,
+},
+["Nathedruid"] = {
+["total"] = 209342190,
+["itemLevel"] = 604.25,
+["classId"] = 11,
+},
+["Bubzmage"] = {
+["total"] = 188421489,
+["itemLevel"] = 605.625,
+["classId"] = 8,
+},
+["Rhaeisxalnym"] = {
+["total"] = 256434206,
+["itemLevel"] = 615.375,
+["classId"] = 6,
+},
+["Qotsaog"] = {
+["total"] = 144621240,
+["itemLevel"] = 602.9375,
+["classId"] = 3,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 219443133,
+["itemLevel"] = 598.875,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 222066245,
+["itemLevel"] = 610.125,
+["classId"] = 7,
+},
+["Elsecallers"] = {
+["total"] = 244910590,
+["itemLevel"] = 605.8125,
+["classId"] = 8,
+},
+["Viralstrix"] = {
+["total"] = 175167544,
+["itemLevel"] = 606.375,
+["classId"] = 3,
+},
+["Maldh"] = {
+["total"] = 257522298,
+["itemLevel"] = 617.75,
+["classId"] = 12,
+},
+["Mitsunami"] = {
+["total"] = 177155131,
+["itemLevel"] = 605.125,
+["classId"] = 3,
+},
+["Outerheaven"] = {
+["total"] = 295697790,
+["itemLevel"] = 616.1875,
+["classId"] = 6,
+},
+},
+["time"] = 1728184777,
+["date"] = "23:19 05/10/24",
+["elapsed"] = 301.1739999999991,
+["servertime"] = 1728184777,
+["HEALER"] = {
+["Alenio"] = {
+["total"] = 161263989,
+["itemLevel"] = 606.6875,
+["classId"] = 5,
+},
+["Mysticallx"] = {
+["total"] = 260968192,
+["itemLevel"] = 615.8125,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 328715940,
+["itemLevel"] = 624.25,
+["classId"] = 11,
+},
+["Frizle"] = {
+["total"] = 210951916,
+["itemLevel"] = 606.4375,
+["classId"] = 2,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+{
+["date"] = "21:30 09/11/24",
+["guild"] = "Zero Percent Wipe",
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 99246179,
+["itemLevel"] = 620.4375,
+["classId"] = 1,
+},
+["Maldrin"] = {
+["total"] = 173719618,
+["itemLevel"] = 617.875,
+["classId"] = 2,
+},
+["Mixiburn"] = {
+["total"] = 224887605,
+["itemLevel"] = 624.5,
+["classId"] = 9,
+},
+["Elsecallers"] = {
+["total"] = 164952422,
+["itemLevel"] = 615.1875,
+["classId"] = 8,
+},
+["Shotss"] = {
+["total"] = 256516972,
+["itemLevel"] = 625.5,
+["classId"] = 3,
+},
+["Nathepal"] = {
+["total"] = 114666935,
+["itemLevel"] = 632.625,
+["classId"] = 2,
+},
+["Kopaka"] = {
+["total"] = 203964611,
+["itemLevel"] = 617.9375,
+["classId"] = 4,
+},
+["Dragau"] = {
+["total"] = 177275631,
+["itemLevel"] = 631.5625,
+["classId"] = 13,
+},
+["Viralstrix"] = {
+["total"] = 223594262,
+["itemLevel"] = 619.3125,
+["classId"] = 3,
+},
+["Dkncha"] = {
+["total"] = 203551502,
+["itemLevel"] = 625,
+["classId"] = 6,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 241609471,
+["itemLevel"] = 624.5625,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 155346887,
+["itemLevel"] = 623.9375,
+["classId"] = 7,
+},
+["Rhaeisxalnym"] = {
+["total"] = 233826091,
+["itemLevel"] = 630.8125,
+["classId"] = 6,
+},
+["Lurosaurus"] = {
+["total"] = 147962455,
+["itemLevel"] = 612.6875,
+["classId"] = 5,
+},
+["Arlandriya"] = {
+["total"] = 191719297,
+["itemLevel"] = 625.3125,
+["classId"] = 11,
+},
+["Mitsunami"] = {
+["total"] = 187147116,
+["itemLevel"] = 620.6875,
+["classId"] = 3,
+},
+["Azderpker"] = {
+["total"] = 95436291,
+["itemLevel"] = 632.125,
+["classId"] = 13,
+},
+},
+["elapsed"] = 187.0790000001434,
+["servertime"] = 1731205832,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 163597854,
+["itemLevel"] = 619.375,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 265415590,
+["itemLevel"] = 632.875,
+["classId"] = 11,
+},
+["Bubblz"] = {
+["total"] = 135999950,
+["itemLevel"] = 604.0625,
+["classId"] = 5,
+},
+},
+["time"] = 1731205832,
+},
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 85437352,
+["itemLevel"] = 622.625,
+["classId"] = 1,
+},
+["Gauz"] = {
+["total"] = 174967114,
+["itemLevel"] = 622.25,
+["classId"] = 9,
+},
+["Qõtsa"] = {
+["total"] = 174203731,
+["itemLevel"] = 622.8125,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 148567101,
+["itemLevel"] = 634.125,
+["classId"] = 1,
+},
+["Kopaka"] = {
+["total"] = 182483157,
+["itemLevel"] = 618.8125,
+["classId"] = 4,
+},
+["Gamezzs"] = {
+["total"] = 174624730,
+["itemLevel"] = 624.9375,
+["classId"] = 8,
+},
+["Herbnmine"] = {
+["total"] = 15131834,
+["itemLevel"] = 562.5,
+["classId"] = 11,
+},
+["Jimmyleggs"] = {
+["total"] = 235470151,
+["itemLevel"] = 634.375,
+["classId"] = 9,
+},
+["Frizle"] = {
+["total"] = 204450080,
+["itemLevel"] = 617.3125,
+["classId"] = 2,
+},
+["Rhaeisxalnym"] = {
+["total"] = 201822039,
+["itemLevel"] = 632.9375,
+["classId"] = 6,
+},
+["Maldrin"] = {
+["total"] = 201074610,
+["itemLevel"] = 626.375,
+["classId"] = 2,
+},
+["Kncha"] = {
+["total"] = 244040274,
+["itemLevel"] = 635.4375,
+["classId"] = 1,
+},
+["Xcato"] = {
+["total"] = 248398686,
+["itemLevel"] = 637,
+["classId"] = 3,
+},
+["Aleusa"] = {
+["total"] = 236021687,
+["itemLevel"] = 633.125,
+["classId"] = 3,
+},
+},
+["time"] = 1732415754,
+["date"] = "21:35 23/11/24",
+["elapsed"] = 181.451999999932,
+["servertime"] = 1732415755,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 217635721,
+["itemLevel"] = 622.875,
+["classId"] = 10,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+},
+[2898] = {
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 89914302,
+["itemLevel"] = 610,
+["classId"] = 1,
+},
+["Harambê-Area52"] = {
+["total"] = 196716328,
+["itemLevel"] = 614.0625,
+["classId"] = 9,
+},
+["Gauz"] = {
+["total"] = 172557252,
+["itemLevel"] = 603.625,
+["classId"] = 9,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 126659585,
+["itemLevel"] = 623.0625,
+["classId"] = 1,
+},
+["Nathedruid"] = {
+["total"] = 186863181,
+["itemLevel"] = 604.25,
+["classId"] = 11,
+},
+["Bubzmage"] = {
+["total"] = 158091114,
+["itemLevel"] = 605.625,
+["classId"] = 8,
+},
+["Rhaeisxalnym"] = {
+["total"] = 199613970,
+["itemLevel"] = 615.375,
+["classId"] = 6,
+},
+["Qotsaog"] = {
+["total"] = 101784231,
+["itemLevel"] = 602.9375,
+["classId"] = 3,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 111668222,
+["itemLevel"] = 598.875,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 186772235,
+["itemLevel"] = 610.125,
+["classId"] = 7,
+},
+["Elsecallers"] = {
+["total"] = 211614284,
+["itemLevel"] = 605.8125,
+["classId"] = 8,
+},
+["Viralstrix"] = {
+["total"] = 156918239,
+["itemLevel"] = 606.375,
+["classId"] = 3,
+},
+["Maldh"] = {
+["total"] = 168561930,
+["itemLevel"] = 617.75,
+["classId"] = 12,
+},
+["Mitsunami"] = {
+["total"] = 159426318,
+["itemLevel"] = 605.125,
+["classId"] = 3,
+},
+["Outerheaven"] = {
+["total"] = 204405377,
+["itemLevel"] = 616.1875,
+["classId"] = 6,
+},
+},
+["time"] = 1728184071,
+["date"] = "23:07 05/10/24",
+["elapsed"] = 226.6169999999984,
+["servertime"] = 1728184071,
+["HEALER"] = {
+["Alenio"] = {
+["total"] = 94138821,
+["itemLevel"] = 606.6875,
+["classId"] = 5,
+},
+["Mysticallx"] = {
+["total"] = 162075178,
+["itemLevel"] = 615.625,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 194204600,
+["itemLevel"] = 624.25,
+["classId"] = 11,
+},
+["Frizle"] = {
+["total"] = 110574361,
+["itemLevel"] = 606.4375,
+["classId"] = 2,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+{
+["time"] = 1731205400,
+["guild"] = "Zero Percent Wipe",
+["elapsed"] = 143.7249999998603,
+["date"] = "21:23 09/11/24",
+["servertime"] = 1731205400,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 130936782,
+["itemLevel"] = 619.375,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 171709380,
+["itemLevel"] = 632.875,
+["classId"] = 11,
+},
+["Bubblz"] = {
+["total"] = 85676607,
+["itemLevel"] = 604.0625,
+["classId"] = 5,
+},
+},
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 69354601,
+["itemLevel"] = 620.4375,
+["classId"] = 1,
+},
+["Maldrin"] = {
+["total"] = 130492479,
+["itemLevel"] = 617.875,
+["classId"] = 2,
+},
+["Mixiburn"] = {
+["total"] = 173603007,
+["itemLevel"] = 624.5,
+["classId"] = 9,
+},
+["Elsecallers"] = {
+["total"] = 171703378,
+["itemLevel"] = 615.1875,
+["classId"] = 8,
+},
+["Shotss"] = {
+["total"] = 225988329,
+["itemLevel"] = 625.5,
+["classId"] = 3,
+},
+["Nathepal"] = {
+["total"] = 104499444,
+["itemLevel"] = 632.625,
+["classId"] = 2,
+},
+["Kopaka"] = {
+["total"] = 150215599,
+["itemLevel"] = 617.9375,
+["classId"] = 4,
+},
+["Azderpker"] = {
+["total"] = 73315795,
+["itemLevel"] = 632.125,
+["classId"] = 13,
+},
+["Lurosaurus"] = {
+["total"] = 132191885,
+["itemLevel"] = 611.625,
+["classId"] = 5,
+},
+["Dkncha"] = {
+["total"] = 140913356,
+["itemLevel"] = 625,
+["classId"] = 6,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 176416374,
+["itemLevel"] = 624.5625,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 141998235,
+["itemLevel"] = 623.9375,
+["classId"] = 7,
+},
+["Rhaeisxalnym"] = {
+["total"] = 194679540,
+["itemLevel"] = 630.8125,
+["classId"] = 6,
+},
+["Viralstrix"] = {
+["total"] = 165186568,
+["itemLevel"] = 619.3125,
+["classId"] = 3,
+},
+["Arlandriya"] = {
+["total"] = 179182817,
+["itemLevel"] = 625.3125,
+["classId"] = 11,
+},
+["Mitsunami"] = {
+["total"] = 128375717,
+["itemLevel"] = 620.6875,
+["classId"] = 3,
+},
+["Dragau"] = {
+["total"] = 136293289,
+["itemLevel"] = 631.5625,
+["classId"] = 13,
+},
+},
+},
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 59210694,
+["itemLevel"] = 622.625,
+["classId"] = 1,
+},
+["Gauz"] = {
+["total"] = 134981697,
+["itemLevel"] = 622.25,
+["classId"] = 9,
+},
+["Qõtsa"] = {
+["total"] = 151444729,
+["itemLevel"] = 622.8125,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 99122856,
+["itemLevel"] = 634.125,
+["classId"] = 1,
+},
+["Kopaka"] = {
+["total"] = 126205786,
+["itemLevel"] = 618.8125,
+["classId"] = 4,
+},
+["Gamezzs"] = {
+["total"] = 163435688,
+["itemLevel"] = 624.9375,
+["classId"] = 8,
+},
+["Herbnmine"] = {
+["total"] = 30426302,
+["itemLevel"] = 562.5,
+["classId"] = 11,
+},
+["Jimmyleggs"] = {
+["total"] = 187308976,
+["itemLevel"] = 634.375,
+["classId"] = 9,
+},
+["Frizle"] = {
+["total"] = 173449387,
+["itemLevel"] = 617.3125,
+["classId"] = 2,
+},
+["Rhaeisxalnym"] = {
+["total"] = 157094006,
+["itemLevel"] = 632.9375,
+["classId"] = 6,
+},
+["Maldrin"] = {
+["total"] = 146619778,
+["itemLevel"] = 626.375,
+["classId"] = 2,
+},
+["Kncha"] = {
+["total"] = 182510664,
+["itemLevel"] = 635.4375,
+["classId"] = 1,
+},
+["Xcato"] = {
+["total"] = 221879958,
+["itemLevel"] = 637,
+["classId"] = 3,
+},
+["Aleusa"] = {
+["total"] = 174828287,
+["itemLevel"] = 633.125,
+["classId"] = 3,
+},
+},
+["time"] = 1732415289,
+["date"] = "21:28 23/11/24",
+["elapsed"] = 142.6799999999348,
+["servertime"] = 1732415290,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 154829681,
+["itemLevel"] = 622.875,
+["classId"] = 10,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+},
+[2920] = {
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 114628799,
+["itemLevel"] = 610.4375,
+["classId"] = 1,
+},
+["Harambê-Area52"] = {
+["total"] = 300187269,
+["itemLevel"] = 614.0625,
+["classId"] = 9,
+},
+["Gauz"] = {
+["total"] = 255406745,
+["itemLevel"] = 605.0625,
+["classId"] = 9,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 201277812,
+["itemLevel"] = 623.0625,
+["classId"] = 1,
+},
+["Nathedruid"] = {
+["total"] = 282578236,
+["itemLevel"] = 605.6875,
+["classId"] = 11,
+},
+["Bubzmage"] = {
+["total"] = 257557655,
+["itemLevel"] = 606.625,
+["classId"] = 8,
+},
+["Rhaeisxalnym"] = {
+["total"] = 330168206,
+["itemLevel"] = 615.375,
+["classId"] = 6,
+},
+["Qotsaog"] = {
+["total"] = 67870988,
+["itemLevel"] = 603.75,
+["classId"] = 3,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 214583016,
+["itemLevel"] = 599.3125,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 289295548,
+["itemLevel"] = 610.125,
+["classId"] = 7,
+},
+["Lokilegato"] = {
+["total"] = 221285527,
+["itemLevel"] = 614.6875,
+["classId"] = 1,
+},
+["Viralstrix"] = {
+["total"] = 231022298,
+["itemLevel"] = 606.375,
+["classId"] = 3,
+},
+["Maldh"] = {
+["total"] = 233795706,
+["itemLevel"] = 617.75,
+["classId"] = 12,
+},
+["Mitsunami"] = {
+["total"] = 67218424,
+["itemLevel"] = 605.125,
+["classId"] = 3,
+},
+["Outerheaven"] = {
+["total"] = 320145213,
+["itemLevel"] = 616.1875,
+["classId"] = 6,
+},
+},
+["time"] = 1728187103,
+["date"] = "23:58 05/10/24",
+["elapsed"] = 385.4750000000058,
+["servertime"] = 1728187103,
+["HEALER"] = {
+["Alenio"] = {
+["total"] = 297918146,
+["itemLevel"] = 607.125,
+["classId"] = 5,
+},
+["Mysticallx"] = {
+["total"] = 374655906,
+["itemLevel"] = 615.4375,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 462180063,
+["itemLevel"] = 624.25,
+["classId"] = 11,
+},
+["Frizle"] = {
+["total"] = 263978502,
+["itemLevel"] = 606.4375,
+["classId"] = 2,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+{
+["time"] = 1729993676,
+["guild"] = "Zero Percent Wipe",
+["elapsed"] = 367.5509999999777,
+["date"] = "21:47 26/10/24",
+["servertime"] = 1729993676,
+["HEALER"] = {
+["Supreme"] = {
+["total"] = 325700665,
+["itemLevel"] = 610.125,
+["classId"] = 7,
+},
+["Mysticallx"] = {
+["total"] = 385621129,
+["itemLevel"] = 619.1875,
+["classId"] = 10,
+},
+["Zheysmeilian"] = {
+["total"] = 433581613,
+["itemLevel"] = 622.125,
+["classId"] = 2,
+},
+["Rainalex"] = {
+["total"] = 79034225,
+["itemLevel"] = 616,
+["classId"] = 11,
+},
+},
+["DAMAGER"] = {
+["Azderpker"] = {
+["total"] = 130239884,
+["itemLevel"] = 624.25,
+["classId"] = 13,
+},
+["Gauz"] = {
+["total"] = 323446672,
+["itemLevel"] = 619.25,
+["classId"] = 9,
+},
+["Qõtsa"] = {
+["total"] = 131250081,
+["itemLevel"] = 616.5625,
+["classId"] = 3,
+},
+["Nkuku"] = {
+["total"] = 290358103,
+["itemLevel"] = 618.1875,
+["classId"] = 7,
+},
+["Mixiburn"] = {
+["total"] = 80102172,
+["itemLevel"] = 622.3125,
+["classId"] = 9,
+},
+["Spicym"] = {
+["total"] = 460185349,
+["itemLevel"] = 631.25,
+["classId"] = 8,
+},
+["Elsecallers"] = {
+["total"] = 198790136,
+["itemLevel"] = 615.1875,
+["classId"] = 8,
+},
+["Shotss"] = {
+["total"] = 423188714,
+["itemLevel"] = 617.9375,
+["classId"] = 3,
+},
+["Nathedruid"] = {
+["total"] = 385146013,
+["itemLevel"] = 623.6875,
+["classId"] = 11,
+},
+["Kopaka"] = {
+["total"] = 97237864,
+["itemLevel"] = 616.125,
+["classId"] = 4,
+},
+["Dkncha"] = {
+["total"] = 349279658,
+["itemLevel"] = 621.4375,
+["classId"] = 6,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 337987514,
+["itemLevel"] = 621.5625,
+["classId"] = 1,
+},
+["Ivanstone"] = {
+["total"] = 91316672,
+["itemLevel"] = 616.3125,
+["classId"] = 1,
+},
+["Lokilegato"] = {
+["total"] = 84577599,
+["itemLevel"] = 628,
+["classId"] = 1,
+},
+["Viralstrix"] = {
+["total"] = 290135083,
+["itemLevel"] = 617.875,
+["classId"] = 3,
+},
+["Thginkhtaeda-Proudmoore"] = {
+["total"] = 191516386,
+["itemLevel"] = 624.5,
+["classId"] = 6,
+},
+["Mitsunami"] = {
+["total"] = 78863118,
+["itemLevel"] = 617.9375,
+["classId"] = 3,
+},
+["Syltris"] = {
+["total"] = 78127775,
+["itemLevel"] = 621.9375,
+["classId"] = 11,
+},
+},
+},
+{
+["date"] = "21:51 09/11/24",
+["guild"] = "Zero Percent Wipe",
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 77226946,
+["itemLevel"] = 620.875,
+["classId"] = 1,
+},
+["Gauz"] = {
+["total"] = 210101218,
+["itemLevel"] = 621.8125,
+["classId"] = 9,
+},
+["Maldrin"] = {
+["total"] = 185419072,
+["itemLevel"] = 617.5,
+["classId"] = 2,
+},
+["Paleshaman"] = {
+["total"] = 239184798,
+["itemLevel"] = 632.9375,
+["classId"] = 7,
+},
+["Mixiburn"] = {
+["total"] = 234672912,
+["itemLevel"] = 624.5,
+["classId"] = 9,
+},
+["Elsecallers"] = {
+["total"] = 223026619,
+["itemLevel"] = 615.1875,
+["classId"] = 8,
+},
+["Shotss"] = {
+["total"] = 293786525,
+["itemLevel"] = 625.5,
+["classId"] = 3,
+},
+["Nathepal"] = {
+["total"] = 133646178,
+["itemLevel"] = 632.625,
+["classId"] = 2,
+},
+["Kopaka"] = {
+["total"] = 209860660,
+["itemLevel"] = 618.75,
+["classId"] = 4,
+},
+["Viralstrix"] = {
+["total"] = 236914486,
+["itemLevel"] = 619.3125,
+["classId"] = 3,
+},
+["Dkncha"] = {
+["total"] = 217388550,
+["itemLevel"] = 625,
+["classId"] = 6,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 240965956,
+["itemLevel"] = 624.5625,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 221597220,
+["itemLevel"] = 623.9375,
+["classId"] = 7,
+},
+["Rhaeisxalnym"] = {
+["total"] = 279889089,
+["itemLevel"] = 630.8125,
+["classId"] = 6,
+},
+["Lurosaurus"] = {
+["total"] = 153114933,
+["itemLevel"] = 612.6875,
+["classId"] = 5,
+},
+["Arlandriya"] = {
+["total"] = 214335943,
+["itemLevel"] = 625.3125,
+["classId"] = 11,
+},
+["Mitsunami"] = {
+["total"] = 199697611,
+["itemLevel"] = 620.6875,
+["classId"] = 3,
+},
+["Azderpker"] = {
+["total"] = 105050986,
+["itemLevel"] = 632.125,
+["classId"] = 13,
+},
+},
+["elapsed"] = 210.1959999999963,
+["servertime"] = 1731207107,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 228837536,
+["itemLevel"] = 619.375,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 334185272,
+["itemLevel"] = 632.875,
+["classId"] = 11,
+},
+["Bubblz"] = {
+["total"] = 157321535,
+["itemLevel"] = 604.3125,
+["classId"] = 5,
+},
+},
+["time"] = 1731207107,
+},
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 89223203,
+["itemLevel"] = 622.625,
+["classId"] = 1,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 171707107,
+["itemLevel"] = 634.125,
+["classId"] = 1,
+},
+["Gauz"] = {
+["total"] = 23098666,
+["itemLevel"] = 622.25,
+["classId"] = 9,
+},
+["Qõtsa"] = {
+["total"] = 177192632,
+["itemLevel"] = 622.8125,
+["classId"] = 3,
+},
+["Viraleagle"] = {
+["total"] = 264185824,
+["itemLevel"] = 635,
+["classId"] = 2,
+},
+["Kopaka"] = {
+["total"] = 125567441,
+["itemLevel"] = 618.8125,
+["classId"] = 4,
+},
+["Gamezzs"] = {
+["total"] = 261694797,
+["itemLevel"] = 624.9375,
+["classId"] = 8,
+},
+["Herbnmine"] = {
+["total"] = 14419284,
+["itemLevel"] = 562.5,
+["classId"] = 11,
+},
+["Jimmyleggs"] = {
+["total"] = 260564214,
+["itemLevel"] = 633.5625,
+["classId"] = 9,
+},
+["Frizle"] = {
+["total"] = 297386330,
+["itemLevel"] = 617.3125,
+["classId"] = 2,
+},
+["Rhaeisxalnym"] = {
+["total"] = 277716901,
+["itemLevel"] = 632.9375,
+["classId"] = 6,
+},
+["Maldrin"] = {
+["total"] = 307918458,
+["itemLevel"] = 626.375,
+["classId"] = 2,
+},
+["Kncha"] = {
+["total"] = 327512551,
+["itemLevel"] = 634.625,
+["classId"] = 1,
+},
+["Xcato"] = {
+["total"] = 356045533,
+["itemLevel"] = 637,
+["classId"] = 3,
+},
+["Aleusa"] = {
+["total"] = 148362100,
+["itemLevel"] = 633.125,
+["classId"] = 3,
+},
+},
+["time"] = 1732417231,
+["date"] = "22:00 23/11/24",
+["elapsed"] = 264.0829999999842,
+["servertime"] = 1732417232,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 348941950,
+["itemLevel"] = 622.875,
+["classId"] = 10,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+},
+[2921] = {
+{
+["time"] = 1729994556,
+["guild"] = "Zero Percent Wipe",
+["elapsed"] = 457.9960000000137,
+["date"] = "22:02 26/10/24",
+["servertime"] = 1729994556,
+["HEALER"] = {
+["Supreme"] = {
+["total"] = 364419537,
+["itemLevel"] = 610.125,
+["classId"] = 7,
+},
+["Mysticallx"] = {
+["total"] = 456253824,
+["itemLevel"] = 619.1875,
+["classId"] = 10,
+},
+["Zheysmeilian"] = {
+["total"] = 469564187,
+["itemLevel"] = 622.125,
+["classId"] = 2,
+},
+["Rainalex"] = {
+["total"] = 333899692,
+["itemLevel"] = 616,
+["classId"] = 11,
+},
+},
+["DAMAGER"] = {
+["Azderpker"] = {
+["total"] = 197808844,
+["itemLevel"] = 624.25,
+["classId"] = 13,
+},
+["Gauz"] = {
+["total"] = 475729375,
+["itemLevel"] = 619.25,
+["classId"] = 9,
+},
+["Qõtsa"] = {
+["total"] = 165899086,
+["itemLevel"] = 616.5625,
+["classId"] = 3,
+},
+["Nkuku"] = {
+["total"] = 502092023,
+["itemLevel"] = 618.1875,
+["classId"] = 7,
+},
+["Mixiburn"] = {
+["total"] = 247903258,
+["itemLevel"] = 622.3125,
+["classId"] = 9,
+},
+["Spicym"] = {
+["total"] = 647164572,
+["itemLevel"] = 631.25,
+["classId"] = 8,
+},
+["Elsecallers"] = {
+["total"] = 364635054,
+["itemLevel"] = 615.1875,
+["classId"] = 8,
+},
+["Shotss"] = {
+["total"] = 566556719,
+["itemLevel"] = 617.9375,
+["classId"] = 3,
+},
+["Nathedruid"] = {
+["total"] = 490746606,
+["itemLevel"] = 623.6875,
+["classId"] = 11,
+},
+["Kopaka"] = {
+["total"] = 474585237,
+["itemLevel"] = 616.125,
+["classId"] = 4,
+},
+["Dkncha"] = {
+["total"] = 523190969,
+["itemLevel"] = 621.4375,
+["classId"] = 6,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 483096948,
+["itemLevel"] = 621.5625,
+["classId"] = 1,
+},
+["Ivanstone"] = {
+["total"] = 214486723,
+["itemLevel"] = 616.3125,
+["classId"] = 1,
+},
+["Lokilegato"] = {
+["total"] = 417918517,
+["itemLevel"] = 628,
+["classId"] = 1,
+},
+["Viralstrix"] = {
+["total"] = 411201208,
+["itemLevel"] = 617.875,
+["classId"] = 3,
+},
+["Thginkhtaeda-Proudmoore"] = {
+["total"] = 284767719,
+["itemLevel"] = 624.5,
+["classId"] = 6,
+},
+["Mitsunami"] = {
+["total"] = 388586459,
+["itemLevel"] = 617.9375,
+["classId"] = 3,
+},
+["Syltris"] = {
+["total"] = 484370469,
+["itemLevel"] = 621.9375,
+["classId"] = 11,
+},
+},
+},
+{
+["date"] = "22:03 09/11/24",
+["guild"] = "Zero Percent Wipe",
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 163982553,
+["itemLevel"] = 620.875,
+["classId"] = 1,
+},
+["Gauz"] = {
+["total"] = 389211183,
+["itemLevel"] = 621.8125,
+["classId"] = 9,
+},
+["Paleshaman"] = {
+["total"] = 582681595,
+["itemLevel"] = 632.9375,
+["classId"] = 7,
+},
+["Mixiburn"] = {
+["total"] = 425609772,
+["itemLevel"] = 624.5,
+["classId"] = 9,
+},
+["Elsecallers"] = {
+["total"] = 213742788,
+["itemLevel"] = 615.1875,
+["classId"] = 8,
+},
+["Shotss"] = {
+["total"] = 483686814,
+["itemLevel"] = 625.5,
+["classId"] = 3,
+},
+["Maldh"] = {
+["total"] = 396243433,
+["itemLevel"] = 630.3125,
+["classId"] = 12,
+},
+["Nathedruid"] = {
+["total"] = 234715816,
+["itemLevel"] = 627.0625,
+["classId"] = 11,
+},
+["Kopaka"] = {
+["total"] = 439859535,
+["itemLevel"] = 618.75,
+["classId"] = 4,
+},
+["Dkncha"] = {
+["total"] = 508125187,
+["itemLevel"] = 625,
+["classId"] = 6,
+},
+["Arlandriya"] = {
+["total"] = 362205952,
+["itemLevel"] = 625.3125,
+["classId"] = 11,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 426553045,
+["itemLevel"] = 624.5625,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 434200574,
+["itemLevel"] = 623.9375,
+["classId"] = 7,
+},
+["Rhaeisxalnym"] = {
+["total"] = 485957788,
+["itemLevel"] = 630.8125,
+["classId"] = 6,
+},
+["Viralstrix"] = {
+["total"] = 386737048,
+["itemLevel"] = 619.3125,
+["classId"] = 3,
+},
+["Lurosaurus"] = {
+["total"] = 326721889,
+["itemLevel"] = 612.6875,
+["classId"] = 5,
+},
+["Mitsunami"] = {
+["total"] = 306887691,
+["itemLevel"] = 620.6875,
+["classId"] = 3,
+},
+["Azderpker"] = {
+["total"] = 262018565,
+["itemLevel"] = 632.125,
+["classId"] = 13,
+},
+},
+["elapsed"] = 350.5530000000726,
+["servertime"] = 1731207783,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 428465100,
+["itemLevel"] = 619.375,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 505729622,
+["itemLevel"] = 632.875,
+["classId"] = 11,
+},
+["Bubblz"] = {
+["total"] = 268110570,
+["itemLevel"] = 608.3125,
+["classId"] = 5,
+},
+},
+["time"] = 1731207783,
+},
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 179347597,
+["itemLevel"] = 622.625,
+["classId"] = 1,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 321512706,
+["itemLevel"] = 634.125,
+["classId"] = 1,
+},
+["Kopaka"] = {
+["total"] = 346278363,
+["itemLevel"] = 620.0625,
+["classId"] = 4,
+},
+["Qõtsa"] = {
+["total"] = 272014848,
+["itemLevel"] = 622.625,
+["classId"] = 3,
+},
+["Viraleagle"] = {
+["total"] = 438773456,
+["itemLevel"] = 635,
+["classId"] = 2,
+},
+["Xcato"] = {
+["total"] = 526102192,
+["itemLevel"] = 637,
+["classId"] = 3,
+},
+["Gamezzs"] = {
+["total"] = 477492465,
+["itemLevel"] = 624.9375,
+["classId"] = 8,
+},
+["Herbnmine"] = {
+["total"] = 42161461,
+["itemLevel"] = 562.5,
+["classId"] = 11,
+},
+["Jimmyleggs"] = {
+["total"] = 620387745,
+["itemLevel"] = 633.5625,
+["classId"] = 9,
+},
+["Maldrin"] = {
+["total"] = 438166640,
+["itemLevel"] = 626.375,
+["classId"] = 2,
+},
+["Dragau"] = {
+["total"] = 235590495,
+["itemLevel"] = 634.6875,
+["classId"] = 13,
+},
+["Rhaeisxalnym"] = {
+["total"] = 429677910,
+["itemLevel"] = 632.9375,
+["classId"] = 6,
+},
+["Kncha"] = {
+["total"] = 498287073,
+["itemLevel"] = 635.4375,
+["classId"] = 1,
+},
+["Frizle"] = {
+["total"] = 421134442,
+["itemLevel"] = 617.3125,
+["classId"] = 2,
+},
+["Aleusa"] = {
+["total"] = 512855376,
+["itemLevel"] = 633.125,
+["classId"] = 3,
+},
+},
+["time"] = 1732417955,
+["date"] = "22:12 23/11/24",
+["elapsed"] = 340.0139999999665,
+["servertime"] = 1732417956,
+["HEALER"] = {
+["Ayaliss"] = {
+["total"] = 433595914,
+["itemLevel"] = 634.75,
+["classId"] = 11,
+},
+["Mysticallx"] = {
+["total"] = 441906423,
+["itemLevel"] = 622.875,
+["classId"] = 10,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+},
+[2922] = {
+{
+["date"] = "22:34 09/11/24",
+["guild"] = "Zero Percent Wipe",
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 155167743,
+["itemLevel"] = 620.875,
+["classId"] = 1,
+},
+["Gauz"] = {
+["total"] = 312757284,
+["itemLevel"] = 621.8125,
+["classId"] = 9,
+},
+["Kopaka"] = {
+["total"] = 323315477,
+["itemLevel"] = 618.75,
+["classId"] = 4,
+},
+["Dkncha"] = {
+["total"] = 380144000,
+["itemLevel"] = 625,
+["classId"] = 6,
+},
+["Mixiburn"] = {
+["total"] = 316028100,
+["itemLevel"] = 624.5,
+["classId"] = 9,
+},
+["Viralstrix"] = {
+["total"] = 323427107,
+["itemLevel"] = 619.3125,
+["classId"] = 3,
+},
+["Elsecallers"] = {
+["total"] = 309078294,
+["itemLevel"] = 615.1875,
+["classId"] = 8,
+},
+["Arlandriya"] = {
+["total"] = 320307202,
+["itemLevel"] = 625.3125,
+["classId"] = 11,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 408724564,
+["itemLevel"] = 624.5625,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 377642393,
+["itemLevel"] = 623.9375,
+["classId"] = 7,
+},
+["Rhaeisxalnym"] = {
+["total"] = 351134785,
+["itemLevel"] = 630.8125,
+["classId"] = 6,
+},
+["Shotss"] = {
+["total"] = 454413302,
+["itemLevel"] = 625.5,
+["classId"] = 3,
+},
+["Maldh"] = {
+["total"] = 343838746,
+["itemLevel"] = 630.3125,
+["classId"] = 12,
+},
+["Mitsunami"] = {
+["total"] = 267161965,
+["itemLevel"] = 620.6875,
+["classId"] = 3,
+},
+["Nathedruid"] = {
+["total"] = 194478993,
+["itemLevel"] = 627.0625,
+["classId"] = 11,
+},
+},
+["elapsed"] = 372.2819999998901,
+["servertime"] = 1731209671,
+["HEALER"] = {
+["Lurosaurus"] = {
+["total"] = 284091012,
+["itemLevel"] = 612.6875,
+["classId"] = 5,
+},
+["Mysticallx"] = {
+["total"] = 368110541,
+["itemLevel"] = 619.375,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 522947841,
+["itemLevel"] = 632.875,
+["classId"] = 11,
+},
+["Bubblz"] = {
+["total"] = 267103600,
+["itemLevel"] = 608.875,
+["classId"] = 5,
+},
+},
+["time"] = 1731209671,
+},
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 148427422,
+["itemLevel"] = 622.625,
+["classId"] = 1,
+},
+["Kopaka"] = {
+["total"] = 278342574,
+["itemLevel"] = 620.0625,
+["classId"] = 4,
+},
+["Qõtsa"] = {
+["total"] = 188100651,
+["itemLevel"] = 622.625,
+["classId"] = 3,
+},
+["Viraleagle"] = {
+["total"] = 230334931,
+["itemLevel"] = 635,
+["classId"] = 2,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 262169280,
+["itemLevel"] = 634.125,
+["classId"] = 1,
+},
+["Xcato"] = {
+["total"] = 519333228,
+["itemLevel"] = 637,
+["classId"] = 3,
+},
+["Gamezzs"] = {
+["total"] = 318724530,
+["itemLevel"] = 624.9375,
+["classId"] = 8,
+},
+["Jimmyleggs"] = {
+["total"] = 442268133,
+["itemLevel"] = 633.5625,
+["classId"] = 9,
+},
+["Maldrin"] = {
+["total"] = 317122854,
+["itemLevel"] = 626.375,
+["classId"] = 2,
+},
+["Dragau"] = {
+["total"] = 184563747,
+["itemLevel"] = 634.6875,
+["classId"] = 13,
+},
+["Rhaeisxalnym"] = {
+["total"] = 363127234,
+["itemLevel"] = 632.9375,
+["classId"] = 6,
+},
+["Kncha"] = {
+["total"] = 541884441,
+["itemLevel"] = 635.4375,
+["classId"] = 1,
+},
+["Mitsunami"] = {
+["total"] = 305502683,
+["itemLevel"] = 622.75,
+["classId"] = 3,
+},
+["Aleusa"] = {
+["total"] = 475387229,
+["itemLevel"] = 633.125,
+["classId"] = 3,
+},
+},
+["time"] = 1732418979,
+["date"] = "22:29 23/11/24",
+["elapsed"] = 383.0550000000512,
+["servertime"] = 1732418980,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 360490388,
+["itemLevel"] = 622.875,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 452863918,
+["itemLevel"] = 633.9375,
+["classId"] = 11,
+},
+["Frizle"] = {
+["total"] = 268717041,
+["itemLevel"] = 615.875,
+["classId"] = 2,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+},
+[2902] = {
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 106486550,
+["itemLevel"] = 610,
+["classId"] = 1,
+},
+["Harambê-Area52"] = {
+["total"] = 204056652,
+["itemLevel"] = 614.0625,
+["classId"] = 9,
+},
+["Gauz"] = {
+["total"] = 202123318,
+["itemLevel"] = 603.625,
+["classId"] = 9,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 161993436,
+["itemLevel"] = 623.0625,
+["classId"] = 1,
+},
+["Nathedruid"] = {
+["total"] = 177898087,
+["itemLevel"] = 603.1875,
+["classId"] = 11,
+},
+["Bubzmage"] = {
+["total"] = 183758813,
+["itemLevel"] = 605.625,
+["classId"] = 8,
+},
+["Rhaeisxalnym"] = {
+["total"] = 184635862,
+["itemLevel"] = 615.375,
+["classId"] = 6,
+},
+["Qotsaog"] = {
+["total"] = 130798673,
+["itemLevel"] = 602.9375,
+["classId"] = 3,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 161822909,
+["itemLevel"] = 598.875,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 188878497,
+["itemLevel"] = 610.125,
+["classId"] = 7,
+},
+["Elsecallers"] = {
+["total"] = 208906552,
+["itemLevel"] = 605.8125,
+["classId"] = 8,
+},
+["Viralstrix"] = {
+["total"] = 140757961,
+["itemLevel"] = 606.375,
+["classId"] = 3,
+},
+["Maldh"] = {
+["total"] = 219791682,
+["itemLevel"] = 617.75,
+["classId"] = 12,
+},
+["Mitsunami"] = {
+["total"] = 152802240,
+["itemLevel"] = 605.125,
+["classId"] = 3,
+},
+["Outerheaven"] = {
+["total"] = 214713966,
+["itemLevel"] = 616.1875,
+["classId"] = 6,
+},
+},
+["time"] = 1728182525,
+["date"] = "22:42 05/10/24",
+["elapsed"] = 255.993999999977,
+["servertime"] = 1728182525,
+["HEALER"] = {
+["Alenio"] = {
+["total"] = 117328670,
+["itemLevel"] = 606.6875,
+["classId"] = 5,
+},
+["Mysticallx"] = {
+["total"] = 166009693,
+["itemLevel"] = 615.625,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 141933709,
+["itemLevel"] = 624.25,
+["classId"] = 11,
+},
+["Frizle"] = {
+["total"] = 81561723,
+["itemLevel"] = 606.4375,
+["classId"] = 2,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+{
+["time"] = 1731204336,
+["guild"] = "Zero Percent Wipe",
+["elapsed"] = 193.9459999999963,
+["date"] = "21:05 09/11/24",
+["servertime"] = 1731204336,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 109170002,
+["itemLevel"] = 619.375,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 139955253,
+["itemLevel"] = 632.875,
+["classId"] = 11,
+},
+["Bubblz"] = {
+["total"] = 95924596,
+["itemLevel"] = 604.0625,
+["classId"] = 5,
+},
+},
+["DAMAGER"] = {
+["Azderpker"] = {
+["total"] = 92184889,
+["itemLevel"] = 632.125,
+["classId"] = 13,
+},
+["Ivanstone"] = {
+["total"] = 82720636,
+["itemLevel"] = 583.5625,
+["classId"] = 1,
+},
+["Nathepal"] = {
+["total"] = 129008271,
+["itemLevel"] = 632.625,
+["classId"] = 2,
+},
+["Kopaka"] = {
+["total"] = 107215823,
+["itemLevel"] = 618.75,
+["classId"] = 4,
+},
+["Maldrin"] = {
+["total"] = 82341131,
+["itemLevel"] = 617.875,
+["classId"] = 2,
+},
+["Mixiburn"] = {
+["total"] = 180413235,
+["itemLevel"] = 624.5,
+["classId"] = 9,
+},
+["Arlandriya"] = {
+["total"] = 194635913,
+["itemLevel"] = 625.3125,
+["classId"] = 11,
+},
+["Viralstrix"] = {
+["total"] = 185703133,
+["itemLevel"] = 619.3125,
+["classId"] = 3,
+},
+["Dkncha"] = {
+["total"] = 220160730,
+["itemLevel"] = 625,
+["classId"] = 6,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 229039067,
+["itemLevel"] = 624.5625,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 154352920,
+["itemLevel"] = 624.5,
+["classId"] = 7,
+},
+["Elsecallers"] = {
+["total"] = 197844107,
+["itemLevel"] = 615.1875,
+["classId"] = 8,
+},
+["Lurosaurus"] = {
+["total"] = 115883774,
+["itemLevel"] = 611.625,
+["classId"] = 5,
+},
+["Rhaeisxalnym"] = {
+["total"] = 160146397,
+["itemLevel"] = 630.8125,
+["classId"] = 6,
+},
+["Mitsunami"] = {
+["total"] = 193647824,
+["itemLevel"] = 620.6875,
+["classId"] = 3,
+},
+["Dragau"] = {
+["total"] = 156258651,
+["itemLevel"] = 631.5625,
+["classId"] = 13,
+},
+},
+},
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 88081517,
+["itemLevel"] = 622.625,
+["classId"] = 1,
+},
+["Kopaka"] = {
+["total"] = 19338716,
+["itemLevel"] = 618.8125,
+["classId"] = 4,
+},
+["Qõtsa"] = {
+["total"] = 165097723,
+["itemLevel"] = 622.8125,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 126282171,
+["itemLevel"] = 634.125,
+["classId"] = 1,
+},
+["Gauz"] = {
+["total"] = 158558325,
+["itemLevel"] = 622.25,
+["classId"] = 9,
+},
+["Herbnmine"] = {
+["total"] = 32556078,
+["itemLevel"] = 560.4375,
+["classId"] = 11,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 198296222,
+["itemLevel"] = 627.0625,
+["classId"] = 1,
+},
+["Frizle"] = {
+["total"] = 178381688,
+["itemLevel"] = 617.3125,
+["classId"] = 2,
+},
+["Rhaeisxalnym"] = {
+["total"] = 172660666,
+["itemLevel"] = 632.9375,
+["classId"] = 6,
+},
+["Maldrin"] = {
+["total"] = 182089755,
+["itemLevel"] = 626.375,
+["classId"] = 2,
+},
+["Kncha"] = {
+["total"] = 245396882,
+["itemLevel"] = 635.4375,
+["classId"] = 1,
+},
+["Gamezzs"] = {
+["total"] = 172331366,
+["itemLevel"] = 624.9375,
+["classId"] = 8,
+},
+["Aleusa"] = {
+["total"] = 243818877,
+["itemLevel"] = 633.125,
+["classId"] = 3,
+},
+},
+["time"] = 1732414088,
+["date"] = "21:08 23/11/24",
+["elapsed"] = 211.3429999999935,
+["servertime"] = 1732414089,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 163256848,
+["itemLevel"] = 622.875,
+["classId"] = 10,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+},
+[2919] = {
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 201048058,
+["itemLevel"] = 610.4375,
+["classId"] = 1,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 298964485,
+["itemLevel"] = 623.0625,
+["classId"] = 1,
+},
+["Harambê-Area52"] = {
+["total"] = 477246235,
+["itemLevel"] = 614.0625,
+["classId"] = 9,
+},
+["Gauz"] = {
+["total"] = 407294921,
+["itemLevel"] = 605.0625,
+["classId"] = 9,
+},
+["Nathedruid"] = {
+["total"] = 361621727,
+["itemLevel"] = 604.25,
+["classId"] = 11,
+},
+["Bubzmage"] = {
+["total"] = 332054985,
+["itemLevel"] = 605.625,
+["classId"] = 8,
+},
+["Elsecallers"] = {
+["total"] = 437602114,
+["itemLevel"] = 606.25,
+["classId"] = 8,
+},
+["Rhaeisxalnym"] = {
+["total"] = 542268190,
+["itemLevel"] = 615.375,
+["classId"] = 6,
+},
+["Qotsaog"] = {
+["total"] = 243509204,
+["itemLevel"] = 603.75,
+["classId"] = 3,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 199974247,
+["itemLevel"] = 599.3125,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 427303743,
+["itemLevel"] = 610.125,
+["classId"] = 7,
+},
+["Lokilegato"] = {
+["total"] = 373051447,
+["itemLevel"] = 614.6875,
+["classId"] = 1,
+},
+["Viralstrix"] = {
+["total"] = 295256351,
+["itemLevel"] = 606.375,
+["classId"] = 3,
+},
+["Maldh"] = {
+["total"] = 438188159,
+["itemLevel"] = 617.75,
+["classId"] = 12,
+},
+["Mitsunami"] = {
+["total"] = 295720297,
+["itemLevel"] = 605.125,
+["classId"] = 3,
+},
+["Outerheaven"] = {
+["total"] = 536623456,
+["itemLevel"] = 616.1875,
+["classId"] = 6,
+},
+},
+["time"] = 1728186327,
+["date"] = "23:45 05/10/24",
+["elapsed"] = 429.0130000000063,
+["servertime"] = 1728186327,
+["HEALER"] = {
+["Alenio"] = {
+["total"] = 340214985,
+["itemLevel"] = 606.6875,
+["classId"] = 5,
+},
+["Mysticallx"] = {
+["total"] = 422758061,
+["itemLevel"] = 615.4375,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 533029322,
+["itemLevel"] = 624.25,
+["classId"] = 11,
+},
+["Frizle"] = {
+["total"] = 306686389,
+["itemLevel"] = 606.4375,
+["classId"] = 2,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+{
+["date"] = "21:42 09/11/24",
+["guild"] = "Zero Percent Wipe",
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 149091873,
+["itemLevel"] = 620.875,
+["classId"] = 1,
+},
+["Gauz"] = {
+["total"] = 270608238,
+["itemLevel"] = 621.8125,
+["classId"] = 9,
+},
+["Maldrin"] = {
+["total"] = 233314231,
+["itemLevel"] = 617.5,
+["classId"] = 2,
+},
+["Mixiburn"] = {
+["total"] = 334996940,
+["itemLevel"] = 624.5,
+["classId"] = 9,
+},
+["Elsecallers"] = {
+["total"] = 291838249,
+["itemLevel"] = 615.1875,
+["classId"] = 8,
+},
+["Shotss"] = {
+["total"] = 427440158,
+["itemLevel"] = 625.5,
+["classId"] = 3,
+},
+["Nathepal"] = {
+["total"] = 225437141,
+["itemLevel"] = 632.625,
+["classId"] = 2,
+},
+["Kopaka"] = {
+["total"] = 317939804,
+["itemLevel"] = 617.9375,
+["classId"] = 4,
+},
+["Viralstrix"] = {
+["total"] = 278473313,
+["itemLevel"] = 619.3125,
+["classId"] = 3,
+},
+["Dkncha"] = {
+["total"] = 359107701,
+["itemLevel"] = 625,
+["classId"] = 6,
+},
+["Xcato-Dragonmaw"] = {
+["total"] = 296015651,
+["itemLevel"] = 624.5625,
+["classId"] = 1,
+},
+["Bancho-Area52"] = {
+["total"] = 332021719,
+["itemLevel"] = 623.9375,
+["classId"] = 7,
+},
+["Rhaeisxalnym"] = {
+["total"] = 366975081,
+["itemLevel"] = 630.8125,
+["classId"] = 6,
+},
+["Lurosaurus"] = {
+["total"] = 198294255,
+["itemLevel"] = 612.6875,
+["classId"] = 5,
+},
+["Arlandriya"] = {
+["total"] = 271284848,
+["itemLevel"] = 625.3125,
+["classId"] = 11,
+},
+["Mitsunami"] = {
+["total"] = 268533015,
+["itemLevel"] = 620.6875,
+["classId"] = 3,
+},
+["Azderpker"] = {
+["total"] = 149570498,
+["itemLevel"] = 632.125,
+["classId"] = 13,
+},
+},
+["elapsed"] = 249.7490000000689,
+["servertime"] = 1731206548,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 287989640,
+["itemLevel"] = 619.375,
+["classId"] = 10,
+},
+["Ayaliss"] = {
+["total"] = 362730480,
+["itemLevel"] = 632.875,
+["classId"] = 11,
+},
+["Bubblz"] = {
+["total"] = 227448738,
+["itemLevel"] = 604.3125,
+["classId"] = 5,
+},
+},
+["time"] = 1731206548,
+},
+{
+["DAMAGER"] = {
+["Ivanstone"] = {
+["total"] = 140681993,
+["itemLevel"] = 622.625,
+["classId"] = 1,
+},
+["Gauz"] = {
+["total"] = 294665782,
+["itemLevel"] = 622.25,
+["classId"] = 9,
+},
+["Qõtsa"] = {
+["total"] = 235132091,
+["itemLevel"] = 622.8125,
+["classId"] = 3,
+},
+["Roirrawami-Proudmoore"] = {
+["total"] = 196473288,
+["itemLevel"] = 634.125,
+["classId"] = 1,
+},
+["Kopaka"] = {
+["total"] = 261368674,
+["itemLevel"] = 618.8125,
+["classId"] = 4,
+},
+["Gamezzs"] = {
+["total"] = 286302203,
+["itemLevel"] = 624.9375,
+["classId"] = 8,
+},
+["Herbnmine"] = {
+["total"] = 46529719,
+["itemLevel"] = 562.5,
+["classId"] = 11,
+},
+["Jimmyleggs"] = {
+["total"] = 391379189,
+["itemLevel"] = 633.5625,
+["classId"] = 9,
+},
+["Frizle"] = {
+["total"] = 281320147,
+["itemLevel"] = 617.3125,
+["classId"] = 2,
+},
+["Rhaeisxalnym"] = {
+["total"] = 306509784,
+["itemLevel"] = 632.9375,
+["classId"] = 6,
+},
+["Maldrin"] = {
+["total"] = 278360949,
+["itemLevel"] = 626.375,
+["classId"] = 2,
+},
+["Kncha"] = {
+["total"] = 461950224,
+["itemLevel"] = 634.625,
+["classId"] = 1,
+},
+["Xcato"] = {
+["total"] = 305526611,
+["itemLevel"] = 637,
+["classId"] = 3,
+},
+["Aleusa"] = {
+["total"] = 338158879,
+["itemLevel"] = 633.125,
+["classId"] = 3,
+},
+},
+["time"] = 1732416416,
+["date"] = "21:46 23/11/24",
+["elapsed"] = 261.280999999959,
+["servertime"] = 1732416417,
+["HEALER"] = {
+["Mysticallx"] = {
+["total"] = 370823462,
+["itemLevel"] = 622.875,
+["classId"] = 10,
+},
+},
+["guild"] = "Zero Percent Wipe",
+},
+},
+},
+["mythic_plus"] = {
+},
+["totalkills"] = {
+[2276] = {
+["raidfinder"] = {
+["time_incombat"] = 5.877000000007683,
+["time_fasterkill"] = 5.877000000007683,
+["wipes"] = 0,
+["kills"] = 1,
+["dps_best"] = 195673.9844261522,
+["dps_best_raid_when"] = 1723475130,
+["time_fasterkill_when"] = 1723475130,
+["dps_best_when"] = 1723475130,
+["dps_best_raid"] = 452801.9397645944,
+},
+},
+[2898] = {
+["normal"] = {
+["time_incombat"] = 680.9270000000006,
+["time_fasterkill"] = 139.5899999999965,
+["wipes"] = 0,
+["kills"] = 4,
+["dps_best"] = 51450.91639928859,
+["dps_best_when"] = 1731811267,
+["time_fasterkill_when"] = 1728177890,
+["dps_best_raid_when"] = 1728177890,
+["dps_best_raid"] = 12585905.35138652,
+},
+["heroic"] = {
+["time_incombat"] = 513.0219999997935,
+["time_fasterkill"] = 142.6799999999348,
+["wipes"] = 0,
+["kills"] = 3,
+["dps_best"] = 213019.5052446516,
+["dps_best_raid"] = 17268289.22596913,
+["time_fasterkill_when"] = 1732415289,
+["dps_best_when"] = 1732415289,
+["dps_best_raid_when"] = 1731205400,
+},
+},
+[2280] = {
+["raidfinder"] = {
+["time_incombat"] = 17.07600000000093,
+["time_fasterkill"] = 17.07600000000093,
+["wipes"] = 0,
+["kills"] = 1,
+["dps_best"] = 70206.60584592028,
+["dps_best_raid_when"] = 1723475276,
+["time_fasterkill_when"] = 1723475276,
+["dps_best_when"] = 1723475276,
+["dps_best_raid"] = 183359.1590536326,
+},
+},
+[2902] = {
+["normal"] = {
+["time_incombat"] = 485.4199999999746,
+["time_fasterkill"] = 69.48099999999977,
+["wipes"] = 0,
+["kills"] = 3,
+["dps_best"] = 73916.92705615949,
+["dps_best_when"] = 1731808996,
+["time_fasterkill_when"] = 1731808996,
+["dps_best_raid_when"] = 1731808996,
+["dps_best_raid"] = 24143952.24593782,
+},
+["heroic"] = {
+["time_incombat"] = 661.2829999999667,
+["time_fasterkill"] = 193.9459999999963,
+["wipes"] = 0,
+["kills"] = 3,
+["dps_best"] = 254175.3642395947,
+["dps_best_raid"] = 13023751.65252209,
+["time_fasterkill_when"] = 1731204336,
+["dps_best_when"] = 1732414088,
+["dps_best_raid_when"] = 1731204336,
+},
+},
+[2135] = {
+["mythic"] = {
+["time_incombat"] = 18.43399999999383,
+["time_fasterkill"] = 18.43399999999383,
+["wipes"] = 0,
+["kills"] = 1,
+["dps_best"] = 367441.2500578967,
+["dps_best_raid_when"] = 1723476568,
+["time_fasterkill_when"] = 1723476568,
+["dps_best_when"] = 1723476568,
+["dps_best_raid"] = 394477.7042422933,
+},
+["raidfinder"] = {
+["time_incombat"] = 5.278999999994994,
+["time_fasterkill"] = 5.278999999994994,
+["wipes"] = 0,
+["kills"] = 1,
+["dps_best"] = 310635.727789838,
+["dps_best_raid_when"] = 1723476974,
+["time_fasterkill_when"] = 1723476974,
+["dps_best_when"] = 1723476974,
+["dps_best_raid"] = 540959.8408794673,
+},
+},
+[2141] = {
+["mythic"] = {
+["time_incombat"] = 11.91899999999441,
+["time_fasterkill"] = 11.91899999999441,
+["wipes"] = 0,
+["kills"] = 1,
+["dps_best"] = 415692.5079510297,
+["dps_best_raid_when"] = 1723475813,
+["time_fasterkill_when"] = 1723475813,
+["dps_best_when"] = 1723475813,
+["dps_best_raid"] = 656396.4258749617,
+},
+},
+[2918] = {
+["normal"] = {
+["time_incombat"] = 626.3609999999771,
+["time_fasterkill"] = 107.7229999999981,
+["wipes"] = 0,
+["kills"] = 4,
+["dps_best"] = 85061.78812490516,
+["dps_best_when"] = 1731811718,
+["time_fasterkill_when"] = 1731811718,
+["dps_best_raid_when"] = 1731811718,
+["dps_best_raid"] = 20358438.35578324,
+},
+["heroic"] = {
+["time_incombat"] = 669.7050000000746,
+["time_fasterkill"] = 181.451999999932,
+["wipes"] = 0,
+["kills"] = 3,
+["dps_best"] = 193836.9817267717,
+["dps_best_raid"] = 16268326.61067072,
+["time_fasterkill_when"] = 1732415754,
+["dps_best_when"] = 1732415754,
+["dps_best_raid_when"] = 1731205832,
+},
+},
+[2145] = {
+["mythic"] = {
+["time_incombat"] = 19.8179999999993,
+["time_fasterkill"] = 19.8179999999993,
+["wipes"] = 0,
+["kills"] = 1,
+["dps_best"] = 207531.63823217,
+["dps_best_raid_when"] = 1723476442,
+["time_fasterkill_when"] = 1723476442,
+["dps_best_when"] = 1723476442,
+["dps_best_raid"] = 351440.5590877105,
+},
+},
+[2922] = {
+["normal"] = {
+["time_incombat"] = 904.7279999999955,
+["time_fasterkill"] = 264.2969999999914,
+["wipes"] = 0,
+["kills"] = 3,
+["dps_best"] = 58290.77895936201,
+["dps_best_raid_when"] = 1731813632,
+["time_fasterkill_when"] = 1731813632,
+["dps_best_when"] = 1731813632,
+["dps_best_raid"] = 11696287.51745234,
+},
+["heroic"] = {
+["time_incombat"] = 755.3369999999413,
+["time_fasterkill"] = 372.2819999998901,
+["wipes"] = 0,
+["kills"] = 2,
+["dps_best"] = 148651.232856087,
+["dps_best_raid"] = 12967146.28158607,
+["time_fasterkill_when"] = 1731209671,
+["dps_best_raid_when"] = 1731209671,
+["dps_best_when"] = 1732418979,
+},
+["raidfinder"] = {
+["time_incombat"] = 943.3429999999935,
+["time_fasterkill"] = 271.6909999999916,
+["wipes"] = 0,
+["kills"] = 3,
+["dps_best"] = 60694.48317841331,
+["dps_best_raid"] = 9688306.02726028,
+["time_fasterkill_when"] = 1730226311,
+["dps_best_when"] = 1731430670,
+["dps_best_raid_when"] = 1731430670,
+},
+},
+["normal"] = {
+[2917] = {
+["time_incombat"] = 0,
+["time_fasterkill"] = 0,
+["wipes"] = 1,
+["kills"] = 0,
+["dps_best"] = 0,
+["dps_best_raid_when"] = 0,
+["time_fasterkill_when"] = 0,
+["dps_best_when"] = 0,
+["dps_best_raid"] = 0,
+},
+[2918] = {
+["time_incombat"] = 0,
+["time_fasterkill"] = 0,
+["wipes"] = 1,
+["kills"] = 0,
+["dps_best"] = 0,
+["dps_best_when"] = 0,
+["time_fasterkill_when"] = 0,
+["dps_best_raid_when"] = 0,
+["dps_best_raid"] = 0,
+},
+[2898] = {
+["time_incombat"] = 0,
+["time_fasterkill"] = 0,
+["wipes"] = 1,
+["kills"] = 0,
+["dps_best"] = 0,
+["dps_best_raid_when"] = 0,
+["time_fasterkill_when"] = 0,
+["dps_best_when"] = 0,
+["dps_best_raid"] = 0,
+},
+[2920] = {
+["time_incombat"] = 0,
+["time_fasterkill"] = 0,
+["wipes"] = 1,
+["kills"] = 0,
+["dps_best"] = 0,
+["dps_best_raid"] = 0,
+["time_fasterkill_when"] = 0,
+["dps_best_when"] = 0,
+["dps_best_raid_when"] = 0,
+},
+[2922] = {
+["time_incombat"] = 0,
+["time_fasterkill"] = 0,
+["wipes"] = 4,
+["kills"] = 0,
+["dps_best"] = 0,
+["dps_best_raid_when"] = 0,
+["time_fasterkill_when"] = 0,
+["dps_best_when"] = 0,
+["dps_best_raid"] = 0,
+},
+},
+[2122] = {
+["mythic"] = {
+["time_incombat"] = 215.0200000000041,
+["time_fasterkill"] = 215.0200000000041,
+["wipes"] = 0,
+["kills"] = 1,
+["dps_best"] = 80135.22928969712,
+["dps_best_raid_when"] = 1723476859,
+["time_fasterkill_when"] = 1723476859,
+["dps_best_when"] = 1723476859,
+["dps_best_raid"] = 135044.2330945933,
+},
+["raidfinder"] = {
+["time_incombat"] = 96.49099999999453,
+["time_fasterkill"] = 96.49099999999453,
+["wipes"] = 0,
+["kills"] = 1,
+["dps_best"] = 40611.10366497624,
+["dps_best_raid_when"] = 1723477162,
+["time_fasterkill_when"] = 1723477162,
+["dps_best_when"] = 1723477162,
+["dps_best_raid"] = 110420.6817216176,
+},
+},
+[2281] = {
+["raidfinder"] = {
+["time_incombat"] = 8.915000000008149,
+["time_fasterkill"] = 8.915000000008149,
+["wipes"] = 0,
+["kills"] = 1,
+["dps_best"] = 102036.7926377082,
+["dps_best_raid_when"] = 1723475421,
+["time_fasterkill_when"] = 1723475421,
+["dps_best_when"] = 1723475421,
+["dps_best_raid"] = 375788.4464382432,
+},
+},
+[2128] = {
+["mythic"] = {
+["time_incombat"] = 13.08199999999488,
+["time_fasterkill"] = 13.08199999999488,
+["wipes"] = 0,
+["kills"] = 1,
+["dps_best"] = 468855.5271883047,
+["dps_best_raid_when"] = 1723476312,
+["time_fasterkill_when"] = 1723476312,
+["dps_best_when"] = 1723476312,
+["dps_best_raid"] = 529383.2747288421,
+},
+},
+[2134] = {
+["mythic"] = {
+["time_incombat"] = 18.36999999999534,
+["time_fasterkill"] = 18.36999999999534,
+["wipes"] = 0,
+["kills"] = 1,
+["dps_best"] = 238441.3720452428,
+["dps_best_raid_when"] = 1723476156,
+["time_fasterkill_when"] = 1723476156,
+["dps_best_when"] = 1723476156,
+["dps_best_raid"] = 274359.3358737767,
+},
+},
+[2136] = {
+["mythic"] = {
+["time_incombat"] = 37.4380000000092,
+["time_fasterkill"] = 37.4380000000092,
+["wipes"] = 0,
+["kills"] = 1,
+["dps_best"] = 211940.0076589041,
+["dps_best_raid_when"] = 1723476010,
+["time_fasterkill_when"] = 1723476010,
+["dps_best_when"] = 1723476010,
+["dps_best_raid"] = 274131.577541468,
+},
+},
+[2920] = {
+["normal"] = {
+["time_incombat"] = 546.9259999999967,
+["time_fasterkill"] = 105.6579999999958,
+["wipes"] = 0,
+["kills"] = 3,
+["dps_best"] = 94543.74494407803,
+["dps_best_raid_when"] = 1731812604,
+["time_fasterkill_when"] = 1731812604,
+["dps_best_when"] = 1731812604,
+["dps_best_raid"] = 20579841.01535223,
+},
+["heroic"] = {
+["time_incombat"] = 1227.304999999964,
+["time_fasterkill"] = 210.1959999999963,
+["wipes"] = 0,
+["kills"] = 4,
+["dps_best"] = 193428.16087393,
+["dps_best_raid"] = 17095791.37566873,
+["time_fasterkill_when"] = 1731207107,
+["dps_best_when"] = 1732417231,
+["dps_best_raid_when"] = 1731207107,
+},
+},
+[2917] = {
+["normal"] = {
+["time_incombat"] = 652.8259999999809,
+["time_fasterkill"] = 150.7039999999979,
+["wipes"] = 0,
+["kills"] = 3,
+["dps_best"] = 41262.35839533441,
+["dps_best_when"] = 1731810307,
+["time_fasterkill_when"] = 1726967575,
+["dps_best_raid_when"] = 1726967575,
+["dps_best_raid"] = 12186514.93656456,
+},
+["heroic"] = {
+["time_incombat"] = 601.3000000001048,
+["time_fasterkill"] = 161.5120000001043,
+["wipes"] = 0,
+["kills"] = 3,
+["dps_best"] = 43645.35328305127,
+["dps_best_raid"] = 16685790.9690813,
+["time_fasterkill_when"] = 1731204873,
+["dps_best_when"] = 1732414684,
+["dps_best_raid_when"] = 1731204873,
+},
+},
+[2144] = {
+["mythic"] = {
+["time_incombat"] = 10.70900000000256,
+["time_fasterkill"] = 10.70900000000256,
+["wipes"] = 0,
+["kills"] = 1,
+["dps_best"] = 239991.1296874017,
+["dps_best_raid_when"] = 1723475657,
+["time_fasterkill_when"] = 1723475657,
+["dps_best_when"] = 1723475657,
+["dps_best_raid"] = 556405.8268744583,
+},
+},
+[2921] = {
+["normal"] = {
+["time_incombat"] = 1027.719999999988,
+["time_fasterkill"] = 217.2350000000151,
+["wipes"] = 0,
+["kills"] = 3,
+["dps_best"] = 85392.73139882021,
+["dps_best_raid_when"] = 1731813049,
+["time_fasterkill_when"] = 1731813049,
+["dps_best_when"] = 1731813049,
+["dps_best_raid"] = 24653802.91849668,
+},
+["heroic"] = {
+["time_incombat"] = 1148.563000000053,
+["time_fasterkill"] = 340.0139999999665,
+["wipes"] = 0,
+["kills"] = 3,
+["dps_best"] = 220725.3583804737,
+["dps_best_when"] = 1732417955,
+["time_fasterkill_when"] = 1732417955,
+["dps_best_raid_when"] = 1731207783,
+["dps_best_raid"] = 19220584.03436457,
+},
+["raidfinder"] = {
+["time_incombat"] = 714.3260000000446,
+["time_fasterkill"] = 193.6830000000045,
+["wipes"] = 0,
+["kills"] = 3,
+["dps_best"] = 91040.35461310278,
+["dps_best_raid"] = 16161175.07473514,
+["time_fasterkill_when"] = 1731430284,
+["dps_best_when"] = 1731430284,
+["dps_best_raid_when"] = 1731430284,
+},
+},
+[2919] = {
+["normal"] = {
+["time_incombat"] = 541.2950000000174,
+["time_fasterkill"] = 135.6460000000079,
+["wipes"] = 0,
+["kills"] = 3,
+["dps_best"] = 96125.26726847263,
+["dps_best_raid_when"] = 1731812272,
+["time_fasterkill_when"] = 1731812272,
+["dps_best_when"] = 1731812272,
+["dps_best_raid"] = 18862726.72249717,
+},
+["heroic"] = {
+["time_incombat"] = 940.0430000000342,
+["time_fasterkill"] = 249.7490000000689,
+["wipes"] = 0,
+["kills"] = 3,
+["dps_best"] = 195344.2577191912,
+["dps_best_raid"] = 18887898.72631602,
+["time_fasterkill_when"] = 1731206548,
+["dps_best_when"] = 1732416416,
+["dps_best_raid_when"] = 1731206548,
+},
+},
+["heroic"] = {
+[2917] = {
+["time_incombat"] = 0,
+["time_fasterkill"] = 0,
+["wipes"] = 1,
+["kills"] = 0,
+["dps_best"] = 0,
+["dps_best_raid"] = 0,
+["time_fasterkill_when"] = 0,
+["dps_best_when"] = 0,
+["dps_best_raid_when"] = 0,
+},
+[2918] = {
+["time_incombat"] = 0,
+["time_fasterkill"] = 0,
+["wipes"] = 1,
+["kills"] = 0,
+["dps_best"] = 0,
+["dps_best_raid"] = 0,
+["time_fasterkill_when"] = 0,
+["dps_best_when"] = 0,
+["dps_best_raid_when"] = 0,
+},
+[2919] = {
+["time_incombat"] = 0,
+["time_fasterkill"] = 0,
+["wipes"] = 1,
+["kills"] = 0,
+["dps_best"] = 0,
+["dps_best_raid"] = 0,
+["time_fasterkill_when"] = 0,
+["dps_best_when"] = 0,
+["dps_best_raid_when"] = 0,
+},
+[2920] = {
+["time_incombat"] = 0,
+["time_fasterkill"] = 0,
+["wipes"] = 2,
+["kills"] = 0,
+["dps_best"] = 0,
+["dps_best_raid"] = 0,
+["time_fasterkill_when"] = 0,
+["dps_best_when"] = 0,
+["dps_best_raid_when"] = 0,
+},
+[2922] = {
+["time_incombat"] = 0,
+["time_fasterkill"] = 0,
+["wipes"] = 23,
+["kills"] = 0,
+["dps_best"] = 0,
+["dps_best_when"] = 0,
+["time_fasterkill_when"] = 0,
+["dps_best_raid_when"] = 0,
+["dps_best_raid"] = 0,
+},
+},
+},
+["Data"] = {
+},
 }
