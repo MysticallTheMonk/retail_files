@@ -1,16 +1,22 @@
 3v3/Solo Shuffle (vers/mastery):
-https://www.icy-veins.com/wow/the-war-within-talent-calculator#OE-IJAssLKtMRQv6EQtVcdhKR13n2YzSgeBA-poOEnRQSSmHcYgkgQgRuUDDbuw6SkiSYA-FIqkoIAgBkD-
+C4QAqCjoPBi1F5zHY9mx8hvRaCAAAAAAAAGWmlxywyitxMjNzsgNYWmlllZGLMjmZmxCzwMgZ2MzMMbWGY2GBAAAAYWmWmlZWmNLzyysMzMBBAsA
 
 RBGs (Haste/Vers or Vers/Mastery):
-https://www.icy-veins.com/wow/the-war-within-talent-calculator#OE-IJLKMRQYXrdA09yigtqiEj1CU995BaWaC-poOEnRQmHcYgkgQgSSScHpKKM87zz6CD-FIokoIAgBkD-
+C4QAqCjoPBi1F5zHY9mx8hvRaCAAAAAAAAGWmlxywyitxMjNzsgNYWmlllZGLMjmZmxCzwMLmhZxMzwsZZgZjAAAAAMLTLzyMLzmlZZZ2mZmgAAWA
 
 Flag Carrying (Vers/Mastery or Haste/Vers): 
-https://www.icy-veins.com/wow/the-war-within-talent-calculator#OE-IJLKMRQYXrdA09yigtqiEjDU995BaWaKE-poOEnRQmHcYgsgQgSSScHpKKM87zz6CD-FIokoIAgBkD-
+C4QAqCjoPBi1F5zHY9mx8hvRaCAAAAAAAAYWmlxywyitxMjNzsgNYWmNbzMLLM0MzMzCzYMLmxYxMzwsNLDMbEAAAAgZZaZWmZb2AABBAA
 
-PvP Fistweaving(Haste/Vers or Vers/Mastery): C4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYWsNzyYGzYMzYzMbYDGz2y2MjFmRjZGYmNzAMbzYGmNLjhZbmAAAAAAAWsMbbzyMzEAAYB
+PvP Fistweaving(Haste/Vers or Vers/Mastery): C4QAqCjoPBi1F5zHY9mx8hvRaCAAAAAAAAGWmlZWGziZbMzYzMbYDeAz2yyMzyCzoxMjFmZzMA2mxMMbWGDWegJAAAAAzy02sNzysZZW2mlZmJIAgF
 
 Mythic+ Fistweaving(Haste/Crit):
-https://www.icy-veins.com/wow/the-war-within-talent-calculator#OE-IJMLKRtAQdrEwVQIulSdMKq5ZgvPPQWW-
+C4QAqCjoPBi1F5zHY9mx8hvRaCAAAAAAAAGWsMzyYWMbzMzYDbzysNgZbbZmZZhZmYmBmhZwgtZmZY2YmBLPwEAAAAAEgFLzy2sMzMBBAsB
 
 Mythic+ Casting (Haste/Crit):
-https://www.icy-veins.com/wow/the-war-within-talent-calculator#OE-IJLKMRQrdA09yigtqiEtFjNLV99pFA07B-poOEnRQmGcYgkgQgSSScHpKKM06CTTFLA-GkAgAJowhAD-
+C4QAqCjoPBi1F5zHY9mx8hvRaCAAAAAAAAGWmlxywyitxMjNjlZb2ALzyyyMjFmRzMzYhZYmFwsYmZY2sMDmNTAAAAAmlplZZmtZxyssMbzMTQAALA
+
+Raid Casting (Haste/Crit):
+C4QAqCjoPBi1F5zHY9mx8hvRaCAAAAAAAAGWsMWGgZmZs9AsYb2mZWsMLbLzMLLY0MzMwMmZWYwyMzMMbMGsYCAAAAACwilZZZWmZmgAAWA
+
+Raid Casting + Damage (Haste/Crit):
+C4QAqCjoPBi1F5zHY9mx8hvRaCAAAAAAAAGWYmlBYGzMLDbMbzMb2mltlZmlFmRzMzAzYmZBYZmZGmNGDWMBAAAAABYxyssMLzMTQAALA
