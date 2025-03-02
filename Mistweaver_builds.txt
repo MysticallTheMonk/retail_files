@@ -2,8 +2,14 @@ Crackle Clash Build (Vers/Mastery): C4QACdq2zyOHcHaPcZ/HhhelgDAAAAAAAADLPwyYZYht
 
 Crackle No Clash Build (Vers/Master): C4QACdq2zyOHcHaPcZ/HhhelgDAAAAAAAADLPwyYZYhtxMjNzYbZ2gZZWW2mZWWYGNmZswMMDwsNzMDzmlBmtRAAAAAmtplZZmlZzyssMLzMTQAgFA
 
-Hybrid (Vers/Master):
-C4QACdq2zyOHcHaPcZ/HhhelgDAAAAAAAADLzyMLDbbMmZsZmNsBzystsNzsswMaMzAzwMAz2MzMMbWGY2mJAAAAAzy02sMzysZZWWmtZmJIAwCA
+Standard Hybrid Build (Vers/Master): 
+C4QACdq2zyOHcHaPcZ/HhhelgDAAAAAAAADLzyMLDbbMmZsZmNsBzystsNzsswMaMzAzwMAz2MzMMbWGY2mJAAAAAzy0ysNzysZZWWmtZmJIAwCA
+
+Hybrid with Detox and Clash (Vers/Master):  
+C4QACdq2zyOHcHaPcZ/HhhelgDAAAAAAAADLzyMLDbbMmZsZmNsBzystsNzYhZ0YmBmZjZBMbzMDmFLjhZbmAAAAAMLTLz2MLzGAIIAAA
+
+Hybrid with no Detox and Clash (Vers/Master): 
+C4QACdq2zyOHcHaPcZ/HhhelgDAAAAAAAAYZWmZZYbjxMjNzshNYWmtltZGLMjGzMwMbmBY2mZGMLWGDz2MBAAAAYWmWmtZWmNAQQAgFA
 
 RBGs (Haste/Vers or Vers/Mastery):
 C4QACdq2zyOHcHaPcZ/HhhelgDAAAAAAAADLzyYZYhtxMjNzsgNeAzystsNzYhZ0MzMWYGmhBzmZmhZzyAz2IAAAAAzy02sMzysZZWWmtZmJIAwCA
