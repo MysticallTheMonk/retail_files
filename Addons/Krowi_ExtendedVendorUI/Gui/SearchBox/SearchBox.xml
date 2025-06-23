@@ -1,0 +1,21 @@
+<Ui>
+    <Script file="SearchBoxMixin.lua"/>
+
+	<EditBox name="KrowiEVU_SearchBox" mixin="KrowiEVU_SearchBoxMixin" inherits="SearchBoxTemplate" letters="40" parent="MerchantFrame"> <!-- virtual="true" -->
+	<Size x="144" y="22"/>
+        <Anchors>
+        	<Anchor point="RIGHT" relativeKey="$parent.FilterButton" relativePoint="LEFT" x="-10" y="0" />
+        </Anchors>
+		<Scripts>
+			<OnLoad inherit="append" method="OnLoad"/>
+			<OnShow method="OnShow"/>
+			<!-- <OnHide method="KrowiAF_SearchBoxFrame_OnHide"/> -->
+			<!-- <OnEnterPressed method="KrowiAF_SearchBoxFrame_OnEnterPressed"/> -->
+			<OnTextChanged method="OnTextChanged"/>
+			<!-- <OnEditFocusLost method="KrowiAF_SearchBoxFrame_OnFocusLost"/> -->
+			<!-- <OnEditFocusGained method="KrowiAF_SearchBoxFrame_OnFocusGained"/> -->
+			<!-- <OnKeyDown method="KrowiAF_SearchBoxFrame_OnKeyDown"/> -->
+			<!-- <OnMouseDown method="KrowiAF_SearchBoxFrame_OnMouseDown"/> -->
+		</Scripts>
+	</EditBox>
+</Ui>

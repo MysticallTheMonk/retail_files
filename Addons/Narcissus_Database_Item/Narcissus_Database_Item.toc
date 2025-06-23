@@ -1,0 +1,23 @@
+## Interface: 110105, 110107
+## Plain Title: Narcissus Database Item
+## Version: 9.2.0
+## LoadOnDemand: 1
+## RequiredDeps: Narcissus
+# SavedVariables: NarciItemDatabaseOutput, NarciItemDatabaseFailure, NarciItemDatabaseCount
+
+## Title: Narcissus Database Item
+
+## Notes: A complete list of holdable items available in Narcissus photo mode.
+
+## Author: Peterodox
+
+## IconTexture: Interface\AddOns\Narcissus\Art\Logos\AddonListIconT
+
+PreLoad.lua
+SourceData\ItemIDxItemName.lua
+Item\DB.xml
+PostLoad.lua
+
+#For Dev
+#SourceData\HoldableItems.lua
+#ProcessedData\VisualIDxItem.lua

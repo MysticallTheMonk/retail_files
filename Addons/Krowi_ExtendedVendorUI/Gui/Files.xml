@@ -1,0 +1,8 @@
+<Ui>
+    <Script file="Gui.lua"/>
+    <Script file="MerchantItemsContainer.lua"/>
+    <Script file="MerchantFrame.lua"/>
+    <Include file="OptionsButton/OptionsButton.xml"/>
+    <Include file="FilterButton/FilterButton.xml"/>
+    <Include file="SearchBox/SearchBox.xml"/>
+</Ui>

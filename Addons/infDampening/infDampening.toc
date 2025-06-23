@@ -1,0 +1,6 @@
+## Interface: 70200
+## Title: |cff3399FFinf|rDampening
+## Author: iNF @ twisting nether EU
+## Version: 1.7
+## Notes: Adds an additional line to the arena status text with current dampening percent.
+infDampening.lua

@@ -1,0 +1,40 @@
+package-as: NameplateCooldowns
+
+manual-changelog:
+    filename: CHANGELOG.html
+    markup-type: html
+
+enable-nolib-creation: no
+    
+externals:
+    libs/LibStub:
+        url: https://repos.wowace.com/wow/libstub/trunk
+        tag: latest
+    libs/CallbackHandler-1.0:
+        url: https://repos.wowace.com/wow/callbackhandler/trunk/CallbackHandler-1.0
+        tag: latest
+    libs/LibSharedMedia-3.0:
+        url: https://repos.wowace.com/wow/libsharedmedia-3-0/trunk
+        tag: latest
+    libs/LibRedDropdown-1.0:
+        url: https://github.com/casualshammy/LibRedDropdown.git
+        tag: latest
+    libs/AceConfig-3.0:
+        url: https://repos.wowace.com/wow/ace3/trunk/AceConfig-3.0
+        tag: latest
+    libs/AceDB-3.0:
+        url: https://repos.wowace.com/wow/ace3/trunk/AceDB-3.0
+        tag: latest
+    libs/AceDBOptions-3.0:
+        url: https://repos.wowace.com/wow/ace3/trunk/AceDBOptions-3.0
+        tag: latest
+    libs/AceGUI-3.0:
+        url: https://repos.wowace.com/wow/ace3/trunk/AceGUI-3.0
+        tag: latest
+    libs/AceLocale-3.0:
+        url: https://repos.wowace.com/wow/ace3/trunk/AceLocale-3.0
+        tag: latest
+
+ignore:
+    - libs/LibRedDropdown-1.0/docs
+    - _curseforge

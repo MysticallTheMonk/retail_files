@@ -1,0 +1,18 @@
+## Interface: 110100
+## Title: OmniAuras
+## Notes: Aura tracker. /oa
+## Author: Treebonker
+## Version: v1.0.2
+## DefaultState: Enabled
+## SavedVariables: OmniAurasDB
+## OptionalDeps: Ace3, LibOmniCDC, LibDeflate, LibSharedMedia-3.0, LibDualSpec-1.0, OmniCD
+## IconTexture: Interface\AddOns\OmniAuras\Media\omnicd-logo64-c
+## X-License: All Rights Reserved
+## X-Localizations: enUS, itIT
+## X-Website: https://wow.curseforge.com/projects/omniauras
+## X-Curse-Project-ID: 308563
+
+Embeds.xml
+Locales\Locales.xml
+Core\Core.xml
+Config\Config.xml

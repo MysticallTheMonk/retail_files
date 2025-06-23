@@ -1,0 +1,6 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Include file="CraftingInfo\Manifest.xml"/>
+  <Include file="Enchant\Manifest.xml"/>
+
+  <Include file="Initialize\Manifest.xml"/>
+</Ui>

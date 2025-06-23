@@ -1,0 +1,23 @@
+<Ui>
+    <Script file="OptionsButtonMixin.lua"/>
+
+	<DropDownToggleButton name="KrowiEVU_OptionsButton" mixin="KrowiEVU_OptionsButtonMixin" inherits="UIMenuButtonStretchTemplate" text="GAMEOPTIONS_MENU" parent="MerchantFrame">
+		<Size x="100" y="22"/>
+        <Anchors>
+        	<Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="61" y="-31" />
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture parentKey="Icon" file="Interface\ChatFrame\ChatFrameExpandArrow">
+					<Size x="10" y="12"/>
+					<Anchors>
+						<Anchor point="RIGHT" relativeKey="$parent.Right" relativePoint="RIGHT" x="-5"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnMouseDown inherit="append" method="MyOnMouseDown"/>
+		</Scripts>
+	</DropDownToggleButton>
+</Ui>

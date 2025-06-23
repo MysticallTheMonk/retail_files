@@ -1,0 +1,11 @@
+## Interface: 80000
+## Title: lib-st |cff7f7fff -Ace3-|r
+## Notes: Does stuff for sachmo
+## Author: Dan Dumont (Sachmo - Arthas {TG})
+## Version: v4.1.3
+## OptionalDeps: Ace3
+## X-Embeds: Ace3
+## X-Category: Interface Enhancements
+
+LibStub\LibStub.lua
+lib-st.xml

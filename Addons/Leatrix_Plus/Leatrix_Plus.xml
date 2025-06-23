@@ -1,0 +1,93 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
+	<ScrollFrame name="LeaPlusRecentChatScrollFrameTemplate" inherits="ScrollFrameTemplate" virtual="true">
+		<KeyValues>
+			<KeyValue key="scrollBarX" value="-16" type="number"/>
+			<KeyValue key="scrollBarTopY" value="0" type="number"/>
+			<KeyValue key="scrollBarBottomY" value="0" type="number"/>
+		</KeyValues>
+		<ScrollChild>
+			<EditBox parentKey="EditBox" multiLine="true" countInvisibleLetters="true" autoFocus="false">
+				<Scripts>
+					<OnCursorChanged function="ScrollingEdit_OnCursorChanged"/>
+					<OnUpdate function="InputScrollFrame_OnUpdate"/>
+					<OnEscapePressed>
+						self:HighlightText(0, 0)
+						self:ClearFocus()
+					</OnEscapePressed>
+					<OnEnterPressed>
+						self:HighlightText(0, 0)
+						self:ClearFocus()
+					</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+		</ScrollChild>
+	</ScrollFrame>
+	<ScrollFrame name="LeaPlusSellJunkScrollFrameTemplate" inherits="ScrollFrameTemplate" virtual="true">
+		<KeyValues>
+			<KeyValue key="scrollBarX" value="6" type="number"/>
+			<KeyValue key="scrollBarTopY" value="0" type="number"/>
+			<KeyValue key="scrollBarBottomY" value="-2" type="number"/>
+		</KeyValues>
+		<ScrollChild>
+			<EditBox parentKey="EditBox" multiLine="true" countInvisibleLetters="true" autoFocus="false">
+				<Scripts>
+					<OnCursorChanged function="ScrollingEdit_OnCursorChanged"/>
+					<OnUpdate function="InputScrollFrame_OnUpdate"/>
+					<OnEscapePressed>
+						self:HighlightText(0, 0);
+						self:ClearFocus()
+					</OnEscapePressed>
+					<OnEnterPressed>
+						self:HighlightText(0, 0)
+						self:ClearFocus()
+					</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+		</ScrollChild>
+	</ScrollFrame>
+	<ScrollFrame name="LeaPlusMuteCustomSoundsScrollFrameTemplate" inherits="ScrollFrameTemplate" virtual="true">
+		<KeyValues>
+			<KeyValue key="scrollBarX" value="6" type="number"/>
+			<KeyValue key="scrollBarTopY" value="0" type="number"/>
+			<KeyValue key="scrollBarBottomY" value="-2" type="number"/>
+		</KeyValues>
+		<ScrollChild>
+			<EditBox parentKey="EditBox" multiLine="true" countInvisibleLetters="true" autoFocus="false">
+				<Scripts>
+					<OnCursorChanged function="ScrollingEdit_OnCursorChanged"/>
+					<OnUpdate function="InputScrollFrame_OnUpdate"/>
+					<OnEscapePressed>
+						self:HighlightText(0, 0);
+						self:ClearFocus()
+					</OnEscapePressed>
+				</Scripts>
+			</EditBox>
+		</ScrollChild>
+	</ScrollFrame>
+	<ScrollFrame name="LeaPlusEnhanceMinimapExcludeButtonsScrollFrameTemplate" inherits="ScrollFrameTemplate" virtual="true">
+		<KeyValues>
+			<KeyValue key="scrollBarX" value="6" type="number"/>
+			<KeyValue key="scrollBarTopY" value="0" type="number"/>
+			<KeyValue key="scrollBarBottomY" value="-2" type="number"/>
+		</KeyValues>
+		<ScrollChild>
+			<EditBox parentKey="EditBox" multiLine="true" countInvisibleLetters="true" autoFocus="false">
+				<Scripts>
+					<OnCursorChanged function="ScrollingEdit_OnCursorChanged"/>
+					<OnUpdate function="InputScrollFrame_OnUpdate"/>
+					<OnEscapePressed>
+						self:HighlightText(0, 0);
+						self:ClearFocus()
+					</OnEscapePressed>
+				</Scripts>
+			</EditBox>
+		</ScrollChild>
+	</ScrollFrame>
+	<ScrollFrame name="LeaPlusConfigurationPanelScrollFrameTemplate" inherits="ScrollFrameTemplate" virtual="true">
+		<KeyValues>
+			<KeyValue key="scrollBarX" value="12" type="number"/>
+			<KeyValue key="scrollBarTopY" value="0" type="number"/>
+			<KeyValue key="scrollBarBottomY" value="-2" type="number"/>
+		</KeyValues>
+	</ScrollFrame>
+</Ui>

@@ -1,0 +1,5 @@
+<Bindings>
+  <Binding name="PASTE" header="PASTE" runOnUp="true" category="ADDONS">
+    Paste:ToggleWindow(keystate);
+  </Binding>
+</Bindings>

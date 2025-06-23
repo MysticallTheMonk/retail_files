@@ -1,0 +1,4 @@
+<Ui>
+    <Script file="Plugins.lua" />
+    <Script file="CanIMogIt.lua" />
+</Ui>

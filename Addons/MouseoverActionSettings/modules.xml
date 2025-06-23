@@ -1,0 +1,36 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+<!--ActionBars-->
+    <Script file="Modules/ActionBars/MultiBarBottomLeft.lua"/>
+    <Script file="Modules/ActionBars/MultiBarBottomRight.lua"/>
+    <Script file="Modules/ActionBars/MainMenuBar.lua"/>
+    <Script file="Modules/ActionBars/MultiBarRight.lua"/>
+    <Script file="Modules/ActionBars/MultiBarLeft.lua"/>
+    <Script file="Modules/ActionBars/MultiBar5.lua"/>
+    <Script file="Modules/ActionBars/MultiBar6.lua"/>
+    <Script file="Modules/ActionBars/MultiBar7.lua"/>
+    <Script file="Modules/ActionBars/StanceBar.lua"/>
+    <Script file="Modules/ActionBars/PetActionBar.lua"/>
+<!--HUD-->
+    <Script file="Modules/HUD/PlayerFrame.lua"/>
+    <Script file="Modules/HUD/TargetFrame.lua"/>
+    <Script file="Modules/HUD/FocusFrame.lua"/>
+    <Script file="Modules/HUD/PetFrame.lua"/>
+    <Script file="Modules/HUD/PartyFrame.lua"/>
+    <Script file="Modules/HUD/BagsBar.lua"/>
+    <Script file="Modules/HUD/MicroMenu.lua"/>
+    <Script file="Modules/HUD/Minimap.lua"/>
+    <Script file="Modules/HUD/BuffFrame.lua"/>
+    <Script file="Modules/HUD/DebuffFrame.lua"/>
+    <Script file="Modules/HUD/ObjectiveTracker.lua"/>
+    <Script file="Modules/HUD/TrackingBarContainer.lua"/>
+    <Script file="Modules/HUD/ChatFrame.lua"/>
+<!--ConfigModules-->
+    <Script file="Modules/GlobalSettings.lua"/>
+    <Script file="Modules/ActionBarConfig.lua"/>
+    <Script file="Modules/MiniMapButton.lua"/>
+    <Script file="Modules/FrameColorSkin.lua"/>
+<!--Hide-->
+    <Script file="Modules/Hide/HideBagsBar.lua"/>
+    <Script file="Modules/Hide/HideTrackingBars.lua"/>
+    <Script file="Modules/Hide/HideMicroMenu.lua"/>
+</Ui>

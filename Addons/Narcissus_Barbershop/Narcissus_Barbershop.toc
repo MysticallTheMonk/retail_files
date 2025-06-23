@@ -1,0 +1,18 @@
+## Interface: 110105, 110107
+## Plain Title: Narcissus Barbershop
+## Version: 1.6
+## LoadOnDemand: 1
+## RequiredDeps: Narcissus
+
+## Title: Narcissus Barbershop
+
+## Notes: Save and share your appearances.
+## Notes-zhCN: 理发厅增强: 保存\分享外观
+## Notes-zhTW: 保存樣貌
+
+## SavedVariables: NarciBarberShopDB
+## Author: Peterodox
+
+## IconTexture: Interface\AddOns\Narcissus\Art\Logos\AddonListIconT
+
+Code\Barbershop.xml

@@ -1,0 +1,369 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\..\FrameXML\UI.xsd">
+
+	<Script file="ElvUI.lua"/>
+	<Script file="REFlex.lua"/>
+	<Script file="REFlexFunctions.lua"/>
+	<Script file="REFlexStructures.lua"/>
+	<Script file="REFlexUpdater.lua"/>
+
+	<Frame name="REFlexFrame" inherits="BackdropTemplate" resizable="false" movable="true" hidden="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="790" y="625"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Scripts>
+			<OnLoad inherit="prepend">REFlex:OnLoad(self)</OnLoad>
+			<OnEvent>REFlex:OnEvent(self, event, ...)</OnEvent>
+			<OnShow>PlaySound(SOUNDKIT.IG_CHARACTER_INFO_OPEN); REFlex:UpdateGUI()</OnShow>
+			<OnHide>REFlex:OnHide(self)</OnHide>
+			<OnDragStart>self:StartMoving()</OnDragStart>
+			<OnDragStop>self:StopMovingOrSizing()</OnDragStop>
+		</Scripts>
+		<KeyValues>
+			<KeyValue key="backdropInfo" value="REFlex.BackdropA" type="global"/>
+		</KeyValues>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parent_Header" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="300" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parent_Title" inherits="GameFontNormal">
+					<Anchors>
+						<Anchor point="TOP"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseButton" inherits="UIPanelCloseButton">
+				<HitRectInsets>
+					<AbsInset left="5" right="5" top="5" bottom="5"/>
+				</HitRectInsets>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-10" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_DumpButton" text="D" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="20" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="$parent_CloseButton" relativePoint="LEFT"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>REFlex:DumpCSV()</OnClick>
+				</Scripts>
+			</Button>
+			<DropdownButton name="$parent_StatsButton" text="S" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="20" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="$parent_DumpButton" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>REFlex:OnArenaStatsClick(self)</OnClick>
+				</Scripts>
+			</DropdownButton>
+			<Button name="$parentTab1" inherits="CharacterFrameTabTemplate" id="1">
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="40" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PanelTemplates_SetTab(REFlexFrame, 1); REFlex:UpdateGUI()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentTab2" inherits="CharacterFrameTabTemplate" id="2">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentTab1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-15" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PanelTemplates_SetTab(REFlexFrame, 2); REFlex:UpdateGUI()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentTab3" inherits="CharacterFrameTabTemplate" id="3">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentTab2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-15" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PanelTemplates_SetTab(REFlexFrame, 3); REFlex:UpdateGUI()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentTab4" inherits="CharacterFrameTabTemplate" id="4">
+				<Scripts>
+					<OnClick>PanelTemplates_SetTab(REFlexFrame, 4); REFlex:UpdateGUI()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentTab5" inherits="CharacterFrameTabTemplate" id="5">
+				<Scripts>
+					<OnClick>PanelTemplates_SetTab(REFlexFrame, 5); REFlex:UpdateGUI()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentTab6" inherits="CharacterFrameTabTemplate" id="6">
+				<Scripts>
+					<OnClick>PanelTemplates_SetTab(REFlexFrame, 6); REFlex:UpdateGUI()</OnClick>
+				</Scripts>
+			</Button>
+			<Frame name="$Parent_HKBar" inherits="BackdropTemplate">
+				<Size>
+					<AbsDimension x="240" y="25"/>
+				</Size>
+				<KeyValues>
+					<KeyValue key="backdropInfo" value="REFlex.BackdropB" type="global"/>
+				</KeyValues>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="18"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Statusbar minValue="0" frameStrata="LOW" name="$Parent_I">
+						<Anchors>
+							<Anchor point="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="4"/>
+								</Offset>
+							</Anchor>
+							<Anchor point="TOP">
+								<Offset>
+									<AbsDimension x="0" y="-4"/>
+								</Offset>
+							</Anchor>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="4" y="0"/>
+								</Offset>
+							</Anchor>
+							<Anchor point="RIGHT">
+								<Offset>
+									<AbsDimension x="-4" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Statusbar>
+				</Frames>
+				<Layers>
+					<Layer>
+						<FontString name="$Parent_Text" justifyH="CENTER" inherits="SystemFont_Small">
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Frame name="$parent_ScoreHolder">
+				<Size>
+					<AbsDimension x="0" y="100"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP"/>
+					<Anchor point="LEFT"/>
+					<Anchor point="RIGHT"/>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$Parent_Line" justifyH="CENTER" inherits="SystemFont_OutlineThick_Huge4" text="-">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-40"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$Parent_Wins" justifyH="CENTER" inherits="SystemFont_OutlineThick_Huge4">
+							<Color r="0" g="0.8" b="0" a="1"/>
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="-40" y="-40"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$Parent_Lose" justifyH="CENTER" inherits="SystemFont_OutlineThick_Huge4">
+							<Color r="0.8" g="0" b="0" a="1"/>
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="40" y="-40"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$Parent_RBG" justifyH="CENTER" inherits="SystemFont_Shadow_Med1">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-68"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$Parent_KB1" justifyH="CENTER" inherits="SystemFont_Shadow_Med2">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="-170" y="-35"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$Parent_KB2" justifyH="CENTER" inherits="SystemFont_Shadow_Med1">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="-170" y="-55"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$Parent_KB3" justifyH="CENTER" inherits="SystemFont_Shadow_Med1">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="-170" y="-72"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$Parent_HK1" justifyH="CENTER" inherits="SystemFont_Shadow_Med2">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="170" y="-35"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$Parent_HK2" justifyH="CENTER" inherits="SystemFont_Shadow_Med1">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="170" y="-55"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$Parent_HK3" justifyH="CENTER" inherits="SystemFont_Shadow_Med1">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="170" y="-72"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$Parent_Damage1" justifyH="CENTER" inherits="SystemFont_Shadow_Med2">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="-290" y="-35"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$Parent_Damage2" justifyH="CENTER" inherits="SystemFont_Shadow_Med1">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="-290" y="-55"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$Parent_Damage3" justifyH="CENTER" inherits="SystemFont_Shadow_Med1">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="-290" y="-72"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$Parent_Healing1" justifyH="CENTER" inherits="SystemFont_Shadow_Med2">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="290" y="-35"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$Parent_Healing2" justifyH="CENTER" inherits="SystemFont_Shadow_Med1">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="290" y="-55"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$Parent_Healing3" justifyH="CENTER" inherits="SystemFont_Shadow_Med1">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="290" y="-72"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+		</Frames>
+	</Frame>
+
+	<Frame name="REFlexBGFrame" frameStrata="DIALOG" toplevel="true" parent="PVPMatchResults">
+		<Size>
+			<AbsDimension x="5" y="5"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="30"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<FontString name="$ParentText" justifyH="CENTER" inherits="SystemFont_Shadow_Med1"/>
+			</Layer>
+		</Layers>
+	</Frame>
+
+</Ui>

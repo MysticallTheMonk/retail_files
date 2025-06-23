@@ -1,0 +1,39 @@
+## Interface: 30404
+## X-Curse-Project-ID: 48863
+## X-Wago-ID: BKpq0BGE
+## Title: Myslot
+## Notes: Myslot is for transferring settings between accounts. Feedback farmer1992@gmail.com
+## Notes-deDE: Myslot dient zum Übertragen von Einstellungen zwischen Konten. Feedback farmer1992@gmail.com
+## Notes-esES: Myslot es para transferir configuraciones entre cuentas. Comentarios: farmer1992@gmail.com
+## Notes-frFR: Myslot permet de transférer des paramètres entre comptes. Retour : farmer1992@gmail.com
+## Notes-itIT: Myslot serve per trasferire impostazioni tra account. Feedback: farmer1992@gmail.com
+## Notes-koKR: Myslot은 계정 간 설정 전송에 사용됩니다. 피드백: farmer1992@gmail.com
+## Notes-ptBR: Myslot é para transferir configurações entre contas. Feedback: farmer1992@gmail.com
+## Notes-ruRU: Myslot предназначен для передачи настроек между учетными записями. Обратная связь: farmer1992@gmail.com
+## Notes-zhCN: Myslot 用于在账户之间传输设置。反馈: farmer1992@gmail.com
+## Notes-zhTW: Myslot 用於在帳號之間傳輸設定。反饋: farmer1992@gmail.com
+## Author: Boshi Lian(farmer1992@gmail.com)
+## Version: v5.23.1
+## SavedVariables: MyslotExports
+## SavedVariablesPerCharacter: MyslotSettings
+## IconTexture: Interface\AddOns\Myslot\Myslot
+
+
+libs\LibStub\LibStub.lua
+libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
+libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
+
+libs\LibDBIcon-1.0\LibDBIcon-1.0.lua
+
+libs\base64.lua
+libs\crc32.lua
+libs\lua-pb\lua-pb.xml
+
+protobuf\Myslot.lua
+
+event.lua
+locales.lua
+keys.lua
+Myslot.lua
+gui.lua
+options.lua

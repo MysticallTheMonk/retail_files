@@ -1,0 +1,12 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="Init.lua"/>
+	<Script file="Load.lua"/>
+	<Script file="Core.lua"/>
+	<Script file="Dialogs.lua"/>
+	<Script file="ProfileSharing.lua"/>
+	<Script file="Auras.lua"/>
+	<Include file="OmniAuras.xml"/>
+	<Script file="OmniAuras.lua"/>
+	<Script file="Blizzard.lua"/>
+</Ui>

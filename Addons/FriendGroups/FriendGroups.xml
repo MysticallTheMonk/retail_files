@@ -1,0 +1,192 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Button name="FriendGroupsFrameFriendDividerTemplate" registerForClicks="LeftButtonUp, RightButtonUp" virtual="true">
+		<Size x="298" y="16"/>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString inherits="FriendsFont_Normal" justifyH="CENTER" parentKey="name">
+					<Size x="226" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0" y="-4"/>
+					</Anchors>
+					<Color color="NORMAL_FONT_COLOR"/>
+				</FontString>
+				<FontString inherits="FriendsFont_Normal" justifyH="RIGHT" parentKey="info">
+					<Size x="226" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" x="-20" y="-4"/>
+					</Anchors>
+					<Color color="NORMAL_FONT_COLOR"/>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button parentKey="collapseButton" registerForClicks="LeftButtonUp" virtual="true">
+				<Size x="16" y="16"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" x="0" y="1"/>
+				</Anchors>
+				<NormalTexture file="Interface\\Buttons\\UI-PlusButton-UP" parentKey="status">
+					<Size x="16" y="16"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="4" y="-3"/>
+					</Anchors>
+				</NormalTexture>
+				<Scripts>
+					<OnClick>
+						FriendGroups_FrameFriendDividerTemplateCollapseClick(self, button, down)
+					</OnClick>
+				</Scripts>
+				<HighlightTexture file="Interface\QuestFrame\UI-QuestLogTitleHighlight" alphaMode="ADD" parentKey="highlight">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="5" y="-5"/>
+						<Anchor point="BOTTOMRIGHT" x="5" y="0"/>
+					</Anchors>
+				</HighlightTexture>
+			</Button>
+		</Frames>
+		<HighlightTexture file="Interface\QuestFrame\UI-QuestLogTitleHighlight" alphaMode="ADD" parentKey="highlight">
+			<Anchors>
+				<Anchor point="TOPLEFT" x="0" y="-1"/>
+				<Anchor point="BOTTOMRIGHT" x="0" y="1"/>
+			</Anchors>
+		</HighlightTexture>
+		<Scripts>
+			<OnClick>
+				FriendGroups_FrameFriendDividerTemplateHeaderClick(self, button, down)
+			</OnClick>
+		</Scripts>
+	</Button>
+	<Button name="FriendGroupsFriendsListButtonTemplate" registerForClicks="LeftButtonUp, RightButtonUp" hidden="true" virtual="true" mixin="FriendsListButtonMixin">
+		<Size x="298" y="34"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="background">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0" y="-1"/>
+						<Anchor point="BOTTOMRIGHT" x="0" y="1"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture file="Interface\FriendsFrame\StatusIcon-Online" parentKey="status">
+					<Size x="16" y="16"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="4" y="-3"/>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\FriendsFrame\Battlenet-WoWicon" parentKey="gameIcon">
+					<Size x="28" y="28"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" x="-21" y="-3"/>
+					</Anchors>
+				</Texture>
+				<FontString inherits="FriendsFont_Normal" justifyH="LEFT" parentKey="name">
+					<Size x="226" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="20" y="-4"/>
+					</Anchors>
+					<Color r="0.510" g="0.773" b="1"/>
+				</FontString>
+				<FontString inherits="FriendsFont_Small" justifyH="LEFT" parentKey="info">
+					<Size x="260" y="10"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.name" relativePoint="BOTTOMLEFT" x="0" y="-3"/>
+					</Anchors>
+					<Color color="FRIENDS_GRAY_COLOR"/>
+				</FontString>
+				<Texture atlas="friendslist-favorite" hidden="true" parentKey="Favorite">
+					<Size x="17" y="17"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button hidden="true" motionScriptsWhileDisabled="true" parentKey="travelPassButton">
+				<Size x="24" y="32"/>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset x="1" y="-1"/>
+					</Anchor>
+				</Anchors>
+				<NormalTexture name="$parentNormalTexture" parentKey="NormalTexture" atlas="friendslist-invitebutton-default-normal">
+					<Size x="24" y="32"/>
+				</NormalTexture>
+				<PushedTexture name="$parentPushedTexture" parentKey="PushedTexture" atlas="friendslist-invitebutton-default-pressed">
+					<Size x="24" y="32"/>
+				</PushedTexture>
+				<DisabledTexture name="$parentDisabledTexture" parentKey="DisabledTexture" atlas="friendslist-invitebutton-default-disabled">
+					<Size x="24" y="32"/>
+				</DisabledTexture>
+				<HighlightTexture name="$parentHighlightTexture" parentKey="HighlightTexture" atlas="friendslist-invitebutton-highlight" alphaMode="ADD">
+					<Size x="24" y="32"/>
+				</HighlightTexture>
+				<Scripts>
+					<OnEnter function="TravelPassButton_OnEnter"/>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+					<OnClick>
+						FriendsFrame_BattlenetInviteByIndex(self:GetParent().id);
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button inherits="ActionButtonTemplate" hidden="true" parentKey="summonButton">
+				<Size x="24" y="32"/>
+				<Anchors>
+					<Anchor point="TOPRIGHT" x="1" y="-1"/>
+				</Anchors>
+				<HighlightTexture name="$parentHighlightTexture" atlas="friendslist-invitebutton-highlight" alphaMode="ADD">
+					<Size x="24" y="32"/>
+				</HighlightTexture>
+				<Scripts>
+					<OnLoad>
+						local normalTexture = self:GetNormalTexture();
+						normalTexture:ClearAllPoints();
+						normalTexture:SetPoint("CENTER");
+						normalTexture:SetSize(self:GetSize());
+						normalTexture:SetAtlas("socialqueuing-friendlist-summonbutton-up");
+
+						local pushedTexture = self:GetPushedTexture();
+						pushedTexture:ClearAllPoints();
+						pushedTexture:SetPoint("CENTER");
+						pushedTexture:SetSize(self:GetSize());
+						pushedTexture:SetAtlas("socialqueuing-friendlist-summonbutton-down");
+
+						self.cooldown:SetSize(self:GetSize());
+						self.cooldown:SetHideCountdownNumbers(true);
+						self.cooldown:SetSwipeColor(0, 0, 0);
+					</OnLoad>
+					<OnShow>
+						FriendsFrame_SummonButton_OnShow(self);
+					</OnShow>
+					<OnClick>
+						FriendsFrame_ClickSummonButton(self, button, down);
+					</OnClick>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(RAF_SUMMON_LINKED, 1, 1, 1, true);
+						if ( self.duration ) then
+							GameTooltip:AddLine(COOLDOWN_REMAINING .. " " .. SecondsToTime(self.duration - (GetTime() - self.start)), 1, 1, 1, true);
+						end
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad method="OnLoad"/>
+			<OnEnter method="OnEnter"/>
+			<OnLeave method="OnLeave"/>
+			<OnClick method="OnClick"/>
+		</Scripts>
+		<HighlightTexture file="Interface\QuestFrame\UI-QuestLogTitleHighlight" alphaMode="ADD" parentKey="highlight">
+			<Anchors>
+				<Anchor point="TOPLEFT" x="0" y="-1"/>
+				<Anchor point="BOTTOMRIGHT" x="0" y="1"/>
+			</Anchors>
+		</HighlightTexture>
+	</Button>
+</Ui>

@@ -1,0 +1,42 @@
+Version 6.04
+============
+
+ o Updated the version in the TOC file for patch 11.1.5.
+
+ o Added base stats for the new battle pets added up to patch 11.1.5.
+
+ o Fixed bugs introduced by Blizzard API changes.
+
+ o Fixed the size and position of the "Strategy" button in pet battles.
+
+ o Fixed a bug that corrupted battle pet base stats.
+
+Version 6.03
+============
+
+ o Updated the version in the TOC file for patch 11.1.0.
+
+ o Added base stats for the new battle pets added up to patch 11.1.0.
+
+ o Added the pet tamers added in patch 11.1.0
+
+Version 6.02
+============
+
+ o Updated the version in the TOC file for patch 11.0.7.
+
+ o Added base stats for the new battle pets added up to patch 11.0.7.
+
+Version 6.01
+============
+
+ o Added continental data for Kahz Algar.
+
+Version 6.00
+============
+
+ o Updated the version in the TOC file for patch 11.0.2.
+
+ o Added base stats for the new battle pets added up to patch 11.0.2.
+ 
+ o Added the pet tamers added in patch 11.0.2

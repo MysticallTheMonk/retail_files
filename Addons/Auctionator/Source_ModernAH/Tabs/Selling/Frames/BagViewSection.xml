@@ -1,0 +1,38 @@
+<Ui>
+  <Frame name="AuctionatorSellingViewGroupTemplate" mixin="AuctionatorGroupsViewGroupMixin" virtual="true">
+    <KeyValues>
+      <!--<KeyValue key="rowWidth" value="6" type="number" />-->
+      <KeyValue key="collapsable" value="true" type="boolean" />
+      <KeyValue key="insetLeft" value="0" type="number" />
+      <KeyValue key="groupTitleHeight" value="22" type="number" />
+      <KeyValue key="paddingBottom" value="0" type="number" />
+    </KeyValues>
+    <Size y="20"/>
+    <Frames>
+      <Button parentKey="GroupTitle" inherits="AuctionCategoryButtonTemplate">
+        <Size y="20"/>
+        <Anchors>
+          <Anchor point="RIGHT" />
+        </Anchors>
+        <Scripts>
+          <OnLoad>
+            AuctionFrameFilter_OnLoad(self)
+            if not Auctionator.Constants.IsRetail then -- Get the tex coords set properly
+              AuctionHouseFilterButton_SetUp(self, {type = "category"})
+              self.NormalTexture:ClearAllPoints()
+              self.NormalTexture:SetHeight(self:GetHeight())
+            end
+            self.NormalTexture:SetPoint("LEFT")
+            self.NormalTexture:SetPoint("RIGHT")
+            self.Text:SetPoint("LEFT", 12, 0)
+            self.HighlightTexture:ClearAllPoints()
+            self.HighlightTexture:SetHeight(self:GetHeight())
+            self.HighlightTexture:SetPoint("LEFT")
+            self.HighlightTexture:SetPoint("RIGHT")
+          </OnLoad>
+          <OnClick>self:GetParent():ToggleOpen()</OnClick>
+        </Scripts>
+      </Button>
+    </Frames>
+  </Frame>
+</Ui>

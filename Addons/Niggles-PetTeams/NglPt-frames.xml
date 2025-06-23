@@ -1,0 +1,2045 @@
+<Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
+  <!-- Template for a button in a dropdown menu -->
+  <Button name="NigglesPetTeamsMenuButtonTemplate" motionScriptsWhileDisabled="true" virtual="true">
+    <Size x="100" y="16"/>
+    <Layers>
+      <Layer level="ARTWORK">
+        <Texture parentKey="check" file="Interface\Common\UI-DropDownRadioChecks" hidden="true">
+          <Size x="16" y="16"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" x="0" y="0"/>
+          </Anchors>
+        </Texture>
+        <Texture parentKey="expand" file="Interface\ChatFrame\ChatFrameExpandArrow">
+          <Size x="16" y="16"/>
+          <Anchors>
+            <Anchor point="TOPRIGHT" x="0" y="0"/>
+          </Anchors>
+        </Texture>
+        <Texture parentKey="divider" file="Interface\Common\UI-TooltipDivider-Transparent" hidden="true">
+          <Size x="8" y="8"/>
+          <Anchors>
+            <Anchor point="LEFT" x="0" y="0"/>
+            <Anchor point="RIGHT" x="0" y="0"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+    </Layers>
+    <ButtonText parentKey="text" wordWrap="false">
+      <Anchors>
+        <Anchor point="LEFT" x="0" y="0"/>
+      </Anchors>
+    </ButtonText>
+    <NormalFont style="GameFontHighlightSmallLeft"/>
+    <HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
+  </Button>
+
+  <!-- Template for a button used to drag frames -->
+  <Button name="NigglesPetTeamsDragButtonTemplate" virtual="true">
+    <Anchors>
+      <Anchor point="TOPLEFT"/>
+      <Anchor point="BOTTOMRIGHT" relativeKey="$parent.CloseButton" relativePoint="BOTTOMLEFT"/>
+    </Anchors>
+    <Scripts>
+      <OnMouseDown>
+        self:GetParent():StartMoving();
+      </OnMouseDown>
+      <OnMouseUp>
+        self:GetParent():StopMovingOrSizing();
+      </OnMouseUp>
+    </Scripts>
+  </Button>
+
+  <!-- Template for check buttons in 'Interface/AddOns' panels -->
+  <CheckButton name="NigglesPetTeamsOptionsCheckButtonTemplate" virtual="true">
+    <Size x="26" y="26"/>
+    <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+    <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+    <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+    <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+    <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+    <NormalFont style="GameFontNormalLeft"/>
+    <DisabledFont style="GameFontDisableLeft"/>
+    <PushedTextOffset x="0" y="0"/>
+    <Scripts>
+      <OnLeave function="GameTooltip_Hide"/>
+    </Scripts>
+  </CheckButton>
+
+  <!-- Template for edit boxes in 'Interface/AddOns' panels -->
+  <EditBox name="NigglesPetTeamsOptionsEditBoxTemplate" enableMouse="true" autoFocus="false" virtual="true">
+    <Size x="100" y="20"/>
+    <Layers>
+      <Layer level="BACKGROUND">
+        <FontString parentKey="label" inherits="GameFontNormal" nonspacewrap="false" justifyH="RIGHT" justifyV="MIDDLE">
+          <Size x="0" y="20"/>
+          <Anchors>
+            <Anchor point="LEFT"/>
+          </Anchors>
+        </FontString>
+        <Texture parentKey="left" file="Interface\Common\Common-Input-Border">
+          <Size x="8" y="20"/>
+          <Anchors>
+            <Anchor point="LEFT" relativeKey="$parent.label" relativePoint="RIGHT" x="3"/>
+          </Anchors>
+          <TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
+        </Texture>
+        <Texture parentKey="right" file="Interface\Common\Common-Input-Border">
+          <Size x="8" y="20"/>
+          <Anchors>
+            <Anchor point="RIGHT" x="0" y="0"/>
+          </Anchors>
+          <TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
+        </Texture>
+        <Texture file="Interface\Common\Common-Input-Border">
+          <Size x="10" y="20"/>
+          <Anchors>
+            <Anchor point="LEFT" relativeKey="$parent.left" relativePoint="RIGHT"/>
+            <Anchor point="RIGHT" relativeKey="$parent.right" relativePoint="LEFT"/>
+          </Anchors>
+          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
+        </Texture>
+      </Layer>
+    </Layers>
+    <Scripts>
+      <OnEscapePressed function="EditBox_ClearFocus"/>
+      <OnEditFocusLost function="EditBox_ClearHighlight"/>
+      <OnEditFocusGained function="EditBox_HighlightText"/>
+    </Scripts>
+    <FontString inherits="ChatFontNormal"/>
+  </EditBox>
+
+  <!-- Template for headings in 'Interface/AddOns' panels -->
+  <CheckButton name="NigglesPetTeamsOptionsHeadingTemplate" virtual="true">
+    <Size x="400" y="36"/>
+    <Layers>
+      <Layer level="ARTWORK">
+        <FontString parentKey="subText" inherits="GameFontHighlightSmall" nonspacewrap="false" justifyH="LEFT" justifyV="TOP">
+          <Anchors>
+            <Anchor point="TOP" x="0" y="-26"/>
+            <Anchor point="LEFT" x="26" y="0"/>
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
+    <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+    <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+    <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+    <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+    <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+    <NormalFont style="GameFontHighlightLarge"/>
+    <DisabledFont style="GameFontDisableLarge"/>
+    <PushedTextOffset x="0" y="0"/>
+    <Scripts>
+      <OnLeave function="GameTooltip_Hide"/>
+    </Scripts>
+  </CheckButton>
+
+  <!-- Template for filtered bar for scroll frames -->
+  <Button name="NigglesPetTeamsFilteredBarTemplate" hidden="true" virtual="true">
+    <Size x="100" y="18"/>
+    <Layers>
+      <Layer level="BACKGROUND">
+        <Texture parentKey="background" file="Interface\Buttons\UI-Listbox-Highlight2">
+          <Color r="0.6" g="0.75" b="1.0" a="0.5" />
+          <Anchors>
+            <Anchor point="TOPLEFT" x="3" y="-1"/>
+            <Anchor point="BOTTOMRIGHT" x="-3" y="1"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+    </Layers>
+    <NormalFont style="GameFontHighlightSmallLeft"/>
+    <PushedTextOffset x="0" y="0"/>
+    <NormalTexture parentKey="normal" file="Interface\FriendsFrame\ClearBroadcastIcon" alpha="0.5">
+      <Size x="14" y="14"/>
+      <Anchors>
+        <Anchor point="TOPRIGHT" x="-4" y="-2"/>
+      </Anchors>
+    </NormalTexture>
+    <PushedTexture file="Interface\FriendsFrame\ClearBroadcastIcon" alpha="1.0">
+      <Size x="14" y="14"/>
+      <Anchors>
+        <Anchor point="TOPRIGHT" x="-4" y="-2"/>
+      </Anchors>
+    </PushedTexture>
+    <ButtonText parentKey="text" wordWrap="false">
+      <Size x="0" y="16"/>
+      <Anchors>
+        <Anchor point="TOPLEFT" x="6" y="-1"/>
+        <Anchor point="RIGHT" x="-24" y="0"/>
+      </Anchors>
+    </ButtonText>
+    <Scripts>
+      <OnEnter>
+        self.normal:SetAlpha(1.0);
+      </OnEnter>
+      <OnLeave>
+        self.normal:SetAlpha(0.5);
+      </OnLeave>
+      <OnSizeChanged>
+        local isShown = (self:GetHeight() >= 15);
+        local onClick = (self:GetScript("OnClick") ~= nil);
+        self.background:SetShown(isShown);
+        self.text:SetShown(isShown);
+        self.normal:SetShown(isShown and onClick);
+        self:SetEnabled(isShown and onClick);
+        if (isShown) then
+          self:SetHitRectInsets(self:GetWidth()-18, 6, 2, self:GetHeight()-15);
+        end
+      </OnSizeChanged>
+    </Scripts>
+  </Button>
+
+  <!-- Template for a tutorial alert -->
+  <Frame name="NigglesPetTeamsTutorialAlertTemplate" inherits="GlowBoxTemplate" enableMouse="true" hidden="true" frameStrata="DIALOG" frameLevel="2" topLevel="true" virtual="true">
+    <Size x="220" y="100"/>
+    <Layers>
+      <Layer level="ARTWORK">
+        <Texture parentArray="arrows" inherits="HelpPlateArrowDOWN">
+          <Size x="53" y="21"/>
+          <Anchors>
+            <Anchor point="RIGHT" relativePoint="LEFT" x="3" y="0"/>
+          </Anchors>
+        </Texture>
+        <Texture parentArray="arrows" inherits="HelpPlateArrowDOWN">
+          <Size x="53" y="21"/>
+          <Anchors>
+            <Anchor point="LEFT" relativePoint="RIGHT" x="-3" y="0"/>
+          </Anchors>
+        </Texture>
+        <Texture parentArray="arrows" inherits="HelpPlateArrowUP">
+          <Size x="53" y="21"/>
+          <Anchors>
+            <Anchor point="BOTTOM" relativePoint="TOP" x="0" y="-3"/>
+          </Anchors>
+        </Texture>
+        <Texture parentArray="arrows" inherits="HelpPlateArrowDOWN">
+          <Size x="53" y="21"/>
+          <Anchors>
+            <Anchor point="TOP" relativePoint="BOTTOM" x="0" y="3"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+      <Layer level="OVERLAY">
+        <FontString parentKey="text" inherits="GameFontHighlightLeft" justifyV="TOP">
+          <Size x="188" y="0"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" x="16" y="-24"/>
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
+    <Frames>
+      <Button parentKey="close" inherits="UIPanelCloseButton">
+        <Anchors>
+          <Anchor point="TOPRIGHT" x="6" y="6"/>
+        </Anchors>
+      </Button>
+    </Frames>
+  </Frame>
+
+  <!-- Template for a button in the Pet Teams scroll frame -->
+  <Button name="NigglesPetTeamButtonTemplate" registerForClicks="LeftButtonUp,RightButtonUp" virtual="true">
+    <Size x="160" y="46"/>
+    <Layers>
+      <Layer level="BACKGROUND">
+        <Texture atlas="PetList-ButtonBackground"/>
+      </Layer>
+      <Layer level="BORDER">
+        <Texture parentKey="icon">
+          <Size x="38" y="38"/>
+          <Anchors>
+            <Anchor point="LEFT" x="-42" y="0"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+      <Layer level="ARTWORK" textureSubLevel="-1">
+        <Texture parentKey="iconBorder" file="Interface\Common\WhiteIconFrame">
+          <Anchors>
+            <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeKey="$parent.icon"/>
+            <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeKey="$parent.icon"/>
+          </Anchors>
+          <Color r="0.5" g="0.3765" b="0.1882"/>
+        </Texture>
+      </Layer>
+      <Layer level="ARTWORK" textureSubLevel="1">
+        <FontString parentKey="name" inherits="GameFontNormal" justifyH="LEFT" justifyV="MIDDLE" wordwrap="false">
+          <Size y="12"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" x="8" y="-7"/>
+            <Anchor point="RIGHT" x="-8"/>
+          </Anchors>
+        </FontString>
+          <FontString parentKey="subName" inherits="GameFontNormalSmall" justifyH="LEFT" justifyV="MIDDLE" wordwrap="false">
+          <Size y="12"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeKey="$parent.name" relativePoint="BOTTOMLEFT" y="-4"/>
+            <Anchor point="RIGHT" x="-8"/>
+          </Anchors>
+          <Color r="1" g="1" b="1" a="1"/>
+        </FontString>
+      </Layer>
+      <Layer level="OVERLAY" textureSubLevel="1">
+        <Texture parentKey="highlight" file="Interface\Buttons\CheckButtonHilight" alphaMode="ADD" hidden="true">
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeKey="$parent.icon"/>
+            <Anchor point="BOTTOMRIGHT" relativeKey="$parent.icon"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+      <Layer level="OVERLAY" textureSubLevel="2">
+        <Texture parentKey="category" file="Interface\TARGETINGFRAME\UI-RaidTargetingIcons" hidden="true">
+          <Size x="16" y="16"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeKey="$parent.icon" x="-3" y="3"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+    </Layers>
+    <HighlightTexture atlas="PetList-ButtonHighlight"/>
+    <Scripts>
+      <OnLoad>
+        self:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+      </OnLoad>
+      <OnClick function="NigglesPetTeamButtonOnClick"/>
+      <OnDoubleClick function="NigglesPetTeamButtonOnDblClick"/>
+    </Scripts>
+  </Button>
+
+  <!-- Template for buttons in the Icon dropdown -->
+  <CheckButton name="NigglesPetTeamIconButtonTemplate" virtual="true">
+    <Size x="38" y="38"/>
+    <Layers>
+      <Layer level="BACKGROUND">
+        <Texture parentKey="icon" setAllPoints="true"/>
+      </Layer>
+    </Layers>
+    <NormalTexture file="Interface\Buttons\UI-Quickslot2">
+      <Size x="64" y="64"/>
+      <Anchors>
+        <Anchor point="CENTER" x="0" y="-1"/>
+      </Anchors>
+    </NormalTexture>
+    <PushedTexture file="Interface\Buttons\UI-Quickslot-Depress"/>
+    <HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+    <CheckedTexture file="Interface\Buttons\CheckButtonHilight" alphaMode="ADD"/>
+  </CheckButton>
+
+  <!-- Template for buttons used in the search drop down -->
+  <Button name="NigglesPetTeamSearchButtonTemplate" virtual="true">
+    <Size x="1" y="14"/>
+    <ButtonText justifyh="left" wordwrap="false" nonspacewrap="false" setAllPoints="all"/>
+    <NormalFont style="GameFontHighlightSmall"/>
+    <DisabledFont style="GameFontDisableSmall"/>
+    <HighlightTexture file="Interface\FriendsFrame\UI-FriendsFrame-HighlightBar" alphaMode="ADD"/>
+    <DisabledTexture file="Interface\Common\UI-TooltipDivider-Transparent" hidden="true">
+      <Size x="8" y="8"/>
+      <Anchors>
+        <Anchor point="LEFT" x="0" y="0"/>
+        <Anchor point="RIGHT" x="0" y="0"/>
+      </Anchors>
+    </DisabledTexture>
+    <Scripts>
+      <OnLoad>
+        local fontString = self:GetFontString();
+        fontString:SetAllPoints();
+      </OnLoad>
+      <OnEnter>
+        local scrollFrame = self:GetParent():GetParent();
+        if (type(scrollFrame.onEnter) == "function") then
+          scrollFrame.onEnter(self, scrollFrame.userData);
+        end
+      </OnEnter>
+      <OnLeave function="GameTooltip_Hide"/>
+      <OnClick>
+        local scrollFrame = self:GetParent():GetParent();
+        if (type(scrollFrame.onClick) == "function") then
+          scrollFrame.onClick(self, scrollFrame.userData);
+          scrollFrame:GetParent():Hide();
+        end
+      </OnClick>
+    </Scripts>
+  </Button>
+
+  <!-- Template for frames to display 'Placeholder' on the Blizzard load out -->
+  <Frame name="NigglesPetTeamsPlaceholderTemplate" hidden="true" virtual="true">
+    <Size x="124" y="45"/>
+    <Anchors>
+      <Anchor point="BOTTOMRIGHT" x="-5" y="15"/>
+    </Anchors>
+    <Layers>
+      <Layer level="BACKGROUND">
+        <Texture file="Interface\Garrison\GarrisonMissionUI2">
+          <Size x="124" y="70"/>
+          <TexCoords left="0.4296875" right="0.5498046875" top="0.8271484375" bottom="0.89453125"/>
+        </Texture>
+      </Layer>
+      <Layer level="ARTWORK">
+        <FontString parentKey="label" inherits="GameFontNormal" justifyH="CENTER" justifyV="MIDDLE" wordWrap="false">
+          <Size x="124" y="20"/>
+          <Anchors>
+            <Anchor point="CENTER" x="5"/>
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
+  </Frame>
+
+  <!-- Niggles Pet Teams frame -->
+  <Frame name="NigglesPetTeamsTemplate" parent="PetJournal" frameStrata="HIGH" virtual="true">
+    <Size x="241"/>
+    <Anchors>
+      <Anchor point="TOP" relativeTo="PetJournalPetCardInset" relativePoint="TOP" y="1"/>
+      <Anchor point="BOTTOM" relativeTo="PetJournalLoadout" relativePoint="BOTTOM" y="-5"/>
+      <Anchor point="LEFT" relativeTo="PetJournalPetCardInset" relativePoint="RIGHT" x="3"/>
+    </Anchors>
+    <Layers>
+      <Layer level="BACKGROUND">
+        <Texture file="Interface\FrameGeneral\UI-Background-Rock" horizTile="true" vertTile="true">
+          <Anchors>
+            <Anchor point="TOPLEFT" x="2" y="-2"/>
+            <Anchor point="BOTTOMRIGHT" x="-2" y="2"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+      <Layer level="BORDER">
+        <Texture parentKey="topRight" file="Interface\FrameGeneral\UI-Frame">
+          <Size x="18" y="10"/>
+          <Anchors>
+            <Anchor point="TOPRIGHT" y="3"/>
+          </Anchors>
+          <TexCoords left="0.75" right="0.890625" top="0.015625" bottom="0.09375"/>
+        </Texture>
+        <Texture parentKey="top" file="Interface\FrameGeneral\_UI-Frame" horizTile="true" >
+          <Size x="256" y="7"/>
+          <Anchors>
+            <Anchor point="TOPRIGHT" relativeKey="$parent.topRight" relativePoint="TOPLEFT"/>
+            <Anchor point="LEFT" relativePoint="LEFT"/>
+          </Anchors>
+          <TexCoords left="0.00000000" right="1.00000000" top="0.4453125" bottom="0.5"/>
+        </Texture>
+        <Texture parentKey="bottomRight" inherits="UI-Frame-BotCornerRight">
+          <Anchors>
+            <Anchor point="BOTTOMRIGHT" x="0" y="-5"/>
+          </Anchors>
+        </Texture>
+        <Texture inherits="_UI-Frame-Bot">
+          <Anchors>
+            <Anchor point="BOTTOMRIGHT" relativeKey="$parent.bottomRight" relativePoint="BOTTOMLEFT" y="0"/>
+            <Anchor point="LEFT"/>
+          </Anchors>
+        </Texture>
+        <Texture parentKey="right" inherits="!UI-Frame-RightTile">
+          <Anchors>
+            <Anchor point="TOPRIGHT" relativeKey="$parent.topRight" relativePoint="BOTTOMRIGHT" x="1"/>
+            <Anchor point="BOTTOMRIGHT" relativeKey="$parent.bottomRight" relativePoint="TOPRIGHT"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+    </Layers>
+    <Frames>
+      <!-- Name needed to position ScrollFrame's scrollbar -->
+      <Frame name="NigglesPetTeamsInset" parentKey="inset" inherits="InsetFrameTemplate" useParentLevel="false">
+        <Anchors>
+          <Anchor point="TOPLEFT" x="4" y="-1"/>
+          <Anchor point="BOTTOMRIGHT" x="-24" y="5"/>
+        </Anchors>
+      </Frame>
+      <!-- Name needed to prevent invalid global variable -->
+      <EditBox name="$parentSearchBox" parentKey="searchBox" inherits="SearchBoxTemplate" letters="64">
+        <Size x="115" y="20"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.inset" x="13" y="-9"/>
+        </Anchors>
+      </EditBox>
+      <Button parentKey="filter" inherits="UIMenuButtonStretchTemplate" text="FILTER">
+        <Size x="75" y="22"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.searchBox" relativePoint="TOPRIGHT" x="3" y="0"/>
+        </Anchors>
+        <Layers>
+          <Layer level="ARTWORK">
+            <Texture file="Interface\ChatFrame\ChatFrameExpandArrow">
+              <Size x="10" y="12"/>
+              <Anchors>
+                <Anchor point="RIGHT" relativeKey="$parent.Right" relativePoint="RIGHT" x="-5"/>
+              </Anchors>
+            </Texture>
+          </Layer>
+        </Layers>
+      </Button>
+      <Button parentKey="filteredBar" inherits="NigglesPetTeamsFilteredBarTemplate" hidden="false">
+        <Anchors>
+          <Anchor point="TOP" relativeKey="$parent.searchBox" relativePoint="BOTTOM" y="-3"/>
+          <Anchor point="LEFT" relativeKey="$parent.inset" x="3"/>
+          <Anchor point="RIGHT" relativeKey="$parent.inset" x="-3"/>
+        </Anchors>
+      </Button>
+      <!--Name needed for HybridScrollFrameTemplate -->
+      <ScrollFrame name="NigglesPetTeamsList" parentKey="list" inherits="HybridScrollFrameTemplate">
+        <Anchors>
+          <Anchor point="TOP" relativeKey="$parent.filteredBar" relativePoint="BOTTOM" y="-3"/>
+          <Anchor point="LEFT" relativeKey="$parent.inset" x="3"/>
+          <Anchor point="BOTTOMRIGHT" relativeKey="$parent.inset" y="3"/>
+        </Anchors>
+        <Frames>
+          <Slider name="$parentScrollBar" inherits="HybridScrollBarTrimTemplate" parentKey="scrollBar">
+            <Anchors>
+              <Anchor point="TOPLEFT" relativeTo="NigglesPetTeamsInset" relativePoint="TOPRIGHT" y="-17"/>
+              <Anchor point="BOTTOM" relativeTo="NigglesPetTeamsInset" y="13"/>
+            </Anchors>
+          </Slider>
+        </Frames>
+      </ScrollFrame>
+      <CheckButton parentKey="toggle">
+        <Size x="16" y="64"/>
+        <Anchors>
+          <Anchor point="CENTER"/>
+          <Anchor point="LEFT" relativePoint="RIGHT" x="-8"/>
+        </Anchors>
+        <Layers>
+          <Layer level="BACKGROUND">
+            <Texture parentKey="bg" file="Interface\FrameGeneral\UI-Background-Rock" horizTile="true" vertTile="true">
+              <Anchors>
+                <Anchor point="TOPLEFT" x="3" y="3"/>
+                <Anchor point="BOTTOMRIGHT" x="-1" y="-2"/>
+              </Anchors>
+            </Texture>
+          </Layer>
+          <Layer level="BORDER">
+            <Texture parentKey="topRight" file="Interface\FrameGeneral\UI-Frame">
+              <Size x="14" y="10"/>
+              <Anchors>
+                <Anchor point="TOPRIGHT" relativeKey="$parent.bg" x="4" y="3"/>
+              </Anchors>
+              <TexCoords left="0.78125" right="0.890625" top="0.015625" bottom="0.09375"/>
+            </Texture>
+            <Texture parentKey="bottomRight" inherits="UI-Frame-BotCornerRight">
+              <Anchors>
+                <Anchor point="BOTTOMRIGHT" relativeKey="$parent.bg" x="4" y="-8"/>
+              </Anchors>
+            </Texture>
+            <Texture inherits="_UI-Frame-Bot">
+              <Anchors>
+                <Anchor point="BOTTOMRIGHT" relativeKey="$parent.bottomRight" relativePoint="BOTTOMLEFT"/>
+                <Anchor point="LEFT" relativeKey="$parent.bg" x="2"/>
+              </Anchors>
+            </Texture>
+            <Texture inherits="!UI-Frame-RightTile">
+              <Anchors>
+                <Anchor point="TOPRIGHT" relativeKey="$parent.topRight" relativePoint="BOTTOMRIGHT" x="1"/>
+                <Anchor point="BOTTOMRIGHT" relativeKey="$parent.bottomRight" relativePoint="TOPRIGHT"/>
+              </Anchors>
+            </Texture>
+          </Layer>
+        </Layers>
+        <NormalTexture file="Interface\RaidFrame\RaidPanel-Toggle">
+          <TexCoords left="0.0" right="0.5" top="0.0" bottom="1.0"/>
+        </NormalTexture>
+        <CheckedTexture file="Interface\RaidFrame\RaidPanel-Toggle">
+          <Size x="7" y="14"/>
+          <Anchors>
+            <Anchor point="CENTER" x="3"/>
+          </Anchors>
+          <TexCoords left="0.78125" right="1.0" top="0.390625" bottom="0.609375"/>
+        </CheckedTexture>
+        <Scripts>
+          <OnClick function="NigglesPetTeamsToggleOnClick"/>
+        </Scripts>
+      </CheckButton>
+    </Frames>
+  </Frame>
+
+  <!-- Template for a button to display a pet load out -->
+  <Button name="NigglesPetTeamSlotTemplate" virtual="true">
+    <Size x="294" y="107"/>
+    <Layers>
+      <Layer level="BACKGROUND">
+        <Texture file="Interface\Addons\Niggles-PetTeams\textures\PetLoadOut" setAllPoints="true">
+          <TexCoords left="0.0" right="0.5859375" top="0.0" bottom="0.84375"/>
+        </Texture>
+      </Layer>
+      <Layer level="ARTWORK">
+        <Texture parentKey="icon">
+          <Size x="38" y="38"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" x="11" y="-11"/>
+          </Anchors>
+        </Texture>
+        <Texture parentKey="petTypeIcon">
+          <Anchors>
+            <Anchor point="BOTTOMLEFT" x="0" y="0"/>
+          </Anchors>
+          <Size x="60" y="60"/>
+          <TexCoords left="0.00781250" right="0.47656250" top="0.50390625" bottom="0.73828125"/>
+        </Texture>
+      </Layer>
+      <Layer level="ARTWORK" textureSubLevel="1">
+        <Texture parentKey="iconBorder" atlas="PetJournal-BattleSlot-IconBorder" useAtlasSize="true">
+          <Anchors>
+            <Anchor point="CENTER" relativeKey="$parent.icon" x="0" y="0"/>
+          </Anchors>
+        </Texture>
+        <FontString parentKey="name" inherits="GameFontNormal" justifyH="LEFT" justifyV="BOTTOM" wordWrap="false">
+          <Size x="210" y="0"/>
+          <Anchors>
+            <Anchor point="LEFT" relativePoint="RIGHT" relativeKey="$parent.icon" x="12" y="4"/>
+          </Anchors>
+        </FontString>
+        <FontString parentKey="subName" inherits="GameFontNormalSmall" justifyH="LEFT">
+          <Size x="210" y="0"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeKey="$parent.name" x="0" y="-2"/>
+          </Anchors>
+          <Color r="1" g="1" b="1" a="1"/>
+        </FontString>
+      </Layer>
+      <Layer level="ARTWORK" textureSubLevel="2">
+        <Texture parentKey="qualityBorder" file="Interface\Common\WhiteIconFrame">
+          <Anchors>
+            <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeKey="$parent.icon"/>
+            <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeKey="$parent.icon"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+      <Layer level="OVERLAY" textureSubLevel="1">
+        <Texture parentKey="isDead" file="Interface\PetBattles\DeadPetIcon" hidden="true">
+          <Size x="38" y="38"/>
+          <Anchors>
+            <Anchor point="CENTER" relativeKey="$parent.icon" relativePoint="CENTER" x="0" y="0"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+      <Layer level="OVERLAY" textureSubLevel="2">
+        <Texture parentKey="levelBG" atlas="PetJournal-LevelBubble" useAtlasSize="true">
+          <Anchors>
+            <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeKey="$parent.icon" x="5" y="-5"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+      <Layer level="OVERLAY" textureSubLevel="3">
+        <FontString parentKey="level" inherits="GameFontNormalSmall" justifyH="CENTER">
+          <Size x="0" y="12"/>
+          <Anchors>
+            <Anchor point="CENTER" relativePoint="CENTER" relativeKey="$parent.levelBG" x="1" y="-1"/>
+          </Anchors>
+        </FontString>
+        <Texture parentKey="favorite" atlas="PetJournal-FavoritesIcon" useAtlasSize="true">
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeKey="$parent.icon" x="-8" y="8"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+    </Layers>
+    <Frames>
+      <Frame parentKey="health">
+        <Size x="100" y="25"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" relativePoint="BOTTOMRIGHT" relativeKey="$parent.icon" x="12" y="-6"/>
+        </Anchors>
+        <Layers>
+          <Layer level="ARTWORK">
+            <Texture file="Interface\PetBattles\PetBattle-StatIcons">
+              <Size x="16" y="16"/>
+              <Anchors>
+                <Anchor point="TOPLEFT"/>
+              </Anchors>
+              <TexCoords left="0.5" right="1.0" top="0.5" bottom="1.0"/>
+            </Texture>
+          </Layer>
+          <Layer level="OVERLAY">
+            <FontString parentKey="label" inherits="GameFontHighlight" text="9999/9999">
+              <Size x="0" y="0"/>
+              <Anchors>
+                <Anchor point="TOPLEFT" x="18" y="-2"/>
+              </Anchors>
+            </FontString>
+          </Layer>
+        </Layers>
+        <Frames>
+          <StatusBar parentKey="bar">
+            <Size y="7"/>
+            <Anchors>
+              <Anchor point="BOTTOMLEFT"/>
+              <Anchor point="BOTTOMRIGHT"/>
+            </Anchors>
+            <Layers>
+              <Layer level="OVERLAY">
+                <Texture parentKey="left" atlas="PetJournal-HealthBar-Left" useAtlasSize="true">
+                  <Anchors>
+                    <Anchor point="RIGHT" relativePoint="LEFT"  x="9" y="0"/>
+                  </Anchors>
+                </Texture>
+                <Texture parentKey="right" atlas="PetJournal-HealthBar-Right" useAtlasSize="true">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT"  x="-9" y="0"/>
+                  </Anchors>
+                </Texture>
+                <Texture atlas="PetJournal-HealthBar-Mid">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.left" relativePoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent.right" relativePoint="BOTTOMLEFT"/>
+                  </Anchors>
+                </Texture>
+              </Layer>
+              <Layer level="BACKGROUND">
+                <Texture atlas="PetJournal-HealthBar-Background" useAtlasSize="true">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.left" x="2"/>
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent.right" x="-2"/>
+                  </Anchors>
+                </Texture>
+              </Layer>
+            </Layers>
+            <BarTexture name="$parentHealthBar" file="Interface\TargetingFrame\UI-StatusBar"/>
+            <BarColor r="0.1" g="1.0" b="0.1" />
+          </StatusBar>
+        </Frames>
+        <Scripts>
+          <OnEnter>
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+            GameTooltip:SetText(PET_BATTLE_STAT_HEALTH, 1, 1, 1);
+            GameTooltip:AddLine(PET_BATTLE_TOOLTIP_HEALTH_MAX, nil, nil, nil, true);
+            GameTooltip:Show();
+          </OnEnter>
+          <OnLeave function="GameTooltip_Hide"/>
+        </Scripts>
+      </Frame>
+      <Frame parentKey="power">
+        <Size x="50" y="18"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.health" relativePoint="BOTTOMLEFT" y="-3"/>
+        </Anchors>
+        <Layers>
+          <Layer level="ARTWORK">
+            <Texture file="Interface\PetBattles\PetBattle-StatIcons">
+              <Size x="16" y="16"/>
+              <Anchors>
+                <Anchor point="TOPLEFT"/>
+              </Anchors>
+              <TexCoords left="0.0" right="0.5" top="0.0" bottom="0.5"/>
+            </Texture>
+          </Layer>
+          <Layer level="OVERLAY">
+            <FontString parentKey="label" inherits="GameFontHighlight" text="999">
+              <Anchors>
+                <Anchor point="TOPLEFT" x="18" y="-2"/>
+              </Anchors>
+            </FontString>
+          </Layer>
+        </Layers>
+        <Scripts>
+          <OnEnter>
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+            GameTooltip:SetText(PET_BATTLE_STAT_POWER, 1, 1, 1);
+            GameTooltip:AddLine(PET_BATTLE_TOOLTIP_POWER, nil, nil, nil, true);
+            GameTooltip:Show();
+          </OnEnter>
+          <OnLeave function="GameTooltip_Hide"/>
+        </Scripts>
+      </Frame>
+      <Frame parentKey="speed">
+        <Size x="50" y="18"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.power" relativePoint="TOPRIGHT"/>
+        </Anchors>
+        <Layers>
+          <Layer level="ARTWORK">
+            <Texture file="Interface\PetBattles\PetBattle-StatIcons">
+              <Size x="16" y="16"/>
+              <Anchors>
+                <Anchor point="TOPLEFT"/>
+              </Anchors>
+              <TexCoords left="0.0" right="0.5" top="0.5" bottom="1.0"/>
+            </Texture>
+          </Layer>
+          <Layer level="OVERLAY">
+            <FontString parentKey="label" inherits="GameFontHighlight" text="999">
+              <Anchors>
+                <Anchor point="TOPLEFT" x="18" y="-2"/>
+              </Anchors>
+            </FontString>
+          </Layer>
+        </Layers>
+        <Scripts>
+          <OnEnter>
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+            GameTooltip:SetText(PET_BATTLE_STAT_SPEED, 1, 1, 1);
+            GameTooltip:AddLine(PET_BATTLE_TOOLTIP_SPEED, nil, nil, nil, true);
+            GameTooltip:Show();
+          </OnEnter>
+          <OnLeave function="GameTooltip_Hide"/>
+        </Scripts>
+      </Frame>
+      <Frame parentKey="quality">
+        <Size x="50" y="18"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.speed" relativePoint="TOPRIGHT"/>
+        </Anchors>
+        <Layers>
+          <Layer level="ARTWORK">
+            <Texture file="Interface\PetBattles\PetBattle-StatIcons">
+              <Size x="16" y="16"/>
+              <Anchors>
+                <Anchor point="TOPLEFT"/>
+              </Anchors>
+              <TexCoords left="0.5" right="1.0" top="0.0" bottom="0.5"/>
+            </Texture>
+          </Layer>
+          <Layer level="OVERLAY">
+            <FontString parentKey="label" inherits="GameFontHighlight" text="">
+              <Anchors>
+                <Anchor point="TOPLEFT" x="18" y="-2"/>
+              </Anchors>
+            </FontString>
+          </Layer>
+        </Layers>
+        <Scripts>
+          <OnEnter>
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+            GameTooltip:SetText(PET_BATTLE_STAT_QUALITY, 1, 1, 1);
+            GameTooltip:AddLine(PET_BATTLE_TOOLTIP_RARITY, nil, nil, nil, true);
+            GameTooltip:Show();
+          </OnEnter>
+          <OnLeave function="GameTooltip_Hide"/>
+        </Scripts>
+      </Frame>
+      <CheckButton parentKey="ability1" parentArray="abilitySlots" inherits="CompanionLoadOutSpellTemplate" id="1">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.health" RelativePoint="TOPRIGHT" x="10" y="7"/>
+        </Anchors>
+      </CheckButton>
+      <CheckButton parentKey="ability2" parentArray="abilitySlots" inherits="CompanionLoadOutSpellTemplate" id="2">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.ability1" RelativePoint="TOPRIGHT" x="10"/>
+        </Anchors>
+      </CheckButton>
+      <CheckButton parentKey="ability3" parentArray="abilitySlots" inherits="CompanionLoadOutSpellTemplate" id="3">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.ability2" relativePoint="TOPRIGHT" x="10"/>
+        </Anchors>
+      </CheckButton>
+      <Button parentKey="missing">
+        <Anchors>
+          <Anchor point="TOPLEFT" x="1" y="-1"/>
+          <Anchor point="BOTTOMRIGHT" x="-1" y="1"/>
+        </Anchors>
+        <Layers>
+          <Layer level="BACKGROUND">
+            <Texture parentKey="alert" setAllPoints="true">
+              <Color r="0.4" g="0" b="0" a="0.4"/>
+            </Texture>
+          </Layer>
+        </Layers>
+        <NormalTexture file="Interface\DialogFrame\UI-Dialog-Icon-AlertNew">
+          <Size x="20" y="20"/>
+          <Anchors>
+            <Anchor point="BOTTOMRIGHT" x="-5" y="2"/>
+          </Anchors>
+        </NormalTexture>
+        <Scripts>
+          <OnLeave function="GameTooltip_Hide"/>
+          <OnSizeChanged>
+            self:SetHitRectInsets(self:GetWidth()-25, 5, self:GetHeight()-22, 2);
+          </OnSizeChanged>
+        </Scripts>
+      </Button>
+      <Button parentKey="drag">
+        <Size x="40" y="40"/>
+        <Anchors>
+          <Anchor point="CENTER" relativeKey="$parent.icon" x="0" y="0"/>
+        </Anchors>
+        <HighlightTexture name="$parentHighlight" file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+      </Button>
+    </Frames>
+  </Button>
+
+  <!-- Template for a drop down -->
+  <Button name="NigglesPetTeamsDropDownTemplate" virtual="true">
+    <Size x="1" y="24"/>
+    <Layers>
+      <Layer level="ARTWORK">
+        <FontString parentKey="label" inherits="GameFontNormal" justifyH="RIGHT" wordWrap="false">
+          <Size x="100" y="16"/>
+          <Anchors>
+            <Anchor point="TOPRIGHT" relativePoint="TOPLEFT" x="-1" y="-2"/>
+          </Anchors>
+        </FontString>
+      </Layer>
+      <Layer level="BORDER">
+        <Texture file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+          <Size x="25" y="64"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="-18" y ="20"/>
+          </Anchors>
+          <TexCoords left="0" right="0.1953125" top="0" bottom="1"/>
+        </Texture>
+        <Texture file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+          <Size x="100" y="64"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" x="7" y="20"/>
+            <Anchor point="TOPRIGHT" x="-7" y="20"/>
+          </Anchors>
+          <TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1"/>
+        </Texture>
+        <Texture file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+          <Size x="25" y="64"/>
+          <Anchors>
+            <Anchor point="TOPRIGHT" x="18" y="20"/>
+          </Anchors>
+          <TexCoords left="0.8046875" right="1" top="0" bottom="1"/>
+        </Texture>
+      </Layer>
+    </Layers>
+    <NormalTexture file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+      <Size x="24" y="24"/>
+      <Anchors>
+        <Anchor point="RIGHT" x="2" y="1"/>
+      </Anchors>
+    </NormalTexture>
+    <PushedTexture file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+      <Size x="24" y="24"/>
+      <Anchors>
+        <Anchor point="RIGHT" x="2" y="1"/>
+      </Anchors>
+    </PushedTexture>
+    <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+      <Size x="24" y="24"/>
+      <Anchors>
+        <Anchor point="RIGHT" x="2" y="1"/>
+      </Anchors>
+    </HighlightTexture>
+    <NormalFont style="GameFontHighlightSmallLeft"/>
+    <ButtonText wordwrap="false">
+      <Anchors>
+        <Anchor point="TOPLEFT" x="9" y="0"/>
+        <Anchor point="BOTTOMRIGHT" x="-20" y="1"/>
+      </Anchors>
+    </ButtonText>
+    <PushedTextOffset x="0" y="0"/>
+    <Scripts>
+      <OnSizeChanged>
+        self:SetHitRectInsets(w-22, -2, -2, 0);
+      </OnSizeChanged>
+    </Scripts>
+  </Button>
+
+  <!-- Template for a drop down with a search box -->
+  <Frame name="NigglesPetTeamsSearchDropDownTemplate" hidden="true" frameStrata="FULLSCREEN" virtual="true">
+    <Size x="100" y="153"/>
+    <Anchors>
+      <Anchor point="CENTER"/>
+    </Anchors>
+    <Layers>
+      <Layer level="BACKGROUND">
+        <Texture file="Interface\DialogFrame\UI-DialogBox-Background-Dark">
+          <Anchors>
+            <Anchor point="TOPLEFT" x="3" y="-3"/>
+            <Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+      <Layer level="BORDER">
+        <Texture file="Interface\Tooltips\UI-Tooltip-TL">
+          <Size x="8" y="8"/>
+          <Anchors>
+            <Anchor point="TOPLEFT"/>
+          </Anchors>
+        </Texture>
+        <Texture file="Interface\Tooltips\UI-Tooltip-T" horizTile="true">
+          <Size y="8"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" x="8"/>
+            <Anchor point="RIGHT" x="-8"/>
+          </Anchors>
+        </Texture>
+        <Texture file="Interface\Tooltips\UI-Tooltip-TR">
+          <Size x="8" y="8"/>
+          <Anchors>
+            <Anchor point="TOPRIGHT"/>
+          </Anchors>
+        </Texture>
+        <Texture file="Interface\Tooltips\UI-Tooltip-R" vertTile="true">
+          <Size x="8"/>
+          <Anchors>
+            <Anchor point="TOPRIGHT" y="-8"/>
+            <Anchor point="BOTTOM" y="8"/>
+          </Anchors>
+        </Texture>
+        <Texture file="Interface\Tooltips\UI-Tooltip-BR">
+          <Size x="8" y="8"/>
+          <Anchors>
+            <Anchor point="BOTTOMRIGHT"/>
+          </Anchors>
+        </Texture>
+        <Texture file="Interface\Tooltips\UI-Tooltip-B" horizTile="true">
+          <Size y="8"/>
+          <Anchors>
+            <Anchor point="BOTTOMLEFT" x="8"/>
+            <Anchor point="RIGHT" x="-8"/>
+          </Anchors>
+        </Texture>
+        <Texture file="Interface\Tooltips\UI-Tooltip-BL">
+          <Size x="8" y="8"/>
+          <Anchors>
+            <Anchor point="BOTTOMLEFT"/>
+          </Anchors>
+        </Texture>
+        <Texture file="Interface\Tooltips\UI-Tooltip-R" vertTile="true">
+          <Size x="8"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" y="-8"/>
+            <Anchor point="BOTTOM" y="8"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+    </Layers>
+    <Frames>
+      <!-- Name needed to prevent invalid global variable -->
+      <EditBox name="$parentSearchBox" parentKey="searchBox" inherits="SearchBoxTemplate" letters="32">
+        <Size y="20"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" x="13" y="-9"/>
+          <Anchor point="RIGHT" x="-30"/>
+        </Anchors>
+        <Scripts>
+          <OnTextChanged>
+            SearchBoxTemplate_OnTextChanged(self);
+            local parent = self:GetParent();
+            if (type(self.onTextChanged) == "function") then
+              local offset = self.onTextChanged(
+                string.lower(self:GetText() or ""), parent.userData);
+              offset = math.max(0,
+                (offset-3)*parent.scrollFrame.buttons[1]:GetHeight());
+              parent.scrollFrame.scrollBar:SetValue(offset);
+            end
+            parent.scrollFrame:update(userData);
+          </OnTextChanged>
+        </Scripts>
+      </EditBox>
+      <ScrollFrame name="$parentScrollFrame" parentKey="scrollFrame" inherits="HybridScrollFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.searchBox" relativePoint="BOTTOMLEFT" x="-5" y="-5"/>
+          <Anchor point="BOTTOMRIGHT" x="-26" y="6"/>
+        </Anchors>
+        <Frames>
+          <Slider name="$parentScrollBar" inherits="MinimalHybridScrollBarTemplate" parentKey="scrollBar">
+            <Anchors>
+              <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="0" y="12"/>
+              <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="0" y="16"/>
+            </Anchors>
+          </Slider>
+        </Frames>
+      </ScrollFrame>
+    </Frames>
+  </Frame>
+
+  <!-- Template for strategy edit boxes -->
+  <Frame name="NigglesPetTeamStrategyEditBoxTemplate" inherits="InsetFrameTemplate" virtual="true">
+    <Layers>
+      <Layer level="BACKGROUND">
+        <Texture>
+          <Size x="0" y="20"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" x="3" y="0"/>
+            <Anchor point="RIGHT" x="-3"/>
+          </Anchors>
+          <Color r="0" g="0" b="0"/>
+        </Texture>
+        <Texture>
+          <Size x="0" y="1"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" x="3" y="-20"/>
+            <Anchor point="RIGHT" x="-3"/>
+          </Anchors>
+          <Color r="0.1843" g="0.1921" b="0.1943"/>
+        </Texture>
+      </Layer>
+      <Layer level="ARTWORK">
+        <FontString parentKey="lineNoLabel" inherits="GameFontNormalSmall">
+          <Size x="256" y="20"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" x="9" y="-2"/>
+          </Anchors>
+        </FontString>
+        <FontString parentKey="lineNo" inherits="GameFontHighlightSmall" justifyH="left">
+          <Size x="30" y="20"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeKey="$parent.lineNoLabel" relativePoint="TOPRIGHT" x="2"/>
+          </Anchors>
+        </FontString>
+        <FontString parentKey="colNoLabel" inherits="GameFontNormalSmall">
+          <Size x="256" y="20"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeKey="$parent.lineNo" relativePoint="TOPRIGHT" x="5"/>
+          </Anchors>
+        </FontString>
+        <FontString parentKey="colNo" inherits="GameFontHighlightSmall" justifyH="left">
+          <Size x="30" y="20"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeKey="$parent.colNoLabel" relativePoint="TOPRIGHT" x="2"/>
+          </Anchors>
+        </FontString>
+        <FontString parentKey="remainingLabel" inherits="GameFontNormalSmall">
+          <Size x="256" y="20"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeKey="$parent.colNo" relativePoint="TOPRIGHT" x="5"/>
+          </Anchors>
+        </FontString>
+        <FontString parentKey="remaining" inherits="GameFontHighlightSmall" justifyH="left">
+          <Size x="30" y="20"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeKey="$parent.remainingLabel" relativePoint="TOPRIGHT" x="2"/>
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
+    <Frames>
+      <CheckButton parentKey="isHtml">
+        <Size x="18" y="18"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.remaining" relativePoint="TOPRIGHT" x="5" y="-1"/>
+        </Anchors>
+        <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+        <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+        <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+        <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+        <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+        <NormalFont style="GameFontNormalSmall"/>
+      </CheckButton>
+      <ScrollFrame name="$parentScroll" parentKey="scroll" inherits="UIPanelScrollFrameCodeTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.inset" x="5" y="-22"/>
+          <Anchor point="BOTTOMRIGHT" relativeKey="$parent.inset" x="-5" y="5"/>
+        </Anchors>
+        <Frames>
+          <Slider name="$parentScrollBar" inherits="UIPanelScrollBarTrimTemplate" parentKey="ScrollBar">
+            <Anchors>
+              <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="5" y="6"/>
+              <Anchor point="BOTTOM" relativePoint="BOTTOM" y="9"/>
+            </Anchors>
+          </Slider>
+        </Frames>
+        <ScrollChild>
+          <EditBox name="$parentChild" parentKey="editBox" multiLine="true" enableMouse="true" autoFocus="false">
+            <Size x="270" y="1"/>
+            <Anchors>
+              <Anchor point="TOPLEFT"/>
+            </Anchors>
+            <Scripts>
+              <OnUpdate>
+                ScrollingEdit_OnUpdate(self, elapsed, self:GetParent());
+              </OnUpdate>
+              <OnEscapePressed function="EditBox_ClearFocus"/>
+              <OnEditFocusLost>
+                self:HighlightText(0, 0);
+              </OnEditFocusLost>
+            </Scripts>
+            <FontString inherits="GameFontHighlight"/>
+          </EditBox>
+        </ScrollChild>
+        <Scripts>
+          <OnMouseUp>
+            self:GetParent().editBox:SetFocus();
+          </OnMouseUp>
+        </Scripts>
+      </ScrollFrame>
+    </Frames>
+    <Scripts>
+      <OnLoad function="NigglesPetTeamStrategyEditBoxOnLoad"/>
+    </Scripts>
+  </Frame>
+
+  <!-- Template for the panel used to edit pet teams -->
+  <Frame name="NigglesPetTeamEditTemplate" parent="NigglesPetTeamsList" inherits="PortraitFrameTemplate" frameStrata="DIALOG" enableMouse="true" movable="true" clampedToScreen="true" hidden="true" virtual="true">
+    <Size x="613" y="413"/>
+    <Anchors>
+      <Anchor point="CENTER" relativeTo="UIParent"/>
+    </Anchors>
+    <Frames>
+      <Button parentKey="dragButton" inherits="NigglesPetTeamsDragButtonTemplate"/>
+      <Button parentKey="tutorialButton" inherits="MainHelpPlateButton">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent" x="39" y="20" />
+        </Anchors>
+      </Button>
+      <Button parentKey="preview" inherits="UIPanelButtonTemplate" text="PREVIEW">
+        <Size x="100" y="22"/>
+        <Anchors>
+          <Anchor point="BOTTOMLEFT" x="1" y="3"/>
+        </Anchors>
+      </Button>
+      <Button parentKey="cancel" inherits="UIPanelButtonTemplate" text="CANCEL">
+        <Size x="100" y="22"/>
+        <Anchors>
+          <Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
+        </Anchors>
+      </Button>
+      <Button parentKey="save" inherits="UIPanelButtonTemplate" text="SAVE">
+        <Size x="100" y="22"/>
+        <Anchors>
+          <Anchor point="BOTTOMRIGHT" relativeKey="$parent.cancel" relativePoint="BOTTOMLEFT"/>
+        </Anchors>
+      </Button>
+      <Button parentKey="import" inherits="UIPanelButtonTemplate">
+        <Size x="100" y="22"/>
+        <Anchors>
+          <Anchor point="BOTTOMRIGHT" relativeKey="$parent.save" relativePoint="BOTTOMLEFT"/>
+        </Anchors>
+      </Button>
+      <Frame parentKey="loadOutBorder">
+        <Size x="300" y="329"/>
+        <Anchors>
+          <Anchor point="TOPRIGHT" x="-3" y="-60"/>
+        </Anchors>
+        <Layers>
+          <Layer level="ARTWORK">
+            <Texture parentKey="topLeft" atlas="PetJournal-BattleSlotFrame-Corner" useAtlasSize="true">
+              <Anchors>
+                <Anchor point="TOPLEFT" x="-1" y="1"/>
+              </Anchors>
+            </Texture>
+            <Texture parentKey="topRight" atlas="PetJournal-BattleSlotFrame-Corner" useAtlasSize="true">
+              <Anchors>
+                <Anchor point="TOPRIGHT" x="1" y="1"/>
+              </Anchors>
+              <Size x="17" y="17"/>
+              <TexCoords left="1.0" right="0.0" top="0.0" bottom="1.0"/>
+            </Texture>
+            <Texture parentKey="bottomLeft" atlas="PetJournal-BattleSlotFrame-Corner" useAtlasSize="true">
+              <Anchors>
+                <Anchor point="BOTTOMLEFT" x="-1" y="-1"/>
+              </Anchors>
+              <Size x="17" y="17"/>
+              <TexCoords left="0.0" right="1.0" top="1.0" bottom="0.0"/>
+            </Texture>
+            <Texture parentKey="bottomRight" atlas="PetJournal-BattleSlotFrame-Corner" useAtlasSize="true">
+              <Anchors>
+                <Anchor point="BOTTOMRIGHT" x="1" y="-1"/>
+              </Anchors>
+              <Size x="17" y="17"/>
+              <TexCoords left="1.0" right="0.0" top="1.0" bottom="0.0"/>
+            </Texture>
+            <Texture parentKey="top" atlas="_BattleSlotFrame-Top" horizTile="true">
+              <Anchors>
+                <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeKey="$parent.topLeft" x="0" y="0"/>
+                <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMLEFT" relativeKey="$parent.topRight" x="0" y="1"/>
+              </Anchors>
+            </Texture>
+            <Texture parentKey="bottom" atlas="_BattleSlotFrame-Top" horizTile="true">
+              <Anchors>
+                <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeKey="$parent.bottomLeft" x="0" y="-1"/>
+                <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMLEFT" relativeKey="$parent.bottomRight" x="0" y="0"/>
+              </Anchors>
+              <TexCoords left="0.0" right="1.0" top="1.0" bottom="0.0" />
+            </Texture>
+            <Texture parentKey="left" file="Interface\PetBattles\!BattleSlotFrame-Left" vertTile="true">
+              <Anchors>
+                <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeKey="$parent.topLeft" x="0" y="0"/>
+                <Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT" relativeKey="$parent.bottomLeft" x="-1" y="0"/>
+              </Anchors>
+            </Texture>
+            <Texture parentKey="right" file="Interface\PetBattles\!BattleSlotFrame-Left" vertTile="true">
+              <Anchors>
+                <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeKey="$parent.topRight" x="1" y="0"/>
+                <Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT" relativeKey="$parent.bottomRight" x="0" y="0"/>
+              </Anchors>
+              <TexCoords left="1" right="0" top="0" bottom="1"/>
+            </Texture>
+          </Layer>
+          <Layer level="ARTWORK" textureSubLevel="1">
+            <Texture parentKey="upperSeparator" atlas="_BattleSlotFrame-Divider" useAtlasSize="true" horizTile="true">
+              <Anchors>
+                <Anchor point="LEFT" relativePoint="RIGHT" relativeKey="$parent.left" x="-11" y="54"/>
+                <Anchor point="RIGHT" relativePoint="LEFT" relativeKey="$parent.right" x="12" y="54"/>
+              </Anchors>
+            </Texture>
+            <Texture parentKey="lowerSeparator" atlas="_BattleSlotFrame-Divider" useAtlasSize="true" horizTile="true">
+              <Anchors>
+                <Anchor point="LEFT" relativePoint="RIGHT" relativeKey="$parent.left" x="-11" y="-54"/>
+                <Anchor point="RIGHT" relativePoint="LEFT" relativeKey="$parent.right" x="12" y="-54"/>
+              </Anchors>
+            </Texture>
+          </Layer>
+        </Layers>
+      </Frame>
+      <Frame parentKey="loadOutBorderTitle">
+        <Size x="50" y="24"/>
+        <Anchors>
+          <Anchor point="CENTER" relativeKey="$parent.loadOutBorder"/>
+          <Anchor point="TOP" relativeKey="$parent.loadOutBorder" y="1"/>
+        </Anchors>
+        <Layers>
+          <Layer level="OVERLAY">
+            <FontString parentKey="slotHeaderText" inherits="GameFontNormal" justifyH="CENTER" text="BATTLE_PET_SLOTS">
+              <Size x="0" y="40"/>
+              <Anchors>
+                <Anchor point="CENTER" relativePoint="TOP" relativeKey="$parent.top" x="0" y="-4"/>
+              </Anchors>
+            </FontString>
+            <Texture atlas="_BattleSlotTitle-BG" horizTile="true">
+              <Size y="24"/>
+              <Anchors>
+                <Anchor point="LEFT" relativePoint="LEFT" relativeKey="$parent.slotHeaderText" x="-10" y="0"/>
+                <Anchor point="RIGHT" relativePoint="RIGHT" relativeKey="$parent.slotHeaderText" x="10" y="0"/>
+              </Anchors>
+            </Texture>
+          </Layer>
+          <Layer level="OVERLAY" textureSubLevel="1">
+            <Texture parentKey="title" atlas="_BattleSlotTitle-Mid" horizTile="true">
+              <Anchors>
+                <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeKey="$parent.slotHeaderText" x="0" y="0"/>
+                <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeKey="$parent.slotHeaderText" x="0" y="0"/>
+              </Anchors>
+            </Texture>
+            <Texture atlas="PetJournal-BattleSlotTitle-Left" useAtlasSize="true">
+              <Anchors>
+                <Anchor point="RIGHT" relativePoint="LEFT" relativeKey="$parent.title" x="0" y="0"/>
+              </Anchors>
+            </Texture>
+            <Texture atlas="PetJournal-BattleSlotTitle-Right" useAtlasSize="true">
+              <Anchors>
+                <Anchor point="LEFT" relativePoint="RIGHT" relativeKey="$parent.title" x="0" y="0"/>
+              </Anchors>
+            </Texture>
+          </Layer>
+        </Layers>
+      </Frame>
+      <Button parentKey="petSlot1" parentArray="petSlots" id="1" inherits="NigglesPetTeamSlotTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.loadOutBorder" relativePoint="TOPLEFT" x="3" y="-3"/>
+        </Anchors>
+      </Button>
+      <Button parentKey="petSlot2" parentArray="petSlots" id="2" inherits="NigglesPetTeamSlotTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.petSlot1" relativePoint="BOTTOMLEFT" x="0" y="-1"/>
+        </Anchors>
+      </Button>
+      <Button parentKey="petSlot3" parentArray="petSlots" id="3" inherits="NigglesPetTeamSlotTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.petSlot2" relativePoint="BOTTOMLEFT" x="0" y="-1"/>
+        </Anchors>
+      </Button>
+      <Frame parentKey="detailsInset" inherits="InsetFrameTemplate">
+        <Size y="63"/>
+        <Anchors>
+          <Anchor point="LEFT" x="3" y="-60"/>
+          <Anchor point="TOPRIGHT" relativeKey="$parent.loadOutBorder" relativePoint="TOPLEFT"/>
+        </Anchors>
+      </Frame>
+      <Button parentKey="icon">
+        <Size x="38" y="38"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.detailsInset" relativePoint="TOPLEFT" x="9" y="-9"/>
+        </Anchors>
+        <Layers>
+          <Layer level="BACKGROUND">
+            <Texture parentKey="normal" file="Interface\Icons\PetJournalPortrait" setAllPoints="true"/>
+          </Layer>
+          <Layer level="ARTWORK" textureSubLevel="1">
+            <Texture file="Interface\Common\WhiteIconFrame" setAllPoints="true">
+              <Color r="0.5" g="0.3765" b="0.1882"/>
+            </Texture>
+          </Layer>
+          <Layer level="ARTWORK" textureSubLevel="2">
+            <Texture file="Interface\Buttons\ActionBarFlyoutButton">
+              <Size x="23" y="11"/>
+              <Anchors>
+                <Anchor point="BOTTOM" x="0" y="-3"/>
+              </Anchors>
+              <TexCoords left="0.62500000" right="0.98437500" top="0.82812500" bottom="0.74218750"/>
+            </Texture>
+          </Layer>
+        </Layers>
+        <PushedTexture file="Interface\Buttons\UI-Quickslot-Depress"/>
+        <HighlightTexture name="$parentHighlight" file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+      </Button>
+      <Button parentKey="opponent" inherits="NigglesPetTeamsDropDownTemplate">
+        <Size x="175" y="24"/>
+        <Anchors>
+          <Anchor point="TOPRIGHT" relativeKey="$parent.detailsInset" relativePoint="TOPRIGHT" x="-9" y="-9"/>
+        </Anchors>
+      </Button>
+      <EditBox parentKey="teamName" inherits="InputBoxTemplate" autoFocus="false">
+        <Size x="170" y="16"/>
+        <Anchors>
+          <Anchor point="TOPRIGHT" relativeKey="$parent.opponent" relativePoint="BOTTOMRIGHT" x="0" y="-5"/>
+        </Anchors>
+        <Layers>
+          <Layer level="ARTWORK">
+            <FontString parentKey="label" inherits="GameFontNormal" justifyH="RIGHT">
+              <Size x="100" y="16"/>
+              <Anchors>
+                <Anchor point="TOPRIGHT" relativePoint="TOPLEFT" x="-7" y="-1"/>
+              </Anchors>
+            </FontString>
+          </Layer>
+        </Layers>
+        <Scripts>
+          <OnEditFocusGained function="EditBox_HighlightText"/>
+          <OnEnterPressed>
+            (self:GetParent()).strategy.editBox:SetFocus();
+          </OnEnterPressed>
+          <OnTabPressed>
+            (self:GetParent()).strategy.editBox:SetFocus();
+          </OnTabPressed>
+        </Scripts>
+      </EditBox>
+      <Frame parentKey="strategy" name="$parentStrategy" inherits="NigglesPetTeamStrategyEditBoxTemplate">
+        <Anchors>
+          <Anchor point="LEFT" x="3"/>
+          <Anchor point="TOP" relativeKey="$parent.detailsInset" relativePoint="BOTTOM" y="-25"/>
+          <Anchor point="BOTTOMRIGHT" relativeKey="$parent.loadOutBorder" relativePoint="BOTTOMLEFT" x="-20" y="2"/>
+        </Anchors>
+      </Frame>
+      <Frame parentKey="iconDropDown" hidden="true" frameStrata="FULLSCREEN">
+        <Size x="233" y="133"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.icon" relativePoint="BOTTOMLEFT" x="-7" y="1"/>
+        </Anchors>
+        <Frames>
+          <Frame setAllPoints="true" inherits="TooltipBackdropTemplate"/>
+          <ScrollFrame name="NigglesPetTeamIconDropDownScrollFrame" parentKey="scrollFrame" inherits="FauxScrollFrameTemplate">
+            <Anchors>
+              <Anchor point="TOPLEFT" y="-5"/>
+              <Anchor point="BOTTOMRIGHT" x="-27" y="5"/>
+            </Anchors>
+          </ScrollFrame>
+        </Frames>
+        <Scripts>
+          <OnShow function="NigglesPetTeamDropdownOnShowHide"/>
+          <OnHide function="NigglesPetTeamDropdownOnShowHide"/>
+        </Scripts>
+      </Frame>
+      <Frame parentKey="abilitySelect" hidden="true" frameLevel="600">
+        <Size x="29" y="69"/>
+        <Layers>
+          <Layer level="BACKGROUND">
+            <Texture parentKey="bgEnd" file="Interface\Buttons\ActionBarFlyoutButton">
+              <Size x="37" y="22"/>
+              <Anchors>
+                <Anchor point="BOTTOM"/>
+              </Anchors>
+              <TexCoords left="0.01562500" right="0.59375000" top="0.91406250" bottom="0.74218750"/>
+            </Texture>
+            <Texture parentKey="bgTiled" file="Interface\Buttons\ActionBarFlyoutButton-FlyoutMid" vertTile="true">
+              <Size x="37" y="32"/>
+              <Anchors>
+                <Anchor point="TOP" relativeKey="$parent" relativePoint="TOP" x="0" y="0"/>
+                <Anchor point="BOTTOM" relativeKey="$parent.bgEnd" relativePoint="TOP" x="0" y="0"/>
+              </Anchors>
+              <TexCoords left="0" right="0.578125" top="0" bottom="1"/>
+            </Texture>
+          </Layer>
+        </Layers>
+        <Frames>
+          <CheckButton id="1" parentArray="abilities" inherits="PetSpellSelectButtonTemplate">
+            <Anchors>
+              <Anchor point="TOP" x="0" y="-5"/>
+            </Anchors>
+          </CheckButton>
+          <CheckButton id="2" parentArray="abilities" inherits="PetSpellSelectButtonTemplate">
+            <Anchors>
+              <Anchor point="BOTTOM" x="0" y="5"/>
+            </Anchors>
+          </CheckButton>
+        </Frames>
+        <Scripts>
+          <OnShow function="NigglesPetTeamDropdownOnShowHide"/>
+          <OnHide function="NigglesPetTeamDropdownOnShowHide"/>
+        </Scripts>
+      </Frame>
+    </Frames>
+    <Layers>
+      <Layer level="ARTWORK">
+        <FontString parentKey="detailsLabel" inherits="QuestTitleFontBlackShadow" justifyH="LEFT">
+          <Anchors>
+            <Anchor point="CENTER" relativeKey="$parent.detailsInset"/>
+            <Anchor point="BOTTOM" relativeKey="$parent.detailsInset" relativePoint="TOP"/>
+          </Anchors>
+        </FontString>
+        <Texture file="Interface\PaperDollInfoFrame\PaperDollSidebarTabs">
+          <Size x="28" y="11"/>
+          <Anchors>
+            <Anchor point="BOTTOMRIGHT" relativeKey="$parent.detailsLabel" relativePoint="BOTTOMLEFT" x="-2"/>
+          </Anchors>
+          <TexCoords left="0.01562500" right="0.45312500" top="0.00390625" bottom="0.04687500"/>
+        </Texture>
+        <Texture file="Interface\PaperDollInfoFrame\PaperDollSidebarTabs">
+          <Size x="28" y="13"/>
+          <Anchors>
+            <Anchor point="BOTTOMLEFT" relativeKey="$parent.detailsLabel" relativePoint="BOTTOMRIGHT"/>
+          </Anchors>
+          <TexCoords left="0.01562500" right="0.45312500" top="0.05468750" bottom="0.10546875"/>
+        </Texture>
+        <FontString parentKey="strategyLabel" inherits="QuestTitleFontBlackShadow" justifyH="LEFT">
+          <Anchors>
+            <Anchor point="CENTER" relativeKey="$parent.strategy" x="11"/>
+            <Anchor point="BOTTOM" relativeKey="$parent.strategy" relativePoint="TOP"/>
+          </Anchors>
+        </FontString>
+        <Texture file="Interface\PaperDollInfoFrame\PaperDollSidebarTabs">
+          <Size x="28" y="11"/>
+          <Anchors>
+            <Anchor point="BOTTOMRIGHT" relativeKey="$parent.strategyLabel" relativePoint="BOTTOMLEFT" x="-2"/>
+          </Anchors>
+          <TexCoords left="0.01562500" right="0.45312500" top="0.00390625" bottom="0.04687500"/>
+        </Texture>
+        <Texture file="Interface\PaperDollInfoFrame\PaperDollSidebarTabs">
+          <Size x="28" y="13"/>
+          <Anchors>
+            <Anchor point="BOTTOMLEFT" relativeKey="$parent.strategyLabel" relativePoint="BOTTOMRIGHT"/>
+          </Anchors>
+          <TexCoords left="0.01562500" right="0.45312500" top="0.05468750" bottom="0.10546875"/>
+        </Texture>
+      </Layer>
+    </Layers>
+  </Frame>
+
+  <!-- Template for the panel used to edit pet teams -->
+  <Frame name="NigglesPetTeamStrategyTemplate" inherits="PortraitFrameTemplate" enableMouse="true" movable="true" resizable="true" clampedToScreen="true" hidden="true" virtual="true">
+    <Size x="250" y="350"/>
+    <ResizeBounds>
+      <minResize x="220" y="120"/>
+      <maxResize x="800" y="600"/>
+    </ResizeBounds>
+    <Anchors>
+      <Anchor point="CENTER" relativeTo="UIParent"/>
+    </Anchors>
+    <Frames>
+      <Button parentKey="dragButton" inherits="NigglesPetTeamsDragButtonTemplate"/>
+      <Button parentKey="team" inherits="NigglesPetTeamsDropDownTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" x="98" y="-30"/>
+        </Anchors>
+      </Button>
+      <Button parentKey="edit" inherits="UIPanelSquareButton">
+        <Anchors>
+          <Anchor point="CENTER" relativeKey="$parent.team" relativePoint="CENTER"/>
+          <Anchor point="RIGHT" x="-7" y="1"/>
+        </Anchors>
+        <Scripts>
+          <OnLeave function="GameTooltip_Hide"/>
+        </Scripts>
+      </Button>
+      <Frame parentKey="strategyInset" inherits="InsetFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" x="3" y="-60"/>
+          <Anchor point="BOTTOMRIGHT" x="-25" y="4"/>
+        </Anchors>
+      </Frame>
+      <ScrollFrame parentKey="scrollFrame" name="$parentScrollFrame" inherits="UIPanelScrollFrameCodeTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.strategyInset" x="5" y="-5"/>
+          <Anchor point="BOTTOMRIGHT" relativeKey="$parent.strategyInset" x="-5" y="5"/>
+        </Anchors>
+        <Frames>
+          <Slider name="$parentScrollBar" inherits="UIPanelScrollBarTrimTemplate">
+            <Anchors>
+              <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="5" y="-12"/>
+              <Anchor point="BOTTOMLEFT" relativePoint="BOTTOM" y="9"/>
+            </Anchors>
+          </Slider>
+        </Frames>
+        <Scripts>
+          <OnSizeChanged>
+            self.html:SetWidth(self:GetWidth());
+          </OnSizeChanged>
+        </Scripts>
+      </ScrollFrame>
+      <Button parentKey="resizeButton">
+        <Size x="16" y="16"/>
+        <Anchors>
+          <Anchor point="BOTTOMRIGHT" relativeKey="$parent.strategyInset" x="-3" y="3"/>
+        </Anchors>
+        <NormalTexture file="Interface\ChatFrame\UI-ChatIM-SizeGrabber-Up"/>
+        <HighlightTexture file="Interface\ChatFrame\UI-ChatIM-SizeGrabber-Highlight"/>
+        <PushedTexture file="Interface\ChatFrame\UI-ChatIM-SizeGrabber-Down"/>
+        <Scripts>
+          <OnMouseDown>
+            self:SetButtonState("PUSHED", true);
+            self:GetHighlightTexture():Hide();
+            self:GetParent():StartSizing("BOTTOMRIGHT");
+          </OnMouseDown>
+          <OnMouseUp>
+            self:SetButtonState("NORMAL", false);
+            self:GetHighlightTexture():Show();
+            self:GetParent():StopMovingOrSizing();
+          </OnMouseUp>
+        </Scripts>
+      </Button>
+    </Frames>
+    <Scripts>
+      <OnLoad function="NigglesPetTeamStrategyOnLoad"/>
+      <OnSizeChanged>
+        self.team:SetWidth(
+          math.min(self.edit:GetLeft()-self.team:GetLeft()-5, 170));
+      </OnSizeChanged>
+      <OnHide>
+        PlaySound(SOUNDKIT.IG_CHARACTER_INFO_CLOSE);
+      </OnHide>
+    </Scripts>
+  </Frame>
+
+  <!-- Template for the panel used to edit pet teams -->
+  <Frame name="NigglesPetTeamStrategyEditTemplate" inherits="PortraitFrameTemplate" enableMouse="true" movable="true" resizable="true" clampedToScreen="true" hidden="true" virtual="true">
+    <Size x="350" y="300"/>
+    <Anchors>
+      <Anchor point="CENTER" relativeTo="UIParent"/>
+    </Anchors>
+    <Frames>
+      <Button parentKey="dragButton" inherits="NigglesPetTeamsDragButtonTemplate"/>
+      <Button parentKey="preview" inherits="UIPanelButtonTemplate" text="PREVIEW">
+        <Size x="100" y="22"/>
+        <Anchors>
+          <Anchor point="BOTTOMLEFT" x="1" y="3"/>
+        </Anchors>
+      </Button>
+      <Button parentKey="cancel" inherits="UIPanelButtonTemplate" text="CANCEL">
+        <Size x="100" y="22"/>
+        <Anchors>
+          <Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
+        </Anchors>
+      </Button>
+      <Button parentKey="save" inherits="UIPanelButtonTemplate" text="SAVE">
+        <Size x="100" y="22"/>
+        <Anchors>
+          <Anchor point="BOTTOMRIGHT" relativeKey="$parent.cancel" relativePoint="BOTTOMLEFT"/>
+        </Anchors>
+      </Button>
+      <Frame parentKey="strategy" name="$parentStrategy" inherits="NigglesPetTeamStrategyEditBoxTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" x="3" y="-60"/>
+          <Anchor point="BOTTOMRIGHT" relativeKey="$parent.cancel" relativePoint="TOPRIGHT" x="-22" y="1"/>
+        </Anchors>
+      </Frame>
+    </Frames>
+    <Scripts>
+      <OnHide>
+        PlaySound(SOUNDKIT.IG_CHARACTER_INFO_CLOSE);
+      </OnHide>
+    </Scripts>
+  </Frame>
+
+  <!-- Template for buttons displayed in a list in the Pet Replacement -->
+  <!-- list. Based on Blizzard's 'CompanionListButtonTemplate'         -->
+  <Button name="NigglesPetReplacementButtonTemplate" virtual="true">
+    <Size x="208" y="46"/>
+    <Layers>
+      <Layer level="BACKGROUND">
+        <Texture atlas="PetList-ButtonBackground"/>
+      </Layer>
+      <Layer level="BORDER">
+        <Texture parentKey="icon">
+          <Size x="38" y="38"/>
+          <Anchors>
+            <Anchor point="LEFT" x="-42" y="0"/>
+          </Anchors>
+        </Texture>
+        <Texture parentKey="petTypeIcon">
+          <Size x="90" y="44"/>
+          <Anchors>
+            <Anchor point="BOTTOMRIGHT" x="-1" y="1"/>
+          </Anchors>
+          <TexCoords left="0.00781250" right="0.71093750" top="0.74609375" bottom="0.91796875"/>
+        </Texture>
+      </Layer>
+      <Layer level="ARTWORK" textureSubLevel="-1">
+        <Texture parentKey="iconBorder" file="Interface\Common\WhiteIconFrame">
+          <Anchors>
+            <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeKey="$parent.icon"/>
+            <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeKey="$parent.icon"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+      <Layer level="ARTWORK" textureSubLevel="1">
+        <FontString parentKey="name" inherits="GameFontNormal" justifyH="LEFT">
+          <Size x="147" y="25"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeKey="$parent.icon" x="10" y="-3"/>
+          </Anchors>
+        </FontString>
+        <FontString parentKey="subName" inherits="GameFontNormalSmall" justifyH="LEFT">
+          <Size x="147" y="12"/>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeKey="$parent.name" x="0" y="-4"/>
+          </Anchors>
+          <Color r="1" g="1" b="1" a="1"/>
+        </FontString>
+      </Layer>
+      <Layer level="OVERLAY">
+        <Texture parentKey="isDead" file="Interface\PetBattles\DeadPetIcon">
+          <Size x="38" y="38"/>
+          <Anchors>
+            <Anchor point="CENTER" relativeKey="$parent.icon" relativePoint="CENTER" x="0" y="0"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+    </Layers>
+    <Frames>
+      <Button parentKey="dragButton">
+        <Size x="40" y="40"/>
+        <Anchors>
+          <Anchor point="CENTER" relativeKey="$parent.icon" x="0" y="0"/>
+        </Anchors>
+        <Layers>
+          <Layer level="OVERLAY">
+            <Texture parentKey="levelBG" atlas="PetJournal-LevelBubble" useAtlasSize="true">
+              <Anchors>
+                <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeKey="$parent.icon" x="3" y="-3"/>
+              </Anchors>
+            </Texture>
+            <FontString parentKey="level" inherits="GameFontNormalSmall" justifyH="CENTER">
+              <Size x="0" y="12"/>
+              <Anchors>
+                <Anchor point="CENTER" relativeKey="$parent.levelBG" x="1" y="-1"/>
+              </Anchors>
+            </FontString>
+            <Texture parentKey="favorite" atlas="PetJournal-FavoritesIcon" useAtlasSize="true">
+              <Anchors>
+                <Anchor point="TOPLEFT" relativeKey="$parent.icon" x="-8" y="8"/>
+              </Anchors>
+            </Texture>
+          </Layer>
+        </Layers>
+        <HighlightTexture name="$parentHighlight" file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+        <Scripts>
+          <OnClick function="PetJournalDragButton_OnClick"/>
+          <OnDragStart function="PetJournalDragButton_OnDragStart"/>
+        </Scripts>
+      </Button>
+    </Frames>
+    <HighlightTexture atlas="PetList-ButtonHighlight"/>
+    <Scripts>
+      <OnLoad>
+        self:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+        self:RegisterForDrag("LeftButton");
+      </OnLoad>
+      <OnClick function="PetJournalListItem_OnClick"/>
+      <OnDragStart>
+        PetJournalDragButton_OnDragStart(self.dragButton);
+      </OnDragStart>
+    </Scripts>
+  </Button>
+
+  <!-- Template for the panel used to select replacement pets -->
+  <Frame name="NigglesPetTeamReplacementsTemplate" frameStrata="FULLSCREEN" frameLevel="50" toplevel="true" movable="true" enableMouse="true" clampedToScreen="true" hidden="true" inherits="PortraitFrameTemplate" virtual="true">
+    <Size x="288" y="260"/>
+    <Anchors>
+      <Anchor point="CENTER" relativeTo="UIParent"/>
+    </Anchors>
+    <Frames>
+      <Button parentKey="dragButton" inherits="NigglesPetTeamsDragButtonTemplate"/>
+      <Frame parentKey="inset" useParentLevel="true" inherits="InsetFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" x="4" y="-60"/>
+          <Anchor point="BOTTOMRIGHT" x="-24" y="6"/>
+        </Anchors>
+      </Frame>
+      <!--Name needed for HybridScrollFrameTemplate -->
+      <ScrollFrame name="NigglesPetReplacementsList" parentKey="list" inherits="HybridScrollFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.inset" x="3"/>
+          <Anchor point="BOTTOMRIGHT" relativeKey="$parent.inset" y="3"/>
+        </Anchors>
+        <Frames>
+          <Slider name="$parentScrollBar" inherits="HybridScrollBarTrimTemplate" parentKey="scrollBar">
+            <Anchors>
+              <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" y="-17"/>
+              <Anchor point="BOTTOM" y="13"/>
+            </Anchors>
+          </Slider>
+        </Frames>
+      </ScrollFrame>
+    </Frames>
+  </Frame>
+
+  <!-- Template for the panel used to import/export teams -->
+  <Frame name="NigglesPetTeamImportExportTemplate" frameStrata="FULLSCREEN" toplevel="true" movable="true" enableMouse="true" clampedToScreen="true" hidden="true" inherits="PortraitFrameTemplate" virtual="true">
+    <Size x="318" y="258"/>
+    <Anchors>
+      <Anchor point="CENTER" relativeTo="UIParent"/>
+    </Anchors>
+    <Frames>
+      <Button parentKey="dragButton" inherits="NigglesPetTeamsDragButtonTemplate"/>
+      <Button parentKey="tutorialButton" inherits="MainHelpPlateButton">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent" x="39" y="20" />
+        </Anchors>
+      </Button>
+      <Frame parentKey="inset" useParentLevel="true" inherits="InsetFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" x="4" y="-76"/>
+          <Anchor point="BOTTOMRIGHT" x="-24" y="28"/>
+        </Anchors>
+      </Frame>
+      <ScrollFrame parentKey="scrollFrame" name="NigglesPetTeamImportExportScrollFrame" inherits="UIPanelScrollFrameCodeTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.inset" x="5" y="-5"/>
+          <Anchor point="BOTTOMRIGHT" relativeKey="$parent.inset" x="-5" y="4"/>
+        </Anchors>
+        <Frames>
+          <Slider name="$parentScrollBar" inherits="UIPanelScrollBarTrimTemplate" parentKey="ScrollBar">
+            <Anchors>
+              <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="5" y="-11"/>
+              <Anchor point="BOTTOM" relativePoint="BOTTOM" y="9"/>
+            </Anchors>
+          </Slider>
+        </Frames>
+        <ScrollChild>
+          <EditBox name="$parentData" parentKey="data" multiLine="true" enableMouse="true" autoFocus="false">
+            <Size x="280" y="1"/>
+            <Anchors>
+              <Anchor point="TOPLEFT"/>
+            </Anchors>
+            <Scripts>
+              <OnUpdate>
+                ScrollingEdit_OnUpdate(self, elapsed, self:GetParent());
+              </OnUpdate>
+              <OnEscapePressed function="EditBox_ClearFocus"/>
+              <OnEditFocusLost>
+                self:HighlightText(0, 0);
+              </OnEditFocusLost>
+            </Scripts>
+            <FontString inherits="GameFontHighlight"/>
+          </EditBox>
+        </ScrollChild>
+        <Scripts>
+          <OnMouseUp>
+            self.data:SetFocus();
+          </OnMouseUp>
+        </Scripts>
+      </ScrollFrame>
+      <Button parentKey="close" inherits="UIPanelButtonTemplate">
+        <Size x="100" y="22"/>
+        <Anchors>
+          <Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+            self:GetParent():Hide();
+          </OnClick>
+        </Scripts>
+      </Button>
+      <Button parentKey="import" inherits="UIPanelButtonTemplate">
+        <Size x="100" y="22"/>
+        <Anchors>
+          <Anchor point="BOTTOMRIGHT" relativeKey="$parent.close" relativePoint="BOTTOMLEFT"/>
+        </Anchors>
+      </Button>
+    </Frames>
+    <Layers>
+      <Layer level="ARTWORK">
+        <FontString parentKey="label" inherits="GameFontNormalLeft">
+          <Size y="16"/>
+          <Anchors>
+            <Anchor point="BOTTOMLEFT" relativeKey="$parent.scrollFrame" relativePoint="TOPLEFT" x="0" y="5"/>
+            <Anchor point="RIGHT" relativeKey="$parent.scrollFrame" relativePoint="RIGHT" x="-10"/>
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
+    <Scripts>
+      <OnHide>
+        self.scrollFrame.data.data = nil;
+      </OnHide>
+    </Scripts>
+  </Frame>
+
+  <!-- Template for the panel used to send teams to other players -->
+  <Frame name="NigglesPetTeamSendTemplate" frameStrata="DIALOG" toplevel="true" movable="true" enableMouse="true" clampedToScreen="true" hidden="true" inherits="PortraitFrameTemplate" virtual="true">
+    <Size x="280" y="228"/>
+    <Anchors>
+      <Anchor point="CENTER" relativeTo="UIParent"/>
+    </Anchors>
+    <Frames>
+      <Button parentKey="dragButton" inherits="NigglesPetTeamsDragButtonTemplate"/>
+      <Button parentKey="close" inherits="UIPanelButtonTemplate" text="CLOSE">
+        <Size x="100" y="22"/>
+        <Anchors>
+          <Anchor point="BOTTOMRIGHT" x="-5" y="3"/>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+            self:GetParent():Hide();
+          </OnClick>
+        </Scripts>
+      </Button>
+      <Frame parentKey="petTeam" inherits="InsetFrameTemplate" useParentLevel="true"> 
+        <Size y="55"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" x="3" y="-60"/>
+          <Anchor point="RIGHT" x="-6"/>
+        </Anchors>
+        <Layers>
+          <Layer level="ARTWORK">
+            <FontString parentKey="title" inherits="QuestTitleFontBlackShadow" justifyH="LEFT">
+              <Anchors>
+                <Anchor point="CENTER"/>
+                <Anchor point="BOTTOM" relativePoint="TOP"/>
+              </Anchors>
+            </FontString>
+            <Texture file="Interface\PaperDollInfoFrame\PaperDollSidebarTabs">
+              <Size x="28" y="11"/>
+              <Anchors>
+                <Anchor point="BOTTOMRIGHT" relativeKey="$parent.title" relativePoint="BOTTOMLEFT" x="-2"/>
+              </Anchors>
+              <TexCoords left="0.01562500" right="0.45312500" top="0.00390625" bottom="0.04687500"/>
+            </Texture>
+            <Texture file="Interface\PaperDollInfoFrame\PaperDollSidebarTabs">
+              <Size x="28" y="13"/>
+              <Anchors>
+                <Anchor point="BOTTOMLEFT" relativeKey="$parent.title" relativePoint="BOTTOMRIGHT"/>
+              </Anchors>
+              <TexCoords left="0.01562500" right="0.45312500" top="0.05468750" bottom="0.10546875"/>
+            </Texture>
+          </Layer>
+        </Layers>
+        <Frames>
+          <Button parentKey="button" inherits="NigglesPetTeamButtonTemplate">
+            <Anchors>
+              <Anchor point="TOPLEFT" x="48" y="-5"/>
+              <Anchor point="RIGHT" x="-5"/>
+            </Anchors>
+          </Button>
+        </Frames>
+      </Frame>
+      <Frame parentKey="recipient" inherits="InsetFrameTemplate" useParentLevel="true"> 
+        <Size y="63"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.petTeam" relativePoint="BOTTOMLEFT" y="-25"/>
+          <Anchor point="RIGHT" relativeKey="$parent.petTeam"/>
+        </Anchors>
+        <Layers>
+          <Layer level="ARTWORK">
+            <FontString parentKey="title" inherits="QuestTitleFontBlackShadow" justifyH="LEFT">
+              <Anchors>
+                <Anchor point="CENTER"/>
+                <Anchor point="BOTTOM" relativePoint="TOP"/>
+              </Anchors>
+            </FontString>
+            <Texture file="Interface\PaperDollInfoFrame\PaperDollSidebarTabs">
+              <Size x="28" y="11"/>
+              <Anchors>
+                <Anchor point="BOTTOMRIGHT" relativeKey="$parent.title" relativePoint="BOTTOMLEFT" x="-2"/>
+              </Anchors>
+              <TexCoords left="0.01562500" right="0.45312500" top="0.00390625" bottom="0.04687500"/>
+            </Texture>
+            <Texture file="Interface\PaperDollInfoFrame\PaperDollSidebarTabs">
+              <Size x="28" y="13"/>
+              <Anchors>
+                <Anchor point="BOTTOMLEFT" relativeKey="$parent.title" relativePoint="BOTTOMRIGHT"/>
+              </Anchors>
+              <TexCoords left="0.01562500" right="0.45312500" top="0.05468750" bottom="0.10546875"/>
+            </Texture>
+            <FontString parentKey="label" inherits="GameFontNormalLeft" text="WilmaPebbles">
+              <Size y="16"/>
+              <Anchors>
+                <Anchor point="TOPLEFT" x="7" y="-10"/>
+              </Anchors>
+            </FontString>
+          </Layer>
+        </Layers>
+        <Frames>
+          <Button parentKey="send" inherits="UIPanelButtonTemplate">
+            <Size x="80" y="22"/>
+            <Anchors>
+              <Anchor point="TOPRIGHT" x="-6" y ="-7"/>
+            </Anchors>
+          </Button>
+          <EditBox parentKey="editBox" letters="64" inherits="InputBoxTemplate,AutoCompleteEditBoxTemplate" autoFocus="false">
+            <Size x="150" y="22"/>
+            <Anchors>
+              <Anchor point="TOPRIGHT" relativeKey="$parent.send" relativePoint="TOPLEFT"/>
+              <Anchor point="LEFT" relativeKey="$parent.label" relativePoint="RIGHT" x="7"/>
+            </Anchors>
+            <Scripts>
+              <OnLoad>
+                AutoCompleteEditBox_SetAutoCompleteSource(self,
+                  GetAutoCompleteResults, AUTOCOMPLETE_LIST.ALL.include,
+                  AUTOCOMPLETE_LIST.ALL.exclude);
+                self.addHighlightedText  = true;
+                self.autoCompleteContext = "all";
+              </OnLoad>
+              <OnEditFocusLost>
+                AutoCompleteEditBox_OnEditFocusLost(self);
+                EditBox_ClearHighlight(self)
+              </OnEditFocusLost>
+              <OnEscapePressed>
+                if (not AutoCompleteEditBox_OnEscapePressed(self)) then
+                  EditBox_ClearFocus(self);
+                end
+              </OnEscapePressed>
+              <OnTextChanged>
+                if (userInput) then
+                  self.autoCompleteParams = AUTOCOMPLETE_LIST.ALL;
+                  AutoCompleteEditBox_OnTextChanged(self, userInput);
+                end
+                self:GetParent().send:SetEnabled(
+                  strlen(strtrim(self:GetText())) >= 2);
+              </OnTextChanged>
+            </Scripts>
+          </EditBox>
+          <StatusBar parentKey="statusBar" drawLayer="BACKGROUND" minValue="0" maxValue="1" defaultValue="0">
+            <Size y="18"/>
+            <Anchors>
+              <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT" x="9" y="9"/>
+              <Anchor point="RIGHT" relativePoint="RIGHT" x="-9"/>
+            </Anchors>
+            <Layers>
+              <Layer level="BACKGROUND">
+                <Texture>
+                  <Color r="0.0" g="0.0" b="0.0" a="1"/>
+                </Texture>
+              </Layer>
+              <Layer level="ARTWORK">
+                <FontString parentKey="label" inherits="GameFontNormalLeft">
+                  <Size x="0" y="0"/>
+                  <Anchors>
+                    <Anchor point="TOPLEFT" x="5" y="-2"/>
+                  </Anchors>
+                </FontString>
+                <Texture parentKey="left" file="Interface\PaperDollInfoFrame\UI-Character-Skills-BarBorder">
+                  <Size x="8" y="21"/>
+                  
+                  <Anchors>
+                    <Anchor point="LEFT" x="-3" y="0"/>
+                  </Anchors>
+                  <TexCoords left="0.007843" right="0.043137" top="0.193548" bottom="0.774193"/>
+                </Texture>
+                <Texture parentKey="right" file="Interface\PaperDollInfoFrame\UI-Character-Skills-BarBorder">
+                  <Size x="8" y="21"/>
+                  
+                  <Anchors>
+                    <Anchor point="RIGHT" x="4" y="0"/>
+                  </Anchors>
+                  <TexCoords left="0.043137" right="0.007843" top="0.193548" bottom="0.774193"/>
+                </Texture>
+                <Texture file="Interface\PaperDollInfoFrame\UI-Character-Skills-BarBorder">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.left" relativePoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent.right" relativePoint="BOTTOMLEFT"/>
+                  </Anchors>
+                  <TexCoords left="0.113726" right="0.1490196" top="0.193548" bottom="0.774193"/>
+                </Texture>
+              </Layer>
+            </Layers>
+            <BarTexture name="Fred" file="Interface\PaperDollInfoFrame\UI-Character-Skills-Bar"/>
+            <BarColor r="0.0" g="1.0" b="0.0"/>
+          </StatusBar>
+        </Frames>
+      </Frame>
+    </Frames>
+  </Frame>
+
+  <!-- Button to toggle the displaying of the Strategy panel during battles -->
+  <Button name="NigglesPetBattleButton" inherits="MainMenuBarMicroButton" parent="PetBattleFrame">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativeTo="MainMenuMicroButton" relativePoint="TOPRIGHT" x="-4" y="0"/>
+    </Anchors>
+    <Scripts>
+      <OnLoad function="NigglesPetBattleButtonOnLoad"/>
+    </Scripts>
+  </Button>
+</Ui>

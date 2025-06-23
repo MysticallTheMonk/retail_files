@@ -1,0 +1,1 @@
+MainStatusTrackingBarContainer:SetScale(0.01)

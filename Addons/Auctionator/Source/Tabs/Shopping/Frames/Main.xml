@@ -1,0 +1,234 @@
+<Ui>
+  <Frame
+    name="AuctionatorShoppingTabListsContainerTemplate"
+    virtual="true"
+    parentKey="ListsContainer"
+    mixin="AuctionatorShoppingTabListsContainerMixin"
+    >
+    <Scripts>
+      <OnLoad method="OnLoad"/>
+      <OnShow method="OnShow"/>
+      <OnHide method="OnHide"/>
+    </Scripts>
+  </Frame>
+
+  <Frame
+    name="AuctionatorShoppingTabRecentsContainerTemplate"
+    virtual="true"
+    parentKey="RecentsContainer"
+    mixin="AuctionatorShoppingTabRecentsContainerMixin"
+    >
+    <Scripts>
+      <OnLoad method="OnLoad"/>
+      <OnShow method="OnShow"/>
+      <OnHide method="OnHide"/>
+    </Scripts>
+  </Frame>
+
+  <Frame
+    name="AuctionatorShoppingTabSearchOptionsTemplate"
+    virtual="true"
+    parentKey="SearchOptions"
+    mixin="AuctionatorShoppingTabSearchOptionsMixin"
+    >
+    <Scripts>
+      <OnLoad method="OnLoad"/>
+    </Scripts>
+    <Layers>
+      <Layer level="BACKGROUND">
+        <FontString parentKey="SearchLabel" inherits="GameFontNormal" text="AUCTIONATOR_L_SEARCH_TERM_COLON">
+          <Anchors>
+            <Anchor point="TOPLEFT" x="80" y="-4" />
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
+    <Frames>
+      <EditBox autoFocus="false" inherits="InputBoxTemplate" parentKey="SearchString" letters="100">
+        <Size x="180" y="20"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.SearchLabel" relativePoint="TOPRIGHT" x="10" y="4" />
+        </Anchors>
+        <FontString inherits="ChatFontNormal" justifyH="LEFT"/>
+        <Scripts>
+          <OnEnterPressed>self:GetParent().SearchButton:Click();self:ClearFocus()</OnEnterPressed>
+          <OnEscapePressed>self:ClearFocus()</OnEscapePressed>
+        </Scripts>
+      </EditBox>
+
+      <Button parentKey="ResetSearchStringButton" inherits="AuctionatorResetButton">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.SearchString" relativePoint="TOPRIGHT" x="3" y="-2"/>
+        </Anchors>
+        <Scripts>
+          <OnClick>self:GetParent().SearchString:SetText("")</OnClick>
+        </Scripts>
+      </Button>
+      <Button parentKey="SearchButton" inherits="UIPanelDynamicResizeButtonTemplate" text="AUCTIONATOR_L_SEARCH">
+        <Anchors>
+          <Anchor point="BOTTOMLEFT" relativeKey="$parent.ResetSearchStringButton" relativePoint="BOTTOMRIGHT" x="5" y="-3"/>
+        </Anchors>
+      </Button>
+      <Button parentKey="MoreButton" inherits="UIPanelDynamicResizeButtonTemplate" text="AUCTIONATOR_L_SEARCH_OPTIONS">
+        <Anchors>
+          <Anchor point="BOTTOMLEFT" relativeKey="$parent.SearchButton" relativePoint="BOTTOMRIGHT" x="5"/>
+        </Anchors>
+      </Button>
+      <Button parentKey="AddToListButton" inherits="UIPanelDynamicResizeButtonTemplate" text="AUCTIONATOR_L_ADD_TO_LIST">
+        <Anchors>
+          <Anchor point="BOTTOMLEFT" relativeKey="$parent.MoreButton" relativePoint="BOTTOMRIGHT" x="5"/>
+        </Anchors>
+      </Button>
+    </Frames>
+  </Frame>
+
+  <Frame
+    name="AuctionatorShoppingTabFrameTemplate"
+    mixin="AuctionatorShoppingTabFrameMixin"
+    virtual="true"
+    parentKey="AuctionatorShoppingTabFrame"
+    hidden="true"
+    >
+    <Anchors>
+      <Anchor point="TOP" y="-40"/>
+      <Anchor point="LEFT"/>
+      <Anchor point="BOTTOMRIGHT" x="-4" y="27" />
+    </Anchors>
+    <Size x="800" y="500"/>
+    <Scripts>
+      <OnLoad method="OnLoad"/>
+      <OnShow method="OnShow"/>
+      <OnHide method="OnHide"/>
+      <OnEvent method="OnEvent"/>
+    </Scripts>
+    <Frames>
+      <Frame inherits="AuctionatorShoppingTabSearchOptionsTemplate">
+        <Anchors>
+          <Anchor point="TOP"/>
+          <Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT" y="-150"/>
+          <Anchor point="RIGHT"/>
+        </Anchors>
+        <Size x="280"/>
+      </Frame>
+      <Frame inherits="AuctionatorShoppingTabListsContainerTemplate" hidden="true">
+        <Anchors>
+          <Anchor point="TOP" y="-50"/>
+          <Anchor point="BOTTOM" y="35"/>
+          <Anchor point="LEFT"/>
+        </Anchors>
+        <Size x="280"/>
+        <Layers>
+          <Layer level="OVERLAY">
+            <Texture parentKey="LoadingSpinner" atlas="auctionhouse-ui-loadingspinner" hidden="true">
+              <Size x="146" y="146"/>
+              <Anchors>
+                <Anchor point="CENTER" relativeKey="$parent.ListsContainer" x="-12" y="-13"/>
+              </Anchors>
+            </Texture>
+            <FontString parentKey="ResultsText" inherits="GameFontNormal" hidden="true">
+              <Anchors>
+                <Anchor point="TOP" relativeKey="$parent.LoadingSpinner" relativePoint="CENTER"/>
+                <Anchor point="LEFT" x="45"/>
+                <Anchor point="RIGHT" x="-67"/>
+              </Anchors>
+              <Shadow x="1" y="-1">
+                <Color r="0" g="0" b="0"/>
+              </Shadow>
+            </FontString>
+          </Layer>
+        </Layers>
+        <Animations>
+          <AnimationGroup parentKey="SpinnerAnim" looping="REPEAT">
+            <Rotation childKey="LoadingSpinner" order="1" duration="1" degrees="-360"/>
+          </AnimationGroup>
+        </Animations>
+      </Frame>
+      <Frame inherits="AuctionatorShoppingTabRecentsContainerTemplate">
+        <Anchors>
+          <Anchor point="TOP" y="-50"/>
+          <Anchor point="BOTTOM" y="10"/>
+          <Anchor point="LEFT"/>
+        </Anchors>
+        <Size x="280"/>
+      </Frame>
+      <Button parentKey="NewListButton" inherits="UIPanelDynamicResizeButtonTemplate" text="AUCTIONATOR_L_NEW_LIST">
+        <Anchors>
+          <Anchor point="BOTTOMLEFT" y="10" x="5"/>
+        </Anchors>
+      </Button>
+      <Button parentKey="ExportButton" inherits="UIPanelDynamicResizeButtonTemplate" text="AUCTIONATOR_L_EXPORT">
+        <Anchors>
+          <Anchor point="RIGHT" relativeKey="$parent.RecentsContainer" relativePoint="RIGHT" x="20"/>
+          <Anchor point="BOTTOM" y="10"/>
+        </Anchors>
+      </Button>
+      <Button parentKey="ImportButton" inherits="UIPanelDynamicResizeButtonTemplate" text="AUCTIONATOR_L_IMPORT">
+        <Anchors>
+          <Anchor point="RIGHT" relativeKey="$parent.ExportButton" relativePoint="LEFT"/>
+        </Anchors>
+      </Button>
+    </Frames>
+    <Frames>
+      <Frame parentKey="ContainerTabs" mixin="AuctionatorShoppingTabContainerTabsMixin">
+        <Size x="10" y="10"/>
+        <Scripts>
+          <OnLoad method="OnLoad"/>
+        </Scripts>
+        <Anchors>
+          <Anchor point="BOTTOMLEFT" relativeKey="$parent.ListsContainer" relativePoint="TOPLEFT" x="20"/>
+        </Anchors>
+        <Frames>
+          <Button inherits="AuctionatorShoppingMiniTabButtonTemplate" text="AUCTIONATOR_L_SHOPPING_LISTS" id="1" parentKey="ListsTab">
+            <Anchors>
+              <Anchor point="BOTTOMLEFT"/>
+            </Anchors>
+          </Button>
+          <Button inherits="AuctionatorShoppingMiniTabButtonTemplate" text="AUCTIONATOR_L_RECENT_SEARCHES" id="2" parentKey="RecentsTab">
+            <Anchors>
+              <Anchor point="BOTTOMLEFT" relativeKey="$parent.ListsTab" relativePoint="BOTTOMRIGHT"/>
+            </Anchors>
+          </Button>
+        </Frames>
+      </Frame>
+
+      <Frame parentKey="DataProvider" mixin="AuctionatorShoppingTabDataProviderMixin">
+        <Scripts>
+          <OnLoad method="OnLoad"/>
+          <OnUpdate method="OnUpdate" />
+        </Scripts>
+      </Frame>
+      <Frame
+        parentKey="SearchProvider"
+        inherits="AuctionatorDirectSearchProviderTemplate"
+      >
+        <Scripts>
+          <OnEvent method="OnEvent" />
+        </Scripts>
+      </Frame>
+
+      <Frame inherits="AuctionatorResultsListingTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.ListsContainer.ScrollBar" relativePoint="TOPRIGHT" x="5" y="27"/>
+          <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" x="-20"/>
+        </Anchors>
+      </Frame>
+
+      <Frame parentKey="ShoppingResultsInset" inherits="AuctionatorInsetTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.ResultsListing" relativePoint="TOPLEFT" x="-10" y="-25"/>
+          <Anchor point="BOTTOMRIGHT" relativeKey="$parent.ResultsListing" relativePoint="BOTTOMRIGHT" y="2"/>
+        </Anchors>
+      </Frame>
+
+      <Button inherits="UIPanelDynamicResizeButtonTemplate" text="AUCTIONATOR_L_EXPORT_RESULTS" parentKey="ExportCSV">
+        <Anchors>
+          <Anchor point="TOP" relativeKey="$parent.ResultsListing" relativePoint="BOTTOM"/>
+          <Anchor point="RIGHT" relativePoint="RIGHT" x="-8" y="10" />
+        </Anchors>
+        <Scripts>
+          <OnClick>self:GetParent():ExportCSVClicked()</OnClick>
+        </Scripts>
+      </Button>
+    </Frames>
+  </Frame>
+</Ui>

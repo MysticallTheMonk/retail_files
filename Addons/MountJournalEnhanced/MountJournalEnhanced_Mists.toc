@@ -1,0 +1,82 @@
+## Interface: 50500
+## Title: Mount Journal Enhanced
+## Notes: Extends the default Mount Journal
+## IconTexture: Interface\Addons\MountJournalEnhanced\UI\icons\mje.png
+## Author: eXochron
+## Version: 2.49.0
+## SavedVariablesPerCharacter: MJEPersonalSettings
+## SavedVariables: MJEGlobalSettings, MJETrackingData
+## X-Curse-Project-ID: 86372
+## X-Wago-ID: nQN5m7NB
+## Category-enUS: Collections
+## Category-deDE: Kriegsmeutesammlungen
+## Category-esES: Colecciones de banda guerrera
+## Category-esMX: Colecciones de tropa
+## Category-frFR: Collections du bataillon
+## Category-itIT: Collezioni della Brigata
+## Category-koKR: 전투부대 수집품
+## Category-ptBR: Coleções do Bando de Guerra
+## Category-ruRU: Коллекции отряда
+## Category-zhCN: 战团藏品
+## Category-zhTW: 戰隊收藏
+
+Libs\LibStub\LibStub.lua
+Libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
+Libs\AceGUI-3.0\AceGUI-3.0.xml
+Libs\HereBeDragons\HereBeDragons-2.0.lua
+Libs\TaintLess\TaintLess.xml
+
+Locals.lua
+Database\Database.lua
+Database\colors.db.lua
+Database\customization.db.lua
+Database\families.db.lua
+Database\restrictions.db.lua
+Database\sources.db.lua
+Database\tradable.db.lua
+Database\classic.db.lua
+
+PlayerConditions.lua
+Filters.lua
+Sort.lua
+MountJournalEnhanced.lua
+Api.lua
+Events.lua
+Settings\Handling.lua
+Settings\Settings.lua
+Settings\OptionsPanel.lua
+Favorites.lua
+Tracking.lua
+SlashCommand.lua
+
+UI\Templates.xml
+UI\Functions.lua
+UI\EnhancedList.lua
+UI\EnhancedDisplay.lua
+UI\EnhancedToolbar.lua
+UI\CompactMountList.lua
+UI\AchievementPoints.lua
+UI\MountCount.lua
+UI\DisplayDirector.lua
+UI\FavoritesMenu.lua
+UI\FilterDropdown\Main.lua
+UI\FilterDropdown\Color.lua
+UI\FilterDropdown\Family.lua
+UI\FilterDropdown\Sort.lua
+UI\DisplayBackground.lua
+UI\DisplayCamera.lua
+UI\DisplayText.lua
+UI\Resize.lua
+UI\DisplayStatistics.lua
+UI\Hotkeys.lua
+UI\MountListDropDown.lua
+UI\MountSpecialButton.lua
+UI\PetAssignment.lua
+UI\SettingsDropDown.lua
+# UI\DressUpButton.lua # no mount preview possible yet
+UI\SummonRandomButton.lua
+UI\SyncTarget.lua
+UI\BlizzFixes.lua
+UI\Notes.lua
+UI\Fun.lua
+UI\LDB-Favorites.lua

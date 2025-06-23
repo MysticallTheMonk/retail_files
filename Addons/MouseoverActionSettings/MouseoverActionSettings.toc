@@ -1,0 +1,61 @@
+## Interface: 110105
+## Title: MouseoverActionSettings
+## Author: Slothpala
+## SavedVariables: MouseoverActionSettingsDB
+## AddonCompartmentFunc: MouseoverActionSettings_OnAddonCompartmentClick
+## IconTexture: Interface\AddOns\MouseoverActionSettings\Media\MinimapButtonIcon.tga
+## OptionalDeps: Ace3, LibDeflate, LibDBIcon-1.0, LibDualSpec-1.0, FrameColor
+## X-Curse-Project-ID: 686646
+
+Init.lua
+
+embeds.xml
+locales.xml
+Core.lua
+DB.lua
+
+#Utils
+Utils/AddonColors.lua
+Utils/HookRegistry.lua
+Utils/TimerRegistry.lua
+Utils/CallbackRegistry.lua
+Utils/LinkMouseoverUnits.lua
+Utils/Animation.lua
+Utils/ProfileSharing.lua
+Utils/UserModuleManager.lua
+
+#Options
+Options/MouseoverUnitOptions.lua
+Options/EventDelayTimerOptions.lua
+Options/LinksTab.lua
+Options/TriggerOptions.lua
+Options/ActionBarsTab.lua
+Options/ConfigTabOptions.lua
+Options/ProfileTabOptions.lua
+Options/HUDTab.lua
+Options/UserModulesTab.lua
+Options/CreateUserModuleOptions.lua
+Options/RemoveUserModuleOptions.lua
+Options/OptionsFrame.lua
+Options/PopUpFrame.lua
+
+#Statuses
+Statuses/Combat.lua
+Statuses/Dragonriding.lua
+Statuses/Mounted.lua
+Statuses/Grid.lua
+Statuses/InstanceType.lua
+Statuses/GroupType.lua
+Statuses/TalkingToNPC.lua
+Statuses/SpellFlyout.lua
+Statuses/EditMode.lua
+Statuses/UnitExists.lua
+Statuses/Moving.lua
+Statuses/TargetAttackable.lua
+Statuses/Health.lua
+
+#Prototypes
+Prototypes/MouseoverUnit.lua
+Prototypes/UserModule.lua
+
+modules.xml

@@ -1,0 +1,40 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI_shared.xsd">
+
+    <!-- Polyfill of original SummonRandomFavoriteButton -->
+    <Button name="MJE_SummonRandomFavoriteButton" virtual="true" inherits="SecureHandlerDragTemplate,InsecureActionButtonTemplate">
+        <Attributes>
+            <Attribute name="type1" value="macro"/>
+            <Attribute name="macro" value="MJE: Random Mount"/>
+            <Attribute name="_ondragstart" value='return "clear", "macro", "MJE: Random Mount"'/>
+        </Attributes>
+
+        <Size x="33" y="33"/>
+        <Anchors>
+            <Anchor point="CENTER" relativePoint="TOPRIGHT" x="-24" y="-42"/>
+        </Anchors>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture name="$parentIconTexture" parentKey="texture"
+                         file="Interface/ICONS/ACHIEVEMENT_GUILDPERK_MOUNTUP" setAllPoints="true"/>
+            </Layer>
+            <Layer level="OVERLAY">
+                <Texture parentKey="BlackCover" setAllPoints="true" hidden="true">
+                    <Color r="0" g="0" b="0" a="0.6"/>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY" textureSubLevel="1">
+                <Texture name="$parentBorder" inherits="ActionBarFlyoutButton-IconFrame">
+                    <Size x="35" y="35"/>
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
+                </Texture>
+                <Texture name="$parentLockIcon" parentKey="LockIcon" file="Interface\PetBattles\PetBattle-LockIcon"
+                         setAllPoints="true" hidden="true"/>
+            </Layer>
+        </Layers>
+        <PushedTexture file="Interface\Buttons\UI-Quickslot-Depress"/>
+        <HighlightTexture name="$parentHighlight" file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+    </Button>
+</Ui>

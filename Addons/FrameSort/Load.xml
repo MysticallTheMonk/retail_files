@@ -1,0 +1,90 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
+    <!-- Load the addon table structure (pseudo-namespaces) first -->
+    <Script file="Namespace.lua"/>
+
+    <!-- Load files that don't have any other dependencies -->
+    <Script file="Logging\Log.lua"/>
+    <Script file="Collections\Enumerable.lua"/>
+    <Script file="Collections\LuaEx.lua"/>
+    <Script file="Configuration\SortingMethod.lua"/>
+    <Script file="Configuration\SortMode.lua"/>
+    <Script file="Configuration\Spec.lua"/>
+    <Script file="Numerics\Math.lua"/>
+
+    <!-- Load core wow files that other files need -->
+    <Script file="WoW\WoW.lua"/>
+    <Script file="WoW\Unit.lua"/>
+    <Script file="Modules\Macro\Parser.lua"/>
+
+    <!-- Language files -->
+    <Script file="Locales\enUS.lua"/>
+    <Script file="Locales\deDE.lua"/>
+    <Script file="Locales\esES.lua"/>
+    <Script file="Locales\esMX.lua"/>
+    <Script file="Locales\frFR.lua"/>
+    <Script file="Locales\koKR.lua"/>
+    <Script file="Locales\ruRU.lua"/>
+    <Script file="Locales\zhCN.lua"/>
+    <Script file="Locales\zhTW.lua"/>
+
+    <!-- Scheduler requires core wow files -->
+    <Script file="Scheduling\Scheduler.lua"/>
+
+    <!-- Comparer requires core wow files -->
+    <Script file="Collections\Comparer.lua"/>
+
+    <!-- Frame requires Comparer -->
+    <Script file="WoW\Frame.lua"/>
+
+    <!-- Frame providers require core wow files -->
+    <Script file="Providers\Provider.lua"/>
+    <Script file="Providers\Blizzard.lua"/>
+    <Script file="Providers\sArena.lua"/>
+    <Script file="Providers\GladiusEx.lua"/>
+    <Script file="Providers\Gladius.lua"/>
+    <Script file="Providers\ElvUI.lua"/>
+    <Script file="Providers\Cell.lua"/>
+    <Script file="Providers\Suf.lua"/>
+    <Script file="Providers\Grid2.lua"/>
+
+    <!-- Health check requires frame providers -->
+    <Script file="Health\HealthCheck.lua"/>
+
+    <!-- Sorting modules -->
+    <Script file="Modules\Leader\AutoLeader.lua"/>
+    <Script file="Modules\Sorting\Traditional.lua"/>
+    <Script file="Modules\Sorting\Secure.lua"/>
+    <Script file="Modules\Sorting\SecureNoCombat.lua"/>
+    <Script file="Modules\Sorting\SecureInCombat.lua"/>
+    <Script file="Modules\Sorting\Sorting.lua"/>
+
+    <!-- Load modules -->
+    <Script file="Modules\HidePlayer.lua"/>
+    <Script file="Modules\Targeting.lua"/>
+    <Script file="Modules\Macro\Macro.lua"/>
+    <Script file="Modules\Runner.lua"/>
+
+    <!-- Api requires modules -->
+    <Script file="Api\Api.lua"/>
+    <Script file="Api\v1.lua"/>
+    <Script file="Api\v2.lua"/>
+
+    <!-- Configuration requires modules -->
+    <Script file="Configuration\Options.lua"/>
+    <Script file="Configuration\Defaults.lua"/>
+    <Script file="Configuration\Upgrader.lua"/>
+    <Script file="Configuration\Panels\Ordering.lua"/>
+    <Script file="Configuration\Panels\AutoLeader.lua"/>
+    <Script file="Configuration\Panels\Sorting.lua"/>
+    <Script file="Configuration\Panels\Spacing.lua"/>
+    <Script file="Configuration\Panels\Keybindings.lua"/>
+    <Script file="Configuration\Panels\Macro.lua"/>
+    <Script file="Configuration\Panels\SortingMethod.lua"/>
+    <Script file="Configuration\Panels\Addons.lua"/>
+    <Script file="Configuration\Panels\HealthCheck.lua"/>
+    <Script file="Configuration\Panels\Api.lua"/>
+    <Script file="Configuration\Panels\Help.lua"/>
+
+    <!-- Now initialise the addon -->
+    <Script file="Init.lua"/>
+</Ui>

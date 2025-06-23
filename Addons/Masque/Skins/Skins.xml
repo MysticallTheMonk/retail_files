@@ -1,0 +1,11 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="Regions.lua"/>
+	<Script file="Skins.lua"/>
+	<Script file="Blizzard_Classic.lua"/>
+	<Script file="Blizzard_Modern.lua"/>
+	<Script file="Classic_Enhanced.lua"/>
+	<Script file="Dream.lua"/>
+	<Script file="Modern_Enhanced.lua"/>
+	<Script file="Zoomed.lua"/>
+</Ui>

@@ -1,0 +1,42 @@
+## Interface: 40402
+## Title: TrufiGCD
+## Notes: Last used spells of the player, target, party or arena members.
+## SavedVariables: TrufiGCDGlSave
+## SavedVariablesPerCharacter: TrufiGCDChSave
+## OptionalDeps: ButtonFacade, Masque
+## IconTexture: 4622474
+## X-Curse-Project-ID: 46527
+## X-WoWI-ID: 21820
+## X-Wago-ID: BNBenxGx
+
+Polyfills.xml
+
+# Libraries
+Libs\LibStub\Libstub.lua
+
+# Utility modules
+Modules\Utils.lua
+Modules\MasqueHelper.lua
+Modules\Constants.lua
+Modules\Frames\FrameUtils.lua
+
+# Settings modules
+Modules\Settings\InnerBlocklist.lua
+Modules\Settings\LayoutSettings.lua
+Modules\Settings\UnitSettings.lua
+Modules\Settings\ProfileSettings.lua
+Modules\Settings\Settings.lua
+
+# Core modules
+Modules\Core\Icon.lua
+Modules\Core\IconQueue.lua
+Modules\Core\LocationCheck.lua
+Modules\Core\Units.lua
+
+# Frames
+Modules\Frames\SettingsFrame.lua
+Modules\Frames\BlocklistFrame.lua
+Modules\Frames\ProfileFrame.lua
+
+# Addon
+TrufiGCD.lua

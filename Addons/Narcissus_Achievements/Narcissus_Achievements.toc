@@ -1,0 +1,16 @@
+## Interface: 110105, 110107
+## Version: 11.1.5
+## LoadOnDemand: 1
+## RequiredDeps: Narcissus
+
+## SavedVariables: NarciDevToolOutput
+# Plain Title: Narcissus Achievements
+## Title: Narcissus Achievements
+## Notes: A standalone achievement UI.
+## Notes-zhCN: Narcissus成就面板
+
+## Author: Peterodox
+
+## IconTexture: Interface\AddOns\Narcissus\Art\Logos\AddonListIconT
+
+Code\Achievements.xml

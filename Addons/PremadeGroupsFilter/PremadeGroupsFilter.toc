@@ -1,0 +1,89 @@
+## Interface: 110105, 110107
+## Title: Premade Groups Filter
+## Version: 6.7.4
+## IconTexture: 397907
+## X-Flavor: Retail
+## Notes: Allows filtering of premade groups using an UI or advanced filter expressions.
+## Notes-deDE: Ermöglicht das Filtern organisierter Gruppen mithilfe der Benutzeroberfläche oder erweiterter Filterausdrücke.
+## Notes-frFR: Permet de filtrer des groupes prédéfinis à l'aide d'une interface utilisateur ou d'expressions de filtre avancées.
+## Notes-esES: Permite el filtrado de grupos prefabricados mediante una interfaz de usuario o expresiones de filtro avanzadas.
+## Notes-itIT: Consente di filtrare i gruppi di spedizioni predefinite utilizzando l'interfaccia utente o le espressioni di filtro avanzate.
+## Notes-ruRU: Позволяет фильтровать заранее собранные группы с помощью пользовательского интерфейса или расширенных выражений фильтра.
+## Notes-koKR: 사용자 인터페이스 또는 고급 필터 표현식을 사용하여 미리 만들어진 그룹을 필터링할 수 있습니다.
+## Notes-zhCN: 允许使用用户界面或高级过滤器表达式过滤预制组。
+## Notes-zhTW: 允許使用用戶界面或高級過濾器表達式過濾預製組。
+## Author: Bernhard Saumweber
+## SavedVariables: PremadeGroupsFilterSettings
+## SavedVariablesPerCharacter: PremadeGroupsFilterState
+## OptionalDeps: PremadeRegions, RaiderIO
+
+## Category-enUS: Dungeons & Raids
+## Category-deDE: Dungeons & Schlachtzüge
+## Category-esES: Mazmorras y bandas
+## Category-esMX: Calabozos y bandas
+## Category-frFR: Donjons et raids
+## Category-itIT: Spedizioni e incursioni
+## Category-koKR: 던전 및 공격대
+## Category-ptBR: Masmorras e Raides
+## Category-ruRU: Подземелья и рейды
+## Category-zhCN: 地下城和团队副本
+## Category-zhTW: 地城與團隊
+
+Init.lua
+Compat.lua
+Localization\enUS.lua
+Localization\frFR.lua
+Localization\deDE.lua
+Localization\koKR.lua
+Localization\zhCN.lua
+Localization\zhTW.lua
+Localization\ruRU.lua
+Localization\esES.lua
+Localization\itIT.lua
+Modules\Logger.lua
+Fixes\FixReportAdvertisement.lua
+UI\StaticPopup.xml
+UI\StaticPopup.lua
+Modules\Util.lua
+Modules\Activity.lua
+Modules\ActivityKeywords.lua
+Modules\AdvancedFilter.lua
+Modules\Specializations.lua
+Modules\MemberInfo.lua
+Modules\RemainingSlots.lua
+Modules\ApplicationStatus.lua
+Modules\Lockout.lua
+Modules\Expression.lua
+Modules\PlayerInfo.lua
+Modules\Macro.lua
+Modules\GroupTooltip.lua
+Modules\RoleIndicators.lua
+Modules\RatingInfo.lua
+Modules\OneClickSignUp.lua
+Modules\PersistSignUpNote.lua
+Modules\SignUpOnEnter.lua
+Main.lua
+Plugins\PremadeRegions.lua
+Plugins\RaiderIO.lua
+Settings\Settings.xml
+Settings\Settings.lua
+UI\Common.lua
+UI\PopupMenu.xml
+UI\PopupMenu.lua
+UI\Help.lua
+UI\Templates.xml
+UI\Dialog.xml
+UI\Dialog.lua
+UI\DungeonPanel.xml
+UI\DungeonPanel.lua
+UI\RolePanel.xml
+UI\RolePanel.lua
+UI\ArenaPanel.xml
+UI\ArenaPanel.lua
+UI\RBGPanel.xml
+UI\RBGPanel.lua
+UI\RaidPanel.xml
+UI\RaidPanel.lua
+UI\MiniPanel.xml
+UI\MiniPanel.lua
+UI\UsePGFButton.lua

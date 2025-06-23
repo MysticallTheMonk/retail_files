@@ -1,0 +1,15 @@
+## Interface: 110105, 110107
+## Version: 1.0.2
+## LoadOnDemand: 1
+## RequiredDeps: Narcissus
+
+## Author: Peterodox
+## Title: Narcissus Bag Filter
+## Notes: Bag item search suggest and auto-filter.
+## SavedVariables: NarcissusBagFilterDB
+
+## IconTexture: Interface\AddOns\Narcissus\Art\Logos\AddonListIconT
+
+Code\SavedVariables.lua
+Code\API.lua
+Code\ItemSearch.xml

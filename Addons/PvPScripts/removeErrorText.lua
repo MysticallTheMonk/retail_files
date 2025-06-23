@@ -1,0 +1,1 @@
+SetCVar("scriptErrors", "0")

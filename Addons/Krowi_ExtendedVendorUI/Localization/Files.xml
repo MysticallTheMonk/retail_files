@@ -1,0 +1,16 @@
+<Ui>
+    <Script file="Localization.lua" />
+    <Script file="enUS.lua" />
+    <Script file="enUS.Plugins.lua" />
+    <Script file="zhCN.lua" />
+    <Script file="zhCN.Plugins.lua" />
+    <Script file="deDE.lua" />
+    <Script file="deDE.Plugins.lua" />
+    <Script file="frFR.lua" />
+    <Script file="frFR.Plugins.lua" />
+    <Script file="itIT.lua" />
+    <Script file="itIT.Plugins.lua" />
+    <Script file="ruRU.lua" />
+    <Script file="ruRU.Plugins.lua" />
+    <Script file="GlobalStrings.lua" />
+</Ui>

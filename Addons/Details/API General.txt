@@ -1,0 +1,58 @@
+
+=======================================
+Item Level
+=======================================
+
+Details.ilevel:IsTrackerEnabled()
+return if the item level tracker is enabled.
+
+Details.ilevel:TrackItemLevel (bool)
+enable or disable the tracker, item level tracker only work when inside a raid instance and out of combat.
+
+Details.ilevel:GetPool()
+return a table containing all tracked players:
+{[GUID] = {["name"] = name-realm, ["ilvl"] = item level, ["time"] = time()}}
+
+Details.ilevel:GetIlvl (guid)
+return the item level table for the requested guid.
+
+Details.ilevel:GetInOrder()
+return a new numeric table with sorted in decreasing order:
+{{name-realm, item level, time()}, {name-realm, item level, time()}}
+
+=======================================
+Raid History
+=======================================
+
+Details222.storage.OpenRaidStorage()
+get the table containing all stored data.
+
+Details222.storage.ListEncounters (diff)
+return a indexed table with all encounters stored for the dificulty.
+
+Details222.storage.GetEncounterData (diff, encounterId, guildname)
+return a indexed table with encounter tables playd by the guild.
+
+Details222.storage.GetUnitData (diff, encounterId, role, playername)
+return a indexed table with player tables for the player.
+
+Details222.storage.GetBestFromPlayer (diff, encounterId, role, playername)
+return the best result from the player.
+
+Structure:
+DB = hash{
+	[difficulty index] = hash{
+		[encounter id] = indexed{
+			{
+				--encounter table
+				damage = hash{
+					[playername] = indexed{} --player table
+				}
+				...
+			}--[1]
+		}
+	}
+}
+
+encounter table = hash {["time"] = time(), ["guild"] = guild name, ["date"] = formated date, ["healing"] = {[playername] = playertable}, ["elapsed"] = combat time, ["damage"] = {[playername] = playertable}}
+player table = indexed {total done, item level, class index}

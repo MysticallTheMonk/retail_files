@@ -1,0 +1,35 @@
+## Interface: 110107
+
+## Title: Leatrix Plus
+## Title-zhCN: Leatrix Plus [|cffeda55f功能百宝箱|r]
+## Title-zhTW: Leatrix Plus [|cffeda55f功能百寶箱|r]
+
+## Notes: For support, visit leatrix.com.
+## Notes-deDE: Für Support besuche leatrix.com.
+## Notes-frFR: Pour obtenir de l'aide, visitez leatrix.com.
+## Notes-esES: Para obtener asistencia, visita leatrix.com.
+## Notes-esMX: Para obtener soporte, visita leatrix.com.
+## Notes-ptBR: Para suporte, visite leatrix.com.
+## Notes-itIT: Per assistenza, visita leatrix.com.
+## Notes-ruRU: Для поддержки посетите leatrix.com.
+## Notes-koKR: 지원이 필요하시면 leatrix.com을 방문하세요.
+## Notes-zhTW: 如需支援，請造訪 leatrix.com。
+## Notes-zhCN: 如需支持，请访问 leatrix.com。
+
+## Version: 11.1.14
+## Author: Leatrix
+## SavedVariables: LeaPlusDB
+## AddonCompartmentFunc:LeaPlusGlobalMiniBtnClickFunc
+
+## IconTexture: Interface\HELPFRAME\ReportLagIcon-Movement
+
+## OptionalDeps: Leatrix_enUS, ElvUI
+
+## X-Curse-Project-ID: 94855
+
+Leatrix_Plus_Library.lua
+Leatrix_Plus_Locale.lua
+Leatrix_Plus_Media.lua
+Leatrix_Plus_Mute.lua
+Leatrix_Plus.xml
+Leatrix_Plus.lua

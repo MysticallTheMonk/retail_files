@@ -1,0 +1,370 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\..\FrameXML\UI.xsd">
+
+	<Script file="ElvUI.lua"/>
+	<Script file="REPorter.lua"/>
+
+	<Frame name="REPorterPOITimerTemplate" inherits="BackdropTemplate" parent="REPorterFrameCorePOITimers" virtual="true">
+		<Size>
+			<AbsDimension x="30" y="17"/>
+		</Size>
+		<KeyValues>
+			<KeyValue key="backdropInfo" value="REPorter.BackdropB" type="global"/>
+    	</KeyValues>
+		<Layers>
+			<Layer>
+				<FontString name="$ParentCaption" justifyH="CENTER" inherits="SystemFont_Shadow_Small">
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="REPorterVehicleTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="45" y="45"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentTexture" setAllPoints="true"/>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="REPorterFlagTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="32" y="32"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture parentKey="Texture" setAllPoints="true"/>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="REPorterFrame" hidden="true" resizable="true" movable="true" clampedToScreen="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="783" y="522"/>
+		</Size>
+		<ResizeBounds>
+			<minResize x="50" y="50"/>
+			<maxResize x="783" y="522"/>
+		</ResizeBounds>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Scripts>
+			<OnLoad>REPorter:OnLoad(self)</OnLoad>
+			<OnEvent>REPorter:OnEvent(self, event, ...)</OnEvent>
+		</Scripts>
+		<Frames>
+			<Frame name="$parentBorder" inherits="BackdropTemplate" frameLevel="4">
+				<KeyValues>
+					<KeyValue key="backdropInfo" value="REPorter.BackdropA" type="global"/>
+    			</KeyValues>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="-5" y="5"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="5" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="$parentResize">
+						<Size>
+							<AbsDimension x="16" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="4" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture file="Interface\Addons\REPorter\Textures\Handle"/>
+						<HighlightTexture file="Interface\Addons\REPorter\Textures\Handle" alphaMode="ADD"/>
+						<Scripts>
+							<OnMouseDown>REPorterFrameCoreAnchor:StartMoving(); REPorterFrameCoreAnchor:StopMovingOrSizing(); REPorterFrame:StartSizing()</OnMouseDown>
+							<OnMouseUp>REPorterFrame:StopMovingOrSizing()</OnMouseUp>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+			<Frame name="$parentClip" frameLevel="3">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+					<Anchor point="BOTTOMRIGHT"/>
+				</Anchors>
+				<Frames>
+					<Frame name="REPorterFrameCoreAnchor" movable="true">
+						<Size>
+							<AbsDimension x="10" y="10"/>
+						</Size>
+						<Anchors>
+							<Anchor point="CENTER"/>
+						</Anchors>
+					</Frame>
+					<Frame name="REPorterFrameCore" movable="true">
+						<Size>
+							<AbsDimension x="800" y="600"/>
+						</Size>
+						<Anchors>
+							<Anchor point="CENTER">
+								<Offset>
+									<AbsDimension x="9" y="-39"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture name="$parentMap1">
+									<Size>
+										<AbsDimension x="200" y="200"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT"/>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentMap2">
+									<Size>
+										<AbsDimension x="200" y="200"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parentMap1" relativePoint="TOPRIGHT"/>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentMap3">
+									<Size>
+										<AbsDimension x="200" y="200"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parentMap2" relativePoint="TOPRIGHT"/>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentMap4">
+									<Size>
+										<AbsDimension x="200" y="200"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parentMap3" relativePoint="TOPRIGHT"/>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentMap5">
+									<Size>
+										<AbsDimension x="200" y="200"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parentMap1" relativePoint="BOTTOMLEFT"/>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentMap6">
+									<Size>
+										<AbsDimension x="200" y="200"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parentMap5" relativePoint="TOPRIGHT"/>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentMap7">
+									<Size>
+										<AbsDimension x="200" y="200"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parentMap6" relativePoint="TOPRIGHT"/>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentMap8">
+									<Size>
+										<AbsDimension x="200" y="200"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parentMap7" relativePoint="TOPRIGHT"/>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentMap9">
+									<Size>
+										<AbsDimension x="200" y="200"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parentMap5" relativePoint="BOTTOMLEFT"/>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentMap10">
+									<Size>
+										<AbsDimension x="200" y="200"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parentMap9" relativePoint="TOPRIGHT"/>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentMap11">
+									<Size>
+										<AbsDimension x="200" y="200"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parentMap10" relativePoint="TOPRIGHT"/>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentMap12">
+									<Size>
+										<AbsDimension x="200" y="200"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parentMap11" relativePoint="TOPRIGHT"/>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Frames>
+							<Frame name="$parentPOI">
+								<Anchors>
+									<Anchor point="TOPLEFT"/>
+									<Anchor point="BOTTOMRIGHT"/>
+								</Anchors>
+							</Frame>
+							<Frame name="$parentPOITimers" hidden="true">
+								<Anchors>
+									<Anchor point="TOPLEFT"/>
+									<Anchor point="BOTTOMRIGHT"/>
+								</Anchors>
+							</Frame>
+							<UnitPositionFrame name="$parentUP" inherits="UnitPositionFrameTemplate">
+								<Size>
+									<AbsDimension x="783" y="522"/>
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT"/>
+								</Anchors>
+								<Scripts>
+									<OnLoad/>
+									<OnShow/>
+									<OnHide/>
+									<OnEvent/>
+								</Scripts>
+							</UnitPositionFrame>
+						</Frames>
+					</Frame>
+				</Frames>
+			</Frame>
+			<Frame name="$parentBG" inherits="BackdropTemplate" enableMouse="true" frameLevel="2">
+				<KeyValues>
+					<KeyValue key="backdropInfo" value="REPorter.BackdropB" type="global"/>
+				</KeyValues>
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+					<Anchor point="BOTTOMRIGHT"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad inherit="prepend">self:RegisterForDrag("LeftButton")</OnLoad>
+					<OnDragStart>if not REPorter.Settings.profile.Locked then REPorter:OnDragStart(self) end</OnDragStart>
+					<OnDragStop>REPorterFrameCoreAnchor:StopMovingOrSizing(); REPorterFrame:StopMovingOrSizing(); REPorter:OnDragStop(self)</OnDragStop>
+					<OnMouseWheel>if not REPorter.Settings.profile.Locked then REPorter:OnMouseWheel(delta) end</OnMouseWheel>
+					<OnLeave>REPorter:OnLeave(self)</OnLeave>
+				</Scripts>
+			</Frame>
+		</Frames>
+	</Frame>
+
+	<Frame name="REPorterBar" inherits="BackdropTemplate" parent="REPorterFrame" hidden="true" movable="true" clampedToScreen="true">
+		<KeyValues>
+			<KeyValue key="backdropInfo" value="REPorter.BackdropC" type="global"/>
+		</KeyValues>
+		<Frames>
+			<Button name="$parentB1" text="1" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="25" y="25"/>
+				</Size>
+				<Scripts>
+					<OnClick>REPorter:SmallButton(1)</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentB2" text="2" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="25" y="25"/>
+				</Size>
+				<Scripts>
+					<OnClick>REPorter:SmallButton(2)</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentB3" text="3" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="25" y="25"/>
+				</Size>
+				<Scripts>
+					<OnClick>REPorter:SmallButton(3)</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentB4" text="4" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="25" y="25"/>
+				</Size>
+				<Scripts>
+					<OnClick>REPorter:SmallButton(4)</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentB5" text="5" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="25" y="25"/>
+				</Size>
+				<Scripts>
+					<OnClick>REPorter:SmallButton(5)</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentB6" text="Z" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="25" y="25"/>
+				</Size>
+				<Scripts>
+					<OnClick>REPorter:SmallButton(6)</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentB7" text="H" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="25" y="25"/>
+				</Size>
+				<Scripts>
+					<OnClick>REPorter:BigButton(true)</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentB8" text="C" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="25" y="25"/>
+				</Size>
+				<Scripts>
+					<OnClick>REPorter:BigButton(false)</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad inherit="prepend">self:RegisterForDrag("LeftButton")</OnLoad>
+			<OnDragStart>if not REPorter.Settings.profile.Locked and (REPorter.Settings.profile.BarHandle == 13 or REPorter.Settings.profile.BarHandle == 14) then self:StartMoving() end</OnDragStart>
+			<OnDragStop>REPorter.Settings.profile.BarX, REPorter.Settings.profile.BarY = self:GetCenter(); self:StopMovingOrSizing()</OnDragStop>
+			<OnEnter>REPorter:OnEnterBar()</OnEnter>
+			<OnLeave>REPorter:OnLeaveBar()</OnLeave>
+		</Scripts>
+	</Frame>
+
+	<Frame name="REPorterFrameEstimator" parent="UIWidgetTopCenterContainerFrame" hidden="true" frameStrata="BACKGROUND">
+		<Size>
+			<AbsDimension x="100" y="40"/>
+		</Size>
+		<Layers>
+			<Layer>
+				<FontString name="$ParentText" justifyH="CENTER" inherits="SystemFont_Shadow_Med3" setAllPoints="true"/>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnMouseUp>REPorter:ReportEstimator()</OnMouseUp>
+		</Scripts>
+	</Frame>
+
+</Ui>

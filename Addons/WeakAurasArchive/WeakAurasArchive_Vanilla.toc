@@ -1,0 +1,7 @@
+## Interface: 11507
+## Title: WeakAuras Archive
+## Author: The WeakAuras Team
+## Version: 5.19.12
+## LoadOnDemand: 1
+## SavedVariables: WeakAurasArchive
+## Dependencies: WeakAuras

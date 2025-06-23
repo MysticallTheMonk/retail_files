@@ -1,0 +1,992 @@
+<Ui xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
+    <Script file="Preload.lua"/>
+    <Script file="DataProvider.lua"/>
+    <Script file="TextButton.lua"/>
+    <Script file="LoadingBar.lua"/>
+    <!--Script file="MacroForge.lua"/-->
+    <Script file="SideTab.lua"/>
+    <Script file="TraitTooltip.lua"/>
+    <Script file="TraitNode.lua"/>
+    <Script file="TalentTree.lua"/>
+    
+    <Button name="NarciTalentTreeTextButtonTemplate" virtual="true">
+        <Size x="72" y="16"/>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Reference" hidden="true">
+                    <Size x="72" y="16"/>
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <Texture parentKey="Icon" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\ButtonIcons">
+                    <TexCoords left="0.75" right="1" top="0.75" bottom="1"/>
+                    <Size x="16" y="16"/>
+                    <Color r="0.5" g="0.5" b="0.5"/>
+                    <Anchors>
+                        <Anchor point="LEFT"/>
+                    </Anchors>
+                </Texture>
+                <FontString parentKey="ButtonText" inherits="NarciFontNormal9" justifyH="LEFT" justifyV="MIDDLE" text="SPECIALIZATION">
+                    <Color r="0.5" g="0.5" b="0.5"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent" relativePoint="LEFT" x="0"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Button>
+
+    <Frame name="NarciTalentTreeTraitTooltipTemplate" frameStrata="TOOTLIP" hidden="true" virtual="true">
+        <Size x="96" y="96"/>
+        <Frames>
+            <Frame parentKey="Border" useParentLevel="true" setAllPoints="true"/>
+        </Frames>
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture parentKey="Icon">
+                    <TexCoords left="0.0625" right="0.9375" top="0.0625" bottom="0.9375"/>
+                    <Size x="16" y="16"/>
+                    <Anchors>
+                        <Anchor point="CENTER" relativeKey="$parent" relativePoint="CENTER"/>
+                    </Anchors>
+                </Texture>
+                <MaskTexture parentKey="IconMask" hWrapMode="CLAMPTOBLACK" vWrapMode="CLAMPTOBLACK" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\NodeMaskSquare">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Icon" relativePoint="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Icon" relativePoint="BOTTOMRIGHT"/>
+                    </Anchors>
+                    <MaskedTextures>
+                        <MaskedTexture childKey="Icon"/>
+                    </MaskedTextures>
+                </MaskTexture>
+                <FontString parentKey="Header" inherits="NarciFontNormal9" justifyH="LEFT" justifyV="TOP">
+                    <Color r="1" g="1" b="1"/>
+                    <Anchors>
+                        <Anchor point="CENTER" relativeKey="$parent" relativePoint="CENTER"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="Subtext" inherits="NarciFontNormal9" justifyH="LEFT" justifyV="MIDDLE">
+                    <Color r="0.67" g="0.67" b="0.67"/>
+                    <Anchors>
+                        <Anchor point="CENTER" relativeKey="$parent" relativePoint="CENTER"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="Description" inherits="NarciFontNormal9" justifyH="LEFT" justifyV="TOP" spacing="1" maxLines="0">
+                    <Color r="1" g="0.82" b="0"/>
+                    <Size x="160"/>
+                    <Anchors>
+                        <Anchor point="CENTER" relativeKey="$parent" relativePoint="CENTER"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+
+            <Layer level="OVERLAY" textureSubLevel="1">
+                <Texture parentKey="IconBorder" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\TraitTooltipIconBorder">
+                    <TexCoords left="0" right="0.5" top="0" bottom="1"/>
+                    <Anchors>
+                        <Anchor point="CENTER" relativeKey="$parent.Icon" relativePoint="CENTER"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <Texture name="NarciTalentTreeNodeHighlightTemplate" virtual="true" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\NodeBorderHighlightYellow" alpha="0">
+        <TexCoords left="0" right="0.5" top="0" bottom="0.5"/>
+        <Animations>
+            <AnimationGroup parentKey="Glow" setToFinalAlpha="true">
+                <Alpha startDelay="0" parentKey="AnimDelay" order="1" duration="0" fromAlpha="0" toAlpha="0"/>
+                <Alpha startDelay="0" smoothing="OUT" order="2" duration="0.12" fromAlpha="0" toAlpha="1"/>
+                <Scale startDelay="0" smoothing="OUT" order="2" duration="0.3" fromScaleX="1.6" fromScaleY="1.6" toScaleX="1" toScaleY="1"/>
+                <Alpha smoothing="OUT" order="3" startDelay="0.25" duration="0.5" fromAlpha="1" toAlpha="0"/>
+            </AnimationGroup>
+        </Animations>
+    </Texture>
+
+    <Frame name="NarciTalentTreeNodeTemplate" virtual="true" mixin="NarciTalentTreeNodeMixin">
+        <Size x="32" y="32"/>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture parentKey="Symbol" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\FlatNodeSymbol" hidden="false">
+                    <TexCoords left="0" right="0.25" top="0" bottom="0.25"/>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <!--FontString parentKey="Order" inherits="NarciFontNormal9" justifyH="CENTER" justifyV="MIDDLE" hidden="true">
+                    <Color r="1" g="1" b="1"/>
+                    <Anchors>
+                        <Anchor point="CENTER" relativeKey="$parent" relativePoint="CENTER"/>
+                    </Anchors>
+                </FontString-->
+                <Texture parentKey="Icon">
+                    <TexCoords left="0" right="1" top="0" bottom="1"/>
+                    <Anchors>
+                        <Anchor point="CENTER" relativeKey="$parent" relativePoint="CENTER"/>
+                    </Anchors>
+                </Texture>
+                <MaskTexture parentKey="IconMask" hWrapMode="CLAMPTOBLACK" vWrapMode="CLAMPTOBLACK">
+                    <MaskedTextures>
+                        <MaskedTexture childKey="Icon"/>
+                    </MaskedTextures>
+                </MaskTexture>
+            </Layer>
+            <Layer level="OVERLAY" textureSubLevel="2">
+                <Texture parentKey="IconBorder" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\NodeIconBorderYellow">
+                    <TexCoords left="0.5" right="1" top="0.5" bottom="1"/>
+                </Texture>
+            </Layer>
+        </Layers>
+        <!--Animations>
+            <AnimationGroup parentKey="AnimPush">
+                <Scale startDelay="0" parentKey="Anim1" smoothing="OUT" order="1" duration="0.1" fromScaleX="1" fromScaleY="1" toScaleX="0.75" toScaleY="0.75"/>
+                <Scale smoothing="IN_OUT" order="2" duration="0.2" fromScaleX="1" fromScaleY="1" toScaleX="1.467" toScaleY="1.467"/>
+                <Scale smoothing="IN_OUT" order="3" duration="0.15" fromScaleX="1" fromScaleY="1" toScaleX="0.818" toScaleY="0.818"/>
+                <Scale smoothing="IN_OUT" order="4" duration="0.15" fromScaleX="1" fromScaleY="1" toScaleX="1.111" toScaleY="1.111"/>
+            </AnimationGroup>
+        </Animations-->
+        <Scripts>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
+            <OnMouseDown method="OnMouseDown"/>
+        </Scripts>
+    </Frame>
+
+    <Button name="NarciTalentTreeSpecButtonTemplate" virtual="true" registerForClicks="LeftButtonUp, RightButtonUp">
+        <Size x="216" y="56"/>
+        <HitRectInsets>
+            <AbsInset left="0" right="0" top="0" bottom="-1"/>
+        </HitRectInsets>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture parentKey="Icon">
+                    <Size x="56" y="56"/>
+                    <TexCoords left="0.09375" right="0.90625" top="0.09375" bottom="0.90625"/>
+                    <Anchors>
+                        <Anchor point="RIGHT" relativeKey="$parent" relativePoint="RIGHT"/>
+                    </Anchors>
+                </Texture>
+                <MaskTexture parentKey="IconMask" file="Interface\AddOns\Narcissus\Art\Masks\Linear-ShowRight" hWrapMode="CLAMPTOBLACK" vWrapMode="CLAMPTOBLACK">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Icon" relativePoint="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Icon" relativePoint="BOTTOMRIGHT"/>
+                    </Anchors>
+                    <MaskedTextures>
+                        <MaskedTexture childKey="Icon"/>
+                    </MaskedTextures>
+                </MaskTexture>
+                <Texture parentKey="Divider">
+                    <Color r="0.25" g="0.25" b="0.25" a="1"/>
+                    <Gradient orientation="HORIZONTAL">
+                        <MinColor r="1" g="1" b="1" a="1"/>
+                        <MaxColor r="1" g="1" b="1" a="0"/>
+                    </Gradient>
+                    <Size y="2"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString parentKey="Name" inherits="NarciFontNormal9" justifyH="LEFT" justifyV="MIDDLE" spacing="2">
+                    <Color r="0" g="0" b="0"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent" relativePoint="LEFT" x="10"/>
+                        <Anchor point="RIGHT" relativeKey="$parent" relativePoint="RIGHT" x="-10"/>
+                    </Anchors>
+                </FontString>
+                <Texture parentKey="Underline" hidden="true">
+                    <Color r="1" g="0.82" b="0" a="1"/>
+                    <Size y="2"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Name" relativePoint="BOTTOMLEFT"/>
+                    </Anchors>
+                    <Animations>
+                        <AnimationGroup parentKey="AnimIn">
+                            <Scale fromScaleX="0.2" toScaleX="1" fromScaleY="1" toScaleY="1" duration="0.6" order="1" smoothing="OUT">
+                                <Origin point="LEFT"/>
+                            </Scale>
+                        </AnimationGroup>
+                    </Animations>
+                </Texture>
+            </Layer>
+        </Layers>
+    </Button>
+
+    <Frame name="NarciTalentTreeLoadingBarTemplate" virtual="true" hidden="true" mixin="NarciTalentTreeLoadingBarMixin">
+        <Size x="216" y="56"/>
+        <Layers>
+            <Layer>
+                <Texture parentKey="FinishingLine">
+                    <Size x="2"/>
+                    <Color r="1" g="0.82" b="0"/>
+                    <Anchors>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT" x="0"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" x="0"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Frame parentKey="ClipFrame" clipChildren="true">
+                <Size x="216" y="56"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <Texture parentKey="Background" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\ProgressBarBackground">
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativeKey="$parent.$parent" relativePoint="TOPLEFT"/>
+                                <Anchor point="BOTTOMRIGHT" relativeKey="$parent.$parent" relativePoint="BOTTOMRIGHT"/>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Name" inherits="NarciFontNormal9" justifyH="LEFT" justifyV="MIDDLE" spacing="2">
+                            <Color r="0" g="0" b="0"/>
+                            <Anchors>
+                                <Anchor point="LEFT" relativeKey="$parent.$parent" relativePoint="LEFT" x="10"/>
+                                <Anchor point="RIGHT" relativeKey="$parent.$parent" relativePoint="RIGHT" x="-10"/>
+                            </Anchors>
+                        </FontString>
+                        <Texture parentKey="BlackLine">
+                            <Size x="2"/>
+                            <Color r="0" g="0" b="0"/>
+                            <Anchors>
+                                <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT" x="-2"/>
+                                <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" x="-2"/>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
+                </Layers>
+            </Frame>
+        </Frames>
+        <Scripts>
+            <OnHide method="OnHide"/>
+            <OnEvent method="OnEvent"/>
+        </Scripts>
+    </Frame>
+
+    <Button name="NarciTalentTreeLoadoutButtonTemplate" virtual="true" mixin="NarciTalentTreeLoadoutButtonMixin">
+        <Size x="96" y="24"/>
+        <Layers>
+            <Layer level="OVERLAY">
+                <FontString parentKey="ButtonText" inherits="NarciFontNormal9" justifyH="CENTER" justifyV="MIDDLE" text="Loadout">
+                    <Color r="0.67" g="0.67" b="0.67"/>
+                    <Anchors>
+                        <Anchor point="CENTER" relativeKey="$parent" relativePoint="CENTER" x="0"/>
+                    </Anchors>
+                </FontString>
+                <Texture parentKey="Underline" hidden="true">
+                    <Color r="1" g="0.82" b="0" a="1"/>
+                    <Size y="2"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.ButtonText" relativePoint="BOTTOMLEFT"/>
+                    </Anchors>
+                    <Animations>
+                        <AnimationGroup parentKey="AnimIn">
+                            <Scale fromScaleX="0.2" toScaleX="1" fromScaleY="1" toScaleY="1" duration="0.6" order="1" smoothing="OUT">
+                                <Origin point="LEFT"/>
+                            </Scale>
+                        </AnimationGroup>
+                    </Animations>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
+            <OnClick method="OnClick"/>
+        </Scripts>
+    </Button>
+
+    <EditBox name="NarciTalentTreeSharedEditBoxTemplate" mixin="NarciTalentTreeSharedEditBoxMixin" autoFocus="false" virtual="true">
+        <Size x="176" y="24"/>
+		<TextInsets>
+			<AbsInset left="6" right="6" top="0" bottom="0"/>
+		</TextInsets>
+        <HighlightColor r="0.05" g="0.41" b="0.85"/>
+        <FontString inherits="NarciFontNormal9" justifyH="CENTER" justifyV="MIDDLE">
+            <Color r="0.5" g="0.5" b="0.5"/>
+        </FontString>
+        <Layers>
+			<Layer level="BORDER">
+				<Texture parentKey="Border">
+					<Color r="0.25" g="0.25" b="0.25"/>
+				</Texture>
+				<MaskTexture parentKey="Exclusion" hWrapMode="CLAMPTOWHITE" vWrapMode="CLAMPTOWHITE">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="1" y="-1"/>
+						<Anchor point="BOTTOMRIGHT" x="-1" y="1"/>
+					</Anchors>
+					<MaskedTextures>
+						<MaskedTexture childKey="Border"/>
+					</MaskedTextures>
+				</MaskTexture>
+			</Layer>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="Background">
+					<Color r="0" g="0" b="0" a="0.5"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.Exclusion" relativePoint="TOPLEFT"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.Exclusion" relativePoint="BOTTOMRIGHT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+            <Layer level="OVERLAY">
+                <FontString parentKey="Label" inherits="NarciFontNormal9" justifyH="CENTER" justifyV="BOTTOM" maxLines="1">
+                    <Color r="0.5" g="0.5" b="0.5"/>
+                    <Size x="176"/>
+                    <Anchors>
+                        <Anchor point="BOTTOM" relativeKey="$parent" relativePoint="TOP" y="4"/>
+                    </Anchors>
+                    <Animations>
+                        <AnimationGroup parentKey="FadeIn">
+                            <Alpha fromAlpha="0" toAlpha="1" duration="0.2" order="1"/>
+                        </AnimationGroup>
+                        <AnimationGroup parentKey="FadeOut">
+                            <Alpha fromAlpha="1" toAlpha="1" duration="0" order="1"/>
+                            <Alpha fromAlpha="1" toAlpha="0" startDelay="0.8" duration="0.2" order="2"/>
+                        </AnimationGroup>
+                    </Animations>
+                </FontString>
+                <FontString parentKey="DefaultText" inherits="NarciFontNormal9" justifyH="CENTER" justifyV="MIDDLE" maxLines="1">
+                    <Color r="0.4" g="0.4" b="0.4"/>
+                </FontString>
+                <Texture parentKey="LoadingIndicator" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\ButtonIcons" hidden="true">
+                    <TexCoords left="0.5" right="0.75" top="0.75" bottom="1"/>
+                    <Size x="16" y="16"/>
+                    <Color r="0.5" g="0.5" b="0.5"/>
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
+                    <Animations>
+                        <AnimationGroup parentKey="AnimSpin" looping="REPEAT">
+                            <Rotation degrees="-360" duration="1" order="1"/>
+                        </AnimationGroup>
+                    </Animations>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+            <OnEnterPressed method="OnEnterPressed"/>
+            <OnEscapePressed method="OnEscapePressed"/>
+            <OnEditFocusGained method="OnEditFocusGained"/>
+            <OnEditFocusLost method="OnEditFocusLost"/>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
+        </Scripts>
+    </EditBox>
+
+    <Frame name="NarciMiniTalentTreeActionBarOverlayTemplate" virtual="true">
+        <Size x="24" y="24"/>
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture parentKey="Border" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\ActionButtonOverlay">
+                    <TexCoords left="0" right="0.5" top="0" bottom="1"/>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <Texture parentKey="Icon">
+                    <TexCoords left="0.0625" right="0.9375" top="0.0625" bottom="0.9375"/>
+                    <Size x="18" y="18"/>
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
+                </Texture>
+                <MaskTexture parentKey="IconMask" hWrapMode="CLAMPTOBLACK" vWrapMode="CLAMPTOBLACK" file="Interface\AddOns\Narcissus\Art\Masks\Circle">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Icon" relativePoint="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Icon" relativePoint="BOTTOMRIGHT"/>
+                    </Anchors>
+                    <MaskedTextures>
+                        <MaskedTexture childKey="Icon"/>
+                    </MaskedTextures>
+                </MaskTexture>
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <Frame name="NarciMiniTalentTree" mixin="NarciMiniTalentTreeMixin" frameStrata="MEDIUM" enableMouse="true" hidden="true" topLevel="false">
+        <Size x="32" y="32"/>
+        <Anchors>
+            <Anchor point="CENTER" y="200"/>
+        </Anchors>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Background">
+                    <Color r="0.1" g="0.1" b="0.1" a="1"/>
+                    <!--Color r="1" g="1" b="1" a="1"/>
+                    <Gradient orientation="VERTICAL">
+                        <MaxColor r="0.10" g="0.10" b="0.10" a="1"/>
+                        <MinColor r="0.14" g="0.14" b="0.14" a="1"/>
+                    </Gradient-->
+                </Texture>
+            </Layer>
+            <Layer level="BACKGROUND" textureSubLevel="1">
+                <Texture parentKey="SpecArt" setAllPoints="true">
+
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK" textureSubLevel="-1">
+				<Texture parentKey="HeaderLight" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\HeaderLight" alphaMode="ADD">
+					<Size x="200" y="50"/>
+					<Anchors>
+						<Anchor point="TOP" relativeKey="$parent" relativePoint="TOP" y="0"/>
+					</Anchors>
+				</Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+				<Texture parentKey="Divider" file="Interface\AddOns\Narcissus\Art\Modules\Showcase\ShadowDivider">
+					<Size x="8"/>
+                    <TexCoords left="1" right="0" top="0" bottom="1"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOP" y="0"/>
+                        <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="BOTTOM" y="0"/>
+					</Anchors>
+				</Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Frame parentKey="SideTab" frameLevel="24" hidden="true" mixin="NarciTalentTreeSideTabMixin" alpha="1">
+                <Size x="216"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Frames>
+                    <Frame parentKey="ClipFrame" clipChildren="true" useParentLevel="false">
+                        <Layers>
+                            <Layer level="BACKGROUND">
+                                <Texture parentKey="Background" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\SideTabBackground">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" relativeKey="$parent.$parent" relativePoint="TOPLEFT"/>
+                                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.$parent" relativePoint="BOTTOMRIGHT"/>
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+                            <Layer level="BACKGROUND" textureSubLevel="1">
+                                <Texture parentKey="SpecArt">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" relativeKey="$parent.$parent" relativePoint="TOPLEFT"/>
+                                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.$parent" relativePoint="BOTTOMRIGHT"/>
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+                        </Layers>
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT"/>
+                            <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT"/>
+                        </Anchors>
+                    </Frame>
+                    <Frame parentKey="SpecTab" setAllPoints="true" frameLevel="40">
+
+                    </Frame>
+                    <Frame parentKey="InspectTab" setAllPoints="true" hidden="true" frameLevel="40">
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString parentKey="DividerText" inherits="NarciFontNormal9" justifyH="CENTER" justifyV="MIDDLE" text="OR">
+                                    <Color r="0.4" g="0.4" b="0.4"/>
+                                    <Anchors>
+                                        <Anchor point="CENTER" relativeKey="$parent" relativePoint="CENTER" x="0" y="0"/>
+                                    </Anchors>
+                                </FontString>
+                                <Texture parentKey="DividerLeft">
+                                    <Color r="0.4" g="0.4" b="0.4" a="1"/>
+                                    <Size x="32"/>
+                                    <Gradient orientation="HORIZONTAL">
+                                        <MinColor r="1" g="1" b="1" a="0"/>
+                                        <MaxColor r="1" g="1" b="1" a="1"/>
+                                    </Gradient>
+                                    <Anchors>
+                                        <Anchor point="RIGHT" relativeKey="$parent.DividerText" relativePoint="LEFT" x="-6"/>
+                                    </Anchors>
+                                </Texture>
+                                <Texture parentKey="DividerRight">
+                                    <Color r="0.4" g="0.4" b="0.4" a="1"/>
+                                    <Size x="32"/>
+                                    <Gradient orientation="HORIZONTAL">
+                                        <MinColor r="1" g="1" b="1" a="1"/>
+                                        <MaxColor r="1" g="1" b="1" a="0"/>
+                                    </Gradient>
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativeKey="$parent.DividerText" relativePoint="RIGHT" x="6"/>
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                            <EditBox parentKey="Clipboard" inherits="NarciTalentTreeSharedEditBoxTemplate">
+                                <Anchors>
+                                    <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="20" y="-48"/>
+                                </Anchors>
+                                <KeyValues>
+                                    <KeyValue key="defaultOffsetY" value="-48" type="number"/>
+                                    <KeyValue key="widgetType" value="clipboard" type="string"/>
+                                    <KeyValue key="unfocusedLabel" value="Copy As Text" type="string"/>
+                                </KeyValues>
+                            </EditBox>
+                            <EditBox parentKey="LoadoutNameEditBox" inherits="NarciTalentTreeSharedEditBoxTemplate">
+                                <Anchors>
+                                    <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="20" y="-164"/>
+                                </Anchors>
+                                <KeyValues>
+                                    <KeyValue key="defaultOffsetY" value="-164" type="number"/>
+                                    <KeyValue key="widgetType" value="inputbox" type="string"/>
+                                    <KeyValue key="defaultText" value="name" type="string"/>
+                                    <KeyValue key="unfocusedLabel" value="Create Loadout" type="string"/>
+                                    <KeyValue key="defaultTextKey" value="Empty Loadout Name" type="string"/>
+                                </KeyValues>
+                            </EditBox>
+                        </Frames>
+                    </Frame>
+                </Frames>
+                <Layers>
+                    <Layer level="BACKGROUND" textureSubLevel="-3">
+                        <Texture parentKey="FullFrameOverlay">
+                            <Color r="0.1" g="0.1" b="0.1" a="0.5"/>
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativeKey="$parent.$parent" relativePoint="TOPLEFT"/>
+                                <Anchor point="BOTTOMRIGHT" relativeKey="$parent.$parent" relativePoint="BOTTOMRIGHT"/>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
+                    <Layer level="BACKGROUND" textureSubLevel="-2">
+                        <Texture parentKey="Shadow">
+                            <Color r="0.08" g="0.08" b="0.08" a="1"/>
+                            <Gradient orientation="HORIZONTAL">
+                                <MinColor r="1" g="1" b="1" a="0.8"/>
+                                <MaxColor r="1" g="1" b="1" a="0"/>
+                            </Gradient>
+                            <Size x="36"/>
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativeKey="$parent.ClipFrame" relativePoint="TOPRIGHT"/>
+                                <Anchor point="BOTTOMLEFT" relativeKey="$parent.ClipFrame" relativePoint="BOTTOMRIGHT"/>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnLoad method="OnLoad"/>
+                    <OnEvent method="OnEvent"/>
+                    <OnMouseDown method="OnMouseDown"/>
+                </Scripts>
+            </Frame>
+
+            <Frame parentKey="LoadoutDropdown" frameLevel="16" hidden="true">
+                <Size x="96" y="16"/>
+                <Anchors>
+                    <Anchor point="TOP"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="BACKGROUND" textureSubLevel="-1">
+                        <Texture parentKey="FullFrameOverlay">
+                            <Color r="0.1" g="0.1" b="0.1" a="0.5"/>
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativeKey="$parent.$parent" relativePoint="TOPLEFT"/>
+                                <Anchor point="BOTTOMRIGHT" relativeKey="$parent.$parent" relativePoint="BOTTOMRIGHT"/>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
+                    <Layer level="BACKGROUND">
+                        <Texture parentKey="Background" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\LoadoutDropdownBackground">
+                            <Size x="192"/>
+                            <Color r="0.1" g="0.1" b="0.1"/>
+                            <Anchors>
+                                <Anchor point="TOP" relativeKey="$parent" relativePoint="TOP"/>
+                                <Anchor point="BOTTOM" relativeKey="$parent.$parent" relativePoint="BOTTOM"/>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <Frame parentKey="PvPTalentFrame" mixin="NarciTalentTreePvPFrameMixin" hidden="true">
+                <Size x="96"/>
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <Texture parentKey="Divider" file="Interface\AddOns\Narcissus\Art\Modules\Showcase\ShadowDivider">
+                            <Size x="8"/>
+                            <TexCoords left="1" right="0" top="0" bottom="1"/>
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" y="0"/>
+                                <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT" y="0"/>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnShow method="OnShow"/>
+                </Scripts>
+            </Frame>
+
+            <Frame parentKey="MotionBlocker" enableMouse="true" setAllPoints="true" hidden="true" frameLevel="10"/>
+
+            <!--Frame parentKey="MacroForge" mixin="NarciMiniTalentTreeMacroForgeMixin" frameLevel="40" setAllPoints="true" hidden="true" alpha="0">
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <Texture parentKey="Background">
+                            <Color r="0.08" g="0.08" b="0.08" a="0.8"/>
+                        </Texture>
+                    </Layer>
+                    <Layer level="OVERLAY">
+                        <Texture parentKey="LeftArrow" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\MacroForge">
+                            <Size x="32" y="16"/>
+                            <TexCoords left="0" right="0.0625" top="0.96875" bottom="1"/>
+                            <Anchors>
+                                <Anchor point="RIGHT" relativeKey="$parent" relativePoint="CENTER" x="-40"/>
+                            </Anchors>
+                        </Texture>
+                        <Texture parentKey="RightArrow" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\MacroForge">
+                            <Size x="32" y="16"/>
+                            <TexCoords left="0.0625" right="0" top="0.96875" bottom="1"/>
+                            <Anchors>
+                                <Anchor point="LEFT" relativeKey="$parent" relativePoint="CENTER" x="40"/>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
+                    <Layer level="OVERLAY" textureSubLevel="3">
+                        <Texture parentKey="LeftArrowLight" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\MacroForge">
+                            <Size x="16" y="16"/>
+                            <TexCoords left="0.09375" right="0.125" top="0.96875" bottom="1"/>
+                            <Anchors>
+                                <Anchor point="RIGHT" relativeKey="$parent.LeftArrow" relativePoint="LEFT" x="0"/>
+                            </Anchors>
+                            <Animations>
+                                <AnimationGroup parentKey="Anim" looping="REPEAT">
+                                    <Translation parentKey="MoveRight" duration="2" offsetX="48" startDelay="0.2"/>
+                                    <Translation duration="0" startDelay="0.8"/>
+                                </AnimationGroup>
+                            </Animations>
+                        </Texture>
+                        <Texture parentKey="RightArrowLight" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\MacroForge">
+                            <Size x="16" y="16"/>
+                            <TexCoords left="0.09375" right="0.125" top="0.96875" bottom="1"/>
+                            <Anchors>
+                                <Anchor point="LEFT" relativeKey="$parent.RightArrow" relativePoint="RIGHT" x="0"/>
+                            </Anchors>
+                            <Animations>
+                                <AnimationGroup parentKey="Anim" looping="REPEAT">
+                                    <Translation parentKey="MoveLeft" duration="2" offsetX="-48" startDelay="0.2"/>
+                                    <Translation duration="0" startDelay="0.8"/>
+                                </AnimationGroup>
+                            </Animations>
+                        </Texture>
+                        <MaskTexture parentKey="LeftArrowMask" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\ArrowMask-FaceRight" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativeKey="$parent.LeftArrow" relativePoint="TOPLEFT"/>
+                                <Anchor point="BOTTOMRIGHT" relativeKey="$parent.LeftArrow" relativePoint="BOTTOMRIGHT"/>
+                            </Anchors>
+                            <MaskedTextures>
+                                <MaskedTexture childKey="LeftArrowLight"/>
+                            </MaskedTextures>
+                        </MaskTexture>
+                        <MaskTexture parentKey="RightArrowMask" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\ArrowMask-FaceLeft" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativeKey="$parent.RightArrow" relativePoint="TOPLEFT"/>
+                                <Anchor point="BOTTOMRIGHT" relativeKey="$parent.RightArrow" relativePoint="BOTTOMRIGHT"/>
+                            </Anchors>
+                            <MaskedTextures>
+                                <MaskedTexture childKey="RightArrowLight"/>
+                            </MaskedTextures>
+                        </MaskTexture>
+                    </Layer>
+                </Layers>
+                <Frames>
+                    <Frame parentKey="MotionBlocker" enableMouse="true" useParentLevel="true">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT"/>
+                            <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT"/>
+                        </Anchors>
+                    </Frame>
+
+                    <Button parentKey="Receptor">
+                        <Size x="64" y="64"/>
+                        <Anchors>
+                            <Anchor point="CENTER"/>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="BACKGROUND">
+                                <Texture parentKey="Background" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\MacroForge">
+                                    <Size x="96" y="96"/>
+                                    <TexCoords left="0.125" right="0.3125" top="0" bottom="0.1875"/>
+                                    <Anchors>
+                                        <Anchor point="CENTER"/>
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+                            <Layer level="BORDER">
+                                <Texture parentKey="Highlight" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\MacroForge">
+                                    <Size x="96" y="96"/>
+                                    <TexCoords left="0.3125" right="0.5" top="0" bottom="0.1875"/>
+                                    <Anchors>
+                                        <Anchor point="CENTER"/>
+                                    </Anchors>
+                                    <Animations>
+                                        <AnimationGroup parentKey="Blink" looping="REPEAT">
+                                            <Alpha fromAlpha="0" toAlpha="1" duration="2" order="1"/>
+                                            <Alpha fromAlpha="1" toAlpha="0" duration="2" order="2"/>
+                                        </AnimationGroup>
+                                    </Animations>
+                                </Texture>
+                            </Layer>
+                            <Layer level="ARTWORK">
+                                <Texture parentKey="Icon">
+                                    <Size x="48" y="48"/>
+                                    <TexCoords left="0.0625" right="0.9375" top="0.0625" bottom="0.9375"/>
+                                    <Anchors>
+                                        <Anchor point="CENTER"/>
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+                            <Layer level="OVERLAY">
+                                <Texture parentKey="Border" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\MacroForge">
+                                    <TexCoords left="0" right="0.125" top="0" bottom="0.125"/>
+                                </Texture>
+                            </Layer>
+                        </Layers>
+                    </Button>
+
+                    <Button parentKey="SubIconButton" hidden="true">
+                        <Size x="32" y="32"/>
+                        <Anchors>
+                            <Anchor point="CENTER" relativeKey="$parent.Receptor" relativePoint="CENTER"/>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <Texture parentKey="Icon">
+                                    <Size x="20" y="20"/>
+                                    <TexCoords left="0.0625" right="0.9375" top="0.0625" bottom="0.9375"/>
+                                    <Anchors>
+                                        <Anchor point="CENTER"/>
+                                    </Anchors>
+                                </Texture>
+                                <MaskTexture parentKey="IconMask" hWrapMode="CLAMPTOBLACK" vWrapMode="CLAMPTOBLACK" file="Interface\AddOns\Narcissus\Art\Masks\Circle">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" relativeKey="$parent.Icon" relativePoint="TOPLEFT"/>
+                                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Icon" relativePoint="BOTTOMRIGHT"/>
+                                    </Anchors>
+                                    <MaskedTextures>
+                                        <MaskedTexture childKey="Icon"/>
+                                    </MaskedTextures>
+                                </MaskTexture>
+                            </Layer>
+                            <Layer level="OVERLAY" textureSubLevel="3">
+                                <Texture parentKey="Highlight" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\NodeBorderHighlightBlue" alpha="0">
+                                    <TexCoords left="0" right="0.5" top="0" bottom="0.5"/>
+                                    <Anchors>
+                                        <Anchor point="CENTER"/>
+                                    </Anchors>
+                                    <Animations>
+                                        <AnimationGroup parentKey="Glow" setToFinalAlpha="true">
+                                            <Alpha smoothing="OUT" order="1" duration="0.12" fromAlpha="0" toAlpha="1"/>
+                                            <Scale smoothing="OUT" order="1" duration="0.3" fromScaleX="1.6" fromScaleY="1.6" toScaleX="1" toScaleY="1"/>
+                                            <Alpha smoothing="OUT" order="2" startDelay="0.25" duration="0.5" fromAlpha="1" toAlpha="0"/>
+                                        </AnimationGroup>
+                                    </Animations>
+                                </Texture>
+                            </Layer>
+                            <Layer level="ARTWORK">
+                                <Texture parentKey="Border" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\MacroForge">
+                                    <TexCoords left="0" right="0.0625" top="0.125" bottom="0.1875"/>
+                                </Texture>
+                            </Layer>
+                        </Layers>
+                    </Button>
+
+                    <EditBox parentKey="NameEditBox" autoFocus="false" hidden="true">
+                        <Size x="160" y="40"/>
+                        <Anchors>
+                            <Anchor point="CENTER"/>
+                        </Anchors>
+                        <TextInsets>
+                            <AbsInset left="6" right="6" top="0" bottom="0"/>
+                        </TextInsets>
+                        <HighlightColor r="1" g="1" b="1"/>
+                        <FontString inherits="NarciFontNormal9" justifyH="CENTER" justifyV="MIDDLE">
+                            <Color r="1" g="0.82" b="0"/>
+                        </FontString>
+                    </EditBox>
+
+                    <Button parentKey="NextButton" hidden="true">
+                        <Size x="96" y="40"/>
+                        <Anchors>
+                            <Anchor point="CENTER"/>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="BORDER">
+                                <Texture parentKey="Border">
+                                    <Color r="0.5" g="0.5" b="0.5"/>
+                                    <Anchors>
+                                        <Anchor point="CENTER"/>
+                                    </Anchors>
+                                    <Animations>
+                                        <AnimationGroup parentKey="Blink">
+                                            <Alpha fromAlpha="1" toAlpha="0" duration="1" order="1"/>
+                                            <Alpha fromAlpha="0" toAlpha="1" duration="1" order="2"/>
+                                            <Scripts>
+                                                <OnFinished>
+                                                    if not self:GetParent():IsMouseOver() then
+                                                        self:Play();
+                                                    end
+                                                </OnFinished>
+                                            </Scripts>
+                                        </AnimationGroup>
+                                    </Animations>
+                                </Texture>
+                                <MaskTexture parentKey="Exclusion" hWrapMode="CLAMPTOWHITE" vWrapMode="CLAMPTOWHITE">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" x="1" y="-1"/>
+                                        <Anchor point="BOTTOMRIGHT" x="-1" y="1"/>
+                                    </Anchors>
+                                    <MaskedTextures>
+                                        <MaskedTexture childKey="Border"/>
+                                    </MaskedTextures>
+                                </MaskTexture>
+                            </Layer>
+                            <Layer level="OVERLAY">
+                                <FontString parentKey="ButtonText" inherits="NarciFontNormal9" justifyH="CENTER" justifyV="CENTER" text="NEXT">
+                                    <Color r="0.67" g="0.67" b="0.67"/>
+                                    <Anchors>
+                                        <Anchor point="CENTER" relativeKey="$parent.Border" relativePoint="CENTER" x="0" y="0"/>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </Button>
+
+                    <Frame parentKey="InstructionFrame" setAllPoints="true" clipChildren="true">
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString parentKey="Instruction" inherits="NarciFontNormal9" justifyH="CENTER" justifyV="BOTTOM" spacing="2">
+                                    <Color r="0.67" g="0.67" b="0.67"/>
+                                    <Anchors>
+                                        <Anchor point="CENTER" relativeKey="$parent" relativePoint="CENTER" x="0" y="0"/>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                            <Layer level="ARTWORK">
+                                <Texture parentKey="Shadow" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\InstructionShadow">
+                                    <Color r="0.08" g="0.08" b="0.08" a="1"/>
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" relativeKey="$parent.Instruction" relativePoint="TOPLEFT" x="-80" y="60"/>
+                                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Instruction" relativePoint="BOTTOMRIGHT" x="80" y="-60"/>
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+
+                    <Frame parentKey="NodeHighlight" hidden="true">
+                        <Size x="32" y="32"/>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <Texture parentKey="Border" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\NodeBorderHighlightBlue">
+                                    <TexCoords left="0" right="0.5" top="0" bottom="0.5"/>
+                                </Texture>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+
+                    <Frame parentKey="CombatBlocker" enableMouse="true" hidden="true">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT"/>
+                            <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT"/>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString parentKey="AlertText" inherits="NarciFontNormal9" justifyH="CENTER" justifyV="BOTTOM">
+                                    <Color r="1" g="0.2" b="0.2"/>
+                                    <Anchors>
+                                        <Anchor point="BOTTOM" relativeKey="$parent" relativePoint="BOTTOM" y="16"/>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+                </Frames>
+                <Scripts>
+                    <OnLoad method="OnLoad"/>
+                    <OnShow method="OnShow"/>
+                    <OnHide method="OnHide"/>
+                    <OnEvent method="OnEvent"/>
+                </Scripts>
+            </Frame-->
+
+            <Frame parentKey="AnimationFrame" frameLevel="6" hidden="true" setAllPoints="true">
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <Texture parentKey="ActivationShockwave" file="Interface\AddOns\Narcissus\Art\Modules\TalentTree\ActivationShockwave" alphaMode="ADD" hidden="true" alpha="0">
+                            <Size x="72" y="72"/>
+                            <Anchors>
+                                <Anchor point="CENTER" relativeKey="$parent.Icon" relativePoint="CENTER"/>
+                            </Anchors>
+                            <Animations>
+                                <AnimationGroup parentKey="AnimIn">
+                                    <Alpha order="1" duration="0.1" fromAlpha="0" toAlpha="1"/>
+                                    <Scale order="1" duration="1" fromScaleX="0.1" fromScaleY="0.1" toScaleX="14" toScaleY="14"/>
+                                    <Alpha order="1" startDelay="0.4" duration="0.5" fromAlpha="1" toAlpha="0"/>
+                                </AnimationGroup>
+                            </Animations>
+                        </Texture>
+                        <MaskTexture parentKey="ShockwaveMask" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT"/>
+                                <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT"/>
+                            </Anchors>
+                            <MaskedTextures>
+                                <MaskedTexture childKey="ActivationShockwave"/>
+                            </MaskedTextures>
+                        </MaskTexture>
+                    </Layer>
+                </Layers>
+            </Frame>
+        </Frames>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+            <OnShow method="OnShow"/>
+            <OnHide method="OnHide"/>
+            <OnEvent method="OnEvent"/>
+        </Scripts>
+    </Frame>
+
+    <!--EditBox name="TestEmojiEditBox" autoFocus="false" hidden="true">
+        <Size x="256" y="48"/>
+		<TextInsets>
+			<AbsInset left="6" right="6" top="0" bottom="0"/>
+		</TextInsets>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <FontString inherits="EmojiFont" justifyH="CENTER" justifyV="BOTTOM">
+            <Color r="0.8" g="0.8" b="0.8"/>
+        </FontString>
+        <Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="Background">
+					<Color r="0" g="0" b="0" a="0"/>
+				</Texture>
+			</Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                local r, g, b = 160, 85, 72;
+                self:SetText("Quality: |cffa05548 1|r |cffa6c7dd 2|r |cffffd655 3|r |cff33ffcc 4|r |cffff931e 5|r")
+            </OnLoad>
+            <OnEscapePressed>
+                self:ClearFocus();
+            </OnEscapePressed>
+            <OnTextChanged function="TestEmojiEditBox_OnTextChanged"/>
+        </Scripts>
+    </EditBox-->
+</Ui>

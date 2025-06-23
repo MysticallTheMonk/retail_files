@@ -1,0 +1,64 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+    <!-- Is it possible to make the button click through? -->
+    <Button name="CooldownTrackingButtonTemplate" hidden="true" virtual="true">
+        <Size>
+            <AbsDimension x="36" y="36"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <Animations>
+            <AnimationGroup parentKey="ActivationAnimation" setToFinalAlpha="true">
+                <Alpha childKey="ActivationTexture" smoothing="NONE" duration="1" order="1" fromAlpha="1" toAlpha="0.4"/>
+                <Alpha childKey="ActivationTexture" smoothing="NONE" duration="1" order="2" fromAlpha="0.4" toAlpha="1"/>
+                <Alpha childKey="ActivationTexture" smoothing="NONE" duration="1" order="3" fromAlpha="1" toAlpha="0"/>
+                <Scripts>
+                    <OnFinished>
+                        local icon = self:GetParent()
+                        CooldownTracking_OnAnimationFinished(icon)
+                    </OnFinished>
+                </Scripts>
+            </AnimationGroup>
+            <AnimationGroup parentKey="FlashAnimation" setToFinalAlpha="true">
+                <Alpha childKey="flash" smoothing="OUT" duration="1" order="1" fromAlpha="1" toAlpha="0"/>
+            </AnimationGroup>
+        </Animations>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Icon"/>
+            </Layer>
+            <Layer level="OVERLAY" textureSubLevel="1">
+                <Texture parentKey="flash" hidden="false" alpha="0" alphaMode="ADD" atlas="bags-glow-flash" useAtlasSize="true">
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
+                </Texture>
+                <Texture parentKey="ActivationTexture" alpha="0" alphaMode="ADD" atlas="bags-glow-blue" useAtlasSize="true">
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="BACKGROUND" textureSubLevel="-1">
+                <Texture file="Interface\Buttons\UI-ActionButton-Border" parentKey="TargetHighlight" hidden="true" alphaMode="ADD" alpha="1" ignoreParentAlpha="true">
+                    <Size x="73" y="73"/>
+                    <Anchors>
+                        <Anchor point="CENTER" x="1" y="1"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Cooldown inherits="CooldownFrameTemplate" parentKey="cooldown" reverse="true" drawBling="false" drawEdge="false" hidden="true">
+                <Size x="36" y="36"/>
+                <Anchors>
+                    <Anchor point="CENTER"/>
+                </Anchors>
+                <SwipeTexture>
+                    <Color r="0" g="0" b="0" a="0.8"/>
+                </SwipeTexture>
+            </Cooldown>
+        </Frames>
+    </Button>
+</Ui>

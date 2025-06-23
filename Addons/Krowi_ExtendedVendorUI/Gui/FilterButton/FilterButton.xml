@@ -1,0 +1,23 @@
+<Ui>
+    <Script file="FilterButtonMixin.lua"/>
+
+	<DropDownToggleButton name="KrowiEVU_FilterButton" mixin="KrowiEVU_FilterButtonMixin" inherits="UIMenuButtonStretchTemplate" text="Filters" parent="MerchantFrame" parentKey="FilterButton">
+		<Size x="150" y="22"/>
+        <Anchors>
+        	<Anchor point="TOPRIGHT" x="-10" y="-31" />
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture parentKey="Icon" file="Interface\ChatFrame\ChatFrameExpandArrow">
+					<Size x="10" y="12"/>
+					<Anchors>
+						<Anchor point="RIGHT" relativeKey="$parent.Right" relativePoint="RIGHT" x="-5"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnMouseDown inherit="append" method="MyOnMouseDown"/>
+		</Scripts>
+	</DropDownToggleButton>
+</Ui>

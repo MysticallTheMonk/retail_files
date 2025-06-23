@@ -1,0 +1,17 @@
+<!-- Tabs/Shopping/Mixins directory manifest -->
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Script file="ListsContainer.lua" />
+  <Script file="RecentsContainer.lua" />
+  <Script file="ContainerTabs.lua" />
+
+  <Script file="SearchOptions.lua" />
+
+  <Script file="EscapeToClose.lua" />
+  <Script file="Item.lua" />
+  <Script file="ExportFrame.lua" />
+  <Script file="ExportTextFrame.lua" />
+  <Script file="ImportFrame.lua" />
+  <Script file="ItemHistory.lua" />
+
+  <Script file="Main.lua" />
+</Ui>

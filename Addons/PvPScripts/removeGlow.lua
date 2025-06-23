@@ -1,0 +1,5 @@
+SetCVar("ffxGlow", "0")
+SetCVar("ffxDeath", "0")
+SetCVar("ffxNether", "0")
+SetCVar("ffxVenari", "0")
+SetCVar("ffxLingeringVenari", "0")

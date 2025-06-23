@@ -1,0 +1,305 @@
+--[[
+
+	This file is part of 'Masque', an add-on for World of Warcraft. For bug reports,
+	documentation and license information, please visit https://github.com/SFX-WoW/Masque.
+
+	* File...: Options\Info.lua
+	* Author.: StormFX
+
+	'Installed Skins' Group/Panel
+
+]]
+
+local MASQUE, Core = ...
+
+----------------------------------------
+-- Lua API
+---
+
+local pairs, tostring = pairs, tostring
+
+----------------------------------------
+-- Libraries
+---
+
+local LIB_ACR = Core.LIB_ACR
+
+----------------------------------------
+-- Internal
+---
+
+-- @ Masque
+local OLD_VERSION = Core.OLD_VERSION
+
+-- @ Locales\enUS
+local L = Core.Locale
+
+-- @ Options\Core
+local CRLF = Core.CRLF
+local Setup = Core.Setup
+
+----------------------------------------
+-- Locals
+---
+
+-- Formatted Text
+local UPDATED = "|cff00ff00"..L["Compatible"].."|r"
+local COMPATIBLE = "|cffffff00"..L["Compatible"].."|r"
+local UNKNOWN = "|cff777777"..L["Unknown"].."|r"
+
+-- Reusable Header
+local HDR = {
+	type = "header",
+	name = L["Description"],
+	order = 1,
+	disabled = true,
+	dialogControl = "SFX-Header",
+}
+
+-- Returns the status and tooltip for a skin based on its API_VERSION setting.
+local function GetStatus(Version)
+	if not Version then
+		return UNKNOWN, L["The status of this skin is unknown."]
+	elseif Version >= OLD_VERSION then
+		return UPDATED, L["This skin is compatible with Masque."]
+	else
+		return COMPATIBLE, L["This skin is outdated but is still compatible with Masque."]
+	end
+end
+
+----------------------------------------
+-- Options Builder
+---
+
+-- Creates a skin info options group.
+local function GetInfoGroup(Skin, Title, Group)
+	local Order = (Group and Skin.Order) or nil
+	local Description = Skin.Description or L["No description available."]
+	local Version = (Skin.Version and tostring(Skin.Version)) or UNKNOWN
+	local Authors = Skin.Authors or Skin.Author or UNKNOWN
+	local Websites = Skin.Websites or Skin.Website
+	local Discord = Skin.Discord
+	local Status, Tooltip = GetStatus(Skin.API_VERSION)
+
+	-- Options Group
+	local Info = {
+		type = "group",
+		name = Title,
+		order = Order,
+		args = {
+			Head = HDR,
+			Desc = {
+				type = "description",
+				name = Description..CRLF,
+				order = 2,
+				fontSize = "medium",
+			},
+			Info = {
+				type = "group",
+				name = "",
+				order = 3,
+				inline = true,
+				args = {
+					Version = {
+						type = "input",
+						name = L["Version"],
+						arg = Version..CRLF,
+						order = 1,
+						disabled = true,
+						dialogControl = "SFX-Info",
+					},
+				},
+			},
+		},
+	}
+
+	local args = Info.args.Info.args
+	Order = 2
+
+	-- Populate the Author field(s).
+	if type(Authors) == "table" then
+		local Count = #Authors
+		if Count > 0 then
+			for i = 1, Count do
+				local Key = "Author"..i
+				local Name = (i == 1 and L["Authors"]) or ""
+				args[Key] = {
+					type = "input",
+					name = Name,
+					arg  = Authors[i],
+					order = Order,
+					disabled = true,
+					dialogControl = "SFX-Info",
+				}
+				Order = Order + 1
+			end
+			args["SPC"..Order] = {
+				type = "description",
+				name = " ",
+				order = Order,
+			}
+			Order = Order + 1
+		end
+	elseif type(Authors) == "string" then
+		args.Author = {
+			type = "input",
+			name = L["Author"],
+			arg  = Authors,
+			order = Order,
+			disabled = true,
+			dialogControl = "SFX-Info",
+		}
+		Order = Order + 1
+		args["SPC"..Order] = {
+			type = "description",
+			name = " ",
+			order = Order,
+		}
+		Order = Order + 1
+	end
+
+	-- Discord
+	if type(Discord) == "string" then
+		args.Discord = {
+			type = "input",
+			name = L["Discord"],
+			arg  = Discord,
+			order = Order,
+			dialogControl = "SFX-Info-URL",
+		}
+		Order = Order + 1
+		args["SPC"..Order] = {
+			type = "description",
+			name = " ",
+			order = Order,
+		}
+		Order = Order + 1
+	end
+
+	-- Populate the Website field(s).
+	if type(Websites) == "table" then
+		local Count = #Websites
+		if Count > 0 then
+			for i = 1, Count do
+				local Key = "Website"..i
+				local Name = (i == 1) and L["Websites"] or ""
+				args[Key] = {
+					type = "input",
+					name = Name,
+					arg  = Websites[i],
+					order = Order,
+					dialogControl = "SFX-Info-URL",
+				}
+				Order = Order + 1
+			end
+			args["SPC"..Order] = {
+				type = "description",
+				name = " ",
+				order = Order,
+			}
+			Order = Order + 1
+		end
+	elseif type(Websites) == "string" then
+		args.Website = {
+			type = "input",
+			name = L["Website"],
+			arg  = Websites,
+			order = Order,
+			dialogControl = "SFX-Info",
+		}
+		Order = Order + 1
+		args["SPC"..Order] = {
+			type = "description",
+			name = " ",
+			order = Order,
+		}
+		Order = Order + 1
+	end
+
+	-- Status
+	args.Status = {
+		type = "input",
+		name = L["Status"],
+		desc = Tooltip,
+		arg = Status,
+		order = Order,
+		dialogControl = "SFX-Info",
+	}
+
+	return Info
+end
+
+----------------------------------------
+-- Setup
+---
+
+-- Creates/Removes the 'Installed Skins' options group/panel.
+function Setup.Info(self)
+	if not self.OptionsLoaded then return end
+
+	local cArgs = self.Options.args.Core.args
+
+	if not self.db.profile.Interface.SkinInfo then
+		cArgs.SkinInfo = nil
+	elseif not cArgs.SkinInfo then
+		local Tooltip = "|cffffffff"..L["Select to view."].."|r"
+
+		local Options = {
+			type = "group",
+			name = L["Installed Skins"],
+			desc = Tooltip,
+			get = self.GetArg,
+			set = self.NoOp,
+			order = 4,
+			args = {
+				Head = {
+					type = "header",
+					name = L["Installed Skins"],
+					order = 0,
+					disabled = true,
+					dialogControl = "SFX-Header",
+				},
+				Desc = {
+					type = "description",
+					name = L["This section provides information on any skins you have installed."]..CRLF,
+					fontSize = "medium",
+					order = 1,
+				},
+			},
+		}
+
+		local Skins, SkinList = self.Skins, self.SkinList
+		local args = Options.args
+
+		-- Create the info groups.
+		for SkinID in pairs(SkinList) do
+			local Skin = Skins[SkinID]
+			local Group = Skin.Group
+
+			if Group then
+				local Title = Skin.Title or SkinID
+
+				if not args[Group] then
+					args[Group] = {
+						type = "group",
+						name = Group,
+						desc = Tooltip,
+						args = {},
+						childGroups = "select",
+					}
+				end
+
+				args[Group].args[SkinID] = GetInfoGroup(Skin, Title, Group)
+			else
+				args[SkinID] = GetInfoGroup(Skin, SkinID)
+				args[SkinID].desc = Tooltip
+			end
+		end
+
+		cArgs.SkinInfo = Options
+	else
+		return
+	end
+
+	LIB_ACR:NotifyChange(MASQUE)
+end

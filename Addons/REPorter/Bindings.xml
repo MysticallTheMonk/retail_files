@@ -1,0 +1,26 @@
+<Bindings>
+  <Binding category="|cFF74D06CRE|rPorter" name="REPORTERINC1">
+    REPorter:SmallButton(1);
+  </Binding>
+  <Binding category="|cFF74D06CRE|rPorter" name="REPORTERINC2">
+    REPorter:SmallButton(2);
+  </Binding>
+  <Binding category="|cFF74D06CRE|rPorter" name="REPORTERINC3">
+    REPorter:SmallButton(3);
+  </Binding>
+  <Binding category="|cFF74D06CRE|rPorter" name="REPORTERINC4">
+    REPorter:SmallButton(4);
+  </Binding>
+  <Binding category="|cFF74D06CRE|rPorter" name="REPORTERINC5">
+    REPorter:SmallButton(5);
+  </Binding>
+  <Binding category="|cFF74D06CRE|rPorter" name="REPORTERINC6">
+    REPorter:SmallButton(6);
+  </Binding>
+  <Binding category="|cFF74D06CRE|rPorter" name="REPORTERHELP">
+    REPorter:BigButton(true);
+  </Binding>
+  <Binding category="|cFF74D06CRE|rPorter" name="REPORTERCLEAR">
+    REPorter:BigButton(false);
+  </Binding>
+</Bindings>

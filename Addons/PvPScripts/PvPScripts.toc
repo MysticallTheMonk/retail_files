@@ -1,0 +1,23 @@
+## Interface: 110007
+## Title: PvPScripts
+## Notes: Scripts for PvP
+
+HideArenaFrames.lua
+HideFlash.lua
+hidePartyText.lua
+hideScreenshots.lua
+removeGlow.lua
+removeFloatingText.lua
+removeErrorText.lua
+hideObjectives.lua
+fixPlaterSpec.lua
+statusText.lua
+Overshields.lua
+hideStatusBar.lua
+surrender.lua
+##!!NoTaint2.lua
+##fadeRightActionbar.lua
+##fadeLeftActionbar.lua
+##fadeSevenActionbar.lua
+##fadeFiveActionbar.lua
+##fadeSixActionbar.lua

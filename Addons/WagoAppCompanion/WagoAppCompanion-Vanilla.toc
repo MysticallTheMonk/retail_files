@@ -1,0 +1,11 @@
+## Interface: 11503
+## Title: Wago App Companion
+## Author: The Wago team
+## Version: 1.0.0
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## OptionalDependencies: WeakAuras
+## IconTexture: Interface\AddOns\WagoAppCompanion\logo.png
+
+data.lua
+init.lua

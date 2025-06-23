@@ -1,0 +1,16 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="Libs\Ace3\LibStub\LibStub.lua"/>
+	<Include file="Libs\Ace3\CallbackHandler-1.0\CallbackHandler-1.0.xml"/>
+	<Include file="Libs\Ace3\AceHook-3.0\AceHook-3.0.xml"/>
+	<Include file="Libs\Ace3\AceDB-3.0\AceDB-3.0.xml"/>
+	<Include file="Libs\Ace3\AceDBOptions-3.0\AceDBOptions-3.0.xml"/>
+	<Include file="Libs\Ace3\AceLocale-3.0\AceLocale-3.0.xml" />
+	<Include file="Libs\LibOmniCDC\Lib.xml"/>
+	<Include file="Libs\Ace3\AceComm-3.0\AceComm-3.0.xml"/>
+	<Include file="Libs\Ace3\AceSerializer-3.0\AceSerializer-3.0.xml"/>
+	<Include file="Libs\LibDeflate\lib.xml"/>
+	<Include file="Libs\LibSharedMedia-3.0\lib.xml"/>
+	<Include file="Libs\UTF8\lib.xml"/>
+	<Script file="Libs\LibDualSpec-1.0\LibDualSpec-1.0.lua"/>
+</Ui>

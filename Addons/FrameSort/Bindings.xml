@@ -1,0 +1,30 @@
+<Bindings>
+  <Binding name="CLICK FSTarget1:LeftButton" description="FrameSort Bindings" category="FrameSort" header="FRAMESORT_TARGET"></Binding>
+  <Binding name="CLICK FSTarget2:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTarget3:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTarget4:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTarget5:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTargetBottom:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTargetBottomMinus1:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTargetBottomMinus2:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTargetBottomMinus3:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTargetBottomMinus4:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTargetPet1:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTargetPet2:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTargetPet3:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTargetPet4:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTargetPet5:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTargetEnemy1:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTargetEnemy2:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTargetEnemy3:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTargetEnemyPet1:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTargetEnemyPet2:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTargetEnemyPet3:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSFocusEnemy1:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSFocusEnemy2:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSFocusEnemy3:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTargetNextFrame:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSTargetPreviousFrame:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSCycleNextFrame:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSCyclePreviousFrame:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+</Bindings>

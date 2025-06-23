@@ -1,0 +1,11 @@
+## Interface: 110002
+## Title: Range Indicators
+## Author: Elitesparkle
+## Notes: Shows range indicators instead of hotkeys on Action Bars.
+## Notes-itIT: Mostra gli indicatori della distanza al posto dei tasti di scelta rapida sui Pulsanti Azione.
+## Version: 1.0.3
+## IconTexture: Interface\AddOns\RangeIndicators\Textures\RangeIndicators.blp
+
+ActionState.lua
+RangeCheck.lua
+RangeIndicators.lua

@@ -1,0 +1,205 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Frame name="OmniCDTemplate" virtual="true" parent="UIParent" frameStrata="MEDIUM" framelevel="8" movable="true" clampedToScreen="true" dontSavePosition="true" hidden="true">
+		<Size>
+			<AbsDimension x="1" y="1"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Frames>
+			<Frame parentKey="anchor" enableMouse="false" clampedToScreen="true">
+				<Size>
+					<AbsDimension x="15" y="15"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture setAllPoints="true" parentKey="background">
+							<Color r="0.756" g="0" b="0.012" a="0.7"/>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<FontString parentKey="text" inherits="GameFontNormal">
+							<Color r="1" g="1" b="1" a="1"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Frame parentKey="container" clampedToScreen="true">
+				<Size>
+					<AbsDimension x="1" y="1"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+					<Anchor point="BOTTOMRIGHT"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+	</Frame>
+
+	<Button name="OmniCDButtonTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="36" y="36"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="icon"/>
+			</Layer>
+			<Layer level="ARTWORK" textureSubLevel="2">
+				<FontString inherits="NumberFontNormalSmallGray" parentKey="hotKey" justifyH="RIGHT" text="RANGE_INDICATOR" hidden="true">
+					<Size x="32" y="10"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="3" y="-3"/>
+					</Anchors>
+					<Color r="1.0" g="1.0" b="1.0" a="0.8"/><!-- 11.1 -->
+				</FontString>
+				<FontString inherits="NumberFontNormal" parentKey="count" justifyH="RIGHT">
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" x="-2" y="2"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString parentKey="name" inherits="GameFontHighlightSmallOutline">
+					<Size x="36" y="10"/>
+					<Anchors>
+						<Anchor point="BOTTOM" x="0" y="2"/>
+					</Anchors>
+				</FontString>
+				<Texture parentKey="Glow" file="Interface\Transmogrify\Textures.png" hidden="true">
+					<Size x="68" y="67"/>
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="-1"/>
+					</Anchors>
+					<TexCoords left="0.52343750" right="0.97656250" top="0.38476563" bottom="0.49609375"/>
+				</Texture>
+			</Layer>
+
+			<Layer level="BACKGROUND" textureSubLevel="1">
+				<Texture parentKey="borderTop">
+					<Color r="0" g="0" b="0"/>
+				</Texture>
+				<Texture parentKey="borderBottom">
+					<Color r="0" g="0" b="0"/>
+				</Texture>
+				<Texture parentKey="borderLeft">
+					<Color r="0" g="0" b="0"/>
+				</Texture>
+				<Texture parentKey="borderRight">
+					<Color r="0" g="0" b="0"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Cooldown inherits="CooldownFrameTemplate" parentKey="cooldown" reverse="false" drawBling="false" drawEdge="false" hidden="true">
+				<SwipeTexture>
+					<Color r="1" g="1" b="1" a="0.8"/>
+				</SwipeTexture>
+			</Cooldown>
+			<Frame parentKey="PendingFrame" setAllPoints="true" hidden="true" ignoreParentAlpha="true">
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture parentKey="Glow" file="Interface\Transmogrify\Textures.png">
+							<Size x="58" y="57"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+							<TexCoords left="0.52343750" right="0.97656250" top="0.38476563" bottom="0.49609375"/>
+						</Texture>
+					</Layer>
+					<Layer level="OVERLAY">
+						<Texture parentKey="Ants" file="Interface\Transmogrify\PurpleIconAlertAnts.png">
+							<Size x="44" y="44"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnUpdate>
+						AnimateTexCoords(self.Ants, 256, 256, 48, 48, 22, elapsed, 0.01);
+					</OnUpdate>
+				</Scripts>
+			</Frame>
+			<Frame parentKey="AnimFrame" setAllPoints="true" hidden="true" ignoreParentAlpha="true">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture parentKey="Glow" file="Interface\Transmogrify\Textures.png" alpha="0">
+							<Size x="58" y="57"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+							<TexCoords left="0.52343750" right="0.97656250" top="0.38476563" bottom="0.49609375"/>
+						</Texture>
+						<Texture parentKey="Transition" file="Interface\Transmogrify\Textures.png" hidden="false">
+							<Size x="42" y="41"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+							<TexCoords left="0.52343750" right="0.97656250" top="0.25781250" bottom="0.36914063"/>
+						</Texture>
+						<Texture parentKey="OuterGlow" file="Interface\SpellActivationOverlay\IconAlert" alpha="0">
+							<Size x="58" y="57"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+							<TexCoords left="0.00781250" right="0.50781250" top="0.53515625" bottom="0.78515625"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Animations>
+					<AnimationGroup parentKey="animIn">
+						<Alpha childKey="OuterGlow" duration="0.15" fromAlpha="0" toAlpha="1" order="1"/>
+						<Alpha childKey="OuterGlow" duration="0.15" fromAlpha="1" toAlpha="0" order="2"/>
+						<Scale childKey="Transition" duration="0.2" scaleX="1.381" scaleY="1.381" order="2"/>
+						<Alpha childKey="Glow" fromAlpha="1" toAlpha="0" duration="0.2" order="2"/>
+						<Scripts>
+							<OnPlay>
+								local frame = self:GetParent();
+								frame:Show();
+							</OnPlay>
+							<OnFinished>
+								local frame = self:GetParent();
+								frame:Hide();
+							</OnFinished>
+						</Scripts>
+					</AnimationGroup>
+					<AnimationGroup parentKey="animOut">
+						<Alpha childKey="OuterGlow" duration="0.15" fromAlpha="0" toAlpha="1" order="1"/>
+						<Alpha childKey="OuterGlow" duration="0.15" fromAlpha="1" toAlpha="0" order="2"/>
+						<Scale childKey="Transition" duration="0.2" scaleX="1.381" scaleY="1.381" order="2"/>
+						<Alpha childKey="Glow" fromAlpha="1" toAlpha="0" duration="0.2" order="2"/>
+						<Scripts>
+							<OnPlay>
+								local frame = self:GetParent();
+								frame:Show();
+							</OnPlay>
+							<OnFinished>
+								local frame = self:GetParent();
+								frame:Hide();
+							</OnFinished>
+						</Scripts>
+					</AnimationGroup>
+				</Animations>
+				<Scripts>
+					<OnHide>
+						if self.animOut:IsPlaying() then
+							self.animOut:Stop()
+							self:Hide()
+						end
+					</OnHide>
+				</Scripts>
+			</Frame>
+		</Frames>
+	</Button>
+</Ui>

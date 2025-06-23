@@ -1,0 +1,70 @@
+## Interface: 40400, 40401, 40402
+## Title: Arena|cff00ccffAnalytics|r
+## Notes: Arena log and statistics.
+## Author: Lingo, Zeetrax
+## Version: 1.1.1
+## DefaultState: enabled
+## SavedVariables: ArenaAnalyticsSharedSettingsDB
+## SavedVariablesPerCharacter: MatchHistoryDB, ArenaAnalyticsRealmsDB, ArenaAnalyticsDB, ArenaAnalyticsMapIconPos
+
+
+Source/ArenaDebugging.lua
+Source/UI/ArenaMinimapButton.lua
+Source/init.lua
+
+Source/ArenaAnalytics.lua
+Source/ArenaOptions.lua
+Source/ArenaGroupSorter.lua
+Source/ArenaMatch.lua
+Source/ArenaEvents.lua
+Source/ArenaTracker.lua
+Source/ArenaSessions.lua
+Source/ArenaVersionManager.lua
+Source/ArenaTablePool.lua
+
+Source/API/ArenaHelpers.lua
+Source/API/ArenaAPI.lua
+Source/API/ArenaAPI_Cata.lua
+Source/API/ArenaInspection.lua
+
+Source/UI/HybridScroll.xml
+Source/UI/ArenaTable.lua
+Source/UI/ArenaMatchSelection.lua
+Source/UI/ArenaIcon.lua
+
+Source/UI/Tooltips/ArenaTooltips.lua
+Source/UI/Tooltips/ArenaTooltips_Player.lua
+Source/UI/Tooltips/ArenaTooltips_Shuffle.lua
+
+Source/Data/ArenaInternalIDs.lua
+Source/Data/ArenaConstants.lua
+Source/Data/ArenaBitmap.lua
+Source/Data/ArenaSpecSpells_Cata.lua
+Source/Data/ArenaLocalizationTables.lua
+
+Source/Search/ArenaSearch.lua
+Source/Search/ArenaSearchParser.lua
+Source/Search/ArenaSearchTables.lua
+Source/Search/ArenaSearchDisplay.lua
+Source/Search/ArenaQuickSearch.lua
+
+Source/Filters/ArenaFilter.lua
+Source/Filters/ArenaFilterTables.lua
+Source/Filters/ArenaFilterTable_Brackets.lua
+Source/Filters/ArenaFilterTable_Comps.lua
+Source/Filters/ArenaFilterTable_MoreFilters.lua
+
+Source/ImportExport/ArenaExport.lua
+Source/ImportExport/ArenaImportBox.lua
+Source/ImportExport/ArenaImport.lua
+Source/ImportExport/ArenaImport_ReflexArenas.lua
+Source/ImportExport/ArenaImport_ArenaStatsWrath.lua
+Source/ImportExport/ArenaImport_ArenaStatsCata.lua
+Source/ImportExport/ArenaImport_ArenaAnalytics.lua
+
+Source/UI/ArenaImportProgressFrame.lua
+Source/UI/Dropdowns/ArenaDropdown.lua
+Source/UI/Dropdowns/ArenaDropdownList.lua
+Source/UI/Dropdowns/ArenaDropdownEntry.lua
+Source/UI/Dropdowns/ArenaDropdownButton.lua
+Source/UI/Dropdowns/ArenaDropdownDisplay.lua
