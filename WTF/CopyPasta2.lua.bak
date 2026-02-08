@@ -1,0 +1,301 @@
+
+PasteDB = {
+["profileKeys"] = {
+["Wymoralt - Proudmoore"] = "Wymoralt - Proudmoore",
+["Sydarelora - Draenor"] = "Sydarelora - Draenor",
+["Mwreroll - Sargeras"] = "Mwreroll - Sargeras",
+["Tealcrayon - Anetheron"] = "Tealcrayon - Anetheron",
+["Fanarassa - Sentinels"] = "Fanarassa - Sentinels",
+["Magycall - Emerald Dream"] = "Magycall - Emerald Dream",
+["Mw - Turalyon"] = "Mw - Turalyon",
+["Andrista - Bloodhoof"] = "Andrista - Bloodhoof",
+["Mysticbankk - Tichondrius"] = "Mysticbankk - Tichondrius",
+["Rsk - Shandris"] = "Rsk - Shandris",
+["Flowerlotus - Sentinels"] = "Flowerlotus - Sentinels",
+["Onlyplaymage - Sargeras"] = "Onlyplaymage - Sargeras",
+["Mediumvibes - Sentinels"] = "Mediumvibes - Sentinels",
+["Mstcll - Blackhand"] = "Mstcll - Blackhand",
+["Lotusflower - Dalvengyr"] = "Lotusflower - Dalvengyr",
+["Réðçräñé - Sargeras"] = "Réðçräñé - Sargeras",
+["Mstcll - Sargeras"] = "Mstcll - Sargeras",
+["Mysticbankk - Sargeras"] = "Mysticbankk - Sargeras",
+["Moosticall - Sentinels"] = "Moosticall - Sentinels",
+["Mysticbankk - Garrosh"] = "Mysticbankk - Garrosh",
+["Mw - Sargeras"] = "Mw - Sargeras",
+["Azshauleand - Sargeras"] = "Azshauleand - Sargeras",
+["Iamdeadinsid - Sentinels"] = "Iamdeadinsid - Sentinels",
+["Gréëñðrägoñ - Sargeras"] = "Gréëñðrägoñ - Sargeras",
+["Healjkoom - Sargeras"] = "Healjkoom - Sargeras",
+["Mstcll - Aerie Peak"] = "Mstcll - Aerie Peak",
+["Curtimer - Emerald Dream"] = "Curtimer - Emerald Dream",
+["Mw - Tichondrius"] = "Mw - Tichondrius",
+["Elamatrenn - Emerald Dream"] = "Elamatrenn - Emerald Dream",
+["Representing - Sargeras"] = "Representing - Sargeras",
+["Yungmyst - Sentinels"] = "Yungmyst - Sentinels",
+["Thunderbadx - Sargeras"] = "Thunderbadx - Sargeras",
+["Mstcll - Sentinels"] = "Mstcll - Sentinels",
+["Hydraxicle - Lightning's Blade"] = "Hydraxicle - Lightning's Blade",
+["Mstcll - Area 52"] = "Mstcll - Area 52",
+["Craaruun - Eitrigg"] = "Craaruun - Eitrigg",
+["Sadfeesaddsf - Nemesis"] = "Sadfeesaddsf - Nemesis",
+["Harambad - Sargeras"] = "Harambad - Sargeras",
+["Onlyplaydh - Sargeras"] = "Onlyplaydh - Sargeras",
+["Onlyplaymw - Durotan"] = "Onlyplaymw - Durotan",
+["Cincinatizoo - Sargeras"] = "Cincinatizoo - Sargeras",
+["Mysticallx - Sargeras"] = "Mysticallx - Sargeras",
+["Gracefulness - Sargeras"] = "Gracefulness - Sargeras",
+["Alunadris - Sentinels"] = "Alunadris - Sentinels",
+["Mysticbollt - Area 52"] = "Mysticbollt - Area 52",
+["Lifedestroys - Tichondrius"] = "Lifedestroys - Tichondrius",
+["Jje - Vek'nilash"] = "Jje - Vek'nilash",
+["Soullkeeper - Tichondrius"] = "Soullkeeper - Tichondrius",
+["Nerfmw - Sargeras"] = "Nerfmw - Sargeras",
+["Kickthesun - Sargeras"] = "Kickthesun - Sargeras",
+["Mysticall - Moon Guard"] = "Mysticall - Moon Guard",
+["Thunderbad - Sentinels"] = "Thunderbad - Sentinels",
+["Coocoocachu - Sargeras"] = "Coocoocachu - Sargeras",
+["Mysticallud - Arena Champions - US"] = "Mysticallud - Arena Champions - US",
+["Sevenseconds - Sargeras"] = "Sevenseconds - Sargeras",
+["Baotu - Sargeras"] = "Baotu - Sargeras",
+["Ruchi - Sentinels"] = "Ruchi - Sentinels",
+["Green - Eitrigg"] = "Green - Eitrigg",
+["Ggs - Detheroc"] = "Ggs - Detheroc",
+["Vivifying - Sentinels"] = "Vivifying - Sentinels",
+["Nerfmw - Moon Guard"] = "Nerfmw - Moon Guard",
+["Badplat - Sargeras"] = "Badplat - Sargeras",
+["Zft - Sentinels"] = "Zft - Sentinels",
+["Enveloping - Sentinels"] = "Enveloping - Sentinels",
+},
+["profiles"] = {
+["Wymoralt - Proudmoore"] = {
+["loaded"] = true,
+},
+["Sydarelora - Draenor"] = {
+["loaded"] = true,
+},
+["Mwreroll - Sargeras"] = {
+["loaded"] = true,
+},
+["Tealcrayon - Anetheron"] = {
+["loaded"] = true,
+},
+["Fanarassa - Sentinels"] = {
+["loaded"] = true,
+},
+["Magycall - Emerald Dream"] = {
+["loaded"] = true,
+},
+["Mw - Turalyon"] = {
+},
+["Andrista - Bloodhoof"] = {
+["loaded"] = true,
+},
+["Mysticbankk - Tichondrius"] = {
+["loaded"] = true,
+},
+["Rsk - Shandris"] = {
+["loaded"] = true,
+},
+["Flowerlotus - Sentinels"] = {
+["loaded"] = true,
+},
+["Onlyplaymage - Sargeras"] = {
+["loaded"] = true,
+},
+["Mediumvibes - Sentinels"] = {
+["loaded"] = true,
+},
+["Mstcll - Blackhand"] = {
+["loaded"] = true,
+},
+["Lotusflower - Dalvengyr"] = {
+},
+["Réðçräñé - Sargeras"] = {
+["loaded"] = true,
+["whispertarget"] = "",
+["where"] = "Default",
+["pos"] = {
+},
+},
+["Mstcll - Sargeras"] = {
+["loaded"] = true,
+},
+["Mysticbankk - Sargeras"] = {
+["loaded"] = true,
+},
+["Moosticall - Sentinels"] = {
+["loaded"] = true,
+},
+["Mysticbankk - Garrosh"] = {
+["loaded"] = true,
+},
+["Mw - Sargeras"] = {
+["loaded"] = true,
+},
+["Azshauleand - Sargeras"] = {
+["loaded"] = true,
+},
+["Iamdeadinsid - Sentinels"] = {
+["loaded"] = true,
+},
+["Gréëñðrägoñ - Sargeras"] = {
+["loaded"] = true,
+},
+["Healjkoom - Sargeras"] = {
+["loaded"] = true,
+["whispertarget"] = "",
+["where"] = "Default",
+["pos"] = {
+},
+},
+["Mstcll - Aerie Peak"] = {
+["loaded"] = true,
+},
+["Curtimer - Emerald Dream"] = {
+["loaded"] = true,
+},
+["Mw - Tichondrius"] = {
+["loaded"] = true,
+["whispertarget"] = "",
+["where"] = "Default",
+["pos"] = {
+},
+},
+["Elamatrenn - Emerald Dream"] = {
+["loaded"] = true,
+},
+["Representing - Sargeras"] = {
+["loaded"] = true,
+},
+["Yungmyst - Sentinels"] = {
+["loaded"] = true,
+["whispertarget"] = "",
+["where"] = "Default",
+["pos"] = {
+["height"] = 320.0000305175781,
+["top"] = 804.999755859375,
+["left"] = 901.6665649414062,
+["width"] = 499.9999389648438,
+},
+},
+["Thunderbadx - Sargeras"] = {
+["loaded"] = true,
+},
+["Mstcll - Sentinels"] = {
+["loaded"] = true,
+},
+["Hydraxicle - Lightning's Blade"] = {
+["loaded"] = true,
+},
+["Mstcll - Area 52"] = {
+["loaded"] = true,
+},
+["Craaruun - Eitrigg"] = {
+},
+["Sadfeesaddsf - Nemesis"] = {
+["loaded"] = true,
+},
+["Harambad - Sargeras"] = {
+["loaded"] = true,
+},
+["Onlyplaydh - Sargeras"] = {
+["loaded"] = true,
+},
+["Onlyplaymw - Durotan"] = {
+["loaded"] = true,
+},
+["Cincinatizoo - Sargeras"] = {
+["loaded"] = true,
+},
+["Mysticallx - Sargeras"] = {
+["loaded"] = true,
+["where"] = "Default",
+["whispertarget"] = "",
+["pos"] = {
+["height"] = 320.0000610351563,
+["top"] = 965.8331909179688,
+["left"] = 688.332763671875,
+["width"] = 499.9999389648438,
+},
+},
+["Gracefulness - Sargeras"] = {
+["loaded"] = true,
+},
+["Alunadris - Sentinels"] = {
+["loaded"] = true,
+},
+["Mysticbollt - Area 52"] = {
+["loaded"] = true,
+},
+["Lifedestroys - Tichondrius"] = {
+["loaded"] = true,
+["minimap"] = {
+["minimapPos"] = 187.2734064061955,
+},
+},
+["Jje - Vek'nilash"] = {
+},
+["Soullkeeper - Tichondrius"] = {
+["loaded"] = true,
+},
+["Nerfmw - Sargeras"] = {
+["whispertarget"] = "",
+["where"] = "Default",
+["loaded"] = true,
+["pos"] = {
+},
+["minimap"] = {
+["minimapPos"] = 185.5766226888743,
+},
+},
+["Kickthesun - Sargeras"] = {
+["loaded"] = true,
+},
+["Mysticall - Moon Guard"] = {
+["loaded"] = true,
+},
+["Thunderbad - Sentinels"] = {
+["loaded"] = true,
+},
+["Coocoocachu - Sargeras"] = {
+["loaded"] = true,
+},
+["Mysticallud - Arena Champions - US"] = {
+["loaded"] = true,
+},
+["Sevenseconds - Sargeras"] = {
+["loaded"] = true,
+},
+["Baotu - Sargeras"] = {
+["loaded"] = true,
+},
+["Ruchi - Sentinels"] = {
+["loaded"] = true,
+},
+["Green - Eitrigg"] = {
+["loaded"] = true,
+},
+["Ggs - Detheroc"] = {
+["loaded"] = true,
+["whispertarget"] = "",
+["where"] = "Default",
+["pos"] = {
+},
+},
+["Vivifying - Sentinels"] = {
+["loaded"] = true,
+},
+["Nerfmw - Moon Guard"] = {
+["loaded"] = true,
+},
+["Badplat - Sargeras"] = {
+["loaded"] = true,
+},
+["Zft - Sentinels"] = {
+["loaded"] = true,
+},
+["Enveloping - Sentinels"] = {
+["loaded"] = true,
+},
+},
+}

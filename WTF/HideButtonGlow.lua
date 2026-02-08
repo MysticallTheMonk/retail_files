@@ -1,0 +1,13 @@
+
+HideButtonGlowDB = {
+["filtered"] = {
+},
+["hideAll"] = true,
+["allowed"] = {
+[116670] = "Vivify",
+[117952] = "Crackling Jade Lightning",
+[322101] = "Expel Harm",
+[322109] = "Touch of Death",
+},
+["debugMode"] = false,
+}

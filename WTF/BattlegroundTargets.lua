@@ -1,3 +1,0 @@
-
-BattlegroundTargets_Options = {
-}

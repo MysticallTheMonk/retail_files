@@ -1,0 +1,139 @@
+
+MouseoverActionSettingsDB = {
+["namespaces"] = {
+},
+["profileKeys"] = {
+["Fanarassa - Sentinels"] = "Default",
+["Andrista - Bloodhoof"] = "Default",
+["Mwreroll - Sargeras"] = "Default",
+["Mstcll - Blackhand"] = "Default",
+["Lotusflower - Dalvengyr"] = "Default",
+["Réðçräñé - Sargeras"] = "Default",
+["Mstcll - Sargeras"] = "Default",
+["Magycall - Emerald Dream"] = "Default",
+["Moosticall - Sentinels"] = "Default",
+["Wymoralt - Proudmoore"] = "Default",
+["Azshauleand - Sargeras"] = "Default",
+["Mw - Turalyon"] = "Default",
+["Healjkoom - Sargeras"] = "Default",
+["Mw - Tichondrius"] = "Default",
+["Mediumvibes - Sentinels"] = "Default",
+["Thunderbadx - Sargeras"] = "Default",
+["Onlyplaydh - Sargeras"] = "Default",
+["Mysticallud - Arena Champions - US"] = "Default",
+["Representing - Sargeras"] = "Default",
+["Gracefulness - Sargeras"] = "Default",
+["Alunadris - Sentinels"] = "Default",
+["Mysticbollt - Area 52"] = "Default",
+["Lifedestroys - Tichondrius"] = "Default",
+["Soullkeeper - Tichondrius"] = "Default",
+["Jje - Vek'nilash"] = "Default",
+["Mysticallx - Sargeras"] = "Default",
+["Curthalar - Bladefist"] = "Default",
+["Thunderbad - Sentinels"] = "Default",
+["Badplat - Sargeras"] = "Default",
+["Rsk - Shandris"] = "Default",
+["Ruchi - Sentinels"] = "Default",
+["Gréëñðrägoñ - Sargeras"] = "Default",
+["Ggs - Detheroc"] = "Default",
+["Nerfmw - Sargeras"] = "Default",
+["Onlyplaymw - Durotan"] = "Default",
+["Tealcrayon - Anetheron"] = "Default",
+["Sydarelora - Draenor"] = "Default",
+["Green - Eitrigg"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["PetActionBar"] = {
+["enabled"] = false,
+},
+["MultiBarBottomLeft"] = {
+["enabled"] = false,
+["COMBAT_UPDATE"] = false,
+},
+["NameFontSettings"] = {
+["flags"] = "OUTLINE",
+["font"] = "2002 Bold",
+},
+["ChatFrame"] = {
+["enabled"] = false,
+["minAlpha"] = 0,
+},
+["FocusFrame"] = {
+["enabled"] = false,
+},
+["MainMenuBar"] = {
+["enabled"] = false,
+["COMBAT_UPDATE"] = false,
+},
+["HideBagsBar"] = {
+["enabled"] = true,
+},
+["ActionBarConfig"] = {
+["Action"] = false,
+},
+["PlayerFrame"] = {
+["enabled"] = false,
+["minAlpha"] = 0,
+},
+["MiniMapButton"] = {
+["enabled"] = false,
+},
+["DebuffFrame"] = {
+["enabled"] = false,
+},
+["GlobalSettings"] = {
+["animationSpeed_Out"] = 0.1,
+["animationSpeed_In"] = 0.1,
+["delay"] = 1,
+},
+["StanceBar"] = {
+["enabled"] = false,
+},
+["HideTrackingBars"] = {
+["enabled"] = true,
+},
+["MultiBarRight"] = {
+["links"] = {
+["MultiBarLeft"] = true,
+},
+},
+["TargetFrame"] = {
+["enabled"] = false,
+},
+["CountFontSettings"] = {
+["flags"] = "OUTLINE",
+["font"] = "2002 Bold",
+["height"] = 14,
+},
+["HotKeyFontSettings"] = {
+["flags"] = "OUTLINE",
+["font"] = "2002 Bold",
+},
+["MainActionBar"] = {
+["enabled"] = false,
+},
+["BuffFrame"] = {
+["enabled"] = false,
+},
+["Minimap"] = {
+["enabled"] = false,
+},
+["ObjectiveTracker"] = {
+["enabled"] = false,
+},
+["PartyFrame"] = {
+["enabled"] = false,
+},
+["MultiBarBottomRight"] = {
+["enabled"] = false,
+["COMBAT_UPDATE"] = false,
+},
+["MultiBarLeft"] = {
+["links"] = {
+["MultiBarRight"] = true,
+},
+},
+},
+},
+}

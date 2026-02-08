@@ -1,0 +1,165 @@
+
+PeralexBGDB = {
+["epicBG"] = {
+["twentyMode"] = {
+["groups"] = {
+{
+["spacing"] = 3,
+["height"] = 40,
+["position"] = {
+["y"] = 0,
+["x"] = -100,
+["point"] = "RIGHT",
+["relativePoint"] = "RIGHT",
+},
+["scale"] = 1,
+["width"] = 200,
+},
+{
+["spacing"] = 3,
+["height"] = 40,
+["position"] = {
+["y"] = 0,
+["x"] = -350,
+["point"] = "RIGHT",
+["relativePoint"] = "RIGHT",
+},
+["scale"] = 1,
+["width"] = 200,
+},
+},
+},
+["allMode"] = {
+["spacing"] = 2,
+["height"] = 32,
+["position"] = {
+["y"] = 0,
+["x"] = -50,
+["point"] = "RIGHT",
+["relativePoint"] = "RIGHT",
+},
+["scale"] = 0.8,
+["width"] = 180,
+},
+["tenMode"] = {
+["groups"] = {
+{
+["spacing"] = 3,
+["height"] = 40,
+["position"] = {
+["y"] = 200,
+["x"] = -100,
+["point"] = "RIGHT",
+["relativePoint"] = "RIGHT",
+},
+["scale"] = 1,
+["width"] = 200,
+},
+{
+["spacing"] = 3,
+["height"] = 40,
+["position"] = {
+["y"] = -200,
+["x"] = -100,
+["point"] = "RIGHT",
+["relativePoint"] = "RIGHT",
+},
+["scale"] = 1,
+["width"] = 200,
+},
+{
+["spacing"] = 3,
+["height"] = 40,
+["position"] = {
+["y"] = 200,
+["x"] = -350,
+["point"] = "RIGHT",
+["relativePoint"] = "RIGHT",
+},
+["scale"] = 1,
+["width"] = 200,
+},
+{
+["spacing"] = 3,
+["height"] = 40,
+["position"] = {
+["y"] = -200,
+["x"] = -350,
+["point"] = "RIGHT",
+["relativePoint"] = "RIGHT",
+},
+["scale"] = 1,
+["width"] = 200,
+},
+},
+},
+["groupMode"] = "all",
+},
+["skinMods"] = {
+["capping"] = {
+["enabled"] = true,
+["useCustomFont"] = true,
+["theme"] = "modern",
+},
+},
+["debug"] = false,
+["minimap"] = {
+["angle"] = 225,
+["hide"] = false,
+},
+["frames"] = {
+["enableEpicBGFrames"] = false,
+["spacing"] = 5,
+["height"] = 40,
+["growDirection"] = "DOWN",
+["maxFrames"] = 15,
+["width"] = 200,
+},
+["specIcons"] = {
+["enabled"] = true,
+["yOffset"] = 0,
+["xOffset"] = -2,
+["size"] = 20,
+},
+["lastSeenVersion"] = "0.2.4",
+["healers"] = {
+["xOffset"] = 2,
+["enabled"] = true,
+["size"] = 16,
+},
+["targeting"] = {
+["focusBehavior"] = "both",
+},
+["position"] = {
+["y"] = 0,
+["x"] = -100,
+["point"] = "RIGHT",
+["relativePoint"] = "RIGHT",
+},
+["appearance"] = {
+["resourceBarTexture"] = "Interface\\Buttons\\WHITE8x8",
+["healthTextFormat"] = "percent",
+["showAnchor"] = false,
+["useClassColorNames"] = true,
+["prioritizeFlagCarrier"] = true,
+["useClassColors"] = true,
+["showEnemyCount"] = true,
+["sortMethod"] = "damage",
+["statusTextType"] = "damage",
+["showStatusText"] = true,
+["healthBarTexture"] = "Interface\\Buttons\\WHITE8x8",
+["showPlayerNames"] = true,
+},
+["trinkets"] = {
+["enabled"] = true,
+["size"] = 24,
+["showCooldown"] = true,
+},
+["classIcons"] = {
+["theme"] = "default",
+},
+["flags"] = {
+["xOffset"] = 2,
+["size"] = 24,
+},
+}

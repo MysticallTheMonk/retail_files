@@ -1,0 +1,12 @@
+
+FriendGroups_SavedVars = {
+["hide_high_level"] = true,
+["show_btag"] = false,
+["add_mobile_text"] = true,
+["hide_offline"] = false,
+["auto_accept_invite"] = false,
+["colour_classes"] = true,
+["collapsed"] = {
+},
+["show_faction_icons"] = true,
+}

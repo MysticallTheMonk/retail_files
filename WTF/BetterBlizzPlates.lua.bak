@@ -1,10 +1,19 @@
 
 BetterBlizzPlatesDB = {
-["classIndicatorFriendlyScale"] = 1,
+["npBgColorRGB"] = {
+1,
+1,
+1,
+1,
+},
+["classIndicatorFriendlyScale"] = 1.62,
+["otherNpdeBuffFilterCC"] = false,
 ["doNotHideFriendlyHealthbarInPve"] = false,
 ["hideNPCArenaOnly"] = false,
+["nameplateKeyAuraScale"] = 1,
 ["NamePlateClassificationScale"] = "1.25",
-["nameplateSelfWidth"] = 154.0000152587891,
+["hideNPCHideSecondaryPets"] = true,
+["nameplateSelfWidth"] = 154.0000305175781,
 ["auraColor"] = false,
 ["nameplatePlayerLargerScale"] = "1.8",
 ["friendlyNpBuffFilterLessMinite"] = false,
@@ -12,70 +21,22 @@ BetterBlizzPlatesDB = {
 ["castBarInterruptHighlighterColorDontInterrupt"] = false,
 ["enableNameplateAuraCustomisation"] = true,
 ["customTextureFriendly"] = "Dragonflight (BBP)",
-["classIndicatorXPos"] = 0,
+["healthNumbersXPosXPos"] = 0,
 ["partyPointer"] = true,
 ["hideCastbarWhitelist"] = {
 },
 ["colorNPCName"] = false,
-["questIndicatorTestMode"] = true,
-["nameplateAuraEnlargedScaleScale"] = 1,
+["questIndicatorTestMode"] = false,
+["targetIndicatorYPos"] = 0,
 ["executeIndicatorScale"] = 1,
-["healerIndicatorRedCrossEnemy"] = false,
+["healerIndicatorRedCrossEnemy"] = true,
 ["focusTargetIndicatorTexture"] = "Shattered DF (BBP)",
 ["defaultFadeOutNPCsList"] = {
-{
-["id"] = 24207,
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Army of the Dead",
-["comment"] = "",
-},
-{
-["id"] = 62005,
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Beast (Hunter)",
-["comment"] = "",
-},
-{
-["id"] = 136408,
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Darkhound",
-["comment"] = "",
-},
-{
-["id"] = 105419,
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Dire Basilisk (Hunter)",
-["comment"] = "",
-},
 {
 ["id"] = 26125,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -84,34 +45,10 @@ BetterBlizzPlatesDB = {
 ["comment"] = "",
 },
 {
-["id"] = 95072,
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Earth Elemental (Shaman)",
-["comment"] = "",
-},
-{
-["id"] = 136398,
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Illidari Satyr",
-["comment"] = "",
-},
-{
 ["id"] = 163366,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -120,22 +57,22 @@ BetterBlizzPlatesDB = {
 ["comment"] = "",
 },
 {
-["id"] = 31216,
+["id"] = 24207,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
 },
-["name"] = "Mirror Images (Mage)",
+["name"] = "Army of the Dead",
 ["comment"] = "",
 },
 {
 ["id"] = 29264,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -144,22 +81,58 @@ BetterBlizzPlatesDB = {
 ["comment"] = "",
 },
 {
-["id"] = 54983,
+["id"] = 95072,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
 },
-["name"] = "Treant",
+["name"] = "Earth Elemental (Shaman)",
+["comment"] = "",
+},
+{
+["id"] = 31216,
+["entryColors"] = {
+["text"] = {
+["r"] = 1,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Mirror Images (Mage)",
+["comment"] = "",
+},
+{
+["id"] = 62005,
+["entryColors"] = {
+["text"] = {
+["r"] = 1,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Beast (Hunter)",
+["comment"] = "",
+},
+{
+["id"] = 105419,
+["entryColors"] = {
+["text"] = {
+["r"] = 1,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Dire Basilisk (Hunter)",
 ["comment"] = "",
 },
 {
 ["id"] = 192337,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -168,10 +141,34 @@ BetterBlizzPlatesDB = {
 ["comment"] = "",
 },
 {
+["id"] = 136398,
+["entryColors"] = {
+["text"] = {
+["r"] = 1,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Illidari Satyr",
+["comment"] = "",
+},
+{
+["id"] = 136408,
+["entryColors"] = {
+["text"] = {
+["r"] = 1,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Darkhound",
+["comment"] = "",
+},
+{
 ["id"] = 136403,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -179,8 +176,21 @@ BetterBlizzPlatesDB = {
 ["name"] = "Void Terror",
 ["comment"] = "",
 },
+{
+["id"] = 54983,
+["entryColors"] = {
+["text"] = {
+["r"] = 1,
+["g"] = 1,
+["b"] = 0,
 },
-["friendlyClassColorName"] = false,
+},
+["name"] = "Treant",
+["comment"] = "",
+},
+},
+["friendlyClassColorName"] = true,
+["castbarAlwaysOnTop"] = false,
 ["enemyNeutralHealthBarColorRGB"] = {
 1,
 1,
@@ -188,62 +198,67 @@ BetterBlizzPlatesDB = {
 },
 ["targetIndicatorScale"] = 1,
 ["changeNameplateBorderColor"] = false,
+["disableCompactedAurasOnSelf"] = false,
+["old_defaultLargeFontSize"] = 12,
 ["questIndicatorAnchor"] = "LEFT",
 ["otherNpBuffFilterPurgeable"] = false,
 ["otherNpdeBuffEnable"] = true,
+["scStart"] = true,
 ["healthNumbersFriendly"] = false,
 ["combatIndicatorXPos"] = 0,
-["friendlyNpdeBuffFilterWatchList"] = false,
+["friendlyNpdeBuffFilterWatchList"] = true,
 ["auraWhitelistColorsUpdated"] = true,
 ["hideCastbarList"] = {
 },
-["nameplateAurasEnemyCenteredAnchor"] = false,
-["classIndicatorScale"] = 1,
+["nameplateAurasEnemyCenteredAnchor"] = true,
+["classIndicatorScale"] = 1.18,
+["hpHeightSelfMana"] = 10.8,
+["showNpcTitle"] = false,
+["partyPointerCCAuras"] = true,
 ["arenaIdAnchor"] = "TOP",
+["importantCCDisarm"] = true,
 ["hideNameplateAuraTooltip"] = false,
+["nameplateAurasPersonalYPos"] = 0,
 ["castBarNoninterruptibleColor"] = {
 0.4,
 0.4,
 0.4,
 },
+["npAuraDiseaseRGB"] = {
+1,
+0.53,
+0.14,
+},
 ["healthNumbersUseMillions"] = false,
 ["focusTargetIndicatorTestMode"] = false,
 ["disableCVarForceOnLogin"] = false,
+["old_defaultFontSize"] = 9,
 ["partyIndicatorModeThree"] = false,
-["absorbIndicator"] = false,
+["importantBuffsDefensives"] = true,
+["customHpHeight"] = 0,
 ["arenaIndicatorModeOff"] = false,
-["nameplateOverlapHScale"] = 0.5,
-["nameplateShowEnemyGuardians"] = "0",
+["nameplateAuraRightToLeft"] = false,
+["enemyColorThreatCombatOnly"] = false,
+["nameplateShowEnemyGuardians"] = "1",
 ["castBarEmphasisSparkHeight"] = 35,
-["nameplateAurasXPosXPos"] = 0,
+["castBarPixelBorder"] = false,
 ["nameplateEnemyHeight"] = 64.125,
 ["targetIndicatorChangeTexture"] = false,
-["nameplateAurasYPos"] = -10,
+["nameplateAurasYPos"] = 0,
 ["castBarEmphasisColor"] = false,
-["nameplateShowFriendlyTotems"] = "0",
+["petIndicatorHideSecondaryPets"] = true,
+["nameplateShowFriendlyTotems"] = "1",
+["enableMidnightNameplateTweaks"] = true,
 ["nameplateAurasNoNameYPos"] = 0,
+["classIconReactionBorder"] = false,
 ["questIndicatorYPos"] = 0,
+["bgIndicatorShowOrbs"] = true,
 ["enemyHealthBarColor"] = false,
 ["nameplateShowFriendlyMinions"] = "0",
 ["arenaIdXPos"] = 0,
-["friendlyNameplatesOnlyInBgs"] = false,
+["friendlyNameplatesOnlyInBgs"] = true,
 ["arenaIndicatorModeThree"] = false,
 ["hideNPCsWhitelist"] = {
-{
-["flags"] = {
-["murloc"] = false,
-},
-["comment"] = "",
-["id"] = 104818,
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Ancestral Protection Totem",
-},
 {
 ["flags"] = {
 ["murloc"] = false,
@@ -252,7 +267,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 61245,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -264,25 +279,10 @@ BetterBlizzPlatesDB = {
 ["murloc"] = false,
 },
 ["comment"] = "",
-["id"] = 78001,
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Cloudburst Totem",
-},
-{
-["flags"] = {
-["murloc"] = false,
-},
-["comment"] = "",
 ["id"] = 105451,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -294,25 +294,10 @@ BetterBlizzPlatesDB = {
 ["murloc"] = false,
 },
 ["comment"] = "",
-["id"] = 2630,
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Earthbind Totem",
-},
-{
-["flags"] = {
-["murloc"] = false,
-},
-["comment"] = "",
 ["id"] = 100943,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -327,7 +312,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 60561,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -342,7 +327,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 179193,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -357,7 +342,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 17252,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -372,7 +357,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 417,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -387,7 +372,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 5925,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -402,7 +387,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 114565,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -414,25 +399,10 @@ BetterBlizzPlatesDB = {
 ["murloc"] = false,
 },
 ["comment"] = "",
-["id"] = 3527,
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Healing Stream Totem",
-},
-{
-["flags"] = {
-["murloc"] = false,
-},
-["comment"] = "",
 ["id"] = 59764,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -447,72 +417,42 @@ BetterBlizzPlatesDB = {
 ["id"] = 165189,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
 },
-["name"] = "Hunter Pet (they all have same ID)",
+["name"] = "Hunter pet (they all have same ID)",
 },
 {
 ["flags"] = {
 ["murloc"] = false,
 },
 ["comment"] = "",
-["id"] = 89,
+["id"] = 69792,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
-["g"] = 1,
 ["b"] = 0,
+["g"] = 1,
+["r"] = 0,
 },
 },
-["name"] = "Infernal (Warlock)",
+["name"] = "Monk Image (Green)",
 },
 {
 ["flags"] = {
 ["murloc"] = false,
 },
 ["comment"] = "",
-["id"] = 97369,
+["id"] = 69791,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
-["g"] = 1,
 ["b"] = 0,
-},
-},
-["name"] = "Liquid Magma Totem",
-},
-{
-["flags"] = {
-["murloc"] = false,
-},
-["comment"] = "",
-["id"] = 10467,
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
 ["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Mana Tide Totem",
-},
-{
-["flags"] = {
-["murloc"] = false,
-},
-["comment"] = "",
-["id"] = 62982,
-["entryColors"] = {
-["text"] = {
 ["r"] = 0,
-["g"] = 1,
-["b"] = 0,
 },
 },
-["name"] = "Mindbender",
+["name"] = "Monk Image (Red)",
 },
 {
 ["flags"] = {
@@ -522,7 +462,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 107100,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -534,15 +474,15 @@ BetterBlizzPlatesDB = {
 ["murloc"] = false,
 },
 ["comment"] = "",
-["id"] = 5923,
+["id"] = 185800,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
-["g"] = 1,
 ["b"] = 0,
+["g"] = 1,
+["r"] = 0,
 },
 },
-["name"] = "Poison Cleansing Totem",
+["name"] = "Past Self (Evoker)",
 },
 {
 ["flags"] = {
@@ -552,7 +492,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 101398,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -564,15 +504,30 @@ BetterBlizzPlatesDB = {
 ["murloc"] = false,
 },
 ["comment"] = "",
-["id"] = 105427,
+["id"] = 225672,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
-["g"] = 1,
 ["b"] = 0,
+["g"] = 1,
+["r"] = 0,
 },
 },
-["name"] = "Skyfury Totem",
+["name"] = "Shadow (Priest Re-Fear)",
+},
+{
+["flags"] = {
+["murloc"] = false,
+},
+["comment"] = "",
+["id"] = 19668,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Shadowfiend",
 },
 {
 ["flags"] = {
@@ -582,7 +537,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 53006,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -594,30 +549,15 @@ BetterBlizzPlatesDB = {
 ["murloc"] = false,
 },
 ["comment"] = "",
-["id"] = 179867,
+["id"] = 59712,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
-["g"] = 1,
 ["b"] = 0,
-},
-},
-["name"] = "Static Field Totem",
-},
-{
-["flags"] = {
-["murloc"] = false,
-},
-["comment"] = "",
-["id"] = 194117,
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
 ["g"] = 1,
-["b"] = 0,
+["r"] = 0,
 },
 },
-["name"] = "Stoneskin Totem",
+["name"] = "Stone Bulwark Totem",
 },
 {
 ["flags"] = {
@@ -627,7 +567,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 1863,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -639,15 +579,15 @@ BetterBlizzPlatesDB = {
 ["murloc"] = false,
 },
 ["comment"] = "",
-["id"] = 194118,
+["id"] = 225409,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
-["g"] = 1,
 ["b"] = 0,
+["g"] = 1,
+["r"] = 0,
 },
 },
-["name"] = "Tranquil Air Totem",
+["name"] = "Surging Totem",
 },
 {
 ["flags"] = {
@@ -657,7 +597,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 5913,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -672,7 +612,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 135002,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -684,77 +624,73 @@ BetterBlizzPlatesDB = {
 ["murloc"] = false,
 },
 ["comment"] = "",
+["id"] = 224466,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Voidwrath (Priest)",
+},
+{
+["flags"] = {
+["murloc"] = false,
+},
+["comment"] = "",
 ["id"] = 119052,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
 },
 ["name"] = "War Banner",
 },
-{
-["flags"] = {
-["murloc"] = false,
 },
-["comment"] = "",
-["id"] = 97285,
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Wind Rush Totem",
-},
-{
-["flags"] = {
-["murloc"] = false,
-},
-["comment"] = "",
-["id"] = 6112,
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Windfury Totem",
-},
-},
-["castBarTextScale"] = 0.71,
+["castBarTextScale"] = 0.65,
 ["otherNpdeBuffFilterAll"] = false,
 ["colorNPC"] = false,
 ["classIndicatorAnchor"] = "TOP",
+["partyPointerYPosYPos"] = -40,
 ["healthNumbersXPos"] = 0,
 ["arenaSpecAnchor"] = "TOP",
 ["questIndicator"] = false,
-["nameplateFriendlyHeight"] = 64.125,
-["partySpecScale"] = 0.62,
-["nameplateMinScale"] = 0.64,
+["nameplateFriendlyHeight"] = 1,
+["partySpecScale"] = 1.4,
+["nameplateMinScale"] = 1.25,
 ["otherNpBuffEmphasisedBorder"] = false,
-["castBarIconScale"] = 0.97,
+["personalNpBuffFilterImportantBuffs"] = false,
+["raidmarkIndicatorAnchor"] = "TOP",
 ["nameplateShowFriendlyGuardians"] = "0",
 ["totemIndicatorHideNameAndShiftIconDown"] = false,
-["nameplateAuraRowAmount"] = 6,
+["nameplateAuraKeyAuraPositionFriendly"] = false,
+["nameplateAuraRowAmount"] = 5,
+["dpsOrHealNoAggroColorRGB"] = {
+0,
+1,
+0,
+1,
+},
 ["defaultLargeNamePlateFontFlags"] = "",
 ["castBarInterruptHighlighterEndTime"] = 0.6,
 ["nameplateAuraRelativeAnchor"] = "TOPLEFT",
-["combatIndicatorEnemyOnly"] = false,
-["partyPointerArenaOnly"] = true,
+["castBarInterruptHighlighterEndPercentage"] = 85,
+["partyPointerArenaOnly"] = false,
+["ccIconAnchor"] = "TOP",
 ["healerIndicatorYPos"] = 0,
+["ccIconYPosYPos"] = 29,
 ["npBorderNpcColorRGB"] = {
 0,
 0,
 0,
 1,
 },
-["partyPointerHideAll"] = true,
+["partyPointerHideAll"] = false,
 ["customHpFriendlyHeight"] = 0,
-["hideEnemyNameText"] = false,
+["hideEnemyNameText"] = true,
 ["darkModeNameplateColor"] = 0.2,
 ["npBorderEnemyColorRGB"] = {
 1,
@@ -763,8 +699,8 @@ BetterBlizzPlatesDB = {
 1,
 },
 ["hideRaidmarkIndicator"] = false,
-["nameplateMaxAlpha"] = "1.0",
-["changeHealthbarHeight"] = false,
+["nameplateMaxAlpha"] = 1,
+["changeHealthbarHeight"] = true,
 ["nameplateAuraEnlargedScale"] = 1,
 ["otherNpdeBuffFilterLessMinite"] = false,
 ["healthNumbersNotOnFullHp"] = false,
@@ -772,45 +708,170 @@ BetterBlizzPlatesDB = {
 ["castBarInterruptHighlighterInterruptRGB"] = {
 0,
 1,
-0,
+0.8784314393997192,
+1,
 },
 ["auraBlacklist"] = {
+{
+["flags"] = {
+["important"] = false,
+["pandemic"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Corrupt the blood",
+["comment"] = "",
+},
+{
+["flags"] = {
+["important"] = false,
+["pandemic"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Crippling Poison",
+["comment"] = "",
+},
+{
+["flags"] = {
+["important"] = false,
+["pandemic"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Fatal Intent",
+["comment"] = "",
+},
+{
+["flags"] = {
+["important"] = false,
+["pandemic"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Find Weakness",
+["comment"] = "",
+},
+{
+["flags"] = {
+["important"] = false,
+["pandemic"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Infected Wounds",
+["comment"] = "",
+},
+{
+["flags"] = {
+["important"] = false,
+["pandemic"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Spoils of War",
+["comment"] = "",
+},
+{
+["flags"] = {
+["important"] = false,
+["pandemic"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Wound Poison",
+["comment"] = "",
+},
 },
 ["partyPointerWidth"] = 36,
 ["nameplateResourceScale"] = 0.7,
 ["nameplateHorizontalScale"] = "1.4",
-["healerIndicatorEnemyOnly"] = false,
+["healerIndicatorEnemyOnly"] = true,
 ["hideNpcMurlocScale"] = 1,
+["old_defaultLargeNamePlateFontFlags"] = "",
 ["npBorderFriendFoeColor"] = false,
+["healthNumbersFontOutline"] = "OUTLINE",
 ["hideNameplateAuras"] = false,
-["arenaSpecScale"] = 1.26,
+["hidePersonalBarManaFrame"] = false,
+["arenaIndicatorBg"] = true,
+["arenaSpecScale"] = 1.4,
 ["focusTargetIndicatorChangeTexture"] = false,
 ["classIndicatorHideRaidMarker"] = true,
 ["partyPointerXPos"] = 0,
 ["classIconArenaOnly"] = false,
+["classIconAlwaysShowTank"] = true,
 ["castBarEmphasisText"] = false,
-["nameplateFriendlyWidth"] = 154.0000152587891,
+["nameplateFriendlyWidth"] = 60,
+["classicNameplates"] = false,
+["skipGUI"] = false,
 ["castBarInterruptHighlighterStartPercentage"] = 15,
 ["petIndicatorScale"] = 1,
 ["nameplateOccludedAlphaMultScale"] = 1,
+["otherNpBuffFilterImportantBuffs"] = false,
+["fakeNameRaiseStrata"] = true,
 ["executeIndicatorThreshold"] = 40,
-["totemIndicatorScaleUpImportant"] = false,
+["totemIndicatorScaleUpImportant"] = true,
 ["npBorderFriendlyColorRGB"] = {
 0,
 1,
 0,
 1,
 },
-["interruptedByIndicator"] = true,
+["interruptedByIndicator"] = false,
+["tankFullAggroColorRGB"] = {
+0,
+1,
+0,
+1,
+},
+["partyModeSettingKey"] = "Off",
 ["healerIndicatorScale"] = 1,
 ["castBarEmphasisOnlyInterruptable"] = false,
+["totemListUpdateTWW6"] = true,
+["nameplateShowFriendlyPlayerMinions"] = "0",
+["nameplateAuraWidthGapScale"] = 1,
 ["arenaSpecXPos"] = 0,
 ["castEmphasisList"] = {
 {
 ["name"] = "Cyclone",
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -820,7 +881,7 @@ BetterBlizzPlatesDB = {
 ["name"] = "Fear",
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -830,7 +891,7 @@ BetterBlizzPlatesDB = {
 ["name"] = "Haymaker",
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -840,7 +901,7 @@ BetterBlizzPlatesDB = {
 ["name"] = "Hex",
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -850,7 +911,7 @@ BetterBlizzPlatesDB = {
 ["name"] = "Lightning Lasso",
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -860,7 +921,7 @@ BetterBlizzPlatesDB = {
 ["name"] = "Mass Polymorph",
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -870,7 +931,7 @@ BetterBlizzPlatesDB = {
 ["name"] = "Polymorph",
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -880,7 +941,7 @@ BetterBlizzPlatesDB = {
 ["name"] = "Repentance",
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -890,7 +951,7 @@ BetterBlizzPlatesDB = {
 ["name"] = "Ring of Frost",
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -900,7 +961,7 @@ BetterBlizzPlatesDB = {
 ["name"] = "Shadowfury",
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -910,7 +971,7 @@ BetterBlizzPlatesDB = {
 ["name"] = "Sleep Walk",
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -918,24 +979,59 @@ BetterBlizzPlatesDB = {
 },
 },
 ["nameplateShowEnemyMinus"] = "0",
-["shortArenaSpecName"] = false,
-["classColorPersonalNameplate"] = false,
-["darkModeNameplateResource"] = false,
+["shortArenaSpecName"] = true,
+["classColorPersonalNameplate"] = true,
+["darkModeNameplateResource"] = true,
+["hideLevelFrame"] = true,
 ["fadeOutNPC"] = true,
-["otherNpdeBuffFilterOnlyMe"] = false,
+["otherNpdeBuffFilterOnlyMe"] = true,
+["enemyColorThreatCombatOnlyPlayer"] = false,
+["smallPetsWidth"] = 20,
+["importantCCSilence"] = true,
 ["auraColorList"] = {
 },
 ["personalNpBuffFilterOnlyMe"] = false,
 ["separateAuraBuffRow"] = true,
-["arenaIDScaleScale"] = 0.95,
+["nameplateAuraHeightGapScale"] = 2,
+["healthNumbersYPosYPos"] = 1,
 ["castBarEmphasisIcon"] = false,
 ["healerIndicatorAnchor"] = "TOPRIGHT",
 ["executeIndicatorShowDecimal"] = true,
 ["castBarEmphasisIconScale"] = 2,
-["alwaysHideFriendlyCastbar"] = false,
+["alwaysHideFriendlyCastbar"] = true,
 ["nameplateShowFriendlyNPCs"] = "0",
 ["healthNumbersShowDecimal"] = false,
 ["hideNPCsList"] = {
+{
+["flags"] = {
+["important"] = false,
+["pandemic"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Beast",
+["comment"] = "",
+},
+{
+["flags"] = {
+["important"] = false,
+["pandemic"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Hyena",
+["comment"] = "",
+},
 {
 ["flags"] = {
 ["murloc"] = false,
@@ -944,12 +1040,27 @@ BetterBlizzPlatesDB = {
 ["id"] = 31216,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
 },
 ["name"] = "Mirror Images (Mage)",
+},
+{
+["flags"] = {
+["important"] = false,
+["pandemic"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Raptor",
+["comment"] = "",
 },
 {
 ["flags"] = {
@@ -959,22 +1070,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 55659,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Wild Imp (Warlock)",
-},
-{
-["flags"] = {
-["murloc"] = false,
-},
-["comment"] = "",
-["id"] = 143622,
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -982,133 +1078,30 @@ BetterBlizzPlatesDB = {
 ["name"] = "Wild Imp (Warlock)",
 },
 },
-["customCastbarBGTexture"] = "Blizzard",
 ["partyIndicatorModeOne"] = false,
+["adjustPersonalBarPosition"] = false,
 ["classIndicator"] = true,
 ["alwaysHideEnemyCastbar"] = false,
 ["castBarEmphasisHeightValue"] = 24,
 ["questIndicatorXPos"] = 0,
 ["otherNpdeBuffFilterBlacklist"] = true,
-["castBarIconXPos"] = 0,
+["castBarIconXPos"] = 5,
 ["nameplateOccludedAlphaMult"] = 1,
+["fadeNPCPvPOnly"] = false,
 ["sortCompactedAurasFirst"] = false,
 ["totemIndicatorNpcList"] = {
-[10467] = {
-["duration"] = 8,
-["name"] = "Mana Tide Totem",
+[60561] = {
+["duration"] = 30,
+["name"] = "Earthgrab Totem",
 ["hideIcon"] = false,
 ["color"] = {
-0.08,
-0.82,
-0.78,
+0.75,
+0.31,
+0.1,
 },
 ["important"] = false,
-["icon"] = 4667424,
+["icon"] = 136100,
 ["size"] = 24,
-},
-[105427] = {
-["duration"] = 15,
-["name"] = "Skyfury Totem",
-["hideIcon"] = false,
-["color"] = {
-1,
-0.27,
-0.59,
-},
-["important"] = false,
-["icon"] = 135829,
-["size"] = 24,
-},
-[135002] = {
-["duration"] = 15,
-["name"] = "Tyrant",
-["hideIcon"] = false,
-["color"] = {
-1,
-0.69,
-0,
-},
-["important"] = true,
-["icon"] = 2065628,
-["size"] = 30,
-},
-[105451] = {
-["duration"] = 15,
-["name"] = "Counterstrike Totem",
-["hideIcon"] = false,
-["color"] = {
-1,
-0.27,
-0.59,
-},
-["important"] = true,
-["icon"] = 511726,
-["size"] = 30,
-},
-[59764] = {
-["duration"] = 10,
-["name"] = "Healing Tide Totem",
-["hideIcon"] = false,
-["color"] = {
-0,
-1,
-0.39,
-},
-["important"] = true,
-["icon"] = 538569,
-["size"] = 30,
-},
-[97285] = {
-["duration"] = 18,
-["name"] = "Wind Rush Totem",
-["hideIcon"] = false,
-["color"] = {
-0.08,
-0.82,
-0.78,
-},
-["important"] = false,
-["icon"] = 538576,
-["size"] = 24,
-},
-[179867] = {
-["duration"] = 6,
-["name"] = "Static Field Totem",
-["hideIcon"] = false,
-["color"] = {
-0,
-1,
-0.78,
-},
-["important"] = false,
-["icon"] = 1020304,
-["size"] = 24,
-},
-[119052] = {
-["duration"] = 15,
-["name"] = "War Banner",
-["hideIcon"] = false,
-["color"] = {
-1,
-0,
-1,
-},
-["important"] = true,
-["icon"] = 603532,
-["size"] = 30,
-},
-[104818] = {
-["duration"] = 33,
-["name"] = "Ancestral Protection Totem",
-["hideIcon"] = false,
-["color"] = {
-0,
-1,
-0.78,
-},
-["important"] = true,
-["icon"] = 136080,
-["size"] = 30,
 },
 [61245] = {
 ["duration"] = 2,
@@ -1121,19 +1114,20 @@ BetterBlizzPlatesDB = {
 },
 ["important"] = true,
 ["icon"] = 136013,
-["size"] = 30,
+["size"] = 24,
 },
-[3527] = {
-["duration"] = 18,
-["name"] = "Healing Stream Totem",
+[5913] = {
+["duration"] = 13,
+["hideHp"] = true,
+["name"] = "Tremor Totem",
 ["hideIcon"] = false,
 ["color"] = {
-0,
-1,
-0.78,
+0.49,
+0.9,
+0.08,
 },
-["important"] = false,
-["icon"] = 135127,
+["important"] = true,
+["icon"] = 136108,
 ["size"] = 24,
 },
 [53006] = {
@@ -1147,137 +1141,7 @@ BetterBlizzPlatesDB = {
 },
 ["important"] = true,
 ["icon"] = 237586,
-["size"] = 30,
-},
-[97369] = {
-["duration"] = 6,
-["name"] = "Liquid Magma Totem",
-["hideIcon"] = false,
-["color"] = {
-1,
-0.69,
-0,
-},
-["important"] = false,
-["icon"] = 971079,
 ["size"] = 24,
-},
-[2630] = {
-["duration"] = 30,
-["name"] = "Earthbind Totem",
-["hideIcon"] = false,
-["color"] = {
-0.78,
-0.51,
-0.39,
-},
-["important"] = false,
-["icon"] = 136102,
-["size"] = 24,
-},
-[107024] = {
-["duration"] = 15,
-["name"] = "Fel Lord",
-["hideIcon"] = false,
-["color"] = {
-1,
-0.69,
-0,
-},
-["important"] = true,
-["icon"] = 1113433,
-["size"] = 30,
-},
-[185800] = {
-["important"] = false,
-["name"] = "Past Self",
-["hideIcon"] = false,
-["color"] = {
-0.36,
-0.56,
-0.52,
-},
-["duration"] = 8,
-["icon"] = 4622470,
-["size"] = 24,
-},
-[179193] = {
-["duration"] = 15,
-["name"] = "Fel Obelisk",
-["hideIcon"] = false,
-["color"] = {
-1,
-0.69,
-0,
-},
-["important"] = true,
-["icon"] = 1718002,
-["size"] = 30,
-},
-[78001] = {
-["duration"] = 15,
-["name"] = "Cloudburst Totem",
-["hideIcon"] = false,
-["color"] = {
-0,
-1,
-0.39,
-},
-["important"] = false,
-["icon"] = 971076,
-["size"] = 24,
-},
-[62982] = {
-["duration"] = 15,
-["name"] = "Mindbender",
-["hideIcon"] = false,
-["color"] = {
-1,
-0.69,
-0,
-},
-["important"] = false,
-["icon"] = 136214,
-["size"] = 24,
-},
-[5923] = {
-["duration"] = 9,
-["name"] = "Poison Cleansing Totem",
-["hideIcon"] = false,
-["color"] = {
-0.49,
-0.9,
-0.08,
-},
-["important"] = false,
-["icon"] = 136070,
-["size"] = 24,
-},
-[194117] = {
-["duration"] = 15,
-["name"] = "Stoneskin Totem",
-["hideIcon"] = false,
-["color"] = {
-0.78,
-0.49,
-0.35,
-},
-["important"] = false,
-["icon"] = 4667425,
-["size"] = 24,
-},
-[101398] = {
-["duration"] = 12,
-["name"] = "Psyfiend",
-["hideIcon"] = false,
-["color"] = {
-0.49,
-0,
-1,
-},
-["important"] = true,
-["icon"] = 537021,
-["size"] = 35,
 },
 [5925] = {
 ["duration"] = 3,
@@ -1290,20 +1154,34 @@ BetterBlizzPlatesDB = {
 },
 ["important"] = true,
 ["icon"] = 136039,
-["size"] = 30,
+["size"] = 24,
 },
-[114565] = {
-["duration"] = 10,
-["name"] = "Guardian of the Forgotten Queen",
+[105427] = {
+["duration"] = 15,
+["name"] = "Totem of Wrath",
 ["hideIcon"] = false,
 ["color"] = {
 1,
+0.27,
+0.59,
+},
+["important"] = false,
+["icon"] = 135829,
+["size"] = 24,
+},
+[225672] = {
+["important"] = false,
+["hideHp"] = true,
+["name"] = "Shadow",
+["hideIcon"] = false,
+["color"] = {
+0.49,
 0,
 1,
 },
-["important"] = true,
-["icon"] = 135919,
-["size"] = 30,
+["duration"] = 4,
+["icon"] = 136184,
+["size"] = 20,
 },
 [194118] = {
 ["duration"] = 20,
@@ -1329,11 +1207,24 @@ BetterBlizzPlatesDB = {
 },
 ["important"] = true,
 ["icon"] = 136098,
+["size"] = 30,
+},
+[59764] = {
+["duration"] = 10,
+["name"] = "Healing Tide Totem",
+["hideIcon"] = false,
+["color"] = {
+0,
+1,
+0.39,
+},
+["important"] = true,
+["icon"] = 538569,
 ["size"] = 24,
 },
-[107100] = {
-["duration"] = 20,
-["name"] = "Observer",
+[107024] = {
+["duration"] = 15,
+["name"] = "Fel Lord",
 ["hideIcon"] = false,
 ["color"] = {
 1,
@@ -1341,85 +1232,136 @@ BetterBlizzPlatesDB = {
 0,
 },
 ["important"] = true,
-["icon"] = 538445,
+["icon"] = 1113433,
 ["size"] = 30,
 },
-[89] = {
-["duration"] = 30,
-["name"] = "Infernal",
+[3527] = {
+["duration"] = 18,
+["name"] = "Healing Stream Totem",
+["hideIcon"] = false,
+["color"] = {
+0,
+1,
+0.78,
+},
+["important"] = false,
+["icon"] = 135127,
+["size"] = 24,
+},
+[104818] = {
+["duration"] = 33,
+["name"] = "Ancestral Protection Totem",
+["hideIcon"] = false,
+["color"] = {
+0,
+1,
+0.78,
+},
+["important"] = true,
+["icon"] = 136080,
+["size"] = 30,
+},
+[105451] = {
+["duration"] = 15,
+["name"] = "Counterstrike Totem",
 ["hideIcon"] = false,
 ["color"] = {
 1,
-0.69,
-0,
+0.27,
+0.59,
 },
-["important"] = false,
-["icon"] = 136219,
+["important"] = true,
+["icon"] = 511726,
 ["size"] = 24,
 },
-[196111] = {
-["duration"] = 10,
-["name"] = "Pit Lord",
-["hideIcon"] = false,
-["color"] = {
-1,
-0.69,
-0,
-},
-["important"] = false,
-["icon"] = 236423,
-["size"] = 24,
-},
-[65282] = {
+[179867] = {
 ["duration"] = 6,
-["name"] = "Void Tendril",
+["name"] = "Static Field Totem",
 ["hideIcon"] = false,
 ["color"] = {
-0.33,
-0.35,
+0,
 1,
+0.78,
 },
 ["important"] = false,
-["icon"] = 537022,
+["icon"] = 1020304,
 ["size"] = 24,
 },
-[5913] = {
-["duration"] = 13,
-["name"] = "Tremor Totem",
+[14465] = {
+["name"] = "Alliance Battle Standard",
+["hideIcon"] = false,
+["color"] = {
+0,
+0.22,
+1,
+},
+["important"] = true,
+["icon"] = 132486,
+["size"] = 24,
+},
+[5923] = {
+["duration"] = 9,
+["name"] = "Poison Cleansing Totem",
 ["hideIcon"] = false,
 ["color"] = {
 0.49,
 0.9,
 0.08,
 },
+["important"] = false,
+["icon"] = 136070,
+["size"] = 24,
+},
+[114565] = {
+["duration"] = 10,
+["name"] = "Guardian of the Forgotten Queen",
+["hideIcon"] = false,
+["color"] = {
+1,
+0,
+1,
+},
 ["important"] = true,
-["icon"] = 136108,
+["icon"] = 135919,
+["size"] = 24,
+},
+[101398] = {
+["duration"] = 12,
+["name"] = "Psyfiend",
+["hideIcon"] = false,
+["color"] = {
+0.49,
+0,
+1,
+},
+["important"] = true,
+["icon"] = 537021,
 ["size"] = 30,
 },
-[60561] = {
-["duration"] = 30,
-["name"] = "Earthgrab Totem",
+[14466] = {
+["name"] = "Horde Battle Standard",
 ["hideIcon"] = false,
 ["color"] = {
-0.75,
-0.31,
-0.1,
+1,
+0,
+0,
 },
-["important"] = false,
-["icon"] = 136100,
+["important"] = true,
+["icon"] = 132485,
 ["size"] = 24,
 },
-[6112] = {
-["name"] = "Windfury Totem",
+[19668] = {
+["important"] = false,
+["name"] = "Shadowfiend",
 ["hideIcon"] = false,
 ["color"] = {
-0.08,
-0.82,
-0.78,
+1,
+0.69,
+0,
 },
-["important"] = false,
-["icon"] = 136114,
-["size"] = 24,
+["duration"] = 15,
+["icon"] = 136199,
+["size"] = 20,
 },
 },
 ["classIconColorBorder"] = true,
@@ -1429,69 +1371,77 @@ BetterBlizzPlatesDB = {
 0,
 },
 ["targetIndicatorColorName"] = false,
+["classIconHealthNumbers"] = false,
+["partyPointerHealerOnly"] = false,
 ["nameplateAuraRowAbove"] = true,
-["nameplateEnemyWidth"] = 160,
-["nameplateAuraCompactedSquare"] = true,
+["totemIndicatorWidthEnabled"] = false,
+["nameplateEnemyWidth"] = 128,
+["classIndicatorShowPet"] = true,
+["nameplateAuraCompactedSquare"] = false,
 ["nameplateShowAll"] = "1",
-["absorbIndicatorOnPlayersOnly"] = true,
+["absorbIndicatorOnPlayersOnly"] = false,
 ["fadeAllButTarget"] = false,
-["healthNumbersYPos"] = 0,
+["healthNumbersYPos"] = 1,
 ["raidmarkIndicatorXPos"] = 0,
+["bgIndicator"] = true,
 ["targetNameplateAuraScaleEnabled"] = false,
 ["castBarDelayedInterruptColor"] = {
+0,
 1,
-0.4784314036369324,
-0.9568628072738647,
+0.7843137979507446,
+1,
 },
-["executeIndicatorYPos"] = 0,
+["friendlyNpdeBuffFilterCC"] = true,
 ["otherNpBuffFilterLessMinite"] = false,
-["hideResourceOnFriend"] = true,
+["hideResourceOnFriend"] = false,
 ["skipAdjustingFixedFonts"] = false,
-["enemyNameScaleScale"] = 1.24,
+["friendlyNameplatesOnlyInWorld"] = true,
 ["friendlyNpBuffFilterWatchList"] = false,
 ["showCastbarIfTarget"] = false,
+["partyPointerAlwaysShowPet"] = false,
 ["sortEnlargedAurasFirst"] = true,
 ["castBarIconPosReset"] = true,
+["classIndicatorFrameStrataHigh"] = false,
 ["absorbIndicatorXPos"] = 0,
 ["partyIndicatorModeFive"] = false,
 ["showGuildNames"] = false,
-["healerIndicatorEnemyXPos"] = 0,
-["hpHeightFriendly"] = 4,
+["friendlyNameplatesOnlyInEpicBgs"] = false,
+["classIndicatorPinMode"] = false,
 ["targetIndicator"] = false,
+["nameplateShowClassColor"] = "1",
 ["nameplateDefaultLargeFriendlyHeight"] = 64.125,
 ["npBorderTargetColor"] = false,
 ["npBorderClassColor"] = false,
-["hideCastbarText"] = true,
-["hpHeightEnemy"] = 4,
+["hideCastbarText"] = false,
+["hpHeightEnemy"] = 10.8,
 ["arenaIndicatorModeTwo"] = false,
-["nameplateEnemyWidthScale"] = 160,
+["nameplateEnemyWidthScale"] = 128,
 ["castBarEmphasisHeight"] = false,
 ["otherNpBuffFilterAll"] = false,
 ["castBarIconYPos"] = 0,
 ["hideFriendlyNameText"] = true,
-["nameplateResourceOnTarget"] = "1",
+["nameplateResourceOnTarget"] = "0",
 ["fakeNameAnchor"] = "BOTTOM",
 ["castBarShieldScale"] = 1,
 ["classIconBgOnly"] = false,
+["nameplateAuraTypeGap"] = 0,
 ["hideDefaultPersonalNameplateAuras"] = false,
-["partyPointerTestMode"] = true,
+["npcTitleColor"] = false,
+["partyPointerTestMode"] = false,
 ["personalNpBuffFilterBlizzard"] = true,
 ["friendlyNpBuffFilterOnlyMe"] = false,
-["personalNpBuffFilterLessMinite"] = false,
-["npBorderNonTargetColorRGB"] = {
-0,
-0,
-0,
-1,
-},
+["enableCastbarCustomization"] = true,
+["nameplateKeyAurasHorizontalGap"] = 5,
 ["nameplateResourceYPos"] = 0,
-["nameplateSelectedScale"] = 1.2,
+["nameplateSelectedScale"] = 1.48,
 ["castBarBackgroundColor"] = {
 0.33,
 0.33,
 0.33,
 1,
 },
+["friendlyNameplatesOnlyInRaids"] = false,
+["nameplateAuraSelfScale"] = 1,
 ["friendlyHealthBarColorPlayer"] = false,
 ["castBarNoInterruptColor"] = {
 1,
@@ -1499,67 +1449,173 @@ BetterBlizzPlatesDB = {
 0.01568627543747425,
 },
 ["guildNameScale"] = 1,
+["friendlyNameplateTogglesUpdated"] = true,
+["partyPointerShowOthersPets"] = false,
 ["friendlyHealthBarColorRGB"] = {
 0,
 1,
 0,
 },
+["castBarInterruptHighlighterStartPercentageHeight"] = 15,
 ["classIndicatorHealer"] = false,
-["nameplateAuraRowFriendlyAmountScale"] = 6,
 ["hideNPCWhitelistOn"] = false,
+["nameplateAuraHideCooldownNumbers"] = false,
+["nameplateOverlapHScale"] = 0.5,
 ["nameplateAuraTaller"] = false,
+["classIndicatorOnlyFriends"] = false,
 ["petIndicatorYPos"] = 0,
+["classIndicatorYPosYPos"] = -34,
+["changeResourceStrata"] = false,
 ["showCircleOnArenaID"] = false,
 ["defaultLargeNamePlateFont"] = "Fonts\\FRIZQT__.TTF",
-["castBarHeightHeight"] = 11.4,
+["enlargeAllCC"] = true,
+["onlyShowHighlightedNpShadow"] = false,
+["nameplateVerticalPosition"] = 0,
+["npcTitleColorRGB"] = {
+1,
+0.85,
+0,
+},
 ["arenaIdYPos"] = 0,
-["partyPointerWidthScale"] = 36,
-["classIndicatorHighlight"] = false,
-["castBarHeight"] = 11.4,
+["dpsOrHealFullAggroColorRGB"] = {
+1,
+0,
+0,
+1,
+},
+["classIndicatorHighlight"] = true,
+["nameplateFriendlyWidthScale"] = 60,
+["petIndicatorColorHealthbar"] = false,
 ["npBorderTargetColorRGB"] = {
 1,
 1,
 1,
 1,
 },
-["classIndicatorSpecIcon"] = false,
+["classIndicatorSpecIcon"] = true,
+["nameplateAuraBuffScale"] = 1.1,
 ["castBarEmphasisSpark"] = false,
+["healerIndicatorEnemyXPos"] = 0,
 ["totemIndicatorColorName"] = true,
+["enableNpNonFocusAlpha"] = false,
+["arenaIndicatorModeOne"] = true,
+["alwaysShowPurgeTexture"] = true,
+["customFontSizeEnabled"] = false,
 ["partyPointerHideRaidmarker"] = true,
+["hidePersonalManaFX"] = false,
+["nameplateAurasXPosXPos"] = -1,
 ["friendlyNpBuffFilterBlacklist"] = true,
+["partyPointerTexture"] = 1,
 ["castBarInterruptHighlighter"] = false,
+["partyPointerHighlightScale"] = 1,
+["ccIconXPosXPos"] = -3,
+["fadeOutNPCsAlphaAlpha"] = 0.1000000014901161,
 ["totemIndicatorHideHealthBar"] = false,
 ["fakeNameScaleWithParent"] = false,
+["executeIndicator"] = false,
 ["targetIndicatorColorNameplate"] = false,
-["updates"] = "1.4.9j",
+["totemIndicatorScale"] = 1.13,
+["updates"] = "v1.9.4b",
+["nameplateLargerScale"] = "1.1",
+["castBarIconXPosXPos"] = 5,
 ["healthNumbersTestMode"] = false,
 ["personalNpdeBuffEnable"] = false,
+["hidePersonalBarExtraFrame"] = false,
+["nameplateAuraRowFriendlyAmount"] = 5,
 ["hideNpcMurlocYPos"] = 0,
+["ghostAuras"] = {
+},
 ["nameplateDefaultEnemyHeight"] = 45,
-["useCustomCastbarTexture"] = true,
+["npColorAuraBorder"] = false,
+["buffIconScale"] = 1.65,
 ["otherNpBuffFilterWatchList"] = true,
+["nameplateAuraPixelBorder"] = false,
+["nameplateHorizontalPosition"] = 0,
 ["nameplateShowEnemyTotems"] = "1",
+["nameplateGlobalScale"] = "1.0",
+["nameplateShadowRGB"] = {
+0,
+0,
+0,
+1,
+},
 ["nameplateTargetBorderSize"] = 3,
 ["showNameplateCastbarTimer"] = false,
-["partyIndicatorModeOff"] = false,
+["levelFrameFontSize"] = 12,
+["partyPointerShowPet"] = true,
+["nameplateExtraClickWidth"] = 0,
+["partyIndicatorModeOff"] = true,
+["ccIconScale"] = 1.34,
 ["otherNpdeBuffPandemicGlow"] = false,
 ["useCustomTextureForSelf"] = false,
+["classIndicatorXPos"] = -48,
 ["useCustomTextureForFriendly"] = true,
 ["castBarShieldAnchor"] = "LEFT",
-["nameplateAuraTestMode"] = false,
+["showNameplateShadowOnlyTarget"] = false,
+["dpsOrHealTargetAggroColorRGB"] = {
+1,
+0,
+0,
+1,
+},
+["enableNpNonTargetAlpha"] = false,
+["overShields"] = true,
+["showNameplateShadow"] = false,
+["partyPointerHighlightRGB"] = {
+1,
+0.71,
+0,
+},
+["useCustomCastbarTexture"] = false,
+["classIndicatorBackgroundRGB"] = {
+0,
+0,
+0,
+1,
+},
 ["nameplateMinAlpha"] = 1,
+["keepNpShadowTargetHighlighted"] = false,
 ["targetIndicatorHideIcon"] = false,
-["showDefaultCooldownNumbersOnNpAuras"] = true,
+["showDefaultCooldownNumbersOnNpAuras"] = false,
 ["focusTargetIndicatorColorNameplate"] = false,
 ["reopenOptions"] = false,
+["ccIconYPos"] = 29,
+["friendlyNpdeBuffFilterBlacklist"] = false,
+["targetHighlightFix"] = true,
+["otherNpdeBuffFilterBlizzard"] = false,
 ["hasSaved"] = true,
-["friendlyNpdeBuffFilterBlacklist"] = true,
-["otherNpdeBuffFilterBlizzard"] = true,
 ["friendIndicator"] = false,
+["targetIndicatorColorNameplateRGB"] = {
+1,
+0,
+0.44,
+},
 ["defaultLargeFontSize"] = 12,
-["castBarDragonflightShield"] = true,
+["fixedFriendlyHealthbarHide"] = true,
+["arenaIdAnchorRaiseStrata"] = false,
+["keyAurasImportantBuffsEnabled"] = true,
 ["useFakeNameAnchorBottom"] = false,
+["healthNumbersSwapped"] = false,
+["ccIconXPos"] = -3,
+["old_defaultLargeNamePlateFont"] = "Fonts\\FRIZQT__.TTF",
 ["enemyColorName"] = false,
+["npBorderNonTargetColorRGB"] = {
+0,
+0,
+0,
+1,
+},
+["petIndicatorColorHealthbarRGB"] = {
+0.03,
+0.35,
+0,
+},
+["importantCCRootGlowRGB"] = {
+["a"] = 1,
+["r"] = 1,
+["g"] = 0.874,
+["b"] = 0,
+},
 ["auraWhitelist"] = {
 {
 ["flags"] = {
@@ -1576,1936 +1632,11 @@ BetterBlizzPlatesDB = {
 ["r"] = 0,
 },
 },
-["name"] = "Agony",
+["name"] = "Adaptive Swarm",
 ["comment"] = "",
 },
 {
 ["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Alter Time",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Ancestral Protection Totem",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Anti-Magic Shell",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Anti-Magic Zone",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Ardent Defender",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Astral Shift",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Aura Mastery",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Avenging Crusader",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Avert Harm",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Barkskin",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = false,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Battle Stance",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Berserker Rage",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Blessing of Freedom",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Blessing of Protection",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Blessing of Sacrifice",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Blessing of Sanctuary",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Blessing of Spellwarding",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Bloodshed",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Blur",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Bodyguard",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Cenarion Ward",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Chains of Ice",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Cheat Death",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Cheating Death",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Chrono Loop",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Chrono Shift",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Cloak of Shadows",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Colossus Smash",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["a"] = 1,
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Concussive Shot",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Cone of Cold",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Corruption",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Curse of Exhaustion",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Curse of Tongues",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Curse of Weakness",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Dampen Harm",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Dancing Rune Weapon",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Dark Pact",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Darkness",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Dead of Winter",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Death's Advance",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Deathmark",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Denounce",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Devouring Plague",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Die by the Sword",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Diffuse Magic",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Disable",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Dispersion",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Displacement Beacon",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Divine Ascension",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Divine Protection",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Doom",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Earthen Wall",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Earthen Wall Totem",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Emerald Communion",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Enraged Regeneration",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Essence Break",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Evasion",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Explosive Shot",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["comment"] = "",
-["id"] = 383346,
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Expurgation",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Eye for an Eye",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Feign Death",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Feint",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Fel Domination",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Festering Wound",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Final Reckoning",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Flame Shock",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = false,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Focused Growth",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Fortifying Brew",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Frenzied Regeneration",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Frost Bomb",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["comment"] = "",
-["id"] = 703,
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Garrote",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Ghostly Strike",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Gladiator's Emblem",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Glimmer of Light",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Greater Invisibility",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["compacted"] = false,
-["enlarged"] = true,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Grounding Totem",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Guardian of Ancient Kings",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Guardian Spirit",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Guided Meditation",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Hamstring",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Havoc",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Holy Fire",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Ice Cold",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Ice Form",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Icebound Fortitude",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Icy Feet",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Immolate",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Infected Wounds",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Innervate",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Interlope",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = false,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Intervene",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Ironbark",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["comment"] = "",
-["id"] = 197277,
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Judgment",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["comment"] = "",
-["id"] = 20271,
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Judgment",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = false,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Kingsbane",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Last Stand",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = false,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Latent Poison",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Lawbringer",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Lichborne",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Life Cocoon",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = false,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Lifebloom",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Master's Call",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Mind Trauma",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Moon and Stars",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Moonfire",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Mortal Strike",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Nature's Grasp",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Nature's Swiftness",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Nether Ward",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Netherwalk",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Obsidian Scales",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Odyn's Fury",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Pain Suppression",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = false,
 ["pandemic"] = false,
 ["important"] = true,
 ["enlarged"] = true,
@@ -3513,20 +1644,21 @@ BetterBlizzPlatesDB = {
 },
 ["entryColors"] = {
 ["text"] = {
-["b"] = 0,
-["g"] = 1,
 ["r"] = 0,
+["g"] = 1,
+["b"] = 0,
 },
 },
-["name"] = "Paralysis",
+["name"] = "Attonement",
 ["comment"] = "",
 },
 {
 ["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
+["onlyMine"] = true,
 ["pandemic"] = false,
+["important"] = false,
+["enlarged"] = false,
+["compacted"] = true,
 },
 ["entryColors"] = {
 ["text"] = {
@@ -3535,8 +1667,77 @@ BetterBlizzPlatesDB = {
 ["r"] = 0,
 },
 },
-["name"] = "Peaceweaver",
+["name"] = "Crimson Tempest",
 ["comment"] = "",
+},
+{
+["flags"] = {
+["onlyMine"] = true,
+["pandemic"] = false,
+["important"] = true,
+["enlarged"] = true,
+["compacted"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Deathstalker's Mark",
+["comment"] = "",
+},
+{
+["flags"] = {
+["onlyMine"] = true,
+["pandemic"] = false,
+["important"] = false,
+["enlarged"] = true,
+["compacted"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Feral Frenzy",
+["comment"] = "",
+},
+{
+["flags"] = {
+["important"] = false,
+["pandemic"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Hex",
+["comment"] = "",
+},
+{
+["flags"] = {
+["pandemic"] = false,
+["important"] = true,
+["enlarged"] = true,
+["compacted"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["a"] = 1,
+["r"] = 0.3843137621879578,
+["g"] = 0.05098039656877518,
+["b"] = 1,
+},
+},
+["comment"] = "",
+["name"] = "Lifebloom",
 },
 {
 ["flags"] = {
@@ -3551,7 +1752,43 @@ BetterBlizzPlatesDB = {
 ["b"] = 0,
 },
 },
-["name"] = "Permeating Chill",
+["name"] = "Moonfire",
+["comment"] = "",
+},
+{
+["flags"] = {
+["pandemic"] = false,
+["important"] = true,
+["enlarged"] = true,
+["compacted"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["a"] = 1,
+["r"] = 0.4352941513061523,
+["g"] = 0.05882353335618973,
+["b"] = 1,
+},
+},
+["name"] = "Nullifying Shroud",
+["comment"] = "",
+},
+{
+["flags"] = {
+["onlyMine"] = true,
+["pandemic"] = false,
+["important"] = false,
+["enlarged"] = false,
+["compacted"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Purge the wicked",
 ["comment"] = "",
 },
 {
@@ -3567,198 +1804,9 @@ BetterBlizzPlatesDB = {
 ["r"] = 0,
 ["g"] = 1,
 ["b"] = 0,
-},
-},
-["name"] = "Piercing Howl",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Power Word: Barrier",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Purge the Wicked",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Rage of the Sleeper",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Rain from Above",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["comment"] = "",
-["id"] = 1822,
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
 },
 },
 ["name"] = "Rake",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["comment"] = "",
-["id"] = 155722,
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Rake",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Rallying Cry",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = false,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Rapture",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Ray of Hope",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Razorice",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Recently Challenged",
 ["comment"] = "",
 },
 {
@@ -3771,76 +1819,9 @@ BetterBlizzPlatesDB = {
 },
 ["entryColors"] = {
 ["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Rend",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Renewing Blaze",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
 ["r"] = 0,
 ["g"] = 1,
 ["b"] = 0,
-},
-},
-["name"] = "Rewind",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Ride the Wind",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
 },
 },
 ["name"] = "Rip",
@@ -3848,102 +1829,35 @@ BetterBlizzPlatesDB = {
 },
 {
 ["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Roar of Sacrifice",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Rotten Touch",
-["comment"] = "",
-},
-{
-["flags"] = {
 ["onlyMine"] = true,
 ["pandemic"] = false,
 ["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
+["enlarged"] = false,
+["compacted"] = true,
 },
-["comment"] = "",
-["id"] = 1943,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
-["g"] = 1,
 ["b"] = 0,
+["g"] = 1,
+["r"] = 0,
 },
 },
 ["name"] = "Rupture",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Sanctified Ground",
 ["comment"] = "",
 },
 {
 ["flags"] = {
-["onlyMine"] = false,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Searing Glare",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
 ["onlyMine"] = true,
 ["pandemic"] = false,
+["important"] = false,
+["enlarged"] = false,
+["compacted"] = true,
 },
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
-["g"] = 1,
 ["b"] = 0,
+["g"] = 1,
+["r"] = 0,
 },
 },
 ["name"] = "Sepsis",
@@ -3955,148 +1869,13 @@ BetterBlizzPlatesDB = {
 ["pandemic"] = false,
 ["important"] = false,
 ["enlarged"] = false,
-["compacted"] = false,
+["compacted"] = true,
 },
 ["entryColors"] = {
 ["text"] = {
 ["b"] = 0,
 ["g"] = 1,
 ["r"] = 0,
-},
-},
-["name"] = "Serpent Sting",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = false,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Serrated Bone Spike",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Shadow Word: Pain",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Shadowmeld",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Sharpen Blade",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Shattering Star",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Shield of Vengeance",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Shield Wall",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
 },
 },
 ["name"] = "Shiv",
@@ -4104,329 +1883,20 @@ BetterBlizzPlatesDB = {
 },
 {
 ["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
 ["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Skyreach",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Skyreach Exhaustion",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Slaughterhouse",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Slow",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Spell Reflection",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Sphere of Despair",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["compacted"] = false,
-["enlarged"] = true,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Spirit Link Totem",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
+["important"] = true,
 ["enlarged"] = true,
 ["pandemic"] = false,
 },
 ["entryColors"] = {
 ["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
+["a"] = 1,
+["b"] = 0.1176470667123795,
+["g"] = 0,
+["r"] = 1,
 },
 },
-["name"] = "Spirit Wolf",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = false,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Spiritwalker's Aegis",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Steed of Glory",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Stoneform",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = false,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Subterfuge",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Sunfire",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Survival Instincts",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Survival of the Fittest",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Survival Tactics",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Temporal Shield",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "The Houndmaster's Stratagem",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Thorns",
+["name"] = "Thoughtsteal",
 ["comment"] = "",
 },
 {
@@ -4447,573 +1917,28 @@ BetterBlizzPlatesDB = {
 ["name"] = "Thrash",
 ["comment"] = "",
 },
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
 },
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Thunderous Roar",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Thunderous War",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Time Dilation",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Touch of Karma",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Touch of the Magi",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Ultimate Penitence",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Unending Resolve",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Unstable Affliction",
-["comment"] = "",
-},
-{
-["flags"] = {
-["important"] = false,
-["onlyMine"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Unworthy",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Vampiric Blood",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Vampiric Touch",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Virulent Plague",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Waning Twilight",
-["comment"] = "",
-},
-{
-["flags"] = {
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "War Banner",
-["comment"] = "",
-},
-{
-["flags"] = {
-["onlyMine"] = true,
-["pandemic"] = false,
-["important"] = false,
-["enlarged"] = true,
-["compacted"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Winter's Chill",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["b"] = 0,
-["g"] = 1,
-["r"] = 0,
-},
-},
-["name"] = "Zen Focus Tea",
-["comment"] = "",
-},
-{
-["flags"] = {
-["compacted"] = false,
-["important"] = false,
-["enlarged"] = true,
-["pandemic"] = false,
-},
-["entryColors"] = {
-["text"] = {
-["r"] = 0,
-["g"] = 1,
-["b"] = 0,
-},
-},
-["name"] = "Zen Meditation",
-["comment"] = "",
-},
-},
-["nameplateResourceUnderCastbar"] = true,
-["nameplateResourceDoNotRaiseAuras"] = false,
-["nameplateResourceXPosXPos"] = 0,
-["classIndicatorFriendlyXPos"] = 0,
-["absorbIndicatorScale"] = 1,
-["arenaIndicatorModeFour"] = false,
-["nameplateAuraSquare"] = false,
-["castBarEmphasisHealthbarColor"] = false,
-["healthNumbersOnlyInCombat"] = false,
-["customTextureSelfMana"] = "Solid",
-["customFontSize"] = 12,
-["nameplateMinAlphaScale"] = 1,
-["friendlyNpBuffPurgeGlow"] = false,
-["healthNumbersScale"] = 1,
-["castBarShieldYPos"] = 0,
-["showCastBarIconWhenNoninterruptible"] = true,
-["nameplateDefaultLargeEnemyHeight"] = 64.125,
-["hideCastbarWhitelistOn"] = false,
-["customFontOutline"] = "THINOUTLINE",
-["classIndicatorHighlightColor"] = false,
-["nameplateResourceYPosYPos"] = 0,
-["useCustomTextureForBars"] = true,
-["useCustomTextureForExtraBars"] = false,
-["showNameplateTargetText"] = false,
-["personalNpdeBuffFilterLessMinite"] = false,
-["friendlyNpBuffEmphasisedBorder"] = false,
-["partyIDScale"] = 1,
-["petIndicator"] = false,
-["enemyNameplateHealthbarHeight"] = 4,
-["customFont"] = "2002 Bold",
-["nameplateSelfHeight"] = 45.00000381469727,
-["ShowClassColorInNameplate"] = "1",
-["fakeNameAnchorRelative"] = "TOP",
-["personalNpBuffEnable"] = false,
-["hideNPCPetsOnly"] = false,
-["partyPointerScaleScale"] = 1.25,
-["totemIndicatorAnchor"] = "TOP",
-["partyPointerHealerReplace"] = true,
-["totemIndicatorYPos"] = 0,
-["friendlyHideHealthBar"] = false,
-["nameplateAuraCompactedScale"] = 1,
-["defaultNamePlateFontFlags"] = "",
-["fadeOutNPCsAlpha"] = 0.2,
-["castBarRecolor"] = false,
-["castBarChanneledColor"] = {
-0.4862745404243469,
-1,
-0.294117659330368,
-},
-["otherNpBuffFilterBlacklist"] = true,
-["combatIndicator"] = false,
-["classIndicatorFriendlyYPos"] = 0,
-["friendlyColorName"] = false,
-["healerIndicatorBgOnly"] = false,
-["customTextureSelf"] = "Solid",
-["defaultFontSize"] = 9,
-["combatIndicatorAnchor"] = "CENTER",
-["nameplateAuraHeightGap"] = 4,
-["hideNPC"] = false,
-["normalCastbarForEmpoweredCasts"] = true,
-["executeIndicatorFriendly"] = false,
-["combatIndicatorPlayersOnly"] = true,
-["totemIndicatorDefaultCooldownTextSize"] = 0.85,
-["arenaModeSettingKey"] = "1: Replace name with Arena ID",
-["nameplateResourceScaleScale"] = 0.7,
-["combatIndicatorArenaOnly"] = false,
-["nameplateOverlapH"] = 0.5,
-["focusTargetIndicatorYPos"] = 0,
-["healerIndicatorEnemyScale"] = 1,
-["useCustomCastbarBGTexture"] = false,
-["fakeNameYPos"] = 0,
-["personalNpdeBuffFilterAll"] = false,
-["totemIndicatorTestMode"] = true,
-["friendlyHideHealthBarNpc"] = false,
-["nameplateAuraScale"] = 1,
-["npBorderNeutralColorRGB"] = {
-1,
-1,
-0,
-1,
-},
-["targetIndicatorXPos"] = 0,
-["nameplateResourcePositionFix"] = true,
-["fakeNameXPos"] = 0,
-["combatIndicatorScale"] = 1,
-["personalNpBuffFilterAll"] = false,
-["castbarQuickHide"] = true,
-["castBarInterruptHighlighterDontInterruptRGB"] = {
-0,
-0,
-0,
-},
-["nameplateAuraEnlargedSquare"] = true,
-["focusTargetIndicatorXPos"] = 0,
-["partyIndicatorModeFour"] = false,
-["colorNpcList"] = {
-},
-["friendlyNpdeBuffEnable"] = false,
-["arenaIndicatorModeFive"] = false,
-["scTotem"] = true,
-["combatIndicatorYPos"] = 0,
-["enableCastbarEmphasis"] = false,
-["healerIndicator"] = false,
-["partyPointerHealer"] = true,
-["useFakeName"] = false,
-["arenaSpecScaleScale"] = 1.26,
-["partySpecScaleScale"] = 0.62,
-["NamePlateVerticalScaleScale"] = 2.93,
-["friendlyNameScale"] = 1,
-["friendlyNameplateClickthrough"] = true,
-["nameplateMaxAlphaDistanceScale"] = 60,
-["nameplateMinAlphaDistanceScale"] = 60,
-["healthNumbersPercentSymbol"] = false,
-["focusTargetIndicatorColorName"] = false,
-["totemIndicatorColorHealthBar"] = true,
-["arenaIndicatorTestMode"] = true,
-["nameplateCenterAllRows"] = false,
-["overShields"] = false,
-["healthNumbersAnchor"] = "CENTER",
-["nameplateDefaultLargeFriendlyWidth"] = 154,
-["enemyColorThreat"] = false,
-["personalNpdeBuffFilterWatchList"] = true,
-["partyPointerYPos"] = -40,
-["fakeNameFriendlyYPos"] = 0,
-["totemIndicatorScale"] = 1,
-["changeNameplateBorderSize"] = false,
-["raidmarkIndicator"] = false,
-["nameplateAurasYPosYPos"] = -10,
-["castBarShieldXPos"] = 0,
-["largeNameplates"] = false,
-["absorbIndicatorEnemyOnly"] = false,
-["friendlyNpdeBuffFilterLessMinite"] = false,
-["arenaIndicatorModeOne"] = true,
-["removeRealmNames"] = true,
-["healthNumbers"] = false,
-["classIndicatorFriendly"] = true,
-["onlyPandemicAuraMine"] = false,
-["nameplateShowEnemyMinions"] = "0",
-["healthNumbersPercentage"] = false,
-["totemIndicatorEnemyOnly"] = true,
-["classIndicatorFriendlyAnchor"] = "TOP",
-["petIndicatorAnchor"] = "CENTER",
-["executeIndicator"] = false,
-["partyIndicatorModeTwo"] = false,
-["nameplateAurasFriendlyCenteredAnchor"] = false,
-["classIconSquareBorderFriendly"] = false,
-["hideNpAuraSwipe"] = true,
-["otherNpBuffBlueBorder"] = false,
-["testAllEnabledFeatures"] = false,
-["nameplateAuraRowFriendlyAmount"] = 6,
-["healerIndicatorXPos"] = 0,
-["partyPointerHealerScale"] = 1.25,
-["executeIndicatorAlwaysOn"] = false,
-["raidmarkIndicatorScale"] = 1,
-["customTexture"] = "Blizzard",
-["nameplateGlobalScale"] = 1,
-["personalNpdeBuffFilterBlacklist"] = true,
-["setCVarAcrossAllCharacters"] = true,
-["nameplateCastbarTestMode"] = false,
-["combatIndicatorSap"] = false,
-["nameplateAuraCountScale"] = 1,
-["wasOnLoadingScreen"] = true,
-["executeIndicatorNotOnFullHp"] = false,
-["focusTargetIndicatorAnchor"] = "TOPRIGHT",
-["ShowClassColorInFriendlyNameplate"] = "0",
-["nameplateAuraPlayersOnlyShowTarget"] = false,
-["hideTargetHighlight"] = true,
-["enemyHealthBarColorRGB"] = {
-1,
-0,
-0,
-},
-["onlyShowInterruptableCasts"] = false,
-["partyPointerHealerScaleScale"] = 1.25,
-["nameplateDefaultEnemyWidth"] = 110,
-["friendlyNpBuffBlueBorder"] = false,
-["nameplateDefaultFriendlyWidth"] = 110,
-["partyPointerTargetIndicator"] = true,
-["targetIndicatorTexture"] = "Checkered (BBP)",
-["healerIndicatorTestMode"] = true,
-["friendlyColorNameRGB"] = {
-1,
-1,
-1,
-},
-["nameplateMotion"] = "0",
-["defaultNamePlateFont"] = "Fonts\\FRIZQT__.TTF",
-["nameplateAurasCenteredAnchor"] = false,
-["castBarTextScaleScale"] = 0.71,
-["totemIndicator"] = true,
-["nameplateMotionSpeed"] = 0.025,
-["customCastbarNonInterruptibleTexture"] = "Smooth",
-["castBarCastColor"] = {
-1,
-0.8431373238563538,
-0.2000000178813934,
-},
-["personalNpBuffFilterBlacklist"] = true,
-["healerIndicatorArenaOnly"] = false,
-["nameplateOverlapVScale"] = 0.5,
-["healerIndicatorEnemyAnchor"] = "TOPRIGHT",
-["petIndicatorTestMode"] = true,
-["raidmarkIndicatorYPos"] = 0,
-["castbarEventsOn"] = true,
-["questIndicatorScale"] = 1,
-["raidmarkIndicatorAnchor"] = "TOP",
-["executeIndicatorXPos"] = 0,
-["castBarIconScaleScale"] = 0.97,
-["nameplateResourceXPos"] = 0,
-["friendlyNameplatesOnlyInDungeons"] = false,
-["targetNameplateAuraScale"] = 1,
-["nameplateDefaultLargeEnemyWidth"] = 154,
-["partyPointerAnchor"] = "TOP",
-["focusTargetIndicator"] = false,
-["arenaIDScale"] = 0.95,
-["enemyClassColorName"] = true,
-["nameplateMaxScale"] = 0.512,
-["fakeNameFriendlyXPos"] = 0,
-["totemIndicatorXPos"] = 0,
-["classIndicatorYPos"] = 0,
-["targetIndicatorAnchor"] = "TOP",
-["nameplateMinAlphaDistance"] = 60,
-["useCustomFont"] = true,
-["enemyColorNameRGB"] = {
-1,
-0,
-0,
-},
-["hideCastbarEnemy"] = false,
-["healerIndicatorEnemyYPos"] = 0,
-["friendlyHealthBarColor"] = false,
-["nameplateMinScaleScale"] = 0.64,
-["partyPointerBgOnly"] = true,
-["absorbIndicatorTestMode"] = false,
-["castBarInterruptHighlighterStartTime"] = 0.8,
-["nameplateMotionSpeedScale"] = 0.03,
-["nameplateLargerScale"] = "1.2",
-["nameplateAuraDebuffScale"] = 1,
-["guildNameColorRGB"] = {
-0,
-1,
-0,
-},
-["castBarInterruptHighlighterEndPercentage"] = 80,
-["enableCastbarCustomization"] = true,
-["customHpHeight"] = 0,
-["nameplateOverlapV"] = 0.5,
-["hideCastbarFriendly"] = false,
-["otherNpBuffEnable"] = true,
-["nameplateAuraRowAmountScale"] = 6,
-["classIconSquareBorder"] = false,
-["personalNpBuffFilterWatchList"] = true,
-["classIndicatorEnemy"] = true,
-["nameplateBorderSize"] = 1,
-["nameplateShowFriendlyPets"] = "0",
-["enemyHealthBarColorNpcOnly"] = false,
-["friendlyNpdeBuffFilterAll"] = false,
-["showTotemIndicatorCooldownSwipe"] = true,
-["executeIndicatorTestMode"] = false,
-["useCustomTextureForSelfMana"] = false,
-["friendlyNpdeBuffFilterOnlyMe"] = false,
-["auraWhitelistAlphaUpdated"] = true,
-["targetIndicatorColorNameplateRGB"] = {
-1,
-0,
-0.44,
-},
-["executeIndicatorPercentSymbol"] = false,
-["partyPointerScale"] = 1.25,
-["arenaSpecYPos"] = 0,
 ["fadeOutNPCsList"] = {
+{
+["flags"] = {
+["important"] = false,
+["pandemic"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Abomination",
+["comment"] = "",
+},
 {
 ["id"] = 24207,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -5025,7 +1950,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 62005,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -5034,10 +1959,22 @@ BetterBlizzPlatesDB = {
 ["comment"] = "",
 },
 {
-["id"] = 136408,
+["id"] = 226269,
 ["entryColors"] = {
 ["text"] = {
 ["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Charhound (Warlock)",
+["comment"] = "",
+},
+{
+["id"] = 136408,
+["entryColors"] = {
+["text"] = {
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -5049,7 +1986,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 105419,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -5061,7 +1998,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 26125,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -5073,7 +2010,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 95072,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -5082,10 +2019,76 @@ BetterBlizzPlatesDB = {
 ["comment"] = "",
 },
 {
-["id"] = 136398,
+["id"] = 228224,
 ["entryColors"] = {
 ["text"] = {
 ["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Fenryr (Hunter)",
+["comment"] = "",
+},
+{
+["id"] = 226268,
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Gloomhound (Warlock)",
+["comment"] = "",
+},
+{
+["id"] = 228226,
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Hati (Hunter)",
+["comment"] = "",
+},
+{
+["flags"] = {
+["important"] = false,
+["pandemic"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "High Inquisitor Whitemane",
+["comment"] = "",
+},
+{
+["flags"] = {
+["pandemic"] = false,
+["important"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Highlord Darion Mograine",
+["comment"] = "",
+},
+{
+["id"] = 136398,
+["entryColors"] = {
+["text"] = {
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -5094,10 +2097,25 @@ BetterBlizzPlatesDB = {
 ["comment"] = "",
 },
 {
-["id"] = 163366,
+["flags"] = {
+["important"] = false,
+["pandemic"] = false,
+},
 ["entryColors"] = {
 ["text"] = {
 ["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "King Thoras Trollbane",
+["comment"] = "",
+},
+{
+["id"] = 163366,
+["entryColors"] = {
+["text"] = {
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -5109,7 +2127,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 31216,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -5118,10 +2136,73 @@ BetterBlizzPlatesDB = {
 ["comment"] = "",
 },
 {
-["id"] = 29264,
+["id"] = 221632,
 ["entryColors"] = {
 ["text"] = {
 ["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Mograine (DK)",
+["comment"] = "",
+},
+{
+["id"] = 69792,
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Monk SEF Image (Green)",
+["comment"] = "",
+},
+{
+["id"] = 69791,
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Monk SEF Image (Red)",
+["comment"] = "",
+},
+{
+["flags"] = {
+["important"] = false,
+["pandemic"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Nazgrim",
+["comment"] = "",
+},
+{
+["id"] = 221634,
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Nazgrim (DK)",
+["comment"] = "",
+},
+{
+["id"] = 29264,
+["entryColors"] = {
+["text"] = {
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -5133,6 +2214,18 @@ BetterBlizzPlatesDB = {
 ["id"] = 54983,
 ["entryColors"] = {
 ["text"] = {
+["r"] = 1,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Treant",
+["comment"] = "",
+},
+{
+["id"] = 103822,
+["entryColors"] = {
+["text"] = {
 ["r"] = 0,
 ["g"] = 1,
 ["b"] = 0,
@@ -5142,10 +2235,34 @@ BetterBlizzPlatesDB = {
 ["comment"] = "",
 },
 {
-["id"] = 192337,
+["id"] = 221635,
 ["entryColors"] = {
 ["text"] = {
 ["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Trollbane (DK)",
+["comment"] = "",
+},
+{
+["id"] = 135816,
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Vilefiend (Warlock)",
+["comment"] = "",
+},
+{
+["id"] = 192337,
+["entryColors"] = {
+["text"] = {
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -5157,7 +2274,7 @@ BetterBlizzPlatesDB = {
 ["id"] = 136403,
 ["entryColors"] = {
 ["text"] = {
-["r"] = 0,
+["r"] = 1,
 ["g"] = 1,
 ["b"] = 0,
 },
@@ -5165,22 +2282,1018 @@ BetterBlizzPlatesDB = {
 ["name"] = "Void Terror",
 ["comment"] = "",
 },
+{
+["id"] = 208441,
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
 },
-["nameplateShowEnemyPets"] = "0",
+},
+["name"] = "Water Elemental (Mage)",
+["comment"] = "",
+},
+{
+["id"] = 221633,
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Whitemane (DK)",
+["comment"] = "",
+},
+{
+["flags"] = {
+["important"] = false,
+["pandemic"] = false,
+},
+["entryColors"] = {
+["text"] = {
+["r"] = 0,
+["g"] = 1,
+["b"] = 0,
+},
+},
+["name"] = "Xuen",
+["comment"] = "",
+},
+},
+["castBarRecolorInterrupt"] = false,
+["castBarEmphasisSelfColorRGB"] = {
+1,
+0,
+0,
+},
+["nameplateShadowHighlightRGB"] = {
+1,
+1,
+1,
+1,
+},
+["totemListUpdateTWW4"] = true,
+["castBarHeight"] = 9.3,
+["importantBuffsOffensives"] = true,
+["nameplateResourceDoNotRaiseAuras"] = false,
+["nameplateMotion"] = "1",
+["classIndicatorFriendlyXPos"] = 0,
+["nameplateAurasPersonalCenteredAnchor"] = true,
+["nameplateKeyAurasAnchor"] = "RIGHT",
+["removeRealmNames"] = true,
+["absorbIndicatorScale"] = 1,
+["classIndicatorBackgroundSize"] = 1,
+["personalNpTRP3Color"] = false,
+["nameplateAuraSquare"] = true,
+["executeIndicatorTestMode"] = false,
+["arenaIndicatorModeFour"] = false,
+["toggleNamesOffDuringPVE"] = false,
+["auraColorPvEOnly"] = false,
+["focusTargetIndicator"] = false,
+["arenaIDScale"] = 1,
+["nameplateCastbarTestMode"] = false,
+["totemListUpdateTWW3"] = true,
+["castBarEmphasisHealthbarColor"] = false,
+["personalBarPosition"] = 0.5,
+["healthNumbersOnlyInCombat"] = false,
+["totemListUpdateTWW2"] = true,
+["disableEnlargedAurasOnSelf"] = false,
+["classIndicatorOnlyHealer"] = false,
+["customTextureSelfMana"] = "Solid",
+["customFontSize"] = 12,
+["hideEliteDragon"] = true,
+["totemListUpdateTWW5"] = true,
+["changeNpHpBgColor"] = false,
+["healthNumbersHideSelf"] = false,
+["nameplateAuraWidthGap"] = 1,
+["nameplateMotionSpeedScale"] = 0.03,
+["nameplateMinAlphaScale"] = 1,
+["tankOffTankAggroColorRGB"] = {
+0,
+0.95,
+1,
+1,
+},
+["nameplateStyle"] = "0",
+["personalBarTweaks"] = false,
+["hideCastbarBorderShield"] = false,
+["classIconAlwaysShowBgObj"] = true,
+["healthNumbersJustify"] = "CENTER",
+["healthNumbersScale"] = 1.01,
+["castBarShieldYPos"] = 0,
+["totemIndicatorHideAuras"] = true,
+["useCustomTextureForSelfMana"] = false,
+["nameplateDefaultLargeEnemyHeight"] = 64.125,
+["bgIndicatorXPos"] = 0,
+["classIconEnemyHealIcon"] = true,
+["absorbIndicatorTestMode"] = false,
+["raidmarkIndicatorRaiseStrata"] = false,
+["threatColorAlwaysOn"] = false,
+["hideCastbarWhitelistOn"] = false,
+["importantBuffsMobilityGlow"] = true,
+["classIndicatorTank"] = true,
+["tankNoAggroColorRGB"] = {
+1,
+0,
+0,
+1,
+},
+["classIndicatorBackground"] = true,
+["hideTempHpLoss"] = false,
+["customFontOutline"] = "THINOUTLINE",
+["buffIconYPos"] = 0,
+["healthNumbersCurrentFull"] = false,
+["nameplateCenterAllRows"] = true,
+["smallPetsInPvP"] = false,
+["enemyColorThreatHideSolo"] = false,
+["useCustomTextureForBars"] = false,
+["useCustomTextureForExtraBars"] = true,
+["importantCCSilenceGlow"] = true,
+["enemyColorThreat"] = false,
+["classIconSquareBorder"] = true,
+["petIndicatorShowMurloc"] = true,
+["personalNpdeBuffFilterLessMinite"] = false,
+["friendlyNpBuffEmphasisedBorder"] = false,
+["blizzardDefaultFilterOnlyMine"] = false,
+["partyIDScale"] = 1,
+["personalNpBuffFilterWatchList"] = true,
+["nameplateAuraTestMode"] = false,
+["absorbIndicatorAnchor"] = "LEFT",
+["buffIconXPos"] = 0,
+["petIndicator"] = true,
+["enemyNameplateHealthbarHeight"] = 10.8,
+["old_defaultNamePlateFont"] = "Fonts\\FRIZQT__.TTF",
+["customFont"] = "Friz Quadrata TT",
+["nameplateSelfHeight"] = 45.0000114440918,
+["friendlyNpdeBuffFilterAll"] = false,
+["fakeNameAnchorRelative"] = "TOP",
+["nameplateSelfAlpha"] = "0.89999997615814",
+["importantCCFullGlowRGB"] = {
+["a"] = 1,
+["r"] = 1,
+["g"] = 0.874,
+["b"] = 0,
+},
+["friendlyNameScale"] = 1,
+["hpHeightSelf"] = 10.8,
+["personalNpBuffEnable"] = false,
+["customTexture"] = "Blizzard",
+["nameplateDefaultFriendlyHeight"] = 45,
+["hideNPCPetsOnly"] = false,
+["hideNPCHideOthersPets"] = true,
+["old_defaultNamePlateFontFlags"] = "",
+["executeIndicatorInRangeColor"] = false,
+["classIndicatorXPosXPos"] = -48,
+["totemIndicatorAnchor"] = "TOP",
+["partyPointerHealerReplace"] = true,
+["totemIndicatorYPos"] = 0,
+["friendlyHideHealthBar"] = true,
+["hideCastbarIcon"] = false,
+["tankLosingAggroColorRGB"] = {
+1,
+0.47,
+0,
+1,
+},
+["nameplateShowFriendlyPlayerPets"] = "0",
+["bgIndicatorScale"] = 1,
+["defaultNamePlateFontFlags"] = "SLUG",
+["fadeOutNPCsAlpha"] = 0.1000000014901161,
+["nameplateExtraClickHeight"] = 0,
+["castBarRecolor"] = false,
+["castBarChanneledColor"] = {
+0.4862745404243469,
+1,
+0.294117659330368,
+1,
+},
+["otherNpBuffFilterBlacklist"] = true,
+["combatIndicator"] = false,
+["classicRetailNameplates"] = true,
+["nameplateResourceXPos"] = 0,
+["npAuraOtherRGB"] = {
+0,
+0,
+0,
+},
+["nameplateMotionSpeed"] = 0.03,
+["totemIndicatorNoAnimation"] = true,
+["hideNpAuraSwipe"] = false,
+["showNameplateTargetText"] = false,
+["classIndicatorFriendlyYPos"] = -31,
+["friendlyColorName"] = false,
+["personalNpdeBuffFilterCC"] = false,
+["healerIndicatorBgOnly"] = true,
+["focusTargetIndicatorScale"] = 1,
+["fadeOutNPCOnlyFadeSecondaryPets"] = true,
+["useCustomFont"] = false,
+["healthNumbersPercentage"] = true,
+["customTextureSelf"] = "Solid",
+["nameplateOverlapVScale"] = 0.5,
+["defaultFontSize"] = 9,
+["combatIndicatorAnchor"] = "CENTER",
+["nameplateAuraHeightGap"] = 2,
+["friendlyNameplateNonstackable"] = false,
+["hideNPC"] = true,
+["importantBuffsMobilityGlowRGB"] = {
+["a"] = 1,
+["r"] = 0,
+["g"] = 1,
+["b"] = 1,
+},
+["executeIndicatorAnchor"] = "LEFT",
+["nameplateBorderSize"] = 1,
+["bgIndicatorYPos"] = 0,
+["npAuraBuffsRGB"] = {
+0,
+0.67,
+1,
+},
+["fadeOutNPCWhitelistOn"] = false,
+["enableNpNonTargetAlphaFullAlphaCasting"] = false,
+["normalCastbarForEmpoweredCasts"] = true,
+["executeIndicatorFriendly"] = false,
+["totemListUpdateTWW1"] = true,
+["targetNameplateAuraScale"] = 1,
+["questIndicatorScale"] = 1,
+["showInterruptsOnNameplateAuras"] = true,
+["combatIndicatorPlayersOnly"] = false,
+["highlightNpShadowOnMouseover"] = false,
+["friendlyNameColor"] = false,
+["recolorTempHpLoss"] = false,
+["totemIndicatorDefaultCooldownTextSize"] = 0.96,
+["nameplateMinAlphaDistanceScale"] = 60,
+["arenaModeSettingKey"] = "1: Replace name with Arena ID",
+["absorbIndicatorYPos"] = 0,
+["npAuraCurseRGB"] = {
+0.47,
+0,
+0.78,
+},
+["useCustomTextureForEnemy"] = true,
+["targetIndicatorAnchor"] = "TOP",
+["combatIndicatorArenaOnly"] = false,
+["nameplateOverlapH"] = 0.5,
+["friendlyNpBuffBlueBorder"] = false,
+["focusTargetIndicatorYPos"] = 0,
+["petIndicatorTestMode"] = false,
+["executeIndicatorInRangeColorRGB"] = {
+0,
+1,
+0.8,
+1,
+},
+["healerIndicatorEnemyScale"] = 1,
+["classIndicatorOnlyParty"] = false,
+["useCustomCastbarBGTexture"] = false,
+["raidmarkIndicator"] = false,
+["targetIndicatorTexture"] = "Blizzard DF",
+["focusTargetIndicatorColorName"] = false,
+["nameplateNonTargetAlphaScale"] = 1,
+["castBarFullTextWidth"] = false,
+["fakeNameYPos"] = 0,
+["personalNpdeBuffFilterAll"] = false,
+["nameplateAuraPlayersOnlyShowTarget"] = false,
+["friendlyHideHealthBarNpc"] = true,
+["totemIndicatorTestMode"] = false,
+["partyPointerHighlight"] = false,
+["totemIndicatorGlowOff"] = false,
+["importantBuffsDefensivesGlow"] = true,
+["nameplateShowEnemyPets"] = "1",
+["nameplateAuraScale"] = 1,
+["npBorderNeutralColorRGB"] = {
+1,
+1,
+0,
+1,
+},
+["fakeNameXPos"] = 0,
+["targetIndicatorXPos"] = 0,
+["nameplateResourcePositionFix"] = true,
+["enemyHealthBarColorRGB"] = {
+1,
+0,
+0,
+},
+["combatIndicatorSap"] = false,
+["keyAurasImportantGlowOn"] = true,
+["importantBuffsOffensivesGlow"] = true,
+["partyIndicatorModeTwo"] = false,
+["healerIndicatorEnemyAnchor"] = "TOPRIGHT",
+["nameplateKeyAurasXPos"] = 0,
+["combatIndicatorScale"] = 0.1,
+["personalNpBuffFilterAll"] = false,
+["castbarQuickHide"] = true,
+["friendlyColorNameRGB"] = {
+1,
+1,
+1,
+},
+["castBarInterruptHighlighterDontInterruptRGB"] = {
+0,
+1,
+0.8784314393997192,
+1,
+},
+["guildNameColor"] = false,
+["nameplateAuraEnlargedSquare"] = true,
+["bgIndicatorEnemyOnly"] = true,
+["personalNpdeBuffFilterBlacklist"] = true,
+["npAuraPoisonRGB"] = {
+0,
+0.52,
+0.031,
+},
+["focusTargetIndicatorXPos"] = 0,
+["nameplateDefaultEnemyWidth"] = 110,
+["executeIndicatorAlwaysOn"] = false,
+["partyIndicatorModeFour"] = false,
+["colorNpcList"] = {
+},
+["partyPointerHealerScale"] = 1,
+["friendlyNpdeBuffEnable"] = true,
+["arenaIndicatorModeFive"] = false,
+["npcTitleScale"] = 1,
+["partyPointerOnlyParty"] = false,
+["classIndicatorFriendlyAnchor"] = "TOP",
+["enableCastbarEmphasis"] = false,
+["healerIndicator"] = true,
+["partyPointerHealer"] = false,
+["useFakeName"] = true,
+["classIconHealerIconType"] = 2,
+["classIndicatorFriendlyYPosYPos"] = -31,
+["healerIndicatorXPos"] = 0,
+["importantCCRoot"] = true,
+["friendlyNpBuffFilterAll"] = false,
+["nameplateShowFriendlyPlayerTotems"] = "1",
+["friendlyNameplateClickthrough"] = true,
+["healthNumbersTargetOnly"] = false,
+["healthNumbersPercentSymbol"] = true,
+["hideNPCSecondaryShowMurloc"] = true,
+["totemIndicatorColorHealthBar"] = true,
+["arenaIndicatorTestMode"] = false,
+["setCVarAcrossAllCharacters"] = true,
+["nameplateAurasCenteredAnchor"] = false,
+["healthNumbersClassColor"] = false,
+["nameplateDefaultLargeFriendlyWidth"] = 154,
+["importantBuffsMobility"] = true,
+["personalNpdeBuffFilterWatchList"] = true,
+["partyPointerTargetIndicator"] = true,
+["fakeNameFriendlyYPos"] = 0,
+["classIconAlwaysShowHealer"] = false,
+["npAuraMagicRGB"] = {
+0.13,
+0.44,
+1,
+},
+["healthNumbersAnchor"] = "CENTER",
+["classIndicatorAlpha"] = 1,
+["castBarShieldXPos"] = 0,
+["largeNameplates"] = true,
+["absorbIndicatorEnemyOnly"] = false,
+["hideNPCAllNeutral"] = false,
+["targetIndicatorTestMode"] = false,
+["otherNpBuffBlueBorder"] = false,
+["healthNumbers"] = true,
+["showLastNameNpc"] = false,
+["onlyPandemicAuraMine"] = true,
+["nameplateShowEnemyMinions"] = "1",
+["changeNameplateBorderSize"] = false,
+["raidmarkIndicatorFullAlpha"] = true,
+["onlyShowInterruptableCasts"] = false,
+["petIndicatorAnchor"] = "CENTER",
+["enlargeAllImportantBuffs"] = true,
+["importantCCFull"] = true,
+["bgIndicatorTestMode"] = false,
+["classIconSquareBorderFriendly"] = true,
+["importantBuffsDefensivesGlowRGB"] = {
+["a"] = 1,
+["r"] = 1,
+["g"] = 0.662,
+["b"] = 0.945,
+},
+["hideTargetHighlight"] = true,
+["testAllEnabledFeatures"] = false,
+["combatIndicatorYPos"] = 0,
+["nameplateAuraPlayersOnly"] = false,
+["raidmarkIndicatorScale"] = 1,
+["enemyNameScale"] = 1,
+["nameplateAurasFriendlyCenteredAnchor"] = true,
+["executeIndicatorUseTexture"] = false,
+["nameplateAuraDebuffScale"] = 1.1,
+["changeNpHpBgColorSolid"] = false,
+["healerIndicatorArenaOnly"] = true,
+["nameplateMaxAlphaDistanceScale"] = 60,
+["importantBuffsOffensivesGlowRGB"] = {
+["a"] = 1,
+["r"] = 1,
+["g"] = 0.5,
+["b"] = 0,
+},
+["nameplateAuraCountScale"] = 1.1,
+["wasOnLoadingScreen"] = false,
+["executeIndicatorNotOnFullHp"] = false,
+["focusTargetIndicatorAnchor"] = "TOPRIGHT",
+["nameplateDebuffPadding"] = "0",
+["executeIndicatorTargetOnly"] = false,
+["enableNpNonTargetAlphaTargetOnly"] = false,
+["nameplateShowFriendlyClassColor"] = "1",
+["classIndicatorFriendly"] = true,
+["classIndicatorUpdated2"] = true,
+["castbarEventsOn"] = false,
+["friendlyNpBuffFilterImportantBuffs"] = false,
+["nameplateDefaultFriendlyWidth"] = 110,
+["defaultNamePlateFont"] = "Fonts\\FRIZQT__.TTF",
+["totemIndicatorEnemyOnly"] = true,
+["healerIndicatorTestMode"] = false,
+["hideResourceFrame"] = false,
+["importantCCFullGlow"] = true,
+["healerIndicatorEnemyYPos"] = 0,
+["nameplateAuraDebuffSelfScale"] = 1.1,
+["totemIndicatorDefaultCooldownTextSizeScale"] = 0.96,
+["totemIndicator"] = true,
+["nameplateAuraBuffSelfScale"] = 1.1,
+["customCastbarNonInterruptibleTexture"] = "Blizzard RetailBar",
+["castBarCastColor"] = {
+0.4862745404243469,
+1,
+0.294117659330368,
+1,
+},
+["personalNpBuffFilterBlacklist"] = true,
+["classIndicatorAlwaysShowPet"] = false,
+["sortDurationAuras"] = false,
+["classIndicatorEnemy"] = true,
+["guildNameColorRGB"] = {
+0,
+1,
+0,
+},
+["raidmarkIndicatorYPos"] = 0,
+["hideNameDuringCast"] = false,
+["healthNumbersNpcs"] = true,
+["classIndicatorHideFriendlyHealthbar"] = true,
+["bgIndicatorShowFlags"] = true,
+["showTotemIndicatorCooldownSwipe"] = true,
+["nameplateMaxScale"] = 1.25,
+["friendlyNameplatesOnlyInDungeons"] = false,
+["nameplateAuraCompactedScale"] = 0.98,
+["nameplateDefaultLargeEnemyWidth"] = 154,
+["partyPointerAnchor"] = "TOP",
+["classIndicatorYPos"] = -34,
+["showCastBarIconWhenNoninterruptible"] = true,
+["enemyClassColorName"] = true,
+["healthNumbersPlayers"] = true,
+["fakeNameFriendlyXPos"] = 0,
+["totemIndicatorXPos"] = 0,
+["nameplateGeneralHpHeight"] = 21.5,
+["executeIndicatorPercentSymbol"] = false,
+["nameplateMinAlphaDistance"] = 60,
+["friendlyNpBuffPurgeGlow"] = false,
+["enemyColorNameRGB"] = {
+1,
+1,
+1,
+},
+["hideCastbarEnemy"] = false,
+["classIndicatorHighlightColor"] = false,
+["friendlyHealthBarColor"] = false,
+["importantCCSilenceGlowRGB"] = {
+["a"] = 1,
+["r"] = 1,
+["g"] = 0.874,
+["b"] = 0,
+},
+["partyPointerBgOnly"] = false,
+["castBarInterruptHighlighterStartTime"] = 0.8,
+["otherNpBuffEnable"] = true,
+["NamePlateVerticalScale"] = 4,
+["hideNpcCastbar"] = false,
+["bgIndicatorAnchor"] = "BOTTOM",
+["nameplateAuraKeyAuraPositionEnabled"] = false,
+["partyPointerYPos"] = -40,
+["classIndicatorCCAuras"] = true,
+["npBorderFocusColorRGB"] = {
+0,
+0,
+0,
+1,
+},
+["nameplateOverlapV"] = 0.5,
+["hideCastbarFriendly"] = false,
+["raidmarkerPvPOnly"] = false,
+["castBarDragonflightShield"] = true,
+["nameplateResourceUnderCastbar"] = false,
+["nameplateKeyAurasYPos"] = 0,
+["nameplateAurasPersonalXPos"] = 0,
+["friendlyNpdeBuffFilterLessMinite"] = false,
+["nameplateShowFriendlyPets"] = "0",
+["enemyHealthBarColorNpcOnly"] = false,
+["anonMode"] = false,
+["hpHeightFriendly"] = 10.8,
+["fadeOutNPCsWhitelist"] = {
+{
+["id"] = 104818,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Ancestral Protection Totem",
+["comment"] = "",
+},
+{
+["id"] = 61245,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Capacitor Totem",
+["comment"] = "",
+},
+{
+["id"] = 78001,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Cloudburst Totem",
+["comment"] = "",
+},
+{
+["id"] = 105451,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Counterstrike Totem",
+["comment"] = "",
+},
+{
+["id"] = 2630,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Earthbind Totem",
+["comment"] = "",
+},
+{
+["id"] = 100943,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Earthen Wall Totem",
+["comment"] = "",
+},
+{
+["id"] = 60561,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Earthgrab Totem",
+["comment"] = "",
+},
+{
+["id"] = 17252,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Felguard (Demo Pet)",
+["comment"] = "",
+},
+{
+["id"] = 417,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Felhunter (Warlock)",
+["comment"] = "",
+},
+{
+["id"] = 5925,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Grounding Totem",
+["comment"] = "",
+},
+{
+["id"] = 114565,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Guardian Queen (prot pala)",
+["comment"] = "",
+},
+{
+["id"] = 3527,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Healing Stream Totem",
+["comment"] = "",
+},
+{
+["id"] = 59764,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Healing Tide Totem",
+["comment"] = "",
+},
+{
+["id"] = 165189,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Hunter Pet (they all have same ID)",
+["comment"] = "",
+},
+{
+["id"] = 89,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Infernal (Warlock)",
+["comment"] = "",
+},
+{
+["id"] = 97369,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Liquid Magma Totem",
+["comment"] = "",
+},
+{
+["id"] = 10467,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Mana Tide Totem",
+["comment"] = "",
+},
+{
+["id"] = 62982,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Mindbender",
+["comment"] = "",
+},
+{
+["flags"] = {
+["murloc"] = false,
+},
+["comment"] = "",
+["id"] = 69792,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Monk Image (Green)",
+},
+{
+["flags"] = {
+["murloc"] = false,
+},
+["comment"] = "",
+["id"] = 69791,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Monk Image (Red)",
+},
+{
+["id"] = 107100,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Observer (Warlock)",
+["comment"] = "",
+},
+{
+["id"] = 5923,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Poison Cleansing Totem",
+["comment"] = "",
+},
+{
+["id"] = 101398,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Psyfiend (Spriest)",
+["comment"] = "",
+},
+{
+["id"] = 225672,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Shadow (Priest Re-Fear)",
+["comment"] = "",
+},
+{
+["flags"] = {
+["murloc"] = false,
+},
+["comment"] = "",
+["id"] = 19668,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Shadowfiend",
+},
+{
+["id"] = 53006,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Spirit Link Totem",
+["comment"] = "",
+},
+{
+["id"] = 179867,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Static Field Totem",
+["comment"] = "",
+},
+{
+["id"] = 59712,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Stone Bulwark Totem",
+["comment"] = "",
+},
+{
+["id"] = 194117,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Stoneskin Totem",
+["comment"] = "",
+},
+{
+["id"] = 1863,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Succubus (Warlock)",
+["comment"] = "",
+},
+{
+["flags"] = {
+["murloc"] = false,
+},
+["comment"] = "",
+["id"] = 225409,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Surging Totem",
+},
+{
+["id"] = 105427,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Totem of Wrath",
+["comment"] = "",
+},
+{
+["id"] = 194118,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Tranquil Air Totem",
+["comment"] = "",
+},
+{
+["id"] = 5913,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Tremor Totem",
+["comment"] = "",
+},
+{
+["id"] = 135002,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Tyrant (Warlock)",
+["comment"] = "",
+},
+{
+["flags"] = {
+["murloc"] = false,
+},
+["comment"] = "",
+["id"] = 224466,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Voidwrath (Priest)",
+},
+{
+["id"] = 119052,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "War Banner",
+["comment"] = "",
+},
+{
+["id"] = 97285,
+["entryColors"] = {
+["text"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0,
+},
+},
+["name"] = "Wind Rush Totem",
+["comment"] = "",
+},
+},
+["disableImportantAurasOnSelf"] = false,
+["friendlyNpdeBuffFilterOnlyMe"] = false,
+["auraWhitelistAlphaUpdated"] = true,
+["instantComboPoints"] = false,
+["importantCCDisarmGlowRGB"] = {
+["a"] = 1,
+["r"] = 1,
+["g"] = 0.874,
+["b"] = 0,
+},
+["partyPointerScale"] = 1,
+["arenaSpecYPos"] = 0,
+["exportVersion"] = "BBP: 1.9.3e WoW: 12.0.0",
+["classIndicatorHideName"] = true,
 ["otherNpBuffPurgeGlow"] = false,
 ["friendlyNpBuffEnable"] = false,
 ["version"] = "1.00",
-["absorbIndicatorAnchor"] = "LEFT",
+["nameplateMaxAlphaScale"] = 1,
 ["hideCastbar"] = false,
 ["petIndicatorXPos"] = 0,
-["targetIndicatorTestMode"] = false,
-["targetIndicatorYPos"] = 0,
-["healthNumbersCurrentFull"] = false,
-["focusTargetIndicatorScale"] = 1,
+["personalNpBuffFilterLessMinite"] = false,
+["enableNpVerticalPos"] = false,
+["nameplateAuraRectangleSize"] = false,
+["executeIndicatorYPos"] = 0,
 ["healthNumbersCombined"] = false,
-["NamePlateVerticalScale"] = 2.93,
-["hideNpcCastbar"] = false,
-["nameplateAuraWidthGap"] = 4,
+["executeIndicatorXPos"] = 0,
+["castBarIconPixelBorder"] = false,
+["nameplatePersonalBorderSize"] = 1,
 ["friendlyHealthBarColorNpc"] = false,
 ["defaultNpAuraCdSize"] = 0.5,
 ["focusTargetIndicatorColorNameplateRGB"] = {
@@ -5189,26 +3302,57 @@ BetterBlizzPlatesDB = {
 1,
 },
 ["nameplateAuraAnchor"] = "BOTTOMLEFT",
-["customCastbarTexture"] = "Smooth",
-["enemyNameScale"] = 1.24,
+["customCastbarTexture"] = "Blizzard",
+["druidOverstacks"] = true,
 ["castBarEmphasisTextScale"] = 2,
 ["nameplateMaxAlphaDistance"] = 60,
-["nameplateAuraPlayersOnly"] = false,
+["maxAurasOnNameplateScale"] = 10,
 ["partyPointerClassColor"] = true,
-["friendlyNpBuffFilterAll"] = false,
+["buffIconAnchor"] = "LEFT",
 ["castBarIconAnchor"] = "LEFT",
-["absorbIndicatorYPos"] = 0,
-["castBarRecolorInterrupt"] = false,
-["guildNameColor"] = false,
-["nameplateDefaultFriendlyHeight"] = 45,
+["combatIndicatorEnemyOnly"] = false,
+["cleanedScaleScale"] = true,
+["castBarHeightHeight"] = 9.3,
+["castBarIconScale"] = 1.15,
 ["friendlyNpdeBuffFilterBlizzard"] = false,
-["nameplateAurasXPos"] = 0,
-["nameplateAuraBuffScale"] = 1,
-["executeIndicatorAnchor"] = "LEFT",
-["anonMode"] = false,
-["toggleNamesOffDuringPVE"] = false,
-["maxAurasOnNameplate"] = 12,
-["friendlyNameplatesOnlyInArena"] = false,
+["nameplateAurasXPos"] = -1,
+["nameplateNonTargetAlpha"] = 1,
+["absorbIndicator"] = false,
+["castBarInterruptHighlighterEndPercentageHeight"] = 85,
+["druidAlwaysShowCombos"] = false,
+["maxAurasOnNameplate"] = 10,
+["friendlyNameplatesOnlyInArena"] = true,
 ["firstSaveComplete"] = true,
-["useCustomTextureForEnemy"] = true,
+["nameplateShowFriendlyPlayerGuardians"] = "0",
+}
+BBPCVarBackupsDB = {
+["nameplateStyle"] = "0",
+["nameplateAuraScale"] = "1",
+["nameplateMaxScale"] = "0.576",
+["nameplateShowFriendlyClassColor"] = "0",
+["nameplateOverlapV"] = "0.5",
+["nameplateSelfAlpha"] = "0.89999997615814",
+["nameplateShowEnemyMinions"] = "0",
+["nameplateShowEnemyPets"] = "0",
+["nameplateShowFriendlyNPCs"] = "0",
+["nameplateSelectedScale"] = "0.98",
+["nameplateOverlapH"] = "0.5",
+["nameplatePlayerLargerScale"] = "1",
+["nameplateShowEnemyGuardians"] = "0",
+["nameplateMinAlpha"] = "1",
+["nameplateMinAlphaDistance"] = "60",
+["nameplateLargerScale"] = "1",
+["nameplateShowClassColor"] = "1",
+["nameplateShowAll"] = "1",
+["nameplateOccludedAlphaMult"] = "1",
+["nameplateMinScale"] = "0.576",
+["nameplateShowFriendlyPlayerMinions"] = "0",
+["nameplateDebuffPadding"] = "0",
+["nameplateShowEnemyTotems"] = "1",
+["nameplateMaxAlphaDistance"] = "60",
+["nameplateShowFriendlyPlayerGuardians"] = "0",
+["nameplateShowEnemyMinus"] = "0",
+["nameplateShowFriendlyPlayerTotems"] = "1",
+["nameplateShowFriendlyPlayerPets"] = "0",
+["nameplateMaxAlpha"] = "1.0",
 }

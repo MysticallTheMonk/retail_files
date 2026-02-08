@@ -9,8 +9,9 @@ LeaPlusDB = {
 ["MuteSoar"] = "Off",
 ["MusicContinent"] = "Search",
 ["MuteRazorwings"] = "Off",
-["minimapPos"] = 144.2460532929406,
+["minimapPos"] = 190.96062964148,
 ["TipCursorY"] = 0,
+["TransInscription"] = "Off",
 ["MinimapR"] = "TOPRIGHT",
 ["WidgetPowerY"] = 305,
 ["TipCursorX"] = 0,
@@ -38,10 +39,10 @@ LeaPlusDB = {
 ["MutePanthers"] = "Off",
 ["HideMiniAddonButtons"] = "On",
 ["LeaPlusQuestFontSize"] = 12,
-["ManageWidgetTop"] = "Off",
+["ManageWidgetTop"] = "On",
 ["AutoSellNoKeeperTahult"] = "On",
 ["FocusR"] = "CENTER",
-["MainPanelX"] = 141.6663360595703,
+["MainPanelX"] = 34.16575622558594,
 ["NoDuelRequests"] = "Off",
 ["CooldownsOnPlayer"] = "Off",
 ["MuteMeerah"] = "Off",
@@ -51,50 +52,44 @@ LeaPlusDB = {
 ["TipOffsetX"] = -13,
 ["MuteSoulEaters"] = "Off",
 ["HideCleanupBtns"] = "Off",
+["TransEngineering"] = "Off",
 ["BordersTop"] = 0,
 ["TipNoHealthBar"] = "Off",
 ["NoStickyEditbox"] = "Off",
 ["TooltipAnchorMenu"] = 1,
 ["ShowRaidToggle"] = "Off",
 ["MinimapNoScale"] = "Off",
+["TransJewelcrafting"] = "Off",
 ["FixNoQualityLootSpam"] = "On",
 ["ShowVoiceButtons"] = "Off",
 ["MovieSkipInstance"] = "Off",
-["MuteCustomSounds"] = "Off",
-["BlockDrunkenSpam"] = "Off",
+["MuteCustomSounds"] = "On",
+["MuteVaults"] = "Off",
 ["AutoReleaseNoAshran"] = "Off",
-["MuteBikes"] = "Off",
 ["MuteMechsuits"] = "Off",
 ["ShowWowheadLinks"] = "On",
-["ControlX"] = 0,
 ["HideMiniClock"] = "Off",
 ["PowerBarY"] = 115,
 ["NoBagAutomation"] = "Off",
-["CombineAddonButtons"] = "On",
 ["NoBagsMicro"] = "Off",
 ["LeaPlusMailFontSize"] = 15,
 ["ShowThreadsOfTime"] = "Off",
 ["NoFriendRequests"] = "Off",
-["EditDebuffFrameScale"] = 1,
 ["AutoRepairShowSummary"] = "On",
 ["AutoReleaseNoTolBarad"] = "Off",
 ["UnlockMinimap"] = "On",
-["MuteCustomList"] = "",
-["TransSpraybots"] = "Off",
 ["MuteMechSteps"] = "Off",
-["MuteVaults"] = "Off",
 ["WidgetTopScale"] = 1,
-["TipShowRank"] = "On",
-["MuteChimes"] = "Off",
+["NoCombatLogTab"] = "Off",
 ["PlusPanelAlpha"] = 0,
 ["MoveChatEditBoxToTop"] = "Off",
 ["MuteSniffing"] = "Off",
-["ShowVolume"] = "Off",
+["MinimapY"] = -2,
 ["MuteRockets"] = "Off",
 ["NoScreenGlow"] = "Off",
 ["VehicleY"] = -192,
 ["WeatherLevel"] = 0,
-["ShowCooldowns"] = "Off",
+["LeaPlusChatFontSize"] = 20,
 ["DurabilityA"] = "TOPRIGHT",
 ["MailFontChange"] = "Off",
 ["ShowBorders"] = "Off",
@@ -103,19 +98,19 @@ LeaPlusDB = {
 ["HideActionButtonText"] = "Off",
 ["MuteLunarwing"] = "Off",
 ["BuffFrameR"] = "TOPRIGHT",
-["FocusScale"] = 1,
-["MuteVigor"] = "Off",
+["EnableHotkey"] = "Off",
 ["TransAqir"] = "Off",
-["MuteGameSounds"] = "Off",
-["AutoRepairGear"] = "On",
+["MuteGameSounds"] = "On",
+["VehicleX"] = -100,
 ["EditPlayerFrameScale"] = 1,
 ["ManageTimer"] = "Off",
 ["WidgetPowerScale"] = 1,
 ["HideTalkingFrame"] = "On",
-["BordersAlpha"] = 0,
+["TransLeatherworking"] = "Off",
 ["AutomateQuests"] = "Off",
-["WidgetTopX"] = 0,
+["WidgetTopX"] = -0.8332666158676147,
 ["AutoQuestKeyMenu"] = 1,
+["AddOptNoMountBox"] = "Off",
 ["NewCovenantButton"] = "Off",
 ["RecentChatWindow"] = "Off",
 ["hide"] = true,
@@ -129,205 +124,1644 @@ LeaPlusDB = {
 ["EditModeScales"] = "Off",
 ["BordersBottom"] = 0,
 ["TransLantern"] = "Off",
-["ShowCooldownID"] = "On",
-["EasyItemDestroy"] = "On",
 ["HideMiniZoomBtns"] = "Off",
-["MuteBattleShouts"] = "Off",
+["MiniShowBugSack"] = "Off",
 ["ManageFocus"] = "Off",
 ["VehicleScale"] = 1,
+["TransCooking"] = "Off",
 ["SetWeatherDensity"] = "On",
 ["ClassColPlayer"] = "On",
 ["SetAddtonOptions"] = "Off",
 ["DressupTransmogAnim"] = "Off",
-["MuteHovercraft"] = "Off",
+["ShowMinimapIcon"] = "Off",
 ["MuteArena"] = "Off",
-["MuteMountSounds"] = "Off",
-["MainPanelR"] = "CENTER",
+["MuteMountSounds"] = "On",
 ["SaveProfFilters"] = "Off",
-["TipOffsetY"] = 94,
-["MinimapSize"] = 140,
-["RecentChatSize"] = 170,
+["TransBlacksmithing"] = "Off",
+["NoGryphons"] = "Off",
 ["EditFocusFrameScale"] = 1,
 ["HideErrorMessages"] = "On",
 ["MuteSoulseekers"] = "Off",
-["AutoSellNoGreyTransmog"] = "On",
 ["PowerBarScale"] = 1,
-["LeaStartPage"] = 0,
+["LeaStartPage"] = 5,
 ["FriendlyGuild"] = "On",
 ["MinimapScale"] = 1,
 ["TimerScale"] = 1,
 ["AutoReleasePvP"] = "On",
-["HideMacroText"] = "On",
-["MuteBanLu"] = "Off",
+["HideMacroText"] = "Off",
+["HideBossBanner"] = "Off",
 ["AutoResNoCombat"] = "On",
 ["WowheadLinkComments"] = "Off",
 ["AutoSellExcludeMyChar"] = "On",
 ["TipHideInCombat"] = "Off",
 ["UseArrowKeysInChat"] = "Off",
-["MinimapX"] = -17,
 ["ClassIconPortraits"] = "Off",
 ["EditBuffFrameScale"] = 1,
-["MuteBrooms"] = "Off",
 ["ShowTrainAllButton"] = "Off",
+["TransAtomGoblin"] = "Off",
 ["FirstRunMessageSeen"] = true,
 ["NoCooldownDuration"] = "On",
 ["SquareMinimap"] = "On",
-["FrmEnabled"] = "Off",
 ["NoRequestedInvites"] = "Off",
-["WidgetTopY"] = -15,
-["MuteCursedPickaxe"] = "Off",
+["NoChatFade"] = "Off",
 ["KeepAudioSynced"] = "Off",
 ["NoRestedEmotes"] = "Off",
 ["CombatPlates"] = "Off",
 ["ManageVehicle"] = "Off",
-["HideEventToasts"] = "Off",
+["MinimapA"] = "TOPRIGHT",
 ["TipBackSimple"] = "Off",
-["FocusX"] = 0,
 ["ControlR"] = "CENTER",
 ["MuteReady"] = "Off",
 ["CustomAddonButtons"] = {
-["MBB_MinimapButtonFrame"] = {
+["SocketAlertIcon_1758982988"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760023047"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760051558"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758887510"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759264374"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760186152"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759507941"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768246088"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767311989"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766088742"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760364998"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759174140"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760914200"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758145522"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759766121"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758588298"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759102759"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758228843"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760047098"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759585087"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1765935660"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760299372"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758406195"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759101800"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759943403"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1765131851"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759322514"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758195821"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760359578"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767644540"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766178177"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767201938"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758827051"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768004804"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768005626"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768185106"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758131469"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758140680"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758975373"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758143648"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767216065"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768251796"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759778675"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758380218"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759618860"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760316950"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760306690"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1762978865"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1761756387"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758492948"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759973459"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767480486"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759104239"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766885861"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766797829"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759977842"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759755708"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758301674"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760988302"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758886775"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768844161"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759935196"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760317073"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766274763"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760972433"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768754342"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768185056"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1764899724"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768482534"] = {
 ["hide"] = false,
 },
 ["Narci_MinimapButton"] = {
 ["hide"] = false,
 },
+["SocketAlertIcon_1759584845"] = {
+["hide"] = false,
 },
-["MuteUnicorns"] = "Off",
-["InvKey"] = "inv",
+["SocketAlertIcon_1759281699"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760022984"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759755640"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768780922"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759936632"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760125739"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759102135"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1763834317"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767903062"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1763413916"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1764900055"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767570308"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759284865"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758281961"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758938567"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758663301"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766109445"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758129495"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767194699"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768875091"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1764450533"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759937361"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1762627273"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1765047278"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767218874"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759415553"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758832598"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768841886"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759669284"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767139601"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767904809"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759328523"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1765398496"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758541933"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758541897"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759755274"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759415632"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758760308"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760101613"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767290091"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758145578"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758229129"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766438011"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759283062"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759778867"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1765751591"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759978768"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760306231"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767817284"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767572598"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768694934"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759708965"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767897846"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759508039"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767922378"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758457133"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767315081"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760990681"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760101537"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768184538"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758974803"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758197768"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1763679319"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767573267"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759508116"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1764102178"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766435830"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759507854"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1764795058"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767289057"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760973566"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759196838"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758974192"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759754957"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758230458"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768595683"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767487772"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1763500396"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759936417"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767195042"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759755793"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758716394"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759196513"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766435919"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759973355"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767660136"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759328847"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758200738"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768695171"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758886855"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1761756531"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766972039"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759102007"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758835765"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1763834214"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760364940"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1763834261"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758143699"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758457346"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1762119673"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760382182"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1761754342"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759936347"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758077414"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768695073"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1765418025"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1761754765"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759322421"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759699242"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759791909"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759755047"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759754887"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767655928"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758741490"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768845346"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760307996"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759247378"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759438565"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759328185"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758886922"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760990708"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1765493627"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760119542"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760047951"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759102829"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759713796"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760145059"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758585671"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768496548"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758291107"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759888144"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759284851"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758131286"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760027184"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1764795483"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759066053"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760148188"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759281558"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758379084"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767217501"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767402254"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766943901"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758379500"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767660347"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758802362"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766435955"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767480788"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759886408"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759585038"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768266097"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766368551"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758379405"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1763232770"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759845193"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758746626"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767216164"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767202033"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759803501"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759935052"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759196642"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766974806"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768753919"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758131405"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758282186"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768185495"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759804197"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758890585"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767217273"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758145643"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758886517"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758649782"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758673297"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759101901"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758312193"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767217530"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766368827"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758977132"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1765744754"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759755085"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758673246"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759940521"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758129088"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767659822"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1764793218"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1762119826"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759936786"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759234261"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759888036"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1761409668"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767748632"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758282129"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759584914"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759784891"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759281521"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758492850"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767662668"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758835939"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758938842"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1764797238"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758679532"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759284656"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758110317"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758379598"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758836553"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760021515"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758832577"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768522934"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760299450"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768485634"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759584962"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759508002"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759321827"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1764450473"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759509228"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766943663"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758656034"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759354520"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758140701"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759584998"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759936020"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759781553"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1765046997"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760989477"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1764451825"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759355422"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768695978"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766178052"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760046820"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760388241"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1764457727"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766111894"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760029112"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767141301"] = {
+["hide"] = false,
+},
+["LibDBIcon10_MethodRaidTools"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766075173"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758313455"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1761754789"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767221690"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768262919"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768185204"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759937444"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767290321"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759708196"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759508076"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758629807"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760021565"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759755007"] = {
+["hide"] = false,
+},
+["MBB_MinimapButtonFrame"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768005020"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759283935"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759883519"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768916511"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759755494"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759883034"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766805348"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768262300"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758682740"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1761163454"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1761756460"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768695811"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760274713"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760321536"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758646080"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768695154"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758129539"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759283785"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768619936"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759886378"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759322009"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767199071"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760027134"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758492792"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758589572"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758379445"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767199984"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760389246"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758379288"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758673352"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759784715"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758627880"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768916916"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759779633"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759935891"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766095139"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758135603"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767897986"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768916294"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759283733"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759283649"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767225792"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758080062"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758654401"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760023128"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758942486"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759354732"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758243998"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758974852"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759332795"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758630350"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759321956"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758492897"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1764723798"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759197210"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767289152"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758541755"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768695913"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759332106"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759937278"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767485866"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1761756589"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758282268"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758976565"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758541659"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758941672"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766108479"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758379542"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759445759"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768485684"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1764765434"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760147510"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758976912"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766113162"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759755127"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759936108"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760013171"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760972167"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768616689"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759978579"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768592659"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1761162188"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759930777"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766455425"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766437496"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758055737"] = {
+["hide"] = false,
+},
+["PeralexBGMinimapButton"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768600724"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760119657"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760144603"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758834461"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766109401"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767217336"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759937106"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760028949"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760381653"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767396853"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758505094"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768593176"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759766167"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758201918"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768004607"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1765136040"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759929737"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1761756354"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1763745843"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760364864"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760972387"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1765398404"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759322461"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759768498"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758832676"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1765229859"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759782700"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758316094"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768245660"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766368880"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758301292"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766436061"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758229998"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768004756"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760986490"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766435741"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759710604"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768246978"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766075430"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759536640"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759101531"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767201963"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767384873"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758313505"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758886971"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759281580"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766276417"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758542005"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1764793645"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758541848"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759805976"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758200443"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759973519"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1759973597"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1766181583"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767312818"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758200002"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760113332"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758673653"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767381171"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767897663"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1768593081"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1760990911"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758131240"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1767544618"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758131336"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758034313"] = {
+["hide"] = false,
+},
+["SocketAlertIcon_1758282312"] = {
+["hide"] = false,
+},
+},
 ["ControlY"] = 0,
 ["ShowWhoPinged"] = "On",
 ["UseEasyChatResizing"] = "Off",
-["NoAlerts"] = "Off",
+["BlockDuelSpam"] = "Off",
 ["ShowChatMenuButton"] = "Off",
 ["AutoReleaseNoWintergsp"] = "Off",
-["BuffFrameA"] = "TOPRIGHT",
+["PowerBarR"] = "BOTTOM",
+["InviteFromWhisper"] = "Off",
+["CharAddonList"] = "Off",
+["MainPanelR"] = "CENTER",
 ["NoPetDuels"] = "Off",
-["TransAtomic"] = "Off",
+["VehicleR"] = "TOPRIGHT",
+["MuteCustomList"] = "",
+["FovLevel"] = 90,
+["UseEnglishLanguage"] = "Off",
+["MuteSunflower"] = "Off",
 ["DressupMoreZoomOut"] = "Off",
+["MuteUnicorns"] = "Off",
 ["MuteDucks"] = "Off",
+["VehicleA"] = "TOPRIGHT",
 ["FasterLooting"] = "On",
 ["WidgetPowerA"] = "BOTTOM",
-["DurabilityX"] = 0,
+["BlockDrunkenSpam"] = "Off",
 ["ManagePowerBar"] = "Off",
-["DurabilityR"] = "TOPRIGHT",
-["AutoResNoAfterlife"] = "Off",
-["WidgetPowerR"] = "BOTTOM",
+["HideMiniAddonMenu"] = "On",
+["HideKeybindText"] = "Off",
+["EditDebuffFrameScale"] = 1,
+["WidgetTopY"] = -60.00008773803711,
+["HideEventToasts"] = "On",
+["MuteChimes"] = "Off",
 ["AutoSellExcludeMyAlts"] = "On",
-["NoGryphons"] = "Off",
-["DressupAnimControl"] = "On",
-["NoClassBar"] = "Off",
-["TransTurkey"] = "Off",
-["SetChatFontSize"] = "Off",
-["MaxCameraZoom"] = "On",
-["TransWitch"] = "Off",
-["AutoRepairGuildFunds"] = "On",
-["AddOptNoCombatBox"] = "Off",
-["NoScreenEffects"] = "Off",
-["DurabilityY"] = -192,
-["MuteTravelers"] = "Off",
-["HideBodyguard"] = "Off",
-["AutoSellNoGreyGear"] = "Off",
-["AutoSellExcludeList"] = "",
-["FocusA"] = "CENTER",
-["TransCursedPickaxe"] = "Off",
-["BlockDuelSpam"] = "Off",
-["AutoQuestShift"] = "Off",
-["FilterChatMessages"] = "Off",
-["MuteRabbits"] = "Off",
+["PowerBarA"] = "BOTTOM",
 ["TransBlight"] = "Off",
-["AutoQuestRegular"] = "On",
-["ManageBuffs"] = "On",
-["BordersRight"] = 0,
-["ManageControl"] = "Off",
-["AutoAcceptRes"] = "On",
-["SyncFromFriends"] = "Off",
-["NoRestedSleep"] = "On",
-["LeaPlusChatFontSize"] = 20,
-["CharAddonList"] = "Off",
-["VehicleA"] = "TOPRIGHT",
-["EnhanceDressup"] = "Off",
-["NoCommandBar"] = "Off",
+["NoClassBar"] = "Off",
+["DressupWiderPreview"] = "On",
+["BlockAngelisSinny"] = "Off",
+["MaxCameraZoom"] = "On",
+["ControlScale"] = 1,
+["ShowVolume"] = "Off",
+["AddOptNoCombatBox"] = "Off",
+["MuteAnima"] = "Off",
+["DurabilityX"] = 0,
+["MuteTravelers"] = "Off",
+["EasyMountSpecial"] = "Off",
+["MuteYawns"] = "Off",
+["AutoSellExcludeList"] = "",
+["ShowReadyTimer"] = "Off",
+["TransCursedPickaxe"] = "Off",
+["MinimapButtonBag"] = "On",
+["MuteFurlines"] = "Off",
+["TransNoggenfogger"] = "Off",
+["MuteRabbits"] = "Off",
+["ControlA"] = "CENTER",
+["TransEnchanting"] = "Off",
 ["MuteOttuks"] = "Off",
+["TipShowTarget"] = "On",
+["AutomateGossip"] = "Off",
+["TransMining"] = "Off",
+["ManageControl"] = "On",
+["TransSpraybots"] = "Off",
+["MuteHovercraft"] = "Off",
+["AutoResNoAfterlife"] = "Off",
+["MutePierre"] = "Off",
+["NoScreenEffects"] = "Off",
+["RecentChatSize"] = 170,
+["InvKey"] = "inv",
+["TransFishing"] = "Off",
+["AutoQuestCompleted"] = "On",
+["UnclampChat"] = "Off",
+["MuteStriders"] = "Off",
 ["PlusPanelScale"] = 1,
-["MinimapA"] = "TOPRIGHT",
+["MuteVigor"] = "Off",
 ["NoConfirmLoot"] = "On",
 ["FocusY"] = 0,
-["MiniShowBugSack"] = "Off",
+["MuteHarp"] = "Off",
 ["NoStickyChat"] = "Off",
+["MinimapBorderWidth"] = 3,
 ["MuteTrains"] = "Off",
-["MinimapY"] = -2,
-["MuteSunflower"] = "Off",
-["ClassColFrames"] = "Off",
-["ClassColTarget"] = "On",
-["UnclampChat"] = "Off",
+["HideMiniZoneText"] = "Off",
+["MuteCursedPickaxe"] = "Off",
+["NoAlerts"] = "Off",
+["DressupAnimControl"] = "On",
+["MinimapSize"] = 140,
+["AutoRepairGuildFunds"] = "On",
 ["ShowVolumeInFrame"] = "Off",
-["MaxChatHstory"] = "Off",
+["NoRestedSleep"] = "On",
 ["DurabilityStatus"] = "On",
 ["NoChatButtons"] = "Off",
-["TransProfessions"] = "Off",
+["AutoRepairGear"] = "On",
 ["MuteLogin"] = "Off",
-["InviteFromWhisper"] = "Off",
-["NoSocialButton"] = "Off",
-["AutomateGossip"] = "Off",
 ["NoPetAutomation"] = "Off",
-["PlayerChainMenu"] = 2,
-["MuteAnima"] = "Off",
-["MutePierre"] = "Off",
-["EasyMountSpecial"] = "Off",
+["NoSocialButton"] = "Off",
+["MuteBanLu"] = "On",
+["MuteBattleShouts"] = "Off",
+["ManageBuffs"] = "On",
+["EnhanceDressup"] = "Off",
+["PlayerChainMenu"] = 3,
+["SetChatFontSize"] = "Off",
+["BuffFrameScale"] = 1.2,
+["NoCommandBar"] = "Off",
 ["MuteInterface"] = "Off",
 ["MiniExcludeList"] = "",
-["AutoQuestDaily"] = "On",
-["BlockAngelisSinny"] = "Off",
-["MuteHarp"] = "Off",
-["TipShowTarget"] = "On",
-["MuteStriders"] = "Off",
+["BordersAlpha"] = 0,
+["TimerR"] = "TOP",
+["AutoQuestShift"] = "Off",
+["FrmEnabled"] = "Off",
+["TransTurkey"] = "Off",
+["BuffFrameA"] = "TOPRIGHT",
 ["AutoAcceptSummon"] = "On",
-["HideMiniAddonMenu"] = "On",
+["TransHerbalism"] = "Off",
 ["AutoSellShowSummary"] = "On",
 ["ShowPetSaveBtn"] = "Off",
-["NoChatFade"] = "Off",
-["DurabilityScale"] = 1,
-["FriendlyCommunities"] = "Off",
-["HideMiniZoneText"] = "Off",
+["DurabilityY"] = -192,
+["ClassColFrames"] = "Off",
+["AutoSellNoGreyTransmog"] = "On",
+["FilterChatMessages"] = "Off",
+["MaxChatHstory"] = "Off",
 ["DressupFasterZoom"] = 3,
 ["FasterMovieSkip"] = "Off",
 ["EditTargetFrameScale"] = 1,
 ["TransNobleBunny"] = "Off",
-["TimerR"] = "TOP",
+["TransSkinning"] = "Off",
 ["AutoConfirmRole"] = "Off",
-["AutoQuestCompleted"] = "On",
+["ClassColTarget"] = "On",
+["DurabilityR"] = "TOPRIGHT",
 ["TipModEnable"] = "On",
+["LockoutSharing"] = "Off",
 ["MuteEvents"] = "Off",
 ["ShowPlayerChain"] = "On",
 ["MiniClusterScale"] = 0.9,
-["AutoSellJunk"] = "Off",
-["LockoutSharing"] = "Off",
+["EasyItemDestroy"] = "On",
+["HideBodyguard"] = "Off",
 ["MuteDragonriding"] = "Off",
+["BordersRight"] = 0,
 ["UnclampMinimap"] = "Off",
-["ControlA"] = "CENTER",
-["MuteFurlines"] = "Off",
-["PowerBarR"] = "BOTTOM",
-["ShowReadyTimer"] = "Off",
+["SyncFromFriends"] = "Off",
+["AutoAcceptRes"] = "On",
+["ShowCooldowns"] = "Off",
+["MinimapX"] = -17,
+["TipOffsetY"] = 94,
 ["UnivGroupColor"] = "Off",
-["DressupWiderPreview"] = "On",
-["ControlScale"] = 1,
-["PowerBarA"] = "BOTTOM",
+["WidgetPowerR"] = "BOTTOM",
+["TransAlchemy"] = "Off",
+["TransWitch"] = "Off",
+["ControlX"] = 0,
+["AutoQuestRegular"] = "On",
 ["LeaPlusTipSize"] = 1,
+["TipShowRank"] = "Off",
 ["BlockSpellLinks"] = "Off",
-["EnableHotkey"] = "Off",
-["BuffFrameScale"] = 1.2,
-["HideKeybindText"] = "On",
-["MainPanelY"] = -35.83319854736328,
+["FocusX"] = 0,
+["TransTailoring"] = "Off",
+["AutoSellNoGreyGear"] = "Off",
+["FocusA"] = "CENTER",
+["AutoQuestDaily"] = "On",
+["MainPanelY"] = -109.9996185302734,
 ["TipShowOtherRank"] = "Off",
+["FriendlyCommunities"] = "Off",
 ["NoHitIndicators"] = "On",
-["HideBossBanner"] = "Off",
-["ShowMinimapIcon"] = "Off",
+["MuteBrooms"] = "Off",
+["AutoSellJunk"] = "On",
+["ShowCooldownID"] = "On",
 ["MuteFizzle"] = "Off",
-["FovLevel"] = 90,
+["FocusScale"] = 1,
 ["AutoReleaseDelay"] = 200,
-["VehicleR"] = "TOPRIGHT",
-["VehicleX"] = -100,
+["MuteBikes"] = "Off",
+["TransAtomic"] = "Off",
 ["LeaPlusFasterLootDelay"] = 0.3,
-["NoCombatLogTab"] = "Off",
+["DurabilityScale"] = 1,
 }

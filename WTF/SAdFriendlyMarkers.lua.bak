@@ -1,0 +1,26 @@
+
+SAdFriendlyMarkers_Settings_Global = {
+["zones"] = {
+["enabledInBattleground"] = true,
+["enabledInWorld"] = true,
+["enabledInArena"] = true,
+},
+["main"] = {
+["core_enableDebugging"] = false,
+["core_useCharacterSettings"] = false,
+},
+["markerStyle"] = {
+["showFriendlyHealerIcon"] = false,
+["markerTexture"] = "classIcon",
+["arenaMarkerVerticalOffset"] = -20,
+["enableArenaMarkers"] = false,
+["markerWidth"] = 0,
+["showFriendlyHealthBars"] = true,
+["showEnemyHealerIcon"] = false,
+["markerVerticalOffset"] = -44,
+["arenaMarkerSize"] = 90,
+["markerSize"] = 137,
+},
+["data"] = {
+},
+}
