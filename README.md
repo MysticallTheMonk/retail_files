@@ -17,7 +17,6 @@
         <li><a href="https://www.curseforge.com/wow/addons/leatrix-plus">Leatrix Plus</a> 
         <li><a href="https://www.curseforge.com/wow/addons/masque">Masque</a>
         <li><a href="https://www.curseforge.com/wow/addons/masque-blizz-bars-revived">Masque Blizzard Bars</a>
-        <li><a href="
     </ul></li>
     <li>Download the WTF folder and unzip it.</li>
     <li>Copy & Paste the files in the unzipped folder to <strong>WTF/Account/account number/savedvariables</strong> folder.</li>
