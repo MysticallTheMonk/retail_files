@@ -297,7 +297,7 @@ local function SetupPetAbilityTooltip(owner, abilityID, level)
 
     local petTypeIcon = GetPetTypeTexture(petType, 24);
     tooltip:SetText(petTypeIcon.." "..name);
-	
+
     if level then
         tooltip:AddLine(string.format(ITEM_MIN_LEVEL, level), 0.6, 0.6, 0.6, true);
     end
@@ -1476,7 +1476,7 @@ function NarciPerksProgramSquareButtonMixin:OnEnter()
         PerksProgramUITooltip:Hide();
         PerksProgramUITooltip:SetOwner(self, "ANCHOR_NONE");
         PerksProgramUITooltip:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 2, 2);
-        PerksProgramUITooltip:SetText(self.tooltipText, 1, 1, 1, true);
+        PerksProgramUITooltip:SetText(self.tooltipText, 1, 1, 1, 1, true);
         PerksProgramUITooltip:Show();
     end
 end

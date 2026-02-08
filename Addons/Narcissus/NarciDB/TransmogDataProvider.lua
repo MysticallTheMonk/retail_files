@@ -5,6 +5,8 @@ local MogAPI = C_TransmogCollection;
 local PlayerHasTransmog = MogAPI.PlayerHasTransmogItemModifiedAppearance;
 local IsAppearanceFavorite = MogAPI.GetIsAppearanceFavorite;
 local GetSourceInfo = MogAPI.GetSourceInfo;
+local GetAllAppearanceSources = MogAPI.GetAllAppearanceSources;
+local GetAppearanceSources = MogAPI.GetAppearanceSources;
 local C_TransmogSets = C_TransmogSets;
 local CreateItemTransmogInfo = ItemUtil.CreateItemTransmogInfo;
 local GetItemInfoInstant = C_Item.GetItemInfoInstant;
@@ -16,55 +18,27 @@ local DataProvider = {};
 addon.TransmogDataProvider = DataProvider;
 
 local ValidSlotForSecondaryAppearance = {
+    [3] = true,
     [16] = true,
     [17] = true,
 };
 
-do
-    local version, build, date, tocversion = GetBuildInfo();
-    if tocversion and tocversion > 90005 then
-        --Use New API
-        ValidSlotForSecondaryAppearance[3] = true;
 
-        function DataProvider:GetIllusionName(illusionID)
-            return MogAPI.GetIllusionStrings(illusionID)
-        end
+function DataProvider:GetIllusionName(illusionID)
+    return MogAPI.GetIllusionStrings(illusionID)
+end
 
-        function DataProvider:GetIllusionInfo(illusionID)
-            local illusionInfo = MogAPI.GetIllusionInfo(illusionID);
-            if illusionInfo then
-                return illusionInfo.visualID, self:GetIllusionName(illusionID), illusionInfo.icon, illusionInfo.isCollected;
-            end
-        end
-
-        function DataProvider:GetIllusionSourceText(illusionID)
-            local name, hyperlink, sourceText = MogAPI.GetIllusionStrings(illusionID);
-            return sourceText
-        end
-    else
-        function DataProvider:GetIllusionName(illusionID)
-            local _, name= MogAPI.GetIllusionSourceInfo(illusionID);
-            return name;
-        end
-
-        function DataProvider:GetIllusionInfo(illusionID)
-            local visualID, name, hyperlink, icon = MogAPI.GetIllusionSourceInfo(illusionID);
-            return visualID, name, icon, false
-        end
-
-        function DataProvider:GetIllusionSourceText(illusionID)
-            if not self.illusionSources then
-                self.illusionSources = {};
-                local illusionList = MogAPI.GetIllusions();
-                for i, illusionInfo in pairs(illusionList) do
-                    self.illusionSources[illusionInfo.sourceID] = illusionInfo.sourceText;
-                end
-            end
-            return self.illusionSources[illusionID]
-        end
+function DataProvider:GetIllusionInfo(illusionID)
+    local illusionInfo = MogAPI.GetIllusionInfo(illusionID);
+    if illusionInfo then
+        return illusionInfo.visualID, self:GetIllusionName(illusionID), illusionInfo.icon, illusionInfo.isCollected;
     end
 end
 
+function DataProvider:GetIllusionSourceText(illusionID)
+    local name, hyperlink, sourceText = MogAPI.GetIllusionStrings(illusionID);
+    return sourceText
+end
 
 function DataProvider:GetVisualIDBySourceID(sourceID)
     if sourceID and sourceID > 0 then
@@ -118,7 +92,7 @@ end
 
 function DataProvider:FindKnwonSourceByVisualID(visualID)
     local isKnown, sourceID;
-    local sources = MogAPI.GetAllAppearanceSources(visualID);
+    local sources = GetAllAppearanceSources(visualID);
     for i = 1, #sources do
         if not sourceID then
             sourceID = sources[i];
@@ -151,6 +125,19 @@ function DataProvider:GetSourceName(sourceID)
     local sourceInfo = GetSourceInfo(sourceID);
     if not sourceInfo then return end;
     return sourceInfo.name
+end
+
+function DataProvider.IsAppearanceCollected(appearanceID)
+    local sources = GetAllAppearanceSources(appearanceID);
+    if sources then
+        for _, itemModifiedAppearanceID in ipairs(sources) do
+            local sourceInfo = GetSourceInfo(itemModifiedAppearanceID);
+            if sourceInfo and sourceInfo.isCollected then
+                return true
+            end
+        end
+    end
+    return false
 end
 
 
@@ -272,8 +259,50 @@ function DataProvider:ConvertTransmogStringToList(itemTransmogString)
         itemTransmogInfoList[slotID] = CreateItemTransmogInfo(primaryID, secondaryID, illusionID);
     end
 
+    for slotID = 1, 19 do
+        if not itemTransmogInfoList[slotID] then
+            itemTransmogInfoList[slotID] = CreateItemTransmogInfo(0, 0, 0);
+        end
+    end
+
     return itemTransmogInfoList
 end
+
+function DataProvider:DecodeSavedOutfit(narcissusSavedOutfit)
+    --See CharacterProfile.lua
+
+    return {
+        name = narcissusSavedOutfit.n,
+        transmogInfoList = self:ConvertTransmogStringToList(narcissusSavedOutfit.s),
+    }
+end
+
+
+
+
+local HiddenVisuals = {
+    --[slotID] = visualID (appearanceID) --sourceID (modifiedAppearanceID)
+    [1] = 29124,    --77344
+    [3] = 24531,    --77343
+    [5] = 40282,    --104602
+    [4] = 33155,    --83202
+    [19]= 33156,    --83203
+    [9] = 40284,    --104604
+    [10]= 37207,    --94331
+    [6] = 33252,    --84233
+    [7] = 42568,    --198608
+    [8] = 40283,    --104603
+};
+
+function DataProvider.GetHiddenSourceIDForSlot(invSlotID)
+    local appearanceID = HiddenVisuals[invSlotID]
+    local sources = appearanceID and GetAppearanceSources(appearanceID);
+    if sources and sources[1] then
+        return sources[1].sourceID
+    end
+end
+
+
 
 
 ---- Read BetterWardrobe Extra Saved Outfits ----
@@ -633,6 +662,115 @@ do  --Transmog Set invType to slotID, Slot Sorting
         end
         table.sort(setItems, SortFunc_SetItems);
     end
+end
+
+
+do  --Current Transmog Getter (Get itemTransmogInfoList from a model, due to API change in Midnight)
+    local Getter = CreateFrame("Frame");
+
+    function Getter.ModelSceneOnUpdate(self, elapsed)
+        self.t = self.t + elapsed;
+        if self.t > 0.0 then
+            self.t = 0;
+            self:SetScript("OnUpdate", nil);
+            Getter:OnModelDressed();
+        end
+    end
+
+    function Getter:Init()
+        if not self.playerActor then
+            local ModelScene = CreateFrame("ModelScene", nil, self);
+            ModelScene:SetSize(2, 2);
+            ModelScene:SetPoint("TOP", UIParent, "BOTTOM", 0, -8);
+            ModelScene:SetScript("OnDressModel", function(_, itemModifiedAppearanceID, invSlot, removed)
+                ModelScene.t = 0;
+                ModelScene:SetScript("OnUpdate", Getter.ModelSceneOnUpdate);
+            end);
+            self.playerActor = ModelScene:CreateActor(nil);
+        end
+    end
+
+    function Getter:OnUpdate(elapsed)
+        self.t = self.t + elapsed;
+        if self.t > 0.1 then
+            self.t = 0;
+            self:SetScript("OnUpdate", nil);
+            self.pauseUpdate = nil;
+        end
+    end
+
+    function Getter:RequestUpdate()
+        if not self.pauseUpdate then
+            self.pauseUpdate = true;
+            self:Init();
+            self.t = 0;
+            self:SetScript("OnUpdate", Getter.OnUpdate);
+            self.playerActor:SetModelByUnit("player", false, true, false, false);
+        end
+    end
+
+    function Getter:OnModelDressed()
+        local itemTransmogInfoList = self.playerActor:GetItemTransmogInfoList();
+        if not itemTransmogInfoList then
+            return
+        end
+
+        local mainHandInfo = itemTransmogInfoList[16];  --INVSLOT_MAINHAND
+        if mainHandInfo and mainHandInfo.secondaryAppearanceID == Constants.Transmog.MainHandTransmogIsPairedWeapon then
+            local pairedTransmogID = C_TransmogCollection.GetPairedArtifactAppearance(mainHandInfo.appearanceID);
+            if pairedTransmogID and itemTransmogInfoList[17] then
+                itemTransmogInfoList[17].appearanceID = pairedTransmogID;   --INVSLOT_OFFHAND
+            end
+        end
+
+        addon.DisplayItemTransmogInfoList(itemTransmogInfoList);
+    end
+
+    local function RequestUpdateCharacterUI()
+        Getter:RequestUpdate();
+        return true
+    end
+    DataProvider.RequestUpdateCharacterUI = RequestUpdateCharacterUI;
+end
+
+
+do  --Generate "Share/Link Transmog" Dropdown Menu
+    local function GenerateLinkMenu(owner, playerActor)
+        --For DressingRoom.LinkButton and our button on TransmogFrame
+        --Trade-off is players need to manually copy the transmog string.
+
+        local itemTransmogInfoList = playerActor and playerActor:GetItemTransmogInfoList();
+        if not itemTransmogInfoList then return end;
+
+        local Schematic = {
+            tag = "NARCISSUS_LINK_TRANSMOG_MENU",
+            objects = {
+                {type = "Button", name = TRANSMOG_OUTFIT_POST_IN_CHAT, OnClick = function()
+                    local generator = C_TransmogCollection.GetCustomSetHyperlinkFromItemTransmogInfoList or C_TransmogCollection.GetOutfitHyperlinkFromItemTransmogInfoList;
+                    local hyperlink = generator(itemTransmogInfoList);
+                    if not ChatFrameUtil.InsertLink(hyperlink) then
+                        ChatFrameUtil.OpenChat(hyperlink);
+                    end
+                end},
+
+                {type = "Button", name = TRANSMOG_OUTFIT_COPY_TO_CLIPBOARD, OnClick = function()
+                    local generator = TransmogUtil.CreateCustomSetSlashCommand or TransmogUtil.CreateOutfitSlashCommand;
+                    local cmd = generator(itemTransmogInfoList);
+                    addon.ShowClipboard(cmd);
+                end},
+            },
+
+            onMenuClosedCallback = function()
+                owner.NarcissusLinkMenu = nil;
+            end,
+        };
+
+        local menu = NarciAPI.TranslateContextMenu(owner, Schematic);
+        menu:ClearAllPoints();
+        menu:SetPoint("TOPLEFT", owner, "BOTTOMLEFT", 0, 0);
+        owner.NarcissusLinkMenu = menu;
+    end
+    DataProvider.GenerateLinkMenu = GenerateLinkMenu;
 end
 
 

@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 -- Premade Groups Filter
 -------------------------------------------------------------------------------
--- Copyright (C) 2024 Bernhard Saumweber
+-- Copyright (C) 2026 Bernhard Saumweber
 --
 -- This program is free software; you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -167,6 +167,7 @@ function RaidPanel:GetSortingExpression()
 end
 
 RaidPanel:OnLoad()
+PGF.Dialog:RegisterPanel("c3f1", RaidPanel) -- Legion Remix
 PGF.Dialog:RegisterPanel("c3f5", RaidPanel) -- Retail
 PGF.Dialog:RegisterPanel("c3f6", RaidPanel) -- Retail
 PGF.Dialog:RegisterPanel("c114f4", RaidPanel) -- Classic

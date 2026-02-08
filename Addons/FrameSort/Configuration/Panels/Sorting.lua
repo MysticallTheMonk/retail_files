@@ -1,10 +1,12 @@
 ---@type string, Addon
-local _, addon = ...
+local addonName, addon = ...
 local wow = addon.WoW.Api
+local capabilities = addon.WoW.Capabilities
 local fsHealth = addon.Health.HealthCheck
 local fsConfig = addon.Configuration
 local fsModules = addon.Modules
-local L = addon.Locale
+local fsInspector = addon.Modules.Inspector
+local L = addon.Locale.Current
 local verticalSpacing = fsConfig.VerticalSpacing
 local horizontalSpacing = fsConfig.HorizontalSpacing * 1.5
 local labelWidth = 50
@@ -15,18 +17,20 @@ fsConfig.Panels.Sorting = M
 ---@param panel table the parent UI panel.
 ---@return table The bottom left most control to use for anchoring subsequent UI components.
 local function BuiltTitle(panel)
-    local version = wow.GetAddOnMetadata("FrameSort", "Version")
+    local version = wow.GetAddOnMetadata(addonName, "Version")
     local title = panel:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
     title:SetPoint("TOPLEFT", verticalSpacing, -verticalSpacing)
     title:SetText(string.format(L["FrameSort - %s"], version))
 
     local unhealthy = panel:CreateFontString(nil, "ARTWORK", "GameFontRed")
     unhealthy:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -verticalSpacing)
-    unhealthy:SetText(L["There are some issuse that may prevent FrameSort from working correctly."])
+    unhealthy:SetText(L["There are some issues that may prevent FrameSort from working correctly."])
+    unhealthy:SetShown(false)
 
     local unhealthyGoto = panel:CreateFontString(nil, "ARTWORK", "GameFontRed")
     unhealthyGoto:SetPoint("TOPLEFT", unhealthy, "BOTTOMLEFT", 0, -verticalSpacing)
     unhealthyGoto:SetText(L["Please go to the Health Check panel to view more details."])
+    unhealthyGoto:SetShown(false)
 
     local anchor = title
     local dynamicAnchor = panel:CreateFontString(nil, "ARTWORK", "GameFontWhite")
@@ -34,6 +38,7 @@ local function BuiltTitle(panel)
 
     local onShow = function()
         local healthy = fsHealth:IsHealthy()
+
         unhealthy:SetShown(not healthy)
         unhealthyGoto:SetShown(not healthy)
 
@@ -44,11 +49,7 @@ local function BuiltTitle(panel)
         end
     end
 
-    panel:HookScript("OnShow", onShow)
-
-    local loader = wow.CreateFrame("Frame", nil, panel)
-    loader:HookScript("OnEvent", onShow)
-    loader:RegisterEvent("PLAYER_ENTERING_WORLD")
+    title:SetScript("OnShow", onShow)
 
     return dynamicAnchor
 end
@@ -133,7 +134,7 @@ local function BuildSortModeCheckboxes(parentPanel, pointOffset, labelText, opti
         end
 
         for chkbox, _ in pairs(playerModes) do
-            chkbox:HookScript("OnClick", onPlayerClick)
+            chkbox:SetScript("OnClick", onPlayerClick)
         end
     end
 
@@ -159,20 +160,20 @@ local function BuildSortModeCheckboxes(parentPanel, pointOffset, labelText, opti
     group.Text:SetText(L["Group"])
     group:SetChecked(options.GroupSortMode == fsConfig.GroupSortMode.Group)
 
-    local role = wow.CreateFrame("CheckButton", nil, parentPanel, "UICheckButtonTemplate")
-    role:SetPoint("LEFT", group, "RIGHT", horizontalSpacing, 0)
-    role.Text:SetText(L["Role/spec"])
-    role:SetChecked(options.GroupSortMode == fsConfig.GroupSortMode.Role)
+    local spec = wow.CreateFrame("CheckButton", nil, parentPanel, "UICheckButtonTemplate")
+    spec:SetPoint("LEFT", group, "RIGHT", horizontalSpacing, 0)
+    spec.Text:SetText(fsInspector:CanRun() and L["Spec"] or L["Role"])
+    spec:SetChecked(options.GroupSortMode == fsConfig.GroupSortMode.Role)
 
     local alpha = nil
     local modes = {
         [group] = fsConfig.GroupSortMode.Group,
-        [role] = fsConfig.GroupSortMode.Role,
+        [spec] = fsConfig.GroupSortMode.Role,
     }
 
     if hasAlpha then
         alpha = wow.CreateFrame("CheckButton", nil, parentPanel, "UICheckButtonTemplate")
-        alpha:SetPoint("LEFT", role, "RIGHT", horizontalSpacing, 0)
+        alpha:SetPoint("LEFT", spec, "RIGHT", horizontalSpacing, 0)
         alpha.Text:SetText(L["Alphabetical"])
         alpha:SetChecked(options.GroupSortMode == fsConfig.GroupSortMode.Alphabetical)
 
@@ -180,7 +181,7 @@ local function BuildSortModeCheckboxes(parentPanel, pointOffset, labelText, opti
     end
 
     local reverse = wow.CreateFrame("CheckButton", nil, parentPanel, "UICheckButtonTemplate")
-    reverse:SetPoint("LEFT", alpha or role, "RIGHT", horizontalSpacing, 0)
+    reverse:SetPoint("LEFT", alpha or spec, "RIGHT", horizontalSpacing, 0)
     reverse.Text:SetText(L["Reverse"])
     reverse:SetChecked(options.Reverse)
 
@@ -198,10 +199,10 @@ local function BuildSortModeCheckboxes(parentPanel, pointOffset, labelText, opti
     end
 
     for chkbox, _ in pairs(modes) do
-        chkbox:HookScript("OnClick", onModeClick)
+        chkbox:SetScript("OnClick", onModeClick)
     end
 
-    reverse:HookScript("OnClick", function()
+    reverse:SetScript("OnClick", function()
         options.Reverse = reverse:GetChecked()
         fsConfig:NotifyChanged()
         fsModules:Run()
@@ -219,7 +220,7 @@ local function BuildSortModeCheckboxes(parentPanel, pointOffset, labelText, opti
         end
 
         group:SetChecked(options.GroupSortMode == fsConfig.GroupSortMode.Group)
-        role:SetChecked(options.GroupSortMode == fsConfig.GroupSortMode.Role)
+        spec:SetChecked(options.GroupSortMode == fsConfig.GroupSortMode.Role)
 
         if hasAlpha then
             assert(alpha):SetChecked(options.GroupSortMode == fsConfig.GroupSortMode.Alphabetical)
@@ -228,7 +229,7 @@ local function BuildSortModeCheckboxes(parentPanel, pointOffset, labelText, opti
         reverse:SetChecked(options.Reverse)
     end
 
-    parentPanel:HookScript("OnShow", refresh)
+    parentPanel:SetScript("OnShow", refresh)
     fsConfig:RegisterConfigurationChangedCallback(refresh)
 
     local controls = {
@@ -239,7 +240,7 @@ local function BuildSortModeCheckboxes(parentPanel, pointOffset, labelText, opti
         hidden,
         modeLabel,
         group,
-        role,
+        spec,
         alpha,
         reverse,
     }
@@ -258,7 +259,7 @@ local function BuildSortModeCheckboxes(parentPanel, pointOffset, labelText, opti
         end
     end
 
-    enabled:HookScript("OnClick", function()
+    enabled:SetScript("OnClick", function()
         local checked = enabled:GetChecked()
 
         options.Enabled = checked
@@ -281,20 +282,20 @@ function M:Build(panel)
     local anchor = BuiltTitle(panel)
     local config = addon.DB.Options.Sorting
 
-    if not wow.IsClassic() then
+    if capabilities.HasArena() then
         anchor = BuildSortModeCheckboxes(panel, anchor, L["Arena - 2v2"], config.Arena.Twos)
 
-        local otherArenaSizes = wow.IsRetail() and "3v3" or "3v3 & 5v5"
+        local otherArenaSizes = capabilities.Has5v5() and "3v3 & 5v5" or "3v3"
         anchor = BuildSortModeCheckboxes(panel, anchor, L["Arena - " .. otherArenaSizes], config.Arena.Default)
     end
 
-    if wow.IsRetail() then
+    if capabilities.HasEnemySpecSupport() then
         anchor = BuildSortModeCheckboxes(panel, anchor, L["Enemy Arena (see addons panel for supported addons)"], config.EnemyArena, false, false)
     end
 
     anchor = BuildSortModeCheckboxes(panel, anchor, L["Dungeon (mythics, 5-mans, delves)"], config.Dungeon)
     anchor = BuildSortModeCheckboxes(panel, anchor, L["Raid (battlegrounds, raids)"], config.Raid)
-    anchor = BuildSortModeCheckboxes(panel, anchor, L["World (non-instance groups)"], config.World)
+    BuildSortModeCheckboxes(panel, anchor, L["World (non-instance groups)"], config.World)
 
     return panel
 end

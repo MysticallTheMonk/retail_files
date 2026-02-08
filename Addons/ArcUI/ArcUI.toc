@@ -1,0 +1,96 @@
+## Interface: 120000, 120001
+## Title: Arc UI
+## Notes: Buff/Debuff stack tracking bars, icons, resource bars, and cooldown bars with CD Manager integration
+## Author: Arc
+## Version: 3.4.6.e
+
+## SavedVariables: ArcUIDB, ArcUI_CDMEnhance_Debug
+
+
+
+# Libraries
+Libs\LibStub\LibStub.lua
+Libs\LibPleebug-1.0\LibPleebug-1.xml
+Libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
+Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
+Libs\LibDBIcon-1.0\LibDBIcon-1.0.lua
+Libs\AceAddon-3.0\AceAddon-3.0.lua
+Libs\AceDB-3.0\AceDB-3.0.lua
+Libs\AceSerializer-3.0\AceSerializer-3.0.xml
+Libs\AceGUI-3.0\AceGUI-3.0.xml
+Libs\AceGUI-3.0-CollapsibleHeader\AceGUI-3.0-CollapsibleHeader.lua
+Libs\AceGUI-3.0-ArcUI-Widgets\AceGUI-3.0-ArcUI-Widgets.lua
+Libs\AceGUI-3.0_SFX-Widgets\AceGUI-3.0_SFX-Widgets.xml
+Libs\AceConfig-3.0\AceConfig-3.0.xml
+Libs\LibSharedMedia-3.0\LibSharedMedia-3.0.lua
+Libs\AceGUI-3.0-SharedMediaWidgets\widget.xml
+Libs\LibCustomGlow-1.0\LibCustomGlow-1.0.lua
+Libs\LibDeflate\LibDeflate.lua
+Libs\LibEditModeOverride\LibEditModeOverride.xml
+Libs\LibEQOL\LibEQOL.xml
+
+# Core Files
+ArcUI_DB.lua
+ArcUI_Core.lua
+ArcUI_Display.lua
+ArcUI_Resources.lua
+ArcUI_Catalog.lua
+ArcUI_Minimap.lua
+ArcUI_CooldownBars.lua
+ArcUI_CustomTracking.lua
+ArcUI_TalentPicker.lua
+
+# Main Options (creates AceDB)
+ArcUI_Options.lua
+
+
+
+# Options Panels
+ArcUI_TrackingOptions.lua
+#ArcUI_ResourceOptions.lua
+ArcUI_AppearanceOptions.lua
+ArcUI_CooldownBarOptions.lua
+ArcUI_CustomOptions.lua
+
+# Bars Import/Export
+ArcUI_Bars_ImportExport.lua
+
+# ═══════════════════════════════════════════════════════════════════════════
+# CDM Module - Cooldown Manager Integration
+# ═══════════════════════════════════════════════════════════════════════════
+
+CDM_Module\ArcUI_CDM_Shared.lua
+CDM_Module\CDM_Enhance\ArcUI_CDMEnhance.lua
+CDM_Module\CDM_Enhance\ArcUI_CooldownState.lua 
+CDM_Module\CDM_Enhance\ArcUI_Keybinds.lua
+CDM_Module\CDM_Enhance\ArcUI_CustomLabel.lua
+CDM_Module\CDM_Enhance\ArcUI_Masque.lua
+
+# CDM Groups Registry (frame tracking - must load before CDMGroups)
+CDM_Module\CDM_Groups\ArcUI_CDMGroups_Registry.lua
+CDM_Module\CDM_Groups\ArcUI_FrameController.lua
+CDM_Module\CDM_Groups\ArcUI_CDMGroups_Maintain.lua
+CDM_Module\CDM_Groups\ArcUI_CDMGroups_Layout.lua
+CDM_Module\CDM_Groups\ArcUI_CDMGroups_Placeholders.lua
+CDM_Module\CDM_Groups\ArcUI_CDMGroups_StateManager.lua
+CDM_Module\CDM_Groups\ArcUI_CDMGroups_ImportRestore.lua
+CDM_Module\CDM_Groups\ArcUI_CDMGroups.lua
+CDM_Module\CDM_Groups\ArcUI_CDMGroups_DynamicLayout.lua
+
+# CDM Groups Integration (external frame registration - after CDMGroups)
+CDM_Module\CDM_Groups\ArcUI_CDMGroups_Integration.lua
+
+# Arc Auras - Custom Item/Spell Tracking (uses Integration API)
+CDM_Module\Arc_Auras\ArcUI_ArcAuras.lua
+CDM_Module\Arc_Auras\ArcUI_ArcAuras_Options.lua
+
+# Edit Mode Containers - LibEQOL-based positioning (replaces CDMContainerSync)
+CDM_Module\ArcUI_EditModeContainers.lua
+
+CDM_Module\ArcUI_CDMSetup.lua
+CDM_Module\ArcUI_CDM_ImportExport.lua
+#CDM_Module\ArcUI_CDM_MasterExport.lua
+# CDM Options Panels
+CDM_Module\CDM_Groups\ArcUI_CDMGroupsOptions.lua
+CDM_Module\CDM_Enhance\ArcUI_CDMEnhanceOptions.lua
+CDM_Module\CDM_Enhance\ArcUI_CustomLabelOptions.lua

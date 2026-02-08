@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+   <Button name="MiniCCAuraButtonTemplate" inherits="SecureActionButtonTemplate" virtual="true">
+      <Size x="24" y="24" />
+      <Layers>
+         <Layer level="OVERLAY">
+            <Texture parentKey="Icon" setAllPoints="true" />
+            <FontString parentKey="Count" inherits="NumberFontNormalSmall" justifyH="RIGHT" justifyV="BOTTOM">
+               <Anchors>
+                  <Anchor point="BOTTOMRIGHT" x="-1" y="1" />
+               </Anchors>
+            </FontString>
+         </Layer>
+      </Layers>
+      <Frames>
+         <Cooldown parentKey="Cooldown">
+            <Anchors>
+               <Anchor point="TOPLEFT" />
+               <Anchor point="BOTTOMRIGHT" />
+            </Anchors>
+            <SwipeTexture>
+               <Color r="0" g="0" b="0" a="0.8"/>
+            </SwipeTexture>
+         </Cooldown>
+      </Frames>
+   </Button>
+</Ui>

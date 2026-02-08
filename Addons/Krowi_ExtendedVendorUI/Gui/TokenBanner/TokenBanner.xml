@@ -1,0 +1,103 @@
+<Ui>
+    <Script file='TokenMixin.lua'/>
+    <Script file='TokenBanner.lua'/>
+    <Script file='TokenBannerMixin.lua'/>
+
+    <Button name='KrowiEVU_Token_Template' mixin='KrowiEVU_TokenMixin' hidden='true' virtual='true'>
+        <Size x='50' y='12'/>
+        <Layers>
+            <Layer level='ARTWORK'>
+                <FontString parentKey='Text' inherits='GameFontHighlight' justifyH='RIGHT'>
+                    <Anchors>
+                        <Anchor point='TOPLEFT'/>
+                        <Anchor point='BOTTOMRIGHT'/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnShow method='OnShow'/>
+            <OnEnter method='OnEnter'/>
+            <OnLeave method='OnLeave'/>
+        </Scripts>
+    </Button>
+
+    <Frame name='KrowiEVU_ThinGoldEdge_Template' virtual='true'>
+        <Layers>
+            <Layer level='BACKGROUND'>
+            <!-- Corners -->
+            <Texture name='$parentTopLeftCorner' parentKey='TopLeftCorner' file='Interface\Common\Moneyframe'>
+                <Size x='7' y='7'/>
+                <Anchors>
+                    <Anchor point='TOPLEFT'/>
+                </Anchors>
+                <TexCoords left='0.953125' right='0.9921875' top='0' bottom='0.109375'/>
+            </Texture>
+            <Texture name='$parentTopRightCorner' parentKey='TopRightCorner' file='Interface\Common\Moneyframe'>
+                <Size x='7' y='7'/>
+                <Anchors>
+                    <Anchor point='TOPRIGHT'/>
+                </Anchors>
+                <TexCoords left='0' right='0.0546875' top='0' bottom='0.109375'/>
+            </Texture>
+            <Texture name='$parentBottomLeftCorner' parentKey='BottomLeftCorner' file='Interface\Common\Moneyframe'>
+                <Size x='7' y='7'/>
+                <Anchors>
+                    <Anchor point='BOTTOMLEFT'/>
+                </Anchors>
+                <TexCoords left='0.953125' right='0.9921875' top='0.203125' bottom='0.296875'/>
+            </Texture>
+            <Texture name='$parentBottomRightCorner' parentKey='BottomRightCorner' file='Interface\Common\Moneyframe'>
+                <Size x='7' y='7'/>
+                <Anchors>
+                    <Anchor point='BOTTOMRIGHT'/>
+                </Anchors>
+                <TexCoords left='0' right='0.0546875' top='0.203125' bottom='0.296875'/>
+            </Texture>
+            
+            <!-- Edges -->
+            <Texture name='$parentTopEdge' parentKey='TopEdge' file='Interface\Common\Moneyframe'>
+                <Size y='7'/>
+                <Anchors>
+                    <Anchor point='TOPLEFT' relativeKey='$parent.TopLeftCorner' relativePoint='TOPRIGHT'/>
+                    <Anchor point='TOPRIGHT' relativeKey='$parent.TopRightCorner' relativePoint='TOPLEFT'/>
+                </Anchors>
+                <TexCoords left='0' right='1.0' top='0.3125' bottom='0.421875'/>
+            </Texture>
+            <Texture name='$parentBottomEdge' parentKey='BottomEdge' file='Interface\Common\Moneyframe'>
+                <Size y='7'/>
+                <Anchors>
+                    <Anchor point='BOTTOMLEFT' relativeKey='$parent.BottomLeftCorner' relativePoint='BOTTOMRIGHT'/>
+                    <Anchor point='BOTTOMRIGHT' relativeKey='$parent.BottomRightCorner' relativePoint='BOTTOMLEFT'/>
+                </Anchors>
+                <TexCoords left='0' right='1.0' top='0.515625' bottom='0.609375'/>
+            </Texture>
+            <Texture name='$parentLeftEdge' parentKey='LeftEdge' file='Interface\Common\Moneyframe'>
+                <Size x='7'/>
+                <Anchors>
+                    <Anchor point='TOPLEFT' relativeKey='$parent.TopLeftCorner' relativePoint='BOTTOMLEFT'/>
+                    <Anchor point='BOTTOMLEFT' relativeKey='$parent.BottomLeftCorner' relativePoint='TOPLEFT'/>
+                </Anchors>
+                <TexCoords left='0.953125' right='0.9921875' top='0.109375' bottom='0.203125'/>
+            </Texture>
+            <Texture name='$parentRightEdge' parentKey='RightEdge' file='Interface\Common\Moneyframe'>
+                <Size x='7'/>
+                <Anchors>
+                    <Anchor point='TOPRIGHT' relativeKey='$parent.TopRightCorner' relativePoint='BOTTOMRIGHT'/>
+                    <Anchor point='BOTTOMRIGHT' relativeKey='$parent.BottomRightCorner' relativePoint='TOPRIGHT'/>
+                </Anchors>
+                <TexCoords left='0' right='0.0546875' top='0.109375' bottom='0.203125'/>
+            </Texture>
+            
+            <!-- Center -->
+            <Texture name='$parentCenter' parentKey='Center' file='Interface\Common\Moneyframe'>
+                <Anchors>
+                    <Anchor point='TOPLEFT' relativeKey='$parent.TopLeftCorner' relativePoint='BOTTOMRIGHT'/>
+                    <Anchor point='BOTTOMRIGHT' relativeKey='$parent.BottomRightCorner' relativePoint='TOPLEFT'/>
+                </Anchors>
+                <TexCoords left='0' right='1.0' top='0.421875' bottom='0.5'/>
+            </Texture>
+            </Layer>
+        </Layers>
+    </Frame>
+</Ui>

@@ -53,7 +53,12 @@ addon.UpdateSpecIcon = function (nameplate)
             iconFrame.border:Hide();
         elseif isHealer then
             iconFrame.icon:SetAtlas(iconID);
-            iconFrame.border:Show();
+            if addon.PROJECT_MAINLINE then
+                iconFrame.border:Show();
+            else
+                iconFrame.border:Hide();
+                iconFrame.icon:SetVertexColor(1, 0, 0);
+            end
         else
             iconFrame.icon:SetTexture(iconID);
             iconFrame.border:Show();

@@ -2,7 +2,7 @@ local _, addon = ...;
 addon.TEST_MODE = false;
 
 addon.PROJECT_MAINLINE = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE);
-addon.PROJECT_CATA = (WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC);
+addon.PROJECT_TBC = (WOW_PROJECT_ID == 5);
 addon.PROFILE_VERSION = 1.0; -- To validate export string
 
 addon.SPELLCATEGORY = {
@@ -17,7 +17,8 @@ addon.SPELLCATEGORY = {
     CROWDCONTROL = 9,
     BURST = 10,
     HEAL = 11,
-    OTHERS = 12, -- Gap closers, etc.
+    MOBILITY = 12,
+    OTHERS = 100,
 };
 
 addon.SPELLCATEGORY_NAME = {
@@ -32,6 +33,7 @@ addon.SPELLCATEGORY_NAME = {
     [addon.SPELLCATEGORY.CROWDCONTROL] = "Crowd Control",
     [addon.SPELLCATEGORY.BURST] = "Burst",
     [addon.SPELLCATEGORY.HEAL] = "Heal",
+    [addon.SPELLCATEGORY.MOBILITY] = "Mobility",
     [addon.SPELLCATEGORY.OTHERS] = "Others",
 };
 
@@ -76,6 +78,28 @@ addon.ARENA_FRAME_BARS = {
     [addon.ICON_SET_ID.ARENA_MAIN] = true,
     [addon.ICON_SET_ID.ARENA_SECONDARY] = true,
 };
+
+addon.ARENA_FRAME_BARS_SUPPORTED = function()
+    if addon.PROJECT_MAINLINE then
+        return true;
+    else
+        return GladiusEx or Gladius or sArena or ArenaLiveUnitFrames or SlashCmdList.GLADDY;
+    end
+end
+
+addon.GET_ARENA_FRAME_PREFIX = function()
+    if addon.ARENA_FRAME_PREFIX == nil then
+        addon.ARENA_FRAME_PREFIX =
+            ( GladiusEx and "GladiusExButtonFramearena" )
+            or ( Gladius and "GladiusButtonFramearena" )
+            or ( sArena and "sArenaEnemyFrame" )
+            or ( ArenaLiveUnitFrames and "ALUF_ArenaEnemyFramesArenaEnemyFrame" )
+            or ( SlashCmdList.GLADDY and "GladdyButtonFrame" )
+            or "CompactArenaFrameMember";
+    end
+
+    return addon.ARENA_FRAME_PREFIX;
+end
 
 addon.DURATION_DYNAMIC = "DURATION_DYNAMIC";
 
@@ -273,7 +297,13 @@ end
 addon.EXCLAMATION = "|TInterface/OptionsFrame/UI-OptionsFrame-NewFeatureIcon:0:0:0:-1|t";
 
 addon.ICON_ID_HEALER = "interface/lfgframe/uilfgprompts";
-addon.ICON_ID_HEALER_ENEMY = "Healing_Red";
+if addon.PROJECT_MAINLINE then
+    addon.ICON_ID_HEALER_ENEMY = "Healing_Red";
+    addon.SPEC_ICON_ENEMY_HEALER_LOGO = addon.FORMAT_ATLAS(addon.ICON_ID_HEALER_ENEMY);
+else
+    addon.ICON_ID_HEALER_ENEMY = "GreenCross";
+    addon.SPEC_ICON_ENEMY_HEALER_LOGO = format("|A:%s:20:20:0:0:255:0:0|a", addon.ICON_ID_HEALER_ENEMY);
+end
 addon.ICON_ID_PET = addon.ICON_PATH("ability_hunter_mendpet");
 addon.ICON_CRITTER = "WildBattlePet";
 addon.ICON_ID_CLASSES = "Interface/GLUES/CHARACTERCREATE/UI-CHARACTERCREATE-CLASSES";
@@ -292,6 +322,11 @@ addon.CLASS_ICON_STYLE = {
     ARROW = 1,
     ICON_AND_ARROW = 2,
 };
+
+addon.GetSpellTexture = function(spellId)
+    local _, originalIconID = C_Spell.GetSpellTexture(spellId);
+    return originalIconID;
+end
 
 addon.SPELL_DESCRIPTION = {}; -- by spellId, requested via -- https://warcraft.wiki.gg/wiki/SpellMixin
 

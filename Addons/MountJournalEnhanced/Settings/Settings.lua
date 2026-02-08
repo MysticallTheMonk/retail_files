@@ -1,4 +1,4 @@
-local _, ADDON = ...
+local ADDON_NAME, ADDON = ...
 
 MJEPersonalSettings = MJEPersonalSettings or {}
 MJEGlobalSettings = MJEGlobalSettings or {}
@@ -50,7 +50,6 @@ local function PrepareDefaults()
                 Wowhead = true,
             },
             enableCursorKeys = true,
-            slotPosition = "top",
             previewButton = true,
             showPersonalCount = true,
             windowSize = { 0, 0 },
@@ -60,6 +59,19 @@ local function PrepareDefaults()
             autoRotateModel = false,
             showResizeEdge = true,
             displayAnimation = "stand",
+            showFilterProfilesInMenu = true,
+            syncTarget = false,
+            toolbarButtons = {
+                Equiment = true,
+                SyncTarget = true,
+                Skills = true,
+                ToggleDynamicFlight = true,
+                ToggleRideAlong = true,
+                ToggleWhirlingSurge = true,
+                Drive = true,
+                PetSlot = true,
+                RandomFavorite = true,
+            }
         },
 
         notes = {},
@@ -111,12 +123,22 @@ local function PrepareDefaults()
             unownedOnBottom = true,
         },
 
+        filterProfile = {
+            {filter={}, sort={}, search=""},
+            {filter={}, sort={}, search=""},
+            {filter={}, sort={}, search=""},
+            {filter={}, sort={}, search=""},
+            {filter={}, sort={}, search=""},
+        },
+
         favorites = {
+            migratedBug138 = false,
             assignments = {},
             profiles = {
                 {
                     name = "",
                     autoFavor = false,
+                    initialScan = false,
                     mounts = {},
                 }
             },
@@ -176,7 +198,7 @@ local function CombineSettings(settings, defaultSettings)
     end
 end
 
--- Later: remove after 2025-10
+-- Later: maybe remove after 2025-10. or probably way later
 local function MigrateToFavoriteProfiles(personalSettings, globalSettings)
     if personalSettings.favoritePerChar and personalSettings.favoredMounts then
         local playerGuid = UnitGUID("player")
@@ -198,6 +220,25 @@ local function MigrateToFavoriteProfiles(personalSettings, globalSettings)
     end
 end
 
+-- https://github.com/exochron/MountJournalEnhanced/issues/165#issuecomment-3289402892
+-- Intially Favoring displayed did directly use the filter dataprovider, which contained a complex element data structure.
+-- So that could get mixed into the favorite profile settings. That data never worked anyway, so we just remove them here.
+local function CleanupFavoriteProfiles(favorites)
+    if not favorites.migratedBug138 then
+        for profileId, profile in pairs(favorites.profiles) do
+            local mounts, index = profile.mounts, 1
+            while index <= #mounts do
+                if type(mounts[index]) == "number" then
+                    index = index + 1
+                else
+                    tUnorderedRemove(mounts, index)
+                end
+            end
+        end
+        favorites.migratedBug138 = true
+    end
+end
+
 -- Settings have to be loaded during PLAYER_LOGIN
 ADDON.Events:RegisterCallback("OnInit", function()
     local defaultSettings = PrepareDefaults()
@@ -205,6 +246,7 @@ ADDON.Events:RegisterCallback("OnInit", function()
     defaultSortStates = CopyTable(defaultSettings.sort)
     CombineSettings(MJEGlobalSettings, defaultSettings)
     MigrateToFavoriteProfiles(MJEPersonalSettings, MJEGlobalSettings)
+    CleanupFavoriteProfiles(MJEGlobalSettings.favorites)
     CombineSettings(MJEPersonalSettings, defaultSettings)
 
     ADDON.settings = {}
@@ -221,4 +263,5 @@ ADDON.Events:RegisterCallback("OnInit", function()
     ADDON.settings.notes = MJEGlobalSettings.notes
     ADDON.settings.favorites = MJEGlobalSettings.favorites
     ADDON.settings.pets = MJEGlobalSettings.pets
+    ADDON.settings.filterProfile = MJEGlobalSettings.filterProfile
 end, "settings init")

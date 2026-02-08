@@ -22,7 +22,7 @@ local GetInventoryItemLink = GetInventoryItemLink;
 local GetInventoryItemDurability = GetInventoryItemDurability;
 local Model_ApplyUICamera = Model_ApplyUICamera;
 local C_TransmogCollection = C_TransmogCollection;
-local GetSlotVisualInfo = C_Transmog.GetSlotVisualInfo;
+
 local EJ_SetSearch = EJ_SetSearch;
 
 local GetItemQualityColor = NarciAPI.GetItemQualityColor;
@@ -30,6 +30,8 @@ local GetItemQualityColor = NarciAPI.GetItemQualityColor;
 local SharedTooltipDelay = addon.SharedTooltipDelay;
 local TransmogDataProvider = addon.TransmogDataProvider;
 local SetModelByUnit = addon.TransitionAPI.SetModelByUnit;
+local SetTransmogLocationData = addon.TransitionAPI.SetTransmogLocationData;
+local GetSlotVisualInfo = addon.TransitionAPI.GetSlotVisualInfo;
 local ItemCacheUtil = addon.ItemCacheUtil;
 local SetupSpecialItemTooltip = addon.SetupSpecialItemTooltip;
 
@@ -72,9 +74,9 @@ local function VoidFunc(self)
 end
 
 local function AppendItemIDToGameTooltip(self)
-    if not self.GetItem then return end;
+    if not TooltipUtil.GetDisplayedItem then return end;
 
-    local name, itemLink = self:GetItem();
+    local name, itemLink = TooltipUtil.GetDisplayedItem(self);
     if itemLink then
         local itemID = match(itemLink, "item:(%d+)");
         local spellID;
@@ -90,12 +92,7 @@ end
 local GENERIC_SETUP_FUNC = VoidFunc;
 local GameTooltip_ClearMoney = GameTooltip_ClearMoney or VoidFunc;
 
-if addon.IsDragonflight() and TooltipDataHandlerMixin then
-    NarciGameTooltipMixin = CreateFromMixins(TooltipDataHandlerMixin);
-else
-    NarciGameTooltipMixin = {};
-end
-
+NarciGameTooltipMixin = CreateFromMixins(TooltipDataHandlerMixin);
 
 function NarciGameTooltipMixin:OnLoad()
     GenericTooltip = self;
@@ -613,7 +610,7 @@ end
 
 
 function NarciEquipmentTooltipMixin:SetInventoryItem(slotID)
-    self.transmogLocation:Set(slotID, 0, 0);
+    SetTransmogLocationData(self.transmogLocation, slotID);
     self.slotID = slotID;
     self:ClearLines();
     self:SetUseTransmogLayout(false);
@@ -750,29 +747,42 @@ function NarciEquipmentTooltipMixin:DisplayItemData(link, itemData, slotID, visu
                 statsTable["ITEM_MOD_BLOCK_RATING_SHORT"] = block;
             end
         end
-        local key;
-        local statText;
-        for i = 1, #STATS_ORDER do
-            key = STATS_ORDER[i][1];
-            if statsTable[key] then
-                statText = format(STATS_ORDER[i][2], statsTable[key]) .. _G[key];
-                if STATS_ORDER[i][4] then
-                    statText = statText .. "|cff729a7c" .. NarciAPI.ConvertRatingToPercentage(STATS_ORDER[i][4], statsTable[key]) .. "|r";
+
+        if not (itemData and itemData.isLegionRemix) then
+            local key;
+            local statText;
+            for i = 1, #STATS_ORDER do
+                key = STATS_ORDER[i][1];
+                if statsTable[key] then
+                    statText = format(STATS_ORDER[i][2], statsTable[key]) .. _G[key];
+                    if STATS_ORDER[i][4] then
+                        statText = statText .. "|cff729a7c" .. NarciAPI.ConvertRatingToPercentage(STATS_ORDER[i][4], statsTable[key]) .. "|r";
+                    end
+                    self:AddLine(statText, GetColorByIndex(STATS_ORDER[i][3]));
+                    statsTable[key] = nil;
                 end
-                self:AddLine(statText, GetColorByIndex(STATS_ORDER[i][3]));
-                statsTable[key] = nil;
             end
-        end
-        for k, v in pairs(statsTable) do
-            if _G[k] and not match(k, "^EMPTY_SOCKET") then
-                statText = format("+%d %s", v, _G[k]);
-                self:AddLine(statText, GetColorByIndex(2));
-                --print(k)  --special stats
+            for k, v in pairs(statsTable) do
+                if _G[k] and not match(k, "^EMPTY_SOCKET") then
+                    statText = format("+%d %s", v, _G[k]);
+                    self:AddLine(statText, GetColorByIndex(2));
+                    --print(k)  --special stats
+                end
             end
         end
     end
 
     if itemData then
+        if itemData.extraLines then --for Legion Remix
+            for _, lineData in ipairs(itemData.extraLines) do
+                if lineData[2] then --White
+                    self:AddLine(lineData[1], 1, 1, 1);
+                else
+                    self:AddLine(lineData[1], 0.4353, 0.8039, 0.4784);
+                end
+            end
+        end
+
         if itemData.enchant then
             local r, g, b = GetColorByIndex(2);
             self:AddLine(format(ENCHANTED_TOOLTIP_LINE, itemData.enchant), r, g, b, -SEG_INSETS);
@@ -840,7 +850,7 @@ function NarciEquipmentTooltipMixin:DisplayItemData(link, itemData, slotID, visu
     end
     self:SearchDropLocation(itemName, itemID, self.baseSourceID);
 
-    self:SetAdditionalInfo(itemID);
+    self:SetAdditionalInfo(itemID, slotID);
 
     self:UpdateSize();
     self:SetItemModel();
@@ -903,7 +913,7 @@ function NarciEquipmentTooltipMixin:SetTransmogSource(appliedSourceID)
             end
         else
             if sourceInfo.sourceType then
-                sourceText = _G["TRANSMOG_SOURCE_".. sourceInfo.sourceType];
+                sourceText = addon.TransitionAPI.GetTransmogSourceName(sourceInfo.sourceType);
             end
         end
 
@@ -1095,8 +1105,6 @@ function NarciEquipmentTooltipMixin:SetItemModel()
     if self.baseSourceID and self.baseVisualID then
         self.ItemModel:Show();
         self.ItemModel:SetUseTransmogSkin(true);
-        --local baseSourceID, baseVisualID = GetSlotVisualInfo(self.transmogLocation);
-        --local sourceID = transmogInfo.appearanceID;
         local cameraID = C_TransmogCollection.GetAppearanceCameraIDBySource(self.baseSourceID);
         if cameraID == 0 then
             cameraID = 238; --Use the Sword camera if the weapon is not transmoggable
@@ -1298,8 +1306,8 @@ function NarciEquipmentTooltipMixin:FadeIn()
     self.ItemModel.FadeIn:Play();
 end
 
-function NarciEquipmentTooltipMixin:SetAdditionalInfo(itemID)
-    SetupSpecialItemTooltip(self, itemID);
+function NarciEquipmentTooltipMixin:SetAdditionalInfo(itemID, slotID)
+    SetupSpecialItemTooltip(self, itemID, slotID);
     ADDTIONAL_SETUP_FUNC(self);
 end
 

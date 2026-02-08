@@ -1,23 +1,28 @@
 <Ui>
-    <Script file="OptionsButtonMixin.lua"/>
+    <Script file='OptionsButton.lua'/>
+    <Script file='OptionsButtonMixin.lua'/>
 
-	<DropDownToggleButton name="KrowiEVU_OptionsButton" mixin="KrowiEVU_OptionsButtonMixin" inherits="UIMenuButtonStretchTemplate" text="GAMEOPTIONS_MENU" parent="MerchantFrame">
-		<Size x="100" y="22"/>
-        <Anchors>
-        	<Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="61" y="-31" />
-        </Anchors>
+	<DropDownToggleButton name='KrowiEVU_OptionsButton_Classic_Template' mixin='KrowiEVU_OptionsButtonMixin' inherits='UIMenuButtonStretchTemplate' virtual='true'>
+		<Size x='18' y='22'/>
 		<Layers>
-			<Layer level="ARTWORK">
-				<Texture parentKey="Icon" file="Interface\ChatFrame\ChatFrameExpandArrow">
-					<Size x="10" y="12"/>
+			<Layer level='ARTWORK'>
+				<Texture parentKey='Icon' atlas='worldquest-icon-engineering'>
+					<Size x='10' y='10'/>
 					<Anchors>
-						<Anchor point="RIGHT" relativeKey="$parent.Right" relativePoint="RIGHT" x="-5"/>
+						<Anchor point='CENTER'/>
 					</Anchors>
 				</Texture>
 			</Layer>
 		</Layers>
 		<Scripts>
-			<OnMouseDown inherit="append" method="MyOnMouseDown"/>
+			<OnLoad method='OnLoad'/>
+			<OnMouseDown method='OnMouseDown'/>
 		</Scripts>
 	</DropDownToggleButton>
+
+	<DropdownButton name='KrowiEVU_OptionsButton_Modern_Template' mixin='KrowiEVU_OptionsButtonMixin' inherits='UIPanelIconDropdownButtonTemplate' virtual='true'>
+		<Scripts>
+			<OnLoad method='OnLoad'/>
+		</Scripts>
+    </DropdownButton>
 </Ui>

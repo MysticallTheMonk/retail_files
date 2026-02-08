@@ -1,0 +1,27 @@
+## Interface: 120001, 120000
+## Title: |cff8B45FFPeralex|r |cffB266FFBG|r
+## Notes: Battleground addon with ArenaCore inspired design - Twitch.tv/Peralex
+## Author: Peralex
+## Version: 0.2.4
+## SavedVariables: PeralexBGDB
+## IconTexture: Interface\AddOns\PeralexBG\Media\Textures\peralexbgicon.tga
+## X-Category: PvP
+
+# Core
+Core\Core.lua
+Core\Database.lua
+Core\BattlegroundData.lua
+Core\Events.lua
+
+# Frames
+Frames\EnemyFrame.lua
+Frames\FrameManager.lua
+
+# Minimap
+Minimap\MinimapButton.lua
+
+# Skins
+Skins\CappingSkin.lua
+
+# Configuration UI
+Config\Config.lua

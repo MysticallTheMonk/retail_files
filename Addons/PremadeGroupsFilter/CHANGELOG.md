@@ -1,8 +1,9 @@
 # Premade Groups Filter
 
-## [6.7.4](https://github.com/0xbs/premade-groups-filter/tree/6.7.4) (2025-06-17)
-[Full Changelog](https://github.com/0xbs/premade-groups-filter/compare/6.7.3...6.7.4) [Previous Releases](https://github.com/0xbs/premade-groups-filter/releases)
+## [7.1.1](https://github.com/0xbs/premade-groups-filter/tree/7.1.1) (2026-01-28)
+[Full Changelog](https://github.com/0xbs/premade-groups-filter/compare/7.1.0...7.1.1) [Previous Releases](https://github.com/0xbs/premade-groups-filter/releases)
 
-- Update TOC file  
-- Merge pull request #326 from Hollicsh/master  
-- Update PremadeGroupsFilter.toc  
+- Merge pull request #361 from Hollicsh/master  
+    Update ruRU.lua  
+- Update ruRU.lua  
+    Micro update RU locale  

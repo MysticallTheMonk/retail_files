@@ -1,13 +1,36 @@
-
+if BBF.isMidnight then return end
 local function FormatText(value)
-    if value >= 1000000000 then
-        return string.format("%.1f B", value / 1000000000)
-    elseif value >= 1000000 then
-        return string.format("%.1f M", value / 1000000)
-    elseif value >= 100000 then
-        return string.format("%d K", value / 1000)
+    if value >= 1e9 then
+        return string.format("%.2f B", value / 1e9)
+    elseif value >= 1e6 then
+        return string.format("%.1f M", value / 1e6)
+    elseif value >= 1e3 then
+        return string.format("%d K", value / 1e3)
     else
         return tostring(value)
+    end
+end
+
+local function UpdateFormatFunction()
+    local fmtB, fmtM
+    if BetterBlizzFramesDB.formatStatusBarTextExtraDecimals then
+        fmtB = "%.2f B"
+        fmtM = "%.2f M"
+    else
+        fmtB = "%.2f B"
+        fmtM = "%.1f M"
+    end
+
+    FormatText = function(value)
+        if value >= 1e9 then
+            return string.format(fmtB, value / 1e9)
+        elseif value >= 1e6 then
+            return string.format(fmtM, value / 1e6)
+        elseif value >= 1e3 then
+            return string.format("%d K", value / 1e3)
+        else
+            return tostring(value)
+        end
     end
 end
 
@@ -17,9 +40,9 @@ local function UpdateNumericText(bar, centerText)
     local _, maxValue = bar:GetMinMaxValues()
     local formattedValue = FormatText(value)
     local formattedMaxValue = FormatText(maxValue)
-    if formattedValue == 0 then
-        local parent = bar:GetParent()
-        if parent.DeadText and parent.DeadText:IsShown() then return end
+    if formattedValue == "0" then
+        centerText:SetText("")
+        return
     end
     centerText:SetText(string.format("%s / %s", formattedValue, formattedMaxValue))
 end
@@ -28,13 +51,14 @@ local function UpdateSingleText(bar, fontObj)
     if not fontObj then return end
     local value = bar:GetValue()
     if value == 0 then
-        local parent = bar:GetParent()
-        if parent.DeadText and parent.DeadText:IsShown() then return end
+        fontObj:SetText("")
+        return
     end
     fontObj:SetText(FormatText(value))
 end
 
 function BBF.HookStatusBarText()
+    UpdateFormatFunction()
     if BBF.statusBarTextHookBBF then return end
     if not BetterBlizzFramesDB.formatStatusBarText then return end
 
@@ -65,7 +89,7 @@ function BBF.HookStatusBarText()
            pMain.ManaBarArea.ManaBar.RightText)
 
     AddBar(AlternatePowerBar,
-           AlternatePowerBar.ManaBarText,
+           AlternatePowerBar.TextString,
            AlternatePowerBar.RightText)
 
     AddBar(PetFrame.healthbar,
@@ -118,18 +142,22 @@ function BBF.HookStatusBarText()
             hooksecurefunc(bar, "UpdateTextStringWithValues", function()
                 UpdateSingleText(bar, centerText)
             end)
+            UpdateSingleText(bar, centerText)
         elseif statusTextSetting == "BOTH" then
             hooksecurefunc(bar, "UpdateTextStringWithValues", function()
                 UpdateSingleText(bar, rightText)
             end)
+            UpdateSingleText(bar, rightText)
         elseif statusTextSetting == "NUMERIC" then
             hooksecurefunc(bar, "UpdateTextStringWithValues", function()
                 UpdateNumericText(bar, centerText)
             end)
+            UpdateNumericText(bar, centerText)
         elseif statusTextSetting == "NONE" then
             hooksecurefunc(bar, "UpdateTextStringWithValues", function()
                 UpdateNumericText(bar, centerText)
             end)
+            UpdateNumericText(bar, centerText)
         end
     end
 

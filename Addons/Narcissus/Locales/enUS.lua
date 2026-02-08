@@ -32,6 +32,7 @@ if IsMacClient() then
 end
 
 NARCI_WORDBREAK_COMMA = ", ";
+BINDING_HEADER_NARCISSUS = "Narcissus";
 
 --Date--
 L["Today"] = COMMUNITIES_CHAT_FRAME_TODAY_NOTIFICATION;
@@ -47,6 +48,7 @@ L["Day Plural"] = "Days";
 L["Day Singular"] = "Day";
 L["Hour Plural"] = "Hours";
 L["Hour Singular"] = "Hour";
+L["Last Visit"] = "Last Visit: ";
 
 L["Swap items"] = "Swap items";
 L["Press Copy"] = NARCI_COLOR_GREY_70.. "Press |r".. NARCI_SHORTCUTS_COPY.. NARCI_COLOR_GREY_70 .." to Copy";
@@ -111,6 +113,8 @@ L["MinimapButton Reenabled"] = "|cffffd100You have enabled Narcissus minimap but
 L["MinimapButton LibDBIcon"] = "Use LibDBIcon";
 L["MinimapButton LibDBIcon Desc"] = "Use LibDBIcon to create our minimap button.\nYou are seeing this option because you have installed LibDBIcon-1.0 or an addon that integrates this library.";
 L["MinimapButton LibDBIcon Hide"] = "Hide Button";
+L["MinimapButton Click Behavior"] = "Click Behavior";
+L["MinimapButton Click Behavior tooltip"] = "Change which Narcissus UI to open when left clicking the minimap button.";
 L["Corrupted Item Parser"] = "|cffffffffToggle Corrupted Item Parser|r";
 L["Toggle Dressing Room"] = "|cffffffffShow "..DRESSUP_FRAME.."|r";
 L["Reset Camera"] = "Reset Camera";
@@ -121,6 +125,7 @@ L["Layout"] = "Layout";
 L["Symmetry"] = "Symmetry";
 L["Asymmetry"] = "Asymmetry";
 L["Copy Texts"] = "Copy Item List";
+L["Toggle Item List"] = "Toggle Item List";
 L["Syntax"] = "Syntax";
 L["Plain Text"] = "Plain Text";
 L["BB Code"] = "BB Code";
@@ -158,7 +163,7 @@ L["AFK Screen Description Extra"] = "This will override ElvUI AFK Mode.";
 L["AFK Screen Delay"] = "After a Cancellable Delay";
 L["Item Names"] = "Item Names";
 L["Open Narcissus"] = "Open Narcissus";
-L["Character Panel"] = "Character Panel";
+L["Character Panel"] = "Character UI";
 L["Screen Effects"] ="Screen Effects";
 
 L["Gem List"] = "Gem List";
@@ -235,15 +240,18 @@ L["Sceenshot Quality"] = "Sceenshot Quality";
 L["Screenshot Quality Description"] = "Higher quality results in bigger file size.";
 L["Camera Movement"] = "Camera Movement";
 L["Orbit Camera"] = "Orbit Camera";
-L["Orbit Camera Description On"] = "When you open this character panel, the camera will be rotated to your front and begin orbiting.";
-L["Orbit Camera Description Off"] = "When you open this character panel, the camera will be zoomed in without rotation.";
+L["Orbit Camera Description On"] = "When opening the character UI, the camera will be rotated to your front and begin orbiting.";
+L["Orbit Camera Description Off"] = "When opening the character UI, the camera will be zoomed in without rotation.";
 L["Camera Safe Mode"] = "Camera Safe Mode";
-L["Camera Safe Mode Description"] = "Fully disable ActionCam feature after closing the character panel.";
+L["Camera Safe Mode Description"] = "Fully disable ActionCam feature after closing the character UI.";
 L["Camera Safe Mode Description Extra"] = "This option is locked because you are using DynamicCam.";
+L["Camera Auto Zoom In"] = "Auto Zoom In";
+L["Camera Auto Zoom In On"] = "Automatically zoom in when opening the character UI.";
+L["Camera Auto Zoom In Off"] = "Camera will only move horizontally when opening the character UI.";
 L["Camera Transition"] = "Camera Transition";
-L["Camera Transition Description On"] = "Camera will move smoothly to the predetermined position when you open this character panel.";
-L["Camera Transition Description Off"] = "Camera transition becomes instant. Starts from the second time you use this character panel.\nInstant transition will override camera preset #4.";
-L["Interface Options Tab Description"] = "You can also access the this panel by clicking the gear button next to the toolbar on the bottom left of your screen while using Narcissus.";
+L["Camera Transition Description On"] = "Camera will move smoothly to the predetermined position when opening this character UI.";
+L["Camera Transition Description Off"] = "Camera transition becomes instant. Starts from the second time you use this character UI.\nInstant transition will override camera preset #4.";
+L["Interface Options Tab Description"] = "You can also access the this UI by clicking the gear button next to the toolbar on the bottom left of your screen while using Narcissus.";
 L["Soulbinds"] = COVENANT_PREVIEW_SOULBINDS;
 L["Conduit Tooltip"] = "Conduit Effects of Higher Ranks";
 L["Paperdoll Widget"] = "Paper Doll Widget";
@@ -254,7 +262,7 @@ L["Tooltip Style 2"] = "The Original";
 L["Addtional Info"] = "Additional Info";
 L["Item ID"] = "Item ID";
 L["Camera Reset Notification"] = "Camera offset has been reset to zero. If you wish to disable this feature, go to Preferences - Camera, then toggle off Camera Safe Mode.";
-L["Binding Name Open Narcissus"] = "Open Narcissus Character Panel";
+L["Binding Name Open Narcissus"] = "Toggle Narcissus Character UI";
 L["Developer Colon"] = "Developer: ";
 L["Project Page"] = "Project Page";
 L["Press Copy Yellow"] = "Press |cffffd100".. NARCI_SHORTCUTS_COPY .."|r to Copy";
@@ -315,6 +323,7 @@ L["Animation"] = "Animation";
 L["Animation Tooltip"] = "Browse, search animations";
 L["Animation Variation"] = "Variation";
 L["Reset Slider"] = "Reset to zero";
+L["Available Count"] = "%d available";
 
 --Spell Visual Browser--
 L["Visuals"] = "Visuals";
@@ -370,6 +379,8 @@ L["Switch Form To Human"] = "Switch to|cffffffff Human|r form";
 L["InGame Command"] = "In-Game Command";
 L["Hide Player Items"] = "Hide Player Items";
 L["Hide Player Items Tooltip"] = "Hide anything that doesn\'t belong to this item set.";
+L["Hide Duplicated Appearance"] = "Hide Duplicates";
+L["Hide Duplicated Appearance Tooltip"] = "Some ensembles may contain items with the same appearances. Enable this option to show the unique ones.";
 
 --NPC Browser--
 NARCI_NPC_BROWSER_TITLE_LEVEL = ".*%?%?.?";      --Level ?? --Use this to check if the second line of the tooltip is NPC's title or unit type
@@ -484,7 +495,8 @@ L["Error Alert Bookmarks Too Many"] = "You may only bookmark %d achievements at 
 L["Instruction Add To To Do List"] = string.format("%s Left Click on an unearned achievement to add it to your to-do list.", NARCI_MODIFIER_ALT);
 L["Instruction Remove From To Do List"] = string.format("%s Left Click to remove from to-do list.", NARCI_MODIFIER_ALT);
 L["DIY"] = "DIY";
-L["DIY Tab Tooltip"] = "Create a custom Achievement for screenshot purpose."
+L["DIY Tab Tooltip"] = "Create a custom Achievement for screenshot purpose.";
+L["Binding Name Open Achievement"] = "Toggle Narcissus Achievement UI";
 
 --Barbershop--
 L["Save New Look"] = "Save New Look";
@@ -781,6 +793,9 @@ L["Format Stat EXP"] = "+%d%% EXP Gain";
 L["Format Rank"] = AZERITE_ESSENCE_RANK or "Rank %d";
 L["Cloak Rank"] = "Cloak Rank";
 
+L["Artifact Ability"] = "Artifact Ability";
+L["Toggle Artifact UI"] = "Click to toggle Artifact UI.";
+
 
 --Gem Manager--
 L["Gem Manager"] = "Gem Manager";
@@ -837,3 +852,37 @@ L["GamePad Select"] = "Select";
 L["GamePad Cancel"] = "Cancel";
 L["GamePad Use"] = "Use";
 L["GamePad Equip"] = "Equip";
+
+
+--TransmogUI--
+L["Transmog UI"] = "Transmog UI";
+L["Transmog UI Description"] = "Create custom sets that can be accessed by all your characters.";
+L["OutfitSource Default"] = "Current Character";
+L["OutfitSource Default Tooltip"] = "The data is stored on the server.";
+L["OutfitSource Shared"] = "Shared List";
+L["OutfitSource Shared Tooltip"] = "All your characters can access this list.\n\nThe data is stored locally in the Narcissus addon.";
+L["OutfitSource Alts"] = "Other Characters";
+L["OutfitSource Alts Tooltip"] = "You can view the custom sets from another character if you have logged in on them with Narcissus addon enabled.\n\nYou will not be able to modify the sets on your current character.";
+L["Cannot Delete On Alts"] = "You cannot modify this set because it's from another character";
+L["Your Money Amount"] = "Your Balance";
+L["TransmogSet No Valid Items"] = "No valid items.";
+L["Copy To Shared List"] = "Copy to Shared List";
+L["Insturction Delete Without Confirm"] = "Shift click to delete without confirmation.";
+L["Press Key To Copy Format"] = "Press |cffffd100%s|r to Copy";
+L["Added To Shared List"] = "Added to Shared List";
+L["Added To Shared List Alert Format"] = "You have already added this set to the Shared List as \"%s\"";
+L["New Set Location Default"] = "This custom set will be saved on your current character.";
+L["New Set Location Shared"] = "This custom set will be added to the Shared List.";
+L["Save Custom Set Location"] = "Save to:";
+L["Save Slots Colon"] = "Save Slots: ";
+L["Error View Outfit In Combat"] = "You cannot view custom sets while in combat";
+L["Profile Management"] = "Profile Management";
+L["Delete Character Data"] = "Delete Character";
+L["Delete Character Data Tooltip"] = "This option is for cleaning up your inactive or deleted characters.\n\nDelete the locally stored custom sets data on this character. The Narcissus addon will store the data again when you log into this character.";
+
+
+--WardrobeCollection--
+L["ModuleName WardrobeCollection"] = "Appearances Tab";
+L["ModuleDescription WardrobeCollection"] = "Added a checkbox to hide uncollected slots on the preview model when viewing a set in the Appearances Tab."
+L["Hide Uncollected Slots"] = "Hide Uncollected";
+L["Hide Uncollected Slots Tooltip"] = "Hide Uncollected Slots |cffffd100(%s)|r";

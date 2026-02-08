@@ -1,0 +1,52 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+    <!-- Raid -->
+    <Script file="TWW/Raids/LiberationOfUndermine/Vexie.lua"/>
+    <Script file="TWW/Raids/LiberationOfUndermine/CauldronOfCarnage.lua"/>
+    <Script file="TWW/Raids/LiberationOfUndermine/RikReverb.lua"/>
+    <Script file="TWW/Raids/LiberationOfUndermine/StixBunkjunker.lua"/>
+    <Script file="TWW/Raids/LiberationOfUndermine/Sprocketmonger.lua"/>
+    <Script file="TWW/Raids/LiberationOfUndermine/OneArmedBandit.lua"/>
+    <Script file="TWW/Raids/LiberationOfUndermine/MugZee.lua"/>
+    <Script file="TWW/Raids/LiberationOfUndermine/Gallywix.lua"/>
+
+    <!-- Dungeons -->
+    <Script file="TWW/Dungeons/Season-14/CinderBrewMeadery/BenkBuzzbee.lua"/>
+    <Script file="TWW/Dungeons/Season-14/CinderBrewMeadery/BrewMasterAldryr.lua"/>
+    <Script file="TWW/Dungeons/Season-14/CinderBrewMeadery/GoldieBaronbottom.lua"/>
+    <Script file="TWW/Dungeons/Season-14/CinderBrewMeadery/Ipa.lua"/>
+
+    <Script file="TWW/Dungeons/Season-14/DarkflameCleft/Blazikon.lua"/>
+    <Script file="TWW/Dungeons/Season-14/DarkflameCleft/OlWaxbeard.lua"/>
+    <Script file="TWW/Dungeons/Season-14/DarkflameCleft/TheCandleKing.lua"/>
+    <Script file="TWW/Dungeons/Season-14/DarkflameCleft/TheDarkness.lua"/>
+
+    <Script file="TWW/Dungeons/Season-14/MOTHERLODE/Azerokk.lua"/>
+    <Script file="TWW/Dungeons/Season-14/MOTHERLODE/CoinOperatedCrowdPummeler.lua"/>
+    <Script file="TWW/Dungeons/Season-14/MOTHERLODE/MogulRazdunk.lua"/>
+    <Script file="TWW/Dungeons/Season-14/MOTHERLODE/RixxaFluxflame.lua"/>
+
+    <Script file="TWW/Dungeons/Season-14/OperationFloodgate/BigMOMMA.lua"/>
+    <Script file="TWW/Dungeons/Season-14/OperationFloodgate/DemolitionDuo.lua"/>
+    <Script file="TWW/Dungeons/Season-14/OperationFloodgate/GeezleGigazap.lua"/>
+    <Script file="TWW/Dungeons/Season-14/OperationFloodgate/Swampface.lua"/>
+
+    <Script file="TWW/Dungeons/Season-14/OperationMechagon/KingMechagon.lua"/>
+    <Script file="TWW/Dungeons/Season-14/OperationMechagon/KUJ0.lua"/>
+    <Script file="TWW/Dungeons/Season-14/OperationMechagon/MachinistsGarden.lua"/>
+    <Script file="TWW/Dungeons/Season-14/OperationMechagon/TussleTonks.lua"/>
+
+    <Script file="TWW/Dungeons/Season-14/PrioryOfTheSacredFlame/BaronBraunpyke.lua"/>
+    <Script file="TWW/Dungeons/Season-14/PrioryOfTheSacredFlame/CaptainDailcry.lua"/>
+    <Script file="TWW/Dungeons/Season-14/PrioryOfTheSacredFlame/PrioressMurrpray.lua"/>
+
+    <Script file="TWW/Dungeons/Season-14/Rookery/Kyrioss.lua"/>
+    <Script file="TWW/Dungeons/Season-14/Rookery/StormguardGorren.lua"/>
+    <Script file="TWW/Dungeons/Season-14/Rookery/VoidstoneMonstrosity.lua"/>
+
+    <Script file="TWW/Dungeons/Season-14/TheaterOfPain/AnAffrontOfChallengers.lua"/>
+    <Script file="TWW/Dungeons/Season-14/TheaterOfPain/Gorechop.lua"/>
+    <Script file="TWW/Dungeons/Season-14/TheaterOfPain/Kultharok.lua"/>
+    <Script file="TWW/Dungeons/Season-14/TheaterOfPain/Mordretha.lua"/>
+    <Script file="TWW/Dungeons/Season-14/TheaterOfPain/XavTheUnfallen.lua"/>
+</Ui>

@@ -22,7 +22,7 @@ local FadeIn = NarciFadeUI.FadeIn;
 local After = C_Timer.After;
 local SmartSetActorName = NarciAPI.SmartSetActorName;
 local NarciAnimationInfo = NarciAnimationInfo;
-local NarciSpellVisualBrowser = NarciSpellVisualBrowser;
+local NarciSpellVisualUtil = NarciSpellVisualUtil;
 local GetCursorPosition = GetCursorPosition;
 local IsAltKeyDown = IsAltKeyDown;
 local Screenshot = Screenshot;	--This is an API: screen capture
@@ -146,6 +146,9 @@ local TranslateValue_Male = {
 
 	[84] = {[1] = {-0.1, 1.02, -0.57},
 				[2] = {-0.6, 1.24, 0.05}},		--84/85 Earthen √
+
+	[86] = {[1] = {-0.25, 1.45, -0.17},
+				[2] = {-0.25, 1.45, -0.17}},		--86 Haranir
 };
 
 local TranslateValue_Female = {
@@ -209,6 +212,9 @@ local TranslateValue_Female = {
 
 	[84] = {[1] = {-0.1, 1.02, -0.57},
 				[2] = {-0.4, 1.15, 0.00}},		--84/85 Earthen √
+
+	[86] = {[1] = {-0.3, 1.46, -0.17},
+				[2] = {-0.3, 1.46, -0.17}},		--86 Haranir
 }
 
 TranslateValue_Female[36] = TranslateValue_Female[2];
@@ -244,6 +250,8 @@ local function ReAssignRaceID(raceID, custom)
 		end
 	elseif raceID == 85 then	--Earthen
 		raceID = 84;
+	elseif raceID == 91 then	--Haranir Horde
+		raceID = 86;
 	end
 
 	return raceID;
@@ -778,6 +786,7 @@ PMAI:SetScript("OnShow", function(self)		--PlayerModelAnimIn
 	defaultZ = TranslateValue[ZoomMode][3] or -0.275;
 	model:SetPortraitZoom(zoomLevel);
 	model.zoomLevel = zoomLevel;
+	local noAutoFadeIn;
 
 	if (not self.useAlternateEntrance) or not EntranceAnimation then
 		model:SetPosition(0, startY, defaultZ);
@@ -807,14 +816,17 @@ PMAI:SetScript("OnShow", function(self)		--PlayerModelAnimIn
 		model:FreezeAnimation(animStart, 1, 0);
 		model:SetAnimation(animStart);
 		self:SetScript("OnUpdate", EntranceAnimation[5]);
+		noAutoFadeIn = EntranceAnimation.noAutoFadeIn;
 	end
+
 	model:Show();
 	model:SetModelAlpha(0);
 	model:SetAlpha(0);
 	model.isVirtual = false;
 	model:ResetCameraPosition();
-	FadeFrame(model, 0.6, 1);
-	--FadeFrame(ModelContainer, 0, 1);
+	if not noAutoFadeIn  then
+		FadeFrame(model, 0.6, 1);
+	end
 
 	if self.init then	--Initialize settings
 		self.init = nil;
@@ -1151,6 +1163,7 @@ local function SlotLayerButton_OnClick(self)
 			FadeFrame(NarciModel_RightGradient, 0.25, 1);
 		end
 		FadeFrame(Narci_Character, 0.25, 1);
+		Narci.RefreshAllSlots();
 	else
 		FadeFrame(NarciModel_RightGradient, 0.25, 0);
 		FadeFrame(Narci_Character, 0.25, 0);
@@ -2147,7 +2160,9 @@ function NarciFavoriteStarMixin:OnClick()
 	local id = AnimationIDEditBox:GetNumber();
 	if isFavorite then
 		NarciAnimationInfo.AddFavorite(id);
-		self:PlayStarAnimation();
+		if not Narci_AnimationBrowser:IsShown() then
+			self:PlayStarAnimation();
+		end
 	else
 		NarciAnimationInfo.RemoveFavorite(id);
 	end
@@ -2567,7 +2582,7 @@ local function SetModelActive(index)
 	end
 	
 	--Load Spell Visual History
-	NarciSpellVisualBrowser:LoadHistory();
+	NarciSpellVisualUtil:LoadHistory();
 
 	--Update Play/Pause Button
 	if model.isPaused then
@@ -2850,7 +2865,7 @@ function NarciGenericModelMixin:OnUpdate()
 			local posY = self.posY + dx;
 			local posZ = self.posZ + dy;
 			self:SetPosition(self.posX, posY, posZ);
-			--print("Y: "..posY.." Z: "..posZ.." Dis: "..self.cameraDistance)
+			--print("Y: "..posY.." Z: "..posZ.." Dis: "..self.cameraDistance)	--debug
 		else
 			if LINK_SCALE then
 				for i = 1, #ModelFrames do
@@ -2932,6 +2947,7 @@ function NarciGenericModelMixin:OnModelLoaded()
 	self.isAnimationCached = nil;
 	self.animationList = {};
 	RedressPlayerAfterLoading(self);
+	self:ReloadSpellVisuals();
 end
 
 function NarciGenericModelMixin:OnAnimFinished()
@@ -3116,6 +3132,17 @@ function NarciGenericModelMixin:EquipItemBySourceID(sourceID, slotID)
 	end
 end
 
+function NarciGenericModelMixin:ReloadSpellVisuals()
+	--visuals with item model require longer delay to load
+	if self.AppliedVisuals and #self.AppliedVisuals > 0 then
+		After(0.1, function()
+			for _, visualID in ipairs(self.AppliedVisuals) do
+				self:ApplySpellVisualKit(visualID, false);
+			end
+		end);
+	end
+end
+
 --------------------------------------------------------------------------------
 NarciMainModelMixin = CreateFromMixins(NarciGenericModelMixin);
 
@@ -3174,6 +3201,7 @@ function NarciMainModelMixin:OnModelLoaded()
 	self.isAnimationCached = nil;
 	self.animationList = {};
 	RedressPlayerAfterLoading(self);
+	self:ReloadSpellVisuals();
 end
 
 ----------------------------------------------------------------------
@@ -3340,7 +3368,7 @@ local function CreateAndSelectNewActor(actorIndex, unit, isVirtual)
 
 	if isVirtual then
 		IndexButton:SetModelType("virtual");
-		model:SetModelAlpha(0)
+		model:SetModelAlpha(0);
 		model.isVirtual = true;
 
 		PlayerInfo[ID].name = "|cff0081a9"..VIRTUAL_ACTOR.."|r";
@@ -3352,7 +3380,7 @@ local function CreateAndSelectNewActor(actorIndex, unit, isVirtual)
 		else
 			IndexButton:SetModelType("npc");
 		end
-		model:SetModelAlpha(1)
+		model:SetModelAlpha(1);
 		model.isVirtual = false;
 	end
 
@@ -4371,7 +4399,6 @@ end
 function NarciModelSettingsMixin:SetPanelAlpha(value, smoothing)
     local SpellVisualBrowser = self.SpellPanel;
     local fromAlpha = self.BasicPanel:GetAlpha();
-	local UIFrameFadeIn = FadeFrame;
     if smoothing then
         local fadeDuation;
         if value == 1 then
@@ -4380,10 +4407,10 @@ function NarciModelSettingsMixin:SetPanelAlpha(value, smoothing)
             fadeDuation = 0.5;
         end
         if SpellVisualBrowser.isActive then
-            UIFrameFadeIn(SpellVisualBrowser, fadeDuation, fromAlpha, value);
+            FadeFrame(SpellVisualBrowser, fadeDuation, fromAlpha, value);
         end
-        UIFrameFadeIn(self.ActorPanel, fadeDuation, fromAlpha, value);
-        UIFrameFadeIn(self.BasicPanel, fadeDuation, fromAlpha, value);
+        FadeFrame(self.ActorPanel, fadeDuation, fromAlpha, value);
+        FadeFrame(self.BasicPanel, fadeDuation, fromAlpha, value);
     else
         if SpellVisualBrowser.isActive then
             SpellVisualBrowser:SetAlpha(value);
@@ -4498,8 +4525,10 @@ end
 
 function Narci:LoadOutfitSlashCommand(msg)
 	msg = string.gsub(msg, "/outfit%s+", "");
+	msg = string.gsub(msg, "/customset%s+", "");
 
-	local itemTransmogInfoList = TransmogUtil.ParseOutfitSlashCommand(msg);
+	local parseFunc = TransmogUtil.ParseOutfitSlashCommand or TransmogUtil.ParseCustomSetSlashCommand;
+	local itemTransmogInfoList = parseFunc(msg);
 	local model = ModelFrames[ACTIVE_MODEL_INDEX];
 
 	if itemTransmogInfoList then

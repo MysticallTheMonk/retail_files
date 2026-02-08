@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ http://wowprogramming.com/FrameXML/UI.xsd">
+	<Frame name="TomTomScrollingEditBoxTemplate" inherits="TooltipBackdropTemplate" virtual="true">
+		<Size x="287" y="85"/>
+		<KeyValues>
+			<KeyValue key="backdropColor" value="BLACK_FONT_COLOR" type="global"/>
+			<KeyValue key="backdropColorAlpha" value="0.9" type="number"/>
+			<KeyValue key="backdropBorderColor" value="TOOLTIP_DEFAULT_COLOR" type="global"/>
+		</KeyValues>
+		<Frames>
+			<Frame parentKey="ScrollingEditBox" inherits="ScrollingEditBoxTemplate" frameStrata="HIGH">
+				<KeyValues>
+					<KeyValue key="fontName" value="GameFontHighlightSmall" type="string"/>
+					<KeyValue key="defaultFontName" value="GameFontDisableSmall" type="string"/>
+					<KeyValue key="defaultText" value="Add /way commands here..." type="string"/>
+					<KeyValue key="maxLetters" value="30000" type="number"/>
+				</KeyValues>
+				<Anchors>
+					<Anchor point="TOPLEFT" x="10" y="-8"/>
+					<Anchor point="BOTTOMRIGHT" x="-3" y="4"/>
+				</Anchors>
+			</Frame>
+			<EventFrame parentKey="ScrollBar" inherits="MinimalScrollBar" frameStrata="HIGH">
+				<KeyValues>
+					<KeyValue key="minThumbExtent" value="17" type="number"/>
+				</KeyValues>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeKey="$parent.ScrollingEditBox" relativePoint="TOPRIGHT" x="-5" y="0"/>
+					<Anchor point="BOTTOMRIGHT" relativeKey="$parent.ScrollingEditBox" relativePoint="BOTTOMRIGHT" x="-5" y="-1"/>
+				</Anchors>
+			</EventFrame>
+		</Frames>
+	</Frame>
+</Ui>

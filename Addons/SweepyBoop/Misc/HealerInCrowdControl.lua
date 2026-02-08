@@ -91,7 +91,7 @@ end
 
 local function ShowIcon(spellID, startTime, duration)
     containerFrame = containerFrame or CreateContainerFrame();
-    local iconID = C_Spell.GetSpellTexture(spellID);
+    local iconID = addon.GetSpellTexture(spellID);
 
     local config = SweepyBoop.db.profile.misc;
 
@@ -126,7 +126,7 @@ local function ShowIcon(spellID, startTime, duration)
         end
     end
     if breakerSpellID then
-        local breakerIconID = C_Spell.GetSpellTexture(breakerSpellID);
+        local breakerIconID = addon.GetSpellTexture(breakerSpellID);
         containerFrame.breakericonTexture:SetTexture(breakerIconID);
         LCG.ButtonGlow_Start(containerFrame.breakericon);
         containerFrame.breakericon:Show();

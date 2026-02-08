@@ -1,0 +1,7 @@
+<Ui xmlns='http://www.blizzard.com/wow/ui/'>
+  <Include file='PartyPet1.lua'/>
+  <Include file='PartyPet2.lua'/>
+  <Include file='PartyPet3.lua'/>
+  <Include file='PartyPet4.lua'/>
+  <Include file='PlayerPet.lua'/>
+</Ui>

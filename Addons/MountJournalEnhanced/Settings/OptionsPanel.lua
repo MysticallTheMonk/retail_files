@@ -88,7 +88,6 @@ end
 
 local function BildAbout()
 
-    local copybox
     local frame = AceGUI:Create("BlizOptionsGroup")
     frame:SetName(ADDON.L["SETTING_HEAD_ABOUT"], C_AddOns.GetAddOnMetadata(ADDON_NAME, "Title"))
     frame:SetTitle(ADDON.L["SETTING_HEAD_ABOUT"])
@@ -96,25 +95,10 @@ local function BildAbout()
     frame.content:SetPoint("TOPLEFT", 20, -50)
     frame.content:SetPoint("BOTTOMRIGHT", -20, 10)
 
-    local copyHandle = function(_, text)
-        if not copybox then
-            copybox = AceGUI:Create("EditBox")
-            copybox:SetLabel("press ctrl + c to copy")
-            copybox:SetFullWidth(true)
-            copybox:DisableButton(true)
-            copybox.label:SetJustifyH("CENTER")
-            copybox.editbox:SetJustifyH("CENTER")
-            frame:AddChild(copybox)
-        end
-
-        copybox:SetText(text)
-        copybox:SetFocus()
-        copybox:HighlightText(0, -1)
-    end
     local link = function(url, text, icon)
         icon = icon and "|TInterface\\Addons\\MountJournalEnhanced\\UI\\icons\\" .. icon .. ":0|t " or ""
 
-        return "|cff56B0FF|H" .. url .. "|h" .. icon .. "[" .. text .. "]|h|r"
+        return "|cff56B0FF|Haddon:LibCopyDialog:" .. url .. "|h" .. icon .. "[" .. text .. "]|h|r"
     end
 
     local buildLabel = function(text)
@@ -123,7 +107,7 @@ local function BildAbout()
         label:SetText(text)
         label:SetFullWidth(true)
         label.frame:SetHyperlinksEnabled(true)
-        label.frame:HookScript("OnHyperlinkClick", copyHandle)
+        label.frame:SetScript("OnHyperlinkClick", InlineHyperlinkFrame_OnClick)
 
         frame:AddChild(label)
     end

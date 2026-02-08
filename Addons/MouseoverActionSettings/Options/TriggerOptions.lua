@@ -101,10 +101,10 @@ options = {
             get = "GetTrigger",
             set = "SetTrigger",
         },
-        PLAYER_HEALTH_UPDATE = {
-            order = 1.9,
-            name = L["player_health_update_name"],
-            desc = L["player_health_update_desc"],
+        PLAYER_CASTING_UPDATE = {
+            order = 1.101,
+            name = L["player_casting_update_name"],
+            desc = L["player_casting_update_desc"],
             type = "toggle",
             get = "GetTrigger",
             set = "SetTrigger",

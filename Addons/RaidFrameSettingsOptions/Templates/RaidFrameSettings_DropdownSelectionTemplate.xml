@@ -1,0 +1,21 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/UI.xsd">
+  <Frame name="RaidFrameSettings_DropdownSelectionTemplate" virtual="true">
+    <Size y="42"/>
+    <Layers>
+      <Layer level="ARTWORK">
+        <FontString parentKey="settings_text" inherits="GameFontNormalLeft" justifyH="LEFT">
+          <Anchors>
+            <Anchor point="LEFT" x="15" y="0"/>
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
+    <Frames>
+      <DropdownButton parentKey="dropdown" inherits="WowStyle1DropdownTemplate">
+        <Anchors>
+          <Anchor point="LEFT" x="200" y="0"/>
+        </Anchors>
+      </DropdownButton>
+		</Frames>
+  </Frame>
+</Ui>

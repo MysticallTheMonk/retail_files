@@ -1,19 +1,11 @@
 local _, ADDON = ...
 
-local build = select(4, GetBuildInfo())
-if build < 50000 then
-    ADDON.DB.Recent = {
-        ["minID"] = 2313,
-        ["blacklist"] = {},
-        ["whitelist"] = {1931, 1932, 1933, 1934 },
-    }
-else
-    ADDON.DB.Recent = {
-        ["minID"] = 2340,
-        ["blacklist"] = {},
-        ["whitelist"] = { },
-    }
-end
+--local build = select(4, GetBuildInfo())
+ADDON.DB.Recent = {
+    ["minID"] = 2340,
+    ["blacklist"] = {},
+    ["whitelist"] = {489,490,491},
+}
 
 -- in classic no mount has a sourceType set. so generic filter doesn't work.
 -- => add manually for professions, shop and tcg :(
@@ -69,6 +61,12 @@ ADDON.DB.Source.Promotion[124659] = true; -- Imperial Quilen
 ADDON.DB.Source.Promotion[136505] = true; -- Ghastly Charger
 ADDON.DB.Source.Promotion[142073] = true; -- Hearthsteed
 ADDON.DB.Source.Promotion[155741] = true; -- Dread Raven
+ADDON.DB.Source.Promotion[459486] = true; -- Golden Ashes of Alar
+ADDON.DB.Source.Promotion[459538] = true; -- Harmonious Greeting Bear
+ADDON.DB.Source.Promotion[1266866] = true; -- Starshard Netherdrake
+ADDON.DB.Source.Promotion[1266345] = true; -- Cerulian Phase-hunter
+ADDON.DB.Source.Promotion[1217476] = true; -- Flaming Royal Fire Hawk
+ADDON.DB.Source.Promotion[1250045] = true; -- Ashened Cataclysm
 ADDON.DB.Source.Shop[139595] = true; -- Armored Bloodwing
 ADDON.DB.Source.Shop[142878] = true; -- Enchanted Fey Dragon
 ADDON.DB.Source.Shop[153489] = true; -- Iron Skyreaver
@@ -81,6 +79,7 @@ ADDON.DB.Source.Shop[466948] = true; -- Chaos-Born Dreadwing
 ADDON.DB.Source.Shop[466977] = true; -- Chaos-Born Wind Rider
 ADDON.DB.Source.Shop[466980] = true; -- Chaos-Born Hippogryph
 ADDON.DB.Source.Shop[466983] = true; -- Chaos-Born Gryphon
+ADDON.DB.Source.Shop[471440] = true; -- Skybound Spectral Tiger
 ADDON.DB.Source.Shop[473478] = true; -- Sha-Touched Riding Tiger
 ADDON.DB.Source.Shop[473487] = true; -- Sha-Touched Cloud Serpent
 ADDON.DB.Source.Shop[1224596] = true; -- Meeksi Teapuff (classic)
@@ -88,6 +87,22 @@ ADDON.DB.Source.Shop[1224643] = true; -- Meeksi Gentlepaw (classic)
 ADDON.DB.Source.Shop[1224645] = true; -- Meeksi Rufflemane (classic)
 ADDON.DB.Source.Shop[1224646] = true; -- Meeksi Wanderpaw (classic)
 ADDON.DB.Source.Shop[1224647] = true; -- Meeksi Brewrobber (classic)
+ADDON.DB.Source.Shop[1229670] = true; -- Prophet's Great Crow (classic)
+ADDON.DB.Source.Shop[1229672] = true; -- Archmage's Great Crow (classic)
+ADDON.DB.Source.Shop[1238816] = true; -- Envoy of Sa'bak (classic)
+ADDON.DB.Source.Shop[1239204] = true; -- Stormwind Skyseeker
+ADDON.DB.Source.Shop[1239240] = true; -- Orgrimmar Sentinel
+ADDON.DB.Source.Shop[1239372] = true; -- Celestial Steed
+ADDON.DB.Source.Shop[1249659] = true; -- Sha-Scarred Drake
+ADDON.DB.Source.Shop[1280068] = true; -- Scorching Courage
+
+ADDON.DB.Source.Achievement[1247591] = 60901; -- Celestial Riding Crane
+ADDON.DB.Source.Drop[1247596] = true; -- Celestial Riding Serpent
+ADDON.DB.Source.Drop[1247597] = true; -- Celestial Riding Ox
+ADDON.DB.Source.Drop[1247598] = true; -- Celestial Riding Tiger
+ADDON.DB.Source.Reputation[127272] = true; -- Orange Water Strider
+ADDON.DB.Source.Reputation[127274] = true; -- Jade Water Strider
+ADDON.DB.Source.Reputation[127278] = true; -- Golden Water Strider
 
 -- classics keeps mostly old mount Ids. meaning we have to add newer mounts manually
 --ADDON.DB.Expansion[0][1843] = true; -- Tiger
@@ -118,6 +133,7 @@ ADDON.DB.Expansion[4][2514] = true; -- Meeksi
 ADDON.DB.Expansion[4][2515] = true; -- Meeksi
 ADDON.DB.Expansion[4][2516] = true; -- Meeksi
 ADDON.DB.Expansion[4][2517] = true; -- Meeksi
+ADDON.DB.Expansion[4][2594] = true; -- Envoy of Sa'bak
 
 ADDON.DB.Expansion[GetClientDisplayExpansionLevel()].maxID = 999999999
 

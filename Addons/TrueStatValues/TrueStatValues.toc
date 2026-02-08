@@ -1,0 +1,16 @@
+## Interface: 120000
+## Title: True Stat Values
+## Author: .bastas (discord), tirain (discord), hinalover (discord)
+## Version: 1.5.0
+## Notes: Show Secondary-Stat Diminishing Returns in Tooltips.
+## Notes-zhCN: 在属性栏显示数值详细递减信息。
+## DefaultState: Enabled
+## SavedVariables: TSV_DB 
+## IconTexture: Interface\Addons\TrueStatvalues\TrueStatvalues
+
+embeds.xml
+
+Core.lua
+TrueStatValues.lua
+Tooltips.lua
+Events.lua

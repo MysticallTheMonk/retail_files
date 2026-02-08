@@ -4,9 +4,10 @@ local fsConfig = addon.Configuration
 local wow = addon.WoW.Api
 local fsLog = addon.Logging.Log
 local modules = addon.Modules
-local L = addon.Locale
+local fsCompare = addon.Modules.Sorting.Comparer
+local L = addon.Locale.Current
 local M = {}
-fsConfig.Panels.Ordering = M
+fsConfig.Panels.SpecOrdering = M
 
 function M:Build(parent)
     local verticalSpacing = fsConfig.VerticalSpacing
@@ -22,7 +23,7 @@ function M:Build(parent)
 
     local description = panel:CreateFontString(nil, "ARTWORK", "GameFontWhite")
     description:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -verticalSpacing)
-    description:SetText(L["Specify the ordering you wish to use when sorting by role."])
+    description:SetText(L["Specify the ordering you wish to use when sorting by spec."])
 
     local all = {}
 
@@ -35,17 +36,20 @@ function M:Build(parent)
         for k, v in pairs(config) do
             if v == value then
                 toSwap = k
+                break
             end
         end
 
         if not toSwap then
-            fsLog:Error("Couldn't determine existing value to swap.")
+            fsLog:Bug("Couldn't determine existing value to swap for %d.", value)
             return
         end
 
         local currentValue = config[type]
         config[type] = value
         config[toSwap] = currentValue
+        fsConfig:NotifyChanged()
+        fsCompare:InvalidateCache()
 
         for _, ddl in ipairs(all) do
             ddl:FrameSortRefresh()

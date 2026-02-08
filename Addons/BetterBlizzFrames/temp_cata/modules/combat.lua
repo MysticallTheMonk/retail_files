@@ -5,8 +5,8 @@ function BBF.CombatIndicator(unitFrame, unit)
     local combatIndicatorOn = BetterBlizzFramesDB[settingsPrefix .. "CombatIndicator"]
     if not combatIndicatorOn then return end
 
-    local xPos = BetterBlizzFramesDB.combatIndicatorXPos - 20
-    local yPos = BetterBlizzFramesDB.combatIndicatorYPos
+    local xPos = BetterBlizzFramesDB.combatIndicatorXPos - (BBF.isTBC and 7 or 20)
+    local yPos = BetterBlizzFramesDB.combatIndicatorYPos - (BBF.isTBC and 3 or 0)
     local mainAnchor = BetterBlizzFramesDB.combatIndicatorAnchor
     local reverseAnchor = BBF.GetOppositeAnchor(mainAnchor)
     local inCombat = UnitAffectingCombat(unit)
@@ -163,8 +163,8 @@ function BBF.RacialIndicator(unitFrame, unit)
     local racialIndicatorOn = BetterBlizzFramesDB[settingsPrefix .. "RacialIndicator"]
     if not racialIndicatorOn then return end
 
-    local xPos = BetterBlizzFramesDB.racialIndicatorXPos + 26
-    local yPos = BetterBlizzFramesDB.racialIndicatorYPos + 20
+    local xPos = BetterBlizzFramesDB.racialIndicatorXPos + (BBF.isTBC and 44 or 26)
+    local yPos = BetterBlizzFramesDB.racialIndicatorYPos + (BBF.isTBC and 16 or 20)
     local scale = BetterBlizzFramesDB.racialIndicatorScale
 
     local showOrc = BetterBlizzFramesDB.racialIndicatorOrc

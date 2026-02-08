@@ -6,7 +6,7 @@ Mixin(module, addonTable.hooks)
 local Media = LibStub("LibSharedMedia-3.0")
 
 local actionBars = {
-    "Action", --MainMenuBar Buttons are not named after parent
+    "Action", --MainActionBar Buttons are not named after parent
     "MultiBarBottomLeft",
     "MultiBarBottomRight",
     "MultiBarRight",

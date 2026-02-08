@@ -1,4 +1,4 @@
---Localization.ruRU.lua 
+--Localization.ruRU.lua
 
 if ( GetLocale() == "ruRU" ) then
 
@@ -40,7 +40,7 @@ TomTomLocals = {
 	["Coordinate feed accuracy"] = "Точность координатной подачи",
 	["Coordinate feed throttle"] = "Скорость вывода координатной подачи",
 	["Coordinates can be displayed as simple XX, YY coordinate, or as more precise XX.XX, YY.YY.  This setting allows you to control that precision"] = "Координаты могут быть показаны как с низкой точностью (XX, YY), так и с высокой (XX.XX, YY.YY).",
-	["Coordinates can be slid from the default location, to accomodate other addons.  This setting allows you to control that offset"] = "Координаты могут быть перемещены из местоположения по умолчанию, чтобы разместить другие дополнения. Этот параметр позволяет вам контролировать это смещение",
+	["Coordinates can be moved from the default location, this setting allows you to control that offset"] = "Координаты могут быть перемещены из местоположения по умолчанию, чтобы разместить другие дополнения. Этот параметр позволяет вам контролировать это смещение",
 	["Could not find any matches for zone %s."] = "Не удалось найти совпадений для зоны %s.",
 	["Crazy Arrow feed throttle"] = "Подача скорости вывода для стрелки",
 	["Create note modifier"] = "Кнопка для созданий направлений",
@@ -76,7 +76,7 @@ TomTomLocals = {
 	["Good color"] = "Хороший цвет",
 	["Hide the crazy arrow display during pet battles"] = "Скрыть дисплей стрелки во время битв питомцев",
 	["Icon Control"] = "Управление значками",
-	["If you have changed the waypoint display settings (minimap, world), this will re-set all waypoints to the current options."] = "Если вы изменили настройки отображения путевой точки (миникарта, мир), это приведет к сбросу всех путевых точек на текущие параметры.",
+	["If you have changed the waypoint display settings (minimap, world), this will reset all waypoints to the current options."] = "Если вы изменили настройки отображения путевой точки (миникарта, мир), это приведет к сбросу всех путевых точек на текущие параметры.",
 	["If your arrow is covered up by something else, try this to bump it up a layer."] = "Если ваша стрелка покрыта чем-то другим, попробуйте это, чтобы увеличить слой.",
 	["Lock coordinate block"] = "Закрепить блок координат",
 	["Lock waypoint arrow"] = "Закрепить стрелку направления",
@@ -108,7 +108,7 @@ TomTomLocals = {
 	["Removed %d waypoints from %s"] = "Удалить %d путевые точки из %s",
 	["Reset Position"] = "Сбросить позицию",
 	["Reset waypoint display options to current"] = "Устанавливает позицию стрелки по-умолчанию - в центре экрана",
-	["Resets the position of the waypoint arrow if its been dragged off screen"] = "Сбрасывает положение стрелки путевой точки, если она была перетащена за пределы экрана",
+	["Resets the position of the waypoint arrow if it has been dragged off screen"] = "Сбрасывает положение стрелки путевой точки, если она была перетащена за пределы экрана",
 	["Save new waypoints until I remove them"] = "Сохранять новые направления до их удаления",
 	["Save profile for TomTom waypoints"] = "Сохранить профиль направлений TomTom",
 	["Save this waypoint between sessions"] = "Сохранять это направление между сессиями",
@@ -129,7 +129,7 @@ TomTomLocals = {
 	["The color to be displayed when you are moving in the exact direction of the active waypoint"] = "Цвет, отображаемый при движении в точном направлении активной путевой точки",
 	["The color to be displayed when you are moving in the opposite direction of the active waypoint"] = "Цвет, который примет стрелка, когда вы будете двигаться в противоположном направлении от установленной цели",
 	["The display of the coordinate block can be customized by changing the options below."] = "Отображение блока координат может быть настроено с помощью опций, указанных ниже.",
-	["The floating waypoint arrow can change color depending on whether or nor you are facing your destination.  By default it will display green when you are facing it directly, and red when you are facing away from it.  These colors can be changed in this section.  Setting these options to the same color will cause the arrow to not change color at all"] = "Плавающая стрелка направлений будет менять свой цвет в зависимости от того, как повёрнут ваш персонаж по отношению к установленной цели. По-умолчанию, стрелка будет зелёной, если вы будете смотреть в верном направлении, или красной, если вы будете смотреть в обратную, от установленной цели, сторону. При установке двух одинаковых цветов, стрелка не будет постоянно перекрашиваться",
+	["The floating waypoint arrow can change color depending on whether or not you are facing your destination.  By default it will display green when you are facing it directly, and red when you are facing away from it.  These colors can be changed in this section.  Setting these options to the same color will cause the arrow to not change color at all"] = "Плавающая стрелка направлений будет менять свой цвет в зависимости от того, как повёрнут ваш персонаж по отношению к установленной цели. По-умолчанию, стрелка будет зелёной, если вы будете смотреть в верном направлении, или красной, если вы будете смотреть в обратную, от установленной цели, сторону. При установке двух одинаковых цветов, стрелка не будет постоянно перекрашиваться",
 	["There were no waypoints to remove in %s"] = "Не найдено направлений в %s",
 	["These options let you customize the size and opacity of the waypoint arrow, making it larger or partially transparent, as well as limiting the size of the title display."] = "Эти опции позволяют вам настроить размер и прозрачность стрелки направлений, сделав её максимально подходящей под ваш интерфейс.",
 	["This option will not remove any waypoints that are currently set to persist, but only effects new waypoints that get set"] = "Эта опция не удаляет любые путевые точки, которые в данный момент настроены на сохранение, а только воздействует на новые путевые точки, которые установлены",
@@ -155,7 +155,7 @@ TomTomLocals = {
 	["TomTom can announce new waypoints to the default chat frame when they are added"] = "TomTom может сообщать в окно чата о создании новых направлений",
 	["TomTom can automatically set a waypoint when you die, guiding you back to your corpse"] = "TomTom может автоматически установить путевую точку, когда вы умрете, направляя вас обратно к трупу",
 	["TomTom can be configured to set waypoints for the quest objectives that are shown in the watch frame and on the world map.  These options can be used to configure these options."] = "TomTom можно настроить для установки путевых точек для целей задания, которые отображаются в рамке наблюдения и на карте мира. Эти параметры можно использовать для настройки этих параметров.",
-	["TomTom can display a tooltip containing information abouto waypoints, when they are moused over.  This setting toggles that functionality"] = "TomTom может показывать всплывающие окошки, содержащие информацию о соответствующем направлении",
+	["TomTom can display a tooltip containing information about waypoints, when they are moused over.  This setting toggles that functionality"] = "TomTom может показывать всплывающие окошки, содержащие информацию о соответствующем направлении",
 	["TomTom can display multiple waypoint arrows on the minimap.  These options control the display of these waypoints"] = "TomTom может показывать несколько стрелок направления на миникарте. С помощью этих опций, вы можете настроить эту функциональность",
 	["TomTom can display multiple waypoints on the world map.  These options control the display of these waypoints"] = "TomTom может показывать несколько направлений на карте мира. С помощью этих опций, вы можете настроить эту функциональность",
 	["TomTom can hide waypoints in other zones, this setting toggles that functionality"] = "TomTom может показывать направления, установленные в других локациях",
@@ -192,7 +192,7 @@ TomTomLocals = {
 	["|cffffff78/cway |r - Activate the closest waypoint"] = "|cffffff78/cway |r - Активировать ближайшую точку",
 	["|cffffff78/tomtom |r - Open the TomTom options panel"] = "|cffffff78/tomtom |r - Открыть панель параметров TomTom",
 	["|cffffff78/way /tway /tomtomway |r - Commands to set a waypoint: one should work."] = "|cffffff78/way /tway /tomtomway |r - Команды для установки путевой точки: я должен работать.",
-	["|cffffff78/way <x> <y> [desc]|r - Adds a waypoint at x,y with descrtiption desc"] = "|cffffff78/way <x> <y> [desc]|r - добавить точку направления x,y в текущей локации с описанием [desc]",
+	["|cffffff78/way <x> <y> [desc]|r - Adds a waypoint at x,y with description desc"] = "|cffffff78/way <x> <y> [desc]|r - добавить точку направления x,y в текущей локации с описанием [desc]",
 	["|cffffff78/way <zone> <x> <y> [desc]|r - Adds a waypoint at x,y in zone with description desc"] = "|cffffff78/way <zone> <x> <y> [desc]|r - Добавить точку направления x,y в зоне <zone> и описанием [desc]",
 	["|cffffff78/way arrow|r - Prints status of the Crazy Arrow"] = "|cffffff78/way arrow|r - Печатает статус стрелки",
 	["|cffffff78/way block|r - Prints status of the Coordinate Block"] = "|cffffff78/way block|r - Печатает статус координатного блока",

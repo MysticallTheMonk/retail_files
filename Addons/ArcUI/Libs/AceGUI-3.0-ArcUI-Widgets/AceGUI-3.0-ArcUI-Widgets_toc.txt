@@ -1,0 +1,9 @@
+## Interface: 120001
+## Title: Lib: AceGUI-3.0-ArcUI-Widgets
+## Notes: Custom AceGUI widgets for ArcUI (ItemDropBox)
+## Author: Arc
+## Version: 1.0
+## X-Category: Library
+## LoadOnDemand: 1
+
+AceGUI-3.0-ArcUI-Widgets.lua

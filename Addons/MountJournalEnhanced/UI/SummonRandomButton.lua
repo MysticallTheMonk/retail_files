@@ -29,6 +29,7 @@ ADDON.Events:RegisterCallback("loadUI", function()
         button:HookScript("OnLeave", function()
             GameTooltip:Hide()
         end)
+        button:SetAttribute("MJE_ToolbarIndex", "RandomFavorite")
         ADDON.UI:RegisterToolbarGroup("00-random-mount", button)
     end
 end, "summon random mount button")

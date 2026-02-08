@@ -1,4 +1,6 @@
 local _, addon = ...
+local API = addon.API;
+local Narci = Narci;
 
 local MsgAlertContainer = addon.MsgAlertContainer;
 local TransitionAPI = addon.TransitionAPI;
@@ -8,28 +10,27 @@ local TalentTreeDataProvider = addon.TalentTreeDataProvider;
 local CameraUtil = addon.CameraUtil;
 local UIParentFade = addon.UIParentFade;
 local CallbackRegistry = addon.CallbackRegistry;
-local API = addon.API;
-
-
-local Narci = Narci;
+local SharedBlackScreen = addon.SharedBlackScreen;
 
 Narci.refreshCombatRatings = true;
 
 local SLOT_TABLE = {};
 Narci.slotTable = SLOT_TABLE;
 
-local STAT_STABLE = {};
-local SHORT_STAT_TABLE = {};
+local AttributeFrames = {};
+local ShortAttributeFrames = {};
 local L = Narci.L;
 local VIGNETTE_ALPHA = 0.5;
 local IS_OPENED = false;									--Addon was opened by clicking
 local MOG_MODE = false;
 local SHOW_MISSING_ENCHANT_ALERT = true;
+local IS_LEGION_REMIX = false;
 
 local NarciAPI = NarciAPI;
 local GetItemEnchantID = NarciAPI.GetItemEnchantID;
 local GetItemEnchantText = NarciAPI.GetEnchantTextByItemLink;
 local EnchantInfo = Narci.EnchantData;						--Bridge/GearBonus.lua
+local GetOverrideItemIcon = NarciAPI.GetOverrideItemIcon;
 
 local PlayLetteboxAnimation = NarciAPI_LetterboxAnimation;
 local SmartFontType = NarciAPI.SmartFontType;
@@ -71,7 +72,6 @@ local RadarChart;
 local ItemTooltip;
 
 local MiniButton = Narci_MinimapButton;
-local NarciThemeUtil = NarciThemeUtil;
 
 
 local EL = CreateFrame("Frame");	--Event Listener
@@ -180,6 +180,20 @@ function CVarTemp:RestoreDynamicCam()
 	DynamicCam.db.profile.shoulderOffsetZoom.lowerBound = self.DynmicCamShoulderOffsetZoomUpperBound;
 end
 
+function CVarTemp.BackUpAndChangeOccludedSilhouette()
+	CVarTemp.occludedSilhouettePlayer = GetCVar("occludedSilhouettePlayer");
+	SetCVar("occludedSilhouettePlayer", 0);
+end
+CallbackRegistry:Register("UIParent.OnHide", CVarTemp.BackUpAndChangeOccludedSilhouette);
+
+function CVarTemp.RestoreOccludedSilhouette()
+	if CVarTemp.occludedSilhouettePlayer then
+		SetCVar("occludedSilhouettePlayer", CVarTemp.occludedSilhouettePlayer);
+		CVarTemp.occludedSilhouettePlayer = nil;
+	end
+end
+CallbackRegistry:Register("UIParent.OnShow", CVarTemp.RestoreOccludedSilhouette);
+
 local function GetKeepActionCam()
 	return CVarTemp.isDynamicCamLoaded or CVarTemp.isActionCamPlusLoaded or (not CVarTemp.cameraSafeMode)
 end
@@ -259,14 +273,14 @@ function IntroMotion:SetUseCameraTransition(enabled)
 		divisor = 80;
 	end
 
-	for k, slot in pairs(STAT_STABLE) do
+	for k, slot in pairs(AttributeFrames) do
 		local delay = (slot:GetID())/divisor;
 		if slot.animIn then
 			slot.animIn.A2:SetStartDelay(delay);
 		end
 	end
 
-	for k, slot in pairs(SHORT_STAT_TABLE) do
+	for k, slot in pairs(ShortAttributeFrames) do
 		local delay = (slot:GetID())/divisor;
 		slot.animIn.A2:SetStartDelay(delay);
 	end
@@ -284,6 +298,15 @@ function IntroMotion:InstantZoomIn()
 end
 
 function IntroMotion:Enter()
+	if not NarcissusDB.CameraAutoZoomIn then
+		After(0.25, function()
+			self:ShowFrame();
+		end);
+		CameraUtil:SmoothShoulderByZoom();
+		UIParentFade:FadeOutUIParent();
+		return
+	end
+
 	SetCVar("test_cameraDynamicPitch", 1);
 
 	if self.useCameraTransition then
@@ -334,17 +357,18 @@ end
 
 function IntroMotion:PlayAttributeAnimation()
 	if not NarcissusDB.DetailedIlvlInfo then
-		RadarChart:AnimateValue();
+		RadarChart:UpdateChart(true);
 		return
 	end
 	if not RadarChart:IsShown() then
 		return		--Attributes is not the active tab
 	end
-	local anim;
+	local f, anim;
 	for i = 1, 20 do
-		anim = STAT_STABLE[i].animIn;
-		if anim then
-			anim.A2:SetToAlpha(STAT_STABLE[i]:GetAlpha());
+		f = AttributeFrames[i];
+		anim = f.animIn;
+		if anim and not f.noAnimation then
+			anim.A2:SetToAlpha(AttributeFrames[i]:GetAlpha());
 			anim:Play();
 		end
 	end
@@ -709,6 +733,8 @@ local function GetFormattedSourceText(sourceInfo)
 	local bonusID;
 	local colorizedText, plainText, hyperlink;
 
+	--/dump Enum.TransmogSource
+
 	if sourceType == 1 then	--TRANSMOG_SOURCE_BOSS_DROP = 1
 		local drops = C_TransmogCollection.GetAppearanceSourceDrops(sourceInfo.sourceID);
 		if drops and drops[1] then
@@ -755,20 +781,8 @@ local function GetFormattedSourceText(sourceInfo)
 				hyperlink = "|c"..hex.."|Hitem:"..sourceInfo.itemID.."::::::::120::::2:512".."4"..":1562:|h|r";
 				bonusID = 5124;
 			end
-		elseif sourceType == 3 then --vendor
-			colorizedText = TRANSMOG_SOURCE_3;
-		elseif sourceType == 4 then --world drop
-			colorizedText = TRANSMOG_SOURCE_4;
-		elseif sourceType == 5 then --achievement
-			colorizedText = TRANSMOG_SOURCE_5;
-		elseif sourceType == 6 then	--profession
-			colorizedText = TRANSMOG_SOURCE_6;
-		else
-			if itemQuality == 6 then
-				colorizedText = ITEM_QUALITY6_DESC;
-			elseif itemQuality == 5 then
-				colorizedText = ITEM_QUALITY5_DESC;
-			end
+		elseif sourceType then
+			colorizedText = TransitionAPI.GetTransmogSourceName(sourceType);
 		end
 		plainText = colorizedText;
 	end
@@ -791,6 +805,7 @@ function NarciEquipmentSlotMixin:SetTransmogSourceID(appliedSourceID, secondaryS
 		self.GradientBackground:Show();
 	else
 		self.Icon:SetDesaturated(true);
+		self.Icon:SetTexture(self.emptyTexture);
 		self.Name:SetText(nil);
 		self.ItemLevel:SetText(nil);
 		self.GradientBackground:Hide();	
@@ -822,6 +837,10 @@ function NarciEquipmentSlotMixin:SetTransmogSourceID(appliedSourceID, secondaryS
 		_, _, self.hyperlink = GetFormattedSourceText(sourceInfo);
 	else
 		subText, self.sourcePlainText, self.hyperlink = GetFormattedSourceText(sourceInfo);
+	end
+
+	if not subText then
+		subText = " ";
 	end
 
 	if self.hyperlink then
@@ -877,7 +896,7 @@ function NarciEquipmentSlotMixin:SetTransmogSourceID(appliedSourceID, secondaryS
 
 	if self.slotID == 3 then
 		--shoulder
-		if secondarySourceID and secondarySourceID > 0 then
+		if secondarySourceID and secondarySourceID > 0 and secondarySourceID ~= appliedSourceID then
 			self:DisplayDirectionMark(true, itemQuality);
 			SLOT_TABLE[2]:SetTransmogSourceID(secondarySourceID, secondarySourceID);
 		else
@@ -907,9 +926,15 @@ function NarciEquipmentSlotMixin:Refresh(forceRefresh)
 			self:UntrackTempEnchant();
 			self:ClearOverlay();
 			self:HideVFX();
+			self.GemSlot:HideSlot();
 			self.itemLink = nil;
 			self.isSlotHidden = false;	--Undress an item from player model
 			self.RuneSlot:Hide();
+
+			if TransmogDataProvider.RequestUpdateCharacterUI() then
+				return true
+			end
+
 			self.GradientBackground:Show();
 			local appliedSourceID, appliedVisualID, hasSecondaryAppearance = GetSlotVisualID(slotID);
 			self.sourceID = appliedSourceID;
@@ -1006,7 +1031,10 @@ function NarciEquipmentSlotMixin:Refresh(forceRefresh)
 			local itemID = GetItemInfoInstant(itemLink);
 			borderTexKey, itemVFX, bR, bG, bB, hideItemIcon = GetBorderArtByItemID(itemID);
 
-			itemIcon = ((not hideItemIcon) and GetInventoryItemTexture("player", slotID)) or nil;
+			itemIcon = itemID and GetOverrideItemIcon(itemID);
+			if not itemIcon then
+				itemIcon = ((not hideItemIcon) and GetInventoryItemTexture("player", slotID)) or nil;
+			end
 			itemName = C_Item.GetItemName(itemLocation);
 			itemQuality = C_Item.GetItemQuality(itemLocation);
 			effectiveLvl = C_Item.GetCurrentItemLevel(itemLocation);
@@ -1068,7 +1096,18 @@ function NarciEquipmentSlotMixin:Refresh(forceRefresh)
 					itemIcon = GetRuneForgeLegoIcon(itemLocation) or itemIcon;
 				end
 			end
-	
+
+			if IS_LEGION_REMIX and slotID == 16 then
+				local configID = C_Traits.GetConfigIDByTreeID(1161);
+				if configID then
+					local nodeInfo = C_Traits.GetNodeInfo(configID, 108700);	--Limits Unbound
+					local rank = nodeInfo and nodeInfo.currentRank or 0;
+					if rank > 0 then
+						rank = "|cff00ccff"..rank.."|r";
+						effectiveLvl = effectiveLvl.."  "..rank;
+					end
+				end
+			end
 
 			local enchantText, isEnchanted = GetItemEnchantText(itemLink, true, self.isRight);	--enchantText (effect texts) may not be available yet
 			if enchantText then
@@ -1296,6 +1335,9 @@ function NarciEquipmentSlotMixin:UpdateGradientSize()
 end
 
 function NarciEquipmentSlotMixin:OnLoad()
+	self:SetScript("OnLoad", nil);
+	self.OnLoad = nil;
+
 	local slotName = self.slotName;
 	local slotID, textureName = GetInventorySlotInfo(slotName);
 	self.emptyTexture = textureName;
@@ -1313,8 +1355,8 @@ function NarciEquipmentSlotMixin:OnLoad()
 	end
 	SLOT_TABLE[slotID] = self;
 
-	self:SetScript("OnLoad", nil);
-	self.OnLoad = nil;
+	local level = SharedBlackScreen:GetBaseFrameLevel() - 1;
+	self:SetFrameLevel(level);
 end
 
 function NarciEquipmentSlotMixin:OnEvent(event, ...)
@@ -1531,9 +1573,10 @@ local function SetStatTooltipText(self)
 end
 
 function Narci_ShowStatTooltip(self, direction)
-	if ( not self.tooltip ) then
-		return;
+	if not TransitionAPI.Secret_DoesStringExist(self.tooltip) then
+		return
 	end
+
 	SetStatTooltipText(self)
 	if (not direction) then
 		DefaultTooltip:SetPoint("TOPRIGHT",self,"TOPLEFT", -4, 0)
@@ -1561,6 +1604,7 @@ end
 function NarciItemLevelFrameMixin:OnLoad()
 	--Declared in Modules\CharacterFrame\ItemLevelFrame.lua
 	ItemLevelFrame = self;
+	SharedBlackScreen:SetParent(Narci_Character);
 	self:Init();
 end
 
@@ -1583,8 +1627,22 @@ local function UpdateCharacterInfoFrame(newLevel)
 		end
 	end
 
-	ItemLevelFrame:UpdateItemLevel(level);
+	ItemLevelFrame:UpdateItemLevel();
 end
+
+
+local function DisplayItemTransmogInfoList(itemTransmogInfoList)
+	if MOG_MODE and Narci_Character:IsVisible() then
+		for slotID, info in ipairs(itemTransmogInfoList) do
+			--print(slotID, info.appearanceID);   --appearanceID, secondaryAppearanceID, illusionID
+			if SLOT_TABLE[slotID] then
+				SLOT_TABLE[slotID]:SetTransmogSourceID(info.appearanceID, info.secondaryAppearanceID);    --SetAppearance
+			end
+		end
+	end
+end
+addon.DisplayItemTransmogInfoList = DisplayItemTransmogInfoList;
+
 
 local SlotController = {};
 SlotController.updateFrame = CreateFrame("Frame");
@@ -1729,7 +1787,10 @@ function NarciEquipmentFlyoutButtonMixin:SetUp(maxItemLevel)
 	local itemID = C_Item.GetItemID(itemLocation);
 	local itemQuality = C_Item.GetItemQuality(itemLocation);
 	local itemLevel = C_Item.GetCurrentItemLevel(itemLocation);
-	local itemIcon = C_Item.GetItemIcon(itemLocation);
+	local itemIcon = GetOverrideItemIcon(itemID);
+	if not itemIcon then
+		itemIcon = C_Item.GetItemIcon(itemLocation);
+	end
 	local itemLink = C_Item.GetItemLink(itemLocation)
 
 	if C_AzeriteEmpoweredItem.IsAzeriteEmpoweredItem(itemLocation) then
@@ -1786,12 +1847,12 @@ local function ShowAllItemInfo()
 		return
 	end
 
-	local level = Narci_FlyoutBlack:GetFrameLevel() - 1;
+	local level = SharedBlackScreen:GetBaseFrameLevel() - 1;
 
 	for slotID, slotButton in pairs(SLOT_TABLE) do
 		ShowLessItemInfo(slotButton, false);
-		slotButton:SetFrameLevel(level -1)
-		slotButton.RuneSlot:SetFrameLevel(level)
+		slotButton:SetFrameLevel(level -1);
+		slotButton.RuneSlot:SetFrameLevel(level);
 	end
 end
 
@@ -1819,7 +1880,7 @@ function NarciEquipmentFlyoutFrameMixin:OnHide()
 	self:StopAnimating();
 
 	if Narci_Character.animOut:IsPlaying() then return; end
-	Narci_FlyoutBlack:Out();
+	SharedBlackScreen:TryHide();
 end
 
 function NarciEquipmentFlyoutFrameMixin:OnShow()
@@ -1856,9 +1917,9 @@ function NarciEquipmentFlyoutFrameMixin:SetItemSlot(slotButton, showArrow)
 	end
 
 	if self.parentButton then
-		local level = Narci_FlyoutBlack:GetFrameLevel() -1
-		self.parentButton:SetFrameLevel(level - 1);
-		self.parentButton.RuneSlot:SetFrameLevel(level);
+		--local level = SharedBlackScreen:GetBaseFrameLevel() -1
+		--self.parentButton:SetFrameLevel(level - 1);
+		--self.parentButton.RuneSlot:SetFrameLevel(level);
 		ShowLessItemInfo(self.parentButton, false);
 	end
 
@@ -1880,8 +1941,8 @@ function NarciEquipmentFlyoutFrameMixin:SetItemSlot(slotButton, showArrow)
 		self.Arrow:Show();
 	end
 
-	Narci_FlyoutBlack:In();
-	slotButton:SetFrameLevel(Narci_FlyoutBlack:GetFrameLevel() + 1)
+	SharedBlackScreen:TryShow();
+	SharedBlackScreen:RaiseFrameLevel(slotButton);
 	self:SetFrameLevel(50);
 
 	NarciEquipmentTooltip:HideTooltip();
@@ -1943,7 +2004,7 @@ function NarciEquipmentFlyoutFrameMixin:DisplayItemsBySlotID(slotID, playFlyUpAn
 		if ( location - id == invLocationPlayer ) then -- Remove the currently equipped item from the list
 			itemTable[location] = nil;
 		else
-			local _, _, bags, _, slot, bag = EquipmentManager_UnpackLocation(location);
+			local _, _, bags, _, slot, bag = TransitionAPI.EquipmentManager_UnpackLocation(location);
 			if bags then
 				itemLocation = ItemLocation:CreateFromBagAndSlot(bag, slot);
 				itemLevel = C_Item.GetCurrentItemLevel(itemLocation);
@@ -2019,400 +2080,16 @@ function NarciEquipmentFlyoutFrameMixin:IsMouseOverButtons()
 end
 
 
------------------------------------------------------------
-------------------------Color Theme------------------------
------------------------------------------------------------
-local ColorUtil = {};
-ColorUtil.themeColor = NarciThemeUtil:GetColorTable();
-
-function ColorUtil:UpdateByMapID()
-	local mapID = C_Map.GetBestMapForUnit("player");
-	--print("mapID:".. mapID)
-	if mapID then	--and NarcissusDB.AutoColorTheme
-		if mapID == self.mapID then
-			self.requireUpdate = false;
-		else
-			self.mapID = mapID;
-			self.requireUpdate = true;
-			self.themeColor = NarciThemeUtil:SetColorIndex(mapID);
-			RadarChart:UpdateColor();
-
-			Narci_NavBar:SetThemeColor(self.themeColor);
-		end
-	else
-		self.requireUpdate = false;
-	end
-end
-
-function ColorUtil:SetWidgetColor(frame)
-	if not self.requireUpdate then return end;
-
-	local r, g, b = self.themeColor[1], self.themeColor[2], self.themeColor[3];
-	local type = frame:GetObjectType();
-
-	if type == "FontString" then
-		local sqrt = math.sqrt;
-		r, g, b = sqrt(r), sqrt(g), sqrt(b);
-		frame:SetTextColor(r, g, b);
-	else
-		frame:SetColorTexture(r, g, b);
-	end
-end
-
 ---------------------------------------------
-NarciRadarChartMixin = {}
-
-function NarciRadarChartMixin:OnLoad()
-	RadarChart = self;
-
-	local circleTex = "Interface\\AddOns\\Narcissus\\Art\\Widgets\\RadarChart\\Radar-Vertice";
-	local filter = "TRILINEAR";
-	local tex;
-	local texs = {};
-	for i = 1, 4 do
-		tex = self:CreateTexture(nil, "OVERLAY", nil, 2);
-		table.insert(texs, tex);
-		tex:SetSize(12, 12);
-		tex:SetTexture(circleTex, nil, nil, filter);
-	end
-
-	self.vertices = texs;
-
-	self:SetScript("OnLoad", nil);
-	self.OnLoad = nil;
-
-	self.deg = math.deg;
-	self.rad = math.rad;
-	self.atan2 = math.atan2;
-	self.sqrt = math.sqrt;
-end
-
-function NarciRadarChartMixin:OnShow()
-	self.MaskedBackground:SetAlpha(0.4);
-	self.MaskedBackground2:SetAlpha(0.4);
-end
-
-function NarciRadarChartMixin:OnHide()
-	self:StopAnimating();
-end
-
-function NarciRadarChartMixin:SetVerticeSize(attributeFrame, size)
-	local name = attributeFrame.token;
-	local vertice;
-	if name == "Crit" then
-		vertice = self.vertices[1];
-	elseif name == "Haste" then
-		vertice = self.vertices[2];
-	elseif name == "Mastery" then
-		vertice = self.vertices[3];
-	elseif name == "Versatility" then
-		vertice = self.vertices[4];
-	end
-	vertice:SetSize(size, size);
-end
-
-function NarciRadarChartMixin:UpdateColor()
-	ColorUtil:SetWidgetColor(self.MaskedBackground);
-	ColorUtil:SetWidgetColor(self.MaskedBackground2);
-	ColorUtil:SetWidgetColor(self.MaskedLine1);
-	ColorUtil:SetWidgetColor(self.MaskedLine2);
-	ColorUtil:SetWidgetColor(self.MaskedLine3);
-	ColorUtil:SetWidgetColor(self.MaskedLine4);
-end
-
-local GetEffectiveCrit = Narci.GetEffectiveCrit;
-local GetCombatRating = GetCombatRating;
-
-function NarciRadarChartMixin:SetValue(c, h, m, v, manuallyInPutSum)
-	--c, h, m, v: Input manually or use combat ratings
-
-	local Radar = self;
-	local chartWidth = 96 / 2;	--In half
-
-	local crit, haste, mastery, versatility;
-	if c then
-		crit = c;
-	else
-		local _, rating = GetEffectiveCrit();
-		crit = GetCombatRating(rating) or 0;
-	end
-	if h then
-		haste = h;
-	else
-		haste = GetCombatRating(CR_HASTE_MELEE) or 0;
-	end
-	if m then
-		mastery = m;
-	else
-		mastery = GetCombatRating(CR_MASTERY) or 0;
-	end
-	if v then
-		versatility = v;
-	else
-		versatility = GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) or 0;
-	end
-
-	--		|	p1(x1,y1)	  Line4		p3(x3,y3)
-	--		|			*				*
-	--		|			 	*		*
-	--		|	Line1		 	*		   Line3
-	--		|			 	*		*
-	--		|			*				*
-	--		|	p2(x2,y2)	  Line2		p4(x4,y4)
-
-	local v1, v2, v3, v4, v5, v6 = true, true, true, true, true, true;
-	if crit == 0 and haste == 0 and mastery == 0 and versatility == 0 then
-		v1, v2, v3, v4, v5, v6 = false, false, false, false, false, false;
-	else
-		if crit == 0 and haste == 0 then v1 = false; end;
-		if haste == 0 and versatility == 0 then v2 = false; end;
-		if mastery == 0 and versatility == 0 then v3 = false; end;
-		if crit == 0 and mastery == 0 then v4 = false; end;
-		crit, haste, mastery = crit + 0.03, haste + 0.02, mastery + 0.01;				--Avoid some mathematical issues
-	end
-	Radar.MaskedLine1:SetShown(v1);
-	Radar.MaskedLine2:SetShown(v2);
-	Radar.MaskedLine3:SetShown(v3);
-	Radar.MaskedLine4:SetShown(v4);
-	Radar.MaskedBackground:SetShown(v5);
-	Radar.MaskedBackground2:SetShown(v6);
-
-	--[[
-		--4500 9.0 Stats Sum Level 50
-		Enchancements on ilvl 445 (Mythic Eternal Palace) Player Lvl 120
-		Neck 159 Weapon 25 Back 51 Wrist 28 Hands 37 Waist 36 Legs 50 Feet 37 Ring 89 Trinket 35	Max:696 + 12*7 ~= 800
-		Player Lvl 60 iLvl 233(Mythic Castle Nathria):	Back 82 Leg 141 Chest 141 Neck 214 Waist 105 Hand 105 Feet 105 Wrist 79 Ring 226 Shoulder 109  Head 146 Trinket 200 ~=1900
-		Player Lvl 60 iLvl 259(Mythic Sanctum of Domination):	Back 90 Leg 165 Chest 165 Neck 268 Waist 124 Hand 130 Feet 124 Wrist 91 Ring 268 Shoulder 124  Head 146 Trinket 200 weapon 162 ~= 2500 (+ 8 sockets)
-
-
-		ilvl 240 (Mythic Antorus) Player Lvl 110
-		Head 87 Shoulder 64 Chest 88 Weapon 152 Back 49 Wrist 49 Hands 64 Waist 64 Legs 87 Feet 63 Ring 165 Trinket 62	Max ~= 1100
-		ilvl 149 (Mythic HFC) Player Lvl 100
-		Head 48 Shoulder 36 Chest 48 Weapon 24 Back 28 Wrist 27 Hands 36 Waist 36 Legs 48 Feet 35 Ring 27 Trinket 32	Max ~= 510
-		Heirlooms Player Lvl 20
-		Weapon 4 Back 4 Wrist 4 Hands 6 Waist 6 Legs 8 Feet 6 Ring 5 Trinket 6	 ~= 60
-	--]]
-
-	local Sum = manuallyInPutSum or 0;
-	local maxNum = max(crit + haste + mastery + versatility, 1);
-	if maxNum > 0.95 * Sum then
-		Sum = maxNum;
-	end
-
-	local d1, d2, d3, d4 = (crit / Sum), (haste / Sum) , (mastery / Sum) , (versatility / Sum);
-	local a;
-	if (d1 + d4) ~= 0 and (d2 + d3) ~= 0 then
-		--a = chartWidth * math.sqrt(0.618/(d1 + d4)/(d2 + d3)/2)* 96;
-		a = 1.414 * chartWidth;
-	else
-		a = 0;
-	end
-
-	local x1, x2, x3, x4 = -d1*a, -d2*a, d3*a, d4*a;
-	local y1, y2, y3, y4 = d1*a, -d2*a, d3*a, -d4*a;
-	local mx1, mx2, mx3, mx4 = (x1 + x2)/2, (x2 + x4)/2, (x3 + x4)/2, (x1 + x3)/2;
-	local my1, my2, my3, my4 = (y1 + y2)/2, (y2 + y4)/2, (y3 + y4)/2, (y1 + y3)/2;
-
-	local ma1 = self.atan2((y1 - y2), (x1 - x2));
-	local ma2 = self.atan2((y2 - y4), (x2 - x4));
-	local ma3 = self.atan2((y4 - y3), (x4 - x3));
-	local ma4 = self.atan2((y3 - y1), (x3 - x1));
-
-	if my1 == 0 then
-		my1 = 0.01;
-	end
-	if my3 == 0 then
-		my1 = -0.01;
-	end
-	if self.deg(ma1) == 90 then
-		ma1 = self.rad(89);
-	end
-	if self.deg(ma3) == -90 then
-		ma1 = self.rad(-89);
-	end
-
-	Radar.vertices[1]:SetPoint("CENTER", x1, y1);
-	Radar.vertices[2]:SetPoint("CENTER", x2, y2);
-	Radar.vertices[3]:SetPoint("CENTER", x3, y3);
-	Radar.vertices[4]:SetPoint("CENTER", x4, y4);
-
-	Radar.Mask1:SetRotation(ma1);
-	Radar.Mask2:SetRotation(ma2);
-	Radar.Mask3:SetRotation(ma3);
-	Radar.Mask4:SetRotation(ma4);
-
-	local hypo1 = self.sqrt(2*x1^2 + 2*x2^2);
-	local hypo2 = self.sqrt(2*x2^2 + 2*x4^2);
-	local hypo3 = self.sqrt(2*x4^2 + 2*x3^2);
-	local hypo4 = self.sqrt(2*x3^2 + 2*x1^2);
-
-	if (hypo1 - 4) > 0 then
-		Radar.MaskLine1:SetWidth(hypo1 - 4);	--Line length
-	else
-		Radar.MaskLine1:SetWidth(0.1);
-	end
-
-	if (hypo2 - 4) > 0 then
-		Radar.MaskLine2:SetWidth(hypo2 - 4);
-	else
-		Radar.MaskLine2:SetWidth(0.1);
-	end
-
-	if (hypo3 - 4) > 0 then
-		Radar.MaskLine3:SetWidth(hypo3 - 4);
-	else
-		Radar.MaskLine3:SetWidth(0.1);
-	end
-
-	if (hypo4 - 4) > 0 then
-		Radar.MaskLine4:SetWidth(hypo4 - 4);
-	else
-		Radar.MaskLine4:SetWidth(0.1);
-	end
-
-	Radar.MaskLine1:ClearAllPoints();
-	Radar.MaskLine1:SetRotation(0);
-	Radar.MaskLine1:SetRotation(ma1);
-	Radar.MaskLine1:SetPoint("CENTER", Radar, "CENTER", mx1, my1);
-	Radar.MaskLine2:ClearAllPoints();
-	Radar.MaskLine2:SetRotation(0);
-	Radar.MaskLine2:SetRotation(ma2);
-	Radar.MaskLine2:SetPoint("CENTER", Radar, "CENTER", mx2, my2);
-	Radar.MaskLine3:ClearAllPoints();
-	Radar.MaskLine3:SetRotation(0);
-	Radar.MaskLine3:SetRotation(ma3);
-	Radar.MaskLine3:SetPoint("CENTER", Radar, "CENTER", mx3, my3);
-	Radar.MaskLine4:ClearAllPoints();
-	Radar.MaskLine4:SetRotation(0);
-	Radar.MaskLine4:SetRotation(ma4);
-	Radar.MaskLine4:SetPoint("CENTER", Radar, "CENTER", mx4, my4);
-	Radar.Mask1:SetPoint("CENTER", mx1, my1);
-	Radar.Mask2:SetPoint("CENTER", mx2, my2);
-	Radar.Mask3:SetPoint("CENTER", mx3, my3);
-	Radar.Mask4:SetPoint("CENTER", mx4, my4);
-
-	Radar.MaskedBackground:SetAlpha(0.4);
-	Radar.MaskedBackground2:SetAlpha(0.4);
-
-	Radar.n1, Radar.n2, Radar.n3, Radar.n4 = crit, haste, mastery, versatility;
-end
-
-function NarciRadarChartMixin:AnimateValue(c, h, m, v)
-	--Update the radar chart using animation
-	local Radar = self;
-	local UpdateFrame = Radar.UpdateFrame;
-	if not UpdateFrame then
-		UpdateFrame = CreateFrame("Frame", nil, Radar, "NarciUpdateFrameTemplate");
-		Radar.UpdateFrame = UpdateFrame;
-		Radar.n1, Radar.n2, Radar.n3, Radar.n4 = 0, 0, 0, 0;
-	end
-
-	local s1, s2, s3, s4 = Radar.n1, Radar.n2, Radar.n3, Radar.n4;	--start/end point
-	local critChance, critRating = GetEffectiveCrit();
-	local e1 = c or GetCombatRating(critRating) or 0;
-	local e2 = h or GetCombatRating(CR_HASTE_MELEE) or 0;
-	local e3 = m or GetCombatRating(CR_MASTERY) or 0;
-	local e4 = v or GetCombatRating(CR_VERSATILITY_DAMAGE_DONE) or 0;
-
-	local duration = 0.2;
-
-	local playerLevel = UnitLevel("player");
-	local sum = e1 + e2 + e3 + e4;
-	local bestSum;
-
-	if playerLevel == 50 then
-		bestSum = max(sum, 800);		--Status Sum for 8.3 Raid
-	elseif playerLevel == 60 then
-		bestSum = max(sum, 2500);		--Status Sum for 9.1 Raid
-	elseif playerLevel == 80 then
-		local cap = 27000;
-		if sum < 0.4*cap then
-			bestSum = 1.5 * sum;
-		else
-			bestSum = max(sum, cap);
-		end
-	else
-		--sum = 31 * math.exp( 0.04 * UnitLevel("player")) + 40;
-		bestSum = 1.5 * sum;
-	end
-
-	local function UpdateFunc(frame, elapsed)
-		local t = frame.t;
-		frame.t = t + elapsed;
-		local v1 = outSine(t, s1, e1, duration);
-		local v2 = outSine(t, s2, e2, duration);
-		local v3 = outSine(t, s3, e3, duration);
-		local v4 = outSine(t, s4, e4, duration);
-
-		if t >= duration then
-			v1, v2, v3, v4 = e1, e2, e3, e4;
-			frame:Hide();
-		end
-		Radar:SetValue(v1, v2, v3, v4, bestSum);
-	end
-
-	UpdateFrame:Hide();
-	UpdateFrame:SetScript("OnUpdate", UpdateFunc);
-	UpdateFrame:Show();
-
-	if self.Primary:IsShown() then
-		self.Primary:Update();
-		self.Health:Update();
-	end
-end
-
-function NarciRadarChartMixin:TogglePrimaryStats(state)
-	state = false;
-
-	if state then
-		self.Primary.Color:SetColorTexture(0.24, 0.24, 0.24, 0.75);
-		self.Health.Color:SetColorTexture(0.15, 0.15, 0.15, 0.75);
-		FadeFrame(self.Primary, 0.15, 1);
-		FadeFrame(self.Health, 0.15, 1);
-		self.Primary:Update();
-		self.Health:Update();
-	else
-		FadeFrame(self.Primary, 0.25, 0);
-		FadeFrame(self.Health, 0.25, 0);
-	end
-end
-
-function Narci_AttributeFrame_UpdateBackgroundColor(self)
-	local frameID = self:GetID() or 0;
-	local themeColor = ColorUtil.themeColor;
-	local r, g, b = themeColor[1], themeColor[2], themeColor[3];
-	if frameID % 2 == 0 then
-		if self.Color then
-			self.Color:SetColorTexture(r, g, b, 0.75);
-			return;
-		elseif self.Color1 and self.Color2 then
-			self.Color1:SetColorTexture(r, g, b, 0.75);
-			self.Color2:SetColorTexture(r, g, b, 0.75);
-		end
-	else
-		if self.Color then
-			self.Color:SetColorTexture(0.1, 0.1, 0.1, 0.75);
-			return;
-		elseif self.Color1 and self.Color2 then
-			self.Color1:SetColorTexture(0.1, 0.1, 0.1, 0.75);
-			self.Color2:SetColorTexture(0.1, 0.1, 0.1, 0.75);
-		end
-	end
-end
-
-function Narci_AttributeFrame_OnLoad(self)
-	Narci_AttributeFrame_UpdateBackgroundColor(self);
-end
-
 local function RefreshStats(id, frame)
 	frame = frame or "Detailed";
 	if frame == "Detailed" then
-		if STAT_STABLE[id] then
-			STAT_STABLE[id]:Update();
+		if AttributeFrames[id] then
+			AttributeFrames[id]:Update();
 		end
 	elseif frame == "Concise" then
-		if SHORT_STAT_TABLE[id] then
-			SHORT_STAT_TABLE[id]:Update();
+		if ShortAttributeFrames[id] then
+			ShortAttributeFrames[id]:Update();
 		end
 	end
 end
@@ -2426,11 +2103,11 @@ StatsUpdator:SetScript("OnUpdate", function(self, elapsed)
 	if self.t > 0.05 then
 		self.t = 0;
 		local i = self.index;
-		if STAT_STABLE[i] then
-			STAT_STABLE[i]:Update();
+		if AttributeFrames[i] then
+			AttributeFrames[i]:Update();
 		end
-		if SHORT_STAT_TABLE[i] then
-			SHORT_STAT_TABLE[i]:Update();
+		if ShortAttributeFrames[i] then
+			ShortAttributeFrames[i]:Update();
 		end
 		if i >= 20 then
 			self:Hide();
@@ -2486,41 +2163,42 @@ end
 
 local function AssignFrame()
 	local statFrame = Narci_DetailedStatFrame;
+	RadarChart = Narci_RadarChartFrame;
 	local radar = RadarChart;
-	STAT_STABLE[1] = statFrame.Primary;
-	STAT_STABLE[2] = statFrame.Stamina;
-	STAT_STABLE[3] = statFrame.Damage;
-	STAT_STABLE[4] = statFrame.AttackSpeed;
-	STAT_STABLE[5] = statFrame.Power;
-	STAT_STABLE[6] = statFrame.Regen;
-	STAT_STABLE[7] = statFrame.Health;
-	STAT_STABLE[8] = statFrame.Armor;
-	STAT_STABLE[9] = statFrame.Reduction;
-	STAT_STABLE[10]= statFrame.Dodge;
-	STAT_STABLE[11]= statFrame.Parry;
-	STAT_STABLE[12]= statFrame.Block;
-	STAT_STABLE[13]= radar.Crit;
-	STAT_STABLE[14]= radar.Haste;
-	STAT_STABLE[15]= radar.Mastery;
-	STAT_STABLE[16]= radar.Versatility;
-	STAT_STABLE[17]= statFrame.Leech;
-	STAT_STABLE[18]= statFrame.Avoidance;
-	STAT_STABLE[19]= statFrame.MovementSpeed;
-	STAT_STABLE[20]= statFrame.Speed;
+	AttributeFrames[1] = statFrame.Primary;
+	AttributeFrames[2] = statFrame.Stamina;
+	AttributeFrames[3] = statFrame.Damage;
+	AttributeFrames[4] = statFrame.AttackSpeed;
+	AttributeFrames[5] = statFrame.Power;
+	AttributeFrames[6] = statFrame.Regen;
+	AttributeFrames[7] = statFrame.Health;
+	AttributeFrames[8] = statFrame.Armor;
+	AttributeFrames[9] = statFrame.Reduction;
+	AttributeFrames[10]= statFrame.Dodge;
+	AttributeFrames[11]= statFrame.Parry;
+	AttributeFrames[12]= statFrame.Block;
+	AttributeFrames[13]= radar.Crit;
+	AttributeFrames[14]= radar.Haste;
+	AttributeFrames[15]= radar.Mastery;
+	AttributeFrames[16]= radar.Versatility;
+	AttributeFrames[17]= statFrame.Leech;
+	AttributeFrames[18]= statFrame.Avoidance;
+	AttributeFrames[19]= statFrame.MovementSpeed;
+	AttributeFrames[20]= statFrame.Speed;
 
 	local statFrame_Short = Narci_ConciseStatFrame;
-	SHORT_STAT_TABLE[1]  = statFrame_Short.Primary;
-	SHORT_STAT_TABLE[2]  = statFrame_Short.Stamina;
-	SHORT_STAT_TABLE[3]  = statFrame_Short.Health;
-	SHORT_STAT_TABLE[4]  = statFrame_Short.Power;
-	SHORT_STAT_TABLE[5]  = statFrame_Short.Regen;
-	SHORT_STAT_TABLE[6]  = statFrame_Short.Crit;
-	SHORT_STAT_TABLE[7]  = statFrame_Short.Haste;
-	SHORT_STAT_TABLE[8]  = statFrame_Short.Mastery;
-	SHORT_STAT_TABLE[9]  = statFrame_Short.Versatility;
-	SHORT_STAT_TABLE[10] = statFrame_Short.Leech;
-	SHORT_STAT_TABLE[11] = statFrame_Short.Avoidance;
-	SHORT_STAT_TABLE[12] = statFrame_Short.Speed;
+	ShortAttributeFrames[1]  = statFrame_Short.Primary;
+	ShortAttributeFrames[2]  = statFrame_Short.Stamina;
+	ShortAttributeFrames[3]  = statFrame_Short.Health;
+	ShortAttributeFrames[4]  = statFrame_Short.Power;
+	ShortAttributeFrames[5]  = statFrame_Short.Regen;
+	ShortAttributeFrames[6]  = statFrame_Short.Crit;
+	ShortAttributeFrames[7]  = statFrame_Short.Haste;
+	ShortAttributeFrames[8]  = statFrame_Short.Mastery;
+	ShortAttributeFrames[9]  = statFrame_Short.Versatility;
+	ShortAttributeFrames[10] = statFrame_Short.Leech;
+	ShortAttributeFrames[11] = statFrame_Short.Avoidance;
+	ShortAttributeFrames[12] = statFrame_Short.Speed;
 end
 
 function Narci_SetPlayerName(self)
@@ -2532,6 +2210,32 @@ function Narci_SetPlayerName(self)
 	SmartFontType(editBox);
 end
 
+local function Narci_Close()
+	if Narci.showExitConfirm and not InCombatLockdown() then
+		local ExitConfirm = Narci_ExitConfirmationDialog;
+		if not ExitConfirm:IsShown() then
+			FadeFrame(ExitConfirm, 0.25, 1);
+
+			SetUIVisibility(false);
+			MiniButton:Enable();
+			UIParent:SetAlpha(1);
+
+			return
+		else
+			FadeFrame(ExitConfirm, 0.15, 0);
+		end
+	end
+	SlotController:PlayAnimOut();
+	ExitFunc();
+	PlayLetteboxAnimation("OUT");
+	EquipmentFlyoutFrame:Hide();
+	Narci_ModelSettings:Hide();
+
+	Toolbar:HideUI();
+	TakeOutFrames(false);
+
+	Narci.showExitConfirm = false;
+end
 
 function Narci_Open()
 	if not IS_OPENED then
@@ -2548,9 +2252,9 @@ function Narci_Open()
 		CameraUtil:SetUseMogOffset(false)
 
 		EL:Show();
+		IntroMotion:Enter();
 
 		After(0, function()
-			IntroMotion:Enter();
 			RadarChart:SetValue(0,0,0,0,1);
 			PlayLetteboxAnimation();
 			local Vignette = Narci_Vignette;
@@ -2571,32 +2275,7 @@ function Narci_Open()
 		Narci.isActive = true;
 		CallbackRegistry:Trigger("NarcissusCharacterUI.ShownState", true);
 	else
-		if Narci.showExitConfirm and not InCombatLockdown() then
-			local ExitConfirm = Narci_ExitConfirmationDialog;
-			if not ExitConfirm:IsShown() then
-				FadeFrame(ExitConfirm, 0.25, 1);
-
-				After(0, function()
-					SetUIVisibility(false);
-					MiniButton:Enable();
-					UIParent:SetAlpha(1);
-				end);
-
-				return
-			else
-				FadeFrame(ExitConfirm, 0.15, 0);
-			end
-		end
-		SlotController:PlayAnimOut();
-		ExitFunc();
-		PlayLetteboxAnimation("OUT");
-		EquipmentFlyoutFrame:Hide();
-		Narci_ModelSettings:Hide();
-
-		Toolbar:HideUI();
-		TakeOutFrames(false);
-
-		Narci.showExitConfirm = false;
+		Narci_Close();
 	end
 
 	NarciAPI.UpdateSessionTime();
@@ -2619,6 +2298,7 @@ function Narci_OpenGroupPhoto()
 		EL:Show();
 
 		CameraUtil:SmoothPitch();
+		UIParentFade:FadeOutUIParent();
 
 		After(0, function()
 			Toolbar:Expand(true);
@@ -2633,16 +2313,15 @@ function Narci_OpenGroupPhoto()
 			FadeFrame(Vignette, 0.8, 1);
 			Vignette.VignetteRight.animIn:Play();
 			Vignette.VignetteLeft.animIn:Play();
-
-			UIParentFade:FadeOutUIParent();
 		end)
 
 		Narci.isActive = true;
 		CallbackRegistry:Trigger("NarcissusCharacterUI.ShownState", true);
 		MsgAlertContainer:Display();
+		NarciAPI.UpdateSessionTime();
+	else
+		Narci_Close();
 	end
-
-	NarciAPI.UpdateSessionTime();
 end
 
 
@@ -2900,11 +2579,17 @@ local function Narci_XmogButton_OnClick(self)
 		if (not InCombatLockdown()) and (not Narci_Character:IsShown()) then
 			Narci_Character:Show();
 			Narci_Character:SetAlpha(1);
-			StatsUpdator:Gradual();
 		end
+
+		StatsUpdator:Gradual();
 	end
 
-	SlotController:LazyRefresh();
+	if MOG_MODE then
+		SlotController:RefreshAll();
+	else
+		SlotController:LazyRefresh();
+	end
+
 	After(0.1, function()
 		ActivateMogMode();
 	end)
@@ -2971,8 +2656,7 @@ do
 end
 
 
-do
-	--Slash Command
+do	--Slash Command
 	local function callback(msg)
 		if not msg then
 			msg = "";
@@ -3003,43 +2687,7 @@ do
 		end
 	end
 
-	--local commandName = "narci";
-	--local commandAlias = "narcissus";
-	--RegisterNewSlashCommand(callback, commandName, commandAlias);
-
-	---- Alternative method to avoid slash command taint
-
-	if ChatEdit_HandleChatType then
-		local VALID_COMMANDS = {
-			["/NARCI"] = true,
-			["/NARCISSUS"] = true,
-		};
-
-		local c, m;
-
-		hooksecurefunc("ChatEdit_HandleChatType", function(editBox, msg, command, send)
-			c = command;	--Auto capitalized by the game
-			m = msg;
-			if send == 1 then
-				if c then
-					if c == "/NARCISSUSGAMEPAD" then
-						Narci_Open();
-					elseif VALID_COMMANDS[c] then
-						callback(m);
-					end
-				end
-
-				c = nil;
-				m = nil;
-			end
-		end);
-	end
-
-	--local f = CreateFrame("Frame");
-	--f:RegisterEvent("EXECUTE_CHAT_LINE");
-	--f:SetScript("OnEvent", function(self, event, line)
-	--	print(line)
-	--end)
+	NarciAPI.CreateSlashCommand(callback, "narci", "narcissus");
 end
 
 
@@ -3274,7 +2922,7 @@ EL:SetScript("OnEvent",function(self, event, ...)
 		StatsUpdator:Instant();
 		if event == "COMBAT_RATING_UPDATE" then
 			if Narci_Character:IsShown() then
-				RadarChart:AnimateValue();
+				RadarChart:UpdateChart(true);
 			end
 		end
 
@@ -3455,68 +3103,6 @@ function Narci_GuideLineFrame_SnapToFinalPosition()
 		end
 	end
 end
-
-
-
-
-NarciFlyoutOverlayMixin = {};
-
-function NarciFlyoutOverlayMixin:In()
-	--FadeFrame(self, 0.2, 1);
-	self:Init();
-	self.animFrame.toAlpha = 1;
-	self.animFrame:Show();
-	self:Show();
-end
-
-function NarciFlyoutOverlayMixin:Out()
-	--FadeFrame(self, 0.2, 0);
-	self:Init();
-	self.animFrame.toAlpha = 0;
-	self.animFrame:Show();
-	self:Show();
-end
-
-function NarciFlyoutOverlayMixin:OnHide()
-	self:SetAlpha(0);
-	self:Hide();
-end
-
-function NarciFlyoutOverlayMixin:Init()
-	if not self.animFrame then
-		self.animFrame = CreateFrame("Frame", nil, self);
-		self.animFrame:SetScript("OnUpdate", function(f, elapsed)
-			f.t = f.t + elapsed;
-			local alpha;
-			if f.t < 0.25 then
-				alpha = outSine(f.t, f.fromAlpha, f.toAlpha, 0.25);
-			else
-				alpha = f.toAlpha;
-				if alpha <= 0 then
-					self:Hide();
-				end
-				f:Hide();
-			end
-			self:SetAlpha(alpha);
-		end);
-	end
-	self.animFrame.t = 0;
-	self.animFrame.fromAlpha = self:GetAlpha();
-end
-
-function NarciFlyoutOverlayMixin:RaiseFrameLevel(widget)
-	local selfLevel = self:GetFrameLevel();
-	if self.lastWidget then
-		self.lastWidget:SetFrameLevel(selfLevel - 1);
-		self.lastWidget = nil;
-	end
-	local widgetLevel = widget:GetFrameLevel();
-	if widgetLevel <= selfLevel then
-		widget:SetFrameLevel(selfLevel + 1);
-		self.lastWidget = widget;
-	end
-end
-
 
 
 Narci.GetEquipmentSlotByID = function(slotID) return SLOT_TABLE[slotID] end;
@@ -3710,103 +3296,113 @@ end
 
 
 NarciCharacterUIPlayerNameEditBoxMixin = {};
+do
+	function NarciCharacterUIPlayerNameEditBoxMixin:OnLoad()
 
-function NarciCharacterUIPlayerNameEditBoxMixin:OnLoad()
+	end
 
-end
+	function NarciCharacterUIPlayerNameEditBoxMixin:OnShow()
+		self:UpdateSize();
+	end
 
-function NarciCharacterUIPlayerNameEditBoxMixin:OnShow()
-	self:UpdateSize();
-end
+	function NarciCharacterUIPlayerNameEditBoxMixin:OnTextChanged()
+		SmartFontType(self)
+		self:UpdateSize();
+	end
 
-function NarciCharacterUIPlayerNameEditBoxMixin:OnTextChanged()
-	SmartFontType(self)
-	self:UpdateSize();
-end
+	function NarciCharacterUIPlayerNameEditBoxMixin:UpdateSize()
+		local numLetters = self:GetNumLetters();
+		local width = max(numLetters*16, 160);
+		self:SetWidth(width);
+	end
 
-function NarciCharacterUIPlayerNameEditBoxMixin:UpdateSize()
-	local numLetters = self:GetNumLetters();
-	local width = max(numLetters*16, 160);
-	self:SetWidth(width);
-end
+	function NarciCharacterUIPlayerNameEditBoxMixin:SaveAndExit()
+		self:ClearFocus();
+		local text = strtrim(self:GetText());
+		self:SetText(text);
+		NarcissusDB_PC.PlayerAlias = text;
+	end
 
-function NarciCharacterUIPlayerNameEditBoxMixin:SaveAndExit()
-	self:ClearFocus();
-	local text = strtrim(self:GetText());
-	self:SetText(text);
-	NarcissusDB_PC.PlayerAlias = text;
-end
+	function NarciCharacterUIPlayerNameEditBoxMixin:OnEscapePressed()
+		self:SaveAndExit();
+	end
 
-function NarciCharacterUIPlayerNameEditBoxMixin:OnEscapePressed()
-	self:SaveAndExit();
-end
-
-function NarciCharacterUIPlayerNameEditBoxMixin:OnEnterPressed()
-	self:SaveAndExit();
+	function NarciCharacterUIPlayerNameEditBoxMixin:OnEnterPressed()
+		self:SaveAndExit();
+	end
 end
 
 
 NarciCharacterUIAliasButtonMixin = {};
-
-function NarciCharacterUIAliasButtonMixin:OnLoad()
-	local keepInvisibleFrame = true;
-	NarciFadeUI.CreateFadeObject(self, keepInvisibleFrame);
-end
-
-function NarciCharacterUIAliasButtonMixin:OnEnter()
-	self.Label:SetTextColor(0, 0, 0);
-	self.Label:SetShadowColor(1, 1, 1);
-	self.Highlight:Show();
-end
-
-function NarciCharacterUIAliasButtonMixin:OnLeave()
-	self.Label:SetTextColor(0.25, 0.78, 0.92);
-	self.Label:SetShadowColor(0, 0, 0);
-	self.Highlight:Hide();
-end
-
-function NarciCharacterUIAliasButtonMixin:OnClick()
-	NarcissusDB_PC.UseAlias = not NarcissusDB_PC.UseAlias;
-	self:UpdateNames(true);
-end
-
-function NarciCharacterUIAliasButtonMixin:OnShow()
-	self:SetScript("OnShow", nil);
-	self:UpdateNames();
-end
-
-function NarciCharacterUIAliasButtonMixin:OnHide()
-	self:OnLeave();
-end
-
-function NarciCharacterUIAliasButtonMixin:UpdateSize()
-	self:SetWidth(self.Label:GetWidth() + 12);
-end
-
-function NarciCharacterUIAliasButtonMixin:UpdateNames(onClick)
-	local editBox = self:GetParent();
-
-	if NarcissusDB_PC.UseAlias then
-		self.Label:SetText(L["Use Player Name"]);
-		editBox:Enable();
-		editBox:SetText(NarcissusDB_PC.PlayerAlias or UnitName("player"));
-		if onClick then
-			editBox:SetFocus();
-			editBox:HighlightText();
-		end
-	else
-		self.Label:SetText(L["Use Alias"]);
-		local text = strtrim(editBox:GetText());
-		editBox:SetText(text);
-		NarcissusDB_PC.PlayerAlias = text;
-		editBox:Disable();
-		editBox:HighlightText(0,0)
-		editBox:SetText(UnitName("player"));
+do
+	function NarciCharacterUIAliasButtonMixin:OnLoad()
+		local keepInvisibleFrame = true;
+		NarciFadeUI.CreateFadeObject(self, keepInvisibleFrame);
 	end
 
-	self:UpdateSize();
-	editBox:UpdateSize();
+	function NarciCharacterUIAliasButtonMixin:OnEnter()
+		self.Label:SetTextColor(0, 0, 0);
+		self.Label:SetShadowColor(1, 1, 1);
+		self.Highlight:Show();
+	end
+
+	function NarciCharacterUIAliasButtonMixin:OnLeave()
+		self.Label:SetTextColor(0.25, 0.78, 0.92);
+		self.Label:SetShadowColor(0, 0, 0);
+		self.Highlight:Hide();
+	end
+
+	function NarciCharacterUIAliasButtonMixin:OnClick()
+		NarcissusDB_PC.UseAlias = not NarcissusDB_PC.UseAlias;
+		self:UpdateNames(true);
+	end
+
+	function NarciCharacterUIAliasButtonMixin:OnShow()
+		self:SetScript("OnShow", nil);
+		self:UpdateNames();
+	end
+
+	function NarciCharacterUIAliasButtonMixin:OnHide()
+		self:OnLeave();
+	end
+
+	function NarciCharacterUIAliasButtonMixin:UpdateSize()
+		self:SetWidth(self.Label:GetWidth() + 12);
+	end
+
+	function NarciCharacterUIAliasButtonMixin:UpdateNames(onClick)
+		local editBox = self:GetParent();
+
+		if NarcissusDB_PC.UseAlias then
+			self.Label:SetText(L["Use Player Name"]);
+			editBox:Enable();
+			editBox:SetText(NarcissusDB_PC.PlayerAlias or UnitName("player"));
+			if onClick then
+				editBox:SetFocus();
+				editBox:HighlightText();
+			end
+		else
+			self.Label:SetText(L["Use Alias"]);
+			local text = strtrim(editBox:GetText());
+			editBox:SetText(text);
+			NarcissusDB_PC.PlayerAlias = text;
+			editBox:Disable();
+			editBox:HighlightText(0,0)
+			editBox:SetText(UnitName("player"));
+		end
+
+		self:UpdateSize();
+		editBox:UpdateSize();
+	end
 end
 
 
 UIParent:UnregisterEvent("EXPERIMENTAL_CVAR_CONFIRMATION_NEEDED");  --Disable EXPERIMENTAL_CVAR_WARNING
+
+
+addon.AddLoadingCompleteCallback(function()
+    local seasonID = NarciAPI.GetTimeRunningSeason();
+    if seasonID == 2 then
+        IS_LEGION_REMIX = true;
+    end
+end);

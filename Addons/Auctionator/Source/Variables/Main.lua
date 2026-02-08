@@ -13,12 +13,15 @@ function Auctionator.Variables.Initialize()
   local GetAddOnMetadata = C_AddOns and C_AddOns.GetAddOnMetadata or GetAddOnMetadata
   Auctionator.State.CurrentVersion = GetAddOnMetadata("Auctionator", "Version")
 
-  Auctionator.Variables.InitializeDatabase()
   Auctionator.Variables.InitializeShoppingLists()
   Auctionator.Variables.InitializePostingHistory()
   Auctionator.Variables.InitializeVendorPriceCache()
 
   Auctionator.Groups.Initialize()
+end
+
+function Auctionator.Variables.InitializeLate()
+  Auctionator.Variables.InitializeDatabase()
 
   Auctionator.State.Loaded = true
 end
@@ -107,6 +110,15 @@ function Auctionator.Variables.InitializeDatabase()
   local realm = Auctionator.Variables.GetConnectedRealmRoot()
   Auctionator.State.CurrentRealm = realm
 
+  if C_EncodingUtil then
+    local frame = CreateFrame("Frame")
+    frame:RegisterEvent("PLAYER_LOGOUT")
+    frame:SetScript("OnEvent", function()
+      local raw = AUCTIONATOR_PRICE_DATABASE[realm]
+      AUCTIONATOR_PRICE_DATABASE[realm] = C_EncodingUtil.SerializeCBOR(raw)
+    end)
+  end
+
   -- Check for current realm and initialize if not present
   if AUCTIONATOR_PRICE_DATABASE[realm] == nil then
     if not ImportFromNotNormalizedName(realm) and not ImportFromConnectedRealm(realm) then
@@ -120,7 +132,11 @@ function Auctionator.Variables.InitializeDatabase()
     for key, data in pairs(AUCTIONATOR_PRICE_DATABASE) do
       -- Convert one realm at a time, no need to hold up a login indefinitely
       if key ~= "__dbversion" and key ~= realm and type(data) == "table" then
-        AUCTIONATOR_PRICE_DATABASE[key] = LibCBOR:Serialize(data)
+        if C_EncodingUtil then
+          AUCTIONATOR_PRICE_DATABASE[key] = C_EncodingUtil.SerializeCBOR(data)
+        else
+          AUCTIONATOR_PRICE_DATABASE[key] = LibCBOR:Serialize(data)
+        end
         break
       end
     end
@@ -134,7 +150,12 @@ function Auctionator.Variables.InitializeDatabase()
   -- version of Auctionator
   local raw = AUCTIONATOR_PRICE_DATABASE[realm]
   if type(raw) == "string" then
-    local success, data = pcall(LibCBOR.Deserialize, LibCBOR, raw)
+    local success, data
+    if C_EncodingUtil then
+      success, data = pcall(C_EncodingUtil.DeserializeCBOR, raw)
+    else
+      success, data = pcall(LibCBOR.Deserialize, LibCBOR, raw)
+    end
     if not success then
       AUCTIONATOR_PRICE_DATABASE[realm] = {}
     else
@@ -149,23 +170,31 @@ function Auctionator.Variables.InitializeDatabase()
 
   assert(AUCTIONATOR_PRICE_DATABASE[realm], "Realm data missing somehow")
 
-  -- Convert to CBOR per-item format
   for realm, realmData in pairs(AUCTIONATOR_PRICE_DATABASE) do
-    if type(realmData) == "table" then
+    if type(realmData) == "table" and realmData.version ~= 2 then
       for key, itemData in pairs(realmData) do
-        if type(itemData) == "table" and not itemData.pending then
+        if type(itemData) == "table" and itemData.pending then
           for _, field in ipairs({"a", "h", "l"}) do
             local new = {}
+            -- Make it valid JSON (legacy)
             for day, data in pairs(itemData[field] or {}) do
               new[tostring(day)] = data
             end
             itemData[field] = new
           end
-          realmData[key] = LibCBOR:Serialize(itemData)
-        else
-          break
+        elseif type(itemData) == "table" and itemData.pending then
+          itemData = itemData.old
+        end
+        -- Reverse per-item CBOR format
+        if type(itemData) == "string" then
+          if C_EncodingUtil then
+            realmData[key] = C_EncodingUtil.DeserializeCBOR(itemData)
+          else
+            realmData[key] = LibCBOR:Deserialize(itemData)
+          end
         end
       end
+      realmData.version = 2
     end
   end
 

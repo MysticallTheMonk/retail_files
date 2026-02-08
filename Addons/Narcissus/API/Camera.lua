@@ -6,7 +6,6 @@ addon.CameraUtil = CameraUtil;
 
 
 local GetCVar = C_CVar.GetCVar;
-local GetCVarBool = C_CVar.GetCVarBool;
 local SetCVar = C_CVar.SetCVar;
 local After = C_Timer.After;
 
@@ -76,6 +75,8 @@ do  --Move Smooth Yaw/Pitch/Shoulder
         end);
 
         function CameraUtil:SmoothYaw()
+            if not NarcissusDB.CameraAutoZoomIn then return end;
+
             --Rotate from player back to front
             local a = 180/(GetCVar("cameraYawMoveSpeed") or 180);
             self.Yaw.toSpeed = a * YAW_SPEED_END;
@@ -93,19 +94,22 @@ do  --Move Smooth Yaw/Pitch/Shoulder
     do  --Pitch
         CameraUtil.Pitch = CreateProcessFrame(function(self, elapsed)
             self.t = self.t + elapsed
-            local pl = tostring(outSine(self.t, 88,  1, ANGLE_SMOOTH_DURATION));
-            ConsoleExec("pitchlimit "..pl);
+            local pl = outSine(self.t, 88,  4, ANGLE_SMOOTH_DURATION);
+
             if self.t >= ANGLE_SMOOTH_DURATION then
+                --Note: our old pitchlimit is 1, but it can cause a sudden movement at the end for some short races like Dwarves because the camera collides with the floor
                 self:Hide();
                 self.t = 0;
-                ConsoleExec( "pitchlimit 1");
-                After(0, function()
-                    ConsoleExec( "pitchlimit 88");
-                end)
+                ConsoleExec("pitchlimit 4");
+                pl = 88;
             end
+
+            ConsoleExec("pitchlimit "..pl);
         end);
 
         function CameraUtil:SmoothPitch()
+            if not NarcissusDB.CameraAutoZoomIn then return end;
+
             self.Pitch.t = 0;
             self.Pitch:Show();
         end
@@ -172,6 +176,8 @@ do  --Move Smooth Yaw/Pitch/Shoulder
 
     do  --Zoom
         function CameraUtil:ZoomTo(goal)
+            if not NarcissusDB.CameraAutoZoomIn then return end;
+
             local current = GetCameraZoom();
             if current >= goal then
                 CameraZoomIn(current - goal);   --Calling global because other addons may change it
@@ -349,6 +355,9 @@ do  --Camera Parameters
         ["Dracthyr"] = {[2] = {2.6, 0.1704, 0.0749, 5},		--Dracthyr Dragon Form
                         [3] = {2.6, 0.1704, 0.0749, 5}},
 
+        [86] = {[2] = {2.3, 0.2915, 0.0175, 4.5},			    --86 Haranir
+            [3] = {2.1, 0.3309, -0.0113, 4.0}},
+
         --1 	Human 32 Kultiran
         --2 	Orc
         --3 	Dwarf
@@ -456,6 +465,8 @@ do  --Camera Parameters
             CameraUtil.GetRaceKey = CameraUtil.GetRaceKey_Dracthyr;
         elseif RACE == 84 or RACE == 85 then	    --Earthen
             RACE = 3;
+        elseif RACE == 91 then                      --Haranir Horde
+            RACE = 86;
         end
 
         local _, _, playerClassID = UnitClass("player");

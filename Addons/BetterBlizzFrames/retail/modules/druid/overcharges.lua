@@ -1,3 +1,4 @@
+if BBF.isMidnight then return end
 function BBF.DruidBlueComboPoints()
     if not BetterBlizzFramesDB.druidOverstacks and not BetterBlizzFramesDB.legacyBlueComboPoints then return end
     if BBF.druidBlueCombos then return end
@@ -239,11 +240,11 @@ end
 local moveComboInForm = {
     [1] = true,
     [5] = true,
-    [31] = true,
-    [32] = true,
-    [33] = true,
-    [34] = true,
-    [35] = true,
+    -- [31] = true,
+    -- [32] = true,
+    -- [33] = true,
+    -- [34] = true,
+    -- [35] = true,
 }
 
 local function UpdateAltManaBar(updateCombos, cf)
@@ -312,6 +313,7 @@ end
 function BBF.CreateAltManaBar()
     if PlayerFrame.AltManaBarBBF then return end -- already created
     if not BetterBlizzFramesDB.createAltManaBarDruid then return end
+    if (BetterBlizzFramesDB.noPortraitPixelBorder or BetterBlizzFramesDB.noPortraitModes) and (BetterBlizzFramesDB.hideUnitFramePlayerMana or BetterBlizzFramesDB.hideUnitFramePlayerSecondResource) then return end
     local db = BetterBlizzFramesDB
     if db.useMiniPlayerFrame then return end
     local cf = db.classicFrames

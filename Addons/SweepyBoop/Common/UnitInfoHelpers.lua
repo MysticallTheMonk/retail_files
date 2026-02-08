@@ -1,6 +1,10 @@
 local _, addon = ...;
 
-addon.MAX_ARENA_SIZE = 3;
+if addon.PROJECT_MAINLINE then
+    addon.MAX_ARENA_SIZE = 3;
+else
+    addon.MAX_ARENA_SIZE = 5; -- MoP Classic
+end
 
 local UnitAura = C_UnitAuras.GetAuraDataByIndex;
 local maxAuras = 255;
@@ -104,9 +108,14 @@ end
 
 addon.GetSpecForPlayerOrArena = function(unit)
     if ( unit == "player" ) then
-        local currentSpec = GetSpecialization();
-        if currentSpec then
-            return GetSpecializationInfo(currentSpec);
+        if addon.PROJECT_MAINLINE then
+            local currentSpec = GetSpecialization();
+            if currentSpec then
+                return GetSpecializationInfo(currentSpec);
+            end
+        else
+            -- Temporary solution for MoP Classic, GetSpecialization is not yet in place (as it should be)
+            return addon.SPECID.DESTRUCTION; -- Hard code spec ID in test (https://warcraft.wiki.gg/wiki/SpecializationID)
         end
     else
         local arenaIndex = string.sub(unit, -1, -1);

@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 -- Premade Groups Filter
 -------------------------------------------------------------------------------
--- Copyright (C) 2024 Bernhard Saumweber
+-- Copyright (C) 2026 Bernhard Saumweber
 --
 -- This program is free software; you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ L["addon.name.long"] = "Premade Groups Filter"
 
 L["error.syntax"] = "|cffff0000過濾語法錯誤|r\n\n表示過濾語法不正確，例如缺少過濾條件、變數或運算符號，或是寫成 'tanks=1' 而不是 'tanks==1'。\n\n詳細錯誤訊息：\n|cffaaaaaa%s|r"
 L["error.semantic"] = "|cffff0000過濾語法的語意錯誤|r\n\n表示過濾語法正確，但是很可能變數寫錯字，例如寫成 tansk 而不是 tanks。\n\n詳細錯誤訊息：\n|cffaaaaaa%s|r"
-L["error.semantic.protected"] = "|cffff0000過濾語法的語意錯誤|r\n\n不再支持關鍵字 'name'，'comment' 和 'findnumber'。 請從高級過濾器表達方式中刪除他們或者點擊重置按鈕。 \n\n從爭霸艾澤拉斯開始，這些都受到暴雪的保護，任何插件都無法讀取。 \n\n使用列表上方的確認搜索欄過濾隊伍副本名稱。\n\n詳細錯誤訊息：\n|cffaaaaaa%s|r"
+L["error.semantic.protected"] = "|cffff0000過濾語法的語意錯誤|r\n\n不再支持關鍵字 'name' 和 'comment'。 請從高級過濾器表達方式中刪除他們或者點擊重置按鈕。 \n\n從爭霸艾澤拉斯開始，這些都受到暴雪的保護，任何插件都無法讀取。 \n\n使用列表上方的確認搜索欄過濾隊伍副本名稱。\n\n詳細錯誤訊息：\n|cffaaaaaa%s|r"
 L["message.settingsupgraded"] = "Premade Groups Filter: 設置遷移到版本 %s"
 
 L["dialog.settings"] = GAMEMENU_OPTIONS
@@ -52,6 +52,8 @@ L["dialog.heals"]      = "治療 ............................"
 L["dialog.dps"]        = "輸出 ............................"
 L["dialog.mprating"]   = "鑰石評分 ........................"
 L["dialog.pvprating"]  = "PVP評級評分 ....................."
+L["dialog.delvetier"]  = "探究層級 ........................"
+L["dialog.delvetier.tooltip"] = "有些玩家沒有正確設定探究層級，而只是寫在隊伍名稱裡。插件無法讀取隊伍名稱。請使用標準搜尋欄以獲得更好的結果。"
 L["dialog.defeated"]   = "已擊殺首領(團隊)"
 L["dialog.sorting"] = "排序"
 L["dialog.usepgf.tooltip"] = "啟用或停用 Premade Groups Filter。"
@@ -94,6 +96,7 @@ L["dialog.tooltip.warmode"] = "已開啟戰爭模式"
 L["dialog.copy.url.keywords"] = "按 CTRL+C 將鏈接複製到關鍵字列表"
 L["dialog.filters.group"] = "隊伍"
 L["dialog.filters.dungeons"] = "地下城"
+L["dialog.filters.delves"] = "探究"
 L["dialog.filters.advanced"] = "進階過濾表達式"
 L["dialog.partyfit"] = "隊伍適配"
 L["dialog.partyfit.tooltip"] = "僅顯示仍然有你全部隊伍成員角色職責空位的隊伍。也同時作用在你只有一人時。"
@@ -108,6 +111,14 @@ L["dialog.matchingid.tooltip"] = "僅顯示具有與您自己完全相同的副�
 L["dialog.needsbl"] = "需要嗜血"
 L["dialog.needsbl.tooltip"] = "僅顯示尚未有提供嗜血/英勇技能的職業的隊伍。"
 L["dialog.cancelOldestApp"] = "點擊取消最舊的申請"
+L["dialog.button.selectall.title"] = "全"
+L["dialog.button.selectall.tooltip"] = "全選"
+L["dialog.button.selectnone.title"] = "無"
+L["dialog.button.selectnone.tooltip"] = "全不選"
+L["dialog.button.selectbountiful.title"] = "豐"
+L["dialog.button.selectbountiful.tooltip"] = "選取豐碩探究"
+L["dialog.button.selectinvert.title"] = "反"
+L["dialog.button.selectinvert.tooltip"] = "反選"
 
 L["settings.dialogMovable.title"] = "可移動的對話框"
 L["settings.dialogMovable.tooltip"] = "允許您使用鼠標移動對話框。 右鍵單擊重置位置。"
@@ -143,3 +154,5 @@ L["settings.rioRatingColors.title"] = "使用Raider.IO顏色評分"
 L["settings.rioRatingColors.tooltip"] = "如果已加載Raider.IO插件，則使用Raider.IO的顏色方案進行史詩+評分。"
 L["settings.cancelOldestApp.title"] = "取消最舊的申請"
 L["settings.cancelOldestApp.tooltip"] = "如果你的待處理申請達到上限，點擊任意小組以先取消最舊的申請。然後再點擊一次以申請。"
+L["settings.compactListEntries.title"] = "精簡列表項目"
+L["settings.compactListEntries.tooltip"] = "隱藏遊戲風格，讓隊伍列表的項目佔用更少的垂直空間（如同《至暗之夜》版本前夕內容更新之前）。"

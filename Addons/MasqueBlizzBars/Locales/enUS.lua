@@ -34,7 +34,10 @@ local L = Shared.Locale
 --L["Vehicle Bar"] = "Vehicle Bar"
 --L["Extra Ability Buttons"] = "Extra Ability Buttons"
 --L["Pet Battle Bar"] = "Pet Battle Bar"
---L["Cooldown Manager"] = "Cooldown Manager"
+--L["Tracked Bars"] = "Tracked Bars"
+--L["Tracked Buffs"] = "Tracked Buffs"
+--L["Essential Cooldowns"] = "Essential Cooldowns"
+--L["Utility Cooldowns"] = "Utility Cooldowns"
 
 -- Using short keys for these long strings, so enUS needs to be defined as well
 L["NOTES_SPELL_FLYOUTS"] = "This group includes all flyouts shown anywhere in the game, " ..

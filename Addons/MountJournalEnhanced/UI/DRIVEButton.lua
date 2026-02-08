@@ -24,7 +24,8 @@ local function BuildButton()
 
     button:HookScript("OnClick", function()
         GenericTraitUI_LoadUI()
-        GenericTraitFrame:SetSystemID(DRIVE_TRAIT_SYSTEM)
+
+        GenericTraitFrame:SetConfigIDBySystemID(DRIVE_TRAIT_SYSTEM)
         GenericTraitFrame:SetTreeID(DRIVE_TRAIT_TREE)
         ToggleFrame(GenericTraitFrame)
     end)
@@ -40,11 +41,13 @@ local function BuildButton()
         GameTooltip:Hide()
     end)
 
+    button:SetAttribute("MJE_ToolbarIndex", "Drive")
+
     return button
 end
 
 ADDON.Events:RegisterCallback("loadUI", function()
-    if IsSpellKnown(MOUNT_SPELL) then
+    if C_SpellBook.IsSpellInSpellBook(MOUNT_SPELL) then
         ADDON.UI:RegisterToolbarGroup('05-drive-G99', BuildButton())
     end
 end, 'drive' )

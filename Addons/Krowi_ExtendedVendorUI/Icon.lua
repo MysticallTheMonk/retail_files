@@ -1,16 +1,16 @@
-local _, addon = ...;
-local icon = addon.Icon;
+local _, addon = ...
+local icon = addon.Icon
 
+local instructionsFormat = '%s: %s'
 function icon.SetMoreTooltipContent(tooltip)
-    tooltip:AddLine(addon.L["Left click"] .. " " .. addon.L["Icon Left click"]:SetColorAddonBlue());
-    tooltip:AddLine(addon.L["Right click"] .. " "  .. addon.L["Icon Right click"]:SetColorAddonBlue());
+    tooltip:AddLine(string.format(instructionsFormat, addon.Util.L['Left-Click'], addon.L['Icon Left click']):SetColorTpInstr())
+    tooltip:AddLine(string.format(instructionsFormat, addon.Util.L['Right-Click'], addon.L['Icon Right click']):SetColorTpInstr())
 end
 
 function icon.OnLeftClick()
-    local menu = KrowiEVU_OptionsButton:BuildMenu();
-    menu:Open();
+    KrowiEVU_OptionsButton:ShowPopup()
 end
 
 function icon.OnRightClick()
-    addon.Options:Open();
+    addon.Options:Open()
 end

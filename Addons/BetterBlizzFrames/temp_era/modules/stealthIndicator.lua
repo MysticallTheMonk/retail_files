@@ -8,6 +8,8 @@ local stealthSpellIDs = {
     [32612] = true,   -- Invisibility
     [199483] = true,  -- Camouflage
     [414664] = true,  -- Mass Invisibility
+    [115834] = true,  -- Shroud of Concealment
+    [114018] = true,  -- Shroud of Concealment
 }
 
 local PlayerAuras = {}
@@ -17,10 +19,12 @@ local stealthEvent
 local function createOrShowStealthIndicator()
     if not stealthIndicator then
         stealthIndicator = PlayerFrame:CreateTexture(nil, "OVERLAY")
-        stealthIndicator:SetAtlas("ui-hud-unitframe-player-portraiton-vehicle-status")
-        stealthIndicator:SetSize(201, 83.5)
+        stealthIndicator:SetTexture(137016)
+        --stealthIndicator:SetSize(201, 83.5)
         stealthIndicator:SetVertexColor(0.212, 0.486, 1)
-        stealthIndicator:SetPoint("CENTER", PlayerFrame, "CENTER", -4, 0)
+        --stealthIndicator:SetPoint("CENTER", PlayerFrame, "CENTER", -4, 0)
+        stealthIndicator:SetAllPoints(PlayerFrameFlash)
+        stealthIndicator:SetTexCoord(PlayerFrameFlash:GetTexCoord())
     end
     stealthIndicator:Show()
 end
@@ -50,13 +54,29 @@ end
 
 local function UpdatePlayerAurasFull()
     PlayerAuras = {}
-    AuraUtil.ForEachAura("player", "HELPFUL", nil, function(aura)
-        if stealthSpellIDs[aura.spellId] then
-            PlayerAuras[aura.auraInstanceID] = aura
+
+    for i = 1, 40 do
+        local name, icon, count, debuffType, duration, expirationTime, source, isStealable, nameplateShowPersonal, spellId, canApplyAura, isBossDebuff, castByPlayer, nameplateShowAll, timeMod, auraInstanceID = UnitBuff("player", i)
+        if not name then break end
+
+        if stealthSpellIDs[spellId] then
+            PlayerAuras[auraInstanceID or spellId] = {
+                name = name,
+                icon = icon,
+                count = count,
+                debuffType = debuffType,
+                duration = duration,
+                expirationTime = expirationTime,
+                source = source,
+                spellId = spellId,
+                auraInstanceID = auraInstanceID or spellId,
+            }
         end
-    end, true)
+    end
+
     updateStealthIndicator()
 end
+
 
 local function UpdatePlayerAurasIncremental(unitAuraUpdateInfo)
     if unitAuraUpdateInfo.addedAuras then

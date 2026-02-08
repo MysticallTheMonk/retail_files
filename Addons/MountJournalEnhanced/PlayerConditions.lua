@@ -1,5 +1,9 @@
 local _, ADDON = ...
 
+local function IsSpellKnown(spellId)
+    return C_SpellBook.IsSpellInSpellBook(spellId)
+end
+
 local playerProfessions
 --see https://warcraft.wiki.gg/wiki/TradeSkillLineID for all skillIds
 local function playerHasProfession(skillId)

@@ -1,11 +1,21 @@
 ---@type string, Addon
 local _, addon = ...
 local fsEnumerable = addon.Collections.Enumerable
-local fsCompare = addon.Collections.Comparer
+local fsCompare = addon.Modules.Sorting.Comparer
 local fsSort = addon.Modules.Sorting
 local fsConfig = addon.Configuration
 local fsFrame = addon.WoW.Frame
 local fsProviders = addon.Providers
+
+---@class ApiV1
+local M = {
+    Sorting = {},
+    Options = {},
+    Debugging = {},
+    Logging = {},
+}
+addon.Api.v1 = M
+
 ---@type PlayerSortMode[]
 local playerSortModes = {
     "Top",
@@ -19,15 +29,6 @@ local groupSortModes = {
     "Group",
     "Alphabetical",
 }
-
----@class ApiV1
-local M = {
-    Sorting = {},
-    Options = {},
-    Debugging = {},
-    Logging = {},
-}
-addon.Api.v1 = M
 
 local function VisualOrder(framesOrFunction)
     return fsEnumerable
@@ -227,16 +228,10 @@ end
 
 ---Enables/disables logging.
 function M.Logging:SetEnabled(enable)
-    addon.DB.Options.Logging.Enabled = enable
-    fsConfig:NotifyChanged()
+    -- logging is always enabled now
 end
 
 ---Exposes the addon table to the public when enabled.
 function M.Debugging:SetEnabled(enable)
-    if enable then
-        FrameSort = addon
-    else
-        ---@diagnostic disable-next-line: assign-type-mismatch
-        FrameSort = nil
-    end
+    -- addon table is exposed by default now
 end

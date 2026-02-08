@@ -1,5 +1,6 @@
 <Ui xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
-    <!-- © 2021 Peter Yu All Rights Reserved -->
+	<Frame name="NarciPropagateKeyboardInputTemplate" propagateKeyboardInput="true" virtual="true"/>
+
 	<Script file="FrameBorder.lua"/>
 	<Script file="ItemBorder.lua"/>
 	<Script file="NineSliceUtil.lua"/>
@@ -8,6 +9,10 @@
 	<Script file="RedButton.lua"/>
 	<Script file="FramerateIndicator.lua"/>
 	<Script file="Widgets.lua"/>
+	<Script file="ScrollView.lua"/>
+	<Script file="BlackScreen.lua"/>
+	<Script file="TopMessageFrame.lua"/>
+	<Script file="StaticPopup.lua"/>
 	
 	<Frame name="NarciArtFrameTemplate" frameLevel="20" virtual="true">
 		<Anchors>
@@ -684,7 +689,7 @@
 				local action = self.parentObject.actionName;
 				local key = self.parentObject.key;
 				if action and key then
-					if SetBinding(key, action, 1) then
+					if SetBinding(key, action) then
 						self.parentObject:VerifyKey(true);
 					end
 				end
@@ -692,7 +697,7 @@
 		</Scripts>
 	</Button>
 
-	<Button name="NarciBindingButtonTemplate" virtual="true" registerForClicks="LeftButtonUp, RightButtonUp" mixin="NarciGenericKeyBindingButtonMixin">
+	<Button name="NarciBindingButtonTemplate" virtual="true" registerForClicks="LeftButtonUp, RightButtonUp" mixin="NarciGenericKeyBindingButtonMixin" inherits="NarciPropagateKeyboardInputTemplate">
 		<Size x="120" y="16"/>
 		<HitRectInsets>
 			<AbsInset left="-4" right="-4" top="-4" bottom="-4"/>
@@ -2373,6 +2378,7 @@
 							<OnEditFocusLost method="OnEditFocusLost"/>
 							<OnEscapePressed method="QuitEdit"/>
 							<OnHide method="QuitEdit"/>
+							<OnTextChanged method="OnTextChanged"/>
 							<OnEnter>
 								self:GetParent():GetParent():OnEnter();
 							</OnEnter>
@@ -2537,7 +2543,8 @@
 			<OnLoad method="OnLoad"/>
 			<OnEnter method="OnEnter"/>
 			<OnLeave method="OnLeave"/>
-			<OnMouseUp method="OnMouseUp"/>
+			<OnEvent method="OnEvent"/>
+			<OnHide method="OnHide"/>
 		</Scripts>
 	</Slider>
 
@@ -2740,4 +2747,106 @@
 			<OnLeave method="OnLeave"/>
 		</Scripts>
 	</Frame>
+
+    <Frame name="NarciSharedPopupFrameTemplate" parent="UIParent" frameStrata="DIALOG" toplevel="true" hidden="true" enableMouse="true" enableMouseMotion="true" virtual="true">
+        <Size x="320" y="72"/>
+        <Anchors>
+            <Anchor point="TOP" x="0" y="-135"/>
+        </Anchors>
+        <Frames>
+            <Frame parentKey="BackgroundFrame" inherits="DialogBorderDarkTemplate"/>
+
+            <Button parentKey="CloseButton" inherits="UIPanelCloseButton">
+                <Anchors>
+                    <Anchor point="TOPRIGHT" x="-3" y="-3"/>
+                </Anchors>
+            </Button>
+
+            <EditBox parentKey="EditBox" multiLine="false" autoFocus="false">
+                <Size x="130" y="24"/>
+                <FontString inherits="NumberFont_Shadow_Small" justifyH="LEFT"/>
+                <TextInsets left="8" right="8"/>
+                <HighlightColor r="0.05" g="0.41" b="0.85"/>
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <Texture parentKey="Left">
+                            <Size x="12" y="24"/>
+                            <Anchors>
+                                <Anchor point="LEFT"/>
+                            </Anchors>
+                        </Texture>
+                        <Texture parentKey="Right">
+                            <Size x="12" y="24"/>
+                            <Anchors>
+                                <Anchor point="RIGHT"/>
+                            </Anchors>
+                        </Texture>
+                        <Texture parentKey="Center">
+                            <Size y="24"/>
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativeKey="$parent.Left" relativePoint="TOPRIGHT"/>
+                                <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Right" relativePoint="BOTTOMLEFT"/>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
+                </Layers>
+            </EditBox>
+
+            <Frame parentKey="KeyListener" propagateKeyboardInput="true" frameLevel="1208"/>
+
+			<Button parentKey="Button1" inherits="SharedButtonTemplate" motionScriptsWhileDisabled="true"/>
+			<Button parentKey="Button2" inherits="SharedButtonTemplate" motionScriptsWhileDisabled="true"/>
+        </Frames>
+    </Frame>
+
+	<CheckButton name="NarciWoWCheckboxWithLabelTemplate" mixin="NarciWoWCheckboxWithLabelMixin" motionScriptsWhileDisabled="true" virtual="true">
+		<Size x="192" y="24"/>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString parentKey="Label" inherits="GameFontNormal" justifyH="LEFT" justifyV="MIDDLE" spacing="2">
+					<Size x="0" y="0"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeKey="$parent" relativePoint="LEFT" x="30" y="0"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<NormalTexture parentKey="NormalTexture" atlas="checkbox-minimal" useAtlasSize="false">
+			<Size x="24" y="24"/>
+			<Anchors>
+				<Anchor point="LEFT" relativeKey="$parent" relativePoint="LEFT" x="0" y="0"/>
+			</Anchors>
+		</NormalTexture>
+		<PushedTexture parentKey="HighlightTexture" atlas="checkbox-minimal" useAtlasSize="false">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeKey="$parent.NormalTexture" relativePoint="TOPLEFT"/>
+				<Anchor point="BOTTOMRIGHT" relativeKey="$parent.NormalTexture" relativePoint="BOTTOMRIGHT"/>
+			</Anchors>
+		</PushedTexture>
+		<HighlightTexture parentKey="HighlightTexture" atlas="checkbox-minimal" useAtlasSize="false" alphaMode="ADD">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeKey="$parent.NormalTexture" relativePoint="TOPLEFT"/>
+				<Anchor point="BOTTOMRIGHT" relativeKey="$parent.NormalTexture" relativePoint="BOTTOMRIGHT"/>
+			</Anchors>
+		</HighlightTexture>
+		<CheckedTexture parentKey="CheckedTexture" atlas="checkmark-minimal" useAtlasSize="false">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeKey="$parent.NormalTexture" relativePoint="TOPLEFT"/>
+				<Anchor point="BOTTOMRIGHT" relativeKey="$parent.NormalTexture" relativePoint="BOTTOMRIGHT"/>
+			</Anchors>
+		</CheckedTexture>
+		<DisabledCheckedTexture parentKey="DisabledCheckedTexture" atlas="checkmark-minimal-disabled" useAtlasSize="false">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeKey="$parent.NormalTexture" relativePoint="TOPLEFT"/>
+				<Anchor point="BOTTOMRIGHT" relativeKey="$parent.NormalTexture" relativePoint="BOTTOMRIGHT"/>
+			</Anchors>
+		</DisabledCheckedTexture>
+		<Scripts>
+			<OnEnter method="OnEnter"/>
+			<OnLeave method="OnLeave"/>
+			<OnClick method="OnClick"/>
+			<OnEnable method="OnEnable"/>
+			<OnDisable method="OnDisable"/>
+		</Scripts>
+	</CheckButton>
 </Ui>

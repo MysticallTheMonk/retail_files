@@ -1,0 +1,10 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+    <Script file="Cata/Raids/Firelands/Bethtilac.lua"/>
+    <Script file="Cata/Raids/Firelands/LordRhyolith.lua"/>
+    <Script file="Cata/Raids/Firelands/Alysrazor.lua"/>
+    <Script file="Cata/Raids/Firelands/Shannox.lua"/>
+    <Script file="Cata/Raids/Firelands/Baleroc.lua"/>
+    <Script file="Cata/Raids/Firelands/MajordomoStaghelm.lua"/>
+    <Script file="Cata/Raids/Firelands/Ragnaros.lua"/>
+</Ui>

@@ -92,6 +92,17 @@ local function checkBlocklist(spellId)
             return true
         end
     end
+
+    -- Check if this spell is from an item usage
+    -- GetItemSpell returns itemId if the spell is from an item
+    for _, blockedItemId in ipairs(ns.settings.activeProfile.itemBlocklist) do
+        local _, itemSpellId = GetItemSpell(blockedItemId)
+        if itemSpellId and itemSpellId == spellId then
+            return true
+        end
+    end
+
+    return false
 end
 
 ---@param event string
@@ -221,16 +232,19 @@ end
 ---@type {[UnitType]: LayoutType}
 local unitTypeToLayoutType = {
     player = "player",
-    party1 = "party",
-    party2 = "party",
-    party3 = "party",
-    party4 = "party",
-    arena1 = "arena",
-    arena2 = "arena",
-    arena3 = "arena",
-    target = "target",
-    focus = "focus",
 }
+
+if not ns.constants.IsMidnight then
+    unitTypeToLayoutType.party1 = "party"
+    unitTypeToLayoutType.party2 = "party"
+    unitTypeToLayoutType.party3 = "party"
+    unitTypeToLayoutType.party4 = "party"
+    unitTypeToLayoutType.arena1 = "arena"
+    unitTypeToLayoutType.arena2 = "arena"
+    unitTypeToLayoutType.arena3 = "arena"
+    unitTypeToLayoutType.target = "target"
+    unitTypeToLayoutType.focus = "focus"
+end
 
 ns.units = {}
 for unitType, layoutType in pairs(unitTypeToLayoutType) do

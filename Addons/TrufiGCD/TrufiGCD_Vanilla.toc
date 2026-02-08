@@ -1,4 +1,4 @@
-## Interface: 11506
+## Interface: 11507
 ## Title: TrufiGCD
 ## Notes: Last used spells of the player, target, party or arena members.
 ## SavedVariables: TrufiGCDGlSave

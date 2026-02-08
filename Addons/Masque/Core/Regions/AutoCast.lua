@@ -16,25 +16,50 @@ local _, Core = ...
 -- Internal
 ---
 
--- @ Core\Utility
-local ClearSetPoint, GetColor, GetSize = Core.ClearSetPoint, Core.GetColor, Core.GetSize
-local GetTexCoords = Core.GetTexCoords
+-- @ Skins\Defaults
+local SkinRoot = Core.SKIN_BASE
 
--- @ Skins\Blizzard_*
-local DEFAULT_SKIN = Core.DEFAULT_SKIN
+-- @ Core\Utility
+local GetColor, GetTexCoords, SetSkinPoint = Core.GetColor, Core.GetTexCoords, Core.SetSkinPoint
 
 ----------------------------------------
--- Utility
+-- Locals
 ---
 
--- Applies a skin to a texture region.
-local function ApplySkin(Region, Button, Anchor, Skin, Default, xScale, yScale, IsMask)
+local BASE_BLEND = SkinRoot.BlendMode
+local BASE_SIZE = SkinRoot.Size
+local BASE_WRAP = SkinRoot.WrapMode
+
+----------------------------------------
+-- Helpers
+---
+
+-- Skins an `AutoCast` frame.
+local function Skin_AutoCastFrame(Frame, Button, Skin, Default)
+	local _mcfg = Button._MSQ_CFG
+	local SetAllPoints = Skin.SetAllPoints
+
+	if not SetAllPoints then
+		local BaseSize = Default.Size or BASE_SIZE
+
+		local Width = Skin.Width or BaseSize
+		local Height = Skin.Height or BaseSize
+
+		Frame:SetSize(_mcfg:GetSize(Width, Height))
+	end
+
+	SetSkinPoint(Frame, Button, Skin, SetAllPoints)
+end
+
+-- Skins an `AutoCast` texture.
+local function Skin_AutoCastTexture(Region, Button, Anchor, Skin, Default, IsMask)
+	local _mcfg = Button._MSQ_CFG
 	local Texture = Skin.Texture
 
 	-- Custom
 	if Texture then
 		if IsMask then
-			Region:SetTexture(Texture, "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+			Region:SetTexture(Texture, BASE_WRAP, BASE_WRAP)
 		else
 			Region:SetTexture(Texture)
 		end
@@ -55,93 +80,73 @@ local function ApplySkin(Region, Button, Anchor, Skin, Default, xScale, yScale, 
 
 	if not IsMask then
 		Region:SetVertexColor(GetColor(Skin.Color))
-
-		Region:SetBlendMode(Skin.BlendMode or Default.BlendMode)
+		Region:SetBlendMode(Skin.BlendMode or BASE_BLEND)
 		Region:SetDrawLayer(Skin.DrawLayer or Default.DrawLayer, Skin.DrawLevel or Default.DrawLevel)
 	end
 
 	local SetAllPoints = Skin.SetAllPoints
 
 	if not SetAllPoints then
-		local Width = Skin.Width or Default.Width
-		local Height = Skin.Height or Default.Height
+		local BaseSize = Default.Size or BASE_SIZE
 
-		Region:SetSize(GetSize(Width, Height, xScale, yScale, Button))
+		local Width = Skin.Width or BaseSize
+		local Height = Skin.Height or BaseSize
+
+		Region:SetSize(_mcfg:GetSize(Width, Height))
 	end
 
-	ClearSetPoint(Region, Skin.Point, Anchor, Skin.RelPoint, Skin.OffsetX, Skin.OffsetY, SetAllPoints)
+	SetSkinPoint(Region, Button, Skin, SetAllPoints, Anchor)
 end
 
-----------------------------------------
--- Classic
----
+-- Skins the Classic `AutoCast`.
+local function Skin_AutoCastShine(Frame, Button, Skin)
+	-- Frame
+	Skin_AutoCastFrame(Frame, Button, Skin.AutoCastShine, SkinRoot.AutoCastShine)
 
--- Skins the AutoCastShine region used prior to 11.0.
-local function SkinAutoCastShine(Frame, Button, Skin, xScale, yScale)
-	-- AutoCast Frame
-	local Frame_Skin = Skin.AutoCastShine
-	local Default = DEFAULT_SKIN.AutoCastShine
+	-- Corners
+	local Corners = Button.AutoCastable or Frame.Corners
 
-	local SetAllPoints = Frame_Skin.SetAllPoints
-
-	if not SetAllPoints then
-		local Width = Frame_Skin.Width or Default.Width
-		local Height = Frame_Skin.Height or Default.Height
-
-		Frame:SetSize(GetSize(Width, Height, xScale, yScale, Button))
+	if Corners then
+		Skin_AutoCastTexture(Corners, Button, Button, Skin.AutoCastable, SkinRoot.AutoCastable)
 	end
-
-	ClearSetPoint(Frame, Frame_Skin.Point, Button, Frame_Skin.RelPoint, Frame_Skin.OffsetX, Frame_Skin.OffsetY, SetAllPoints)
-
-	-- AutoCast Corners
-	ApplySkin(Button.AutoCastable, Button, Button, Skin.AutoCastable, DEFAULT_SKIN.AutoCastable, xScale, yScale)
 end
 
-----------------------------------------
--- Retail
----
+-- Skins the Retail `AutoCast`.
+local function Skin_AutoCastOverlay(Frame, Button, Skin)
+	-- Frame
+	Skin_AutoCastFrame(Frame, Button, Skin.AutoCast_Frame, SkinRoot.AutoCast_Frame)
 
--- Skins the AutoCastOverlay region in 11.0+.
-local function SkinAutoCastOverlay(Frame, Button, Skin, xScale, yScale)
-	-- AutoCast Frame
-	local Frame_Skin = Skin.AutoCast_Frame
-	local Default = DEFAULT_SKIN.AutoCast_Frame
+	-- Corners
+	local Corners = Frame.Corners
 
-	local SetAllPoints = Frame_Skin.SetAllPoints
-
-	if not SetAllPoints then
-		local Width = Frame_Skin.Width or Default.Width
-		local Height = Frame_Skin.Height or Default.Height
-
-		Frame:SetSize(GetSize(Width, Height, xScale, yScale, Button))
+	if Corners then
+		Skin_AutoCastTexture(Corners, Button, Frame, Skin.AutoCast_Corners, SkinRoot.AutoCast_Corners)
 	end
 
-	ClearSetPoint(Frame, Frame_Skin.Point, Button, Frame_Skin.RelPoint, Frame_Skin.OffsetX, Frame_Skin.OffsetY, SetAllPoints)
+	-- Shine
+	Skin_AutoCastTexture(Frame.Shine, Button, Frame, Skin.AutoCast_Shine, SkinRoot.AutoCast_Shine)
 
-	-- AutoCast Shine
-	ApplySkin(Frame.Shine, Button, Frame, Skin.AutoCast_Shine, DEFAULT_SKIN.AutoCast_Shine, xScale, yScale)
-
-	-- AutoCast Shine Mask
-	ApplySkin(Frame.Mask, Button, Frame, Skin.AutoCast_Mask, DEFAULT_SKIN.AutoCast_Mask, xScale, yScale, true)
-
-	-- AutoCast Corners
-	ApplySkin(Frame.Corners, Button, Frame, Skin.AutoCast_Corners, DEFAULT_SKIN.AutoCast_Corners, xScale, yScale)
+	-- Shine Mask
+	Skin_AutoCastTexture(Frame.Mask, Button, Frame, Skin.AutoCast_Mask, SkinRoot.AutoCast_Mask, true)
 end
 
 ----------------------------------------
 -- Core
 ---
 
-Core.SkinAutoCast = function(Button, Skin, xScale, yScale)
-	local AutoCastOverlay = Button.AutoCastOverlay
-	local AutoCastShine = Button.AutoCastShine
+-- Internal skin handler for the `AutoCast` region.
+function Core.Skin_AutoCast(Button, Skin)
+	local Frame = Button.AutoCastOverlay or Button.AutoCastShine
 
-	-- Retail
-	if AutoCastOverlay then
-		SkinAutoCastOverlay(AutoCastOverlay, Button, Skin, xScale, yScale)
+	if not Frame then return end
+
+	-- Modern
+	if Frame.Shine then
+		Skin_AutoCastOverlay(Frame, Button, Skin)
 
 	-- Classic
-	elseif AutoCastShine then
-		SkinAutoCastShine(AutoCastShine, Button, Skin, xScale, yScale)
+	-- Account for AutoCastShine and AutoCastOverlay
+	elseif Button.AutoCastable or Frame.Corners then
+		Skin_AutoCastShine(Frame, Button, Skin)
 	end
 end

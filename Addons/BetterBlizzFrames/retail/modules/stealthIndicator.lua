@@ -89,6 +89,7 @@ local function OnUnitAurasUpdated(self, event, unit, unitAuraUpdateInfo)
 end
 
 function BBF.StealthIndicator()
+    if BBF.isMidnight then return end
     if BetterBlizzFramesDB.stealthIndicatorPlayer and not stealthEvent then
         stealthEvent = CreateFrame("Frame")
         stealthEvent:RegisterUnitEvent("UNIT_AURA", "player")

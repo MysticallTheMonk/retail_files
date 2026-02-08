@@ -1,2 +1,2 @@
-local _, addon = ...;
-local options = addon.Options;
+local _, addon = ...
+local options = addon.Options

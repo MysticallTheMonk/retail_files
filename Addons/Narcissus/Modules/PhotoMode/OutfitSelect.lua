@@ -17,9 +17,13 @@ local After = C_Timer.After;
 local GetCursorPosition = GetCursorPosition;
 local UIParent = UIParent;
 
+local GetOutfitInfo = C_TransmogCollection.GetCustomSetInfo or C_TransmogCollection.GetOutfitInfo;
+local GetOutfits = C_TransmogCollection.GetCustomSets or C_TransmogCollection.GetOutfits;
+local GetOutfitItemTransmogInfoList = C_TransmogCollection.GetCustomSetItemTransmogInfoList or C_TransmogCollection.GetOutfitItemTransmogInfoList;
+
+
 local BUTTON_PER_PAGE = 8;
 local PIXEL = NarciAPI.GetPixelByScale(1);
-local IGNORE_NO_OUTFIT_CHARS = true;
 
 local MainFrame, ActivePreviewModel, CharacterList, FilterButton, SimpleTooltip;
 local PreviewModels = {};
@@ -173,7 +177,7 @@ function OutfitDataProvider:SelectProfile(playerUID, forceUpdate)
             self["GetNameByOrder"] = self["GetNameFromServer"];
             self["GetOutfitByOrder"] = self["GetOutfitFromServer"];
             self.outfitStrings = nil;
-            self.outfitIDs = C_TransmogCollection.GetOutfits() or {};
+            self.outfitIDs = GetOutfits() or {};
             self.numOutfits = #self.outfitIDs;
         else
             self["GetNameByOrder"] = self["GetNameFromProfile"];
@@ -191,7 +195,7 @@ function OutfitDataProvider:GetOutfitByOrder(i)
     if self.isCurrentPlayer then
         local outfitID = self.outfitIDs[i];
         if outfitID then
-            return C_TransmogCollection.GetOutfitItemTransmogInfoList(outfitID);
+            return GetOutfitItemTransmogInfoList(outfitID);
         end
     end
 end
@@ -200,7 +204,7 @@ function OutfitDataProvider:GetNameByOrder(i)
     if self.isCurrentPlayer then
         local outfitID = self.outfitIDs[i];
         if outfitID then
-            return C_TransmogCollection.GetOutfitInfo(outfitID);
+            return GetOutfitInfo(outfitID);
         end
     else
 
@@ -214,14 +218,14 @@ end
 function OutfitDataProvider:GetNameFromServer(i)
     local outfitID = self.outfitIDs[i];
     if outfitID then
-        return C_TransmogCollection.GetOutfitInfo(outfitID);
+        return GetOutfitInfo(outfitID);
     end
 end
 
 function OutfitDataProvider:GetOutfitFromServer(i)
     local outfitID = self.outfitIDs[i];
     if outfitID then
-        return C_TransmogCollection.GetOutfitItemTransmogInfoList(outfitID);
+        return GetOutfitItemTransmogInfoList(outfitID);
     end
 end
 
@@ -613,8 +617,8 @@ function CharacterListMixin:Init(sortMethod)
     if sortMethod == "BetterWardrobe" then
         UIDRoster, numCharacters, numIgnored = TransmogDataProvider:GetBWCharacters();
     else
-        UIDRoster, numCharacters, numIgnored = CharacterProfile:GetRoster(sortMethod, IGNORE_NO_OUTFIT_CHARS and "outfit");
-    end   
+        UIDRoster, numCharacters, numIgnored = CharacterProfile:GetRoster("outfit", sortMethod);
+    end
 
     table.insert(UIDRoster, 1, "actors");   --the first entry is reserved for actors' original outfits
     numCharacters = numCharacters + 1;

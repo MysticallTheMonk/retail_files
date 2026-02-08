@@ -2,8 +2,7 @@
 local _, addon = ...
 local wow = addon.WoW.Api
 local fsConfig = addon.Configuration
-local fsLog = addon.Logging.Log
-local L = addon.Locale
+local L = addon.Locale.Current
 local M = {}
 fsConfig.Panels.Api = M
 
@@ -13,16 +12,10 @@ function M:Build(parent)
     scroller.parent = parent.name
 
     local panel = wow.CreateFrame("Frame")
+    local width, height = fsConfig:SettingsSize()
 
-    if wow.SettingsPanel then
-        panel:SetWidth(wow.SettingsPanel.Container:GetWidth())
-        panel:SetHeight(wow.SettingsPanel.Container:GetHeight())
-    elseif wow.InterfaceOptionsFramePanelContainer then
-        panel:SetWidth(wow.InterfaceOptionsFramePanelContainer:GetWidth())
-        panel:SetHeight(wow.InterfaceOptionsFramePanelContainer:GetHeight())
-    else
-        fsLog:Error("Unable to set configuration panel width.")
-    end
+    panel:SetWidth(width)
+    panel:SetHeight(height)
 
     scroller:SetScrollChild(panel)
 
@@ -31,34 +24,37 @@ function M:Build(parent)
     title:SetPoint("TOPLEFT", verticalSpacing, -verticalSpacing)
     title:SetText(L["Api"])
 
-    local anchor = title
     local intro = {
         L["Want to integrate FrameSort into your addons, scripts, and Weak Auras?"],
         L["Here are some examples."],
     }
 
-    anchor = fsConfig:TextBlock(intro, panel, title)
+    local anchor = fsConfig:TextBlock(intro, panel, title)
 
     local examples = {
         {
             Description = L["Retrieved an ordered array of party/raid unit tokens."],
-            Text = "/dump FrameSortApi.v2.Sorting:GetFriendlyUnits()",
+            Text = "/dump FrameSortApi.v3.Sorting:GetFriendlyUnits()",
         },
         {
             Description = L["Retrieved an ordered array of arena unit tokens."],
-            Text = "/dump FrameSortApi.v2.Sorting:GetEnemyUnits()",
+            Text = "/dump FrameSortApi.v3.Sorting:GetEnemyUnits()",
         },
         {
             Description = L["Register a callback function to run after FrameSort sorts frames."],
-            Text = [[/run FrameSortApi.v2.Sorting:RegisterPostSortCallback(function() print("FrameSort has sorted frames.") end)]],
+            Text = [[/run FrameSortApi.v3.Sorting:RegisterPostSortCallback(function() print("FrameSort has sorted frames.") end)]],
         },
         {
             Description = L["Retrieve an ordered array of party frames."],
-            Text = "/dump FrameSortApi.v2.Sorting:GetPartyFrames()",
+            Text = "/dump FrameSortApi.v3.Sorting:GetPartyFrames()",
         },
         {
             Description = L["Change a FrameSort setting."],
-            Text = [[/run FrameSortApi.v2.Options:SetPlayerSortMode("Arena - 2v2", "Top")]],
+            Text = [[/run FrameSortApi.v3.Options:SetPlayerSortMode("Arena - 2v2", "Top")]],
+        },
+        {
+            Description = L["Get the frame number of a unit."],
+            Text = [[/dump FrameSortApi.v3.Frame:FrameNumberForUnit("arena1")]],
         },
         {
             Description = L["View a full listing of all API methods on GitHub."],

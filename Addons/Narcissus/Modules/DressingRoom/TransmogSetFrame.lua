@@ -8,9 +8,10 @@ local _G = _G;
 local DressUpFrame = DressUpFrame;
 local C_Item = C_Item;
 local RequestLoadItemDataByID = C_Item.RequestLoadItemDataByID;
-local PlayerHasTransmog = C_TransmogCollection.PlayerHasTransmog;
 local GetSourceItemID = C_TransmogCollection.GetSourceItemID;
 local GetAppearanceInfoBySource = C_TransmogCollection.GetAppearanceInfoBySource;
+local GetSourceInfo = C_TransmogCollection.GetSourceInfo;
+local IsAppearanceCollected = TransmogDataProvider.IsAppearanceCollected;
 
 
 local FRAME_WIDTH_BASE = 320;
@@ -24,10 +25,14 @@ local COLOR_2 = 0.67;
 local FILE = "Interface/AddOns/Narcissus/Art/Modules/DressingRoom/TransmogSetFrame.tga";
 
 
+local HIDE_DUPES = false;
+
+
+local ItemButtonMixin = {};
+
 local TransmogSetFrame = CreateFrame("Frame", nil, UIParent);
 TransmogSetFrame:SetSize(FRAME_WIDTH, 460);
 TransmogSetFrame:Hide();
-TransmogSetFrame.itemButtons = {};
 DressingRoomSystem.TransmogSetFrame = TransmogSetFrame;
 
 function TransmogSetFrame:Init()
@@ -83,7 +88,7 @@ function TransmogSetFrame:Init()
     self.Footer:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", 0, 0);
 
     self:CreateFooterCheckbox(Narci.L["Hide Player Items"], "ToggleRemovePlayerItems", "DressingRoomAutoRemoveNonSetItem", Narci.L["Hide Player Items Tooltip"]);
-
+    self:CreateFooterCheckbox(Narci.L["Hide Duplicated Appearance"] , "ToggleHideDuplicates", "DressingRoomItemSetListHideDupes", Narci.L["Hide Duplicated Appearance Tooltip"] );
 
     --Header
     local headerHeight = 60;
@@ -110,16 +115,54 @@ function TransmogSetFrame:Init()
     self.Divider:SetTexCoord(0, 0.5, 256/1024, 320/1024);
 
 
-    self.ButtonHighlight = self:CreateTexture(nil, "ARTWORK");
+    self:SetScript("OnShow", self.OnShow);
+    self:SetScript("OnHide", self.OnHide);
+    self:SetScript("OnEvent", self.OnEvent);
+
+
+    --ScrollView
+    local ScrollView = NarciAPI.CreateScrollView(self);
+    self.ScrollView = ScrollView;
+    ScrollView:SetSize(FRAME_WIDTH_BASE, ITEMBUTTON_HEIGHT * 6);
+    ScrollView:SetPoint("TOP", self, "TOP", 0, self.itemlistFromY + 4);
+    ScrollView:SetPoint("BOTTOM", self.Footer, "TOP", 0, 8);
+    ScrollView:SetStepSize(ITEMBUTTON_HEIGHT * 2);
+    ScrollView:OnSizeChanged();
+    ScrollView:EnableMouseBlocker(true);
+    ScrollView:SetBottomOvershoot(4);
+
+    local function ItemButton_Create()
+        local obj = CreateFrame("Button", nil, ScrollView);
+        Mixin(obj, ItemButtonMixin);
+        obj:OnLoad();
+        return obj
+    end
+
+    local function ItemButton_Remove(obj)
+        obj:ClearItem();
+    end
+
+    ScrollView:AddTemplate("ItemButton", ItemButton_Create, nil, ItemButton_Remove);
+
+
+    self.ButtonHighlight = ScrollView:CreateTexture(nil, "ARTWORK");
     self.ButtonHighlight:Hide();
     self.ButtonHighlight:SetTexture(FILE);
     self.ButtonHighlight:SetTexCoord(0, 512/1024, 320/1024, 384/1024);
     self.ButtonHighlight:SetSize(FRAME_WIDTH, 64 * SIZE_SCALE);
     NarciAPI.DisableSharpening(self.ButtonHighlight);
 
-    self:SetScript("OnShow", self.OnShow);
-    self:SetScript("OnHide", self.OnHide);
-    self:SetScript("OnEvent", self.OnEvent);
+
+    HIDE_DUPES = NarcissusDB.DressingRoomItemSetListHideDupes;
+end
+
+function TransmogSetFrame:ClearContent()
+    if self.ScrollView then
+        self.ScrollView:SetContent(nil);
+    end
+    self.itemOwners = {};
+    self.args = nil;
+    self:HighlightButton(nil);
 end
 
 function TransmogSetFrame:SetItemSet(setName, items, setItemLink)
@@ -128,7 +171,8 @@ function TransmogSetFrame:SetItemSet(setName, items, setItemLink)
     end
 
     self:Show();
-    self:ReleaseItemButtons();
+    self:ClearContent();
+    self.args = {setName, items, setItemLink};
 
     if setName then
         self.Title:SetText(setName);
@@ -150,28 +194,62 @@ function TransmogSetFrame:SetItemSet(setName, items, setItemLink)
     local tbl = {};
     local addItem, appearanceID;
     local n = 0;
-    local numKnown = 0;
+    local numCollected = 0;
+    local numDupes = 0;
+    local showDupes = not HIDE_DUPES;
+    local isSourceCollected;
+    local isCollected;
+    local collecedAppearance = {};
+
 
     for _, transmogSetItemInfo in ipairs(items) do
         addItem = false;
+        isSourceCollected = false;
         appearanceInfo = GetAppearanceInfoBySource(transmogSetItemInfo.itemModifiedAppearanceID);
+        appearanceID = nil;
+
+        local sourceInfo = GetSourceInfo(transmogSetItemInfo.itemModifiedAppearanceID);
+        if sourceInfo and sourceInfo.isCollected then
+            isSourceCollected = true;
+        end
 
         if appearanceInfo then
             appearanceID = appearanceInfo.appearanceID;
-            if not usedAppearance[appearanceID] then
+
+            if collecedAppearance[appearanceID] == nil then
+                collecedAppearance[appearanceID] = IsAppearanceCollected(appearanceID);
+            end
+
+            if usedAppearance[appearanceID] then
+                numDupes = numDupes + 1;
+            else
                 usedAppearance[appearanceID] = true;
                 addItem = true;
-                if appearanceInfo.appearanceIsCollected or appearanceInfo.sourceIsCollected then
-                    numKnown = numKnown + 1;
-                end
             end
         else
             addItem = true;
         end
 
-        if addItem then
+        if showDupes then
+            --See if the source is collected, similar to cvar "missingTransmogSourceInItemTooltips"
+            isCollected = isSourceCollected;
+        else
+            --See if the appearance is collected
+            if appearanceID then
+                isCollected = collecedAppearance[appearanceID];
+            else
+                isCollected = isSourceCollected;
+            end
+        end
+
+        if addItem or showDupes then
             n = n + 1;
             tbl[n] = transmogSetItemInfo;
+
+            if isCollected then
+                numCollected = numCollected + 1;
+                tbl[n].isCollected = true;
+            end
         end
     end
 
@@ -183,28 +261,82 @@ function TransmogSetFrame:SetItemSet(setName, items, setItemLink)
     local numItems = #items;
     local anyWeapon = false;
 
-    for i, setItem in ipairs(items) do
-        itemButton = self:AcquireItemButton();
-        itemButton:SetPoint("TOP", self, "TOP", 0, self.itemlistFromY + (1 - i) * ITEMBUTTON_HEIGHT);
-        itemButton:SetItem(setItem.itemID, setItem.itemModifiedAppearanceID, setItem.invType);
-        if itemButton.slotID == 16 or itemButton.slotID == 17 then
-            anyWeapon = true;
+
+    local slotID, lastLabel, label, anyEqupped;
+    local lastSlotID;
+
+    for k, v in ipairs(items) do
+        slotID = TransmogDataProvider:GetSlotIDBySetInvType(v.invType);
+        if slotID ~= lastSlotID then
+            lastSlotID = slotID;
+            v.showSlotName = true;
+            if slotID == 16 or slotID == 17 then
+                anyWeapon = true;
+            end
+        else
+            v.showSlotName = false;
         end
+
+        --if anyEqupped then
+        --    label:SetTextColor(COLOR_2, COLOR_2, COLOR_2);
+        --else
+        --    label:SetTextColor(0.40, 0.40, 0.40);
+        --end
     end
 
     MAX_LABEL_WIDTH = anyWeapon and self.maxWidth_Weapon or self.maxWidth_Armor;
     FRAME_WIDTH = FRAME_WIDTH_BASE + MAX_LABEL_WIDTH - 24;
 
-    self.Subtitle:SetText(string.format("%s:  |cffcccccc%d / %d|r", TRANSMOG_COLLECTED or "Collected", numKnown, numItems));
-    self:UpdateLabels(true);
+    self.Subtitle:SetText(string.format("%s:  |cffcccccc%d / %d|r", TRANSMOG_COLLECTED or "Collected", numCollected, numItems));
+    --self:UpdateLabels(true);
 
-    local height = math.max(numItems, 4) * ITEMBUTTON_HEIGHT - self.itemlistFromY + 80 * SIZE_SCALE + ITEMLIST_PADDING_Y;
+    local numButtons = NarciAPI.Clamp(numItems, 4, 16.4);
+    local height = numButtons * ITEMBUTTON_HEIGHT - self.itemlistFromY + 80 * SIZE_SCALE + ITEMLIST_PADDING_Y;
     self:SetSize(FRAME_WIDTH, height);
+    self.ScrollView:SetWidth(FRAME_WIDTH);
+    self.ScrollView:OnSizeChanged();
+
+    self:UpdateEquippedItems();
+
+    local top, bottom;
+    local n = 0;
+    local offsetY = 4;
+    local content = {};
+
+    for k, v in ipairs(items) do
+        n = n + 1;
+        top = offsetY;
+        bottom = offsetY + ITEMBUTTON_HEIGHT;
+        content[n] = {
+            dataIndex = n,
+            templateKey = "ItemButton",
+            setupFunc = function(obj)
+                obj:SetItem(v.itemID, v.itemModifiedAppearanceID, v.invType);
+                obj.SlotName:SetShown(v.showSlotName);
+                obj.BlueDot:SetShown(not v.isCollected);
+                obj:SetWidth(FRAME_WIDTH);
+                obj:Layout();
+            end,
+            top = top,
+            bottom = bottom,
+        };
+        offsetY = bottom;
+    end
+
+    self.ScrollView:SetContent(content);
 end
 
 function TransmogSetFrame:ToggleRemovePlayerItems(state)
     local userInput = true;
     NarciDressingRoomAPI.EnableAutoRemoveNonSetItems(state, userInput);
+end
+
+function TransmogSetFrame:ToggleHideDuplicates(state)
+    HIDE_DUPES = not NarcissusDB.DressingRoomItemSetListHideDupes;
+    NarcissusDB.DressingRoomItemSetListHideDupes = HIDE_DUPES;
+    if self.args then
+        self:SetItemSet(self.args[1], self.args[2], self.args[3])
+    end
 end
 
 function TransmogSetFrame:OnEvent(event, ...)
@@ -236,7 +368,7 @@ function TransmogSetFrame:OnHide()
     self:UnregisterEvent("ITEM_DATA_LOAD_RESULT");
     self:HighlightButton(nil);
     self:Hide();
-    self:ReleaseItemButtons();
+    self:ClearContent();
     if self.refreshItemTimer then
         self.refreshItemTimer = nil;
         self:SetScript("OnUpdate", nil);
@@ -260,28 +392,26 @@ function TransmogSetFrame:OnDressModel(itemModifiedAppearanceID, invSlot, remove
     end
 end
 
-function TransmogSetFrame:UpdateEquippedItems()
+function TransmogSetFrame:UpdateEquippedItems(updateButtons)
+    self.equippedItems = {};
     local playerActor = DressUpFrame.ModelScene:GetPlayerActor();
 	if playerActor then
 		local transmogInfoList = playerActor:GetItemTransmogInfoList();
         if transmogInfoList then
-            for i = 1, self.numButtons do
-                self.itemButtons[i]:SetEquipped(false);
-            end
             local transmogID, itemID, itemButton;
             for slotID, info in pairs(transmogInfoList) do
                 transmogID = info.appearanceID;
                 if transmogID and transmogID ~= 0 then
                     itemID = GetSourceItemID(transmogID);
-                    itemButton = itemID and self.itemOwners[itemID];
-                    if itemButton then
-                        itemButton:SetEquipped(itemID == itemButton.itemID);
-                    end
+                    self.equippedItems[itemID] = true;
                 end
             end
         end
 	end
-    self:UpdateLabels();
+
+    if updateButtons then
+        self.ScrollView:CallObjectMethod("ItemButton", "UpdateEquippedStatus");
+    end
 end
 
 function TransmogSetFrame:UpdateLabels(updateLayout)
@@ -324,7 +454,7 @@ function TransmogSetFrame:OnUpdate(elapsed)
     if self.refreshItemTimer > 0.03 then
         self.refreshItemTimer = nil;
         self:SetScript("OnUpdate", nil);
-        self:UpdateEquippedItems();
+        self:UpdateEquippedItems(true);
     end
 end
 
@@ -463,7 +593,6 @@ do  --ItemButton
     local PADDING_H = 16;
     local ICON_SIZE = 20;
     local ICON_TEXT_GAP = 6;
-    local ItemButtonMixin = {};
 
     function ItemButtonMixin:OnLoad()
         self.OnLoad = nil;
@@ -485,18 +614,31 @@ do  --ItemButton
         self.SlotName:SetPoint("LEFT", self, "LEFT", PADDING_H, 0);
         self.SlotName:SetTextColor(COLOR_2, COLOR_2, COLOR_2);
 
+        self.BlueDot = self:CreateTexture(nil, "OVERLAY");
+        self.BlueDot:SetTexture(FILE);
+        self.BlueDot:SetTexCoord(512/1024, 528/1024, 48/1024, 64/1024);
+        self.BlueDot:SetSize(8, 8);
+        self.BlueDot:SetPoint("RIGHT", self.Icon, "LEFT", -4, 0);
+        self.BlueDot:Hide();
+        self.BlueDot:SetAlpha(0.8);
+
         self:SetScript("OnEnter", self.OnEnter);
         self:SetScript("OnLeave", self.OnLeave);
         self:SetScript("OnClick", self.OnClick);
     end
 
     function ItemButtonMixin:OnEnter()
-        if self.itemID then
+        if self.itemModifiedAppearanceID then   --self.itemID
             TransmogSetFrame:HighlightButton(self);
-            local tooltip = GameTooltip;
-            tooltip:Hide();
-            tooltip:SetOwner(self, "ANCHOR_RIGHT");
-            tooltip:SetItemByID(self.itemID);
+
+            local itemLink = select(6, C_TransmogCollection.GetAppearanceSourceInfo(self.itemModifiedAppearanceID));
+            if itemLink then
+                local tooltip = GameTooltip;
+                tooltip:Hide();
+                tooltip:SetOwner(self, "ANCHOR_RIGHT");
+                tooltip.suppressAutomaticCompareItem = true;
+                tooltip:SetHyperlink(itemLink);
+            end
         end
     end
 
@@ -519,6 +661,7 @@ do  --ItemButton
         self.SlotName:SetText(_G[invType]);
         self.isLoaded = false;
         TransmogSetFrame:LoadItem(itemID, self);
+        self:UpdateEquippedStatus();
     end
 
     function ItemButtonMixin:OnItemLoaded(itemID)
@@ -563,6 +706,12 @@ do  --ItemButton
         end
     end
 
+    function ItemButtonMixin:UpdateEquippedStatus()
+        if self.itemID then
+            self:SetEquipped(TransmogSetFrame.equippedItems[self.itemID]);
+        end
+    end
+
     function ItemButtonMixin:Layout()
         self.Icon:SetPoint("LEFT", self, "LEFT", PADDING_H + MAX_LABEL_WIDTH + ICON_SIZE, 0);
         self:SetWidth(FRAME_WIDTH);
@@ -579,29 +728,5 @@ do  --ItemButton
             self.ItemName:SetText(nil);
             self.SlotName:SetText(nil);
         end
-    end
-
-    function TransmogSetFrame:ReleaseItemButtons()
-        self:HighlightButton(nil);
-        self.itemOwners = {};
-        self.numButtons = 0;
-        for _, f in ipairs(self.itemButtons) do
-            f:Hide();
-            f:ClearAllPoints();
-            f:ClearItem();
-        end
-    end
-
-    function TransmogSetFrame:AcquireItemButton()
-        local i = self.numButtons + 1;
-        self.numButtons = i;
-        if not self.itemButtons[i] then
-            local f = CreateFrame("Button", nil, self);
-            self.itemButtons[i] = f;
-            Mixin(f, ItemButtonMixin);
-            f:OnLoad();
-        end
-        self.itemButtons[i]:Show();
-        return self.itemButtons[i]
     end
 end

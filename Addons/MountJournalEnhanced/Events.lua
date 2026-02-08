@@ -6,10 +6,27 @@ function ADDON:IsPlayerMounted()
     return activeMount ~= nil
 end
 
+local function GetActiveMount()
+    local numMounts = C_MountJournal.GetNumDisplayedMounts()
+    for index = 1, numMounts do
+        local _, _, _, isActive, _, _, _, _, _, _, isCollected, mountID = C_MountJournal.GetDisplayedMountInfo(index)
+        if isActive then
+            return mountID
+        end
+        if not isCollected then
+            return
+        end
+    end
+end
 
 local function triggerEvents(unit, isOnLogin, mountId, auraInstanceID)
     if mountId then
         if unit == "player" then
+            if issecretvalue and issecretvalue(mountId) then
+                -- data from UNIT_AURA are now secret values since 12.0
+                -- therefore parse active mount again from different source
+                mountId = GetActiveMount()
+            end
             activeMount = mountId
             activeAuraId = auraInstanceID
             ADDON.Events:TriggerEvent("OnMountUp", activeMount, isOnLogin)

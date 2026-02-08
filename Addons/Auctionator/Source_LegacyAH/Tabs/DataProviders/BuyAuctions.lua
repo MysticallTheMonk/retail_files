@@ -281,8 +281,7 @@ function AuctionatorBuyAuctionsDataProviderMixin:PopulateAuctions()
       if prevResult.unitPrice == newEntry.unitPrice and
          prevResult.stackSize == newEntry.stackSize and
          prevResult.itemLink == newEntry.itemLink and
-         prevResult.otherSellers == newEntry.otherSellers and
-         (prevResult.bidAmount == newEntry.bidAmount or prevResult.unitPrice == nil) then
+         prevResult.otherSellers == newEntry.otherSellers then
         prevResult.numStacks = prevResult.numStacks + 1
         Auctionator.Utilities.SetStacksText(prevResult)
       else
@@ -302,7 +301,6 @@ function AuctionatorBuyAuctionsDataProviderMixin:PopulateAuctions()
       numStacks = 0,
       isOwned = false,
       otherSellers = "",
-      bidAmount = 0,
       isSelected = false,
       notReady = true,
       query = self.query,

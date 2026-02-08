@@ -1,10 +1,12 @@
 ---@type string, Addon
 local _, addon = ...
 local wow = addon.WoW.Api
-local fsProviders = addon.Providers
+local wowEx = addon.WoW.WowEx
 local fsUnit = addon.WoW.Unit
+local fsSortedUnits = addon.Modules.Sorting.SortedUnits
+local fsSortedFrames = addon.Modules.Sorting.SortedFrames
 local fsEnumerable = addon.Collections.Enumerable
-local fsCompare = addon.Collections.Comparer
+local fsCompare = addon.Modules.Sorting.Comparer
 local fsFrame = addon.WoW.Frame
 local fsLog = addon.Logging.Log
 local targetFrames = {}
@@ -18,19 +20,29 @@ local targetNextFrame = nil
 local targetPreviousFrame = nil
 local cycleNextFrame = nil
 local cyclePreviousFrame = nil
+local cycleNextDpsFrame = nil
+local cyclePreviousDpsFrame = nil
 
 ---@class TargetingModule: IInitialise
 local M = {}
 addon.Modules.Targeting = M
 
-local function GetFriendlyFrames(provider)
-    local frames = fsFrame:PartyFrames(provider, true)
+local function FriendlyUnits()
+    local sortEnabled = fsCompare:FriendlySortMode()
 
-    if #frames == 0 then
-        frames = fsFrame:RaidFrames(provider, true)
+    if sortEnabled then
+        return fsSortedUnits:FriendlyUnits()
     end
 
-    return frames
+    -- sort not enabled, fallback to frames
+    local frames = fsSortedFrames:FriendlyFrames()
+
+    return fsEnumerable
+        :From(frames)
+        :Map(function(x)
+            return fsFrame:GetFrameUnit(x)
+        end)
+        :ToTable()
 end
 
 local function UpdateAdjacentTargets(friendlyUnits)
@@ -38,6 +50,8 @@ local function UpdateAdjacentTargets(friendlyUnits)
     assert(cyclePreviousFrame)
     assert(targetNextFrame)
     assert(targetPreviousFrame)
+    assert(cycleNextDpsFrame)
+    assert(cyclePreviousDpsFrame)
 
     cycleNextFrame:SetAttribute("FSUnitsCount", #friendlyUnits)
     cyclePreviousFrame:SetAttribute("FSUnitsCount", #friendlyUnits)
@@ -51,19 +65,36 @@ local function UpdateAdjacentTargets(friendlyUnits)
         targetNextFrame:SetAttribute("FSUnit" .. index, unit)
         targetPreviousFrame:SetAttribute("FSUnit" .. index, unit)
     end
+
+    local dpsUnits = fsEnumerable
+        :From(friendlyUnits)
+        :Where(function(unit)
+            return wow.UnitGroupRolesAssigned(unit) == wowEx.Role.Dps
+        end)
+        :ToTable()
+
+    cycleNextDpsFrame:SetAttribute("FSUnitsCount", #dpsUnits)
+    cyclePreviousDpsFrame:SetAttribute("FSUnitsCount", #dpsUnits)
+
+    for index, unit in ipairs(dpsUnits) do
+        cycleNextDpsFrame:SetAttribute("FSUnit" .. index, unit)
+        cyclePreviousDpsFrame:SetAttribute("FSUnit" .. index, unit)
+    end
 end
 
 local function FilterPets(units)
     return fsEnumerable
         :From(units)
-        :Where(function(x) return not fsUnit:IsPet(x) end)
+        :Where(function(x)
+            return not fsUnit:IsPet(x)
+        end)
         :ToTable()
 end
 
 local function UpdateTargets()
     local updatedCount = 0
     local start = wow.GetTimePreciseSec()
-    local friendlyUnits = M:FriendlyNonPetUnits()
+    local friendlyUnits = FilterPets(FriendlyUnits())
 
     -- if units has less than 5 items it's still fine as units[i] will just be nil
     for i, btn in ipairs(targetFrames) do
@@ -96,7 +127,6 @@ local function UpdateTargets()
         updatedCount = updatedCount + 1
     end
 
-
     for i, btn in ipairs(targetReverseFrames) do
         local new = friendlyUnits[#friendlyUnits - i] or "none"
         local current = btn:GetAttribute("unit")
@@ -107,7 +137,7 @@ local function UpdateTargets()
         end
     end
 
-    local enemyUnits = M:EnemyNonPetUnits()
+    local enemyUnits = FilterPets(fsSortedUnits:ArenaUnits())
 
     for i, btn in ipairs(targetEnemyFrames) do
         local new = enemyUnits[i] or "none"
@@ -120,7 +150,7 @@ local function UpdateTargets()
     end
 
     for i, btn in ipairs(targetEnemyPetFrames) do
-        local new = fsUnit:PetFor(enemyUnits[i] or "none")
+        local new = fsUnit:PetFor(enemyUnits[i] or "none", true)
         local current = btn:GetAttribute("unit")
 
         if current ~= new then
@@ -142,20 +172,24 @@ local function UpdateTargets()
     UpdateAdjacentTargets(friendlyUnits)
 
     local stop = wow.GetTimePreciseSec()
-    fsLog:Debug(string.format("Update targets took %fms, %d updated.", (stop - start) * 1000, updatedCount))
+    fsLog:Debug("Update targets took %fms, %d updated.", (stop - start) * 1000, updatedCount)
 end
 
 local function InitAdjacentTargeting()
-    cycleNextFrame = wow.CreateFrame("Button", "FSCycleNextFrame", wow.UIParent, "SecureActionButtonTemplate")
-    cyclePreviousFrame = wow.CreateFrame("Button", "FSCyclePreviousFrame", wow.UIParent, "SecureActionButtonTemplate")
     targetNextFrame = wow.CreateFrame("Button", "FSTargetNextFrame", wow.UIParent, "SecureActionButtonTemplate")
     targetPreviousFrame = wow.CreateFrame("Button", "FSTargetPreviousFrame", wow.UIParent, "SecureActionButtonTemplate")
+    cycleNextFrame = wow.CreateFrame("Button", "FSCycleNextFrame", wow.UIParent, "SecureActionButtonTemplate")
+    cyclePreviousFrame = wow.CreateFrame("Button", "FSCyclePreviousFrame", wow.UIParent, "SecureActionButtonTemplate")
+    cycleNextDpsFrame = wow.CreateFrame("Button", "FSCycleNextDpsFrame", wow.UIParent, "SecureActionButtonTemplate")
+    cyclePreviousDpsFrame = wow.CreateFrame("Button", "FSCyclePreviousDpsFrame", wow.UIParent, "SecureActionButtonTemplate")
 
     local buttons = {
-        cycleNextFrame,
-        cyclePreviousFrame,
         targetNextFrame,
         targetPreviousFrame,
+        cycleNextFrame,
+        cyclePreviousFrame,
+        cycleNextDpsFrame,
+        cyclePreviousDpsFrame,
     }
 
     local downOrUp = wow.GetCVarBool("ActionButtonUseKeyDown") and "AnyDown" or "AnyUp"
@@ -190,7 +224,12 @@ local function InitAdjacentTargeting()
         "OnClick",
         cycleNextFrame,
         [[
-            local maxUnits = self:GetAttribute("FSUnitsCount")
+            local maxUnits = self:GetAttribute("FSUnitsCount") or 0
+
+            if maxUnits == 0 then
+                return
+            end
+
             local index = (self:GetAttribute("FSIndex") or 0) + 1
 
             -- if we've reached the end, then start from the beginning
@@ -210,7 +249,12 @@ local function InitAdjacentTargeting()
         "OnClick",
         cyclePreviousFrame,
         [[
-            local maxUnits = self:GetAttribute("FSUnitsCount")
+            local maxUnits = self:GetAttribute("FSUnitsCount") or 0
+
+            if maxUnits == 0 then
+                return
+            end
+
             local index = (self:GetAttribute("FSIndex") or 0) - 1
 
             if index <= 0 then
@@ -229,7 +273,12 @@ local function InitAdjacentTargeting()
         "OnClick",
         targetNextFrame,
         [[
-            local maxUnits = self:GetAttribute("FSUnitsCount")
+            local maxUnits = self:GetAttribute("FSUnitsCount") or 0
+
+            if maxUnits == 0 then
+                return
+            end
+
             local index = min((self:GetAttribute("FSIndex") or 0) + 1, maxUnits)
 
             self:RunAttribute("SetIndex", index)
@@ -244,8 +293,62 @@ local function InitAdjacentTargeting()
         "OnClick",
         targetPreviousFrame,
         [[
-            local maxUnits = self:GetAttribute("FSUnitsCount")
+            local maxUnits = self:GetAttribute("FSUnitsCount") or 0
+
+            if maxUnits == 0 then
+                return
+            end
+
             local index = max((self:GetAttribute("FSIndex") or 0) - 1, 1)
+
+            self:RunAttribute("SetIndex", index)
+
+            local unit = self:GetAttribute("FSUnit" .. index) or "none"
+            self:SetAttribute("unit", unit)
+        ]]
+    )
+
+    wow.SecureHandlerWrapScript(
+        cycleNextDpsFrame,
+        "OnClick",
+        cycleNextDpsFrame,
+        [[
+            local maxUnits = self:GetAttribute("FSUnitsCount") or 0
+
+            if maxUnits == 0 then
+                return
+            end
+
+            local index = (self:GetAttribute("FSIndex") or 0) + 1
+
+            -- if we've reached the end, then start from the beginning
+            if index > maxUnits then
+                index = 1
+            end
+
+            self:RunAttribute("SetIndex", index)
+
+            local unit = self:GetAttribute("FSUnit" .. index) or "none"
+            self:SetAttribute("unit", unit)
+        ]]
+    )
+
+    wow.SecureHandlerWrapScript(
+        cyclePreviousDpsFrame,
+        "OnClick",
+        cyclePreviousDpsFrame,
+        [[
+            local maxUnits = self:GetAttribute("FSUnitsCount") or 0
+
+            if maxUnits == 0 then
+                return
+            end
+
+            local index = (self:GetAttribute("FSIndex") or 0) - 1
+
+            if index <= 0 then
+                index = maxUnits
+            end
 
             self:RunAttribute("SetIndex", index)
 
@@ -255,122 +358,11 @@ local function InitAdjacentTargeting()
     )
 end
 
-function M:FriendlyFrames()
-    local frames = nil
-
-    -- prefer Blizzard frames
-    if fsProviders.Blizzard:Enabled() then
-        frames = GetFriendlyFrames(fsProviders.Blizzard)
-    end
-
-    if not frames or #frames == 0 then
-        local nonBlizzard = fsEnumerable
-            :From(fsProviders:Enabled())
-            :Where(function(provider)
-                return provider ~= fsProviders.Blizzard
-            end)
-            :ToTable()
-
-        for _, provider in ipairs(nonBlizzard) do
-            frames = GetFriendlyFrames(provider)
-
-            if #frames > 0 then
-                break
-            end
-        end
-    end
-
-    if not frames or #frames == 0 then
-        return {}
-    end
-
-    local start1 = wow.GetTimePreciseSec()
-
-    local result = fsEnumerable
-        :From(frames)
-        :OrderBy(function(x, y)
-            return fsCompare:CompareTopLeftFuzzy(x, y)
-        end)
-        :ToTable()
-
-    local stop1 = wow.GetTimePreciseSec()
-    local start2 = wow.GetTimePreciseSec()
-
-    table.sort(frames, function (x, y)
-        return fsCompare:CompareTopLeftFuzzy(x, y)
-    end)
-
-    local stop2 = wow.GetTimePreciseSec()
-    fsLog:Debug(string.format("Testing took took %fms, v2 %fms.", (stop1 - start1) * 1000, (stop2 - start2) * 1000))
-
-    return result
-end
-
-function M:FriendlyUnits()
-    local frames = M:FriendlyFrames()
-
-    if frames and #frames > 0 then
-        return fsEnumerable
-            :From(frames)
-            :Map(function(x)
-                return fsFrame:GetFrameUnit(x)
-            end)
-            :ToTable()
-    end
-
-    -- no frames found, fallback to units
-    local units = fsUnit:FriendlyUnits()
-    local sortEnabled = fsCompare:FriendlySortMode()
-
-    if not sortEnabled then
-        return units
-    end
-
-    table.sort(units, fsCompare:SortFunction(units))
-
-    return units
-end
-
-function M:FriendlyNonPetUnits()
-    return FilterPets(M:FriendlyUnits())
-end
-
-function M:EnemyFrames()
-    local units = fsUnit:EnemyUnits()
-    local sortEnabled = fsCompare:EnemySortMode()
-
-    if not sortEnabled then
-        return units
-    end
-
-    table.sort(units, fsCompare:EnemySortFunction())
-
-    return units
-end
-
-function M:EnemyUnits()
-    -- GladiusEx, sArena, and Blizzar all show enemies in group order
-    -- arena1, arena2, arena3
-    -- so we can just grab the units directly instead of extracting units from frames
-    -- this has the benefit of not having to worry about frame visibility and event ordering shenanigans
-    local units = fsUnit:EnemyUnits()
-    local sortEnabled = fsCompare:EnemySortMode()
-
-    if not sortEnabled then
-        return units
-    end
-
-    table.sort(units, fsCompare:EnemySortFunction())
-
-    return units
-end
-
-function M:EnemyNonPetUnits()
-    return FilterPets(M:EnemyUnits())
-end
-
 function M:Run()
-    assert(not wow.InCombatLockdown())
+    if wow.InCombatLockdown() then
+        fsLog:Error("Cannot run targeting module during combat.")
+        return
+    end
 
     UpdateTargets()
 end
@@ -447,4 +439,5 @@ function M:Init()
     targetBottomFrame:SetAttribute("unit", "none")
 
     InitAdjacentTargeting()
+    fsLog:Debug("Initialised the targeting module.")
 end

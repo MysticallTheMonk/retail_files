@@ -1,10 +1,13 @@
 ---@type string, Addon
 local _, addon = ...
 local wow = addon.WoW.Api
+local events = addon.WoW.Events
 local fsScheduler = addon.Scheduling.Scheduler
 local fsMacroParser = addon.Modules.Macro.Parser
 local fsLog = addon.Logging.Log
-local fsTarget = addon.Modules.Targeting
+local fsUnit = addon.WoW.Unit
+local fsSortedUnits = addon.Modules.Sorting.SortedUnits
+local fsEnumerable = addon.Collections.Enumerable
 local isSelfEditingMacro = false
 local eventFrame = nil
 ---@type table<number, boolean>
@@ -13,6 +16,15 @@ local isFsMacroCache = {}
 local M = addon.Modules.Macro
 -- wow has 150 macro slots according to https://warcraft.wiki.gg/wiki/API_GetMacroInfo
 M.MaxMacros = 150
+
+local function FilterPets(units)
+    return fsEnumerable
+        :From(units)
+        :Where(function(x)
+            return not fsUnit:IsPet(x)
+        end)
+        :ToTable()
+end
 
 ---@return boolean updated, boolean isFrameSortMacro, number newId
 local function Rewrite(id, friendlyUnits, enemyUnits)
@@ -44,8 +56,8 @@ local function UpdateMacro(id, friendlyUnits, enemyUnits, bypassCache)
         return false
     end
 
-    friendlyUnits = friendlyUnits or fsTarget:FriendlyNonPetUnits()
-    enemyUnits = enemyUnits or fsTarget:EnemyNonPetUnits()
+    friendlyUnits = friendlyUnits or FilterPets(fsSortedUnits:FriendlyUnits())
+    enemyUnits = enemyUnits or FilterPets(fsSortedUnits:ArenaUnits())
 
     local updated, isFsMacro, newId = Rewrite(id, friendlyUnits, enemyUnits)
     isFsMacroCache[newId] = isFsMacro
@@ -62,8 +74,8 @@ end
 
 local function ScanMacros()
     local start = wow.GetTimePreciseSec()
-    local friendlyUnits = fsTarget:FriendlyNonPetUnits()
-    local enemyUnits = fsTarget:EnemyNonPetUnits()
+    local friendlyUnits = FilterPets(fsSortedUnits:FriendlyUnits())
+    local enemyUnits = FilterPets(fsSortedUnits:ArenaUnits())
     local updatedCount = 0
 
     for id = 1, M.MaxMacros do
@@ -75,7 +87,7 @@ local function ScanMacros()
     end
 
     local stop = wow.GetTimePreciseSec()
-    fsLog:Debug(string.format("Update macros took %fms, %d updated.", (stop - start) * 1000, updatedCount))
+    fsLog:Debug("Update macros took %fms, %d updated.", (stop - start) * 1000, updatedCount)
 end
 
 local function OnEditMacro(id, _, _, _)
@@ -88,7 +100,7 @@ local function OnEditMacro(id, _, _, _)
         local updated = UpdateMacro(id, nil, nil, true)
 
         if updated then
-            fsLog:Debug("Updated macro: " .. id)
+            fsLog:Debug("Updated macro: %s", id)
         end
     end, "EditMacro" .. id)
 end
@@ -107,7 +119,10 @@ local function OnUpdateMacros()
 end
 
 function M:Run()
-    assert(not wow.InCombatLockdown())
+    if wow.InCombatLockdown() then
+        fsLog:Error("Cannot run macro module during combat.")
+        return
+    end
 
     ScanMacros()
 end
@@ -120,6 +135,8 @@ function M:Init()
     wow.hooksecurefunc("EditMacro", OnEditMacro)
 
     eventFrame = wow.CreateFrame("Frame")
-    eventFrame:HookScript("OnEvent", OnUpdateMacros)
-    eventFrame:RegisterEvent(wow.Events.UPDATE_MACROS)
+    eventFrame:SetScript("OnEvent", OnUpdateMacros)
+    eventFrame:RegisterEvent(events.UPDATE_MACROS)
+
+    fsLog:Debug("Initialised the macro module.")
 end

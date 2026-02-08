@@ -1,5 +1,5 @@
-## Interface: 110107, 110105, 40402, 11507
-## Version: 11.1.7.0
+## Interface: 120001, 120000, 110207, 50503, 40402, 20505, 11508
+## Version: 12.0.0.4
 ## Title: Masque Blizzard Bars
 ## Notes: Enables Masque to skin the built-in action bars
 ## Notes-ruRU: Позволяет Masque изменять внешний вид встроенных панелей действий.

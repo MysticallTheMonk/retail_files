@@ -1,0 +1,41 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+
+  <Script file="Modules\HealthBars\Foreground\HealthBarForeground_Color.lua"/>
+  <Script file="Modules\HealthBars\Foreground\HealthBarForeground_Texture.lua"/>
+  <Script file="Modules\HealthBars\Background\HealthBarBackground_Color.lua"/>
+  <Script file="Modules\HealthBars\Background\HealthBarBackground_Texture.lua"/>
+
+
+
+  <Script file="Modules\PowerBars\Foreground\PowerBarForeground_Color.lua"/>
+  <Script file="Modules\PowerBars\Foreground\PowerBarForeground_Texture.lua"/>
+
+  <Script file="Modules\PowerBars\Background\PowerBarBackground_Color.lua"/>
+  <Script file="Modules\PowerBars\Background\PowerBarBackground_Texture.lua"/>
+
+  <Script file="Modules\UnitFrameBorder.lua"/>
+  <Script file="Modules\RoleIcon.lua"/>
+  <Script file="Modules\RaidMark.lua"/>
+  <Script file="Modules\SoloFrame.lua"/>
+
+  <Script file="Modules\Fonts\Font_Name.lua"/>
+  <Script file="Modules\Fonts\Font_Status.lua"/>
+
+  <Script file="Modules\AuraFrames\DebuffFrame.lua"/>
+
+
+
+  <Script file="Modules\CVars\CVar_raidOptionDisplayPets.lua"/>
+  <Script file="Modules\CVars\CVar_raidFramesDisplayPowerBars.lua"/>
+  <Script file="Modules\CVars\CVar_raidFramesDisplayOnlyHealerPowerBars.lua"/>
+  <Script file="Modules\CVars\CVar_pvpFramesDisplayPowerBars.lua"/>
+  <Script file="Modules\CVars\CVar_pvpFramesDisplayOnlyHealerPowerBars.lua"/>
+  <Script file="Modules\CVars\CVar_raidFramesHealthText.lua"/>
+  <Script file="Modules\CVars\CVar_pvpFramesHealthText.lua"/>
+  <Script file="Modules\CVars\CVar_raidFramesDisplayAggroHighlight.lua"/>
+  <Script file="Modules\CVars\CVar_raidFramesDisplayIncomingHeals.lua"/>
+  <Script file="Modules\CVars\CVar_raidOptionDisplayMainTankAndAssist.lua"/>
+  <Script file="Modules\CVars\CVar_raidFramesCenterBigDefensive.lua"/>
+  <Script file="Modules\CVars\CVar_raidFramesDispelIndicatorType.lua"/>
+  <Script file="Modules\CVars\CVar_raidFramesDispelIndicatorOverlay.lua"/>
+</Ui>

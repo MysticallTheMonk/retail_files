@@ -1,3 +1,4 @@
+if BBF.isMidnight then return end
 local cdManagerFrames = {
     EssentialCooldownViewer,
     UtilityCooldownViewer,
@@ -84,7 +85,7 @@ function BBF.SortCooldownManagerIcons(frame, center)
                 })
                 visibleIcons = visibleIcons + 1
             else
-                if frame == UtilityCooldownViewer then
+                if frame == UtilityCooldownViewer or frame == BuffBarCooldownViewer then
                     icon:SetAlpha(0)
                 else
                     icon:Hide()
@@ -101,10 +102,21 @@ function BBF.SortCooldownManagerIcons(frame, center)
 
         for i, data in ipairs(sortedIcons) do
             local icon = data.frame
-            if frame == UtilityCooldownViewer then
-                icon:SetAlpha(1)
+            if frame == UtilityCooldownViewer or frame == BuffBarCooldownViewer then
+                if icon.isActive then
+                    icon:SetAlpha(1)
+                end
             else
-                icon:Show()
+                -- if frame == BuffIconCooldownViewer then
+                --     if icon.isActive then
+                --         icon:Show()
+                --     end
+                -- else
+                --     icon:Show()
+                -- end
+                if icon.isActive then
+                    icon:Show()
+                end
             end
             PlaceIcon(icon, i)
         end
@@ -122,7 +134,7 @@ function BBF.SortCooldownManagerIcons(frame, center)
                 local activeIcons = {}
                 for _, data in ipairs(sortedIcons) do
                     local icon = data.frame
-                    if icon:GetAlpha() == 1 then
+                    if icon.isActive then
                         tinsert(activeIcons, icon)
                     end
                 end
@@ -272,6 +284,53 @@ function BBF.HookCooldownManagerTweaks()
                 hooksecurefunc(frame, "Layout", function(self)
                     BBF.SortCooldownManagerIcons(self, center)
                 end)
+                if frame == BuffIconCooldownViewer then
+                    local f = CreateFrame("Frame")
+                    f:RegisterUnitEvent("UNIT_AURA", "player")
+                    f:SetScript("OnEvent", function(_, _, unit, updateInfo)
+                        if not updateInfo then return end
+
+                        local triggered = false
+
+                        if updateInfo.isFullUpdate then
+                            AuraUtil.ForEachAura(unit, "HELPFUL", nil, function(aura)
+                                if aura.auraInstanceID then
+                                    triggered = true
+                                end
+                            end)
+                        else
+                            -- Handle added auras
+                            if updateInfo.addedAuras then
+                                for _, aura in ipairs(updateInfo.addedAuras) do
+                                    if aura.isHelpful and aura.auraInstanceID then
+                                        triggered = true
+                                        break
+                                    end
+                                end
+                            end
+
+                            -- Handle updated auras
+                            if updateInfo.updatedAuraInstanceIDs then
+                                for _, id in ipairs(updateInfo.updatedAuraInstanceIDs) do
+                                    local aura = C_UnitAuras.GetAuraDataByAuraInstanceID(unit, id)
+                                    if aura and aura.isHelpful then
+                                        triggered = true
+                                        break
+                                    end
+                                end
+                            end
+
+                            -- Handle removed auras
+                            if updateInfo.removedAuraInstanceIDs then
+                                triggered = true
+                            end
+                        end
+
+                        if triggered then
+                            BBF.SortCooldownManagerIcons(frame, center)
+                        end
+                    end)
+                end
                 frame.bbfSortingHooked = true
             end
 
@@ -288,6 +347,7 @@ function BBF.HookCooldownManagerTweaks()
             BBF.RefreshCooldownManagerIcons()
             BBF.UpdateCooldownManagerSpellList()
         end)
+        BBF.UpdateCooldownManagerSpellList(true)
 
         SettingsPanel:HookScript("OnShow", function()
             if BBF.cdManagerNeedsUpdate and BBF.RefreshCdManagerList then

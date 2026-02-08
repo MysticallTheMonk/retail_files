@@ -15,6 +15,8 @@ L["Are you sure you want to reset permanently stored scales? This will reload th
 L["BlizzMove: The frame you just moved (%s) is probably in a broken state, possibly because of other addons."] = "BlizzMove: Der gerade bewegte Rahmen (%s) ist wahrscheinlich in einem defekten Zustand, möglicherweise durch andere Addons."
 L["Clear"] = "Löschen"
 L["Clear the search filter."] = "Löscht den Suchfilter."
+--[[Translation missing --]]
+L["Click to copy PayPal link."] = "Click to copy PayPal link."
 L["Copy the text from the popup window, and report it to the addon author."] = "Kopiere den Text aus dem Popup-Fenster und leite ihn an den Addon-Autoren weiter."
 L["Copy the text from this popup window, and report it to the addon author."] = "Kopiere den Text aus diesem Popup-Fenster und leite ihn an den Addon-Autoren weiter."
 L["Could not find frame"] = "Rahmen konnte nicht gefunden werden"
@@ -26,6 +28,8 @@ L["DeModal is loaded, this addon is known to cause issues, consider replacing it
 L["Detached windows can be moved and resized independently from the parent."] = "Losgelöste Fenster können unabhängig von ihrem übergeordnetem Fenster bewegt und skaliert werden."
 L["Do not remember"] = "Nicht speichern"
 L["Enable the Blizzmove_Debug plugin, to find more debugging information."] = "Aktiviere das Blizzmove_Debug-Plugin für weitere Informationen zum Debugging."
+--[[Translation missing --]]
+L["Failed to make frame movable:"] = "Failed to make frame movable:"
 L["Filter"] = "Filter"
 L["Found bad anchor connections, copy the popup window contents to analyze them."] = "Schlechte Ankerverbindungen gefunden, kopiere den Inhalt des Popup-Fensters zum Analysieren."
 L["frame positions are remembered until you switch to another option, click the reset button, or disable BlizzMove"] = "Fensterpositionen werden gespeichert, bis du eine andere Option wählst, auf Zurücksetzen klickst oder BlizzMove deaktivierst"
@@ -38,6 +42,8 @@ L["Global Config"] = "Allgemeine Einstellungen"
 L["How should frame positions be remembered?"] = "Wie sollen Fensterpositionen gespeichert werden?"
 L["How should frame scales be remembered?"] = "Wie sollen Fensterskalierungen gespeichert werden?"
 L["If enabled BlizzMove requires to hold SHIFT to move frames."] = "Bei Aktivierung muss SHIFT gedrückt bleiben, um Fenster zu bewegen."
+--[[Translation missing --]]
+L["If you like this addon and want to support its development, consider donating:"] = "If you like this addon and want to support its development, consider donating:"
 L["In Session"] = "Für die Session"
 L["In Session, until you reload"] = "Für die Session, bis zum UI-Reload"
 L["Info"] = "Info"

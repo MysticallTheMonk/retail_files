@@ -57,19 +57,19 @@ L["API"] = "API"
 -- Blizzard Classic Skin
 ---
 
--- L["The default Classic button style."] = "The default Classic button style."
+-- L["The default classic button style."] = "The default classic button style."
 
 ----------------------------------------
 -- Blizzard Modern Skin
 ---
 
--- L["The default Dragonflight button style."] = "The default Dragonflight button style."
+-- L["The default modern button style."] = "The default modern button style."
 
 ----------------------------------------
 -- Classic Enhanced Skin
 ---
 
--- L["A modified version of the Classic button style."] = "A modified version of the Classic button style."
+-- L["An enhanced version of the classic button style."] = "An enhanced version of the classic button style."
 
 ----------------------------------------
 -- Core Settings
@@ -135,12 +135,14 @@ L["Websites"] = "Sites Internet"
 -- L["Alternate Sorting"] = "Alternate Sorting"
 -- L["Causes the skins included with Masque to be listed above third-party skins."] = "Causes the skins included with Masque to be listed above third-party skins."
 -- L["Click to reload the interface."] = "Click to reload the interface."
+-- L["Increases the font size of the text on Ace3 profile panels."] = "Increases the font size of the text on Ace3 profile panels."
 L["Interface"] = "Interface"
 L["Interface Settings"] = "Paramètres d'interface"
 -- L["Load the skin information panel."] = "Load the skin information panel."
 -- L["Menu Icon"] = "Menu Icon"
 -- L["Minimap"] = "Minimap"
 -- L["None"] = "None"
+-- L["Profile Panel Font Fix"] = "Profile Panel Font Fix"
 L["Reload Interface"] = "Recharger l'Interface"
 -- L["Requires an interface reload."] = "Requires an interface reload."
 -- L["Select where Masque's menu icon is displayed."] = "Select where Masque's menu icon is displayed."
@@ -160,7 +162,7 @@ L["Reload Interface"] = "Recharger l'Interface"
 -- Modern Enhanced Skin
 ---
 
--- L["An enhanced version of the Dragonflight button style."] = "An enhanced version of the Dragonflight button style."
+-- L["An enhanced version of the modern button style."] = "An enhanced version of the modern button style."
 
 ----------------------------------------
 -- Profile Settings

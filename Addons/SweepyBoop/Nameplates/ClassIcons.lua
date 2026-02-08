@@ -181,7 +181,7 @@ addon.UpdateClassIconCrowdControl = function(nameplate, frame)
         cooldownCC:SetCooldown(0, 0);
         iconCC:Hide();
     else
-        iconCC:SetTexture(C_Spell.GetSpellTexture(spellID));
+        iconCC:SetTexture(addon.GetSpellTexture(spellID));
         iconCC:Show();
 
         if duration then

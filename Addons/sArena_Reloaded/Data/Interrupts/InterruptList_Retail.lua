@@ -1,0 +1,22 @@
+sArenaMixin.interruptList = {
+    [1766]   = 3,     -- Kick (Rogue)
+    [2139]   = 5,     -- Counterspell (Mage)
+    [6552]   = 3,     -- Pummel (Warrior)
+    [19647]  = 5,     -- Spell Lock (Warlock)
+    [47528]  = 3,     -- Mind Freeze (Death Knight)
+    [57994]  = 2,     -- Wind Shear (Shaman)
+    [91802]  = 2,     -- Shambling Rush (Death Knight)
+    [96231]  = 3,     -- Rebuke (Paladin)
+    [106839] = 3,     -- Skull Bash (Feral)
+    [115781] = 5,     -- Optical Blast (Warlock)
+    [116705] = 3,     -- Spear Hand Strike (Monk)
+    [132409] = 5,     -- Spell Lock (Warlock)
+    [147362] = 3,     -- Countershot (Hunter)
+    [171138] = 5,     -- Shadow Lock (Warlock)
+    [183752] = 3,     -- Consume Magic (Demon Hunter)
+    [187707] = 3,     -- Muzzle (Hunter)
+    [212619] = 5,     -- Call Felhunter (Warlock)
+    [231665] = 3,     -- Avengers Shield (Paladin)
+    [351338] = 4,     -- Quell (Evoker)
+    [97547]  = 4,     -- Solar Beam
+}

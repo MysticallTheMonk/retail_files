@@ -2,8 +2,7 @@
 local _, addon = ...
 local wow = addon.WoW.Api
 local fsConfig = addon.Configuration
-local fsLog = addon.Logging.Log
-local L = addon.Locale
+local L = addon.Locale.Current
 local M = {}
 fsConfig.Panels.Addons = M
 
@@ -13,16 +12,10 @@ function M:Build(parent)
     scroller.parent = parent.name
 
     local panel = wow.CreateFrame("Frame")
+    local width, height = fsConfig:SettingsSize()
 
-    if wow.SettingsPanel then
-        panel:SetWidth(wow.SettingsPanel.Container:GetWidth())
-        panel:SetHeight(wow.SettingsPanel.Container:GetHeight())
-    elseif wow.InterfaceOptionsFramePanelContainer then
-        panel:SetWidth(wow.InterfaceOptionsFramePanelContainer:GetWidth())
-        panel:SetHeight(wow.InterfaceOptionsFramePanelContainer:GetHeight())
-    else
-        fsLog:Error("Unable to set configuration panel width.")
-    end
+    panel:SetWidth(width)
+    panel:SetHeight(height)
 
     scroller:SetScrollChild(panel)
 

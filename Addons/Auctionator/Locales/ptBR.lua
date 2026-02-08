@@ -60,8 +60,8 @@ L["CONFIG_ALTERNATE_SCAN_TEXT"] = "O modo de verificação rápida pode causar d
 L["CONFIG_AUCTION_AGE_TOOLTIP"] = "Mostrar o número de dias desde que um preço foi visto na casa de leilão (até 21 dias)"
 L["CONFIG_AUCTION_TOOLTIP"] = "Mostrar o valor dos itens na casa de leilões nas dicas de ferramentas"
 L["CONFIG_AUTO_LIST_SEARCH"] = "Verificar automaticamente itens da lista de compras."
-L["CONFIG_AUTO_LIST_SEARCH_TOOLTIP_HEADER"] = "Pesquisa de lista automática"
-L["CONFIG_AUTO_LIST_SEARCH_TOOLTIP_TEXT"] = "Quando uma lista é selecionada, verifica automaticamente a casa de leilões em busca dos itens da lista. Quando esta opção está desativada, você pode verificar a lista inteira ao selecionar o botão 'Pesquisar' na barra lateral da Lista de Compras."
+L["CONFIG_AUTO_LIST_SEARCH_TOOLTIP_HEADER"] = "Procura de lista automática"
+L["CONFIG_AUTO_LIST_SEARCH_TOOLTIP_TEXT"] = "Quando uma lista é selecionada, verifica automaticamente a casa de leilões em procura dos itens da lista. Quando esta opção está desativada, você pode verificar a lista inteira ao selecionar o botão 'Procurar' na barra lateral da Lista de Compras."
 L["CONFIG_AUTOSCAN"] = "Executar verificação automática quando a Casa de Leilões for aberta."
 L["CONFIG_AUTOSCAN_INTERVAL"] = "Defina quantos minutos entre cada verificação automática"
 L["CONFIG_AUTOSCAN_INTERVAL_HEADER"] = "Intervalo entre verificações automáticas"
@@ -290,14 +290,14 @@ L["ENGAGE_HEADER"] = "Engajar Com o Auctionator"
 L["ENTER_QUANTITY_TO_CONFIRM_PURCHASE"] = "Digite a quantidade de %s para confirmar a compra:"
 L["ERROR_REOPEN_AUCTION_HOUSE"] = [=[Não foi possível concluir a ação, feche e reabra a casa de leilões.
 ]=]
-L["EXACT_SEARCH"] = "Procura Exata"
+L["EXACT_SEARCH"] = "Procura exata"
 L["EXPANSION"] = "Expansão"
 L["EXPORT"] = "Exportar"
 L["EXPORT_AS"] = "Exportar como"
 L["EXPORT_RESULTS"] = "Exportar os Resultados"
 L["EXPORT_STRING"] = "String compartilhável"
 L["EXPORT_WHISPER"] = "Sussurrar para"
-L["EXTENDED_SEARCH_ACTIVE_TEXT"] = "%Pesquisa avançada ativa%"
+L["EXTENDED_SEARCH_ACTIVE_TEXT"] = "%Procura avançada ativa%"
 L["FAVOURITES"] = "Favoritos"
 L["FAVOURITES_GROUP"] = "Grupo de favoritos"
 L["FETCHING_ITEM_INFO"] = "Obtendo informações sobre o item..."
@@ -412,10 +412,10 @@ L["PROSPECT"] = "Perspectiva"
 L["PURCHASED_X_XX"] = [=[Comprado %s x%s
 ]=]
 L["QUANTITY"] = "Quantidade"
-L["REAGENT_SEARCH"] = "Pesquisa de Reagente"
+L["REAGENT_SEARCH"] = "Procura de Reagente"
 L["REAGENTS_VALUE_COLON"] = "Valor dos Reagentes:"
 L["REALM_HISTORY"] = "Histórico do Servidor"
-L["RECENT_SEARCHES"] = "Pesquisas Recentes"
+L["RECENT_SEARCHES"] = "Procuras Recentes"
 L["REFRESH"] = "Atualizar"
 L["REMOVE_FAVOURITE"] = "Remover Favorito"
 L["REMOVE_FROM_X"] = "Remover de %s"
@@ -444,12 +444,12 @@ L["SAVE_THIS_LIST_AS"] = [=[Salvar esta lista como...
 L["SCANNING_PAGE_X"] = [=[Digitalizando página %s...
 ]=]
 L["SEARCH"] = "Procurar"
-L["SEARCH_ALL"] = [=[Pesquisar tudo
+L["SEARCH_ALL"] = [=[Procurar tudo
 ]=]
 L["SEARCH_FOR_QUANTITY"] = "Procurar por quantidade"
-L["SEARCH_OPTIONS"] = "Opções de busca"
-L["SEARCH_TERM"] = "Procurar Termo"
-L["SEARCH_TERM_COLON"] = "Termo de pesquisa:"
+L["SEARCH_OPTIONS"] = "Opções de procura"
+L["SEARCH_TERM"] = "Procurar termo"
+L["SEARCH_TERM_COLON"] = "Termo de procura:"
 L["SELECT_ALL"] = "Selecionar Todos"
 L["SELECT_SHOPPING_LIST"] = [=[Selecionar lista de compras...
 ]=]
@@ -711,7 +711,7 @@ L["TIME_LEFT_H"] = "Tempo restante (h)"
 L["TO_CRAFT_COLON"] = "Para Criar:"
 L["TODAY"] = "Hoje"
 L["TOO_BIG_PERCENTAGE"] = "%% tem que ser <= 100 (considerando %s)"
-L["TOO_MANY_SEARCH_RESULTS"] = "Esta pesquisa teve resultados demais. Limitando o número de resultados mostrados."
+L["TOO_MANY_SEARCH_RESULTS"] = "Esta procura teve resultados demais. Limitando o número de resultados mostrados."
 L["TOO_SMALL_PERCENTAGE"] = "%% tem que ser >= 0 (considerando %s)"
 L["TOTAL_ITEMS_COLORED"] = "Todal de |cFFAAAAFF %s itens|r"
 L["TOTAL_OF_X_FOR_UNIT_PRICE_OF_X"] = "Total de %s por preço unitário de %s"

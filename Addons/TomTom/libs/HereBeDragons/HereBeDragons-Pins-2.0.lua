@@ -1,9 +1,9 @@
 -- HereBeDragons-Pins is a library to show pins/icons on the world map and minimap
 
-local MAJOR, MINOR = "HereBeDragons-Pins-2.0", 14
+local MAJOR, MINOR = "HereBeDragons-Pins-2.0", 16
 assert(LibStub, MAJOR .. " requires LibStub")
 
-local pins, _oldversion = LibStub:NewLibrary(MAJOR, MINOR)
+local pins, oldversion = LibStub:NewLibrary(MAJOR, MINOR)
 if not pins then return end
 
 local HBD = LibStub("HereBeDragons-2.0")
@@ -23,6 +23,12 @@ pins.worldmapPinRegistry  = pins.worldmapPinRegistry or {}
 
 pins.worldmapProvider     = pins.worldmapProvider or CreateFromMixins(MapCanvasDataProviderMixin)
 pins.worldmapProviderPin  = pins.worldmapProviderPin or CreateFromMixins(MapCanvasPinMixin)
+
+-- make sure the pool is refreshed
+if oldversion and oldversion < 15 and pins.worldmapProvider and CreateUnsecuredRegionPoolInstance then
+    pins.worldmapProvider:RemoveAllData()
+    pins.worldmapPinsPool = nil
+end
 
 if not pins.worldmapPinsPool then
     -- new frame pools in WoW 11.x
@@ -406,14 +412,14 @@ function worldmapProvider:HandlePin(icon, data)
         -- translate to the world map
         x, y = HBD:GetAzerothWorldMapCoordinatesFromWorld(data.x, data.y, data.instanceID)
     else
-        -- check that it matches the instance
-        if not HBD.mapData[uiMapID] or HBD.mapData[uiMapID].instance ~= data.instanceID then return end
+        -- check that there is data
+        if not HBD.mapData[uiMapID] then return end
 
         if uiMapID ~= data.uiMapID then
             local mapType = HBD.mapData[uiMapID].mapType
             if not data.uiMapID then
                 if mapType == Enum.UIMapType.Continent and data.worldMapShowFlag >= HBD_PINS_WORLDMAP_SHOW_CONTINENT then
-                    --pass
+                    -- pass
                 elseif mapType ~= Enum.UIMapType.Zone and mapType ~= Enum.UIMapType.Dungeon and mapType ~= Enum.UIMapType.Micro then
                     -- fail
                     return
@@ -445,7 +451,7 @@ function worldmapProvider:HandlePin(icon, data)
         end
 
         -- translate coordinates
-        x, y = HBD:GetZoneCoordinatesFromWorld(data.x, data.y, uiMapID)
+        x, y = HBD:GetZoneCoordinatesFromWorldInstance(data.x, data.y, data.instanceID, uiMapID)
     end
     if x and y then
         self:GetMap():AcquirePin("HereBeDragonsPinsTemplate", icon, x, y, data.frameLevelType)
@@ -497,6 +503,11 @@ end
 local last_update = 0
 local function OnUpdateHandler(frame, elapsed)
     last_update = last_update + elapsed
+
+    -- skip updates while the minimap is hidden
+    if pins.Minimap and not pins.Minimap:IsVisible() then return end
+
+    -- check for a full update every second, so pins coming in range get properly rendered
     if last_update > 1 or queueFullUpdate then
         UpdateMinimapPins(queueFullUpdate)
         last_update = 0
@@ -784,4 +795,10 @@ function pins:GetVectorToIcon(icon)
     if not x or not y or instance ~= data.instanceID then return nil end
 
     return HBD:GetWorldVector(instance, x, y, data.x, data.y)
+end
+
+if oldversion then
+    if WorldMapFrame:IsShown() then
+        worldmapProvider:RefreshAllData(false)
+    end
 end

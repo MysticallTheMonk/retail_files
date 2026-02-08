@@ -41,7 +41,6 @@ end
 
 local function generateProfileMenu(_, root)
     root:SetTag(ADDON_NAME.."-LDB-FavoriteProfiles")
-    root:SetScrollMode(GetScreenHeight() - 100)
 
     root:CreateTitle(ADDON.L.FAVORITE_PROFILE)
     ADDON.UI:BuildFavoriteProfileMenu(root)
@@ -122,10 +121,11 @@ ADDON.Events:RegisterCallback("OnLogin", function()
     tooltipProxy.SetOwner = ADDON.UI.SetOwner
 
     local _, profileName = ADDON.Api:GetFavoriteProfile()
-    local ldbDataObject = ldb:NewDataObject( ADDON_NAME.." Favorites", {
+    local ldbName = ADDON_NAME.." Favorites"
+    local ldbDataObject = ldb:NewDataObject( ldbName, {
         type = "data source",
         text = profileName,
-        label = ADDON.L.FAVORITE_PROFILE,
+        label = ldbName, -- Titan Panel uses label as entry name in its plugin list.
         value = count(),
         icon = "Interface\\Addons\\MountJournalEnhanced\\UI\\icons\\mje.png",
         tooltip = tooltipProxy,
@@ -139,6 +139,9 @@ ADDON.Events:RegisterCallback("OnLogin", function()
             end
         end,
     } )
+    C_Timer.After(0, function()
+        ldbDataObject.label = ADDON.L.FAVORITE_PROFILE
+    end)
 
     ADDON.Events:RegisterCallback("OnFavoriteProfileChanged", function()
         local _, profileName = ADDON.Api:GetFavoriteProfile()

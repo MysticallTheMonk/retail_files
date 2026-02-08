@@ -1,0 +1,91 @@
+<Ui>
+	<FontFamily name="LRFont11" virtual="true">
+		<Member alphabet="roman">
+			<Font font="Interface\AddOns\TimelineReminders\Media\Fonts\PTSansNarrow.ttf" height="11" outline=""/>
+		</Member>
+		<Member alphabet="korean">
+			<Font font="Fonts\2002.ttf" height="11" outline=""/>
+		</Member>
+		<Member alphabet="simplifiedchinese">
+			<Font font="Fonts\ARKai_C.ttf" height="11" outline=""/>
+		</Member>
+		<Member alphabet="traditionalchinese">
+			<Font font="Interface\AddOns\TimelineReminders\Media\Fonts\arheiuhk_bd.ttf" height="11" outline=""/>
+		</Member>
+		<Member alphabet="russian">
+			<Font font="Fonts\FRIZQT___CYR.ttf" height="11" outline=""/>
+		</Member>
+	</FontFamily>
+
+	<FontFamily name="LRFont13" virtual="true">
+		<Member alphabet="roman">
+			<Font font="Interface\AddOns\TimelineReminders\Media\Fonts\PTSansNarrow.ttf" height="13" outline=""/>
+		</Member>
+		<Member alphabet="korean">
+			<Font font="Fonts\2002.ttf" height="13" outline=""/>
+		</Member>
+		<Member alphabet="simplifiedchinese">
+			<Font font="Fonts\ARKai_C.ttf" height="13" outline=""/>
+		</Member>
+		<Member alphabet="traditionalchinese">
+			<Font font="Interface\AddOns\TimelineReminders\Media\Fonts\arheiuhk_bd.ttf" height="13" outline=""/>
+		</Member>
+		<Member alphabet="russian">
+			<Font font="Fonts\FRIZQT___CYR.ttf" height="13" outline=""/>
+		</Member>
+	</FontFamily>
+
+	<FontFamily name="LRFont15" virtual="true">
+		<Member alphabet="roman">
+			<Font font="Interface\AddOns\TimelineReminders\Media\Fonts\PTSansNarrow.ttf" height="15" outline=""/>
+		</Member>
+		<Member alphabet="korean">
+			<Font font="Fonts\2002.ttf" height="15" outline=""/>
+		</Member>
+		<Member alphabet="simplifiedchinese">
+			<Font font="Fonts\ARKai_C.ttf" height="15" outline=""/>
+		</Member>
+		<Member alphabet="traditionalchinese">
+			<Font font="Interface\AddOns\TimelineReminders\Media\Fonts\arheiuhk_bd.ttf" height="15" outline=""/>
+		</Member>
+		<Member alphabet="russian">
+			<Font font="Fonts\FRIZQT___CYR.ttf" height="15" outline=""/>
+		</Member>
+	</FontFamily>
+
+	<FontFamily name="LRFont16" virtual="true">
+		<Member alphabet="roman">
+			<Font font="Interface\AddOns\TimelineReminders\Media\Fonts\PTSansNarrow.ttf" height="16" outline=""/>
+		</Member>
+		<Member alphabet="korean">
+			<Font font="Fonts\2002.ttf" height="16" outline=""/>
+		</Member>
+		<Member alphabet="simplifiedchinese">
+			<Font font="Fonts\ARKai_C.ttf" height="16" outline=""/>
+		</Member>
+		<Member alphabet="traditionalchinese">
+			<Font font="Interface\AddOns\TimelineReminders\Media\Fonts\arheiuhk_bd.ttf" height="16" outline=""/>
+		</Member>
+		<Member alphabet="russian">
+			<Font font="Fonts\FRIZQT___CYR.ttf" height="16" outline=""/>
+		</Member>
+	</FontFamily>
+
+	<FontFamily name="LRFont20" virtual="true">
+		<Member alphabet="roman">
+			<Font font="Interface\AddOns\TimelineReminders\Media\Fonts\PTSansNarrow.ttf" height="20" outline=""/>
+		</Member>
+		<Member alphabet="korean">
+			<Font font="Fonts\2002.ttf" height="20" outline=""/>
+		</Member>
+		<Member alphabet="simplifiedchinese">
+			<Font font="Fonts\ARKai_C.ttf" height="20" outline=""/>
+		</Member>
+		<Member alphabet="traditionalchinese">
+			<Font font="Interface\AddOns\TimelineReminders\Media\Fonts\arheiuhk_bd.ttf" height="20" outline=""/>
+		</Member>
+		<Member alphabet="russian">
+			<Font font="Fonts\FRIZQT___CYR.ttf" height="20" outline=""/>
+		</Member>
+	</FontFamily>
+</Ui>

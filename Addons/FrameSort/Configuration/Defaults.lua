@@ -2,74 +2,102 @@
 local _, addon = ...
 local fsConfig = addon.Configuration
 
----@class Options
-fsConfig.Defaults = {
-    Version = 21,
-    Logging = {
-        Enabled = false,
+---@class DbDefaults
+fsConfig.DbDefaults = {
+    -- lookup of player guids to spec ids
+    SpecCache = {},
+
+    -- saved log entries to persist through reloads
+    Log = {
+        Buffer = {},
+        Head = 1,
+        Size = 0,
+        Max = 5000,
     },
-    Sorting = {
-        Ordering = {
-            Tanks = 1,
-            Healers = 2,
-            Casters = 3,
-            Hunters = 4,
-            Melee = 5
-        },
-        Method = fsConfig.SortingMethod.Secure,
-        Arena = {
-            Twos = {
+
+    ---@class Options
+    Options = {
+        Version = 25,
+        Locale = "",
+        Sorting = {
+            Ordering = {
+                Tanks = 1,
+                Healers = 2,
+                Casters = 3,
+                Hunters = 4,
+                Melee = 5,
+            },
+            Method = fsConfig.SortingMethod.Secure,
+            SpecPriority = {
+                Tanks = {},
+                Healers = {},
+                Hunters = {},
+                Melee = {},
+                Casters = {},
+            },
+            Arena = {
+                Twos = {
+                    Enabled = true,
+                    PlayerSortMode = fsConfig.PlayerSortMode.Top,
+                    GroupSortMode = fsConfig.GroupSortMode.Group,
+                    Reverse = false,
+                },
+                Default = {
+                    Enabled = true,
+                    PlayerSortMode = fsConfig.PlayerSortMode.Top,
+                    GroupSortMode = fsConfig.GroupSortMode.Group,
+                    Reverse = false,
+                },
+            },
+            EnemyArena = {
+                Enabled = false,
+                GroupSortMode = fsConfig.GroupSortMode.Group,
+                Reverse = false,
+            },
+            Dungeon = {
+                Enabled = true,
+                PlayerSortMode = fsConfig.PlayerSortMode.Top,
+                GroupSortMode = fsConfig.GroupSortMode.Role,
+                Reverse = false,
+            },
+            World = {
                 Enabled = true,
                 PlayerSortMode = fsConfig.PlayerSortMode.Top,
                 GroupSortMode = fsConfig.GroupSortMode.Group,
                 Reverse = false,
             },
-            Default = {
-                Enabled = true,
+            Raid = {
+                Enabled = false,
                 PlayerSortMode = fsConfig.PlayerSortMode.Top,
-                GroupSortMode = fsConfig.GroupSortMode.Group,
+                GroupSortMode = fsConfig.GroupSortMode.Role,
                 Reverse = false,
             },
+            Miscellaneous = {
+                PlayerRoleSort = fsConfig.PlayerSortMode.None,
+            },
         },
-        EnemyArena = {
-            Enabled = false,
-            GroupSortMode = fsConfig.GroupSortMode.Group,
-            Reverse = false,
-        },
-        Dungeon = {
+        AutoLeader = {
             Enabled = true,
-            PlayerSortMode = fsConfig.PlayerSortMode.Top,
-            GroupSortMode = fsConfig.GroupSortMode.Role,
-            Reverse = false,
         },
-        World = {
-            Enabled = true,
-            PlayerSortMode = fsConfig.PlayerSortMode.Top,
-            GroupSortMode = fsConfig.GroupSortMode.Group,
-            Reverse = false,
+        Spacing = {
+            Party = {
+                Horizontal = 0,
+                Vertical = 0,
+            },
+            Raid = {
+                Horizontal = 0,
+                Vertical = 0,
+            },
+            EnemyArena = {
+                Horizontal = 0,
+                Vertical = 0,
+            },
         },
-        Raid = {
-            Enabled = false,
-            PlayerSortMode = fsConfig.PlayerSortMode.Top,
-            GroupSortMode = fsConfig.GroupSortMode.Role,
-            Reverse = false,
-        },
-    },
-    AutoLeader = {
-        Enabled = true,
-    },
-    Spacing = {
-        Party = {
-            Horizontal = 0,
-            Vertical = 0,
-        },
-        Raid = {
-            Horizontal = 0,
-            Vertical = 0,
-        },
-        EnemyArena = {
-            Horizontal = 0,
-            Vertical = 0,
+        Nameplates = {
+            FriendlyEnabled = false,
+            EnemyEnabled = false,
+            FriendlyFormat = "$framenumber",
+            EnemyFormat = "$framenumber",
         },
     },
 }

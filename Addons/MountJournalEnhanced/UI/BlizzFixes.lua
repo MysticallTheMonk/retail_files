@@ -46,7 +46,24 @@ local function keepCameraValuesInBound()
     -- same could be done with roll. but that's not necessary for the mount display.
 end
 
+-- Since 11.2.5 all calls of MountJournal_UpdateMountDisplay do get a forceSceneChange, including in MountJournal_FullUpdate().
+-- MountJournal_FullUpdate is called during the events of COMPANION_UPDATE and MOUNT_JOURNAL_SEARCH_UPDATED,
+-- which can trigger constantly.
+-- https://github.com/Stanzilla/WoWUIBugs/issues/789
+local function avoidResettingDisplay()
+    local original_MountJournal_UpdateMountDisplay = MountJournal_UpdateMountDisplay
+    hooksecurefunc("MountJournal_UpdateMountList", function()
+        -- called from within FullUpdate
+        -- might taint a lot
+        MountJournal_UpdateMountDisplay = function()
+            original_MountJournal_UpdateMountDisplay() -- no refreshs here
+            MountJournal_UpdateMountDisplay = original_MountJournal_UpdateMountDisplay
+        end
+    end)
+end
+
 ADDON.Events:RegisterCallback("loadUI", function()
     fixInitialRiderBlend()
     keepCameraValuesInBound()
+    avoidResettingDisplay()
 end, "blizz plz fix")

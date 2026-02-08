@@ -8,7 +8,7 @@ local wow = addon.WoW.Api
 local minSpacing = 0
 local maxSpacing = 100
 local systemChange = false
-local L = addon.Locale
+local L = addon.Locale.Current
 local M = {}
 fsConfig.Panels.Spacing = M
 
@@ -28,7 +28,7 @@ local function ConfigureSlider(slider, value)
         low:SetText(minSpacing)
         high:SetText(maxSpacing)
     else
-        fsLog:Error("Unable to configure low/high slider values.")
+        fsLog:Bug("Unable to configure low/high slider values.")
     end
 end
 
@@ -197,7 +197,7 @@ function M:Build(parent)
     panel.name = L["Spacing"]
     panel.parent = parent.name
 
-    panel:HookScript("OnShow", RefreshValues)
+    panel:SetScript("OnShow", RefreshValues)
     fsConfig:RegisterConfigurationChangedCallback(RefreshValues)
 
     local spacingTitle = panel:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
@@ -212,15 +212,15 @@ function M:Build(parent)
     local anchor = fsConfig:TextBlock(lines, panel, spacingTitle)
     local config = addon.DB.Options.Spacing
 
-    if wow.IsRetail() then
+    if wow.CompactPartyFrame then
         anchor = BuildSpacingOptions(panel, anchor, L["Party"], "Party", config.Party, true, true, 0)
     end
 
-    local title = wow.IsRetail() and "Raid" or "Group"
+    local title = wow.CompactRaidFrameContainer and "Raid" or "Group"
     anchor = BuildSpacingOptions(panel, anchor, L[title], title, config.Raid, true, true, verticalSpacing)
 
-    if wow.IsRetail() then
-        anchor = BuildSpacingOptions(panel, anchor, L["Enemy Arena"], "Enemy Arena", config.EnemyArena, true, true, verticalSpacing)
+    if wow.CompactArenaFrame then
+        BuildSpacingOptions(panel, anchor, L["Enemy Arena"], "Enemy Arena", config.EnemyArena, true, true, verticalSpacing)
     end
 
     return panel

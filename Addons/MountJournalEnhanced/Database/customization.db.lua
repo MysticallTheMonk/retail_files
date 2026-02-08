@@ -35,4 +35,7 @@ ADDON.DB.Customization = {
 [2469] = {
  ["quest"]={86373,86381,86382,86383,86384,86385,86386,86387,},
  }, -- Prismatic Snapdragon
+[2512] = {
+ ["quest"]={88814,88815,88816,88817,88819,88820,},
+ }, -- Delver's Mana-Skimmer
 }

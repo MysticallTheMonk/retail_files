@@ -20,22 +20,28 @@ local function GetSpellPowerCost(spellId, powerType)
     return cachedSpellPowerCost[spellId][powerType];
 end
 
-local interruptToSpellID = {
-    [97547] = 78675, -- Solar Beam
-};
+local interruptToSpellID, resetByPower, resetByCrit;
+if addon.PROJECT_MAINLINE then
+    interruptToSpellID = {
+        [97547] = 78675, -- Solar Beam
+    };
 
-local resetByPower = {
-    -- 137639, -- Storm, Earth, and Fire (rarely picked)
-    1719, -- Recklessness
-    262161, -- Warbreaker
-    167105, -- Colossus Smash
-    227847, -- Bladestorm
-    446035, -- Bladestorm (Slayer)
-};
-
-local resetByCrit = {
-    190319, -- Combustion
-};
+    resetByPower = {
+        -- 137639, -- Storm, Earth, and Fire (rarely picked)
+        1719, -- Recklessness
+        262161, -- Warbreaker
+        167105, -- Colossus Smash
+        227847, -- Bladestorm
+        446035, -- Bladestorm (Slayer)
+    };
+    resetByCrit = {
+        190319, -- Combustion
+    };
+else
+    interruptToSpellID = {};
+    resetByPower = {};
+    resetByCrit = {};
+end
 
 local petUnitIdToOwnerId = {
     ["pet"] = "player",
@@ -132,7 +138,8 @@ local function GetIcon(iconSetID, unitID, spellID, test)
     if ( not iconPool[iconSetID][iconID] ) then
         local size = GetIconSize(iconSetID);
         local glow = GetIconGlow(iconSetID);
-        iconPool[iconSetID][iconID] = addon.CreateCooldownTrackingIcon(unitID, spellID, size);
+        local showName = iconSetConfig.showName and ( not addon.ARENA_FRAME_BARS[iconSetID] );
+        iconPool[iconSetID][iconID] = addon.CreateCooldownTrackingIcon(unitID, spellID, size, showName);
         iconPool[iconSetID][iconID].template = ( glow and addon.ICON_TEMPLATE.GLOW ) or addon.ICON_TEMPLATE.FLASH;
 
         -- https://warcraft.wiki.gg/wiki/API_TextureBase_SetTexCoord
@@ -146,10 +153,20 @@ local function GetIcon(iconSetID, unitID, spellID, test)
             iconPool[iconSetID][iconID].TargetHighlight:SetVertexColor(0.6745, 0.2902, 0.8392, 1); -- purple
         end
 
+        local classColorName = iconSetConfig.classColorName and ( not addon.ARENA_FRAME_BARS[iconSetID] );
+        if ( not classColorName ) or ( not iconPool[iconSetID][iconID].class ) then
+            iconPool[iconSetID][iconID].Name:SetTextColor(1, 1, 1);
+        else
+            local color = RAID_CLASS_COLORS[iconPool[iconSetID][iconID].class];
+            iconPool[iconSetID][iconID].Name:SetTextColor(color.r, color.g, color.b);
+        end
+
         addon.SetHideCountdownNumbers(iconPool[iconSetID][iconID], iconSetConfig.hideCountDownNumbers);
         iconPool[iconSetID][iconID].iconSetID = iconSetID;
         iconPool[iconSetID][iconID].isTestGroup = test;
         iconPool[iconSetID][iconID].lastModified = config.lastModified;
+
+        addon.MasqueAddIcon(iconPool[iconSetID][iconID], iconPool[iconSetID][iconID].Icon);
     end
 
     if ( iconPool[iconSetID][iconID].lastModified ~= config.lastModified ) then
@@ -157,6 +174,15 @@ local function GetIcon(iconSetID, unitID, spellID, test)
         iconPool[iconSetID][iconID]:SetScale(size / addon.DEFAULT_ICON_SIZE);
         local glow = GetIconGlow(iconSetID);
         iconPool[iconSetID][iconID].template = ( glow and addon.ICON_TEMPLATE.GLOW ) or addon.ICON_TEMPLATE.FLASH;
+        local showName = iconSetConfig.showName and ( not addon.ARENA_FRAME_BARS[iconSetID] );
+        local classColorName = iconSetConfig.classColorName and ( not addon.ARENA_FRAME_BARS[iconSetID] );
+        if ( not classColorName ) or ( not iconPool[iconSetID][iconID].class ) then
+            iconPool[iconSetID][iconID].Name:SetTextColor(1, 1, 1);
+        else
+            local color = RAID_CLASS_COLORS[iconPool[iconSetID][iconID].class];
+            iconPool[iconSetID][iconID].Name:SetTextColor(color.r, color.g, color.b);
+        end
+        iconPool[iconSetID][iconID].Name:SetShown(showName);
 
         if iconSetConfig.hideBorder then
             iconPool[iconSetID][iconID].Icon:SetTexCoord(0.078125, 0.921875, 0.078125, 0.921875);
@@ -167,6 +193,8 @@ local function GetIcon(iconSetID, unitID, spellID, test)
         addon.SetHideCountdownNumbers(iconPool[iconSetID][iconID], iconSetConfig.hideCountDownNumbers);
 
         iconPool[iconSetID][iconID].lastModified = config.lastModified;
+
+        addon.MasqueReskinIcon();
     end
 
     return iconPool[iconSetID][iconID];
@@ -177,7 +205,6 @@ end
 local iconGroups = {};
 
 -- Find the first arena frame (addon) to use for anchors
-local framePrefix = ( GladiusEx and "GladiusExButtonFramearena" ) or ( Gladius and "GladiusButtonFramearena" ) or ( sArena and "sArenaEnemyFrame" ) or "CompactArenaFrameMember";
 local LARGE_COLUMN = 100; -- Don't break line for each bar
 local arenaFrameGrowOptions = {
     [addon.ARENA_COOLDOWN_GROW_DIRECTION.RIGHT] = {
@@ -235,6 +262,9 @@ local function GetSetPointOptions(iconSetID, unitID)
         if unitID and unitID ~= "player" then -- arena 1/2/3
             unitIndex = string.sub(unitID, -1);
         end
+
+        local framePrefix = addon.GET_ARENA_FRAME_PREFIX();
+
         setPointOptions = {
             point = "LEFT",
             relativeTo = framePrefix .. unitIndex,
@@ -296,6 +326,7 @@ local function GetIconGroup(iconSetID, unitID, isTestGroup)
         -- Have to cache this per group so that they don't interfere with each other
         iconGroups[iconGroupID].guardianSpiritSaved = {};
         iconGroups[iconGroupID].apotheosisUnits = {};
+        iconGroups[iconGroupID].combustionUnits = {};
         iconGroups[iconGroupID].premonitionUnits = {};
         iconGroups[iconGroupID].alterTimeApplied = {};
         iconGroups[iconGroupID].alterTimeRemoved = {};
@@ -343,8 +374,11 @@ local function SetupIconGroup(group, unit)
     local iconSetConfig = addon.GetIconSetConfig(iconSetID);
 
     local class = addon.GetClassForPlayerOrArena(unit);
-    local spec = addon.GetSpecForPlayerOrArena(unit);
-    local remainingTest = 8;
+    local spec;
+    if ( not addon.PROJECT_TBC ) then
+        spec = addon.GetSpecForPlayerOrArena(unit);
+    end
+    local remainingTest = 32;
     for spellID, spell in pairs(spellData) do
         if ( not spell.use_parent_icon ) then
             local enabled = false;
@@ -380,7 +414,7 @@ local function SetupIconGroup(group, unit)
                     skipSpellListCheck = true;
                 end
             else
-                -- Fill enabled abilities, but for test groups, show 8 at most
+                -- Fill enabled abilities, but for test groups, show 32 at most
                 if isTestGroup then -- a test group need to populate all icons toggled for all classes
                     if ( remainingTest > 0 ) and spellList[tostring(spellID)] then
                         enabled = true;
@@ -414,7 +448,10 @@ local function SetupIconGroup(group, unit)
                 local icon = GetIcon(iconSetID, unit, spellID, isTestGroup);
                 icon.info = GetSpecOverrides(spell, spec);
                 -- The texture might have been set by use_parent_icon icons
-                icon.Icon:SetTexture(C_Spell.GetSpellTexture(spellID));
+                icon.Icon:SetTexture(addon.GetSpellTexture(spellID));
+                if isTestGroup then
+                    icon.Name:SetText("SweepyBoop"); -- When hiding test icons then showing again, the test name is not showing up
+                end
                 addon.IconGroup_PopulateIcon(group, icon, unit .. "-" .. spellID);
                 --print("Populated icon", iconSetID, unit, spellID);
 
@@ -435,9 +472,9 @@ end
 local function GetIconGroupEnabled(iconSetID)
     local config = SweepyBoop.db.profile.arenaFrames;
     if ( iconSetID == ICON_SET_ID.ARENA_MAIN ) then
-        return config.arenaCooldownTrackerEnabled;
+        return config.arenaCooldownTrackerEnabled and addon.ARENA_FRAME_BARS_SUPPORTED();
     elseif ( iconSetID == ICON_SET_ID.ARENA_SECONDARY ) then -- secondary bar depends on main bar being enabled
-        return config.arenaCooldownTrackerEnabled and config.arenaCooldownSecondaryBar;
+        return config.arenaCooldownTrackerEnabled and config.arenaCooldownSecondaryBar and addon.ARENA_FRAME_BARS_SUPPORTED();
     else
         return config.standaloneBars[iconSetID].enabled;
     end
@@ -516,15 +553,15 @@ end
 local function ResetCooldown(icon, amount, internalCooldown, resetTo) -- if resetTo is set, reset duration to amount, instead of reduce by amount
     if ( not icon.started ) then return end
 
-    if icon.template == addon.ICON_TEMPLATE.GLOW then
-        addon.ResetIconCooldown(icon, amount);
+    if ( icon.template == addon.ICON_TEMPLATE.GLOW ) then
+        addon.ResetIconCooldown(icon, amount, resetTo);
 
         -- Duration has more than 1s left, hide cooldown
         -- Duration frame's finish event handler will show the cooldown
         if icon.duration and icon.duration.finish and ( GetTime() < icon.duration.finish - 1 ) then
             icon.cooldown:Hide();
         end
-    elseif icon.template == addon.ICON_TEMPLATE.FLASH then
+    else
         addon.ResetCooldownTrackingCooldown(icon, amount, internalCooldown, resetTo);
     end
 end
@@ -547,127 +584,143 @@ local function ProcessCombatLogEvent(self, subEvent, sourceGUID, destGUID, spell
     -- If units don't exist, unitGuidToId will be empty
     if next(unitGuidToId) == nil then return end
 
-    -- Apotheosis
-    if ( spellId == 200183 ) and ( subEvent == addon.SPELL_AURA_APPLIED or subEvent == addon.SPELL_AURA_REMOVED ) then
-        local unit = unitGuidToId[sourceGUID];
-        if unit then
-            if subEvent == addon.SPELL_AURA_APPLIED then
-                self.apotheosisUnits[unit] = true;
-            else
-                self.apotheosisUnits[unit] = nil;
-            end
-        end
-    end
+    if addon.PROJECT_MAINLINE then
 
-    -- Premonition of Insight
-    if ( spellId == 428933 ) and ( subEvent == addon.SPELL_AURA_APPLIED or subEvent == addon.SPELL_AURA_REMOVED ) then
-        local unit = unitGuidToId[sourceGUID];
-        if unit then
-            if subEvent == addon.SPELL_AURA_APPLIED then -- We probably don't need the 20s timer for apotheosis either
-                self.premonitionUnits[unit] = true;
-            else
-                self.premonitionUnits[unit] = nil;
-            end
-        end
-    end
-
-    -- Guardian Spirit saved their teammate thus should be put on a longer cooldown (+120s)
-    if ( spellId == 48153 ) and ( subEvent == addon.SPELL_HEAL ) then
-        local unit = unitGuidToId[sourceGUID];
-        if unit then
-            self.guardianSpiritSaved[unit] = true;
-        end
-
-        return;
-    end
-    -- Now check if we need to reduce Guardian Spirit cooldown
-    -- SPELL_AURA_REMOVED is fired twice, causing GS to be reset even if the healing proc
-    -- Workaround by checking timestamp now vs. last aura removed
-    if ( spellId == 47788 ) and ( subEvent == addon.SPELL_AURA_REMOVED ) then
-        local unit = unitGuidToId[sourceGUID];
-        if unit then
-            if self.guardianSpiritSaved[unit] then
-                self.guardianSpiritSaved[unit] = nil;
-            else
-                local icon = self.activeMap[unit .. "-" .. spellId];
-                if icon then
-                    ResetCooldown(icon, 60, nil, true); -- reduce CD to 1 min starting from now, not reducing by a fixed amount
+        -- Apotheosis
+        if ( spellId == 200183 ) and ( subEvent == addon.SPELL_AURA_APPLIED or subEvent == addon.SPELL_AURA_REMOVED ) then
+            local unit = unitGuidToId[sourceGUID];
+            if unit then
+                if subEvent == addon.SPELL_AURA_APPLIED then
+                    self.apotheosisUnits[unit] = true;
+                else
+                    self.apotheosisUnits[unit] = nil;
                 end
             end
         end
 
-        return;
-    end
+        -- Premonition of Insight
+        if ( spellId == 428933 ) and ( subEvent == addon.SPELL_AURA_APPLIED or subEvent == addon.SPELL_AURA_REMOVED ) then
+            local unit = unitGuidToId[sourceGUID];
+            if unit then
+                if subEvent == addon.SPELL_AURA_APPLIED then -- We probably don't need the 20s timer for apotheosis either
+                    self.premonitionUnits[unit] = true;
+                else
+                    self.premonitionUnits[unit] = nil;
+                end
+            end
+        end
 
-    -- Blink / Shimmer reset by Alter Time
-    -- Order of events on 1st press: SPELL_AURA_APPLIED, SPELL_CAST_SUCCESS, SPELL_SUMMON
-    -- Order of events on 2nd press: SPELL_AURA_REMOVED, SPELL_CAST_SUCCESS
-    -- Order of events on Alter Time being purged: SPELL_AURA_REMOVED, SPELL_DISPEL
-    -- Track time of Alter Time buff applied / removed -> if it's full duration 10s, then it naturally expired hence it's a reset
-    -- If it expires prematurely, track buff removed time, and check following event (if SPELL_CAST_SUCCESS then reset; otherwise don't, including right click cancel case)
-    if ( spellId == 342246 ) and ( subEvent == addon.SPELL_AURA_APPLIED or subEvent == addon.SPELL_AURA_REMOVED ) then
-        local unit = unitGuidToId[sourceGUID];
-        if unit then
-            self.alterTimeRemoved[unit] = nil;
-            if subEvent == addon.SPELL_AURA_APPLIED then
-                self.alterTimeApplied[unit] = GetTime();
-            else
-                if self.alterTimeApplied[unit] then
+        -- Combustion
+        if ( spellId == 190319 ) and ( subEvent == addon.SPELL_AURA_APPLIED or subEvent == addon.SPELL_AURA_REMOVED ) then
+            local unit = unitGuidToId[sourceGUID];
+            if unit then
+                if subEvent == addon.SPELL_AURA_APPLIED then
+                    self.combustionUnits[unit] = true;
+                else
+                    self.combustionUnits[unit] = nil;
+                end
+            end
+        end
+
+        -- Guardian Spirit saved their teammate thus should be put on a longer cooldown (+120s)
+        if ( spellId == 48153 ) and ( subEvent == addon.SPELL_HEAL ) then
+            local unit = unitGuidToId[sourceGUID];
+            if unit then
+                self.guardianSpiritSaved[unit] = true;
+            end
+
+            return;
+        end
+        -- Now check if we need to reduce Guardian Spirit cooldown
+        -- SPELL_AURA_REMOVED is fired twice, causing GS to be reset even if the healing proc
+        -- Workaround by checking timestamp now vs. last aura removed
+        if ( spellId == 47788 ) and ( subEvent == addon.SPELL_AURA_REMOVED ) then
+            local unit = unitGuidToId[sourceGUID];
+            if unit then
+                if self.guardianSpiritSaved[unit] then
+                    self.guardianSpiritSaved[unit] = nil;
+                else
+                    local icon = self.activeMap[unit .. "-" .. spellId];
+                    if icon then
+                        ResetCooldown(icon, 60, nil, true); -- reduce CD to 1 min starting from now, not reducing by a fixed amount
+                    end
+                end
+            end
+
+            return;
+        end
+
+        -- Blink / Shimmer reset by Alter Time
+        -- Order of events on 1st press: SPELL_AURA_APPLIED, SPELL_CAST_SUCCESS, SPELL_SUMMON
+        -- Order of events on 2nd press: SPELL_AURA_REMOVED, SPELL_CAST_SUCCESS
+        -- Order of events on Alter Time being purged: SPELL_AURA_REMOVED, SPELL_DISPEL
+        -- Track time of Alter Time buff applied / removed -> if it's full duration 10s, then it naturally expired hence it's a reset
+        -- If it expires prematurely, track buff removed time, and check following event (if SPELL_CAST_SUCCESS then reset; otherwise don't, including right click cancel case)
+        if ( spellId == 342246 ) and ( subEvent == addon.SPELL_AURA_APPLIED or subEvent == addon.SPELL_AURA_REMOVED ) then
+            local unit = unitGuidToId[sourceGUID];
+            if unit then
+                self.alterTimeRemoved[unit] = nil;
+                if subEvent == addon.SPELL_AURA_APPLIED then
+                    self.alterTimeApplied[unit] = GetTime();
+                else
+                    if self.alterTimeApplied[unit] then
+                        local now = GetTime();
+                        if ( now - self.alterTimeApplied[unit] ) > 9.99 then -- If Alter Time buff expired naturally (i.e., full 10s duration), reset Blink / Shimmer
+                            local icon = self.activeMap[unit .. "-" .. 1953] or self.activeMap[unit .. "-" .. 212653];
+                            if icon then
+                                ResetCooldown(icon, 25); -- It's granting a charge of 25s (not the 21s after taking Flow of Time)
+                            end
+                        else
+                            self.alterTimeRemoved[unit] = now; -- Track time of buff removed, and do reset if followed by a SPELL_CAST_SUCCESS event
+                        end
+                    end
+
+                    self.alterTimeApplied[unit] = nil;
+                end
+            end
+        elseif ( spellId == 342247 ) and ( subEvent == addon.SPELL_CAST_SUCCESS ) then -- Second Alter Time press
+            local unit = unitGuidToId[sourceGUID];
+            if unit then
+                if self.alterTimeRemoved[unit] then
                     local now = GetTime();
-                    if ( now - self.alterTimeApplied[unit] ) > 9.99 then -- If Alter Time buff expired naturally (i.e., full 10s duration), reset Blink / Shimmer
+                    if ( now - self.alterTimeRemoved[unit] ) < 1 then -- If this event happens within 1s after Alter Time buff removed, reset Blink / Shimmer
                         local icon = self.activeMap[unit .. "-" .. 1953] or self.activeMap[unit .. "-" .. 212653];
                         if icon then
                             ResetCooldown(icon, 25); -- It's granting a charge of 25s (not the 21s after taking Flow of Time)
                         end
-                    else
-                        self.alterTimeRemoved[unit] = now; -- Track time of buff removed, and do reset if followed by a SPELL_CAST_SUCCESS event
                     end
-                end
 
-                self.alterTimeApplied[unit] = nil;
+                    self.alterTimeRemoved[unit] = nil;
+                end
             end
         end
-    elseif ( spellId == 342247 ) and ( subEvent == addon.SPELL_CAST_SUCCESS ) then -- Second Alter Time press
-        local unit = unitGuidToId[sourceGUID];
-        if unit then
-            if self.alterTimeRemoved[unit] then
-                local now = GetTime();
-                if ( now - self.alterTimeRemoved[unit] ) < 1 then -- If this event happens within 1s after Alter Time buff removed, reset Blink / Shimmer
-                    local icon = self.activeMap[unit .. "-" .. 1953] or self.activeMap[unit .. "-" .. 212653];
-                    if icon then
-                        ResetCooldown(icon, 25); -- It's granting a charge of 25s (not the 21s after taking Flow of Time)
-                    end
-                end
 
-                self.alterTimeRemoved[unit] = nil;
+        -- Cooldown reduction from Grove Guardians
+        if ( spellId == 102693 ) and ( subEvent == addon.SPELL_SUMMON ) then
+            local unit = unitGuidToId[sourceGUID];
+            if unit then
+                self.groveGuardianOwner[destGUID] = unit;
+                C_Timer.After(15, function()
+                    ProcessCooldownReductionFromGroveGuardian(self, destGUID);
+                end);
             end
+
+            return;
+        -- elseif ( spellId == 102693 ) and ( subEvent == addon.UNIT_DIED ) then
+        --     -- Grove Guardian being killed doesn't fire this event, so this is not actually working
+        --     local unit = self.groveGuardianOwner[destGUID];
+        --     if unit then
+        --         if self.activeMap[unit .. "-" .. 33891] then
+        --             ResetCooldown(self.activeMap[unit .. "-" .. 33891], 5);
+        --         elseif self.activeMap[unit .. "-" .. 473909] then
+        --             ResetCooldown(self.activeMap[unit .. "-" .. 473909], 2.5); -- reduced by half for Ancient of Lore?
+        --         end
+        --     end
+
+        --     self.groveGuardianOwner[destGUID] = nil;
+        --     return;
         end
-    end
 
-    -- Cooldown reduction from Grove Guardians
-    if ( spellId == 102693 ) and ( subEvent == addon.SPELL_SUMMON ) then
-        local unit = unitGuidToId[sourceGUID];
-        if unit then
-            self.groveGuardianOwner[destGUID] = unit;
-            C_Timer.After(15, function()
-                ProcessCooldownReductionFromGroveGuardian(self, destGUID);
-            end);
-        end
-
-        return;
-    -- elseif ( spellId == 102693 ) and ( subEvent == addon.UNIT_DIED ) then
-    --     -- Grove Guardian being killed doesn't fire this event, so this is not actually working
-    --     local unit = self.groveGuardianOwner[destGUID];
-    --     if unit then
-    --         if self.activeMap[unit .. "-" .. 33891] then
-    --             ResetCooldown(self.activeMap[unit .. "-" .. 33891], 5);
-    --         elseif self.activeMap[unit .. "-" .. 473909] then
-    --             ResetCooldown(self.activeMap[unit .. "-" .. 473909], 2.5); -- reduced by half for Ancient of Lore?
-    --         end
-    --     end
-
-    --     self.groveGuardianOwner[destGUID] = nil;
-    --     return;
     end
 
     -- Check resets by spell cast
@@ -726,8 +779,16 @@ local function ProcessCombatLogEvent(self, subEvent, sourceGUID, destGUID, spell
         for i = 1, #resetByCrit do
             local spellToReset = resetByCrit[i];
             local icon = self.activeMap[unit .. "-" .. spellToReset];
-            if icon and icon.started and spellData[spellToReset].critResets and spellData[spellToReset].critResets[spellId] and ( subEvent == addon.SPELL_DAMAGE ) and critical then
-                ResetCooldown(icon, spellData[spellToReset].critResets[spellId]);
+            if icon and icon.started and spellData[spellToReset].critResets and spellData[spellToReset].critResets[spellId] then
+                if ( subEvent == addon.SPELL_DAMAGE ) and critical then
+                    ResetCooldown(icon, spellData[spellToReset].critResets[spellId]);
+                end
+
+                -- Extra CDR if Combustion is currently active (Unleashed Inferno)
+                if self.combustionUnits[unit] and ( subEvent == addon.SPELL_CAST_SUCCESS ) then
+                    ResetCooldown(icon, 1.25);
+                end
+
                 return;
             end
         end
@@ -785,7 +846,15 @@ local function ProcessCombatLogEvent(self, subEvent, sourceGUID, destGUID, spell
     local iconID = unit .. "-" .. iconSpellId;
     if self.icons[iconID] and ( isTestGroup or spellList[tostring(configSpellId)] ) then
         if ( iconSpellId ~= spellId ) then
-            self.icons[iconID].Icon:SetTexture(C_Spell.GetSpellTexture(spellId));
+            if spell.replace_parent_icon then
+                -- if icon texture is different
+                -- for some spells, we intentionally don't replace the texture, e.g., Skull Bash (Bear Form)
+                self.icons[iconID].Icon:SetTexture(addon.GetSpellTexture(spellId));
+            end
+
+            if self.icons[iconID].info then -- e.g., Anti-Magic Shell (Spellwarden) modifies cooldown as well
+                self.icons[iconID].info.cooldown = spell.cooldown;
+            end
         end
 
         addon.StartCooldownTrackingIcon(self.icons[iconID]);
@@ -861,6 +930,18 @@ end
 local function UpdateAllHighlights(group)
     for i = 1, #(group.active) do
         addon.UpdateTargetHighlight(group.active[i]);
+    end
+end
+
+local unitNames = {};
+
+local function UpdateUnitNames(group)
+    for _, icon in pairs(group.icons) do
+        local unit = icon.unit;
+        if unit then
+            local name = unitNames[unit] or "";
+            icon.Name:SetText(name);
+        end
     end
 end
 
@@ -985,7 +1066,11 @@ function SweepyBoop:SetupArenaCooldownTracker()
     if ( not eventFrame ) then
         eventFrame = CreateFrame("Frame");
         eventFrame:RegisterEvent(addon.PLAYER_ENTERING_WORLD);
-        eventFrame:RegisterEvent(addon.ARENA_PREP_OPPONENT_SPECIALIZATIONS);
+        if addon.PROJECT_TBC then
+            eventFrame:RegisterEvent(addon.ARENA_OPPONENT_UPDATE);
+        else
+            eventFrame:RegisterEvent(addon.ARENA_PREP_OPPONENT_SPECIALIZATIONS);
+        end
         eventFrame:RegisterEvent(addon.PLAYER_SPECIALIZATION_CHANGED);
         eventFrame:RegisterEvent(addon.COMBAT_LOG_EVENT_UNFILTERED);
         eventFrame:RegisterEvent(addon.UNIT_AURA);
@@ -993,13 +1078,22 @@ function SweepyBoop:SetupArenaCooldownTracker()
         eventFrame:RegisterEvent(addon.PLAYER_TARGET_CHANGED);
         eventFrame:SetScript("OnEvent", function (frame, event, ...)
             local config = SweepyBoop.db.profile.arenaFrames;
-            if ( event == addon.PLAYER_ENTERING_WORLD ) or ( event == addon.ARENA_PREP_OPPONENT_SPECIALIZATIONS ) or ( event == addon.PLAYER_SPECIALIZATION_CHANGED and addon.TEST_MODE ) then
+            if ( event == addon.PLAYER_ENTERING_WORLD ) or ( event == addon.ARENA_PREP_OPPONENT_SPECIALIZATIONS ) or ( event == addon.ARENA_OPPONENT_UPDATE ) or ( event == addon.PLAYER_SPECIALIZATION_CHANGED and addon.TEST_MODE and addon.PROJECT_MAINLINE ) then
+                if ( event == addon.ARENA_OPPONENT_UPDATE ) then
+                    local unit, reason = ...;
+                    if ( reason ~= "cleared" ) then
+                        return;
+                    end
+                end
+
                 -- PLAYER_SPECIALIZATION_CHANGED is triggered for all players, so we only process it when TEST_MODE is on
+                -- PLAYER_SPECIALIZATION_CHANGED is triggered by Stampede in MoP, we should only process it for retail...
 
                 -- Hide the external "Toggle Test Mode" group
                 SweepyBoop:HideTestArenaCooldownTracker();
                 SweepyBoop:HideTestArenaStandaloneBars();
 
+                unitNames = {};
                 ClearAllIconGroups();
 
                 local shouldSetup = false;
@@ -1008,7 +1102,17 @@ function SweepyBoop:SetupArenaCooldownTracker()
                 elseif ( event == addon.ARENA_PREP_OPPONENT_SPECIALIZATIONS ) then
                     shouldSetup = true;
                 elseif ( event == addon.PLAYER_ENTERING_WORLD ) then
-                    shouldSetup = IsActiveBattlefieldArena() and ( C_PvP.GetActiveMatchState() < Enum.PvPMatchState.Engaged );
+                    if addon.PROJECT_MAINLINE then
+                        shouldSetup = IsActiveBattlefieldArena() and ( C_PvP.GetActiveMatchState() < Enum.PvPMatchState.Engaged );
+                    else
+                        -- Classic doesn't have C_PvP.GetActiveMatchState, the Preparation buff is also missing in MoP
+                        -- Just refresh icons for now since there lacks a reliable way to check if we are in prep stage
+                        -- if IsActiveBattlefieldArena() then
+                        --     local auraData = C_UnitAuras.GetPlayerAuraBySpellID(44521);
+                        --     shouldSetup = auraData and auraData.name;
+                        -- end
+                        shouldSetup = IsActiveBattlefieldArena();
+                    end
                 end
                 if shouldSetup then
                     SetupAllIconGroups();
@@ -1064,6 +1168,15 @@ function SweepyBoop:SetupArenaCooldownTracker()
             elseif ( event == addon.UNIT_AURA ) or ( event == addon.UNIT_SPELLCAST_SUCCEEDED ) then
                 if ( not IsActiveBattlefieldArena() ) and ( not addon.TEST_MODE ) then return end
 
+                local nameUpdated = false;
+                local unitTarget = ...;
+                if ( not unitNames[unitTarget] ) then
+                    unitNames[unitTarget] = UnitName(unitTarget);
+                    if unitNames[unitTarget] then
+                        nameUpdated = true;
+                    end
+                end
+
                 -- Process arena frame bars if enabled
                 if addon.TEST_MODE then
                     local arenaMain = iconGroups[ICON_SET_ID.ARENA_MAIN .. "-player"];
@@ -1104,6 +1217,9 @@ function SweepyBoop:SetupArenaCooldownTracker()
                         end
                         local iconGroup = iconGroups[iconGroupID];
                         if iconGroup then
+                            if nameUpdated then
+                                UpdateUnitNames(iconGroup);
+                            end
                             ProcessUnitEvent(iconGroup, event, ...);
                         end
                     end

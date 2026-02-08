@@ -157,7 +157,7 @@ local function setupContainer()
             lang = "mop-classic/"..lang
         end
 
-        StaticPopup_Show("MJE_COPY", nil, nil, "https://www.wowhead.com/"..lang.."/spell="..spellId)
+        LibStub("LibCopyDialog"):Open("https://www.wowhead.com/"..lang.."/spell="..spellId)
     end)
 
     container.Items = {

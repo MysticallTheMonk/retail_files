@@ -27,9 +27,9 @@ local options = {
             type = "group",
             inline = true,
             args = {
-                MainMenuBar = {
+                MainActionBar = {
                     order = 1,
-                    name = L["MainMenuBar"],
+                    name = L["MainActionBar"],
                     desc = "",
                     type = "toggle",
                     get = "GetModuleStatus",
@@ -109,12 +109,12 @@ local options = {
                 },
             },
         },
-        MainMenuBar = {
+        MainActionBar = {
             hidden = function()
-                return not addon:IsModuleEnabled("MainMenuBar") or unitExcludedBySearch(L["MainMenuBar"])
+                return not addon:IsModuleEnabled("MainActionBar") or unitExcludedBySearch(L["MainActionBar"])
             end,
             order = 1,
-            name = L["MainMenuBar"],
+            name = L["MainActionBar"],
             type = "group",
             inline = true,
             args = mouseover_unit_options,

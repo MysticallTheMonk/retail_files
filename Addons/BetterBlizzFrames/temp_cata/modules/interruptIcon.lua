@@ -1,27 +1,57 @@
-local interruptSpells = {
-    1766,  -- Kick (Rogue)
-    2139,  -- Counterspell (Mage)
-    6552,  -- Pummel (Warrior)
-    19647, -- Spell Lock (Warlock)
-    47528, -- Mind Freeze (Death Knight)
-    57994, -- Wind Shear (Shaman)
-    91802, -- Shambling Rush (Death Knight)
-    96231, -- Rebuke (Paladin)
-    106839,-- Skull Bash (Feral)
-    115781,-- Optical Blast (Warlock)
-    116705,-- Spear Hand Strike (Monk)
-    132409,-- Spell Lock (Warlock)
-    119910,-- Spell Lock (Warlock Pet)
-    147362,-- Countershot (Hunter)
-    171138,-- Shadow Lock (Warlock)
-    183752,-- Consume Magic (Demon Hunter)
-    187707,-- Muzzle (Hunter)
-    212619,-- Call Felhunter (Warlock)
-    231665,-- Avengers Shield (Paladin)
-    351338,-- Quell (Evoker)
-    97547, -- Solar Beam
-    47482, -- Leap (DK Transform)
-}
+local interruptSpells = {}
+
+if BBF.isTBC then
+    interruptSpells = {
+        1766,   -- Kick (Rogue)
+        2139,   -- Counterspell (Mage)
+        6552,   -- Pummel (Warrior)
+        72,     -- Shield Bash (Warrior)
+        8042,   -- Earth Shock (Shaman)
+        19244,  -- Spell Lock (Warlock)
+        19675,  -- Feral Charge Effect (Druid)
+        132409, -- Spell Lock (Warlock)
+        19647,  -- Spell Lock (Warlock, pet)
+        57994,  -- Wind Shear (Shaman)
+        96231,  -- Rebuke (Paladin)
+        93985,  -- Skull Bash (Druid)
+        147362, -- Counter Shot (Hunter)
+        78675,  -- Solar Beam
+        33871,  -- Shield Bash (Warrior)
+        24259,  -- Spell Lock (Warlock)
+        43523,  -- Unstable Affliction (Warlock)
+        119911, -- Optical Blast (Warlock Observer)
+        115781, -- Optical Blast (Warlock Observer)
+        26090,  -- Pummel (Gorilla)
+        50479,  -- Nethershock
+        97547,  -- Solar Beam
+    }
+else
+    interruptSpells = {
+        1766,  -- Kick (Rogue)
+        2139,  -- Counterspell (Mage)
+        6552,  -- Pummel (Warrior)
+        19647, -- Spell Lock (Warlock)
+        47528, -- Mind Freeze (Death Knight)
+        57994, -- Wind Shear (Shaman)
+        91802, -- Shambling Rush (Death Knight)
+        96231, -- Rebuke (Paladin)
+        106839,-- Skull Bash (Feral)
+        115781,-- Optical Blast (Warlock)
+        116705,-- Spear Hand Strike (Monk)
+        132409,-- Spell Lock (Warlock)
+        119910,-- Spell Lock (Warlock Pet)
+        34490, -- Silencing Shot (Hunter)
+        147362,-- Countershot (Hunter)
+        171138,-- Shadow Lock (Warlock)
+        183752,-- Consume Magic (Demon Hunter)
+        187707,-- Muzzle (Hunter)
+        212619,-- Call Felhunter (Warlock)
+        231665,-- Avengers Shield (Paladin)
+        351338,-- Quell (Evoker)
+        97547, -- Solar Beam
+        47482, -- Leap (DK Transform)
+    }
+end
 
 -- Local variable to store the known interrupt spell ID
 local knownInterruptSpellID = nil

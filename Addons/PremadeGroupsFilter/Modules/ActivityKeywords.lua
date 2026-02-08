@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 -- Premade Groups Filter
 -------------------------------------------------------------------------------
--- Copyright (C) 2024 Bernhard Saumweber
+-- Copyright (C) 2026 Bernhard Saumweber
 --
 -- This program is free software; you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -49,8 +49,8 @@ C.ACTIVITY_ID_TO_KEYWORDS = {
     [ 473] = { "legion", "kara", "ukara", "uppr", "sls4" }, -- Upper Karazhan (Mythic Keystone)
     [ 679] = { "bfa", "opm", "opmj", "yard", "sls4" }, -- Operation: Mechagon - Junkyard (Mythic Keystone)
     [ 683] = { "bfa", "opm", "opmw", "work", "sls4", "twws2" }, -- Operation: Mechagon - Workshop (Mythic Keystone)
-    [1016] = { "sl", "taz", "tazs", "strt", "sls4" }, -- Tazavesh: Streets of Wonder (Mythic Keystone)
-    [1017] = { "sl", "taz", "tazg", "gmbt", "sls4" }, -- Tazavesh: So'leah's Gambit (Mythic Keystone)
+    [1016] = { "sl", "taz", "tazs", "strt", "sls4", "twws3" }, -- Tazavesh: Streets of Wonder (Mythic Keystone)
+    [1017] = { "sl", "taz", "tazg", "gmbt", "sls4", "twws3" }, -- Tazavesh: So'leah's Gambit (Mythic Keystone)
     [1247] = { "df", "doti", "fall", "dfs3" }, -- Dawn of the Infinite: Galakrond's Fall (Mythic Keystone)
     [1248] = { "df", "doti", "rise", "dfs3" }, -- Dawn of the Infinite: Murozond's Rise (Mythic Keystone)
     [1250] = { "df", "doti", "fall", "dfs3" }, -- Galakrond's Fall (Mythic Keystone)
@@ -114,7 +114,9 @@ C.MAP_ID_TO_KEYWORDS = {
     [2569] = { "df", "asc" }, -- Aberrus, the Shadowed Crucible
     [2657] = { "tww", "np" }, -- Nerub-ar Palace
     [2769] = { "tww", "lou" }, -- Liberation of Undermine
+    [2810] = { "tww", "mfo" }, -- Manaforge Omega
     -- Dungeons
+    [ 658] = { "wotlk", "pos", "mns1" }, -- Pit of Saron
     [  33] = { "cata", "sfk" }, -- Shadowfang Keep
     [  36] = { "cata", "dm" }, -- Deadmines
     --[ 568] = { "cata", "za" }, -- Zul'Aman -- also a TBC raid with the same mapID and already included above
@@ -138,9 +140,11 @@ C.MAP_ID_TO_KEYWORDS = {
     [1004] = { "mists", "scm" }, -- Scarlet Monastery
     [1007] = { "mists", "scholo" }, -- Scholomance
     [1011] = { "mists", "snt" }, -- Siege of Niuzao Temple
+    [1175] = { "wod", "bsm" }, -- Bloodmaul Slag Mines
     [1176] = { "wod", "sbg", "dfs1" }, -- Shadowmoon Burial Grounds
     [1195] = { "wod", "id", "sls4" }, -- Iron Docks
     [1208] = { "wod", "gd", "sls4" }, -- Grimrail Depot
+    [1209] = { "wod", "sr", "mns1" }, -- Skyreach
     [1279] = { "wod", "eb", "dfs3" }, -- The Everbloom
     [1456] = { "legion", "eoa" }, -- Eye of Azshara
     [1458] = { "legion", "nl", "dfs2" }, -- Neltharion's Lair
@@ -153,6 +157,8 @@ C.MAP_ID_TO_KEYWORDS = {
     [1544] = { "legion", "nl" }, -- Assault on Violet Hold
     [1571] = { "legion", "cos", "dfs1" }, -- Court of Stars
     [1651] = { "legion", "kara" }, -- Return to Karazhan
+    [1677] = { "legion", "cen" }, -- Cathedral of Eternal Night
+    [1753] = { "legion", "seat", "mns1" }, -- Seat of the Triumvirate
     [1594] = { "bfa", "tml", "ml", "twws2" }, -- The MOTHERLODE
     [1754] = { "bfa", "fh", "dfs2" }, -- Freehold
     [1762] = { "bfa", "kr" }, -- Kings' Rest
@@ -167,7 +173,7 @@ C.MAP_ID_TO_KEYWORDS = {
     [2284] = { "sl", "sd" }, -- Sanguine Depths
     [2285] = { "sl", "soa" }, -- Spires of Ascension
     [2286] = { "sl", "nw", "twws1" }, -- The Necrotic Wake
-    [2287] = { "sl", "hoa" }, -- Halls of Atonement
+    [2287] = { "sl", "hoa", "twws3" }, -- Halls of Atonement
     [2289] = { "sl", "pf" }, -- Plaguefall
     [2290] = { "sl", "mots", "mists", "twws1" }, -- Mists of Tirna Scithe
     [2291] = { "sl", "dos" }, -- De Other Side
@@ -179,18 +185,30 @@ C.MAP_ID_TO_KEYWORDS = {
     [2519] = { "df", "nt", "nelt", "dfs2", "dfs4" }, -- Neltharus
     [2520] = { "df", "bh", "dfs2", "dfs4" }, -- Brackenhide Hollow
     [2521] = { "df", "rlp", "dfs1", "dfs4" }, -- Ruby Life Pools
-    [2526] = { "df", "aa", "dfs1", "dfs4" }, -- Algeth'ar Academy
+    [2526] = { "df", "aa", "dfs1", "dfs4", "mns1" }, -- Algeth'ar Academy
     [2527] = { "df", "hoi", "dfs2", "dfs4" }, -- Halls of Infusion
     [2579] = { "df", "doti" }, -- Dawn of the Infinite
     [2648] = { "tww", "rook", "twws2" }, -- The Rookery
-    [2649] = { "tww", "psf", "twws2" }, -- Priory of the Sacred Flame
+    [2649] = { "tww", "psf", "twws2", "twws3" }, -- Priory of the Sacred Flame
     [2651] = { "tww", "dfc", "twws2" }, -- Darkflame Cleft
     [2652] = { "tww", "sv", "twws1" }, -- The Stonevault
-    [2660] = { "tww", "arak", "twws1" }, -- Ara-Kara, City of Echoes
+    [2660] = { "tww", "arak", "twws1", "twws3" }, -- Ara-Kara, City of Echoes
     [2661] = { "tww", "brew", "twws2" }, -- Cinderbrew Meadery
-    [2662] = { "tww", "dawn", "twws1" }, -- The Dawnbreaker
+    [2662] = { "tww", "dawn", "twws1", "twws3" }, -- The Dawnbreaker
     [2669] = { "tww", "cot", "twws1" }, -- City of Threads
-    [2773] = { "tww", "fg", "flood", "twws2" }, -- Operation: Floodgate
+    [2773] = { "tww", "fg", "flood", "twws2", "twws3" }, -- Operation: Floodgate
+    [2830] = { "tww", "eda", "twws3" }, -- Eco-Dome Al'dani
+    [2805] = { "mn", "ws", "mns1" }, -- Windrunner Spire
+    [2859] = { "mn", "bv" }, -- The Blinding Vale
+    [2825] = { "mn", "den" }, -- Den of Nalorakk
+    [2813] = { "mn", "mr" }, -- Murder Row
+    [2923] = { "mn", "va" }, -- Voidscar Arena
+    [2811] = { "mn", "mt", "mns1" }, -- Magisters' Terrace
+    [2874] = { "mn", "mai", "mns1" }, -- Maisara Caverns
+    [2915] = { "mn", "npx", "mns1" }, -- Nexus-Point Xenas
+    [2912] = { "mn", "vs" }, -- The Voidspire
+    [2913] = { "mn", "moq" }, -- March on Quel'Danas
+    [2939] = { "mn", "dr" }, -- The Dreamrift
 }
 
 -- Raider.io keywords can be found here:

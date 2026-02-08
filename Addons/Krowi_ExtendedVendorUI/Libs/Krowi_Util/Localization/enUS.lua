@@ -1,34 +1,45 @@
 --[[
     Copyright (c) 2023 Krowi
-
-    All Rights Reserved unless otherwise explicitly stated.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
+    Licensed under the terms of the LICENSE file in this repository.
 ]]
 
-local lib = LibStub("Krowi_Util-1.0");
+---@diagnostic disable: undefined-global
 
-if not lib then
-	return;
-end
+local lib = KROWI_LIBMAN:GetCurrentLibrary(true)
+if not lib then	return end
 
-if lib.IsLoaded_enUS then
-	return;
-end
-lib.IsLoaded_enUS = true;
+local L = lib.Localization.NewDefaultLocale()
+if not L then return end
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Krowi_Util-1.0", "enUS", true, true);
+-- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
-L["Loaded"] = "Loaded";
-L["Loaded Desc"] = "Indicates if the addon related to the plugin is loaded or not.";
-L["Requires a reload"] = "Requires a reload to take full effect.";
-L["Profiles"] = "Profiles";
-L["Default value"] = "Default value";
-L["Unchecked"] = "Unchecked";
-L["Checked"] = "Checked";
+-- [[ Exported at 2026-01-12 19-38-31 ]] --
+L['Author'] = true
+L['Build'] = true
+L['Checked'] = true
+L['Credits'] = true
+L['CurseForge'] = true
+L['CurseForge Desc'] = 'Open a popup dialog with a link to the {addonName} {curseForge} page.'
+L['Default value'] = true
+L['Deselect All'] = true
+L['Discord'] = true
+L['Discord Desc'] = 'Open a popup dialog with a link to the {serverName} Discord server. Here you can post comments, reports, remarks, ideas or anything else related.'
+L['Donations'] = true
+L['Hide'] = true
+L['Left click'] = true
+L['Left-Click'] = true
+L['Loaded'] = true
+L['Loaded Desc'] = 'Indicates if the addon related to the plugin is loaded or not.'
+L['Localizations'] = true
+L['Plugins'] = true
+L['Profiles'] = true
+L['Requires a reload'] = 'Requires a reload to take full effect.'
+L['Right click'] = true
+L['Right-Click'] = true
+L['Select All'] = true
+L['Show minimap icon'] = true
+L['Show minimap icon Desc'] = 'Show / hide the minimap icon.'
+L['Special thanks'] = true
+L['Unchecked'] = true
+L['Wago'] = true
+L['Wago Desc'] = 'Open a popup dialog with a link to the {addonName} {wago} page.'

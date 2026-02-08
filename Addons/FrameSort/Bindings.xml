@@ -27,4 +27,6 @@
   <Binding name="CLICK FSTargetPreviousFrame:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
   <Binding name="CLICK FSCycleNextFrame:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
   <Binding name="CLICK FSCyclePreviousFrame:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSCycleNextDpsFrame:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
+  <Binding name="CLICK FSCyclePreviousDpsFrame:LeftButton" description="FrameSort Bindings" category="FrameSort"></Binding>
 </Bindings>

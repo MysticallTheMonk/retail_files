@@ -1,3 +1,4 @@
+local L = BBF.L
 local bgId
 local updateFrame
 local proposalTimeLeft = 40
@@ -19,7 +20,7 @@ local function CreateCustomFontStrings(dialog)
     maxWidth = dialog:GetWidth()
     dialog.customLabel = dialog:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     dialog.customLabel:SetPoint("TOP", dialog.label or dialog.text, "TOP", 0, 0)
-    dialog.customLabel:SetText("Queue expires in")
+    dialog.customLabel:SetText(L["Queue_Expires_In"])
     local font, size, outline = dialog.customLabel:GetFont()
     dialog.customLabel:SetFont(font, 15, "OUTLINE")
     dialog.customLabel:SetWidth(maxWidth)
@@ -185,9 +186,9 @@ local function HandleDungeonReadyDialog()
 
         if dungeonQueuedTime then
             local timeWaited = GetTime() - dungeonQueuedTime
-            Print(timeWaited < 1 and "Dungeon queue popped instantly!" or format("Dungeon queue popped after %s", SecondsToTime(timeWaited)))
+            Print(timeWaited < 1 and L["Dungeon_Queue_Popped_Instantly"] or format(L["Dungeon_Queue_Popped_After"], SecondsToTime(timeWaited)))
         else
-            Print("Dungeon queue popped, but time could not be determined.")
+            Print(L["Dungeon_Queue_Popped_Time_Unknown"])
         end
         dungeonQueuedTime = nil
     end
@@ -202,7 +203,7 @@ local function UpdateBattlefieldStatus()
         elseif status == "confirm" then
             if queues[i] then
                 local secs = GetTime() - queues[i]
-                Print(secs < 1 and "Queue popped instantly!" or format("Queue popped after %s", SecondsToTime(secs)))
+                Print(secs < 1 and L["Queue_Popped_Instantly"] or format(L["Queue_Popped_After"], SecondsToTime(secs)))
                 queues[i] = nil
             end
             isConfirm = true
@@ -257,6 +258,14 @@ function BBF.EnableQueueTimer()
             PVPReadyDialog.enterButton:SetSize(105,25)
             PVPReadyDialog.hideButton:Hide()
             PVPReadyDialog:SetSize(280, 107)
+            if BBF.isTBC then
+                hooksecurefunc(PVPReadyDialog, "SetSize", function(self)
+                    if self.bbfChanging then return end
+                    self.bbfChanging = true
+                    self:SetSize(280, 107)
+                    self.bbfChanging = nil
+                end)
+            end
             PVPReadyDialog.bgTex = PVPReadyDialog:CreateTexture(nil, "BACKGROUND", nil, 2)
             PVPReadyDialog.bgTex:SetAtlas("groupfinder-background-arenas")
             PVPReadyDialog.bgTex:SetPoint("TOPLEFT", PVPReadyDialog, "TOPLEFT", 6, -6)
@@ -266,13 +275,14 @@ function BBF.EnableQueueTimer()
         local frame = CreateFrame("Frame")
         frame:RegisterEvent("LFG_PROPOSAL_SHOW")
         frame:RegisterEvent("LFG_PROPOSAL_SUCCEEDED")
+        frame:RegisterEvent("LFG_PROPOSAL_DONE")
         frame:RegisterEvent("LFG_PROPOSAL_FAILED")
         frame:RegisterEvent("LFG_QUEUE_STATUS_UPDATE")
         frame:RegisterEvent("UPDATE_BATTLEFIELD_STATUS")
         frame:SetScript("OnEvent", function(_, event)
             if event == "LFG_PROPOSAL_SHOW" then
                 HandleDungeonReadyDialog()
-            elseif event == "LFG_PROPOSAL_SUCCEEDED" or event == "LFG_PROPOSAL_FAILED" then
+            elseif event == "LFG_PROPOSAL_SUCCEEDED" or event == "LFG_PROPOSAL_FAILED" or event == "LFG_PROPOSAL_DONE" then
                 isPveQueueActive = false
                 StopUpdateFrame()
                 -- Clear saved data once the proposal is accepted or failed

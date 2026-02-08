@@ -11,6 +11,7 @@ local GetItemNumSockets = C_Item.GetItemNumSockets;
 local GetItemGemID = C_Item.GetItemGemID;
 local GetInventoryItemLink = GetInventoryItemLink;
 local match = string.match;
+local gmatch = string.gmatch;
 local L = Narci.L;
 
 
@@ -87,7 +88,7 @@ do
                 local n = 0;
                 local value, stats;
     
-                for statText in string.gmatch(line.leftText, PATTERN_STAT) do
+                for statText in gmatch(line.leftText, PATTERN_STAT) do
                     value = match(statText, "%+(%d+)");
                     value = value and tonumber(value) or 0;
                     if value > 0 then
@@ -132,6 +133,81 @@ do
     TimerunningUtil.GetStatsBonus = GetStatsBonusFromCurrency;
 end
 
+
+function NarciAPI.GetTimeRunningSeason()
+    local seasonID = PlayerGetTimerunningSeasonID and PlayerGetTimerunningSeasonID();
+    return seasonID
+end
+
+
+do  --Legion Remix
+    local CRIT = tonumber("1000", 2);
+    local HASTE = tonumber("100", 2);
+    local MAST = tonumber("10", 2);
+    local VERSA = tonumber("1", 2);
+
+    local StatKeys = {
+        [CRIT] = "Crit",
+        [HASTE] = "Haste",
+        [MAST] = "Mastery",
+        [VERSA] = "Versatility",
+    };
+
+    local ItemBonus = {
+        [13360] = {CRIT, 2},    --Crit++
+        [13361] = {CRIT, 1},    --Crit+
+        [13362] = {MAST, 2},    --Mastery++
+        [13363] = {MAST, 1},    --Mastery+
+        [13364] = {HASTE, 2},   --Haste++
+        [13365] = {HASTE, 1},   --Haste+
+        --[12543] = {CRIT, 2}, --Avoidance
+        --[12544] = {CRIT, 2}, --Leech
+        --[12545] = {CRIT, 2}, --Speed
+    };
+
+    function NarciAPI.GetTimerunningItemStats(itemlink)
+        if not itemlink then return end;
+        local tbl, v, statKey;
+        for id in gmatch(itemlink, ":(%d+)") do
+            id = tonumber(id);
+            v = id and ItemBonus[id];
+            if v then
+                if not tbl then
+                    tbl = {};
+                end
+                statKey = StatKeys[v[1]];
+                if tbl[statKey] then
+                   tbl[statKey] = tbl[statKey] + v[2];
+                else
+                    tbl[statKey] = v[2];
+                end
+            end
+        end
+        return tbl
+    end
+
+
+    local ArtifactSpells = {
+        1233577,
+        1237711,
+        1233775,
+        1233181,
+        1251045,
+    };
+
+    function NarciAPI.GetTimerunningMajorSpell()
+        local knwonSpellID, spellIndex;
+		local IsSpellInSpellBook = C_SpellBook.IsSpellInSpellBook;
+		for index, spellID in ipairs(ArtifactSpells) do
+			if IsSpellInSpellBook(spellID, 0, true) then
+				spellIndex = index;
+                knwonSpellID = spellID;
+				break
+			end
+		end
+        return knwonSpellID, spellIndex
+    end
+end
 
 --[[
     /dump C_Item.GetItemNumSockets(GetInventoryItemLink("player", 5))

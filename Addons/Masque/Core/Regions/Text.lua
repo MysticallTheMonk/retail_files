@@ -8,8 +8,6 @@
 
 	Text Regions
 
-	* See Skins\Default.lua for region defaults.
-
 ]]
 
 local _, Core = ...
@@ -18,32 +16,33 @@ local _, Core = ...
 -- Internal
 ---
 
--- @ Core\Utility
-local GetSize, GetTypeSkin, SetSkinPoint = Core.GetSize, Core.GetTypeSkin, Core.SetSkinPoint
+-- @ Skins\Defaults
+local SkinRoot = Core.SKIN_BASE
 
--- @ Skins\Blizzard_*
-local DEFAULT_SKIN = Core.DEFAULT_SKIN
+-- @ Core\Utility
+local SetSkinPoint = Core.SetSkinPoint
 
 ----------------------------------------
 -- Core
 ---
 
--- Skins a text layer of a button.
-function Core.SkinText(Layer, Region, Button, Skin, xScale, yScale)
-	local bType = Button.__MSQ_bType
+-- Internal skin handler for text regions.
+function Core.Skin_Text(Layer, Region, Button, Skin)
+	local _mcfg = Button._MSQ_CFG
 
-	Skin = GetTypeSkin(Button, bType, Skin)
+	Skin = _mcfg:GetTypeSkin(Button, Skin)
 
-	local Default_Skin = DEFAULT_SKIN[Layer]
-	Default_Skin = Default_Skin[bType] or Default_Skin
+	local Default = SkinRoot[Layer]
+
+	Default = Default[_mcfg.bType] or Default
 
 	local Skin_Wrap = (Skin.Wrap and true) or false
 
-	Region:SetJustifyH(Skin.JustifyH or Default_Skin.JustifyH)
-	Region:SetJustifyV(Skin.JustifyV or "MIDDLE")
+	Region:SetJustifyH(Skin.JustifyH or Default.JustifyH)
+	Region:SetJustifyV(Skin.JustifyV or Default.JustifyV)
 	Region:SetWordWrap(Skin_Wrap)
-	Region:SetDrawLayer(Skin.DrawLayer or Default_Skin.DrawLayer)
-	Region:SetSize(GetSize(Skin.Width or 36, Skin.Height or 0, xScale, yScale, Button))
+	Region:SetDrawLayer(Skin.DrawLayer or Default.DrawLayer)
+	Region:SetSize(_mcfg:GetSize(Skin.Width or Default.Width, Skin.Height or Default.Height))
 
-	SetSkinPoint(Region, Button, Skin, Default_Skin)
+	SetSkinPoint(Region, Button, Skin, nil, Button, Default)
 end

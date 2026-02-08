@@ -605,7 +605,7 @@
 						</Layers>
 					</Button>
 
-					<Button parentKey="SheatheButton" mixin="NarciShowcaseSheatheButtonMixin">
+					<Button parentKey="SheatheButton" mixin="NarciShowcaseSheatheButtonMixin" inherits="NarciPropagateKeyboardInputTemplate">
 						<Size x="24" y="24"/>
 						<Anchors>
 							<Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT" x="4" y="4"/>
@@ -1081,7 +1081,7 @@
 								</Scripts>
 							</Frame>
 
-							<Button parentKey="MountToggle" mixin="NarciShowcaseMountToggleMixin">
+							<Button parentKey="MountToggle" mixin="NarciShowcaseMountToggleMixin" registerForClicks="LeftButtonUp, RightButtonUp">
 								<Size x="14" y="14"/>
 								<HitRectInsets>
 									<AbsInset left="-5" right="-5" top="-5" bottom="-5"/>

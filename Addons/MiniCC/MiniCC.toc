@@ -1,0 +1,48 @@
+## Interface: 120001, 120000
+## Title: MiniCC
+## Notes: Shows CC and important spells on frames/nameplates/alerts in PvP.
+## Author: Verz
+## Version: 2.12.0
+## SavedVariables: MiniCCDB
+## OptionalDeps: ElvUI, Grid2, DandersFrames, FrameSort
+## IconTexture: Interface\AddOns\MiniCC\Icon.blp
+## X-Curse-Project-ID: 1439482
+
+Libs\LibStub\LibStub.lua
+Libs\LibCustomGlow-1.0\LibCustomGlow-1.0.xml
+
+Namespace.lua
+Capabilities.lua
+
+Utils\Scheduler.lua
+Utils\Units.lua
+Utils\Array.lua
+Utils\CcUtil.lua
+
+Core\MiniFramework.lua
+Core\IconSlotContainer.lua
+Core\UnitAuraWatcher.lua
+Core\Frames.lua
+Core\CcHeader.lua
+
+Modules\CcModule.lua
+Modules\HealerCcModule.lua
+Modules\PortraitModule.lua
+Modules\AlertsModule.lua
+Modules\NameplatesModule.lua
+Modules\KickTimerModule.lua
+Modules\TrinketsModule.lua
+Modules\TestModeManager.lua
+
+Config\Config.lua
+Config\General.lua
+Config\Instance.lua
+Config\Anchors.lua
+Config\Healer.lua
+Config\Alerts.lua
+Config\Nameplates.lua
+Config\KickTimer.lua
+Config\Trinkets.lua
+
+MiniCC.xml
+MiniCC.lua

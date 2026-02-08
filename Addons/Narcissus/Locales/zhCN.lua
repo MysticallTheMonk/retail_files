@@ -20,6 +20,7 @@ L["Day Plural"] = "天";
 L["Day Singular"] = "天";
 L["Hour Plural"] = "小时";
 L["Hour Singular"] = "小时";
+L["Last Visit"] = "上次登录：";
 
 L["Swap items"] = "更换装备";
 L["Movement Speed"] = STAT_MOVEMENT_SPEED;
@@ -81,6 +82,8 @@ L["MinimapButton Reenabled"] = "|cffffd100你已启用Narcissus小地图按钮�
 L["MinimapButton LibDBIcon"] = "使用LibDBIcon";
 L["MinimapButton LibDBIcon Desc"] = "使用LibDBIcon来创建小地图按钮。\n你可以看见此选项因为你已安装LibDBIcon或植入了这个库的插件。";
 L["MinimapButton LibDBIcon Hide"] = "隐藏按钮";
+L["MinimapButton Click Behavior"] = "左键单击行为";
+L["MinimapButton Click Behavior tooltip"] = "选择左键单击小地图按钮进入的界面。";
 L["Corrupted Item Parser"] = "|cffffffff打开腐蚀物品链接解析器|r";
 L["Toggle Dressing Room"] = "|cffffffff打开试衣间|r";
 L["Reset Camera"] = "重置摄像机参数";
@@ -211,6 +214,9 @@ L["Y Offset"] = "纵向偏移";
 L["Sceenshot Quality"] = "截图质量";
 L["Screenshot Quality Description"] = "提高截图质量会增加文件大小。";
 L["General"] = "通用设置";
+L["Camera Auto Zoom In"] = "自动拉近镜头";
+L["Camera Auto Zoom In On"] = "当你打开角色面板时自动拉近镜头。";
+L["Camera Auto Zoom In Off"] = "当你打开角色面板时镜头将只会平移。";
 L["Camera Transition"] = "镜头过渡";
 L["Camera Transition Description On"] = "当你打开角色面板时镜头会平滑地运动到预设位置。";
 L["Camera Transition Description Off"] = "镜头转换变为瞬时。此效果将在你第二次使用角色面板时开始生效。\n此效果会占用镜头预设#4。";
@@ -284,6 +290,7 @@ L["Animation"] = "角色动画";
 L["Animation Tooltip"] = "浏览和搜索动画";
 L["Animation Variation"] = "子类型";
 L["Reset Slider"] = "重置为零";
+L["Available Count"] = "%d个可用";
 
 --Spell Visual Browser--
 L["Visuals"] = "法术效果";
@@ -332,6 +339,8 @@ L["Switch Form To Human"] = "切换到|cffffffff人|r形态";
 L["InGame Command"] = "游戏内命令";
 L["Hide Player Items"] = "隐藏玩家装备";
 L["Hide Player Items Tooltip"] = "移除不属于此套装的装备。";
+L["Hide Duplicated Appearance"] = "隐藏重复物品";
+L["Hide Duplicated Appearance Tooltip"] = "一些套装物品有着完全相同的外观，勾选此选项可隐藏重复的物品。";
 
 --NPC Browser--
 NARCI_NPC_BROWSER_TITLE_LEVEL = ".*%?%?.?";      --Level ?? --Use this to check if the second line of the tooltip is NPC's title or unit type
@@ -437,6 +446,7 @@ L["Instruction Add To To Do List"] = string.format("%s 左键 点击一个未完
 L["Instruction Remove From To Do List"] = string.format("%s 左键点击以从待办事项中移除。", NARCI_MODIFIER_ALT);
 L["DIY"] = "DIY";
 L["DIY Tab Tooltip"] = "自定义一个成就供截图使用。"
+L["Binding Name Open Achievement"] = "Narcissus成就面板";
 
 --Barbershop--
 L["Save New Look"] = "保存外观";
@@ -717,6 +727,9 @@ L["Format Stat EXP"] = "+%d%% 经验获取";
 L["Format Rank"] = "等级 %d";
 L["Cloak Rank"] = "披风等级";
 
+L["Artifact Ability"] = "神奇技能";
+L["Toggle Artifact UI"] = "点击以显示神器界面";
+
 
 --Gem Manager--
 L["Gem Manager"] = "宝石管理器";
@@ -773,3 +786,37 @@ L["GamePad Select"] = "选择";
 L["GamePad Cancel"] = "取消";
 L["GamePad Use"] = "使用";
 L["GamePad Equip"] = "装备";
+
+
+--TransmogUI--
+L["Transmog UI"] = "幻化界面";
+L["Transmog UI Description"] = "允许你访问由你其他角色创建的自定义套装。";
+L["OutfitSource Default"] = "当前角色";
+L["OutfitSource Default Tooltip"] = "此数据在服务器端保存。";
+L["OutfitSource Shared"] = "共享列表";
+L["OutfitSource Shared Tooltip"] = "你的其他角色可以访问和修改此列表。\n\n此数据由Narcissus插件在本地保存。";
+L["OutfitSource Alts"] = "其他角色";
+L["OutfitSource Alts Tooltip"] = "如果你启用Narcissus插件并登入其他角色，你将可以浏览他们的自定义套装。\n\n你无法在当前角色上修改这些套装。";
+L["Cannot Delete On Alts"] = "你不能修改此套装，因为它被保存在另一个角色上。";
+L["Your Money Amount"] = "你的余额";
+L["TransmogSet No Valid Items"] = "没有有效的物品。";
+L["Copy To Shared List"] = "复制到共享列表";
+L["Insturction Delete Without Confirm"] = "按住Shift并单击来跳过确认直接删除。";
+L["Press Key To Copy Format"] = "按 |cffffd100%s|r 复制";
+L["Added To Shared List"] = "已保存到共享列表";
+L["Added To Shared List Alert Format"] = "此套装已在共享列表中存在，其名称为“%s”";
+L["New Set Location Default"] = "此套装将被保存在当前角色上。";
+L["New Set Location Shared"] = "此套装将被保存至共享列表。";
+L["Save Custom Set Location"] = "保存至：";
+L["Save Slots Colon"] = "存档数量：";
+L["Error View Outfit In Combat"] = "你无法在战斗中浏览外观。";
+L["Profile Management"] = "存档管理";
+L["Delete Character Data"] = "删除此角色";
+L["Delete Character Data Tooltip"] = "此选项帮助你清理不活跃的或者已不存在的角色。\n\n删除此角色上本地保存的套装。Narcissus插件会在你登陆这个角色后重新储存套装信息。";
+
+
+--WardrobeCollection--
+L["ModuleName WardrobeCollection"] = "外观页面";
+L["ModuleDescription WardrobeCollection"] = "在战团藏品-外观页面添加一个按钮，允许你隐藏身上还未收集的套装部位。"
+L["Hide Uncollected Slots"] = "Hide Uncollected";
+L["Hide Uncollected Slots Tooltip"] = "Hide Uncollected Slots |cffffd100(%s)|r";

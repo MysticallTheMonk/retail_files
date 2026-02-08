@@ -1,58 +1,57 @@
-local addonName, addon = ...;
-local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "ruRU");
+local _, addon = ...
+local L = addon.Localization.NewLocale("ruRU")
 if not L then return end
-addon.L = L;
 
-addon.Plugins:LoadLocalization(L);
+KrowiEVU.PluginsApi:LoadPluginLocalization(L)
 
--- [[ https://legacy.curseforge.com/wow/addons/krowi-extended-vendor-ui/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-05-15 18-40-48 ]] --
+-- [[ Exported at 2026-01-15 22-18-37 ]] --
 L["Are you sure you want to hide the options button?"] = "Вы уверены, что хотите скрыть кнопку настроек? Кнопку настроек можно заново вкоючить через {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {general} {arrow} {options}"
 L["Arsenals"] = "Арсеналы"
-L["Author"] = "Автор"
-L["Build"] = "Сборка"
-L["Checked"] = "Выделено"
 L["Columns"] = "Столбцы"
 L["Columns first"] = "Сначала столбцы"
-L["CurseForge"] = true
-L["CurseForge Desc"] = "Открыть всплывающее окно с ссылкой на {addonName} {curseForge}"
 L["Custom"] = "Разное"
 L["Default filters"] = "Фильтры по-умолчанию"
-L["Default value"] = "Значение по умолчанию"
 L["Deselect All"] = "Оратить всё выделение "
-L["Discord"] = true
-L["Discord Desc"] = "Открывает всплывающее окно с ссылкой на  {serverName} дискорд сервер. Там вы можете написать комментарий, отчёты, правки, идеи и всяко разное."
 L["Ensembles"] = "Множество"
+L["Enter housing quantity"] = "Введите количество жилья (1-999):"
+L["Enter number of columns"] = "Введите количество столбцов (2-99):"
+L["Enter number of rows"] = "Введите количество строк  (1-99):"
 L["Filters"] = "Фильтры"
-L["Hide"] = "Спрятать"
 L["Hide collected"] = "Спрятать собранные"
+L["Housing"] = "Жильё"
+L["Housing Quantity"] = "Количество Жилья"
 L["Icon Left click"] = "для быстрой настройки слоёв"
 L["Icon Right click"] = "для Настроек"
 L["Illusions"] = "Иллюзии (а надо?)"
-L["Left click"] = "Щелчок Левой"
 L["Mounts"] = "Средства передвижения"
 L["Only show"] = "Показ только"
 L["Options button"] = "кнопка настройки"
 L["Options Desc"] = "Открыть настройки, также доступны по кнопке настроек из меню торговца."
 L["Other"] = "Другое"
 L["Pets"] = "Питомцы"
-L["Plugins"] = "Плагины"
+L["Plugin_CanIMogIt_Desc"] = "Этот плагин исправляет отображение иконок у продавца, когда некоторые фильтры включены. Настроек не имеет."
+L["Plugin_CanIMogIt_Name"] = true
+L["Plugin_ElvUI_Desc"] = "Каждая настройка ниже под контролем ElvUI и отлично проинформирована. Для изменений зайдите в Главное Меню -> ElvUI -> Скины и проверьте нужные настройки. Проверьте каждую настройку ниже, чтобы быть уверенным."
+L["Plugin_ElvUI_Name"] = "ElvUI"
+L["Plugin_ElvUI_SkinMerchant"] = "Шкурка торговца"
+L["Plugin_ElvUI_SkinMerchant_Desc"] = "Применить шкурку ElvUI  к окну торговца. -> Blizzard + Окно торговца"
+L["Plugin_ElvUI_SkinMiscFrames"] = "Шкурка окон Другое"
+L["Plugin_ElvUI_SkinMiscFrames_Desc"] = "Применить шкурку ElvUI к Фильтру Меню и Меню Настроек. ->  Blizzard + Окна Другое "
+L["Plugin_ElvUI_SkinTooltip"] = "Шкурка Подсказки"
+L["Plugin_ElvUI_SkinTooltip_Desc"] = "Применить шкурку ElvUI к Подсказкам. -> Blizzard + Подсказки"
 L["Recipes"] = "Рецепты"
-L["Right click"] = "Щелчек ПКМ"
+L["RememberFilter"] = "Запомнить фильтр"
+L["RememberSearch"] = "Запоминать поиск"
+L["RememberSearchBetweenVendors"] = "Запоминать поиск между продавцами"
 L["Rows"] = "Ряды"
 L["Rows first"] = "Сначала Ряды"
 L["Select All"] = "Выделить все"
+L["Set custom"] = "Установить пользовательский"
 L["Show Hide option"] = "Показ '{hide}' настроек"
 L["Show Hide option Desc"] = "Показ '{hide}'  настроек в {optionsButton} выпадающим вниз."
-L["Show minimap icon"] = "Показать иконку у миникарты"
-L["Show minimap icon Desc"] = "Показать / спрятать иконку у миникарты"
 L["Show options button"] = "Показ кнопки настроек"
 L["Show options button Desc"] = "Показ / скрыть мнопку настроек в меню продавца."
+L["Token Banner"] = "Баннер токенов"
 L["Toys"] = "Игрушки"
-L["Unchecked"] = "Невыделено"
-L["Wago"] = true
-L["Wago Desc"] = "Открыть всплывающее окно с ссылкой на страницу {addonName} {wago}"
-L["WoWInterface"] = true
-L["WoWInterface Desc"] = "Открыть всплывающее окно с ссылкой на страницу {addonName} {woWInterface}"

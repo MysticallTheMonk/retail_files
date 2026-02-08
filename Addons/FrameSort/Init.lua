@@ -1,36 +1,47 @@
 ---@type string, Addon
 local addonName, addon = ...
 local wow = addon.WoW.Api
-local loader = nil
-
-function addon:InitLocale()
-    local function DefaultIndex(_, key)
-        -- if there is no translation specified, then use the the key itself
-        return key
-    end
-
-    setmetatable(addon.Locale, { __index = DefaultIndex })
-end
+local wowEx = addon.WoW.WowEx
+local fsLog = addon.Logging.Log
 
 function addon:InitDB()
-    FrameSortDB = FrameSortDB or {}
-    FrameSortDB.Options = FrameSortDB.Options or wow.CopyTable(addon.Configuration.Defaults)
+    fsLog:Debug("Loading saved variables.")
+
+    FrameSortDB = FrameSortDB or wow.CopyTable(addon.Configuration.DbDefaults)
+    FrameSortDB.Options = FrameSortDB.Options or wow.CopyTable(addon.Configuration.DbDefaults.Options)
+
+    local success = addon.Configuration.Upgrader:UpgradeDb(FrameSortDB)
+
+    if not success then
+        fsLog:Critical("Saved variables are corrupt, resetting to default settings.")
+
+        FrameSortDB = wow.CopyTable(addon.Configuration.DbDefaults)
+    end
 
     addon.DB = FrameSortDB
-    addon.Configuration.Upgrader:UpgradeOptions(addon.DB.Options)
 end
 
 ---Initialises the addon.
 function addon:Init()
-    addon:InitLocale()
+    fsLog:Init()
+    fsLog:Debug("--- Initialising ---")
+
     addon:InitDB()
+    addon.Locale:Init()
+
+    local fsVersion = wow.GetAddOnMetadata(addonName, "Version")
+    local expansionName, buildVersion = wowEx.ExpansionAndBuildInfo()
+    fsLog:Debug("We are version %s running on %s build %s.", fsVersion, expansionName, buildVersion)
+
+    addon.Configuration.Specs:Init()
     addon.Configuration:Init()
-    addon.Providers:Init()
     addon.Modules:Init()
+    addon.Providers:Init()
     addon.Api:Init()
-    addon.Scheduling.Scheduler:Init()
+    addon.Modules.EventDispatcher:Init()
 
     addon.Loaded = true
+    fsLog:Debug("--- Initialisation finished ---")
 end
 
 ---Listens for our to be loaded and then initialises it.
@@ -40,14 +51,12 @@ local function OnLoadAddon(_, _, name)
         return
     end
 
-    assert(loader)
-
     addon:Init()
-    loader:UnregisterEvent("ADDON_LOADED")
+    addon.Loader:UnregisterEvent("ADDON_LOADED")
 end
 
-loader = wow.CreateFrame("Frame")
-loader:HookScript("OnEvent", OnLoadAddon)
-loader:RegisterEvent("ADDON_LOADED")
+addon.Loader = wow.CreateFrame("Frame")
+addon.Loader:SetScript("OnEvent", OnLoadAddon)
+addon.Loader:RegisterEvent("ADDON_LOADED")
 
 FrameSort = addon

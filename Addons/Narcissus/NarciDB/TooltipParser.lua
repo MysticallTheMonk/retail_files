@@ -1,9 +1,6 @@
 ----Post 10.1----
 
 local _, addon = ...
-if addon.GetTooltipInfoVersion() ~= 2 then
-    return
-end
 
 local C_TooltipInfo = C_TooltipInfo;
 local GetInfoByHyperlink = C_TooltipInfo.GetHyperlink;
@@ -36,13 +33,14 @@ local _G = _G;
 local L = Narci.L;
 local NarciAPI = NarciAPI;
 local TEXT_LOCALE = GetLocale();
+local IS_LEGION_REMIX = false;
 
 local GetItemInfoInstant = C_Item.GetItemInfoInstant;
 local GetItemGem = C_Item.GetItemGem;
 local GetItemNumSockets = C_Item.GetItemNumSockets;
 local GetItemStats = C_Item.GetItemStats;
 local GetInventoryItemLink = GetInventoryItemLink;
-local StripHyperlinks = StripHyperlinks;    --Added in 10.1.0
+local StripHyperlinks = C_StringUtil and C_StringUtil.StripHyperlinks or StripHyperlinks;
 local GetSpellInfo = addon.TransitionAPI.GetSpellInfo;
 
 local function IsArtifactRelic(item)
@@ -1165,7 +1163,6 @@ local function GetCompleteItemData(tooltipData, itemLink)
                     if not qualityFound then
                         match1 = match(lineText, PATTERN_PROFESSION_QUALITY);
                         if match1 then
-                            PP = match1
                             qualityFound = true;
                             anyMatch = true;
                             if not data then
@@ -1222,6 +1219,19 @@ local function GetCompleteItemData(tooltipData, itemLink)
                         end
                     end
                 end
+
+                if IS_LEGION_REMIX and i > 3 and not anyMatch then
+                    local statBonus = match(lineText, "^+(%d)");
+                    if statBonus then
+                        if not data then
+                            data = {};
+                        end
+                        if not data.extraLines then
+                            data.extraLines = {};
+                        end
+                        tinsert(data.extraLines, {lineText, IsTextColorWhite(lines[i].leftColor)});
+                    end
+                end
             else
                 break
             end
@@ -1230,6 +1240,9 @@ local function GetCompleteItemData(tooltipData, itemLink)
 
     if data then
         data.dataInstanceID = tooltipData.dataInstanceID;
+        if IS_LEGION_REMIX then
+            data.isLegionRemix = true;
+        end
     end
 
     return data, requestSubData
@@ -1537,7 +1550,7 @@ local function FormatSpellData(tooltipData, fromLine)
                     end
                 end
 
-                if not anyMatch and find(leftText, "%d") then
+                if not anyMatch and find(leftText, "^%d") then
                     anyMatch = true;
                     costText = gsub(leftText, "\n", " ");   --!Druid: Energy + ComboPoint
                     data.costText = costText;
@@ -1585,6 +1598,7 @@ local function FormatSpellData(tooltipData, fromLine)
         if not anyMatch then
             if leftText then
                 leftText = strtrim(leftText);
+                leftText = StripHyperlinks(leftText, true, true, false, false);
                 if leftText ~= "" then
                     if not data.descriptions then
                         data.descriptions = {};
@@ -1594,7 +1608,7 @@ local function FormatSpellData(tooltipData, fromLine)
             end
         end
     end
-
+    TTDATA = data;
     return data
 end
 
@@ -1889,3 +1903,13 @@ local function GetToyEffect(item)
 end
 
 NarciAPI.GetToyEffect = GetToyEffect;
+
+
+
+
+addon.AddLoadingCompleteCallback(function()
+    local seasonID = PlayerGetTimerunningSeasonID and PlayerGetTimerunningSeasonID();
+    if seasonID == 2 then
+        IS_LEGION_REMIX = true;
+    end
+end);

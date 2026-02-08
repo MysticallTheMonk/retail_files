@@ -97,9 +97,16 @@ ADDON.DB.Restrictions = {
 [1568] = { ["class"]={"PALADIN",}, ["race"]={"LightforgedDraenei",}, }, -- Lightforged Ruinstrider
 [1597] = { ["race"]={"DarkIronDwarf",}, }, -- Grimhowl
 [1727] = { ["quest"]={73199,}, }, -- Tarecgosa's Visage
-[1869] = { ["class"]={"PALADIN",}, ["race"]={"Tauren",}, }, -- Summon Sunwalker Kodo
-[1870] = { ["class"]={"PALADIN",}, ["race"]={"Tauren",}, }, -- Summon Great Sunwalker Kodo
-[1871] = { ["class"]={"PALADIN",}, ["race"]={"Draenei","LightforgedDraenei",}, }, -- Summon Exarch's Elekk
-[1872] = { ["class"]={"PALADIN",}, ["race"]={"Draenei","LightforgedDraenei",}, }, -- Summon Great Exarch's Elekk
 [2233] = { ["class"]={"PALADIN",}, }, -- Earthen Ordinant's Ramolith
+[2720] = { ["class"]={"DEATHKNIGHT",}, }, -- Felscorned Vilebrood Vanquisher
+[2721] = { ["class"]={"DEMONHUNTER",}, }, -- Slayer's Felscorned Shrieker
+[2723] = { ["class"]={"HUNTER",}, }, -- Felscorned Wolfhawk
+[2724] = { ["class"]={"MAGE",}, }, -- Archmage's Felscorned Disc
+[2725] = { ["class"]={"MONK",}, }, -- Felscorned Grandmaster's Companion
+[2726] = { ["class"]={"PALADIN",}, }, -- Felscorned Highlord's Charger
+[2727] = { ["class"]={"PRIEST",}, }, -- High Priest's Felscorned Seeker
+[2728] = { ["class"]={"ROGUE",}, }, -- Shadowblade's Felscorned Omen
+[2729] = { ["class"]={"SHAMAN",}, }, -- Farseer's Felscorned Tempest
+[2730] = { ["class"]={"WARLOCK",}, }, -- Felscorned Netherlord's Dreadsteed
+[2731] = { ["class"]={"WARRIOR",}, }, -- Felscorned War Wyrm
 }

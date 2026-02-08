@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 -- Premade Groups Filter
 -------------------------------------------------------------------------------
--- Copyright (C) 2024 Bernhard Saumweber
+-- Copyright (C) 2026 Bernhard Saumweber
 --
 -- This program is free software; you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ L["addon.name.long"] = "Premade Groups Filter"
 
 L["error.syntax"] = "|cffff0000过滤语法错误|r\n\n表示过滤语法不正确，例如缺少过滤条件、变量或运算符号，或是写成 'tanks=1' 格式而不是 'tanks==1'。\n\n详细错误信息：\n|cffaaaaaa%s|r"
 L["error.semantic"] = "|cffff0000过滤语法的语义错误|r\n\n表示过滤语法正确，但是很可能变量名错误，例如写成 tansk 而不是 tanks。\n\n详细错误信息：\n|cffaaaaaa%s|r"
-L["error.semantic.protected"] = "|cffff0000过滤语法的语义错误|r\n\n不再支持关键字 'name'，'comment' 和 'findnumber'。 请从高级过滤器表达方式中删除他们或者点击重置按钮。\n\n从争霸艾泽拉斯开始，这些都受到暴雪的保护，任何插件都无法读取。\n\n使用列表上方的确认搜索栏过滤队伍副本名称。\n\n详细错误信息：\n|cffaaaaaa%s|r"
+L["error.semantic.protected"] = "|cffff0000过滤语法的语义错误|r\n\n不再支持关键字 'name' 和 'comment'。 请从高级过滤器表达方式中删除他们或者点击重置按钮。\n\n从争霸艾泽拉斯开始，这些都受到暴雪的保护，任何插件都无法读取。\n\n使用列表上方的确认搜索栏过滤队伍副本名称。\n\n详细错误信息：\n|cffaaaaaa%s|r"
 L["message.noplaystylefix"] = "Premade Groups Filter: 不会修复“接口操作因AddOn而失败”错误，因为您似乎没有完全安全的帐户，否则无法创建预制队伍。请参阅插件常见问题解答以获取更多信息以及如何解决此问题。"
 L["message.settingsupgraded"] = "Premade Groups Filter: 设置迁移到版本 %s"
 
@@ -53,6 +53,8 @@ L["dialog.heals"]      = "治疗 .............................."
 L["dialog.dps"]        = "输出 .............................."
 L["dialog.mprating"]   = "钥石评分 .........................."
 L["dialog.pvprating"]  = "PVP评级评分 ......................."
+L["dialog.delvetier"]  = "地下堡层级 ........................."
+L["dialog.delvetier.tooltip"] = "有些玩家没有正确设置地下堡层级，而只是写在队伍名称里。插件无法读取队伍名称。请使用标准搜索栏以获得更好的结果。"
 L["dialog.defeated"]   = "已击败首领"
 L["dialog.sorting"] = "排序"
 L["dialog.usepgf.tooltip"] = "启用或停用 Premade Groups Filter。"
@@ -95,6 +97,7 @@ L["dialog.tooltip.warmode"] = "战争模式队伍"
 L["dialog.copy.url.keywords"] = "按 CTRL+C 将链接复制到关键字列表"
 L["dialog.filters.group"] = "常规筛选项"
 L["dialog.filters.dungeons"] = "大秘境副本过滤"
+L["dialog.filters.delves"] = "地下堡"
 L["dialog.filters.advanced"] = "高级过滤语法"
 L["dialog.partyfit"] = "组队申请"
 L["dialog.partyfit.tooltip"] = "如果您和朋友想组队申请队伍，请勾选此项。会自动为您过滤出有足够空位的队伍。当然，您独自申请队伍时，亦可保持勾选，无任何影响。"
@@ -109,6 +112,14 @@ L["dialog.matchingid.tooltip"] = "仅显示和您的副本进度完全匹配的�
 L["dialog.needsbl"] = "需要嗜血"
 L["dialog.needsbl.tooltip"] = "仅显示尚未有提供嗜血/英勇技能的职业的队伍。"
 L["dialog.cancelOldestApp"] = "点击优先取消最早的申请"
+L["dialog.button.selectall.title"] = "全"
+L["dialog.button.selectall.tooltip"] = "全选"
+L["dialog.button.selectnone.title"] = "无"
+L["dialog.button.selectnone.tooltip"] = "全不选"
+L["dialog.button.selectbountiful.title"] = "丰"
+L["dialog.button.selectbountiful.tooltip"] = "选择丰裕地下堡"
+L["dialog.button.selectinvert.title"] = "反"
+L["dialog.button.selectinvert.tooltip"] = "反选"
 
 L["settings.dialogMovable.title"] = "可移动的对话框"
 L["settings.dialogMovable.tooltip"] = "允许您使用鼠标移动对话框。右键单击重置位置。"
@@ -144,3 +155,5 @@ L["settings.rioRatingColors.title"] = "使用Raider.IO颜色评分"
 L["settings.rioRatingColors.tooltip"] = "如果加载了Raider.IO插件，则使用Raider.IO的颜色方案进行史诗+评分。"
 L["settings.cancelOldestApp.title"] = "取消最早的申请"
 L["settings.cancelOldestApp.tooltip"] = "如果你的待处理申请达到上限，点击任意小组可以优先取消最早的申请。然后再点击一次进行新的申请。"
+L["settings.compactListEntries.title"] = "紧凑列表条目"
+L["settings.compactListEntries.tooltip"] = "隐藏游戏风格，使队伍列表条目占用更少的垂直空间（如同“至暗之夜”前夕内容更新之前）。"

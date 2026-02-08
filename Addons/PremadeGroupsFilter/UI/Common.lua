@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 -- Premade Groups Filter
 -------------------------------------------------------------------------------
--- Copyright (C) 2024 Bernhard Saumweber
+-- Copyright (C) 2026 Bernhard Saumweber
 --
 -- This program is free software; you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -48,8 +48,9 @@ end
 
 function PGF.UI_SetupMinMaxField(panel, field, keyword, size)
     if not size then size = 290 end
+    local title = L["dialog."..keyword]
     field:SetWidth(size)
-    field.Title:SetText(L["dialog."..keyword])
+    field.Title:SetText(title)
     field.Title:SetWidth(size - 155)
     field.To:SetText(L["dialog.to"])
 
@@ -83,6 +84,20 @@ function PGF.UI_SetupMinMaxField(panel, field, keyword, size)
     field.Max:SetScript("OnTabPressed", function(element)
         field.Min:SetFocus()
     end)
+
+    -- tooltip
+    local tooltip = L["dialog."..keyword..".tooltip"]
+    if tooltip then
+        field:SetScript("OnEnter", function (self)
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+            GameTooltip:SetText(title:gsub("%.+$", ""), nil, nil, nil, nil, true)
+            GameTooltip:AddLine(tooltip, 1, 1, 1, 1, true)
+            GameTooltip:Show()
+        end)
+        field:SetScript("OnLeave", function(self)
+            GameTooltip:Hide()
+        end)
+    end
 end
 
 function PGF.UI_SetupDropDown(panel, field, name, title, entryTable, size)

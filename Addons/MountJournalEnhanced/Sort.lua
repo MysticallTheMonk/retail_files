@@ -293,10 +293,6 @@ local function GetExpansionOfMount(mountId)
             end
         end
 
-        if mountId == 417 then
-            print(mountId, matchedExpansion)
-        end
-
         return matchedExpansion
     end)
 end

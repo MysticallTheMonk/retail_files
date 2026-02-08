@@ -17,175 +17,117 @@ if addon.PROJECT_MAINLINE then
         {
             classID = addon.CLASSID.DEATHKNIGHT,
             npcs = {
-                { npcID = 106041, name = "Reanimation", icon = 210128, default = addon.NpcOption.Highlight }, -- stuns for 3s and takes 10% HP
-                { npcID = 149555, name = "Raise Abomination", icon = 455395, default = addon.NpcOption.Show },
-                { npcID = 26125, name = "Raise Dead", icon = 46585, default = addon.NpcOption.Hide, isCritter = true },
-                { npcID = 24207, name = "Army of the Dead", icon = 220143, default = addon.NpcOption.Hide, isCritter = true },
+                -- { npcID = 106041, name = "Reanimation", icon = 210128, default = addon.NpcOption.Highlight }, -- stuns for 3s and takes 10% HP
+                -- { npcID = 149555, name = "Raise Abomination", icon = 455395, default = addon.NpcOption.Show },
+                -- { npcID = 26125, name = "Raise Dead", icon = 46585, default = addon.NpcOption.Hide, isCritter = true },
+                -- { npcID = 24207, name = "Army of the Dead", icon = 220143, default = addon.NpcOption.Hide, isCritter = true },
             }
         },
         {
             classID = addon.CLASSID.DRUID,
             npcs = {
-                { npcID = 54983, name = "Treant", icon = 102693, default = addon.NpcOption.Hide },
+                -- { npcID = 54983, name = "Treant", icon = 102693, default = addon.NpcOption.Hide },
             }
         },
         {
             classID = addon.CLASSID.EVOKER,
             npcs = {
-                { npcID = 185800, name = "Past Self", icon = 371869, default = addon.NpcOption.Show },
+                -- { npcID = 185800, name = "Past Self", icon = 371869, default = addon.NpcOption.Show },
             }
         },
         {
             classID = addon.CLASSID.HUNTER,
             npcs = {
-                { npcID = 105419, name = "Dire Beast: Basilisk", icon = 205691, default = addon.NpcOption.Show },
+                -- { npcID = 105419, name = "Dire Beast: Basilisk", icon = 205691, default = addon.NpcOption.Show },
 
                 -- Hunter pets all have the same npcID, add here so they don't get hidden in battlegrounds
-                { npcID = addon.HUNTERPET, name = "Pet", icon = 267116, default = addon.NpcOption.Show, isCritter = true },
+                -- { npcID = addon.HUNTERPET, name = "Pet", icon = 267116, default = addon.NpcOption.Show, isCritter = true },
             }
         },
         {
             classID = addon.CLASSID.MAGE,
             npcs = {
-                { npcID = 178819, name = "Ice Wall", icon = 352278, default = addon.NpcOption.Show },
-                { npcID = 208441, name = "Water Elemental", icon = 12472, default = addon.NpcOption.Hide, isCritter = true },
-                { npcID = 31216, name = "Mirror Image", icon = 55342, default = addon.NpcOption.Hide },
+                -- { npcID = 178819, name = "Ice Wall", icon = 352278, default = addon.NpcOption.Show },
+                -- { npcID = 208441, name = "Water Elemental", icon = 12472, default = addon.NpcOption.Hide, isCritter = true },
+                -- { npcID = 31216, name = "Mirror Image", icon = 55342, default = addon.NpcOption.Hide },
             }
         },
         {
             classID = addon.CLASSID.MONK,
             npcs = {
-                { npcID = 63508, name = "Xuen", icon = 123904, default = addon.NpcOption.Hide, isCritter = true },
-                { npcID = 69791, name = "Storm, Earth and Fire (Red)", icon = 137639, default = addon.NpcOption.Hide, isCritter = true },
-                { npcID = 69792, name = "Storm, Earth and Fire (Green)", icon = 137639, default = addon.NpcOption.Hide, isCritter = true },
+                -- { npcID = 63508, name = "Xuen", icon = 123904, default = addon.NpcOption.Hide, isCritter = true },
+                -- { npcID = 69791, name = "Storm, Earth and Fire (Red)", icon = 137639, default = addon.NpcOption.Hide, isCritter = true },
+                -- { npcID = 69792, name = "Storm, Earth and Fire (Green)", icon = 137639, default = addon.NpcOption.Hide, isCritter = true },
             }
         },
         {
             classID = addon.CLASSID.PALADIN,
             npcs = {
-                { npcID = 114565, name = "Guardian of the Forgotten Queen", icon = 228049, default = addon.NpcOption.Highlight },
+                -- { npcID = 114565, name = "Guardian of the Forgotten Queen", icon = 228049, default = addon.NpcOption.Highlight },
             }
         },
         {
             classID = addon.CLASSID.PRIEST,
             npcs = {
-                { npcID = 101398, name = "Psyfiend", icon = 199824, default = addon.NpcOption.Highlight },
-                { npcID = 225672, name = "Shadow", icon = 8122, default = addon.NpcOption.Highlight }, -- casts fear
-                { npcID = 224466, name = "Voidwraith", icon = 451234, default = addon.NpcOption.Show },
-                { npcID = 62982, name = "Mindbender", icon = 123040, default = addon.NpcOption.Show },
-                { npcID = 19668, name = "Shadowfiend", icon = 34433, default = addon.NpcOption.Show },
-                { npcID = 65282, name = "Void Tendrils", icon = 108920, default = addon.NpcOption.Show },
+                -- { npcID = 101398, name = "Psyfiend", icon = 199824, default = addon.NpcOption.Highlight },
+                -- { npcID = 225672, name = "Shadow", icon = 8122, default = addon.NpcOption.Highlight }, -- casts fear
+                -- { npcID = 224466, name = "Voidwraith", icon = 451234, default = addon.NpcOption.Show },
+                -- { npcID = 62982, name = "Mindbender", icon = 123040, default = addon.NpcOption.Show },
+                -- { npcID = 19668, name = "Shadowfiend", icon = 34433, default = addon.NpcOption.Show },
+                -- { npcID = 65282, name = "Void Tendrils", icon = 108920, default = addon.NpcOption.Show },
             }
         },
         {
             classID = addon.CLASSID.SHAMAN,
             npcs = {
-                { npcID = 5925, name = "Grounding Totem", icon = 204336, default = addon.NpcOption.Highlight },
-                { npcID = 53006, name = "Spirit Link Totem", icon = 98008, default = addon.NpcOption.Highlight },
-                { npcID = 5913, name = "Tremor Totem", icon = 8143, default = addon.NpcOption.Highlight },
-                { npcID = 104818, name = "Ancestral Protection Totem", icon = 207399, default = addon.NpcOption.Highlight },
-                { npcID = 61245, name = "Capacitor Totem", icon = 192058, default = addon.NpcOption.Highlight },
-                { npcID = 105451, name = "Counterstrike Totem", icon = 204331, default = addon.NpcOption.Highlight },
-                { npcID = 59764, name = "Healing Tide Totem", icon = 108280, default = addon.NpcOption.Highlight },
-                { npcID = 179867, name = "Static Field Totem", icon = 355580, default = addon.NpcOption.Highlight },
+                -- { npcID = 5925, name = "Grounding Totem", icon = 204336, default = addon.NpcOption.Highlight },
+                -- { npcID = 53006, name = "Spirit Link Totem", icon = 98008, default = addon.NpcOption.Highlight },
+                -- { npcID = 5913, name = "Tremor Totem", icon = 8143, default = addon.NpcOption.Highlight },
+                -- { npcID = 104818, name = "Ancestral Protection Totem", icon = 207399, default = addon.NpcOption.Highlight },
+                -- { npcID = 61245, name = "Capacitor Totem", icon = 192058, default = addon.NpcOption.Highlight },
+                -- { npcID = 105451, name = "Counterstrike Totem", icon = 204331, default = addon.NpcOption.Highlight },
+                -- { npcID = 59764, name = "Healing Tide Totem", icon = 108280, default = addon.NpcOption.Highlight },
+                -- { npcID = 179867, name = "Static Field Totem", icon = 355580, default = addon.NpcOption.Highlight },
 
-                { npcID = 59712, name = "Stone Bulwark Totem", icon = 108270, default = addon.NpcOption.Show }, -- hard to kill
-                { npcID = 100943, name = "Earthen Wall Totem", icon = 198838, default = addon.NpcOption.Show }, -- hard to kill, just try to fight outside of its range
-                { npcID = 60561, name = "Earthgrab Totem", icon = 51485, default = addon.NpcOption.Show }, -- gets players out of stealth
-                { npcID = 105427, name = "Totem of Wrath", icon = 204330, default = addon.NpcOption.Show },
-                { npcID = 194117, name = "Stoneskin Totem", icon = 383017, default = addon.NpcOption.Show },
-                { npcID = 5923, name = "Poison Cleansing Totem", icon = 383013, default = addon.NpcOption.Show },
-                { npcID = 194118, name = "Tranquil Air Totem", icon = 383019, default = addon.NpcOption.Show },
-                { npcID = 225409, name = "Surging Totem", icon = 444995, default = addon.NpcOption.Show },
-                { npcID = 95061, name = "Greater Fire Elemental", icon = 198067, default = addon.NpcOption.Show },
-                { npcID = 61029, name = "Primal Fire Elemental", icon = 198067, default = addon.NpcOption.Show },
-                { npcID = 95072, name = "Greater Earth Elemental", icon = 19704, default = addon.NpcOption.Show },
-                { npcID = 61056, name = "Primal Earth Elemental", icon = 19704, default = addon.NpcOption.Show },
+                -- { npcID = 59712, name = "Stone Bulwark Totem", icon = 108270, default = addon.NpcOption.Show }, -- hard to kill
+                -- { npcID = 100943, name = "Earthen Wall Totem", icon = 198838, default = addon.NpcOption.Show }, -- hard to kill, just try to fight outside of its range
+                -- { npcID = 60561, name = "Earthgrab Totem", icon = 51485, default = addon.NpcOption.Show }, -- gets players out of stealth
+                -- { npcID = 105427, name = "Totem of Wrath", icon = 204330, default = addon.NpcOption.Show },
+                -- { npcID = 194117, name = "Stoneskin Totem", icon = 383017, default = addon.NpcOption.Show },
+                -- { npcID = 5923, name = "Poison Cleansing Totem", icon = 383013, default = addon.NpcOption.Show },
+                -- { npcID = 194118, name = "Tranquil Air Totem", icon = 383019, default = addon.NpcOption.Show },
+                -- { npcID = 225409, name = "Surging Totem", icon = 444995, default = addon.NpcOption.Show },
+                -- { npcID = 95061, name = "Greater Fire Elemental", icon = 198067, default = addon.NpcOption.Show },
+                -- { npcID = 61029, name = "Primal Fire Elemental", icon = 198067, default = addon.NpcOption.Show },
+                -- { npcID = 95072, name = "Greater Earth Elemental", icon = 19704, default = addon.NpcOption.Show },
+                -- { npcID = 61056, name = "Primal Earth Elemental", icon = 19704, default = addon.NpcOption.Show },
 
-                { npcID = 3527, name = "Healing Stream Totem", icon = 5394, default = addon.NpcOption.Hide },
-                { npcID = 78001, name = "Cloudburst Totem", icon = 157153, default = addon.NpcOption.Hide },
-                { npcID = 97285, name = "Wind Rush Totem", icon = 192077, default = addon.NpcOption.Hide },
-                { npcID = 2630, name = "Earthbind Totem", icon = 2484, default = addon.NpcOption.Hide },
-                { npcID = 97369, name = "Liquid Magma Totem", icon = 192222, default = addon.NpcOption.Hide },
+                -- { npcID = 3527, name = "Healing Stream Totem", icon = 5394, default = addon.NpcOption.Hide },
+                -- { npcID = 78001, name = "Cloudburst Totem", icon = 157153, default = addon.NpcOption.Hide },
+                -- { npcID = 97285, name = "Wind Rush Totem", icon = 192077, default = addon.NpcOption.Hide },
+                -- { npcID = 2630, name = "Earthbind Totem", icon = 2484, default = addon.NpcOption.Hide },
+                -- { npcID = 97369, name = "Liquid Magma Totem", icon = 192222, default = addon.NpcOption.Hide },
             }
         },
         {
             classID = addon.CLASSID.WARLOCK,
             npcs = {
-                { npcID = 135002, name = "Demonic Tyrant", icon = 265187, default = addon.NpcOption.Show },
-                { npcID = 107024, name = "Fel Lord", icon = 212459, default = addon.NpcOption.Show },
-                { npcID = 196111, name = "Pit Lord", icon = 138789, default = addon.NpcOption.Show },
-                { npcID = 89, name = "Infernal", icon = 1122, default = addon.NpcOption.Show },
+                -- { npcID = 135002, name = "Demonic Tyrant", icon = 265187, default = addon.NpcOption.Show },
+                -- { npcID = 107024, name = "Fel Lord", icon = 212459, default = addon.NpcOption.Show },
+                -- { npcID = 196111, name = "Pit Lord", icon = 138789, default = addon.NpcOption.Show },
+                -- { npcID = 89, name = "Infernal", icon = 1122, default = addon.NpcOption.Show },
 
                 -- Primary pets (so they don't get hidden in battlegrounds)
-                { npcID = 103673, name = "Darkglare", icon = 205180, default = addon.NpcOption.Show },
-                { npcID = 416, name = "Imp", icon = 688, default = addon.NpcOption.Show },
-                { npcID = 1860, name = "Voidwalker", icon = 697, default = addon.NpcOption.Show },
-                { npcID = 417, name = "Felhunter", icon = 691, default = addon.NpcOption.ShowWithIcon },
-                { npcID = 1863, name = "Sayaad", icon = 366222, default = addon.NpcOption.ShowWithIcon },
-                { npcID = 17252, name = "Felguard", icon = 30146, default = addon.NpcOption.Show },
+                -- { npcID = 103673, name = "Darkglare", icon = 205180, default = addon.NpcOption.Show },
+                -- { npcID = 416, name = "Imp", icon = 688, default = addon.NpcOption.Show },
+                -- { npcID = 1860, name = "Voidwalker", icon = 697, default = addon.NpcOption.Show },
+                -- { npcID = 417, name = "Felhunter", icon = 691, default = addon.NpcOption.ShowWithIcon },
+                -- { npcID = 1863, name = "Sayaad", icon = 366222, default = addon.NpcOption.ShowWithIcon },
+                -- { npcID = 17252, name = "Felguard", icon = 30146, default = addon.NpcOption.Show },
 
                 -- Pets that should be hidden
-                { npcID = 98035, name = "Dreadstalker", icon = 104316, default = addon.NpcOption.Hide, isCritter = true },
-                { npcID = 143622, name = "Wild Imp", icon = 105174, default = addon.NpcOption.Hide, isCritter = true },
-            }
-        },
-    };
-elseif addon.PROJECT_CATA then
-    addon.importantNpcList = {
-        {
-            classID = addon.CLASSID.DEATHKNIGHT,
-            npcs = {
-                { npcID = 27829, name = "Ebon Gargoyle", icon = 49206, default = addon.NpcOption.Highlight },
-                { npcID = 26125, name = "Raise Dead", icon = 46585, default = addon.NpcOption.Hide, isCritter = true },
-                { npcID = 24207, name = "Army of the Dead", icon = 42650, default = addon.NpcOption.Hide, isCritter = true },
-            }
-        },
-        {
-            classID = addon.CLASSID.HUNTER,
-            npcs = {
-                { npcID = addon.HUNTERPET, name = "Pet", icon = 883, default = addon.NpcOption.Show, isCritter = true },
-            }
-        },
-        {
-            classID = addon.CLASSID.MAGE,
-            npcs = {
-                { npcID = 510, name = "Water Elemental", icon = 31687, default = addon.NpcOption.Show, isCritter = true },
-            }
-        },
-        {
-            classID = addon.CLASSID.PRIEST,
-            npcs = {
-                { npcID = 19668, name = "Shadowfiend", icon = 34433, default = addon.NpcOption.Show },
-            }
-        },
-        {
-            classID = addon.CLASSID.SHAMAN,
-            npcs = {
-                { npcID = 5925, name = "Grounding Totem", icon = 8177, default = addon.NpcOption.Highlight },
-                { npcID = 53006, name = "Spirit Link Totem", icon = 98008, default = addon.NpcOption.Highlight },
-                { npcID = 5913, name = "Tremor Totem", icon = 8143, default = addon.NpcOption.Highlight },
-                { npcID = 3527, name = "Healing Stream Totem", icon = 5394, default = addon.NpcOption.Show },
-                { npcID = 10467, name = "Mana Tide Totem", icon = 16191, default = addon.NpcOption.Show },
-                { npcID = 3579, name = "Stoneclaw Totem", icon = 5730, default = addon.NpcOption.Show },
-
-                { npcID = 15430, name = "Earth Elemental Totem", icon = 2062, default = addon.NpcOption.Show },
-                { npcID = 15439, name = "Fire Elemental Totem", icon = 2894, default = addon.NpcOption.Show },
-                { npcID = 15438, name = "Greater Fire Elemental", icon = 2894, default = addon.NpcOption.Show },
-                { npcID = 15352, name = "Greater Earth Elemental", icon = 2062, default = addon.NpcOption.Show },
-                { npcID = 2630, name = "Earthbind Totem", icon = 2484, default = addon.NpcOption.Show },
-
-                { npcID = 5873, name = "Stoneskin Totem", icon = 8071, default = addon.NpcOption.Hide },                
-            }
-        },
-        {
-            classID = addon.CLASSID.WARLOCK,
-            npcs = {
-                { npcID = 416, name = "Imp", icon = 688, default = addon.NpcOption.Show },
-                { npcID = 1860, name = "Voidwalker", icon = 697, default = addon.NpcOption.Show },
-                { npcID = 417, name = "Felhunter", icon = 691, default = addon.NpcOption.ShowWithIcon },
-                { npcID = 17252, name = "Felguard", icon = 30146, default = addon.NpcOption.Show },
-                { npcID = 143622, name = "Wild Imp", icon = 71521, default = addon.NpcOption.Hide, isCritter = true },
+                -- { npcID = 98035, name = "Dreadstalker", icon = 104316, default = addon.NpcOption.Hide, isCritter = true },
+                -- { npcID = 143622, name = "Wild Imp", icon = 105174, default = addon.NpcOption.Hide, isCritter = true },
             }
         },
     };
@@ -222,6 +164,7 @@ else
         {
             classID = addon.CLASSID.PRIEST,
             npcs = {
+                { npcID = 59190, name = "Psyfiend", icon = 108921, default = addon.NpcOption.Highlight },
                 { npcID = 19668, name = "Shadowfiend", icon = 34433, default = addon.NpcOption.Show },
                 { npcID = 62982, name = "Mindbender", icon = 123040, default = addon.NpcOption.Show },
             }
@@ -232,6 +175,7 @@ else
                 { npcID = 5925, name = "Grounding Totem", icon = 8177, default = addon.NpcOption.Highlight },
                 { npcID = 53006, name = "Spirit Link Totem", icon = 98008, default = addon.NpcOption.Highlight },
                 { npcID = 5913, name = "Tremor Totem", icon = 8143, default = addon.NpcOption.Highlight },
+                { npcID = 61245, name = "Capacitor Totem", icon = 108269, default = addon.NpcOption.Highlight },
 
                 { npcID = 59764, name = "Healing Tide Totem", icon = 108280, default = addon.NpcOption.Show },
                 { npcID = 3527, name = "Healing Stream Totem", icon = 5394, default = addon.NpcOption.Show },
@@ -246,17 +190,32 @@ else
                 { npcID = 15352, name = "Greater Earth Elemental", icon = 2062, default = addon.NpcOption.Show },
                 { npcID = 2630, name = "Earthbind Totem", icon = 2484, default = addon.NpcOption.Show },
                 { npcID = 60561, name = "Earthgrab Totem", icon = 51485, default = addon.NpcOption.Show },
+                { npcID = 59717, name = "Windwalk Totem", icon = 108273, default = addon.NpcOption.Show },
+                { npcID = 62002, name = "Stormlash Totem", icon = 120668, default = addon.NpcOption.Show },
             }
         },
         {
             classID = addon.CLASSID.WARLOCK,
             npcs = {
                 { npcID = 416, name = "Imp", icon = 688, default = addon.NpcOption.Show },
+                { npcID = 58959, name = "Fel Imp", icon = 688, default = addon.NpcOption.Show },
                 { npcID = 1860, name = "Voidwalker", icon = 697, default = addon.NpcOption.Show },
+                { npcID = 58960, name = "Voidlord", icon = 697, default = addon.NpcOption.Show },
                 { npcID = 417, name = "Felhunter", icon = 691, default = addon.NpcOption.ShowWithIcon },
+                { npcID = 58964, name = "Observer", icon = 691, default = addon.NpcOption.ShowWithIcon },
+                { npcID = 1863, name = "Succubus", icon = 712, default = addon.NpcOption.ShowWithIcon },
+                { npcID = 58963, name = "Shivarra", icon = 712, default = addon.NpcOption.ShowWithIcon },
                 { npcID = 17252, name = "Felguard", icon = 30146, default = addon.NpcOption.Show },
+                { npcID = 58965, name = "Wrathguard", icon = 30146, default = addon.NpcOption.Show },
             }
         },
+        {
+            classID = addon.CLASSID.WARRIOR,
+            npcs = {
+                { npcID = 59399, name = "Skull Banner", icon = 114207, default = addon.NpcOption.Show },
+                { npcID = 59398, name = "Demoralizing Banner", icon = 114203, default = addon.NpcOption.Show },
+            }
+        }
     };
 end
 
@@ -288,7 +247,7 @@ addon.iconTexture = {};
 for _, classEntry in ipairs(addon.importantNpcList) do
     for _, npcEntry in ipairs(classEntry.npcs) do
         -- Convert npcID to string since this returns string GUID: local npcID = select(6, strsplit("-", guid));
-        local npcID, icon = tostring(npcEntry.npcID), C_Spell.GetSpellTexture(npcEntry.icon);
+        local npcID, icon = tostring(npcEntry.npcID), addon.GetSpellTexture(npcEntry.icon);
         addon.iconTexture[npcID] = icon;
     end
 end
@@ -353,7 +312,7 @@ addon.AppendNpcOptionsToGroup = function(group)
                 addon.SPELL_DESCRIPTION[npcEntry.icon] = spell:GetSpellDescription();
             end)
 
-            local texture = C_Spell.GetSpellTexture(npcEntry.icon);
+            local texture = addon.GetSpellTexture(npcEntry.icon);
             classGroup.args[tostring(npcEntry.npcID)] = {
                 order = spellIdx,
                 type = "select",

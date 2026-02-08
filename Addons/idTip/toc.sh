@@ -2,23 +2,28 @@
 set -euo pipefail
 
 function toc {
-  local version="$(nc us.version.battle.net 1119 <<< "v1/products/$1/versions" | awk -F "|" '/^us/{print $6}')"
-  version="${version%.*}"
-  if [[ "$version" == 1.* ]]; then
-    version="${version/./}"
-  fi
-  version="${version//./0}"
-  echo "$version"
+  VERSIONS="$(curl -s https://us.version.battle.net/v2/products/$1/versions | awk -F "|" '/^[a-z]{2}\|/{print $6}')"
+  for VERSION in $VERSIONS; do
+    VERSION="${VERSION%.*}"
+    if [[ "$VERSION" == 1.* ]] || [[ "$VERSION" == 3.* ]]; then
+      VERSION="${VERSION/./}"
+    fi
+    VERSION="${VERSION//./0}"
+    echo "$VERSION"
+  done
 }
 
 VERSION_STRING="$(echo -e \
   "$(toc "wow")\n" \
   "$(toc "wowt")\n" \
   "$(toc "wowxptr")\n" \
+  "$(toc "wow_beta")\n" \
   "$(toc "wow_classic")\n" \
+  "$(toc "wow_classic_beta")\n" \
   "$(toc "wow_classic_ptr")\n" \
   "$(toc "wow_classic_era")\n" \
   "$(toc "wow_classic_era_ptr")\n" \
+  "$(toc "wow_classic_titan")\n" \
   | awk '{$1=$1};1' | sort -n | uniq | xargs | perl -p -e "s# #, #g")"
 
 if [[ "$VERSION_STRING" =~ ^[0-9,\ ]+$ ]]; then

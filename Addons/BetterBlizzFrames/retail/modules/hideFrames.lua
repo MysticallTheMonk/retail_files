@@ -1,3 +1,5 @@
+if BBF.isMidnight then return end
+local L = BBF.L
 local hiddenFrame = CreateFrame("Frame")
 hiddenFrame:Hide()
 BBF.hiddenFrame = hiddenFrame
@@ -15,6 +17,7 @@ local iconMouseOver = false -- flag to indicate if any LibDBIcon is currently mo
 local minimapButtonsHooked = false
 local bagButtonsHooked = false
 local keybindAlphaChanged = false
+local hiddenBar1 = true
 
 local changes = {}
 
@@ -24,11 +27,65 @@ local function applyAlpha(frame, alpha)
     end
 end
 
+local function setResourceFrameVisibility(frame, visible)
+    if not frame then return end
+    if visible then
+        frame:SetAlpha(1)
+        if frame.EnableMouse then
+            frame:EnableMouse(true)
+        end
+    else
+        frame:SetAlpha(0)
+        if frame.EnableMouse then
+            frame:EnableMouse(false)
+        end
+    end
+end
+
+local function hideElementByParent(element)
+    if element and not element.bbfOriginalParent then
+        element.bbfOriginalParent = element:GetParent()
+        element:SetParent(BBF.hiddenFrame)
+    end
+end
+
+local function restoreElementParent(element)
+    if element and element.bbfOriginalParent then
+        element:SetParent(element.bbfOriginalParent)
+        element.bbfOriginalParent = nil
+    end
+end
+
+local function HideElementFromActionBars(hide, element)
+    for i = 1, 12 do
+        local buttons = {
+            _G["ActionButton" .. i],
+            _G["MultiBarBottomLeftButton" .. i],
+            _G["MultiBarBottomRightButton" .. i],
+            _G["MultiBarRightButton" .. i],
+            _G["MultiBarLeftButton" .. i],
+            _G["MultiBar5Button" .. i],
+            _G["MultiBar6Button" .. i],
+            _G["MultiBar7Button" .. i]
+        }
+
+        for _, button in ipairs(buttons) do
+            if button and button[element] then
+                if hide then
+                    hideElementByParent(button[element])
+                else
+                    restoreElementParent(button[element])
+                end
+            end
+        end
+    end
+end
+
 function BBF.HideFrames()
     local db = BetterBlizzFramesDB
     if db.hasCheckedUi then
         if InCombatLockdown() then
-            print("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: Combat detected while adjusting Hide settings. Reload might be required to see updates. Please leave combat.")
+            BBF.Print(L["Print_Combat_Hide_Settings"])
             return
         end
         local playerClass, englishClass = UnitClass("player")
@@ -40,6 +97,20 @@ function BBF.HideFrames()
         -- PlayerFrameGroupIndicatorText:SetAlpha(groupIndicatorAlpha)
         -- PlayerFrameGroupIndicatorLeft:SetAlpha(groupIndicatorAlpha)
         -- PlayerFrameGroupIndicatorRight:SetAlpha(groupIndicatorAlpha)
+
+        if db.hideActionBarQualityIcon then
+            HideElementFromActionBars(true, "ProfessionQualityOverlayFrame")
+            changes.hideActionBarQualityIcon = true
+        elseif changes.hideActionBarQualityIcon then
+            HideElementFromActionBars(false, "ProfessionQualityOverlayFrame")
+        end
+
+        if db.hideActionBarActiveOverlay then
+            HideElementFromActionBars(true, "TargetReticleAnimFrame")
+            changes.hideActionBarActiveOverlay = true
+        elseif changes.hideActionBarActiveOverlay then
+            HideElementFromActionBars(false, "TargetReticleAnimFrame")
+        end
 
         -- Hide target leader icon
         local targetLeaderIconAlpha = BetterBlizzFramesDB.hideTargetLeaderIcon and 0 or 1
@@ -67,31 +138,18 @@ function BBF.HideFrames()
         end
 
         if BetterBlizzFramesDB.hideBossFrames then
-            if not originalBossFrameParent then
-                originalBossFrameParent = BossTargetFrameContainer:GetParent()
-            end
-            BossTargetFrameContainer:SetParent(hiddenFrame)
             if not bossFrameHooked then
-                hiddenFrame:RegisterEvent("ENCOUNTER_START")
-                hiddenFrame:RegisterEvent("ENCOUNTER_END")
-                hiddenFrame:RegisterEvent("GROUP_ROSTER_UPDATE")
-                hiddenFrame:SetScript("OnEvent", function()
-                    if InCombatLockdown then return end
-                    local inInstance, instanceType = IsInInstance()
-
-                    if BetterBlizzFramesDB.hideBossFramesParty and inInstance and instanceType == "party" then
-                        BossTargetFrameContainer:SetParent(hiddenFrame)
-                    elseif BetterBlizzFramesDB.hideBossFramesRaid and inInstance and instanceType == "raid" then
-                        BossTargetFrameContainer:SetParent(hiddenFrame)
-                    else
-                        BossTargetFrameContainer:SetParent(originalBossFrameParent)
-                    end
+                hooksecurefunc(BossTargetFrameContainer, "UpdateShownState", function(self)
+                    self:SetAlpha(0)
+                    if InCombatLockdown() then return end
+                    self:SetScale(0.001)
                 end)
-
+                BossTargetFrameContainer:SetAlpha(0)
+                BossTargetFrameContainer:SetMouseClickEnabled(false)
+                BossTargetFrameContainer:EnableMouse(false)
+                BossTargetFrameContainer:SetScale(0.001)
                 bossFrameHooked = true
             end
-        elseif bossFrameHooked then
-            BossTargetFrameContainer:SetParent(originalBossFrameParent)
         end
 
         -- Player Combat Icon
@@ -108,8 +166,15 @@ function BBF.HideFrames()
         FocusFrame.TargetFrameContent.TargetFrameContentContextual.PrestigeBadge:SetAlpha(prestigeBadgeAlpha)
         FocusFrame.TargetFrameContent.TargetFrameContentContextual.PrestigePortrait:SetAlpha(prestigeBadgeAlpha)
 
+        -- Hide Pet Frame
+        if BetterBlizzFramesDB.hidePetFrame then
+            hideElementByParent(PetFrame)
+        else
+            restoreElementParent(PetFrame)
+        end
+
         -- Hide reputation color on target frame (color tint behind name)
-        if BetterBlizzFramesDB.hideTargetReputationColor then
+        if BetterBlizzFramesDB.hideTargetReputationColor or BetterBlizzFramesDB.noPortraitModes then
             changes.hideTargetReputationColor = true
             TargetFrame.TargetFrameContent.TargetFrameContentMain.ReputationColor:Hide()
             if classicFrames and not TargetFrame.TargetFrameContent.TargetFrameContentMain.ReputationColor.bbfHooked then
@@ -126,7 +191,16 @@ function BBF.HideFrames()
             TargetFrame.TargetFrameContent.TargetFrameContentMain.ReputationColor:Show()
         end
 
-        if BetterBlizzFramesDB.hideFocusReputationColor then
+        if BetterBlizzFramesDB.hideFocusReputationColor or BetterBlizzFramesDB.hideTargetReputationColor or BetterBlizzFramesDB.noPortraitModes then
+            for i = 1, 5 do
+                local frame = _G["Boss"..i.."TargetFrame"]
+                if frame then
+                    frame.TargetFrameContent.TargetFrameContentMain.ReputationColor:Hide()
+                end
+            end
+        end
+
+        if BetterBlizzFramesDB.hideFocusReputationColor or BetterBlizzFramesDB.noPortraitModes then
             changes.hideFocusReputationColor = true
             FocusFrame.TargetFrameContent.TargetFrameContentMain.ReputationColor:Hide()
             if classicFrames and not FocusFrame.TargetFrameContent.TargetFrameContentMain.ReputationColor.bbfCF then
@@ -146,6 +220,40 @@ function BBF.HideFrames()
         if BetterBlizzFramesDB.hideThreatOnFrame then
             TargetFrame.TargetFrameContent.TargetFrameContentContextual.NumericalThreat:SetAlpha(0)
             FocusFrame.TargetFrameContent.TargetFrameContentContextual.NumericalThreat:SetAlpha(0)
+            for i = 1, 5 do
+                local frame = _G["Boss"..i.."TargetFrame"]
+                if frame and frame.TargetFrameContent.TargetFrameContentContextual.NumericalThreat then
+                    frame.TargetFrameContent.TargetFrameContentContextual.NumericalThreat:SetAlpha(0)
+                end
+            end
+        end
+
+        if BetterBlizzFramesDB.hideActionBar1 then
+            if not MainActionBar.bbfHidden then
+                hooksecurefunc(EditModeManagerFrame, "EnterEditMode", function()
+                    if InCombatLockdown() then
+                        if hiddenBar1 then
+                            BBF.Print(L["Print_ActionBar1_Show_Combat"])
+                        end
+                        return
+                    end
+                    MainActionBar:SetParent(UIParent)
+                    hiddenBar1 = false
+                end)
+                hooksecurefunc(EditModeManagerFrame, "ExitEditMode", function()
+                    if InCombatLockdown() then
+                        if not hiddenBar1 then
+                            BBF.Print(L["Print_ActionBar1_Hide_Combat"])
+                        end
+                        return
+                    end
+                    MainActionBar:SetParent(BBF.hiddenFrame)
+                    hiddenBar1 = true
+                end)
+                MainActionBar:SetParent(BBF.hiddenFrame)
+                MainActionBar.bbfHidden = true
+                hiddenBar1 = true
+            end
         end
 
         -- Hide rest loop animation
@@ -212,7 +320,7 @@ function BBF.HideFrames()
             changes.hideManaFeedback = nil
         end
 
-        if BetterBlizzFramesDB.hideFullPower and not changes.hideFullPower then
+        if (BetterBlizzFramesDB.hideFullPower or BetterBlizzFramesDB.hideUnitFramePlayerMana) and not changes.hideFullPower then
             changes.hideFullPower = PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.ManaBarArea.ManaBar.FullPowerFrame:GetParent()
             PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.ManaBarArea.ManaBar.FullPowerFrame:SetParent(hiddenFrame)
             if ClassNameplateManaBarFrame and ClassNameplateManaBarFrame.FullPowerFrame then
@@ -242,6 +350,12 @@ function BBF.HideFrames()
             FocusFrame.TargetFrameContainer.Flash:SetParent(hiddenFrame)
             PetFrameFlash:SetParent(hiddenFrame)
             PetAttackModeTexture:SetParent(hiddenFrame)
+            for i = 1, 5 do
+                local frame = _G["Boss"..i.."TargetFrame"]
+                if frame then
+                    frame.TargetFrameContainer.Flash:SetParent(hiddenFrame)
+                end
+            end
             changes.hideCombatGlow = true
         elseif changes.hideCombatGlow then
             PlayerFrame.PlayerFrameContainer.FrameFlash:SetParent(PlayerFrame.PlayerFrameContainer)
@@ -249,6 +363,12 @@ function BBF.HideFrames()
             FocusFrame.TargetFrameContainer.Flash:SetParent(FocusFrame.TargetFrameContainer)
             PetFrameFlash:SetParent(PetFrame)
             PetAttackModeTexture:SetParent(PetFrame)
+            for i = 1, 5 do
+                local frame = _G["Boss"..i.."TargetFrame"]
+                if frame then
+                    frame.TargetFrameContainer.Flash:SetParent(frame.TargetFrameContainer)
+                end
+            end
             changes.hideCombatGlow = nil
         end
 
@@ -470,10 +590,11 @@ function BBF.HideFrames()
                 end
             end
             if DruidComboPointBarFrame and englishClass == "DRUID" then
-                if BetterBlizzFramesDB.hidePlayerPowerNoDruid then
-                    DruidComboPointBarFrame:SetAlpha(1)
+                if BetterBlizzFramesDB.hidePlayerPowerNoDruid and originalResourceParent then
+                    setResourceFrameVisibility(DruidComboPointBarFrame, true)
                 else
-                    DruidComboPointBarFrame:SetAlpha(0)
+                    setResourceFrameVisibility(DruidComboPointBarFrame, false)
+                    if not originalResourceParent then originalResourceParent = true end
                 end
             end
             if PaladinPowerBarFrame and englishClass == "PALADIN" then
@@ -501,32 +622,31 @@ function BBF.HideFrames()
                 end
             end
             if MonkHarmonyBarFrame and englishClass == "MONK" then
-                if BetterBlizzFramesDB.hidePlayerPowerNoMonk then
-                    if originalResourceParent then MonkHarmonyBarFrame:SetAlpha(originalResourceParent); MonkHarmonyBarFrame:EnableMouse(true) end
+                if BetterBlizzFramesDB.hidePlayerPowerNoMonk and originalResourceParent then
+                    setResourceFrameVisibility(MonkHarmonyBarFrame, true)
                 else
-                    if not originalResourceParent then originalResourceParent = MonkHarmonyBarFrame:GetAlpha() end
-                    --MonkHarmonyBarFrame:SetParent(hiddenFrame)
-                    MonkHarmonyBarFrame:SetAlpha(0)
-                    MonkHarmonyBarFrame:EnableMouse(false)
+                    setResourceFrameVisibility(MonkHarmonyBarFrame, false)
+                    if not originalResourceParent then originalResourceParent = true end
                 end
             end
             if MageArcaneChargesFrame and englishClass == "MAGE" then
-                if BetterBlizzFramesDB.hidePlayerPowerNoMage then
-                    MageArcaneChargesFrame:SetAlpha(1)
+                if BetterBlizzFramesDB.hidePlayerPowerNoMage and originalResourceParent then
+                    setResourceFrameVisibility(MageArcaneChargesFrame, true)
                 else
-                    MageArcaneChargesFrame:SetAlpha(0)
+                    setResourceFrameVisibility(MageArcaneChargesFrame, false)
+                    if not originalResourceParent then originalResourceParent = true end
                 end
             end
             changes.hidePlayerPower = true
         elseif originalResourceParent then
             if WarlockPowerFrame and englishClass == "WARLOCK" then WarlockPowerFrame:SetParent(originalResourceParent) end
             if RogueComboPointBarFrame and englishClass == "ROGUE" then RogueComboPointBarFrame:SetParent(originalResourceParent) end
-            if DruidComboPointBarFrame and englishClass == "DRUID" then DruidComboPointBarFrame:SetAlpha(1) end
+            if DruidComboPointBarFrame and englishClass == "DRUID" then setResourceFrameVisibility(DruidComboPointBarFrame, true) end
             if PaladinPowerBarFrame and englishClass == "PALADIN" then PaladinPowerBarFrame:SetParent(originalResourceParent) end
             if RuneFrame and englishClass == "DEATHKNIGHT" then RuneFrame:SetParent(originalResourceParent) end
             if EssencePlayerFrame and englishClass == "EVOKER" then EssencePlayerFrame:SetParent(originalResourceParent) end
-            if MonkHarmonyBarFrame and englishClass == "MONK" then MonkHarmonyBarFrame:SetParent(originalResourceParent) end
-            if MageArcaneChargesFrame and englishClass == "MAGE" then MageArcaneChargesFrame:SetAlpha(1) end
+            if MonkHarmonyBarFrame and englishClass == "MONK" then setResourceFrameVisibility(MonkHarmonyBarFrame, true) end
+            if MageArcaneChargesFrame and englishClass == "MAGE" then setResourceFrameVisibility(MageArcaneChargesFrame, true) end
             changes.hidePlayerPower = nil
         end
 
@@ -739,31 +859,68 @@ function BBF.HideFrames()
         LossOfControlFrame.RedLineBottom:SetAlpha(LossOfControlFrameAlphaLines)
 
         -- action bar macro name hotkey hide
-        local hotKeyAlpha = BetterBlizzFramesDB.hideActionBarHotKey and 0 or 1
-        local macroNameAlpha = BetterBlizzFramesDB.hideActionBarMacroName and 0 or 1
         if BetterBlizzFramesDB.hideActionBarHotKey or BetterBlizzFramesDB.hideActionBarMacroName or keybindAlphaChanged then
-            for i = 1, 12 do
-                applyAlpha(_G["ActionButton" .. i .. "HotKey"], hotKeyAlpha)
-                applyAlpha(_G["MultiBarBottomLeftButton" .. i .. "HotKey"], hotKeyAlpha)
-                applyAlpha(_G["MultiBarBottomRightButton" ..i.. "HotKey"], hotKeyAlpha)
-                applyAlpha(_G["MultiBarRightButton" ..i.. "HotKey"], hotKeyAlpha)
-                applyAlpha(_G["MultiBarLeftButton" ..i.. "HotKey"], hotKeyAlpha)
-                applyAlpha(_G["MultiBar5Button" ..i.. "HotKey"], hotKeyAlpha)
-                applyAlpha(_G["MultiBar6Button" ..i.. "HotKey"], hotKeyAlpha)
-                applyAlpha(_G["MultiBar7Button" ..i.. "HotKey"], hotKeyAlpha)
-                applyAlpha(_G["PetActionButton" ..i.. "HotKey"], hotKeyAlpha)
+            -- Blizzard buttons
+            local blizzPrefixes = {
+                "ActionButton", "MultiBarBottomLeftButton", "MultiBarBottomRightButton",
+                "MultiBarRightButton", "MultiBarLeftButton", "MultiBar5Button",
+                "MultiBar6Button", "MultiBar7Button", "PetActionButton"
+            }
 
-                applyAlpha(_G["ActionButton" .. i .. "Name"], macroNameAlpha)
-                applyAlpha(_G["MultiBarBottomLeftButton" .. i .. "Name"], macroNameAlpha)
-                applyAlpha(_G["MultiBarBottomRightButton" ..i.. "Name"], macroNameAlpha)
-                applyAlpha(_G["MultiBarRightButton" ..i.. "Name"], macroNameAlpha)
-                applyAlpha(_G["MultiBarLeftButton" ..i.. "Name"], macroNameAlpha)
-                applyAlpha(_G["MultiBar5Button" ..i.. "Name"], macroNameAlpha)
-                applyAlpha(_G["MultiBar6Button" ..i.. "Name"], macroNameAlpha)
-                applyAlpha(_G["MultiBar7Button" ..i.. "Name"], macroNameAlpha)
-                applyAlpha(_G["PetActionButton" ..i.. "Name"], macroNameAlpha)
+            for _, prefix in ipairs(blizzPrefixes) do
+                for i = 1, 12 do
+                    local hotKey = _G[prefix .. i .. "HotKey"]
+                    local macroName = _G[prefix .. i .. "Name"]
 
+                    if BetterBlizzFramesDB.hideActionBarHotKey then
+                        hideElementByParent(hotKey)
+                    else
+                        restoreElementParent(hotKey)
+                    end
+
+                    if BetterBlizzFramesDB.hideActionBarMacroName then
+                        hideElementByParent(macroName)
+                    else
+                        restoreElementParent(macroName)
+                    end
+                end
             end
+
+            -- Dominos buttons
+            local NUM_ACTIONBAR_BUTTONS = NUM_ACTIONBAR_BUTTONS or 12
+            local DOMINOS_NUM_MAX_BUTTONS = 14 * NUM_ACTIONBAR_BUTTONS
+            local dominosBars = {
+                {name = "DominosActionButton", count = DOMINOS_NUM_MAX_BUTTONS},
+                {name = "MultiBar5ActionButton", count = 12},
+                {name = "MultiBar6ActionButton", count = 12},
+                {name = "MultiBar7ActionButton", count = 12},
+                {name = "MultiBarRightActionButton", count = 12},
+                {name = "MultiBarLeftActionButton", count = 12},
+                {name = "MultiBarBottomRightActionButton", count = 12},
+                {name = "MultiBarBottomLeftActionButton", count = 12},
+                {name = "DominosPetActionButton", count = 12},
+                {name = "DominosStanceButton", count = 12},
+            }
+
+            for _, bar in ipairs(dominosBars) do
+                for i = 1, bar.count do
+                    local hotKey = _G[bar.name .. i .. "HotKey"]
+                    local macroName = _G[bar.name .. i .. "Name"]
+
+                    if BetterBlizzFramesDB.hideActionBarHotKey then
+                        hideElementByParent(hotKey)
+                    else
+                        restoreElementParent(hotKey)
+                    end
+
+                    if BetterBlizzFramesDB.hideActionBarMacroName then
+                        hideElementByParent(macroName)
+                    else
+                        restoreElementParent(macroName)
+                    end
+                end
+            end
+
             keybindAlphaChanged = true
         end
 
@@ -845,17 +1002,62 @@ function BBF.HideFrames()
         local function ToggleLibDBIconButtons(show)
             for i = 1, Minimap:GetNumChildren() do
                 local child = select(i, Minimap:GetChildren())
-                local childName = child:GetName() or ""
-                if string.find(childName, "LibDBIcon") or childName == "ExpansionLandingPageMinimapButton" then
-                    if show then
-                        child:Show()
-                        ExpansionLandingPageMinimapButton:Show()
-                    else
-                        child:Hide()
-                        ExpansionLandingPageMinimapButton:Hide()
+                if child then
+                    local childName = child:GetName() or ""
+                    if string.find(childName, "LibDBIcon") or childName == "ExpansionLandingPageMinimapButton" or childName == "ArenaAnalyticsMinimapButton" then
+                        if show then
+                            child:Show()
+                            ExpansionLandingPageMinimapButton:SetAlpha(1)
+                        else
+                            child:Hide()
+                            ExpansionLandingPageMinimapButton:SetAlpha(0)
+                        end
                     end
                 end
             end
+        end
+
+        if BetterBlizzFramesDB.hideOgRaidFrameBg then
+            for i = 1, 5 do
+                local frame = _G["CompactPartyFrameMember"..i]
+                if frame and frame.background and frame.powerBar.background then
+                    frame.background:Hide()
+                    frame.powerBar.background:Hide()
+                end
+            end
+            for i = 1, 40 do
+                local frame = _G["CompactRaidFrame"..i]
+                if frame and frame.background and frame.powerBar.background then
+                    frame.background:Hide()
+                    frame.powerBar.background:Hide()
+                end
+            end
+            if not BBF.hookedHideBgPetFrames then
+                hooksecurefunc("DefaultCompactMiniFrameSetup", function(frame)
+                    if not frame then return end
+                    if frame.background then
+                        frame.background:Hide()
+                    end
+                end)
+                BBF.hookedHideBgPetFrames = true
+            end
+            changes.hideOgRaidFrameBg = true
+        elseif changes.hideOgRaidFrameBg then
+            for i = 1, 5 do
+                local frame = _G["CompactPartyFrameMember"..i]
+                if frame and frame.background and frame.powerBar.background then
+                    frame.background:Show()
+                    frame.powerBar.background:Show()
+                end
+            end
+            for i = 1, 40 do
+                local frame = _G["CompactRaidFrame"..i]
+                if frame and frame.background and frame.powerBar.background then
+                    frame.background:Show()
+                    frame.powerBar.background:Show()
+                end
+            end
+            changes.hideOgRaidFrameBg = nil
         end
 
         -- Hide all LibDBIcon buttons by default
@@ -923,10 +1125,7 @@ function BBF.HideFrames()
         for i = 1, 5 do
             local aggroHighlight = _G["CompactPartyFrameMember" .. i .. "AggroHighlight"]
             if aggroHighlight then
-                -- Only adjust alpha if it differs from the desired state
-                if aggroHighlight:GetAlpha() ~= aggroAlpha then
-                    aggroHighlight:SetAlpha(aggroAlpha)
-                end
+                aggroHighlight:SetAlpha(aggroAlpha)
             end
         end
 
@@ -1082,126 +1281,164 @@ function BBF.MinimapHider()
     -- Handle ObjectiveTracker visibility
     if hideObjectives then
         if not ObjectiveTracker.bbpHook then
+            BBF.ogObjectiveParent = ObjectiveTrackerFrame:GetParent()
             ObjectiveTrackerFrame:HookScript("OnShow", function()
                 local _, instanceType = GetInstanceInfo()
                 local inArena = instanceType == "arena"
 
                 if inArena then
-                    ObjectiveTrackerFrame:Hide()
+                    ObjectiveTrackerFrame:SetParent(BBF.hiddenFrame)
                 end
             end)
             ObjectiveTracker.bbpHook = true
         end
         if inArena then
-            ObjectiveTracker:Hide()
+            ObjectiveTrackerFrame:SetParent(BBF.hiddenFrame)
         else
-            ObjectiveTracker:Show()
+            ObjectiveTrackerFrame:SetParent(BBF.ogObjectiveParent)
         end
     end
 end
 
 
--- temp inc settings
 function BBF.FadeMicroMenu()
     if not BetterBlizzFramesDB.fadeMicroMenu then return end
-    local function SetAlphaForMicroMenu(alpha)
-        MicroMenu:SetAlpha(alpha)
-        MicroMenuContainer:SetAlpha(alpha)
-        for _, child in ipairs({MicroMenu:GetChildren()}) do
-            child:SetAlpha(alpha)
-        end
-        if not BetterBlizzFramesDB.hideBagsBar then
-            BagsBar:SetAlpha(0)
-            for _, child in ipairs({BagsBar:GetChildren()}) do
-                child:SetAlpha(alpha)
-            end
-        end
-    end
-
-    SetAlphaForMicroMenu(0) -- Start with hidden
-
-    local function IsAnyMouseOver()
-        if MicroMenu:IsMouseOver() then return true end
-        for _, child in ipairs({MicroMenu:GetChildren()}) do
-            if child:IsMouseOver() then
-                return true
-            end
-        end
-        if BagsBar:IsMouseOver() then return true end
-        for _, child in ipairs({BagsBar:GetChildren()}) do
-            if child:IsMouseOver() then
-                return true
-            end
-        end
-        return false
-    end
-
     if not MicroMenu.bffHooked then
-        MicroMenu:HookScript("OnEnter", function()
-            SetAlphaForMicroMenu(1)
-        end)
-
-        MicroMenu:HookScript("OnLeave", function()
-            C_Timer.After(0.5, function()
-                if not IsAnyMouseOver() then
-                    SetAlphaForMicroMenu(0)
-                end
-            end)
-        end)
-
-        MicroMenuContainer:HookScript("OnEnter", function()
-            SetAlphaForMicroMenu(1)
-        end)
-
-        MicroMenuContainer:HookScript("OnLeave", function()
-            C_Timer.After(0.5, function()
-                if not IsAnyMouseOver() then
-                    SetAlphaForMicroMenu(0)
-                end
-            end)
-        end)
-
-        -- Apply hooks to all children
-        for _, child in ipairs({MicroMenu:GetChildren()}) do
-            child:HookScript("OnEnter", function()
-                SetAlphaForMicroMenu(1)
-            end)
-
-            child:HookScript("OnLeave", function()
-                C_Timer.After(0.5, function()
-                if not IsAnyMouseOver() then
-                        SetAlphaForMicroMenu(0)
-                    end
-                end)
-            end)
+        local function FadeOutFrame(frame, duration)
+            BBF.UIFrameFadeOut(frame, duration, 1, 0)
         end
 
-        if not BetterBlizzFramesDB.hideBagsBar then
-            BagsBar:HookScript("OnEnter", function()
-                SetAlphaForMicroMenu(1)
-            end)
+        local function FadeInFrame(frame, duration)
+            BBF.UIFrameFadeIn(frame, duration, 0, 1)
+        end
 
-            BagsBar:HookScript("OnLeave", function()
-                C_Timer.After(0.5, function()
-                    if not IsAnyMouseOver() then
-                        SetAlphaForMicroMenu(0)
-                    end
-                end)
-            end)
+        local fadeTimer = nil -- Holds the current fade-out timer
+        local gracePeriod = 0.5 -- Grace period before fading out
+        local isFadedIn = false -- Tracks whether elements are already faded in
+
+        -- Fade helper for multiple frames
+        local function FadeElements(fadeType, duration)
+            local frames = {BagsBar, MicroMenu, MicroMenuContainer}
             for _, child in ipairs({MicroMenu:GetChildren()}) do
-                child:HookScript("OnEnter", function()
-                    SetAlphaForMicroMenu(1)
-                end)
+                table.insert(frames, child)
+            end
 
-                child:HookScript("OnLeave", function()
-                    C_Timer.After(0.5, function()
-                    if not IsAnyMouseOver() then
-                            SetAlphaForMicroMenu(0)
-                        end
-                    end)
-                end)
+            for _, frame in ipairs(frames) do
+                local adjustedDuration = duration
+
+                -- Make BagsBar fade out 0.2 seconds faster
+                if frame == BagsBar and fadeType == "out" then
+                    adjustedDuration = math.max(duration - 0.6, 0) -- Ensure non-negative duration
+                end
+
+                if EditModeManagerFrame:IsEditModeActive() then
+                    FadeInFrame(frame, 0) -- Force full alpha if Edit Mode is active
+                else
+                    if fadeType == "in" then
+                        FadeInFrame(frame, adjustedDuration)
+                    elseif fadeType == "out" then
+                        FadeOutFrame(frame, adjustedDuration)
+                    end
+                end
             end
         end
+
+        -- Mouseover detection
+        local function IsAnyMouseOver()
+            if BagsBar:IsMouseOver() or MicroMenu:IsMouseOver() or MicroMenuContainer:IsMouseOver() then
+                return true
+            end
+            for _, child in ipairs({BagsBar:GetChildren(), MicroMenu:GetChildren()}) do
+                if child:IsMouseOver() then
+                    return true
+                end
+            end
+            return false
+        end
+
+        -- Show elements (fade in)
+        local function ShowElements()
+            if not isFadedIn and not EditModeManagerFrame:IsEditModeActive() then -- Only fade in if not already visible and Edit Mode inactive
+                if fadeTimer then
+                    fadeTimer:Cancel() -- Cancel any pending fade-out
+                    fadeTimer = nil
+                end
+                FadeElements("in", 0.1) -- Smooth fade-in
+                isFadedIn = true
+            end
+        end
+
+        -- Hide elements (fade out with grace period)
+        local function HideElements()
+            if fadeTimer then
+                fadeTimer:Cancel() -- Reset any existing timer
+            end
+
+            fadeTimer = C_Timer.NewTimer(gracePeriod, function()
+                if not IsAnyMouseOver() and not EditModeManagerFrame:IsEditModeActive() then
+                    FadeElements("out", 1.1) -- Smooth fade-out
+                    isFadedIn = false -- Mark as faded out
+                end
+            end)
+        end
+
+        -- Reset alpha on Edit Mode toggle
+        local function ResetAlphaOnEditMode()
+            if EditModeManagerFrame:IsEditModeActive() then
+                -- Force all frames to full alpha
+                FadeElements("in", 0)
+            else
+                -- Fade out frames instantly if Edit Mode is closed
+                FadeElements("out", 0)
+                isFadedIn = false
+            end
+        end
+
+        -- Initial state: start hidden if not in Edit Mode
+        if not EditModeManagerFrame:IsEditModeActive() then
+            FadeElements("out", 0) -- Instantly fade out all elements
+            isFadedIn = false
+        else
+            FadeElements("in", 0) -- Full alpha when Edit Mode is active
+        end
+
+        -- Apply hooks only once
+        if not BagsBar.scHooked then
+            -- Hooks for BagsBar and its children
+            BagsBar:HookScript("OnEnter", ShowElements)
+            BagsBar:HookScript("OnLeave", HideElements)
+
+            for _, child in ipairs({BagsBar:GetChildren()}) do
+                child:HookScript("OnEnter", ShowElements)
+                child:HookScript("OnLeave", HideElements)
+            end
+
+            BagsBar.scHooked = true
+        end
+
+        if not MicroMenu.scHooked then
+            -- Hooks for MicroMenu, MicroMenuContainer, and its children
+            MicroMenu:HookScript("OnEnter", ShowElements)
+            MicroMenu:HookScript("OnLeave", HideElements)
+
+            MicroMenuContainer:HookScript("OnEnter", ShowElements)
+            MicroMenuContainer:HookScript("OnLeave", HideElements)
+
+            for _, child in ipairs({MicroMenu:GetChildren()}) do
+                child:HookScript("OnEnter", ShowElements)
+                child:HookScript("OnLeave", HideElements)
+            end
+
+            -- Special case for QueueStatusButton if required
+            QueueStatusButton:SetParent(UIParent)
+            QueueStatusButton:SetFrameLevel(10)
+
+            MicroMenu.scHooked = true
+        end
+
+        -- Hook into Edit Mode events to reset alpha
+        hooksecurefunc(EditModeManagerFrame, "EnterEditMode", ResetAlphaOnEditMode)
+        hooksecurefunc(EditModeManagerFrame, "ExitEditMode", ResetAlphaOnEditMode)
 
         -- Special case for QueueStatusButton if required
         if BetterBlizzFramesDB.fadeMicroMenuExceptQueue then
@@ -1216,7 +1453,7 @@ end
 function BBF.MoveQueueStatusEye()
     if not BetterBlizzFramesDB.moveQueueStatusEye then return end
     if C_AddOns.IsAddOnLoaded("Bartender4") then
-        DEFAULT_CHAT_FRAME:AddMessage("|A:gmchat-icon-blizz:16:16|aBetter|cff00c0ffBlizz|rFrames: This setting is disabled with Bartender4. You can already move it with Bartender4.")
+        BBF.Print(L["Print_Bartender4_Conflict"])
         return
     end
 

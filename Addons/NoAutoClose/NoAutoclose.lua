@@ -1,11 +1,14 @@
 local addonName, ns = ...;
 
---- @type { [ string ] : { checkFit: boolean, checkFitExtraWidth: number, checkFitExtraHeight: number } }
+--- @type table<string, { checkFit: boolean, checkFitExtraWidth: number, checkFitExtraHeight: number }>
 ns.hookedFrames = {};
+--- @type table<string, boolean> # true if hooked, false if pending
+ns.ignoreControlLostFrames = {};
 ns.ignore = {
     BarberShopFrame = true, -- barbershop frame, better to allow it to hide the UI
     CinematicFrame = true, -- cinematic frame, better to allow it to hide the UI
     CommunitiesFrame = true,
+    HouseEditorFrame = true, -- player housing editor frame, better to allow it to hide the UI
     MacroFrame = true,
     PerksProgramFrame = true, -- trading post frame, better to allow it to hide the UI
     TokenFrame = true, -- breaks baganator's currency transfer, ignoring it doesn't impact things otherwise
@@ -21,9 +24,17 @@ local UpdateScaleForFit = UpdateScaleForFit or UIPanelUpdateScaleForFit or Frame
 local CHECK_FIT_DEFAULT_EXTRA_WIDTH = 20;
 local CHECK_FIT_DEFAULT_EXTRA_HEIGHT = 20;
 
+local FRAME_POSITION_KEYS = {
+    left = 'left',
+    center = 'center',
+    right = 'right',
+    doublewide = 'doublewide',
+    fullscreen = 'fullscreen',
+};
+
 local function table_invert(t)
     local s = {};
-    for k,v in pairs(t) do
+    for k, v in pairs(t) do
         s[v] = k;
     end
 
@@ -31,17 +42,18 @@ local function table_invert(t)
 end
 
 local function setTrue(table, key)
-    TextureLoadingGroupMixin.AddTexture({textures = table}, key);
+    TextureLoadingGroupMixin.AddTexture({ textures = table }, key);
 end
 
 local function setNil(table, key)
-    TextureLoadingGroupMixin.RemoveTexture({textures = table}, key);
+    TextureLoadingGroupMixin.RemoveTexture({ textures = table }, key);
 end
 
 EventUtil.ContinueOnAddOnLoaded(addonName, function()
     ns:Init();
 end);
 
+ns.lastPrint = 0;
 ns.escHandlerMap = {};
 ns.handlerFrameIndex = 0;
 ns.sharedAttributesFrame = CreateFrame('Frame', nil, nil, 'SecureHandlerBaseTemplate');
@@ -135,6 +147,32 @@ function ns:OnHideUIPanel(frame)
     end
 end
 
+function ns:DetectStaleUIPanels()
+    local inCombat = InCombatLockdown();
+    local shownFrames = {};
+    for position, _ in pairs(FRAME_POSITION_KEYS) do
+        -- Blizzard could fix this in 5 minutes, but well...
+        local frame = GetUIPanel(position);
+        if frame and not frame:IsShown() then
+            tinsert(shownFrames, frame);
+        end
+    end
+    if not next(shownFrames) then return; end
+
+    if inCombat then
+        if (GetTime() - self.lastPrint) > 5 then
+            self.lastPrint = GetTime();
+            print('NoAutoClose: Detected an issue that can cause ESC to stop working properly. This cannot be fixed while in combat, once you leave combat it should be automatically fixed.');
+        end
+
+        return;
+    end
+    for _, frame in pairs(shownFrames) do
+        frame:Show();
+        HideUIPanel(frame);
+    end
+end
+
 function ns:ReworkSettingsOpenAndClose()
     if not SettingsPanel then return; end
 
@@ -170,11 +208,15 @@ function ns:HandleUIPanel(name, info, flippedUiSpecialFrames)
         flippedUiSpecialFrames[name] = true;
         tinsert(UISpecialFrames, name);
     end
+    local panelInfo = UIPanelWindows[name];
     self.hookedFrames[name] = {
-        checkFit = UIPanelWindows[name] and UIPanelWindows[name].checkFit,
-        checkFitExtraWidth = UIPanelWindows[name] and UIPanelWindows[name].checkFitExtraWidth or CHECK_FIT_DEFAULT_EXTRA_WIDTH,
-        checkFitExtraHeight = UIPanelWindows[name] and UIPanelWindows[name].checkFitExtraHeight or CHECK_FIT_DEFAULT_EXTRA_HEIGHT,
+        checkFit = panelInfo and panelInfo.checkFit,
+        checkFitExtraWidth = panelInfo and panelInfo.checkFitExtraWidth or CHECK_FIT_DEFAULT_EXTRA_WIDTH,
+        checkFitExtraHeight = panelInfo and panelInfo.checkFitExtraHeight or CHECK_FIT_DEFAULT_EXTRA_HEIGHT,
     };
+    if panelInfo and panelInfo.ignoreControlLost then
+        self.ignoreControlLostFrames[name] = false;
+    end
     setNil(UIPanelWindows, name);
     if frame.SetAttribute then
         frame:SetAttribute('UIPanelLayout-defined', nil);
@@ -192,15 +234,12 @@ end
 --- @param func function
 --- @param ... any # arguments
 function ns:AddToCombatLockdownQueue(func, ...)
-    if #self.combatLockdownQueue == 0 then
-        self.eventFrame:RegisterEvent('PLAYER_REGEN_ENABLED');
-    end
-
     tinsert(self.combatLockdownQueue, { func = func, args = { ... } });
 end
 
 function ns:PLAYER_REGEN_ENABLED()
-    self.eventFrame:UnregisterEvent('PLAYER_REGEN_ENABLED');
+    self:DetectStaleUIPanels();
+
     if #self.combatLockdownQueue == 0 then return; end
 
     for _, item in pairs(self.combatLockdownQueue) do
@@ -210,8 +249,9 @@ function ns:PLAYER_REGEN_ENABLED()
 end
 
 function ns:PLAYER_REGEN_DISABLED()
+    self:DetectStaleUIPanels();
+
     -- if any frame has become protected since it was last shown, we need to configure the secure esc handler
-    --
     for frameName, _ in pairs(self.hookedFrames) do
         local frame = _G[frameName];
         if frame and frame.IsProtected and frame:IsProtected() then
@@ -285,11 +325,21 @@ function ns:ConfigureSecureEscHandler(frame, alwaysSetBindingOnShow, callRegenDi
     end
 end
 
-function ns:ADDON_LOADED()
+function ns:ADDON_LOADED(loadedAddon)
     local flippedUiSpecialFrames = table_invert(UISpecialFrames);
 
     for name, info in pairs(UIPanelWindows) do
         self:HandleUIPanel(name, info, flippedUiSpecialFrames);
+    end
+    for name, isHooked in pairs(self.ignoreControlLostFrames) do
+        if not isHooked and _G[name] and type(_G[name]) == 'table' then
+            self.ignoreControlLostFrames[name] = true;
+            _G[name]:HookScript('OnHide', function(f)
+                if debugstack(3):find("in function .CloseAllWindows_WithExceptions.") then
+                    ShowUIPanel(f);
+                end
+            end);
+        end
     end
     if InCombatLockdown() and WorldMapFrame:IsProtected() then
         self:AddToCombatLockdownQueue(function()
@@ -300,6 +350,10 @@ function ns:ADDON_LOADED()
         WorldMapFrame:SetAttribute('UIPanelLayout-defined', '1');
         WorldMapFrame:SetAttribute('UIPanelLayout-maximizePoint', 'TOP');
     end
+    if loadedAddon == 'Sorted' then
+        -- that addon does some silly stuff, easier to just hardcode a workaround than to find a convoluted fix
+        tDeleteItem(UISpecialFrames, 'BankFrame');
+    end
 end
 
 ns.playerInteractionHideMap = {
@@ -307,7 +361,7 @@ ns.playerInteractionHideMap = {
     [Enum.PlayerInteractionType.QuestGiver] = 'QuestFrame',
 };
 
-function ns:PLAYER_INTERACTION_MANAGER_FRAME_SHOW(_, type)
+function ns:PLAYER_INTERACTION_MANAGER_FRAME_SHOW(type)
     for mapType, frameName in pairs(self.playerInteractionHideMap) do
         local frame = _G[frameName];
         if type ~= mapType and frame.IsShown and frame:IsShown() then
@@ -316,7 +370,7 @@ function ns:PLAYER_INTERACTION_MANAGER_FRAME_SHOW(_, type)
     end
 end
 
-function ns:PLAYER_INTERACTION_MANAGER_FRAME_HIDE(_, type)
+function ns:PLAYER_INTERACTION_MANAGER_FRAME_HIDE(type)
     if self.playerInteractionHideMap[type] then
         local frame = _G[self.playerInteractionHideMap[type]];
         if frame and frame.IsShown and frame:IsShown() then
@@ -331,13 +385,18 @@ function ns:Init()
     hooksecurefunc('RegisterUIPanel', function() self:ADDON_LOADED(); end);
     hooksecurefunc('DisplayInterfaceActionBlockedMessage', function() self:OnDisplayInterfaceActionBlockedMessage(); end);
     hooksecurefunc('RestoreUIPanelArea', function(frame) self:SetDefaultPosition(frame); end);
+    hooksecurefunc('CloseWindows', function() self:DetectStaleUIPanels(); end);
+    hooksecurefunc('RegisterUIPanel', function(name, info)
+        self:HandleUIPanel(name, info, table_invert(UISpecialFrames));
+    end);
     self:ReworkSettingsOpenAndClose();
 
     self.eventFrame = CreateFrame('Frame');
-    self.eventFrame:HookScript('OnEvent', function(_, event, ...) self[event](self, event, ...); end);
+    self.eventFrame:HookScript('OnEvent', function(_, event, ...) self[event](self, ...); end);
     self.eventFrame:RegisterEvent('ADDON_LOADED');
     self.eventFrame:RegisterEvent('PLAYER_INTERACTION_MANAGER_FRAME_SHOW');
     self.eventFrame:RegisterEvent('PLAYER_INTERACTION_MANAGER_FRAME_HIDE');
+    self.eventFrame:RegisterEvent('PLAYER_REGEN_ENABLED');
     self.eventFrame:RegisterEvent('PLAYER_REGEN_DISABLED');
 
     self.combatLockdownQueue = {};
@@ -421,21 +480,26 @@ function ns:initOptions()
     end);
 
     local category, _ = Settings.RegisterCanvasLayoutCategory(panel, panel.name);
-    category.ID = panel.name;
     Settings.RegisterAddOnCategory(category);
 
     SLASH_NOAUTOCLOSE1 = '/noautoclose';
     SLASH_NOAUTOCLOSE2 = '/nac';
-    SlashCmdList['NOAUTOCLOSE'] = function() Settings.OpenToCategory(panel.name); end;
+    SlashCmdList['NOAUTOCLOSE'] = function()
+        if C_SettingsUtil and C_SettingsUtil.OpenSettingsPanel and InCombatLockdown() then
+            print("Cannot open the settings in combat")
+            return;
+        end
+        Settings.OpenToCategory(category:GetID());
+    end;
 end
 
 function ns:GetMoverFrame(onMoveCallback)
     local NineSliceLayout =
     {
-        ["TopRightCorner"] = { atlas = "%s-NineSlice-Corner", mirrorLayout = true, x=8, y=8 },
-        ["TopLeftCorner"] = { atlas = "%s-NineSlice-Corner", mirrorLayout = true, x=-8, y=8 },
-        ["BottomLeftCorner"] = { atlas = "%s-NineSlice-Corner", mirrorLayout = true, x=-8, y=-8 },
-        ["BottomRightCorner"] = { atlas = "%s-NineSlice-Corner",  mirrorLayout = true, x=8, y=-8 },
+        ["TopRightCorner"] = { atlas = "%s-NineSlice-Corner", mirrorLayout = true, x = 8, y = 8 },
+        ["TopLeftCorner"] = { atlas = "%s-NineSlice-Corner", mirrorLayout = true, x = -8, y = 8 },
+        ["BottomLeftCorner"] = { atlas = "%s-NineSlice-Corner", mirrorLayout = true, x = -8, y = -8 },
+        ["BottomRightCorner"] = { atlas = "%s-NineSlice-Corner", mirrorLayout = true, x = 8, y = -8 },
         ["TopEdge"] = { atlas = "_%s-NineSlice-EdgeTop" },
         ["BottomEdge"] = { atlas = "_%s-NineSlice-EdgeBottom" },
         ["LeftEdge"] = { atlas = "!%s-NineSlice-EdgeLeft" },

@@ -1,0 +1,21 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/UI.xsd">
+  <Frame name="RaidFrameSettings_SliderTemplate" virtual="true">
+    <Size y="50"/>
+    <Layers>
+      <Layer level="ARTWORK">
+        <FontString parentKey="settings_text" inherits="GameFontNormalLeft" justifyH="LEFT">
+          <Anchors>
+            <Anchor point="LEFT" x="15" y="0"/>
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
+    <Frames>
+      <Slider parentKey="slider" orientation="HORIZONTAL" inherits="MinimalSliderWithSteppersTemplate">
+        <Anchors>
+          <Anchor point="LEFT" x="200" y="0"/>
+        </Anchors>
+      </Slider>
+		</Frames>
+  </Frame>
+</Ui>

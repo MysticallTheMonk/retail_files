@@ -42,10 +42,14 @@ function AuctionatorGroupsViewItemMixin:SetItemInfo(info)
 
     self:HideQualityIcon()
   end
+
+  self.initializationTime = GetTime()
 end
 
 function AuctionatorGroupsViewItemMixin:OnEnter()
-  self:UpdateTooltip()
+  if GetTime() - self.initializationTime > 0 then
+    self:UpdateTooltip()
+  end
 end
 
 function AuctionatorGroupsViewItemMixin:UpdateTooltip()
@@ -81,7 +85,7 @@ function AuctionatorGroupsViewItemMixin:OnClick(button)
       (DressUpLink or DressUpItemLink)(self.itemInfo.itemLink)
 
     elseif IsModifiedClick("CHATLINK") then
-      ChatEdit_InsertLink(self.itemInfo.itemLink)
+      Auctionator.Utilities.InsertLink(self.itemInfo.itemLink)
 
     else
       Auctionator.Groups.CallbackRegistry:TriggerEvent(self.clickEventName, self, button)

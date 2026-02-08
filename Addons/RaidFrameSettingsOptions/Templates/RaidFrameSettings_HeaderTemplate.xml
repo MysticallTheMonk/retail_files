@@ -1,0 +1,21 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/UI.xsd">
+  <Frame name="RaidFrameSettings_HeaderTemplate" virtual="true">
+    <Size y="44"/>
+    <Layers>
+      <Layer level="ARTWORK">
+        <FontString parentKey="title" inherits="GameFontHighlightHuge" justifyH="LEFT">
+          <Anchors>
+            <Anchor point="LEFT" x="20" y="4"/>
+          </Anchors>
+        </FontString>
+        <Texture atlas="Options_HorizontalDivider" useAtlasSize="true">
+          <Anchors>
+            <Anchor point="LEFT"/>
+            <Anchor point="RIGHT"/>
+            <Anchor point="BOTTOM" y="7"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+    </Layers>
+  </Frame>
+</Ui>

@@ -1,3 +1,5 @@
+if BBF.isMidnight then return end
+local L = BBF.L
 local function sum(t)
     local sum = 0
     for k,v in pairs(t) do
@@ -39,7 +41,6 @@ local function addToMasque(frame, masqueGroup)
     if frame and not frame.bbfMsq then
         masqueGroup:AddButton(frame)
         frame.bbfMsq = true
-        --print(frame:GetName())
     end
 end
 
@@ -118,6 +119,10 @@ end
 function BBF.CheckActiveAuras(auraID)
     local frameType = trackedAuras[auraID] and BuffFrame or DebuffFrame
     local activeAuras = {}
+
+    if not frameType or not frameType.auraInfo then
+        return
+    end
 
     for auraIndex, auraInfo in ipairs(frameType.auraInfo) do
         local auraFrame = frameType.auraFrames[auraIndex]
@@ -269,7 +274,7 @@ local targetToTCastbarAdjustment
 local targetAndFocusAuraScale = 1
 local targetAndFocusVerticalGap = 4
 local targetDetachCastbar
-local focusToTCastbarAdjustment = 0
+local focusToTCastbarAdjustment
 local targetStaticCastbar
 local showHiddenAurasIcon
 local playerAuraSpacingX = 0
@@ -367,8 +372,8 @@ function BBF.UpdateUserAuraSettings()
     focusDetachCastbar = BetterBlizzFramesDB.focusDetachCastbar
     targetStaticCastbar = BetterBlizzFramesDB.targetStaticCastbar
     targetDetachCastbar = BetterBlizzFramesDB.targetDetachCastbar
-    shouldAdjustCastbar = targetStaticCastbar or targetDetachCastbar or BetterBlizzFramesDB.playerAuraFiltering
-    shouldAdjustCastbarFocus = focusStaticCastbar or focusDetachCastbar or BetterBlizzFramesDB.playerAuraFiltering
+    shouldAdjustCastbar = (targetStaticCastbar or targetDetachCastbar or BetterBlizzFramesDB.playerAuraFiltering) and not BetterBlizzFramesDB.disableCastbarMovement
+    shouldAdjustCastbarFocus = (focusStaticCastbar or focusDetachCastbar or BetterBlizzFramesDB.playerAuraFiltering) and not BetterBlizzFramesDB.disableCastbarMovement
     targetCastBarXPos = BetterBlizzFramesDB.targetCastBarXPos
     targetCastBarYPos = BetterBlizzFramesDB.targetCastBarYPos
     focusCastBarXPos = BetterBlizzFramesDB.focusCastBarXPos
@@ -446,39 +451,6 @@ local function ShouldShowBuff(unit, auraData, frameType)
             if filterOverride then return true, isImportant, isPandemic, isEnlarged, isCompacted, auraColor end
             if shouldBlacklist then
                 local isInBlacklist, allowMine = isInBlacklist(spellName, spellId)
-                -- if isInBlacklist and (auraData.isStealable or auraData.dispelName == "Magic") then
-                --     -- Initialize the blacklist table if it doesn't exist
-                --     if not BetterBlizzFramesDB.auraBlacklistFaulty then
-                --         BetterBlizzFramesDB.auraBlacklistFaulty = {}
-                --     end
-
-                --     -- Check if the spell name already exists in the blacklist
-                --     if BetterBlizzFramesDB.auraBlacklistFaulty[spellName] then
-                --         -- If the spell ID is not already in the list, add it
-                --         local alreadyExists = false
-                --         for _, id in ipairs(BetterBlizzFramesDB.auraBlacklistFaulty[spellName]) do
-                --             if id == spellId then
-                --                 alreadyExists = true
-                --                 break
-                --             end
-                --         end
-                --         if not alreadyExists then
-                --             table.insert(BetterBlizzFramesDB.auraBlacklistFaulty[spellName], spellId)
-                --             print("Oopsie in BL: ", spellName, spellId)
-                --         end
-                --     else
-                --         -- If the spell name is not in the blacklist, add it with the spell ID
-                --         BetterBlizzFramesDB.auraBlacklistFaulty[spellName] = { spellId }
-                --         print("Oopsie in BL: ", spellName, spellId)
-                --     end
-
-                --     if db["auraBlacklist"][spellId] then
-                --         db["auraBlacklist"][spellId] = nil
-                --     end
-                --     if db["auraBlacklist"][string.lower(spellName)] then
-                --         db["auraBlacklist"][string.lower(spellName)] = nil
-                --     end
-                -- end
                 if isInBlacklist and not (allowMine and castByPlayer) then return end
             end
             if filterMount then
@@ -524,39 +496,6 @@ local function ShouldShowBuff(unit, auraData, frameType)
             if filterOverride then return true, isImportant, isPandemic, isEnlarged, isCompacted, auraColor end
             if shouldBlacklist then
                 local isInBlacklist, allowMine = isInBlacklist(spellName, spellId)
-                -- if isInBlacklist and (auraData.isStealable or auraData.dispelName == "Magic") then
-                --     -- Initialize the blacklist table if it doesn't exist
-                --     if not BetterBlizzFramesDB.auraBlacklistFaulty then
-                --         BetterBlizzFramesDB.auraBlacklistFaulty = {}
-                --     end
-
-                --     -- Check if the spell name already exists in the blacklist
-                --     if BetterBlizzFramesDB.auraBlacklistFaulty[spellName] then
-                --         -- If the spell ID is not already in the list, add it
-                --         local alreadyExists = false
-                --         for _, id in ipairs(BetterBlizzFramesDB.auraBlacklistFaulty[spellName]) do
-                --             if id == spellId then
-                --                 alreadyExists = true
-                --                 break
-                --             end
-                --         end
-                --         if not alreadyExists then
-                --             table.insert(BetterBlizzFramesDB.auraBlacklistFaulty[spellName], spellId)
-                --             print("Oopsie in BL: ", spellName, spellId)
-                --         end
-                --     else
-                --         -- If the spell name is not in the blacklist, add it with the spell ID
-                --         BetterBlizzFramesDB.auraBlacklistFaulty[spellName] = { spellId }
-                --         print("Oopsie in BL: ", spellName, spellId)
-                --     end
-
-                --     if db["auraBlacklist"][spellId] then
-                --         db["auraBlacklist"][spellId] = nil
-                --     end
-                --     if db["auraBlacklist"][string.lower(spellName)] then
-                --         db["auraBlacklist"][string.lower(spellName)] = nil
-                --     end
-                -- end
                 if isInBlacklist and not (allowMine and castByPlayer) then return end
             end
             if filterMount then
@@ -600,39 +539,6 @@ local function ShouldShowBuff(unit, auraData, frameType)
                 if filterOverride then return true, isImportant, isPandemic, isEnlarged, isCompacted, auraColor end
                 if shouldBlacklist then
                     local isInBlacklist, allowMine = isInBlacklist(spellName, spellId)
-                    -- if isInBlacklist and (auraData.isStealable or auraData.dispelName == "Magic") then
-                    --     -- Initialize the blacklist table if it doesn't exist
-                    --     if not BetterBlizzFramesDB.auraBlacklistFaulty then
-                    --         BetterBlizzFramesDB.auraBlacklistFaulty = {}
-                    --     end
-
-                    --     -- Check if the spell name already exists in the blacklist
-                    --     if BetterBlizzFramesDB.auraBlacklistFaulty[spellName] then
-                    --         -- If the spell ID is not already in the list, add it
-                    --         local alreadyExists = false
-                    --         for _, id in ipairs(BetterBlizzFramesDB.auraBlacklistFaulty[spellName]) do
-                    --             if id == spellId then
-                    --                 alreadyExists = true
-                    --                 break
-                    --             end
-                    --         end
-                    --         if not alreadyExists then
-                    --             table.insert(BetterBlizzFramesDB.auraBlacklistFaulty[spellName], spellId)
-                    --             print("Oopsie in BL: ", spellName, spellId)
-                    --         end
-                    --     else
-                    --         -- If the spell name is not in the blacklist, add it with the spell ID
-                    --         BetterBlizzFramesDB.auraBlacklistFaulty[spellName] = { spellId }
-                    --         print("Oopsie in BL: ", spellName, spellId)
-                    --     end
-
-                    --     if db["auraBlacklist"][spellId] then
-                    --         db["auraBlacklist"][spellId] = nil
-                    --     end
-                    --     if db["auraBlacklist"][string.lower(spellName)] then
-                    --         db["auraBlacklist"][string.lower(spellName)] = nil
-                    --     end
-                    -- end
                     if isInBlacklist and not (allowMine and castByPlayer) then return end
                 end
                 if filterMount then
@@ -675,7 +581,13 @@ end
 local function adjustCastbar(self, frame)
     local meta = getmetatable(self).__index
     local parent = meta.GetParent(self)
-    local rowHeights = parent.rowHeights or {}
+
+    if self.bbfHiddenCastbar then
+        meta.SetPoint(self, "TOPLEFT", parent, "BOTTOMLEFT", -6969, 0)
+        return
+    end
+
+    local rowHeights = (parent.hidingAllAuras and {}) or parent.rowHeights or {}
 
     meta.ClearAllPoints(self)
     if frame == TargetFrameSpellBar then
@@ -735,11 +647,17 @@ local function DefaultCastbarAdjustment(self, frame)
     local meta = getmetatable(self).__index
     local parentFrame = meta.GetParent(self)
 
+    if self.bbfHiddenCastbar then
+        meta.SetPoint(self, "TOPLEFT", parentFrame, "BOTTOMLEFT", -6969, 0)
+        return
+    end
+
     -- Determine whether to use the adjusted logic based on BetterBlizzFramesDB setting
-    local useSpellbarAnchor = buffsOnTopReverseCastbarMovement and
+    -- If hiding all auras, treat as if there are no auras (don't use spellbarAnchor)
+    local useSpellbarAnchor = not parentFrame.hidingAllAuras and (buffsOnTopReverseCastbarMovement and
                               ((parentFrame.haveToT and parentFrame.auraRows > 2) or (not parentFrame.haveToT and parentFrame.auraRows > 0)) or
                               (not buffsOnTopReverseCastbarMovement and not parentFrame.buffsOnTop and 
-                               ((parentFrame.haveToT and parentFrame.auraRows > 2) or (not parentFrame.haveToT and parentFrame.auraRows > 0)))
+                               ((parentFrame.haveToT and parentFrame.auraRows > 2) or (not parentFrame.haveToT and parentFrame.auraRows > 0))))
 
     local relativeKey = useSpellbarAnchor and parentFrame.spellbarAnchor or parentFrame
     local pointX = useSpellbarAnchor and 18 or (parentFrame.smallSize and 38 or 43)
@@ -747,7 +665,7 @@ local function DefaultCastbarAdjustment(self, frame)
 
     -- Adjustments for ToT and specific frame adjustments
     if (not useSpellbarAnchor) and parentFrame.haveToT then
-        local totAdjustment = (TargetFrameSpellBar and targetToTCastbarAdjustment) or (FocusFrameSpellBar and focusToTCastbarAdjustment)
+        local totAdjustment = ((frame == TargetFrameSpellBar and targetToTCastbarAdjustment) or (frame == FocusFrameSpellBar and focusToTCastbarAdjustment))
         if totAdjustment then
             pointY = parentFrame.smallSize and -48 or -46
             if frame == TargetFrameSpellBar then
@@ -1281,13 +1199,14 @@ local function AdjustAuras(self, frameType)
         --local previousAuraWasImportant = false
 
         for i, aura in ipairs(auras) do
+            local enlargedOrCompact = aura.isEnlarged or aura.isCompacted
             aura:SetScale(auraScale)
             --aura:SetMouseClickEnabled(false)
             local auraSize = aura:GetHeight()
             if not aura.isLarge then
                 -- Apply the adjusted size to smaller auras
                 aura:SetSize(adjustedSize, adjustedSize)
-                if not MasqueOn then
+                if not MasqueOn and not enlargedOrCompact then
                     if aura.PurgeGlow then
                         aura.PurgeGlow:SetScale(targetAndFocusSmallAuraScale)
                     end
@@ -1311,13 +1230,22 @@ local function AdjustAuras(self, frameType)
                 aura.Count:SetScale(auraStackSize)
             end
 
-            if aura.isEnlarged or aura.isCompacted then
+            if enlargedOrCompact then
                 local sizeMultiplier = aura.isEnlarged and userEnlargedAuraSize or userCompactedAuraSize
                 local defaultLargeAuraSize = aura.isLarge and 21 or 17
                 local importantSize = defaultLargeAuraSize * sizeMultiplier
                 aura:SetSize(importantSize, importantSize)
                 if aura.Stealable then
                     aura.Stealable:SetScale(sizeMultiplier)
+                end
+                if aura.PurgeGlow then
+                    aura.PurgeGlow:SetScale(1)
+                end
+                if aura.ImportantGlow then
+                    aura.ImportantGlow:SetScale(1)
+                end
+                if aura.PandemicGlow then
+                    aura.PandemicGlow:SetScale(1)
                 end
                 aura.wasEnlarged = true
                 auraSize = importantSize
@@ -1446,6 +1374,25 @@ local function AdjustAuras(self, frameType)
                 aura.spellId = auraData.spellId
                 aura.duration = auraData.duration
 
+                -- Attach weakauras to certain named auraframes
+                if BBF.globalAuraFrames and BBF.globalAuraFrames[auraData.spellId] then
+                    if frameType == "target" then
+                        if not _G["BBFTargetAura"..auraData.name] then
+                            _G["BBFTargetAura"..auraData.name] = CreateFrame("Frame", "BBFTargetAura"..auraData.name, UIParent)
+                            _G["BBFTargetAura"..auraData.name]:SetAllPoints(aura)
+                        else
+                            _G["BBFTargetAura"..auraData.name]:SetAllPoints(aura)
+                        end
+                    else
+                        if not _G["BBFFocusAura"..auraData.name] then
+                            _G["BBFFocusAura"..auraData.name] = CreateFrame("Frame", "BBFFocusAura"..auraData.name, UIParent)
+                            _G["BBFFocusAura"..auraData.name]:SetAllPoints(aura)
+                        else
+                            _G["BBFFocusAura"..auraData.name]:SetAllPoints(aura)
+                        end
+                    end
+                end
+
                 if trackedAuras[auraData.spellId] then
                     aura.Cooldown:SetCooldown(activeNonDurationAuras[auraData.spellId] or 0, trackedAuras[auraData.spellId].duration or 0)
                     C_Timer.After(0.1, function()
@@ -1473,7 +1420,7 @@ local function AdjustAuras(self, frameType)
                             local thisAuraData = C_UnitAuras.GetAuraDataByAuraInstanceID(self.unit, currentAuraID)
                             if thisAuraData then
                                 local iconTexture = thisAuraData.icon and "|T" .. thisAuraData.icon .. ":16:16|t" or ""
-                                print("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: " .. iconTexture .. " " .. (thisAuraData.name or "Unknown") .. "  |A:worldquest-icon-engineering:14:14|a ID: " .. (thisAuraData.spellId or "Unknown"))
+                                BBF.Print(iconTexture .. " " .. (thisAuraData.name or L["Unknown"]) .. "  |A:worldquest-icon-engineering:14:14|a ID: " .. (thisAuraData.spellId or L["Unknown"]))
                                 aura.bbfPrinted = true
                                 aura.bbfLastPrintedAuraID = currentAuraID
 
@@ -1641,32 +1588,6 @@ local function AdjustAuras(self, frameType)
                         aura.Stealable:SetAlpha(1)
                     end
                 end
-
-                --print(aura.Stealable, aura.Stealable:IsShown())
-
-                -- if aura.Stealable and aura.Stealable:IsShown() then
-                --     if aura.border then
-                --         aura.border:Hide()
-                --         aura.Icon:SetTexCoord(0, 1, 0, 1)
-                --     end
-                -- else
-                --     if aura.border then
-                --         aura.border:Show()
-                --         aura.Icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-                --     end
-                -- end
-
-                -- if BBF.purge then
-                --     if auraData.dispelName == "Magic" and auraData.isHelpful then
-                --         if aura.Stealable then
-                --             aura.Stealable:Show()
-                --         end
-                --     else
-                --         if aura.Stealable then
-                --             aura.Stealable:Hide()
-                --         end
-                --     end
-                -- end
 
                 if aura.Border ~= nil then
                     debuffs[#debuffs + 1] = aura
@@ -1926,7 +1847,7 @@ local function CreateToggleIcon()
 
             BBF.RefreshAllAuraFrames()
 
-            print("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: Hidden Icon Direction set to: " .. BetterBlizzFramesDB.hiddenIconDirection)
+            BBF.Print(string.format(L["Print_Hidden_Icon_Direction"], BetterBlizzFramesDB.hiddenIconDirection))
 
         elseif IsShiftKeyDown() then
             -- Reset position to default
@@ -1958,7 +1879,7 @@ local function CreateToggleIcon()
     toggleIcon:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_BOTTOM", 0, -10)
         GameTooltip:AddLine("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames")
-        GameTooltip:AddLine("Filtered buffs. Click to show/hide currently hidden buffs.\n\n|cff00ff00To Whitelist an Aura:|r\nShift+Alt + LeftClick\n\n|cffff0000To Blacklist an Aura:|r\nShift+Alt + RightClick |cffffff00OR|r\nCtrl+Alt RightClick with \"Show Mine\" tag\n\nCtrl+LeftClick to move.\nShift+LeftClick to reset position.\nAlt+LeftClick to change direction.\n\n(You can hide this icon in settings)", 1, 1, 1, true)
+        GameTooltip:AddLine(L["Tooltip_Filtered_Buffs_Icon_Retail"], 1, 1, 1, true)
         GameTooltip:Show()
         if not self.isAurasShown then
             ShowHiddenAuras()
@@ -1999,7 +1920,24 @@ local function CreateToggleIcon()
     return toggleIcon
 end
 
-
+function BBF.UpdateHiddenAuraButtonPos()
+    if not toggleIconGlobal then return end
+    toggleIconGlobal:ClearAllPoints()
+    if BetterBlizzFramesDB.toggleIconPosition then
+        local pos = BetterBlizzFramesDB.toggleIconPosition
+        toggleIconGlobal:SetPoint(pos[1], UIParent, pos[3], pos[4], pos[5])
+    else
+        if BuffFrame.CollapseAndExpandButton then
+            if BuffFrame.AuraContainer.addIconsToRight then
+                toggleIconGlobal:SetPoint("RIGHT", BuffFrame.CollapseAndExpandButton, "LEFT", 0, 0)
+            else
+                toggleIconGlobal:SetPoint("LEFT", BuffFrame.CollapseAndExpandButton, "RIGHT", 0, 0)
+            end
+        else
+            toggleIconGlobal:SetPoint("TOPLEFT", BuffFrame, "TOPRIGHT", 0, -6)
+        end
+    end
+end
 
 local BuffFrame = BuffFrame
 local printedMsg
@@ -2127,7 +2065,7 @@ local function PersonalBuffFrameFilterAndGrid(self)
 
                         if auraData and (not auraFrame.bbfPrinted or auraFrame.bbfLastPrintedAuraIndex ~= currentAuraIndex) then
                             local iconTexture = auraData.icon and "|T" .. auraData.icon .. ":16:16|t" or ""
-                            print("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: " .. iconTexture .. " " .. (auraData.name or "Unknown") .. "  |A:worldquest-icon-engineering:14:14|a ID: " .. (auraData.spellId or "Unknown"))
+                            BBF.Print(iconTexture .. " " .. (auraData.name or L["Unknown"]) .. "  |A:worldquest-icon-engineering:14:14|a ID: " .. (auraData.spellId or L["Unknown"]))
                             auraFrame.bbfPrinted = true
                             auraFrame.bbfLastPrintedAuraIndex = currentAuraIndex  -- Store the index of the aura that was just printed
                             -- Cancel existing timer if any
@@ -2331,7 +2269,7 @@ local function PersonalBuffFrameFilterAndGrid(self)
     else
         if not printedMsg then
             printedMsg = true
-            print("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: Buff Filtering with auras collapsed is currently not supported. Expand them (Pointy arrow next to Buffs) and reload or turn Player Buff filtering off. It is being worked on.")
+            BBF.Print(L["Print_Buff_Filtering_Collapsed"])
             C_Timer.After(30, function()
                 printedMsg = false
             end)
@@ -2376,7 +2314,7 @@ local function PersonalDebuffFrameFilterAndGrid(self)
         warningTexture:EnableMouse(true)
         warningTexture:SetScript("OnEnter", function(self)
             GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-            GameTooltip:SetText("BetterBlizzFrames\nDoT Detected", 1, 1, 1)
+            GameTooltip:SetText(L["DoT_Detected_Tooltip"], 1, 1, 1)
             GameTooltip:Show()
         end)
 
@@ -2397,18 +2335,6 @@ local function PersonalDebuffFrameFilterAndGrid(self)
         --if isExpanded or not auraInfo.hideUnlessExpanded then
             local auraFrame = DebuffFrame.auraFrames[auraIndex]
             if auraFrame and not auraFrame.isAuraAnchor then
---[[
-                if auraInfo then
-                    print("Aura Data:")
-                    for k, v in pairs(auraInfo) do
-                        print(k, v)
-                    end
-                else
-                    print("No aura data available.")
-                end
-]]
-                --local spellID = select(10, UnitAura("player", auraInfo.index));
-                --if ShouldHideSpell(spellID) then
                     local name, icon, count, dispelType, duration, expirationTime, source, 
                     isStealable, nameplateShowPersonal, spellId, canApplyAura, 
                     isBossDebuff, castByPlayer, nameplateShowAll, timeMod 
@@ -2454,7 +2380,7 @@ local function PersonalDebuffFrameFilterAndGrid(self)
 
                             if auraData and (not auraFrame.bbfPrinted or auraFrame.bbfLastPrintedAuraIndex ~= currentAuraIndex) then
                                 local iconTexture = auraData.icon and "|T" .. auraData.icon .. ":16:16|t" or ""
-                                print("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: " .. iconTexture .. " " .. (auraData.name or "Unknown") .. "  |A:worldquest-icon-engineering:14:14|a ID: " .. (auraData.spellId or "Unknown"))
+                                BBF.Print(iconTexture .. " " .. (auraData.name or L["Unknown"]) .. "  |A:worldquest-icon-engineering:14:14|a ID: " .. (auraData.spellId or L["Unknown"]))
                                 auraFrame.bbfPrinted = true
                                 auraFrame.bbfLastPrintedAuraIndex = currentAuraIndex
                                 -- Cancel existing timer if any
@@ -2622,7 +2548,7 @@ function BBF.RefreshAllAuraFrames()
     else
         if not auraMsgSent then
             auraMsgSent = true
-            DEFAULT_CHAT_FRAME:AddMessage("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: You need to enable aura settings for blacklist and whitelist etc to work.")
+            DEFAULT_CHAT_FRAME:AddMessage(L["Chat_Enable_Aura_Settings"])
             C_Timer.After(9, function()
                 auraMsgSent = false
             end)
@@ -2847,6 +2773,7 @@ function BBF.HookPlayerAndTargetAuras()
                     aura:Hide()
                 end
             end)
+            TargetFrame.hidingAllAuras = true
             BBF.HidingAllTargetAuras = true
         else
             hooksecurefunc(TargetFrame, "UpdateAuras", function(self) AdjustAuras(self, "target") end)
@@ -2858,6 +2785,7 @@ function BBF.HookPlayerAndTargetAuras()
                     aura:Hide()
                 end
             end)
+            FocusFrame.hidingAllAuras = true
             BBF.HidingAllFocusAuras = true
         else
             hooksecurefunc(FocusFrame, "UpdateAuras", function(self) AdjustAuras(self, "focus") end)
@@ -2867,7 +2795,7 @@ function BBF.HookPlayerAndTargetAuras()
     end
 
     --Hook Target & Focus Castbars
-    if not targetCastbarsHooked then
+    if not targetCastbarsHooked and not BetterBlizzFramesDB.disableCastbarMovement then
         hooksecurefunc(TargetFrame.spellbar, "SetPoint", function()
             if shouldAdjustCastbar then
                 adjustCastbar(TargetFrame.spellbar, TargetFrameSpellBar)
@@ -2882,6 +2810,12 @@ function BBF.HookPlayerAndTargetAuras()
                 DefaultCastbarAdjustment(FocusFrame.spellbar, FocusFrameSpellBar)
             end
         end);
+        targetCastbarsHooked = true
+    end
+
+    if BetterBlizzFramesDB.disableCastbarMovement then
+        TargetFrame.staticCastbar = true
+        FocusFrame.staticCastbar = true
     end
 
     -- --Hook Target & Focus Castbars

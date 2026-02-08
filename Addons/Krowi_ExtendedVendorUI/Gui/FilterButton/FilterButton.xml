@@ -1,23 +1,30 @@
 <Ui>
-    <Script file="FilterButtonMixin.lua"/>
+    <Script file='FilterButton.lua'/>
+    <Script file='FilterButtonMixin.lua'/>
 
-	<DropDownToggleButton name="KrowiEVU_FilterButton" mixin="KrowiEVU_FilterButtonMixin" inherits="UIMenuButtonStretchTemplate" text="Filters" parent="MerchantFrame" parentKey="FilterButton">
-		<Size x="150" y="22"/>
-        <Anchors>
-        	<Anchor point="TOPRIGHT" x="-10" y="-31" />
-        </Anchors>
+	<DropDownToggleButton name='KrowiEVU_FilterButton_Classic_Template' mixin='KrowiEVU_FilterButtonMixin' inherits='UIMenuButtonStretchTemplate' text='Filters' virtual='true'>
+		<Size x='150' y='22'/>
 		<Layers>
-			<Layer level="ARTWORK">
-				<Texture parentKey="Icon" file="Interface\ChatFrame\ChatFrameExpandArrow">
-					<Size x="10" y="12"/>
+			<Layer level='ARTWORK'>
+				<Texture parentKey='Icon' file='Interface\ChatFrame\ChatFrameExpandArrow'>
+					<Size x='10' y='12'/>
 					<Anchors>
-						<Anchor point="RIGHT" relativeKey="$parent.Right" relativePoint="RIGHT" x="-5"/>
+						<Anchor point='RIGHT' x='-5'/>
 					</Anchors>
 				</Texture>
 			</Layer>
 		</Layers>
 		<Scripts>
-			<OnMouseDown inherit="append" method="MyOnMouseDown"/>
+			<OnLoad method='OnLoad'/>
+			<OnMouseDown method='OnMouseDown'/>
 		</Scripts>
 	</DropDownToggleButton>
+
+	<DropdownButton name='KrowiEVU_FilterButton_Modern_Template' mixin='KrowiEVU_FilterButtonMixin' inherits='WowStyle1DropdownTemplate' virtual='true'>
+		<Size x='152' y='25'/>
+		<Scripts>
+			<OnLoad method='OnLoad'/>
+			<OnMouseDown method='OnMouseDown'/>
+		</Scripts>
+    </DropdownButton>
 </Ui>

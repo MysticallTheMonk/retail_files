@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 -- Premade Groups Filter
 -------------------------------------------------------------------------------
--- Copyright (C) 2024 Bernhard Saumweber
+-- Copyright (C) 2026 Bernhard Saumweber
 --
 -- This program is free software; you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -48,6 +48,6 @@ end
 function PGF.GetSearchResultMemberInfo(...)
     local info = C_LFGList.GetSearchResultPlayerInfo(...)
     if info then
-        return info.assignedRole, info.classFilename, info.className, info.specName, info.isLeader
+        return info.assignedRole, info.classFilename, info.className, info.specName, info.isLeader, info.isLeaver
     end
 end

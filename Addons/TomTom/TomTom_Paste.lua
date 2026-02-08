@@ -1,108 +1,231 @@
 local _, addon = ...
 local L = TomTomLocals
 
--- Credit to p3lim for the basic paste widget used here, adapted from
--- https://github.com/p3lim-wow/Inomena/blob/master/modules/widgets/paste.lua
+local ldb = LibStub("LibDataBroker-1.1")
+local ldbicon = LibStub("LibDBIcon-1.0")
 
-addon.TEXTURE = [[Interface\ChatFrame\ChatFrameBackground]]
 
-local BACKDROP = {
-	bgFile = addon.TEXTURE,
-	edgeFile = addon.TEXTURE,
-	edgeSize = 1,
-}
-
-local backdropMixin = {}
-function backdropMixin:CreateBackdrop(backdropAlpha, borderAlpha)
-	if not self.SetBackdrop then
-		Mixin(self, BackdropTemplateMixin)
+local function initPasteWindow()
+	if addon.pasteWindow then
+		return addon.pasteWindow
 	end
 
-	self:SetBackdrop(BACKDROP)
-	self:SetBackdropColor(0, 0, 0, backdropAlpha or 0.5)
-	self:SetBackdropBorderColor(0, 0, 0, borderAlpha or 1)
+	addon.pasteWindow = CreateFrame("Frame", "TomTomPaste", UIParent, "DefaultPanelTemplate,ClickToDragTemplate")
+
+	local frame = addon.pasteWindow
+	frame:SetHeight(450)
+	frame:SetWidth(465)
+	frame:SetFrameStrata("HIGH")
+	frame:ClearAllPoints()
+	frame.TitleContainer.TitleText:SetText(L["TomTom Paste"])
+	frame:SetPoint("CENTER", 0, 200)
+	frame:Hide()
+
+	-- Edit box time!
+	frame.EditBox = CreateFrame("Frame", "TomTomPasteEditBox", frame, "TomTomScrollingEditBoxTemplate")
+	local editBox = frame.EditBox
+
+	editBox:SetPoint("TOPLEFT", frame, "TOPLEFT", 14, -80)
+	editBox:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -10, 40)
+
+	editBox:SetWidth(435)
+	editBox:SetHeight(85)
+
+	local label = L["Add several /way commands here and click Paste"]
+	editBox.Label = editBox:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+	editBox.Label:SetPoint("BOTTOMLEFT", editBox, "TOPLEFT", 0, 5)
+	editBox.Label:SetPoint("BOTTOMRIGHT", editBox, "TOPRIGHT", 0, 5)
+	editBox.Label:SetWordWrap(true)
+	editBox.Label:SetMaxLines(9)
+	editBox.Label:SetJustifyV("BOTTOM")
+	editBox.Label:SetJustifyH("LEFT")
+	editBox.Label:SetText(label)
+
+	local function OnTextChanged(o, editBox, userChanged)
+		local text = editBox:GetText()
+	end
+
+	local function OnEscapePressed(o, editBox)
+		editBox:ClearFocus()
+	end
+
+	local function OnEnterPressed(o, editBox)
+		if IsControlKeyDown() then
+			editBox:ClearFocus()
+			frame.PasteButton:Click()
+			return
+		end
+
+		local text = editBox:GetText()
+		text = text .. "\n"
+		editBox:SetText(text)
+	end
+
+	editBox.ScrollingEditBox:RegisterCallback("OnTextChanged", OnTextChanged, editBox)
+	editBox.ScrollingEditBox:RegisterCallback("OnEscapePressed", OnEscapePressed, editBox)
+	editBox.ScrollingEditBox:RegisterCallback("OnEnterPressed", OnEnterPressed, editBox)
+
+	local scrollBox = editBox.ScrollingEditBox:GetScrollBox()
+	ScrollUtil.RegisterScrollBoxWithScrollBar(scrollBox, editBox.ScrollBar)
+
+	local scrollBoxAnchorsWithBar = {
+		CreateAnchor("TOPLEFT", editBox.ScrollingEditBox, "TOPLEFT", 0, 0),
+		CreateAnchor("BOTTOMRIGHT", editBox.ScrollingEditBox, "BOTTOMRIGHT", -18, -1),
+	}
+	local scrollBoxAnchorsWithoutBar = {
+		scrollBoxAnchorsWithBar[1],
+		CreateAnchor("BOTTOMRIGHT", editBox.ScrollingEditBox, "BOTTOMRIGHT", -2, -1),
+	}
+	ScrollUtil.AddManagedScrollBarVisibilityBehavior(scrollBox, editBox.ScrollBar, scrollBoxAnchorsWithBar, scrollBoxAnchorsWithoutBar)
+
+	frame.CloseButton = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
+	frame.CloseButton:SetText(L["Close"])
+	frame.CloseButton:SetHeight(23)
+	frame.CloseButton:SetWidth(100)
+	frame.CloseButton:ClearAllPoints()
+	frame.CloseButton:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -6, 5)
+	frame.CloseButton:SetScript("OnClick", function(button)
+		frame:SetShown(false)
+	end)
+
+	frame.PasteButton = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
+	frame.PasteButton:SetText(L["Paste"])
+	frame.PasteButton:SetHeight(23)
+	frame.PasteButton:SetWidth(100)
+	frame.PasteButton:ClearAllPoints()
+	frame.PasteButton:SetPoint("RIGHT", frame.CloseButton, "LEFT", 0, 0)
+	frame.PasteButton:SetScript("OnClick", function(button)
+		local text = frame.EditBox.ScrollingEditBox:GetText()
+		local lines = {string.split("\n", text)}
+
+		for idx, line in ipairs(lines) do
+			-- remove the first token from the commands
+			line = line:gsub("^%S+", "")
+			if line:match("%S+") then
+				addon.SlashWayCommand(line)
+			end
+		end
+	end)
+
+	return addon.pasteWindow
 end
 
-local paste = Mixin(CreateFrame("Frame", "TomTomPaste", UIParent), backdropMixin)
-paste:SetPoint("CENTER")
-paste:SetSize(600, 400)
-paste:Hide()
-paste:CreateBackdrop()
+--[[--------------------------------------------------------------------------
+--  Minimap Button
+----------------------------------------------------------------------------]]
 
-local editbox = Mixin(CreateFrame("EditBox", nil, paste), backdropMixin)
-editbox:SetPoint("TOPLEFT", 5, -5)
-editbox:SetPoint("BOTTOMRIGHT", -5, 30)
-editbox:SetFontObject(ChatFontNormal)
-editbox:SetMultiLine(true)
-editbox:SetAutoFocus(false)
-editbox:CreateBackdrop()
-editbox:SetScript("OnEscapePressed", function()
-    editbox:ClearFocus()
-end)
-editbox:SetScript("OnShow", function()
-    editbox:SetFocus(true)
-end)
+local ldb_feed
+local iconName = "TomTom-Paste"
 
-local submit = CreateFrame("Button", nil, paste, "UIPanelButtonTemplate")
-submit:SetPoint("BOTTOM", -25, 5)
-submit:SetSize(50, 20)
-submit:SetText("Paste")
-submit:SetScript("OnClick", function()
-	for _, line in ipairs({string.split("\n", editbox:GetText())}) do
-		ChatFrame_OpenChat("")
-		local editBox = ChatEdit_GetActiveWindow()
-		editBox:SetText(line)
-		ChatEdit_SendText(editBox, 1)
-		ChatEdit_DeactivateChat(editBox)
-	end
+local function getMinimapPasteButton()
+    if not ldb_feed then
+        ldb_feed = ldb:NewDataObject("TomTom-Paste", {
+            type = "data source",
+            icon = "interface/icons/inv_misc_note_03",
+            text = L["TomTom Paste"],
+            OnTooltipShow = function(tooltip)
+                tooltip:AddLine(L["Toggle the TomTom Paste Window"])
+            end,
+            OnClick = function()
+                local window = initPasteWindow()
+                window:SetShown(not window:IsShown())
+            end,
+            showInCompartment = false,
+        })
 
-	editbox:SetText("")
-	paste:Hide()
-end)
+        ldbicon:Register(iconName, ldb_feed, addon.db.profile.paste)
+    end
+end
 
-editbox:SetScript('OnEnterPressed', function()
-	if IsControlKeyDown() then
-		submit:Click()
-	end
-end)
+addon.compartmentButtonObject = {
+    text = L["TomTom Paste"],
+    icon = "interface/icons/inv_misc_note_03",
+    notCheckable = true,
+    func = function(button, menuInputData, menu)
+        local window = initPasteWindow()
+        window:SetShown(not window:IsShown())
+    end,
+    funcOnEnter = function(button)
+        MenuUtil.ShowTooltip(button, function(tooltip)
+            tooltip:SetText(L["Open the TomTom Paste window"])
+        end)
+    end,
+    funcOnLeave = function(button)
+        MenuUtil.HideTooltip(button)
+    end,
+}
 
-local close = CreateFrame("Button", nil, paste, "UIPanelButtonTemplate")
-close:SetPoint("BOTTOM", 25, 5)
-close:SetSize(50, 20)
-close:SetText("Close")
-close:SetScript("OnClick", function()
-	paste:Hide()
-end)
+local function updateCompartmentButton(show)
+    if not AddonCompartmentFrame then return end
+
+    if show then
+        AddonCompartmentFrame:RegisterAddon(addon.compartmentButtonObject)
+    else
+        for idx, obj in ipairs(AddonCompartmentFrame.registeredAddons) do
+            if obj == addon.compartmentButtonObject then
+                table.remove(AddonCompartmentFrame.registeredAddons, idx)
+                AddonCompartmentFrame:UpdateDisplay()
+                return
+            end
+		end
+    end
+end
+
+--[[--------------------------------------------------------------------------
+--  Config Handler for /ttpaste
+----------------------------------------------------------------------------]]
+
+function addon:PasteConfigChanged()
+    if addon.profile.paste.minimap_button then
+        getMinimapPasteButton()
+        ldbicon:Show(iconName)
+    else
+        getMinimapPasteButton()
+        ldbicon:Hide(iconName)
+    end
+
+    local showCompartment = addon.profile.paste.addon_compartment_button
+    updateCompartmentButton(showCompartment)
+end
+
+--[[--------------------------------------------------------------------------
+--  Slash Command for /ttpaste
+----------------------------------------------------------------------------]]
 
 SLASH_TOMTOM_PASTE1 = "/ttpaste"
 SLASH_TOMTOM_PASTE2 = "/tomtompaste"
+SLASH_TOMTOM_PASTE3 = "/ttp"
 
-local function slashToggle()
-    paste:SetShown(not paste:IsShown())
-end
+local slashModule = {}
 
-local function initPageDB()
+function slashModule:InitPageDB()
 	if not addon.db.profile.pastePages then
 		addon.db.profile.pastePages = {}
 	end
 end
 
-local function getPage(title)
-	initPageDB()
+function slashModule:Toggle()
+    local window = initPasteWindow()
+    window:SetShown(not window:IsShown())
+end
+
+function slashModule:GetPage(title)
+	self:InitPageDB()
 	return addon.db.profile.pastePages[title]
 end
 
-local function setPage(title, contents)
-	initPageDB()
+function slashModule:SetPage(title, contents)
+	self:InitPageDB()
 	addon.db.profile.pastePages[title] = contents
 end
 
-local function removePage(title)
-	initPageDB()
+function slashModule:DeletePage(title)
+	self:InitPageDB()
 	addon.db.profile.pastePages[title] = nil
 end
 
-local function slashList()
+function slashModule:ListPages()
+    self:InitPageDB()
     local titles = {}
     for k,v in pairs(addon.db.profile.pastePages or {}) do
         table.insert(titles, k)
@@ -115,8 +238,16 @@ local function slashList()
     end
 end
 
-local function slashSave(title)
-    local contents = editbox:GetText()
+function slashModule:getEditBoxText()
+    return addon.pasteWindow.EditBox.ScrollingEditBox:GetText()
+end
+
+function slashModule:setEditBoxText(text)
+    return addon.pasteWindow.EditBox.ScrollingEditBox:SetText(text)
+end
+
+function slashModule:SavePage(title)
+    local contents = self:getEditBoxText()
     if not contents or #contents <= 0 then
         addon:Printf(L["No contents to save"])
         return
@@ -127,41 +258,68 @@ local function slashSave(title)
         return
     end
 
-	setPage(title, contents)
+	self:SetPage(title, contents)
     addon:Printf(L["Saved %d characters to page '%s'"], #contents, title)
 end
 
-local function slashLoad(title)
+function slashModule:LoadPage(title)
     if not title then
         addon:Printf(L["Must specify a page title to load"])
         return
     end
 
-	local contents = getPage(title)
+	local contents = self:GetPage(title)
     if not contents then
         addon:Printf(L["No page found with title '%s'"], title)
         return
     end
 
-    editbox:SetText(contents)
+    local window = initPasteWindow()
+    window:SetShown(true)
+
+    self:setEditBoxText(contents)
     addon:Printf(L["Loaded %d characters from page '%s'"], #contents, title)
-    paste:SetShown(true)
 end
 
-local function slashRemove(title)
+function slashModule:RemovePage(title)
     if not title then
         addon:Printf(L["Must specify a page title to remove"])
         return
     end
 
-    local contents = addon.db.profile.pastePages[title]
+    local contents = self:GetPage(title)
     if not contents then
         addon:Printf(L["No page found with title '%s'"], title)
         return
     end
 
-	removePage(title)
+	self:DeletePage(title)
     addon:Printf(L["Removed %d characters from page '%s'"], #contents, title)
+end
+
+function slashModule:ToggleMinimap(action)
+    local current = addon.db.profile.paste.minimap_button
+
+    -- Coerce to boolean just in case something silly happens :)
+    current = not not current
+    local shown = current
+
+    if action == "show" then
+        shown = true
+    elseif action == "hide" then
+        shown = false
+    else
+        shown = not shown
+    end
+
+    if shown then
+        addon:Printf(L["Showing the TomTom-Paste minimap button"])
+    else
+        addon:Printf(L["Hiding the TomTom-Paste minimap button"])
+    end
+
+    addon.db.profile.paste.minimap_button = shown
+    addon:PasteConfigChanged()
 end
 
 SlashCmdList["TOMTOM_PASTE"] = function(msg)
@@ -174,17 +332,19 @@ SlashCmdList["TOMTOM_PASTE"] = function(msg)
     end
 
     if not subCommand then
-        slashToggle()
+        slashModule:Toggle()
     elseif subCommand == L["toggle"] then
-        slashToggle()
+        slashModule:Toggle()
     elseif subCommand == L["list"] then
-        slashList()
+        slashModule:ListPages()
     elseif subCommand == L["save"] then
-        slashSave(remainder)
+        slashModule:SavePage(remainder)
     elseif subCommand == L["load"] then
-        slashLoad(remainder)
+        slashModule:LoadPage(remainder)
     elseif subCommand == L["remove"] then
-        slashRemove(remainder)
+        slashModule:RemovePage(remainder)
+    elseif subCommand == L["minimap"] then
+        slashModule:ToggleMinimap(remainder)
     else
         addon:Printf(L["Usage: /ttpaste [command]"])
         addon:Printf(L["  /ttpaste toggle - Show/hide the paste window"])
@@ -192,6 +352,7 @@ SlashCmdList["TOMTOM_PASTE"] = function(msg)
         addon:Printf(L["  /ttpaste save [title] - Save the current contents of the window with the given name"])
         addon:Printf(L["  /ttpaste load [title] - Load a saved page to the paste window"])
         addon:Printf(L["  /ttpaste remove [title] - Remove a saved page"])
+        addon:Printf(L["  /ttpaste minimap - Show or Hide the minimap button for the paste window"])
         addon:Printf(L["  /ttpaste help - This help message"])
     end
 end

@@ -50,10 +50,28 @@ function BBF.HealerIndicatorPortrait()
     if BBF.healerPortrait then return end
     hooksecurefunc("UnitFramePortrait_Update", function(self)
         local unit = self.unit
-        if (unit == "target" or unit == "focus") and BBF.IsSpecHealer(unit) then
-            self.portrait:SetAtlas("UI-LFG-RoleIcon-Healer")
-            self.portrait:SetTexCoord(0.13,0.85,0.13,0.83)
-            self.bbfHealerPortraitActive = true
+        if (unit == "target" or unit == "focus" or unit == "player") and UnitIsPlayer(unit) then
+            if BBF.IsSpecHealer(unit) and unit ~= "player" then
+                self.portrait:SetAtlas("UI-LFG-RoleIcon-Healer")
+                self.portrait:SetTexCoord(0.13,0.85,0.13,0.83)
+                self.bbfHealerPortraitActive = true
+            elseif BetterBlizzFramesDB.classPortraitsUseSpecIcons then
+                if unit == "player" and BetterBlizzFramesDB.classPortraitsUseSpecIconsSkipSelf then
+                    return
+                end
+                local specID = BBF.GetSpecID(self.unit)
+                if specID then
+                    local _, _, _, icon = GetSpecializationInfoByID(specID)
+                    if icon then
+                        self.portrait:SetTexture(icon)
+                        self.portrait:SetTexCoord(0, 1, 0, 1)
+                        return
+                    end
+                end
+            elseif self.bbfHealerPortraitActive then
+                self.portrait:SetTexCoord(0,1,0,1)
+                self.bbfHealerPortraitActive = nil
+            end
         elseif self.bbfHealerPortraitActive then
             self.portrait:SetTexCoord(0,1,0,1)
             self.bbfHealerPortraitActive = nil

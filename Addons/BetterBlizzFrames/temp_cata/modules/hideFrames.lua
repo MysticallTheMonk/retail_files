@@ -17,6 +17,7 @@ local minimapButtonsHooked = false
 local bagButtonsHooked = false
 local keybindAlphaChanged = false
 local PlayerStatusTextureParent
+local maxLvl = BBF.isMoP and 90 or BBF.isTBC and 70 or 85
 
 local changes = {}
 local originalParents = {}
@@ -24,6 +25,20 @@ local originalParents = {}
 local function applyAlpha(frame, alpha)
     if frame then
         frame:SetAlpha(alpha)
+    end
+end
+
+local function hideElementByParent(element)
+    if element and not element.bbfOriginalParent then
+        element.bbfOriginalParent = element:GetParent()
+        element:SetParent(BBF.hiddenFrame)
+    end
+end
+
+local function restoreElementParent(element)
+    if element and element.bbfOriginalParent then
+        element:SetParent(element.bbfOriginalParent)
+        element.bbfOriginalParent = nil
     end
 end
 
@@ -111,8 +126,7 @@ local function UpdateLevelTextVisibility(unitFrame, unit)
             end
             return
         end
-        local lvl = BBF.isMoP and 90 or 85
-        if UnitLevel(unit) == lvl then
+        if UnitLevel(unit) == maxLvl then
             unitFrame:SetAlpha(0)
         else
             unitFrame:SetAlpha(1)
@@ -213,6 +227,13 @@ function BBF.HideFrames()
     --     FocusFrame.TargetFrameContent.TargetFrameContentContextual.PrestigeBadge:SetAlpha(prestigeBadgeAlpha)
     --     FocusFrame.TargetFrameContent.TargetFrameContentContextual.PrestigePortrait:SetAlpha(prestigeBadgeAlpha)
 
+        -- Hide Pet Frame
+        if BetterBlizzFramesDB.hidePetFrame then
+            hideElementByParent(PetFrame)
+        else
+            restoreElementParent(PetFrame)
+        end
+
         -- Hide reputation color on target frame (color tint behind name)
         if BetterBlizzFramesDB.hideTargetReputationColor then
             --BBF.SetAlphaRegion(TargetFrameNameBackground)
@@ -223,8 +244,12 @@ function BBF.HideFrames()
             --     frame:SetHeight(42)
             -- end)
             BBF.HookAndDo(TargetFrameBackground, "SetSize", function(frame, width, height, flag)
-                -- Custom behavior: Resize the frame
-                frame:SetSize(119, 42, flag)
+                local classification = UnitClassification("target")
+                if classification == "minus" then
+                    frame:SetSize(119, 10, flag)
+                else
+                    frame:SetSize(119, 42, flag)
+                end
             end)
             TargetFrameBackground:SetSize(119, 42)
         else
@@ -240,8 +265,12 @@ function BBF.HideFrames()
             --FocusFrameBackground:SetHeight(42)
             --BBF.SetRegionHeight(FocusFrameBackground, 42)
             BBF.HookAndDo(FocusFrameBackground, "SetSize", function(frame, width, height, flag)
-                -- Custom behavior: Resize the frame
-                frame:SetSize(119, 42, flag)
+                local classification = UnitClassification("focus")
+                if classification == "minus" then
+                    frame:SetSize(119, 10, flag)
+                else
+                    frame:SetSize(119, 42, flag)
+                end
             end)
             FocusFrameBackground:SetSize(119, 42)
         else
@@ -290,11 +319,13 @@ function BBF.HideFrames()
                 end
             end
             PlayerRestIcon:Hide()
-            PlayerStatusGlow:Hide(0)
+            PlayerStatusGlow:Hide()
             if not PlayerStatusGlow.BBFHookHide then
+                hooksecurefunc(PlayerRestIcon, "Show", OnShowHookScript())
                 hooksecurefunc(PlayerStatusGlow, "Show", OnShowHookScript())
                 PlayerStatusGlow.BBFHookHide = true
             end
+            PlayerRestIcon:SetAlpha(0)
         end
         -- Hide or show rested glow on unit frame
         --ChangeParent(PlayerStatusTexture, BetterBlizzFramesDB.hidePlayerRestGlow)
@@ -353,19 +384,53 @@ function BBF.HideFrames()
     UpdateLevelTextVisibility(FocusFrameTextureFrameLevelText, "focus")
     UpdateLevelTextVisibility(PlayerLevelText, "player")
 
-    if BetterBlizzFramesDB.hideLevelTextAlways and not BBF.classicFramesLevelHide then
-        local targetTexture = BetterBlizzFramesDB.biggerHealthbars and "Interface\\Addons\\BetterBlizzFrames\\media\\UI-TargetingFrame-NoLevel" or "Interface\\TargetingFrame\\UI-TargetingFrame-NoLevel"
-        PlayerFrameTexture:SetTexture(targetTexture)
+    if BetterBlizzFramesDB.hideLevelText and not BBF.classicFramesLevelHide then
+        local noLevelTexture = BetterBlizzFramesDB.biggerHealthbars and "Interface\\Addons\\BetterBlizzFrames\\media\\UI-TargetingFrame-NoLevel" or "Interface\\TargetingFrame\\UI-TargetingFrame-NoLevel"
+
+        if BetterBlizzFramesDB.hideLevelTextAlways or UnitLevel("player") == maxLvl then
+            PlayerFrameTexture:SetTexture(noLevelTexture)
+        end
 
         if not BetterBlizzFramesDB.biggerHealthbars then
-            hooksecurefunc("TargetFrame_CheckClassification" , function(self)
-                if self.changing then return end
-                if self.borderTexture:GetTexture() == 137026 then
-                    self.changing = true
-                    self.borderTexture:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-NoLevel")
-                    self.changing = false
-                end
-            end)
+            if TargetFrame_CheckClassification then
+                hooksecurefunc("TargetFrame_CheckClassification" , function(self)
+                    if self.changing then return end
+                    if not BetterBlizzFramesDB.hideLevelText then return end
+                    if self.borderTexture:GetTexture() ~= 137026 then return end
+
+                    local shouldHide = BetterBlizzFramesDB.hideLevelTextAlways or UnitLevel("target") == maxLvl
+                    if shouldHide then
+                        self.changing = true
+                        self.borderTexture:SetTexture(noLevelTexture)
+                        self.changing = false
+                    end
+                end)
+            else
+                hooksecurefunc(TargetFrame, "CheckClassification", function(self)
+                    if self.textureFrame.changing then return end
+                    if not BetterBlizzFramesDB.hideLevelText then return end
+                    if self.textureFrame.texture:GetTexture() ~= 137026 then return end
+
+                    local shouldHide = BetterBlizzFramesDB.hideLevelTextAlways or UnitLevel("target") == maxLvl
+                    if shouldHide then
+                        self.textureFrame.changing = true
+                        self.textureFrame.texture:SetTexture(noLevelTexture)
+                        self.textureFrame.changing = false
+                    end
+                end)
+                hooksecurefunc(FocusFrame, "CheckClassification", function(self)
+                    if self.textureFrame.changing then return end
+                    if not BetterBlizzFramesDB.hideLevelText then return end
+                    if self.textureFrame.texture:GetTexture() ~= 137026 then return end
+
+                    local shouldHide = BetterBlizzFramesDB.hideLevelTextAlways or UnitLevel("focus") == maxLvl
+                    if shouldHide then
+                        self.textureFrame.changing = true
+                        self.textureFrame.texture:SetTexture(noLevelTexture)
+                        self.textureFrame.changing = false
+                    end
+                end)
+            end
         end
 
         BBF.classicFramesLevelHide = true
@@ -411,6 +476,12 @@ function BBF.HideFrames()
     --         PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.GuideIcon:SetAlpha(1)
     --     end
 
+        if BetterBlizzFramesDB.hideEclipseBarText then
+            if EclipseBarFramePowertext then
+                EclipseBarFramePowertext:SetAlpha(0)
+            end
+        end
+
         if BetterBlizzFramesDB.hideRaidFrameManager then
             CompactRaidFrameManager.container:SetIgnoreParentAlpha(true)
             CompactRaidFrameManager:SetAlpha(0)
@@ -443,6 +514,24 @@ function BBF.HideFrames()
                 if totem then
                     totem.duration:SetAlpha(1)
                     changes.hideTotemFrameTimer = nil
+                end
+            end
+        end
+
+        if BetterBlizzFramesDB.hideTotemFrameCd then
+            for i = 1, 4 do
+                local totem = _G["TotemFrameTotem" .. i]
+                if totem then
+                    totem.icon.cooldown:SetAlpha(0)
+                    changes.hideTotemFrameCd = true
+                end
+            end
+        elseif changes.hideTotemFrameCd then
+            for i = 1, 4 do
+                local totem = _G["TotemFrameTotem" .. i]
+                if totem then
+                    totem.icon.cooldown:SetAlpha(1)
+                    changes.hideTotemFrameCd = nil
                 end
             end
         end
@@ -498,19 +587,19 @@ function BBF.HideFrames()
                     RogueComboPointBarFrame:SetParent(hiddenFrame)
                 end
             end
-            if DruidComboPointBarFrame and englishClass == "DRUID" then
+            if EclipseBarFrame and englishClass == "DRUID" then
                 if BetterBlizzFramesDB.hidePlayerPowerNoDruid then
-                    DruidComboPointBarFrame:SetAlpha(1)
+                    if originalResourceParent then EclipseBarFrame:SetParent(originalResourceParent) end
                 else
-                    DruidComboPointBarFrame:SetAlpha(0)
+                    if not originalResourceParent then originalResourceParent = EclipseBarFrame:GetParent() end
+                    EclipseBarFrame:SetParent(hiddenFrame)
                 end
             end
-            if PaladinPowerBarFrame and englishClass == "PALADIN" then
+            if PaladinPowerBar and englishClass == "PALADIN" then
                 if BetterBlizzFramesDB.hidePlayerPowerNoPaladin then
-                    if originalResourceParent then PaladinPowerBarFrame:SetParent(originalResourceParent) end
+                    PaladinPowerBar:SetAlpha(1)
                 else
-                    if not originalResourceParent then originalResourceParent = PaladinPowerBarFrame:GetParent() end
-                    PaladinPowerBarFrame:SetParent(hiddenFrame)
+                    PaladinPowerBar:SetAlpha(0)
                 end
             end
             if RuneFrame and englishClass == "DEATHKNIGHT" then
@@ -544,16 +633,25 @@ function BBF.HideFrames()
                     MageArcaneChargesFrame:SetAlpha(0)
                 end
             end
+            if PriestBarFrame and englishClass == "PRIEST" then
+                if BetterBlizzFramesDB.hidePlayerPowerNoPriest then
+                    if originalResourceParent then PriestBarFrame:SetParent(originalResourceParent) end
+                else
+                    if not originalResourceParent then originalResourceParent = PriestBarFrame:GetParent() end
+                    PriestBarFrame:SetParent(hiddenFrame)
+                end
+            end
             changes.hidePlayerPower = true
         elseif originalResourceParent then
             if WarlockPowerFrame and englishClass == "WARLOCK" then WarlockPowerFrame:SetParent(originalResourceParent) end
             if RogueComboPointBarFrame and englishClass == "ROGUE" then RogueComboPointBarFrame:SetParent(originalResourceParent) end
-            if DruidComboPointBarFrame and englishClass == "DRUID" then DruidComboPointBarFrame:SetAlpha(1) end
-            if PaladinPowerBarFrame and englishClass == "PALADIN" then PaladinPowerBarFrame:SetParent(originalResourceParent) end
+            if EclipseBarFrame and englishClass == "DRUID" then EclipseBarFrame:SetParent(originalResourceParent) end
+            if PaladinPowerBar and englishClass == "PALADIN" then PaladinPowerBar:SetParent(originalResourceParent) end
             if RuneFrame and englishClass == "DEATHKNIGHT" then RuneFrame:SetParent(originalResourceParent) end
             if EssencePlayerFrame and englishClass == "EVOKER" then EssencePlayerFrame:SetParent(originalResourceParent) end
             if MonkHarmonyBar and englishClass == "MONK" then MonkHarmonyBar:SetParent(originalResourceParent) end
             if MageArcaneChargesFrame and englishClass == "MAGE" then MageArcaneChargesFrame:SetAlpha(1) end
+            if PriestBarFrame and englishClass == "PRIEST" then PriestBarFrame:SetParent(originalResourceParent) end
             changes.hidePlayerPower = nil
         end
 
@@ -620,28 +718,43 @@ function BBF.HideFrames()
         local hotKeyAlpha = BetterBlizzFramesDB.hideActionBarHotKey and 0 or 1
         local macroNameAlpha = BetterBlizzFramesDB.hideActionBarMacroName and 0 or 1
         if BetterBlizzFramesDB.hideActionBarHotKey or BetterBlizzFramesDB.hideActionBarMacroName or keybindAlphaChanged then
-            for i = 1, 12 do
-                applyAlpha(_G["ActionButton" .. i .. "HotKey"], hotKeyAlpha)
-                applyAlpha(_G["MultiBarBottomLeftButton" .. i .. "HotKey"], hotKeyAlpha)
-                applyAlpha(_G["MultiBarBottomRightButton" ..i.. "HotKey"], hotKeyAlpha)
-                applyAlpha(_G["MultiBarRightButton" ..i.. "HotKey"], hotKeyAlpha)
-                applyAlpha(_G["MultiBarLeftButton" ..i.. "HotKey"], hotKeyAlpha)
-                applyAlpha(_G["MultiBar5Button" ..i.. "HotKey"], hotKeyAlpha)
-                applyAlpha(_G["MultiBar6Button" ..i.. "HotKey"], hotKeyAlpha)
-                applyAlpha(_G["MultiBar7Button" ..i.. "HotKey"], hotKeyAlpha)
-                applyAlpha(_G["PetActionButton" ..i.. "HotKey"], hotKeyAlpha)
+            -- Blizzard buttons
+            local blizzPrefixes = {
+                "ActionButton", "MultiBarBottomLeftButton", "MultiBarBottomRightButton",
+                "MultiBarRightButton", "MultiBarLeftButton", "MultiBar5Button",
+                "MultiBar6Button", "MultiBar7Button", "PetActionButton"
+            }
 
-                applyAlpha(_G["ActionButton" .. i .. "Name"], macroNameAlpha)
-                applyAlpha(_G["MultiBarBottomLeftButton" .. i .. "Name"], macroNameAlpha)
-                applyAlpha(_G["MultiBarBottomRightButton" ..i.. "Name"], macroNameAlpha)
-                applyAlpha(_G["MultiBarRightButton" ..i.. "Name"], macroNameAlpha)
-                applyAlpha(_G["MultiBarLeftButton" ..i.. "Name"], macroNameAlpha)
-                applyAlpha(_G["MultiBar5Button" ..i.. "Name"], macroNameAlpha)
-                applyAlpha(_G["MultiBar6Button" ..i.. "Name"], macroNameAlpha)
-                applyAlpha(_G["MultiBar7Button" ..i.. "Name"], macroNameAlpha)
-                applyAlpha(_G["PetActionButton" ..i.. "Name"], macroNameAlpha)
-
+            for _, prefix in ipairs(blizzPrefixes) do
+                for i = 1, 12 do
+                    applyAlpha(_G[prefix .. i .. "HotKey"], hotKeyAlpha)
+                    applyAlpha(_G[prefix .. i .. "Name"], macroNameAlpha)
+                end
             end
+
+            -- Dominos buttons
+            local NUM_ACTIONBAR_BUTTONS = NUM_ACTIONBAR_BUTTONS or 12
+            local DOMINOS_NUM_MAX_BUTTONS = 14 * NUM_ACTIONBAR_BUTTONS
+            local dominosBars = {
+                {name = "DominosActionButton", count = DOMINOS_NUM_MAX_BUTTONS},
+                {name = "MultiBar5ActionButton", count = 12},
+                {name = "MultiBar6ActionButton", count = 12},
+                {name = "MultiBar7ActionButton", count = 12},
+                {name = "MultiBarRightActionButton", count = 12},
+                {name = "MultiBarLeftActionButton", count = 12},
+                {name = "MultiBarBottomRightActionButton", count = 12},
+                {name = "MultiBarBottomLeftActionButton", count = 12},
+                {name = "DominosPetActionButton", count = 12},
+                {name = "DominosStanceButton", count = 12},
+            }
+
+            for _, bar in ipairs(dominosBars) do
+                for i = 1, bar.count do
+                    applyAlpha(_G[bar.name .. i .. "HotKey"], hotKeyAlpha)
+                    applyAlpha(_G[bar.name .. i .. "Name"], macroNameAlpha)
+                end
+            end
+
             keybindAlphaChanged = true
         end
 
@@ -725,20 +838,26 @@ function BBF.HideFrames()
         local function ToggleLibDBIconButtons(show)
             for i = 1, Minimap:GetNumChildren() do
                 local child = select(i, Minimap:GetChildren())
-                local childName = child:GetName() or ""
-                if string.find(childName, "LibDBIcon") or childName == "ExpansionLandingPageMinimapButton" then
-                    if show then
-                        child:Show()
-                        --ExpansionLandingPageMinimapButton:Show()
-                        MiniMapTrackingButton:Show()
-                        MiniMapTracking:Show()
-                        MiniMapWorldMapButton:Show()
-                    else
-                        child:Hide()
-                        --ExpansionLandingPageMinimapButton:Hide()
-                        MiniMapTrackingButton:Hide()
-                        MiniMapTracking:Hide()
-                        MiniMapWorldMapButton:Hide()
+                if child then
+                    local childName = child:GetName() or ""
+                    if string.find(childName, "LibDBIcon") or childName == "ExpansionLandingPageMinimapButton" then
+                        if show then
+                            child:Show()
+                            --ExpansionLandingPageMinimapButton:Show()
+                            MiniMapTrackingButton:Show()
+                            MiniMapTracking:Show()
+                            if MiniMapWorldMapButton then
+                                MiniMapWorldMapButton:Show()
+                            end
+                        else
+                            child:Hide()
+                            --ExpansionLandingPageMinimapButton:Hide()
+                            MiniMapTrackingButton:Hide()
+                            MiniMapTracking:Hide()
+                            if MiniMapWorldMapButton then
+                                MiniMapWorldMapButton:Hide()
+                            end
+                        end
                     end
                 end
             end
@@ -945,7 +1064,7 @@ local minimapStatusChanged
 function BBF.MinimapHider()
     local MinimapGroup = Minimap and MinimapCluster
     local QueueStatusEye = QueueStatusButtonIcon
-    local ObjectiveTracker = WatchFrame
+    local ObjectiveTracker = WatchFrame or QuestWatchFrame
 
     local _, instanceType = GetInstanceInfo()
     local inArena = instanceType == "arena"

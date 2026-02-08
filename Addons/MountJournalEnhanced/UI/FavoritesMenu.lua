@@ -6,8 +6,9 @@ StaticPopupDialogs["MJE_EDIT_FAVORITE_PROFILE"] = {
     button2 = CANCEL,
     whileDead = 1,
     hasEditBox = true,
-    OnAccept = function (self, profileIndex)
-        local text = self.editBox:GetText()
+    OnAccept = function (popup, profileIndex)
+        local editBox = popup.editBox or popup.EditBox
+        local text = editBox:GetText()
         if profileIndex == nil then
             table.insert(ADDON.settings.favorites.profiles, {
                 ["name"] = text,
@@ -20,9 +21,10 @@ StaticPopupDialogs["MJE_EDIT_FAVORITE_PROFILE"] = {
             ADDON.Events:TriggerEvent("OnFavoriteProfileChanged")
         end
     end,
-    OnShow = function (self, profileIndex)
+    OnShow = function (popup, profileIndex)
         if profileIndex and ADDON.settings.favorites.profiles[profileIndex] then
-            self.editBox:SetText(ADDON.settings.favorites.profiles[profileIndex].name)
+            local editBox = popup.editBox or popup.EditBox
+            editBox:SetText(ADDON.settings.favorites.profiles[profileIndex].name)
         end
     end,
     timeout = 0,
@@ -44,6 +46,8 @@ StaticPopupDialogs["MJE_CONFIRM_DELETE_FAVORITE_PROFILE"] = {
 function ADDON.UI:BuildFavoriteProfileMenu(root, withEditOptions)
     local sortedIndex = {}
     local tInsert = table.insert
+
+    root:SetScrollMode(GetScreenHeight() - 100)
 
     local profiles = ADDON.settings.favorites.profiles
     for index, profileData in pairs(profiles) do

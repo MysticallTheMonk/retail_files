@@ -1,0 +1,11 @@
+<!--
+    Copyright (c) 2023 Krowi
+    Licensed under the terms of the LICENSE file in this repository.
+ -->
+
+<Ui>
+	<Script file='Krowi_Menu.lua'/>
+	<Script file='Krowi_MenuItem.lua'/>
+	<Script file='Krowi_MenuUtil.lua'/>
+    <Script file='Krowi_MenuBuilder.lua' />
+</Ui>

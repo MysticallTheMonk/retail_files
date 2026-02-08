@@ -1,12 +1,16 @@
+local _, addon = ...
+
 local DIGITS = "%.2f";
 local NO_BONUS_ALPHA = 0.5;
 
 local Narci = Narci;
 local L = Narci.L;
-local FormatLargeNumbers = NarciAPI.FormatLargeNumbers;
 local BreakUpLargeNumbers = BreakUpLargeNumbers;
 local GetPrimaryStats = NarciAPI.GetPrimaryStats;
 local SplitTooltipByLineBreak = NarciAPI.SplitTooltipByLineBreak;
+local UIColorThemeUtil = addon.UIColorThemeUtil;
+local TransitionAPI = addon.TransitionAPI;
+
 local format = string.format;
 local floor = math.floor;
 local ceil = math.ceil;
@@ -196,7 +200,7 @@ local function GetEffectiveCrit()
 	local rating;
 	local spellCrit, rangedCrit, meleeCrit;
 	local critChance;
-	
+
 	-- Start at 2 to skip physical damage
 	local holySchool = 2;
 	local minCrit = GetSpellCritChance(holySchool);
@@ -244,7 +248,7 @@ function UpdateFunc:Primary(object)
 	local _, _, _, _, _, primaryStat = GetSpecializationInfo(spec);
 	if type(tonumber(primaryStat)) ~= "number" then return; end		--sometimes changing zones cause Lua error
 	local stat, effectiveStat, posBuff, negBuff = UnitStat(unit, primaryStat);
-	local effectiveStatDisplay = FormatLargeNumbers(effectiveStat);
+	local effectiveStatDisplay = BreakUpLargeNumbers(effectiveStat);
 
 	-- Set the tooltip text
 	local statName = _G["SPELL_STAT"..primaryStat.."_NAME"];
@@ -313,7 +317,7 @@ function UpdateFunc:Primary(object)
 		end
 
 	elseif ( primaryStat == LE_UNIT_STAT_INTELLECT ) then
-		if ( UnitHasMana("player") ) then
+		if ( TransitionAPI.UnitHasMana("player") ) then
 			if (HasAPEffectsSpellPower()) then
 				object.tooltip2 = STAT_NO_BENEFIT_TOOLTIP;
 			else
@@ -338,7 +342,7 @@ function UpdateFunc:Stamina(object)
 	local statIndex = LE_UNIT_STAT_STAMINA;
 	local stat, effectiveStat, posBuff, negBuff = UnitStat("player", statIndex);
 
-	local effectiveStatDisplay = FormatLargeNumbers(effectiveStat);
+	local effectiveStatDisplay = BreakUpLargeNumbers(effectiveStat);
 	-- Set the tooltip text
 	local statName = _G["SPELL_STAT"..statIndex.."_NAME"];
 	local tooltipText = "|cffffffff".. statName .." ";
@@ -370,10 +374,14 @@ function UpdateFunc:Stamina(object)
 
 	object.Label:SetText(statName)
 	object.Value:SetText(effectiveStat)
-	object.tooltip2 = _G["DEFAULT_STAT"..statIndex.."_TOOLTIP"];
-	object.tooltip2 = format(object.tooltip2, BreakUpLargeNumbers(((effectiveStat*UnitHPPerStamina("player")))*GetUnitMaxHealthModifier("player")));
 
-	--object:Show();
+	local staminaBonusText = TransitionAPI.Secret_Multiply(effectiveStat, UnitHPPerStamina("player"), GetUnitMaxHealthModifier("player"));
+	if staminaBonusText then
+		local textFormat = _G["DEFAULT_STAT"..statIndex.."_TOOLTIP"];
+		object.tooltip2 = format(textFormat, BreakUpLargeNumbers(staminaBonusText));
+	else
+		object.tooltip2 = nil;
+	end
 end
 
 function UpdateFunc:Damage(object)
@@ -607,7 +615,7 @@ function UpdateFunc:Health(object, unit)
 		unit = "player";
 	end
 	local health = UnitHealthMax(unit);
-	local healthText = FormatLargeNumbers(health);
+	local healthText = BreakUpLargeNumbers(health);
 	object.Label:SetText(HEALTH)
 	object.Value:SetText(healthText)
 	object.tooltip = "|cffffffff".. HEALTH .." "..healthText.."|r";
@@ -622,8 +630,8 @@ end
 function UpdateFunc:Power(object)
 	local unit = "player";
 	local powerType, powerToken = UnitPowerType(unit);
-	local power = UnitPowerMax(unit) or 0;
-	local powerText = FormatLargeNumbers(power);
+	local power = UnitPowerMax(unit);
+	local powerText = BreakUpLargeNumbers(power);
 	local powerName = _G[powerToken];
 	if (powerToken and powerName) then
 		object.Label:SetText(powerName)
@@ -651,7 +659,7 @@ function UpdateFunc:Regen(object)
 	elseif powerToken == "FOCUS" then
 		labelText = STAT_FOCUS_REGEN;
 		object.tooltip2 = STAT_FOCUS_REGEN_TOOLTIP;
-	elseif UnitHasMana("player") then
+	elseif powerToken == "MANA" then
 		labelText = MANA_REGEN;
 		regenRate = GetManaRegen();
 		regenRatePerSec = tostring(floor(regenRate)).."/s";
@@ -830,6 +838,9 @@ function NarciAttributeMixin:Update()
     if UpdateFunc[self.token] then
         UpdateFunc[self.token](nil, self);
     end
+	if self.customValueSetter then
+		self.customValueSetter(self, self.Value, self.ValueRating);
+	end
 end
 
 function NarciAttributeMixin:SetLabelAndValue(label, value, grey)
@@ -842,4 +853,42 @@ function NarciAttributeMixin:SetLabelAndValue(label, value, grey)
 		self.Label:SetTextColor(0.92, 0.92, 0.92);
 		self.Value:SetTextColor(0.92, 0.92, 0.92);
 	end
+end
+
+function NarciAttributeMixin:UpdateColor()
+	local frameID = self:GetID() or 0;
+	local r, g, b = UIColorThemeUtil:GetActiveColor();
+	if frameID % 2 == 0 then
+		if self.Color then
+			self.Color:SetColorTexture(r, g, b, 0.75);
+			return;
+		elseif self.Color1 and self.Color2 then
+			self.Color1:SetColorTexture(r, g, b, 0.75);
+			self.Color2:SetColorTexture(r, g, b, 0.75);
+		end
+	else
+		if self.Color then
+			self.Color:SetColorTexture(0.1, 0.1, 0.1, 0.75);
+			return;
+		elseif self.Color1 and self.Color2 then
+			self.Color1:SetColorTexture(0.1, 0.1, 0.1, 0.75);
+			self.Color2:SetColorTexture(0.1, 0.1, 0.1, 0.75);
+		end
+	end
+end
+
+function NarciAttributeMixin:OnLoad()
+	self:UpdateColor();
+end
+
+function NarciAttributeMixin:OnShow()
+	self:UpdateColor();
+end
+
+function NarciAttributeMixin:OnEnter()
+	Narci_ShowStatTooltip(self);
+end
+
+function NarciAttributeMixin:OnLeave()
+	Narci:HideButtonTooltip();
 end

@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 -- Premade Groups Filter
 -------------------------------------------------------------------------------
--- Copyright (C) 2024 Bernhard Saumweber
+-- Copyright (C) 2026 Bernhard Saumweber
 --
 -- This program is free software; you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ local L = PGF.L
 local C = PGF.C
 
 function PGF.GetPvPScoreRarityColorByTier(tier)
-    local r, g, b = GetItemQualityColor(C.PVP_TIER_MAP[tier].quality)
+    local r, g, b = C_Item.GetItemQualityColor(C.PVP_TIER_MAP[tier].quality)
     return { r = r, g = g, b = b }
 end
 
@@ -79,7 +79,7 @@ function PGF.AddRatingInfo(self, searchResultInfo)
     local ratingColor = { r = 1.0, g = 1.0, b = 1.0 }
     local extraText = ""
     local extraTextColor = { r = 1.0, g = 1.0, b = 1.0 }
-    if activityInfo.isMythicPlusActivity then
+    if PGF.SupportsMythicPlus() and activityInfo.isMythicPlusActivity then
         rightPos = -115
         rating = searchResultInfo.leaderOverallDungeonScore or 0
         if PremadeGroupsFilterSettings.rioRatingColors and RaiderIO and RaiderIO.GetScoreColor then

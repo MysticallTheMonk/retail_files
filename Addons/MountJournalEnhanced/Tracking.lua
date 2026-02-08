@@ -7,6 +7,10 @@ MJETrackingData = MJETrackingData or {}
 local HBD = LibStub("HereBeDragons-2.0")
 local startZone, startPositionX, startPositionY, travelTicker
 
+local function isEnabled()
+    return ADDON.settings.trackUsageStats and not IsOnTournamentRealm()
+end
+
 local function initData(mountId)
     if not MJETrackingData[mountId] then
         MJETrackingData[mountId] = {
@@ -27,7 +31,7 @@ function ADDON:GetMountStatistics(mountId)
 end
 
 function ADDON:SetLearnedDate(mountId, year, month, day)
-    if mountId and ADDON.settings.trackUsageStats then
+    if mountId and isEnabled() then
         local blob = initData(mountId)
         if blob[INDEX_LEARNED_TIME] == nil and year >= 2000 and year < 2050 and month >= 1 and month <= 12 and day >= 1 and day <= 31 then
             blob[INDEX_LEARNED_TIME] = time({ year = year, month = month, day = day, hour = 12, min = 0, sec = 0 })
@@ -49,7 +53,7 @@ local function updateDistance(mountId)
 end
 
 ADDON.Events:RegisterCallback("OnMountUp", function(_, mount, isOnLogin)
-    if ADDON.settings.trackUsageStats then
+    if isEnabled() then
         local blob = initData(mount)
         blob[INDEX_LAST_USE_TIME] = GetServerTime()
         if not isOnLogin then
@@ -62,7 +66,7 @@ ADDON.Events:RegisterCallback("OnMountUp", function(_, mount, isOnLogin)
     end
 end, "tracking")
 ADDON.Events:RegisterCallback("OnMountDown", function(_, mount)
-    if ADDON.settings.trackUsageStats then
+    if isEnabled() then
         local blob = initData(mount)
         blob[INDEX_TRAVEL_TIME] = blob[INDEX_TRAVEL_TIME] + (GetServerTime() - blob[INDEX_LAST_USE_TIME])
 
@@ -73,7 +77,7 @@ ADDON.Events:RegisterCallback("OnMountDown", function(_, mount)
 end, "tracking")
 
 ADDON.Events:RegisterCallback("OnNewMount", function(_, mountId)
-    if mountId and ADDON.settings.trackUsageStats then
+    if mountId and isEnabled() then
         local blob = initData(mountId)
         if nil == blob[INDEX_LEARNED_TIME] then
             blob[INDEX_LEARNED_TIME] = GetServerTime()
@@ -105,7 +109,7 @@ local function parseLearnedDateForMount(mountId, achievementIds)
     end
 end
 local function parseLearnedDates()
-    if ADDON.settings.trackUsageStats then
+    if isEnabled() then
         for spellId, achievementIds in pairs(ADDON.DB.Source.Achievement) do
             if achievementIds ~= true then
                 local mountId = C_MountJournal.GetMountFromSpell(spellId)

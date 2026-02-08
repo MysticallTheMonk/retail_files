@@ -15,28 +15,35 @@ addon.Collections.Enumerable = M
 ---@param auto table|function
 ---@return Enumerable
 function M:From(auto)
+    assert(auto ~= nil)
+
     local t = type(auto)
     local enumerable = {}
 
     if t == "function" then
         enumerable.Next = auto
-    elseif t == "table" and auto.Next and type(auto.Next) == "function" then
-        enumerable.Next = auto.Next
     elseif t == "table" then
-        local iterator, elements, index = ipairs(auto)
-        enumerable.State = {
-            Iterator = iterator,
-            Elements = elements,
-            Index = index,
-        }
-        enumerable.Next = function()
-            if #enumerable.State.Elements == 0 then
-                return nil
+        if auto.Next and type(auto.Next) == "function" then
+            -- wrap it to preserve 'self'
+            enumerable.Next = function()
+                return auto.Next(auto)
             end
+        else
+            local iterator, elements, index = ipairs(auto)
+            enumerable.State = {
+                Iterator = iterator,
+                Elements = elements,
+                Index = index,
+            }
+            enumerable.Next = function()
+                if #enumerable.State.Elements == 0 then
+                    return nil
+                end
 
-            local nextIndex, next = iterator(enumerable.State.Elements, enumerable.State.Index)
-            enumerable.State.Index = nextIndex
-            return next
+                local nextIndex, next = iterator(enumerable.State.Elements, enumerable.State.Index)
+                enumerable.State.Index = nextIndex
+                return next
+            end
         end
     else
         error(string.format("Invalid type %s", t))
@@ -55,6 +62,8 @@ end
 ---@param apply fun(item: any): any
 ---@return Enumerable
 function M:Map(apply)
+    assert(apply ~= nil)
+
     local iterator = function()
         local next = self.Next()
         if next == nil then
@@ -86,6 +95,10 @@ function M:Flatten()
                 return nil
             end
 
+            if type(next) ~= "table" then
+                return nil
+            end
+
             item = next[index]
             index = index + 1
         end
@@ -100,6 +113,8 @@ end
 ---@param predicate fun(item: any): boolean?
 ---@return Enumerable
 function M:Where(predicate)
+    assert(predicate ~= nil)
+
     local iterator = function()
         local next = self.Next()
 
@@ -118,6 +133,8 @@ end
 ---@param predicate fun(item: any): boolean
 ---@return any? item, number? index
 function M:Nth(n, predicate)
+    assert(predicate ~= nil)
+
     local found = 0
 
     while n > found do
@@ -156,6 +173,28 @@ function M:First(predicate)
     return next, next and index or nil
 end
 
+---Returns the last instance that matches the predicate.
+---@param predicate? fun(item: any): boolean
+---@return any? item, number? index
+function M:Last(predicate)
+    local next = self.Next()
+    local nextIndex = 1
+    local last = nil
+    local lastIndex = 1
+
+    while next do
+        if not predicate or predicate(next) then
+            last = next
+            lastIndex = nextIndex
+        end
+
+        next = self.Next()
+        nextIndex = nextIndex + 1
+    end
+
+    return last, last and lastIndex or nil
+end
+
 ---Returns true if any item matches the predicate, or if no predicate is provided then returns true if any item exists.
 ---@param predicate? fun(item: any): boolean
 ---@return any? item, number? index
@@ -167,6 +206,8 @@ end
 ---@param predicate fun(item: any): boolean
 ---@return boolean
 function M:All(predicate)
+    assert(predicate ~= nil)
+
     local next = self.Next()
 
     if next == nil then
@@ -184,11 +225,26 @@ function M:All(predicate)
     return true
 end
 
----Returns the first instance that matches the predicate.
+---Returns the first index that matches the predicate.
 ---@param item any
 ---@return any? number? index
 function M:IndexOf(item)
+    assert(item ~= nil)
+
     local _, index = self:First(function(x)
+        return x == item
+    end)
+
+    return index
+end
+
+---Returns the last index that matches the predicate.
+---@param item any
+---@return any? number? index
+function M:LastIndexOf(item)
+    assert(item ~= nil)
+
+    local _, index = self:Last(function(x)
         return x == item
     end)
 
@@ -298,6 +354,10 @@ end
 ---@param count number
 ---@return Enumerable
 function M:Take(count)
+    if count == 0 then
+        return M:From({})
+    end
+
     local taken = 0
     local iterator = function()
         if taken == count then
@@ -305,25 +365,32 @@ function M:Take(count)
         end
 
         local next = self.Next()
-        taken = taken + 1
+        if next == nil then
+            return nil
+        end
 
+        taken = taken + 1
         return next
     end
 
     return M:From(iterator)
 end
 
----Evaluates the iterator function to return the results as a lookup table.
----@param valueSelector function(item: any, index: number): any
+---Evaluates the iterator function to return the results as a dictionary.
 ---@param keySelector function(item: any, index: number): any
+---@param valueSelector function(item: any, index: number, existingItem: any?): any
 ---@return table items
-function M:ToLookup(keySelector, valueSelector)
+function M:ToDictionary(keySelector, valueSelector)
+    assert(keySelector ~= nil)
+    assert(valueSelector ~= nil)
+
     local items = self:ToTable()
     local dict = {}
 
     for index, item in ipairs(items) do
         local key = keySelector(item, index)
-        local value = valueSelector(item, index)
+        local existingItem = dict[key]
+        local value = valueSelector(item, index, existingItem)
 
         dict[key] = value
     end
@@ -335,6 +402,8 @@ end
 ---@generic T
 ---@param compare? fun(a: T, b: T):boolean
 function M:OrderBy(compare)
+    assert(compare ~= nil)
+
     local items = self:ToTable()
     table.sort(items, compare)
 
@@ -344,6 +413,8 @@ end
 ---Combines two sequences together.
 ---@param other table|function
 function M:Concat(other)
+    assert(other ~= nil)
+
     local enumerable = M:From(other)
     local finishedFirst = false
     local iterator = function()
@@ -361,4 +432,17 @@ function M:Concat(other)
     end
 
     return M:From(iterator)
+end
+
+---Produces a distinct set of results.
+function M:Distinct()
+    local seen = {}
+    return self:Where(function(item)
+        if seen[item] then
+            return false
+        end
+
+        seen[item] = true
+        return true
+    end)
 end

@@ -54,6 +54,8 @@ utils.getSpellLink = function(spellId)
 
 end
 
+local parentCategoryByName = {}
+
 utils.interfaceOptions_AddCategory = function(frame)
     -- cancel is no longer a default option. May add menu extension for this.
     frame.OnCommit = frame.okay;
@@ -61,13 +63,27 @@ utils.interfaceOptions_AddCategory = function(frame)
     frame.OnRefresh = frame.refresh;
 
     if frame.parent then
-        local category = Settings.GetCategory(frame.parent);
+        local category = parentCategoryByName[frame.parent];
+
+        if category == nil then
+            error("Parent category not found: " .. frame.parent);
+        end
+
         local subcategory = Settings.RegisterCanvasLayoutSubcategory(category, frame, frame.name, frame.name);
-        subcategory.ID = frame.name;
+
+        if not ns.constants.IsMidnight then
+            subcategory.ID = frame.name;
+        end
+
         return subcategory, category;
     else
         local category = Settings.RegisterCanvasLayoutCategory(frame, frame.name, frame.name);
-        category.ID = frame.name;
+        parentCategoryByName[frame.name] = category;
+
+        if not ns.constants.IsMidnight then
+            category.ID = frame.name;
+        end
+
         Settings.RegisterAddOnCategory(category);
         return category;
     end

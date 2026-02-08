@@ -24,6 +24,16 @@ function SweepyBoop:TestArena()
         if ( not frame ) or ( not frame:IsShown() ) then
             sArena:Test();
         end
+    elseif ArenaLiveUnitFrames then
+        local frame = _G["ALUF_ArenaEnemyFramesArenaEnemyFrame1"];
+        if ( not frame ) or ( not frame:IsVisible() ) then -- gets hidden via parent, IsShown doesn't account for that
+            ArenaLiveUnitFrames:Test();
+        end
+    elseif SlashCmdList.GLADDY then
+        local frame = _G["GladdyButtonFrame1"];
+        if ( not frame ) or ( not frame:IsVisible() ) then
+            SlashCmdList["GLADDY"]("test3");
+        end
     else
         -- Use Blizzard arena frames
         if ( not CompactArenaFrame:IsShown() ) then
@@ -67,7 +77,7 @@ addon.SetupInterrupts = function (profile, spellList)
     for spellID, spellEntry in pairs(spellList) do
         local category = spellEntry.category;
         -- By default only check interrupts
-        if ( category == addon.SPELLCATEGORY.INTERRUPT ) or ( spellID == 78675 ) then
+        if ( category == addon.SPELLCATEGORY.INTERRUPT ) or ( spellID == 78675 ) or ( spellID == 34490 ) then
             profile[tostring(spellID)] = true;
         else
             profile[tostring(spellID)] = false;
@@ -119,6 +129,9 @@ addon.GetArenaFrameOptions = function(order)
                 type = "group",
                 childGroups = "tab",
                 name = "Arena frames",
+                disabled = function ()
+                    return ( not addon.ARENA_FRAME_BARS_SUPPORTED() );
+                end,
                 args = {
                     testmode = {
                         order = 1,
@@ -204,9 +217,9 @@ addon.GetArenaFrameOptions = function(order)
                                 type = "range",
                                 width = 0.8,
                                 isPercent = true,
-                                min = 0.5,
+                                min = 0.25,
                                 max = 1,
-                                step = 0.1,
+                                step = 0.05,
                                 name = "Off-cooldown alpha",
                                 hidden = function ()
                                     return ( not SweepyBoop.db.profile.arenaFrames.showUnusedIcons );
@@ -218,9 +231,9 @@ addon.GetArenaFrameOptions = function(order)
                                 type = "range",
                                 width = 0.8,
                                 isPercent = true,
-                                min = 0.5,
+                                min = 0.25,
                                 max = 1,
-                                step = 0.1,
+                                step = 0.05,
                                 name = "On-cooldown alpha",
                                 hidden = function ()
                                     return ( not SweepyBoop.db.profile.arenaFrames.showUnusedIcons );
@@ -617,7 +630,7 @@ addon.GetArenaFrameOptions = function(order)
                             type = "range",
                             width = 0.75,
                             min = 1,
-                            max = 16,
+                            max = 32,
                             step = 1,
                             name = "Columns",
                         },
@@ -676,18 +689,21 @@ addon.GetArenaFrameOptions = function(order)
                             desc = "Glow icons when active for offensive abilities",
                         },
 
-                        hideBorder = {
+                        showName = {
                             order = 14,
                             type = "toggle",
                             width = 0.75,
-                            name = "Hide border",
+                            name = "Show name",
                         },
 
-                        showTargetHighlight = {
+                        classColorName = {
                             order = 15,
                             type = "toggle",
-                            width = 0.75,
-                            name = "Highlight target",
+                            width = 1,
+                            name = "Class-colored name",
+                            hidden = function()
+                                return ( not SweepyBoop.db.profile.arenaFrames.standaloneBars[groupName].showName );
+                            end
                         },
 
                         breaker4 = {
@@ -696,8 +712,28 @@ addon.GetArenaFrameOptions = function(order)
                             name = "",
                         },
 
-                        showUnusedIcons = {
+                        hideBorder = {
                             order = 17,
+                            type = "toggle",
+                            width = 0.75,
+                            name = "Hide border",
+                        },
+
+                        showTargetHighlight = {
+                            order = 18,
+                            type = "toggle",
+                            width = 0.75,
+                            name = "Highlight target",
+                        },
+
+                        breaker5 = {
+                            order = 19,
+                            type = "description",
+                            name = "",
+                        },
+
+                        showUnusedIcons = {
+                            order = 20,
                             type = "toggle",
                             name = "Show off-CD icons",
                             width = 0.9,
@@ -705,13 +741,13 @@ addon.GetArenaFrameOptions = function(order)
                         },
 
                         unusedIconAlpha = {
-                            order = 18,
+                            order = 21,
                             type = "range",
                             width = 0.8,
                             isPercent = true,
-                            min = 0.5,
+                            min = 0.25,
                             max = 1,
-                            step = 0.1,
+                            step = 0.05,
                             name = "Off-cooldown alpha",
                             hidden = function()
                                 return ( not SweepyBoop.db.profile.arenaFrames.standaloneBars[groupName].showUnusedIcons );
@@ -719,13 +755,13 @@ addon.GetArenaFrameOptions = function(order)
                         },
 
                         usedIconAlpha = {
-                            order = 19,
+                            order = 22,
                             type = "range",
                             width = 0.8,
                             isPercent = true,
-                            min = 0.5,
+                            min = 0.25,
                             max = 1,
-                            step = 0.1,
+                            step = 0.05,
                             name = "On-cooldown alpha",
                             hidden = function()
                                 return ( not SweepyBoop.db.profile.arenaFrames.standaloneBars[groupName].showUnusedIcons );
@@ -769,25 +805,8 @@ addon.GetArenaFrameOptions = function(order)
     -- Ensure one group for each class, in order
     for _, classID in ipairs(addon.CLASSORDER) do
         local classInfo = C_CreatureInfo.GetClassInfo(classID);
-        optionGroup.args.arenaFrameBars.args.spellList.args[classInfo.classFile] = {
-            order = groupIndex,
-            type = "group",
-            icon = addon.ICON_ID_CLASSES,
-            iconCoords = CLASS_ICON_TCOORDS[classInfo.classFile],
-            name = classInfo.className,
-            args = {},
-        };
-        optionGroup.args.arenaFrameBars.args.spellList2.args[classInfo.classFile] = {
-            order = groupIndex,
-            type = "group",
-            icon = addon.ICON_ID_CLASSES,
-            iconCoords = CLASS_ICON_TCOORDS[classInfo.classFile],
-            name = classInfo.className,
-            args = {},
-        };
-        for i = 1, 6 do
-            local groupName = "Bar " .. i;
-            optionGroup.args.standaloneBars.args[groupName].args.spellList.args[classInfo.classFile] = {
+        if classInfo then
+            optionGroup.args.arenaFrameBars.args.spellList.args[classInfo.classFile] = {
                 order = groupIndex,
                 type = "group",
                 icon = addon.ICON_ID_CLASSES,
@@ -795,17 +814,36 @@ addon.GetArenaFrameOptions = function(order)
                 name = classInfo.className,
                 args = {},
             };
-        end
+            optionGroup.args.arenaFrameBars.args.spellList2.args[classInfo.classFile] = {
+                order = groupIndex,
+                type = "group",
+                icon = addon.ICON_ID_CLASSES,
+                iconCoords = CLASS_ICON_TCOORDS[classInfo.classFile],
+                name = classInfo.className,
+                args = {},
+            };
+            for i = 1, 6 do
+                local groupName = "Bar " .. i;
+                optionGroup.args.standaloneBars.args[groupName].args.spellList.args[classInfo.classFile] = {
+                    order = groupIndex,
+                    type = "group",
+                    icon = addon.ICON_ID_CLASSES,
+                    iconCoords = CLASS_ICON_TCOORDS[classInfo.classFile],
+                    name = classInfo.className,
+                    args = {},
+                };
+            end
 
-        indexInClassGroup[classInfo.classFile] = 1;
-        groupIndex = groupIndex + 1;
+            indexInClassGroup[classInfo.classFile] = 1;
+            groupIndex = groupIndex + 1;
+        end
     end
     local function AppendSpellOptions(group, spellList)
         for spellID, spellInfo in pairs(spellList) do
             if ( not spellInfo.parent ) then
                 local classFile = spellInfo.class;
                 local classGroup = group.args[classFile];
-                local icon, name = C_Spell.GetSpellTexture(spellID), C_Spell.GetSpellName(spellID);
+                local icon, name = addon.GetSpellTexture(spellID), C_Spell.GetSpellName(spellID);
                 -- https://warcraft.wiki.gg/wiki/SpellMixin
                 local spell = Spell:CreateFromSpellID(spellID);
                 spell:ContinueOnSpellLoad(function()
@@ -824,8 +862,9 @@ addon.GetArenaFrameOptions = function(order)
                         else
                             cooldown = spellInfo.cooldown.default;
                         end
-                        local additionalInfo = "\n\n|" .. yellowColor .. "Cooldown".."|r "..SecondsToTime(cooldown)..
-								"\n\n|" .. yellowColor .. "Spell ID" .. "|r "..spellID;
+                        local additionalInfo = "\n\n|" .. yellowColor .. "Cooldown".."|r ".. SecondsToTime(cooldown) ..
+								"\n\n|" .. yellowColor .. "Spell ID" .. "|r ".. spellID ..
+                                "\n\n|" .. yellowColor .. "Category" .. "|r " .. addon.SPELLCATEGORY_NAME[spellInfo.category];
                         return description .. additionalInfo;
                     end
                 };
@@ -852,6 +891,22 @@ addon.GetArenaFrameOptions = function(order)
                 end,
             }
         end
+
+        local otherCategory = addon.SPELLCATEGORY.OTHERS;
+        group[tostring(otherCategory)] = {
+            order = otherCategory,
+            type = "range",
+            name = addon.SPELLCATEGORY_NAME[otherCategory],
+            min = 1,
+            max = 100,
+            step = 1,
+            get = function(info)
+                return SweepyBoop.db.profile.arenaFrames.spellCatPriority[tostring(otherCategory)];
+            end,
+            set = function(info, val)
+                SweepyBoop.db.profile.arenaFrames.spellCatPriority[tostring(otherCategory)] = val;
+            end,
+        }
     end
 
     AppendSpellOptions(optionGroup.args.arenaFrameBars.args.spellList, addon.SpellData);

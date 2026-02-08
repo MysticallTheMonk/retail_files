@@ -1,4 +1,5 @@
 -- I did not know what a variable was when I started. I know a little bit more now and I am so sorry.
+local L = BBF.L
 
 local addonVersion = "1.00" --too afraid to to touch for now
 local addonUpdates = C_AddOns.GetAddOnMetadata("BetterBlizzFrames", "Version")
@@ -59,6 +60,7 @@ local defaultSettings = {
     focusEnlargeAuraFriendly = true,
 
     hunterFeignRaidFrameFix = true,
+    playerEliteFrameMode = 1,
 
     -- Absorb Indicator
     absorbIndicatorScale = 1,
@@ -282,6 +284,10 @@ local defaultSettings = {
     castBarInterruptIconShowActiveOnly = false,
     castBarInterruptIconDisplayCD = true,
     interruptIconBorder = true,
+    unitFrameFontColorRGB = {1,1,1,1},
+    partyFrameFontColorRGB = {1,1,1,1},
+    unitFrameValueFontColorRGB = {1,1,1,1},
+    actionBarFontColorRGB = {1,1,1,1},
 
     auraWhitelist = {
         ["example aura :3 (delete me)"] = {name = "Example Aura :3 (delete me)"}
@@ -317,7 +323,7 @@ local function FetchAndSaveValuesOnFirstLogin()
 
     C_Timer.After(5, function()
         if not C_AddOns.IsAddOnLoaded("SkillCapped") then
-        DEFAULT_CHAT_FRAME:AddMessage("|A:gmchat-icon-blizz:16:16|aBetter|cff00c0ffBlizz|rFrames first run. Thank you for trying out my AddOn. Access settings with /bbf")
+            BBF.Print(L["Print_First_Run"], true)
         end
         BetterBlizzFramesDB.hasSaved = true
     end)
@@ -325,8 +331,8 @@ end
 
 -- Define the popup window
 StaticPopupDialogs["BetterBlizzFrames_COMBAT_WARNING"] = {
-    text = "Leave combat to adjust this setting.",
-    button1 = "Okay",
+    text = L["Popup_Combat_Warning"],
+    button1 = L["Yes"],
     timeout = 0,
     whileDead = true,
     hideOnEscape = true,
@@ -335,7 +341,7 @@ StaticPopupDialogs["BetterBlizzFrames_COMBAT_WARNING"] = {
 
 StaticPopupDialogs["BBF_NEW_VERSION"] = {
     text = "|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames " .. "Cata Beta 0.0.8" .. ":\n\nTWO IMPORTANT CHANGES:\n\n1) I've reset TargetToT & FocusToT positions.\nYou will have to change them to your preferred locations again.\n\n2) I've also added scale settings for Player, Target and FocusFrame.\n\nIf you have scripts/other addons adjusting this make sure you set the same value in BBF or turn off the other things.\n\nSorry for the inconvenience.\nThis change was needed due to wrong initial values when making the Beta.\nIt wont happen again.",
-    button1 = "OK",
+    button1 = L["Yes"],
     timeout = 0,
     whileDead = true,
     hideOnEscape = true,
@@ -347,9 +353,9 @@ local function ResetBBF()
 end
 
 StaticPopupDialogs["CONFIRM_RESET_BETTERBLIZZFRAMESDB"] = {
-    text = "Are you sure you want to reset all BetterBlizzFrames settings?\nThis action cannot be undone.",
-    button1 = "Confirm",
-    button2 = "Cancel",
+    text = L["Popup_Confirm_Reset"],
+    button1 = L["Yes"],
+    button2 = L["No"],
     OnAccept = function()
         ResetBBF()
     end,
@@ -363,13 +369,17 @@ StaticPopupDialogs["CONFIRM_RESET_BETTERBLIZZFRAMESDB"] = {
 local function SendUpdateMessage()
     if sendUpdate then
         if not BetterBlizzFramesDB.scStart then
+            if BetterBlizzFramesDB.skipUpdateMsg then
+                BetterBlizzFramesDB.skipUpdateMsg = nil
+                return
+            end
             C_Timer.After(7, function()
                 --StaticPopup_Show("BBF_NEW_VERSION")
 
                 if BetterBlizzFramesDB.playerAuraFiltering then
-                    DEFAULT_CHAT_FRAME:AddMessage("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames "..addonUpdates..":")
-                    --DEFAULT_CHAT_FRAME:AddMessage("|A:QuestNormal:16:16|a New stuff:")
-                    DEFAULT_CHAT_FRAME:AddMessage("|A:QuestNormal:16:16|a Important Note: Moving BuffFrame/DebuffFrame is now optional but on by default. Depending on your addons BetterBlizzFrames might've taken control over other things moving it. Please double check your aura settings in the Buffs & Debuffs section.")
+                    BBF.Print(addonUpdates..":", true)
+                    --BBF.Print("|A:QuestNormal:16:16|a New stuff:")
+                    DEFAULT_CHAT_FRAME:AddMessage("|A:QuestNormal:16:16|a " .. L["Print_BuffFrame_Move_Important_Note"])
                 end
                 -- DEFAULT_CHAT_FRAME:AddMessage("   - Absorb Indicator + Overshields now working (Potentially).")
                 -- -- DEFAULT_CHAT_FRAME:AddMessage("   - Sort Purgeable Auras setting (Buffs & Debuffs).")
@@ -387,7 +397,7 @@ local function SendUpdateMessage()
 end
 
 local function NewsUpdateMessage()
-    DEFAULT_CHAT_FRAME:AddMessage("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames news:")
+    BBF.Print("news:", true)
     DEFAULT_CHAT_FRAME:AddMessage("|A:QuestNormal:16:16|a New Settings:")
     DEFAULT_CHAT_FRAME:AddMessage("   - Castbar Edge Highlighter now uses seconds instead of percentages.")
     DEFAULT_CHAT_FRAME:AddMessage("   - Added \"Hide Player Guide Flag\" setting.")
@@ -471,23 +481,140 @@ end
 -- CLICKTHROUGH
 --------------------------------------
 function BBF.ClickthroughFrames()
-	if not InCombatLockdown() then
+    if not InCombatLockdown() then
         local shift = IsShiftKeyDown()
-        if BetterBlizzFramesDB.playerFrameClickthrough then
+        local db = BetterBlizzFramesDB
+
+        if db.playerFrameClickthrough then
             PlayerFrame:SetMouseClickEnabled(shift)
         end
 
-        if BetterBlizzFramesDB.targetFrameClickthrough then
+        if db.targetFrameClickthrough then
             TargetFrame:SetMouseClickEnabled(shift)
-            TargetFrameToT:SetMouseClickEnabled(false)
+            TargetFrameToT:SetMouseClickEnabled(shift)
+        end
+    end
+end
+
+local ClickthroughFrames = CreateFrame("Frame")
+ClickthroughFrames:SetScript("OnEvent", function(_, event)
+    if event == "PLAYER_REGEN_DISABLED" then
+        local db = BetterBlizzFramesDB
+
+        if db.playerFrameClickthrough then
+            PlayerFrame:SetMouseClickEnabled(false)
         end
 
-        -- if BetterBlizzFramesDB.focusFrameClickthrough then
-        --     FocusFrame:SetMouseClickEnabled(shift)
-        --     FocusFrameToT:SetMouseClickEnabled(false)
-        -- end
-	end
+        if db.targetFrameClickthrough then
+            TargetFrame:SetMouseClickEnabled(false)
+            TargetFrameToT:SetMouseClickEnabled(false)
+        end
+        return
+    end
+    BBF.ClickthroughFrames()
+end)
+ClickthroughFrames:RegisterEvent("MODIFIER_STATE_CHANGED")
+ClickthroughFrames:RegisterEvent("PLAYER_REGEN_DISABLED")
+
+
+function BBF.PlayerElite(mode)
+    local playerElite = PlayerFrameTexture
+    local bigHealthbars = BetterBlizzFramesDB["biggerHealthbars"]
+
+    -- Set Elite style according to value
+    playerElite:SetDesaturated(false)
+    if not BetterBlizzFramesDB.playerEliteFrame then
+        if BBF.eliteToggled then
+            if bigHealthbars then
+                playerElite:SetTexture("Interface\\AddOns\\BetterBlizzFrames\\media\\UI-TargetingFrame")
+                playerElite:SetTexCoord(1, .09375, 0, .78125)
+            else
+                playerElite:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame")
+                playerElite:SetTexCoord(1, .09375, 0, .78125)
+            end
+            BBF.eliteToggled = nil
+            return
+        else
+            return
+        end
+    end
+    if mode == 1 then -- Rare (Silver)
+        if bigHealthbars then
+            playerElite:SetTexture("Interface\\AddOns\\BetterBlizzFrames\\media\\UI-TargetingFrame-Rare")
+            playerElite:SetTexCoord(1, .09375, 0, .78125)
+            playerElite:SetDesaturated(true)
+        else
+            playerElite:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-Rare")
+            playerElite:SetTexCoord(1, .09375, 0, .78125)
+            playerElite:SetDesaturated(true)
+        end
+    elseif mode == 2 then -- Boss (Gold Winged)
+        if bigHealthbars then
+            playerElite:SetTexture("Interface\\AddOns\\BetterBlizzFrames\\media\\UI-TargetingFrame-Elite")
+            playerElite:SetTexCoord(1, .09375, 0, .78125)
+        else
+            playerElite:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-Elite")
+            playerElite:SetTexCoord(1, .09375, 0, .78125)
+        end
+    elseif mode == 3 then -- Boss (Silver Winged)
+        if bigHealthbars then
+            playerElite:SetTexture("Interface\\AddOns\\BetterBlizzFrames\\media\\UI-TargetingFrame-Rare-Elite")
+            playerElite:SetTexCoord(1, .09375, 0, .78125)
+            playerElite:SetDesaturated(true)
+        else
+            playerElite:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-Elite")
+            playerElite:SetTexCoord(1, .09375, 0, .78125)
+            playerElite:SetDesaturated(true)
+        end
+    end
+    BBF.eliteToggled = true
 end
+
+
+function BBF.ZoomDefaultActionbarIcons(enableZoom)
+    if not BetterBlizzFramesDB.zoomActionBarIcons and enableZoom ~= false then return end
+    if BetterBlizzFramesDB.zoomActionBarIcons then
+        enableZoom = true
+    end
+    local function zoom(icon)
+        if icon and icon.SetTexCoord then
+            if enableZoom then
+                icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+            else
+                icon:SetTexCoord(0, 1, 0, 1)
+            end
+        end
+    end
+    
+    local function zoomButtons(prefix, count)
+        for i = 1, count do
+            local btn = _G[prefix .. i]
+            if btn then
+                zoom(btn.Icon or btn.icon or _G[prefix .. i .. "Icon"])
+            end
+        end
+    end
+    
+    zoomButtons("ActionButton", 12)
+    zoomButtons("MultiBarBottomLeftButton", 12)
+    zoomButtons("MultiBarBottomRightButton", 12)
+    zoomButtons("MultiBarRightButton", 12)
+    zoomButtons("MultiBarLeftButton", 12)
+    zoomButtons("MultiBar5Button", 12)
+    zoomButtons("MultiBar6Button", 12)
+    zoomButtons("MultiBar7Button", 12)
+    zoomButtons("PetActionButton", 10)
+    zoomButtons("StanceButton", 12)
+    zoomButtons("PossessButton", 2)
+    
+    if ExtraActionButton1 and ExtraActionButton1.icon then
+        zoom(ExtraActionButton1.icon)
+    end
+    if ZoneAbilityFrame and ZoneAbilityFrame.SpellButton and ZoneAbilityFrame.SpellButton.Icon then
+        zoom(ZoneAbilityFrame.SpellButton.Icon)
+    end
+end
+
 
 function BBF.ScaleUnitFrames()
     local db = BetterBlizzFramesDB
@@ -501,7 +628,7 @@ function BBF.ToggleLossOfControlTestMode()
     if not cataReady then return end
     local LossOfControlFrameAlphaBg = BetterBlizzFramesDB.hideLossOfControlFrameBg and 0 or 0.6
     local LossOfControlFrameAlphaLines = BetterBlizzFramesDB.hideLossOfControlFrameLines and 0 or 1
-    if not _G.FakeBBFLossOfControlFrame then  -- Changed to a global reference for wider access
+    if not _G.FakeBBFLossOfControlFrame then
         -- Main Frame Creation
         local frame = CreateFrame("Frame", "FakeBBFLossOfControlFrame", UIParent, "BackdropTemplate")
         frame:SetSize(256, 58)
@@ -542,7 +669,7 @@ function BBF.ToggleLossOfControlTestMode()
         local abilityName = frame:CreateFontString(nil, "ARTWORK", "MovieSubtitleFont")
         abilityName:SetPoint("TOPLEFT", icon, "TOPRIGHT", 5, -4)
         abilityName:SetSize(0, 20)
-        abilityName:SetText("Stunned")
+        abilityName:SetText(L["Label_Stunned"])
         frame.AbilityName = abilityName  -- Correctly scoped
 
         -- Time Left Frame
@@ -553,7 +680,7 @@ function BBF.ToggleLossOfControlTestMode()
 
         -- Number and Seconds Text
         local numberText = timeLeft:CreateFontString(nil, "ARTWORK", "GameFontNormalHuge")
-        numberText:SetText("5.5 seconds")
+        numberText:SetText(L["Label_Seconds"])
         numberText:SetPoint("LEFT", timeLeft, "LEFT", 0, -3)
         numberText:SetShadowOffset(2, -2)
         numberText:SetTextColor(1,1,1)
@@ -563,11 +690,11 @@ function BBF.ToggleLossOfControlTestMode()
         local stopButton = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
         stopButton:SetSize(120, 30)
         stopButton:SetPoint("BOTTOM", redLineBottom, "BOTTOM", 0, -35)
-        stopButton:SetText("Stop Testing")
+        stopButton:SetText(L["Label_Stop_Testing"])
         stopButton:SetScript("OnClick", function() frame:Hide() end)
         frame.StopButton = stopButton  -- Correctly scoped
 
-        _G.FakeBBFLossOfControlFrame = frame  -- Store the frame globally
+        _G.FakeBBFLossOfControlFrame = frame
     end
     FakeBBFLossOfControlFrame:SetScale(BetterBlizzFramesDB.lossOfControlScale)
     FakeBBFLossOfControlFrame.blackBg:SetAlpha(LossOfControlFrameAlphaBg)
@@ -637,13 +764,6 @@ local function DisableClickForClassSpecificFrame()
     end
 end
 
-local ClickthroughFrames = CreateFrame("frame")
-ClickthroughFrames:SetScript("OnEvent", function()
-    BBF.ClickthroughFrames()
-end)
-ClickthroughFrames:RegisterEvent("MODIFIER_STATE_CHANGED")
-
-
 
 function BBF.ActionBarIconZoom()
     --local texCoords = BetterBlizzFramesDB.playerFrameOCDZoom and {0.06, 0.94, 0.06, 0.94} or {0, 1, 0, 1}
@@ -707,11 +827,19 @@ end
 
 
 local LSM = LibStub("LibSharedMedia-3.0")
-
+BBF.LSM = LSM
+BBF.allLocales = LSM.LOCALE_BIT_western+LSM.LOCALE_BIT_ruRU+LSM.LOCALE_BIT_zhCN+LSM.LOCALE_BIT_zhTW+LSM.LOCALE_BIT_koKR
+LSM:Register("statusbar", "Blizzard DF", [[Interface\TargetingFrame\UI-TargetingFrame-BarFill]])
+LSM:Register("statusbar", "Blizzard CF", [[Interface\AddOns\BetterBlizzFrames\media\ui-statusbar-cf]])
+LSM:Register("statusbar", "Blizzard Retail Bar", [[Interface\AddOns\BetterBlizzFrames\media\blizzTex\BlizzardRetailBar]])
+LSM:Register("statusbar", "Blizzard Retail Bar Crop", [[Interface\AddOns\BetterBlizzFrames\media\blizzTex\BlizzardRetailBarCrop]])
+LSM:Register("statusbar", "Blizzard Retail Bar Crop 2", [[Interface\AddOns\BetterBlizzFrames\media\blizzTex\BlizzardRetailBarCrop2]])
+LSM:Register("statusbar", "Smooth", [[Interface\Addons\BetterBlizzFrames\media\smooth]])
 local texture = "Interface\\Addons\\BetterBlizzPlates\\media\\DragonflightTextureHD"
-local manaTexture = "Interface\\Addons\\BetterBlizzPlates\\media\\DragonflightTextureHD"
+local manaTexture = "Interface\\Addons\\BetterBlizzPlates\\media\\blizzTex\\BlizzardRetailBarCrop2"
 local raidHpTexture = "Interface\\Addons\\BetterBlizzPlates\\media\\DragonflightTextureHD"
 local raidManaTexture = "Interface\\Addons\\BetterBlizzPlates\\media\\DragonflightTextureHD"
+local castbarTexture = 137012
 
 local manaTextureUnits = {}
 
@@ -721,6 +849,7 @@ function BBF.UpdateCustomTextures()
     manaTexture = LSM:Fetch(LSM.MediaType.STATUSBAR, db.unitFrameManabarTexture)
     raidHpTexture = LSM:Fetch(LSM.MediaType.STATUSBAR, db.raidFrameHealthbarTexture)
     raidManaTexture = LSM:Fetch(LSM.MediaType.STATUSBAR, db.raidFrameManabarTexture)
+    castbarTexture = LSM:Fetch(LSM.MediaType.STATUSBAR, db.unitFrameCastbarTexture)
 
     BBF.HookTextures()
 end
@@ -777,7 +906,7 @@ local function ApplyTextureChange(type, statusBar, parent)
 end
 
 -- Main function to apply texture changes to raid frames and additional frames
-function HookUnitFrameTextures()
+function BBF.HookUnitFrameTextures()
     local db = BetterBlizzFramesDB
     -- Hook Player, Target & Focus Healthbars
     if db.changeUnitFrameHealthbarTexture then
@@ -838,6 +967,8 @@ function HookUnitFrameTextures()
             --ApplyTextureChange("mana", FocusFrameToTManaBar)
         end
     end
+
+    BBF.UpdateClassicCastbarTexture(castbarTexture)
 end
 
 
@@ -894,8 +1025,8 @@ function BBF.HookTextures()
     local db = BetterBlizzFramesDB
     -- Hook UnitFrames
     -- BetterBlizzFramesDB.textureSwapUnitFrames
-    if db.changeUnitFrameHealthbarTexture or db.changeUnitFrameManabarTexture then
-        HookUnitFrameTextures()
+    if db.changeUnitFrameHealthbarTexture or db.changeUnitFrameManabarTexture or db.changeUnitFrameCastbarTexture then
+        BBF.HookUnitFrameTextures()
     end
 
     -- Hook Raidframes
@@ -1194,25 +1325,6 @@ function BBF.FixStupidBlizzPTRShit()
     end
 end
 
-function BBF.ClassPortraits()
-    hooksecurefunc("SetPortraitTexture", function(portrait, unit)
-        if UnitIsPlayer(unit) then
-            if BetterBlizzFramesDB.classPortraitsIgnoreSelf and portrait:GetParent():GetName() == "PlayerFrame" then return end
-            local _, class = UnitClass(unit)
-
-            local texture = "Interface\\TargetingFrame\\UI-Classes-Circles"
-            local coords = CLASS_ICON_TCOORDS[class]
-
-            if coords then
-                portrait:SetTexture(texture)
-                portrait:SetTexCoord(unpack(coords))
-            end
-        else
-            portrait:SetTexCoord(0, 1, 0, 1)
-        end
-    end)
-end
-
 function BBF.HunterFeignRaidFrameFix()
     if BBF.HunterFeignFix then return end
     if not BetterBlizzFramesDB.hunterFeignRaidFrameFix then return end
@@ -1289,7 +1401,7 @@ local function executeCustomCode()
         if func then
             func() -- Execute the custom code
         else
-            print("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: Error in custom code:", errorMsg)
+            BBF.Print(string.format(L["Print_Error_In_Custom_Code"], errorMsg))
         end
     end
 end
@@ -1354,7 +1466,7 @@ Frame:SetScript("OnEvent", function(...)
         BBF.ClassPortraits()
     end
 
-    C_Timer.After(0.2, function()
+    C_Timer.After(0.5, function()
         BBF.SetCustomFonts()
         BBF.UpdateCustomTextures()
     end)
@@ -1399,7 +1511,7 @@ Frame:SetScript("OnEvent", function(...)
             if BetterBlizzFramesDB.playerFrameOCD then
                 BBF.FixStupidBlizzPTRShit()
             end
-            C_Timer.After(0, function()
+            C_Timer.After(0.1, function()
                 -- if BetterBlizzFramesDB.classColorTargetNames and BetterBlizzFramesDB.classColorLevelText then
                 --     BBF.HookLevelText()
                 -- end
@@ -1420,6 +1532,7 @@ Frame:SetScript("OnEvent", function(...)
                 if BetterBlizzFramesDB.biggerHealthbars then
                     BBF.HookBiggerHealthbars()
                 end
+                BBF.PlayerElite(BetterBlizzFramesDB.playerEliteFrameMode)
                 BBF.ToggleCastbarInterruptIcon()
                 BBF.UpdateUserTargetSettings()
                 BBF.UpdateCastbars()
@@ -1441,7 +1554,7 @@ Frame:SetScript("OnEvent", function(...)
 
     if BetterBlizzFramesDB.reopenOptions then
         --InterfaceOptionsFrame_OpenToCategory(BetterBlizzFrames)
-        Settings.OpenToCategory(BBF.category.ID)
+        Settings.OpenToCategory(BBF.category:GetID())
         BetterBlizzFramesDB.reopenOptions = false
     end
 
@@ -1465,18 +1578,18 @@ SlashCmdList["BBF"] = function(msg)
                 if spellName then
                     local iconString = "|T" .. icon .. ":16:16:0:0|t" -- Format the icon for display
                     BBF.auraWhitelist(spellId)
-                    print("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: " .. iconString .. " " .. spellName .. " (" .. spellId .. ") added to |cff00ff00whitelist|r.")
+                    BBF.Print(iconString .. " " .. spellName .. " (" .. spellId .. ")" .. L["Print_Added_To_Whitelist_With_Icon"])
                 else
-                    print("Error: Invalid spell ID.")
+                    BBF.Print(L["Print_Error_Invalid_Spell_ID"])
                 end
             else
                 -- The argument is not a number, treat it as a spell name
                 local spellName = arg
                 BBF.auraWhitelist(spellName)
-                print("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: " .. spellName .. " was added to |cff00ff00whitelist|r.")
+                BBF.Print(spellName .. L["Print_Added_To_Whitelist_Name"])
             end
         else
-            print("Usage: /bbf whitelist <spellID or auraName>")
+            BBF.Print(L["Print_Usage_Whitelist"])
         end
     elseif command == "blacklist" or command == "bl" then
         if arg and arg ~= "" then
@@ -1487,38 +1600,58 @@ SlashCmdList["BBF"] = function(msg)
                 if spellName then
                     local iconString = "|T" .. icon .. ":16:16:0:0|t" -- Format the icon for display
                     BBF.auraBlacklist(spellId)
-                    print("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: " .. iconString .. " " .. spellName .. " (" .. spellId .. ") added to |cffff0000blacklist|r.")
+                    BBF.Print(iconString .. " " .. spellName .. " (" .. spellId .. ")" .. L["Print_Added_To_Blacklist_With_Icon"])
                 else
-                    print("Error: Invalid spell ID.")
+                    BBF.Print(L["Print_Error_Invalid_Spell_ID"])
                 end
             else
                 -- The argument is not a number, treat it as a spell name
                 local spellName = arg
                 BBF.auraBlacklist(spellName)
-                print("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: " .. spellName .. " was added to |cffff0000blacklist|r.")
+                BBF.Print(spellName .. L["Print_Added_To_Blacklist_Name"])
             end
         else
-            print("Usage: /bbf blacklist <spellID or auraName>")
+            BBF.Print(L["Print_Usage_Blacklist"])
         end
     elseif command == "ver" or command == "version" then
-        DEFAULT_CHAT_FRAME:AddMessage("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames Version "..addonUpdates)
+        BBF.Print(addonUpdates, true)
     elseif command == "dump" then
-        local exportVersion = BetterBlizzFramesDB.exportVersion or "No export version registered"
-        DEFAULT_CHAT_FRAME:AddMessage("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: "..exportVersion)
+        local exportVersion = BetterBlizzFramesDB.exportVersion or L["Chat_No_Export_Version"]
+        BBF.Print("\n\n"..exportVersion)
     elseif command == "profiles" then
         BBF.CreateIntroMessageWindow()
     else
         -- InterfaceOptionsFrame_OpenToCategory(BetterBlizzFrames)
         if not BBF.category then
-            print("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: Settings disabled. Likely due to error. Please update your addon.")
+            BBF.Print(L["Print_Settings_Disabled"])
             --BBF.InitializeOptions()
-            --Settings.OpenToCategory(BBF.category.ID)
+            --Settings.OpenToCategory(BBF.category:GetID())
         else
-            if not BetterBlizzFrames.guiLoaded then
-                BBF.LoadGUI()
-            else
-                Settings.OpenToCategory(BBF.category.ID)
-            end
+            BBF.LoadGUI()
+        end
+    end
+end
+
+local function MoveableSettingsPanel(talents)
+    if C_AddOns.IsAddOnLoaded("BlizzMove") or C_AddOns.IsAddOnLoaded("MoveAny") then return end
+    if BetterBlizzFramesDB.dontMoveSettingsPanel then return end
+    if not talents then
+        local frame = SettingsPanel
+        if frame and not frame:GetScript("OnDragStart") then
+            frame:RegisterForDrag("LeftButton")
+            frame:SetScript("OnDragStart", frame.StartMoving)
+            frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
+            frame:SetUserPlaced(false)
+            frame:ClearAllPoints()
+            frame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+        end
+    else
+        local talentFrame = PlayerTalentFrame
+        if talentFrame and not talentFrame:GetScript("OnDragStart") then
+            talentFrame:SetMovable(true)
+            talentFrame:RegisterForDrag("LeftButton")
+            talentFrame:SetScript("OnDragStart", talentFrame.StartMoving)
+            talentFrame:SetScript("OnDragStop", talentFrame.StopMovingOrSizing)
         end
     end
 end
@@ -1534,7 +1667,13 @@ First:SetScript("OnEvent", function(_, event, addonName)
             InitializeSavedVariables()
             FetchAndSaveValuesOnFirstLogin()
             TurnTestModesOff()
+            BBF.ZoomDefaultActionbarIcons()
             --TurnOnEnabledFeaturesOnLogin()
+
+            C_Timer.After(1, function()
+                BBF.FontColors()
+                MoveableSettingsPanel()
+            end)
 
             if BetterBlizzFramesDB.partyCastbarHideBorder then
                 BetterBlizzFramesDB.partyCastbarShowBorder = false
@@ -1592,6 +1731,8 @@ First:SetScript("OnEvent", function(_, event, addonName)
             end
 
             BBF.InitializeOptions()
+        elseif addonName == "Blizzard_TalentUI" and _G.PlayerTalentFrame then
+            MoveableSettingsPanel(true)
         end
     end
 end)
@@ -1651,3 +1792,16 @@ PlayerEnteringWorld:RegisterEvent("PLAYER_ENTERING_WORLD")
 --     TargetFrame.HealthBar.BBPFill:SetWidth(TargetFrame.HealthBar.MyHealPredictionBar.FillMask:GetWidth(), flag)
 -- end)
 --TargetFrame.HealthBar.OtherHealPredictionBar.Fill:SetBlendMode("MOD")
+if TargetFrame_CheckClassification then
+    hooksecurefunc("TargetFrame_CheckClassification" , function(self)
+        if self.changing then return end
+        if self.borderTexture:GetTexture() ~= 137015 then return end
+        local classification = UnitClassification(self.unit)
+        if classification ~= "rareelite" then
+            return
+        end
+        self.changing = true
+        self.borderTexture:SetTexture("Interface\\TargetingFrame\\ui-targetingframe-rare-elite")
+        self.changing = false
+    end)
+end

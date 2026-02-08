@@ -769,6 +769,7 @@ do
 						button.leaveFunc = data.leaveFunc
 						button.hoverArg = data.hoverArg
 						button.checkFunc = data.checkFunc
+						button.tooltip = data.tooltip
 						
 						if not data.checkFunc then
 							button.checkFunc = ScrollDropDown_DefaultCheckFunc
@@ -838,6 +839,15 @@ do
 		if func then
 			func(self,self.hoverArg)
 		end
+		if self.tooltip then
+			GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+			if type(self.tooltip) == "string" and self.tooltip:find("^spell:%d+") then
+				GameTooltip:SetHyperlink(self.tooltip)
+			else
+				GameTooltip:AddLine(type(self.tooltip)=="function" and self.tooltip() or self.tooltip)
+			end
+			GameTooltip:Show()
+		end
 		ELib.ScrollDropDown:CloseSecondLevel(self.Level)
 		if self.subMenu then
 			ELib.ScrollDropDown.ToggleDropDownMenu(self,self.Level+1)
@@ -847,6 +857,9 @@ do
 		local func = self.leaveFunc
 		if func then
 			func(self)
+		end
+		if self.tooltip then
+			GameTooltip_Hide()
 		end
 	end
 	

@@ -24,6 +24,9 @@ local function GetIcon(family, subfamily)
 end
 
 function ADDON.UI.FDD:AddFamilyMenu(root)
+
+    root:SetScrollMode(GetScreenHeight() - 10)
+
     local L = ADDON.L
     local tInsert = table.insert
 

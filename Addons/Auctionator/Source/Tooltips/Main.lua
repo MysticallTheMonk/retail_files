@@ -15,6 +15,9 @@ function Auctionator.Tooltip.ShowTipWithPricing(tooltipFrame, itemLink, itemCoun
   Auctionator.Utilities.DBKeyFromLink(itemLink, function(dbKeys)
     waitingForPricing = false
     Auctionator.Tooltip.ShowTipWithPricingDBKey(tooltipFrame, dbKeys, itemLink, itemCount)
+    if not Auctionator.Constants.IsRetail then
+      tooltipFrame:Show()
+    end
   end)
 end
 
@@ -119,8 +122,6 @@ function Auctionator.Tooltip.ShowTipWithPricingDBKey(tooltipFrame, dbKeys, itemL
   if millStatus then
     Auctionator.Tooltip.AddMillTip(tooltipFrame, millValue, countString)
   end
-
-  tooltipFrame:Show()
 end
 
 -- Each itemEntry in itemEntries should contain
@@ -363,7 +364,7 @@ function Auctionator.Tooltip.AddReagentsAuctionTip(tooltipFrame, allReagents)
       local auctionAge = Auctionator.Database:GetPriceAge(key)
       local qualitySuffix = ""
       if reagent.quality then
-        qualitySuffix = " " .. C_Texture.GetCraftingReagentQualityChatIcon(reagent.quality)
+        qualitySuffix = " " .. Auctionator.Utilities.GetCraftingQualityMarkup(reagent.quality)
       end
       local countString = ""
       if showStackPrices then

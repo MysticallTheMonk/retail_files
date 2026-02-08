@@ -1,0 +1,11 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+  <Script file="Libs\LibStub\LibStub.lua"/>
+  <Include file="Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml"/>
+  <Include file="Libs\LibSharedMedia-3.0\lib.xml"/>
+  <Include file="Libs\LibCustomGlow-1.0\LibCustomGlow-1.0.xml"/>
+  <Script file="Libs\LibGetFrame-1.0\LibGetFrame-1.0.lua"/>
+  <Script file="Libs\LibSpecialization/LibSpecialization.lua"/>
+  <Script file="Libs\LibDeflate\LibDeflate.lua"/>
+  <Include file="Libs\LibSerialize\lib.xml"/>
+</Ui>

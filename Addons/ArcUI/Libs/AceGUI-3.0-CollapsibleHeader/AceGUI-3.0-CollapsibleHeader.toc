@@ -1,0 +1,9 @@
+## Interface: 120000
+## Title: Lib: AceGUI-3.0-CollapsibleHeader
+## Notes: A clickable collapsible header widget for AceGUI-3.0
+## Author: Arc
+## Version: 1.0
+## Dependencies: Ace3
+## X-Category: Library
+
+AceGUI-3.0-CollapsibleHeader.lua

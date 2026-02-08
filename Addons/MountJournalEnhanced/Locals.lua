@@ -12,6 +12,9 @@ L["COMPARTMENT_TOOLTIP"] = "|cffeda55fLeft-Click|r to toggle showing the mount c
 L["DRESSUP_LABEL"] = "Journal"
 L["FAVOR_DISPLAYED"] = "All Displayed"
 L["FILTER_ONLY_LATEST"] = "Only latest additions"
+L["FILTER_PROFILE"] = "Profile"
+L["FILTER_PROFILE_TOOLTIP_TITLE"] = "Filter Profiles"
+L["FILTER_PROFILE_TOOLTIP_TEXT"] = "Quickly load your predefined filter and search settings.|n|cffeda55fLeft-Click|r to load filter profile.|n|cffeda55fRight-Click|r to save filter profile."
 L["FILTER_SECRET"] = "Hidden by the game"
 L["FILTER_RETIRED"] = "No longer available"
 L["Family"] = "Family"
@@ -61,7 +64,6 @@ L["ANIMATION_RUN"] = "Run"
 L["ANIMATION_FLY"] = "Fly"
 L["ANIMATION_FLY_IDLE"] = "Fly Idle"
 L["FILTER_ONLY"] = "only"
-L["COPY_POPUP"] = "press CTRL+C to copy"
 L["LINK_WOWHEAD"] = "Link to Wowhead"
 L["CLICK_TO_SHOW_LINK"] = "Click to Show Link"
 L["SYNC_TARGET_TIP_TITLE"] = "Sync Journal with Target"
@@ -92,9 +94,6 @@ L["SETTING_HEAD_ABOUT"] = "About"
 L["SETTING_HEAD_BEHAVIOUR"] = "Behavior"
 L["SETTING_MOUNT_COUNT"] = "Show personal mount count"
 L["SETTING_MOUNTSPECIAL_BUTTON"] = "Show /mountspecial button"
-L["SETTING_MOVE_EQUIPMENT_SLOT"] = "Move equipment slot"
-L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_TOP"] = "within top bar"
-L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_DISPLAY"] = "inside display"
 L["SETTING_PERSONAL_FILTER"] = "Apply filters only to this character"
 L["SETTING_PERSONAL_HIDDEN_MOUNTS"] = "Apply hidden mounts only to this character"
 L["SETTING_PERSONAL_UI"] = "Apply Interface settings only to this character"
@@ -104,21 +103,23 @@ L["SETTING_SEARCH_FAMILY_NAME"] = "Search also by family name"
 L["SETTING_SEARCH_NOTES"] = "Search also in own notes"
 L["SETTING_SHOW_RESIZE_EDGE"] = "Activate edge in bottom corner to resize window"
 L["SETTING_SHOW_DATA"] = "Show mount data in display"
+L["SETTING_SHOW_TOOLBAR_BUTTONS"] = "Show toolbar buttons"
 L["SETTING_SUMMONPREVIOUSPET"] = "Summon previous active pet again when dismounting."
 L["SETTING_TRACK_USAGE"] = "Track mount usage behavior on all characters"
 L["SETTING_YCAMERA"] = "Unlock Y rotation with mouse in display"
+L["SETTING_SHOW_FILTER_PROFILES_IN_MENU"] = "Show filter profiles in filter menu."
 
 -- Families
 -- Families
 L["Airplanes"] = "Airplanes"
 L["Airships"] = "Airships"
+L["Albatross"] = "Albatross"
 L["Alpacas"] = "Alpacas"
 L["Amphibian"] = "Amphibian"
 L["Animite"] = "Animite"
 L["Aqir Flyers"] = "Aqir Flyers"
 L["Arachnids"] = "Arachnids"
 L["Armoredon"] = "Armoredon"
-L["Assault Wagons"] = "Assault Wagons"
 L["Basilisks"] = "Basilisks"
 L["Bats"] = "Bats"
 L["Bears"] = "Bears"
@@ -126,13 +127,13 @@ L["Beetle"] = "Beetle"
 L["Bipedal Cat"] = "Bipedal Cat"
 L["Birds"] = "Birds"
 L["Boars"] = "Boars"
-L["Book"] = "Book"
 L["Bovids"] = "Bovids"
 L["Broom"] = "Broom"
 L["Brutosaurs"] = "Brutosaurs"
 L["Camels"] = "Camels"
 L["Carnivorans"] = "Carnivorans"
 L["Carpets"] = "Carpets"
+L["Carrion"] = "Carrion"
 L["Cats"] = "Cats"
 L["Cervid"] = "Cervid"
 L["Chargers"] = "Chargers"
@@ -162,6 +163,7 @@ L["Elementals"] = "Elementals"
 L["Falcosaurs"] = "Falcosaurs"
 L["Fathom Rays"] = "Fathom Rays"
 L["Feathermanes"] = "Feathermanes"
+L["Felbat"] = "Felbat"
 L["Felsabers"] = "Felsabers"
 L["Fish"] = "Fish"
 L["Flies"] = "Flies"
@@ -177,6 +179,7 @@ L["Gronnlings"] = "Gronnlings"
 L["Gryphons"] = "Gryphons"
 L["Gyrocopters"] = "Gyrocopters"
 L["Hands"] = "Hands"
+L["Harrower"] = "Harrower"
 L["Hawkstriders"] = "Hawkstriders"
 L["Hedgehog"] = "Hedgehog"
 L["Hippogryphs"] = "Hippogryphs"
@@ -184,7 +187,6 @@ L["Horned Steeds"] = "Horned Steeds"
 L["Horses"] = "Horses"
 L["Hounds"] = "Hounds"
 L["Hover Board"] = "Hover Board"
-L["Hovercraft"] = "Hovercraft"
 L["Humanoids"] = "Humanoids"
 L["Hyenas"] = "Hyenas"
 L["Infernals"] = "Infernals"
@@ -200,6 +202,7 @@ L["Lupine"] = "Lupine"
 L["Lynx"] = "Lynx"
 L["Mammoths"] = "Mammoths"
 L["Mana Rays"] = "Mana Rays"
+L["Mana Wyrm"] = "Mana Wyrm"
 L["Manasabers"] = "Manasabers"
 L["Mauler"] = "Mauler"
 L["Mechanical Animals"] = "Mechanical Animals"
@@ -209,6 +212,7 @@ L["Mechanical Steeds"] = "Mechanical Steeds"
 L["Mechanostriders"] = "Mechanostriders"
 L["Mecha-suits"] = "Mecha-suits"
 L["Meeksi"] = "Meeksi"
+L["Mite"] = "Mite"
 L["Mole"] = "Mole"
 L["Mollusc"] = "Mollusc"
 L["Moose"] = "Moose"
@@ -226,9 +230,12 @@ L["Owl"] = "Owl"
 L["Owlbear"] = "Owlbear"
 L["Ox"] = "Ox"
 L["Pandaren Phoenixes"] = "Pandaren Phoenixes"
+L["Pangolin"] = "Pangolin"
 L["Parrots"] = "Parrots"
 L["Peafowl"] = "Peafowl"
+L["Petalwing"] = "Petalwing"
 L["Phoenixes"] = "Phoenixes"
+L["Plant"] = "Plant"
 L["Proto-Drakes"] = "Proto-Drakes"
 L["Pterrordaxes"] = "Pterrordaxes"
 L["Quilen"] = "Quilen"
@@ -252,9 +259,11 @@ L["Sabers"] = "Sabers"
 L["Scorpions"] = "Scorpions"
 L["Sea Serpents"] = "Sea Serpents"
 L["Seahorses"] = "Seahorses"
-L["Seat"] = "Seat"
+L["Shalewing"] = "Shalewing"
+L["Shardhides"] = "Shardhides"
 L["Silithids"] = "Silithids"
 L["Skyrazor"] = "Skyrazor"
+L["Slateback"] = "Slateback"
 L["Slug"] = "Slug"
 L["Snail"] = "Snail"
 L["Snapdragons"] = "Snapdragons"
@@ -273,6 +282,7 @@ L["Tauralus"] = "Tauralus"
 L["Thunder Lizard"] = "Thunder Lizard"
 L["Tigers"] = "Tigers"
 L["Toads"] = "Toads"
+L["Turkey"] = "Turkey"
 L["Turtles"] = "Turtles"
 L["Undead Drakes"] = "Undead Drakes"
 L["Undead Steeds"] = "Undead Steeds"
@@ -280,6 +290,8 @@ L["Undead Wolves"] = "Undead Wolves"
 L["Ungulates"] = "Ungulates"
 L["Ur'zul"] = "Ur'zul"
 L["Vehicles"] = "Vehicles"
+L["Void Creeper"] = "Void Creeper"
+L["Void Flyer"] = "Void Flyer"
 L["Vombata"] = "Vombata"
 L["Vulpin"] = "Vulpin"
 L["Vultures"] = "Vultures"
@@ -311,7 +323,6 @@ L["COMPARTMENT_TOOLTIP"] = [=[cffeda55fLinksklick|r um Reittiersammlung anzuzeig
 |cffeda55fRechtsklick|r um Addon-Optionen zu öffnen.]=]
 L["CONFIRM_FAVORITE_PROFILE_DELETION"] = [=[Möchtest du wirklich das Profil "%s" entfernen?
 Alle bisherigen zugewiesenen Charaktere werden auf das Standardprofil "%s" zurückgesetzt.]=]
-L["COPY_POPUP"] = "Drücke STRG+C zum Kopieren"
 L["DRESSUP_LABEL"] = "Sammlung"
 L["EVENT_PLUNDERSTORM"] = "Plunderstorm"
 L["EVENT_SCARAB"] = "Ruf des Skarabäus"
@@ -323,6 +334,9 @@ L["FAVORITE_ACCOUNT_PROFILE"] = "Account"
 L["FAVORITE_PROFILE"] = "Profil"
 L["FILTER_ONLY"] = "nur"
 L["FILTER_ONLY_LATEST"] = "Nur Neuzugänge"
+L["FILTER_PROFILE"] = "Profil"
+L["FILTER_PROFILE_TOOLTIP_TEXT"] = "Lade deine eigenen vordefinierten Filter- und Sucheinstellungen aus einem Profil.|n|cffeda55fLinksklick|r um Profil zu laden.|n|cffeda55fRechtsklick|r um Profil zu speichern."
+L["FILTER_PROFILE_TOOLTIP_TITLE"] = "Filterprofile"
 L["FILTER_RETIRED"] = "nicht mehr erhältlich"
 L["FILTER_SECRET"] = "vom Spiel versteckt"
 L["Hidden"] = "Ausgeblendete"
@@ -382,9 +396,6 @@ L["SETTING_HEAD_ABOUT"] = "Über"
 L["SETTING_HEAD_BEHAVIOUR"] = "Verhalten"
 L["SETTING_MOUNT_COUNT"] = "Zeige Reittieranzahl diesen Charakters"
 L["SETTING_MOUNTSPECIAL_BUTTON"] = "Zeige Knopf für /mountspecial"
-L["SETTING_MOVE_EQUIPMENT_SLOT"] = "Verschiebe Ausrüstungsplatz"
-L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_DISPLAY"] = "in Vorschauanzeige"
-L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_TOP"] = "in obere Leiste"
 L["SETTING_PERSONAL_FILTER"] = "Wende Filter-Einstellungen nur bei diesem Charakter an"
 L["SETTING_PERSONAL_HIDDEN_MOUNTS"] = "Benutze versteckte Reittiere nur bei diesem Charakter"
 L["SETTING_PERSONAL_UI"] = "Benutze Interface-Einstellungen nur bei diesem Charakter"
@@ -393,7 +404,9 @@ L["SETTING_SEARCH_FAMILY_NAME"] = "Suche auch anhand des Familiennamen"
 L["SETTING_SEARCH_MORE"] = "Suche auch im Beschreibungstext"
 L["SETTING_SEARCH_NOTES"] = "Suche auch in eigenen Notizen"
 L["SETTING_SHOW_DATA"] = "Zeige Informationen in Modellanzeige"
+L["SETTING_SHOW_FILTER_PROFILES_IN_MENU"] = "Zeige Filterprofile im Menü."
 L["SETTING_SHOW_RESIZE_EDGE"] = "Zeige untere Ecke um die Fenstergröße zu ändern"
+L["SETTING_SHOW_TOOLBAR_BUTTONS"] = "Zeige Schalter in Symbolleiste"
 L["SETTING_SUMMONPREVIOUSPET"] = "Zuvor aktives Haustier wird beim Absteigen wieder ausgepackt."
 L["SETTING_TRACK_USAGE"] = "Verfolge Reittier Nutzungsverhalten bei allen Charakteren"
 L["SETTING_YCAMERA"] = "Aktiviere Y-Rotation via Maus in Modellanzeige"
@@ -401,13 +414,13 @@ L["SETTING_YCAMERA"] = "Aktiviere Y-Rotation via Maus in Modellanzeige"
     -- Families
 L["Airplanes"] = "Flugzeuge"
 L["Airships"] = "Luftschiffe"
+L["Albatross"] = "Albatros"
 L["Alpacas"] = "Alpakas"
 L["Amphibian"] = "Amphibien"
 L["Animite"] = "Animilbe"
 L["Aqir Flyers"] = "Aqir-Flieger"
 L["Arachnids"] = "Spinnentiere"
 L["Armoredon"] = "Panzerdon"
-L["Assault Wagons"] = "Angriffswagen"
 L["Basilisks"] = "Basilisken"
 L["Bats"] = "Fledermäuse"
 L["Bears"] = "Bären"
@@ -415,13 +428,13 @@ L["Beetle"] = "Käfer"
 L["Bipedal Cat"] = "Zweibeinige Katze"
 L["Birds"] = "Vögel"
 L["Boars"] = "Eber"
-L["Book"] = "Buch"
 L["Bovids"] = "Hornträger"
 L["Broom"] = "Besen"
 L["Brutosaurs"] = "Brutosaurier"
 L["Camels"] = "Kamele"
 L["Carnivorans"] = "Raubtiere"
 L["Carpets"] = "Teppiche"
+L["Carrion"] = "Aasvogel"
 L["Cats"] = "Katzen"
 L["Cervid"] = "Cervid"
 L["Chargers"] = "Streitrosse"
@@ -451,6 +464,7 @@ L["Elementals"] = "Elementare"
 L["Falcosaurs"] = "Falkosaurier"
 L["Fathom Rays"] = "Tiefenrochen"
 L["Feathermanes"] = "Federmähnen"
+L["Felbat"] = "Teufelsfledermaus"
 L["Felsabers"] = "Teufelssäbler"
 L["Fish"] = "Fische"
 L["Flies"] = "Fliegen"
@@ -466,6 +480,7 @@ L["Gronnlings"] = "Gronnlinge"
 L["Gryphons"] = "Greifen"
 L["Gyrocopters"] = "Gyrokopter"
 L["Hands"] = "Hände"
+L["Harrower"] = "Plager"
 L["Hawkstriders"] = "Falkenschreiter"
 L["Hedgehog"] = "Igel"
 L["Hippogryphs"] = "Hippogryphen"
@@ -473,7 +488,6 @@ L["Horned Steeds"] = "Behornte Pferde"
 L["Horses"] = "Pferde"
 L["Hounds"] = "Hunde"
 L["Hover Board"] = "Ho­ver­board"
-L["Hovercraft"] = "Luftkissenfahrzeug"
 L["Humanoids"] = "Humanoide"
 L["Hyenas"] = "Hyänen"
 L["Infernals"] = "Höllenbestien"
@@ -489,6 +503,7 @@ L["Lupine"] = "Lupin"
 L["Lynx"] = "Luchs"
 L["Mammoths"] = "Mammuts"
 L["Mana Rays"] = "Manarochen"
+L["Mana Wyrm"] = "Manawyrm"
 L["Manasabers"] = "Manasäbler"
 L["Mauler"] = "Zerfleischer"
 L["Mechanical Animals"] = "Mechanische Tiere"
@@ -498,6 +513,7 @@ L["Mechanical Steeds"] = "Mechanische Pferde"
 L["Mechanostriders"] = "Roboschreiter"
 L["Mecha-suits"] = "Mecha"
 L["Meeksi"] = "Meeksi"
+L["Mite"] = "Milbe"
 L["Mole"] = "Maulwurf"
 L["Mollusc"] = "Weichtiere"
 L["Moose"] = "Elche"
@@ -515,9 +531,13 @@ L["Owl"] = "Eule"
 L["Owlbear"] = "Eulenbär"
 L["Ox"] = "Ochse"
 L["Pandaren Phoenixes"] = "Pandarenphönixe"
+L["Pangolin"] = "Schuppentier"
 L["Parrots"] = "Papageien"
 L["Peafowl"] = "Pfau"
+--[[Translation missing --]]
+--[[ L["Petalwing"] = "Petalwing"--]] 
 L["Phoenixes"] = "Phönixe"
+L["Plant"] = "Pflanze"
 L["Proto-Drakes"] = "Protodrachen"
 L["Pterrordaxes"] = "Pterrordaxe"
 L["Quilen"] = "Qilen"
@@ -541,9 +561,11 @@ L["Sabers"] = "Säbler"
 L["Scorpions"] = "Skorpione"
 L["Sea Serpents"] = "Seeschlangen"
 L["Seahorses"] = "Seepferde"
-L["Seat"] = "Wiege"
+L["Shalewing"] = "Schieferschwinge"
+L["Shardhides"] = "Splitterfell"
 L["Silithids"] = "Qirajipanzerdrohnen"
 L["Skyrazor"] = "Himmelsreißer"
+L["Slateback"] = "Schieferrücken"
 L["Slug"] = "Nacktschnecke"
 L["Snail"] = "Schnecke"
 L["Snapdragons"] = "Schnappdrachen"
@@ -562,6 +584,7 @@ L["Tauralus"] = "Tauralus"
 L["Thunder Lizard"] = "Donnerechse"
 L["Tigers"] = "Tiger"
 L["Toads"] = "Kröten"
+L["Turkey"] = "Truthahn"
 L["Turtles"] = "Schildkröten"
 L["Undead Drakes"] = "Untote Drachen"
 L["Undead Steeds"] = "Untote Pferde"
@@ -569,6 +592,8 @@ L["Undead Wolves"] = "Untote Wölfe"
 L["Ungulates"] = "Huftiere"
 L["Ur'zul"] = "Ur'zul"
 L["Vehicles"] = "Fahrzeuge"
+L["Void Creeper"] = "Leerenkrabbler"
+L["Void Flyer"] = "Leerenflieger"
 L["Vombata"] = "Vombata"
 L["Vulpin"] = "Vulpin"
 L["Vultures"] = "Geier"
@@ -600,7 +625,6 @@ L["COMPARTMENT_TOOLTIP"] = [=[|cffeda55fClick-Izquierdo|r para ver/ocultar la co
 |cffeda55fClick-Derecho|r para abrir las opciones del addon.]=]
 L["CONFIRM_FAVORITE_PROFILE_DELETION"] = [=[¿Estás seguro de que quieres borrar el perfil favorito "%s"?
 Todas las asignaciones de los personajes con el perfil actual se resetearán a las del perfil por defecto "%s".]=]
-L["COPY_POPUP"] = "pulsa CTRL+C para copiar"
 L["DRESSUP_LABEL"] = "Diario"
 L["EVENT_PLUNDERSTORM"] = "Plunderstorm"
 L["EVENT_SCARAB"] = "Llamada del Escarabajo"
@@ -612,6 +636,9 @@ L["FAVORITE_ACCOUNT_PROFILE"] = "Cuenta"
 L["FAVORITE_PROFILE"] = "Perfil"
 L["FILTER_ONLY"] = "sólo"
 L["FILTER_ONLY_LATEST"] = "Sólo las últimas añadidas"
+L["FILTER_PROFILE"] = "Perfil"
+L["FILTER_PROFILE_TOOLTIP_TEXT"] = "Carga rápidamente tu filtro predeterminado y la configuración de búsqueda.|n|cffeda55fClick-Izquierdo|r para cargar el perfil del filtro.|n|cffeda55fClick Derecho|r para guardar el perfil del filtro."
+L["FILTER_PROFILE_TOOLTIP_TITLE"] = "Perfiles de filtros"
 L["FILTER_RETIRED"] = "Ya no está disponible"
 L["FILTER_SECRET"] = "Oculto por el juego"
 L["Hidden"] = "Oculto"
@@ -671,9 +698,6 @@ L["SETTING_HEAD_ABOUT"] = "Sobre"
 L["SETTING_HEAD_BEHAVIOUR"] = "Comportamiento"
 L["SETTING_MOUNT_COUNT"] = "Mostrar el número personal de monturas"
 L["SETTING_MOUNTSPECIAL_BUTTON"] = "Mostrar el botón /monturaespecial"
-L["SETTING_MOVE_EQUIPMENT_SLOT"] = "Mover ranura de equipo"
-L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_DISPLAY"] = "dentro de la pantalla"
-L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_TOP"] = "en la barra superior"
 L["SETTING_PERSONAL_FILTER"] = "Aplicar los filtros sólo para este personaje"
 L["SETTING_PERSONAL_HIDDEN_MOUNTS"] = "Poner las monturas ocultas sólo para este personaje"
 L["SETTING_PERSONAL_UI"] = "Aplicar las opciones de interfaz sólo para este personaje"
@@ -682,7 +706,9 @@ L["SETTING_SEARCH_FAMILY_NAME"] = "Busca también por nombre de familia"
 L["SETTING_SEARCH_MORE"] = "Buscar también en la descripción del texto"
 L["SETTING_SEARCH_NOTES"] = "Buscar también en las notas propias"
 L["SETTING_SHOW_DATA"] = "Muestra la información de la montura en la pantalla"
+L["SETTING_SHOW_FILTER_PROFILES_IN_MENU"] = "Mostrar perfiles de filtros en el menú de filtro."
 L["SETTING_SHOW_RESIZE_EDGE"] = "Activa el borde en la esquina inferior para cambiar el tamaño de la ventana"
+L["SETTING_SHOW_TOOLBAR_BUTTONS"] = "Mostrar botones de la barra de herramientas"
 L["SETTING_SUMMONPREVIOUSPET"] = "Invocar de nuevo la mascota activa previamente al desmontar"
 L["SETTING_TRACK_USAGE"] = "Seguimiento del comportamiento de uso de las monturas en todos los personajes"
 L["SETTING_YCAMERA"] = "Desbloquear la rotación Y del ratón en la pantalla"
@@ -690,13 +716,13 @@ L["SETTING_YCAMERA"] = "Desbloquear la rotación Y del ratón en la pantalla"
     -- Families
 L["Airplanes"] = "Aviones"
 L["Airships"] = "Naves de Guerra"
+L["Albatross"] = "Albatros"
 L["Alpacas"] = "Alpacas"
 L["Amphibian"] = "Anfibios"
 L["Animite"] = "Animácaros"
 L["Aqir Flyers"] = "Voladores Aqir"
 L["Arachnids"] = "Arácnidos"
 L["Armoredon"] = "Rinoceronte Blindado"
-L["Assault Wagons"] = "Catapultas de Asalto"
 L["Basilisks"] = "Basiliscos"
 L["Bats"] = "Murciélagos"
 L["Bears"] = "Osos"
@@ -704,13 +730,13 @@ L["Beetle"] = "Escarabajos"
 L["Bipedal Cat"] = "Raptors dientes de sable"
 L["Birds"] = "Pájaros"
 L["Boars"] = "Jabalies"
-L["Book"] = "Libros"
 L["Bovids"] = "Bóvidos"
 L["Broom"] = "Escobas"
 L["Brutosaurs"] = "Brutosaurios"
 L["Camels"] = "Camellos"
 L["Carnivorans"] = "Carnívoros"
 L["Carpets"] = "Alfombras"
+L["Carrion"] = "Carroña"
 L["Cats"] = "Gatos"
 L["Cervid"] = "Cérvidos"
 L["Chargers"] = "Destreros"
@@ -740,6 +766,7 @@ L["Elementals"] = "Elementales"
 L["Falcosaurs"] = "Falcosaurios"
 L["Fathom Rays"] = "Rayas de las Profundidades"
 L["Feathermanes"] = "Crinplumas"
+L["Felbat"] = "Murciélago vil"
 L["Felsabers"] = "Sablesviles"
 L["Fish"] = "Peces"
 L["Flies"] = "Moscas"
@@ -755,6 +782,7 @@ L["Gronnlings"] = "Gronnitos"
 L["Gryphons"] = "Grifos"
 L["Gyrocopters"] = "Helicópteros"
 L["Hands"] = "Manos"
+L["Harrower"] = "Lacerante"
 L["Hawkstriders"] = "Halcones Zancudos"
 L["Hedgehog"] = "Erizos"
 L["Hippogryphs"] = "Hipogrifos"
@@ -762,7 +790,6 @@ L["Horned Steeds"] = "Corceles Cornudos"
 L["Horses"] = "Caballos"
 L["Hounds"] = "Canes"
 L["Hover Board"] = "Tabla Flotante"
-L["Hovercraft"] = "Aerodeslizadores"
 L["Humanoids"] = "Humanoides"
 L["Hyenas"] = "Hienas"
 L["Infernals"] = "Infernales"
@@ -778,6 +805,7 @@ L["Lupine"] = "Lupinos"
 L["Lynx"] = "Linces"
 L["Mammoths"] = "Mamuts"
 L["Mana Rays"] = "Rayas de Maná"
+L["Mana Wyrm"] = "Vermis de maná"
 L["Manasabers"] = "Sables de Maná"
 L["Mauler"] = "Aplastadores"
 L["Mechanical Animals"] = "Animales Mecánicos"
@@ -787,6 +815,7 @@ L["Mechanical Steeds"] = "Corceles Mecánicos"
 L["Mechanostriders"] = "Mecazancudos"
 L["Mecha-suits"] = "Trajes Mecánicos"
 L["Meeksi"] = "Meeksi"
+L["Mite"] = "Ácaros"
 L["Mole"] = "Topos"
 L["Mollusc"] = "Moluscos"
 L["Moose"] = "Alces"
@@ -804,9 +833,12 @@ L["Owl"] = "Búhos"
 L["Owlbear"] = "Lechúcicos"
 L["Ox"] = "Ox"
 L["Pandaren Phoenixes"] = "Fénix Pandaren"
+L["Pangolin"] = "Pangolín"
 L["Parrots"] = "Loros"
 L["Peafowl"] = "Pavo real"
+L["Petalwing"] = "Alapétalo"
 L["Phoenixes"] = "Fénix"
+L["Plant"] = "Planta"
 L["Proto-Drakes"] = "Protodracos"
 L["Pterrordaxes"] = "Pterrordáctilos"
 L["Quilen"] = "Quilens"
@@ -830,9 +862,11 @@ L["Sabers"] = "Sables"
 L["Scorpions"] = "Escorpiones"
 L["Sea Serpents"] = "Serpientes de Mar"
 L["Seahorses"] = "Caballitos de Mar"
-L["Seat"] = "Asientos"
+L["Shalewing"] = "Alaesquistos"
+L["Shardhides"] = "Pellejosquirlas"
 L["Silithids"] = "Silítidos"
 L["Skyrazor"] = "Cuchilla del Cielo"
+L["Slateback"] = "Lomopizarra"
 L["Slug"] = "Limacos"
 L["Snail"] = "Caracoles"
 L["Snapdragons"] = "Bocadragones"
@@ -851,6 +885,7 @@ L["Tauralus"] = "Tauralus"
 L["Thunder Lizard"] = "Truenagartos"
 L["Tigers"] = "Tigres"
 L["Toads"] = "Sapos"
+L["Turkey"] = "Pavos"
 L["Turtles"] = "Tortugas"
 L["Undead Drakes"] = "Dracos no Muertos"
 L["Undead Steeds"] = "Corceles no Muertos"
@@ -858,6 +893,8 @@ L["Undead Wolves"] = "Lobos no Muertos"
 L["Ungulates"] = "Ungulados"
 L["Ur'zul"] = "Ur'zul"
 L["Vehicles"] = "Vehículos"
+L["Void Creeper"] = "Trepador del Vacío"
+L["Void Flyer"] = "Volador del Vacío"
 L["Vombata"] = "Vombatas"
 L["Vulpin"] = "Vulpinos"
 L["Vultures"] = "Buitres"
@@ -902,8 +939,6 @@ elseif locale == "esMX" then
 --[[ L["CONFIRM_FAVORITE_PROFILE_DELETION"] = [=[Are you sure you want to delete the profile "%s"?
 All current character assignments will be reset to the default profile "%s".]=]--]] 
 --[[Translation missing --]]
---[[ L["COPY_POPUP"] = "press CTRL+C to copy"--]] 
---[[Translation missing --]]
 --[[ L["DRESSUP_LABEL"] = "Journal"--]] 
 --[[Translation missing --]]
 --[[ L["EVENT_PLUNDERSTORM"] = "Plunderstorm"--]] 
@@ -925,6 +960,12 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[ L["FILTER_ONLY"] = "only"--]] 
 --[[Translation missing --]]
 --[[ L["FILTER_ONLY_LATEST"] = "Only latest additions"--]] 
+--[[Translation missing --]]
+--[[ L["FILTER_PROFILE"] = "Profile"--]] 
+--[[Translation missing --]]
+--[[ L["FILTER_PROFILE_TOOLTIP_TEXT"] = "Quickly load your predefined filter and search settings.|n|cffeda55fLeft-Click|r to load filter profile.|n|cffeda55fRight-Click|r to save filter profile."--]] 
+--[[Translation missing --]]
+--[[ L["FILTER_PROFILE_TOOLTIP_TITLE"] = "Filter Profiles"--]] 
 --[[Translation missing --]]
 --[[ L["FILTER_RETIRED"] = "No longer available"--]] 
 --[[Translation missing --]]
@@ -1041,12 +1082,6 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["SETTING_MOUNTSPECIAL_BUTTON"] = "Show /mountspecial button"--]] 
 --[[Translation missing --]]
---[[ L["SETTING_MOVE_EQUIPMENT_SLOT"] = "Move equipment slot"--]] 
---[[Translation missing --]]
---[[ L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_DISPLAY"] = "inside display"--]] 
---[[Translation missing --]]
---[[ L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_TOP"] = "within top bar"--]] 
---[[Translation missing --]]
 --[[ L["SETTING_PERSONAL_FILTER"] = "Apply filters only to this character"--]] 
 --[[Translation missing --]]
 --[[ L["SETTING_PERSONAL_HIDDEN_MOUNTS"] = "Apply hidden mounts only to this character"--]] 
@@ -1063,7 +1098,11 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["SETTING_SHOW_DATA"] = "Show mount data in display"--]] 
 --[[Translation missing --]]
+--[[ L["SETTING_SHOW_FILTER_PROFILES_IN_MENU"] = "Show filter profiles in filter menu."--]] 
+--[[Translation missing --]]
 --[[ L["SETTING_SHOW_RESIZE_EDGE"] = "Activate edge in bottom corner to resize window"--]] 
+--[[Translation missing --]]
+--[[ L["SETTING_SHOW_TOOLBAR_BUTTONS"] = "Show toolbar buttons"--]] 
 --[[Translation missing --]]
 --[[ L["SETTING_SUMMONPREVIOUSPET"] = "Summon previous active pet again when dismounting."--]] 
 --[[Translation missing --]]
@@ -1077,6 +1116,8 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["Airships"] = "Airships"--]] 
 --[[Translation missing --]]
+--[[ L["Albatross"] = "Albatross"--]] 
+--[[Translation missing --]]
 --[[ L["Alpacas"] = "Alpacas"--]] 
 --[[Translation missing --]]
 --[[ L["Amphibian"] = "Amphibian"--]] 
@@ -1088,8 +1129,6 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[ L["Arachnids"] = "Arachnids"--]] 
 --[[Translation missing --]]
 --[[ L["Armoredon"] = "Armoredon"--]] 
---[[Translation missing --]]
---[[ L["Assault Wagons"] = "Assault Wagons"--]] 
 --[[Translation missing --]]
 --[[ L["Basilisks"] = "Basilisks"--]] 
 --[[Translation missing --]]
@@ -1105,8 +1144,6 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["Boars"] = "Boars"--]] 
 --[[Translation missing --]]
---[[ L["Book"] = "Book"--]] 
---[[Translation missing --]]
 --[[ L["Bovids"] = "Bovids"--]] 
 --[[Translation missing --]]
 --[[ L["Broom"] = "Broom"--]] 
@@ -1118,6 +1155,8 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[ L["Carnivorans"] = "Carnivorans"--]] 
 --[[Translation missing --]]
 --[[ L["Carpets"] = "Carpets"--]] 
+--[[Translation missing --]]
+--[[ L["Carrion"] = "Carrion"--]] 
 --[[Translation missing --]]
 --[[ L["Cats"] = "Cats"--]] 
 --[[Translation missing --]]
@@ -1177,6 +1216,8 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["Feathermanes"] = "Feathermanes"--]] 
 --[[Translation missing --]]
+--[[ L["Felbat"] = "Felbat"--]] 
+--[[Translation missing --]]
 --[[ L["Felsabers"] = "Felsabers"--]] 
 --[[Translation missing --]]
 --[[ L["Fish"] = "Fish"--]] 
@@ -1207,6 +1248,8 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["Hands"] = "Hands"--]] 
 --[[Translation missing --]]
+--[[ L["Harrower"] = "Harrower"--]] 
+--[[Translation missing --]]
 --[[ L["Hawkstriders"] = "Hawkstriders"--]] 
 --[[Translation missing --]]
 --[[ L["Hedgehog"] = "Hedgehog"--]] 
@@ -1220,8 +1263,6 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[ L["Hounds"] = "Hounds"--]] 
 --[[Translation missing --]]
 --[[ L["Hover Board"] = "Hover Board"--]] 
---[[Translation missing --]]
---[[ L["Hovercraft"] = "Hovercraft"--]] 
 --[[Translation missing --]]
 --[[ L["Humanoids"] = "Humanoids"--]] 
 --[[Translation missing --]]
@@ -1246,12 +1287,13 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[ L["Lions"] = "Lions"--]] 
 --[[Translation missing --]]
 --[[ L["Lupine"] = "Lupine"--]] 
---[[Translation missing --]]
---[[ L["Lynx"] = "Lynx"--]] 
+L["Lynx"] = "Lince"
 --[[Translation missing --]]
 --[[ L["Mammoths"] = "Mammoths"--]] 
 --[[Translation missing --]]
 --[[ L["Mana Rays"] = "Mana Rays"--]] 
+--[[Translation missing --]]
+--[[ L["Mana Wyrm"] = "Mana Wyrm"--]] 
 --[[Translation missing --]]
 --[[ L["Manasabers"] = "Manasabers"--]] 
 --[[Translation missing --]]
@@ -1270,6 +1312,8 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[ L["Mecha-suits"] = "Mecha-suits"--]] 
 --[[Translation missing --]]
 --[[ L["Meeksi"] = "Meeksi"--]] 
+--[[Translation missing --]]
+--[[ L["Mite"] = "Mite"--]] 
 --[[Translation missing --]]
 --[[ L["Mole"] = "Mole"--]] 
 --[[Translation missing --]]
@@ -1305,11 +1349,17 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["Pandaren Phoenixes"] = "Pandaren Phoenixes"--]] 
 --[[Translation missing --]]
+--[[ L["Pangolin"] = "Pangolin"--]] 
+--[[Translation missing --]]
 --[[ L["Parrots"] = "Parrots"--]] 
 --[[Translation missing --]]
 --[[ L["Peafowl"] = "Peafowl"--]] 
 --[[Translation missing --]]
+--[[ L["Petalwing"] = "Petalwing"--]] 
+--[[Translation missing --]]
 --[[ L["Phoenixes"] = "Phoenixes"--]] 
+--[[Translation missing --]]
+--[[ L["Plant"] = "Plant"--]] 
 --[[Translation missing --]]
 --[[ L["Proto-Drakes"] = "Proto-Drakes"--]] 
 --[[Translation missing --]]
@@ -1357,11 +1407,15 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["Seahorses"] = "Seahorses"--]] 
 --[[Translation missing --]]
---[[ L["Seat"] = "Seat"--]] 
+--[[ L["Shalewing"] = "Shalewing"--]] 
+--[[Translation missing --]]
+--[[ L["Shardhides"] = "Shardhides"--]] 
 --[[Translation missing --]]
 --[[ L["Silithids"] = "Silithids"--]] 
 --[[Translation missing --]]
 --[[ L["Skyrazor"] = "Skyrazor"--]] 
+--[[Translation missing --]]
+--[[ L["Slateback"] = "Slateback"--]] 
 --[[Translation missing --]]
 --[[ L["Slug"] = "Slug"--]] 
 --[[Translation missing --]]
@@ -1399,6 +1453,8 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["Toads"] = "Toads"--]] 
 --[[Translation missing --]]
+--[[ L["Turkey"] = "Turkey"--]] 
+--[[Translation missing --]]
 --[[ L["Turtles"] = "Turtles"--]] 
 --[[Translation missing --]]
 --[[ L["Undead Drakes"] = "Undead Drakes"--]] 
@@ -1412,6 +1468,10 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[ L["Ur'zul"] = "Ur'zul"--]] 
 --[[Translation missing --]]
 --[[ L["Vehicles"] = "Vehicles"--]] 
+--[[Translation missing --]]
+--[[ L["Void Creeper"] = "Void Creeper"--]] 
+--[[Translation missing --]]
+--[[ L["Void Flyer"] = "Void Flyer"--]] 
 --[[Translation missing --]]
 --[[ L["Vombata"] = "Vombata"--]] 
 --[[Translation missing --]]
@@ -1449,59 +1509,44 @@ L["ANIMATION_RUN"] = "Course"
 L["ANIMATION_STAND"] = "Debout"
 L["ANIMATION_WALK"] = "Marche"
 L["ANIMATION_WALK_BACK"] = "Marche à reculons"
---[[Translation missing --]]
---[[ L["ASK_FAVORITE_PROFILE_NAME"] = "Enter Profile Name:"--]] 
+L["ASK_FAVORITE_PROFILE_NAME"] = "Saisir le nom du profil :"
 L["AUTO_ROTATE"] = "Rotation automatique"
 L["Black Market"] = "Marché Noir"
 L["CLICK_TO_SHOW_LINK"] = "Cliquez pour afficher le lien"
 L["COMPARTMENT_TOOLTIP"] = [=[|cffeda55fClic gauche|r pour afficher la collection de montures. 
 |cffeda55fClic droit|r pour ouvrir les options de l'addon.]=]
---[[Translation missing --]]
---[[ L["CONFIRM_FAVORITE_PROFILE_DELETION"] = [=[Are you sure you want to delete the profile "%s"?
-All current character assignments will be reset to the default profile "%s".]=]--]] 
-L["COPY_POPUP"] = "Appuyez sur Ctrl+C pour copier"
+L["CONFIRM_FAVORITE_PROFILE_DELETION"] = "Êtes-vous sûr de vouloir supprimer le profil \"%s\" ? Toutes les caractéristiques liées au personnage actuel seront réinitialisées au profil par défaut \"%s\"."
 L["DRESSUP_LABEL"] = "Collection"
---[[Translation missing --]]
---[[ L["EVENT_PLUNDERSTORM"] = "Plunderstorm"--]] 
---[[Translation missing --]]
---[[ L["EVENT_SCARAB"] = "Call of the Scarab"--]] 
---[[Translation missing --]]
---[[ L["EVENT_SECRETS"] = "Secrets of Azeroth"--]] 
+L["EVENT_PLUNDERSTORM"] = "Plunderstorm"
+L["EVENT_SCARAB"] = "Appel du Scarabée"
+L["EVENT_SECRETS"] = "Secrets d’Azeroth"
 L["Family"] = "Famille"
---[[Translation missing --]]
---[[ L["FAVOR_AUTO"] = "Add new mounts automatically"--]] 
+L["FAVOR_AUTO"] = "Ajouter les nouvelles montures automatiquement"
 L["FAVOR_DISPLAYED"] = "Toutes affichées"
---[[Translation missing --]]
---[[ L["FAVORITE_ACCOUNT_PROFILE"] = "Account"--]] 
---[[Translation missing --]]
---[[ L["FAVORITE_PROFILE"] = "Profile"--]] 
+L["FAVORITE_ACCOUNT_PROFILE"] = "Compte"
+L["FAVORITE_PROFILE"] = "Profil"
 L["FILTER_ONLY"] = "uniquement"
 L["FILTER_ONLY_LATEST"] = "Uniquement les dernières ajoutées"
+L["FILTER_PROFILE"] = "Profils"
+L["FILTER_PROFILE_TOOLTIP_TEXT"] = "Chargez rapidement vos paramètres de filtre et de recherche prédéfinis.|n|cffeda55fClic gauche|r pour charger le profil de filtre.|n|cffeda55fClic droit|r pour enregistrer le profil de filtre."
+L["FILTER_PROFILE_TOOLTIP_TITLE"] = [=[Profils de filtre
+]=]
 L["FILTER_RETIRED"] = "Indisponible"
 L["FILTER_SECRET"] = "Cachées par le jeu"
 L["Hidden"] = "Cachées"
---[[Translation missing --]]
---[[ L["LDB_TIP_NO_FAVORITES_LEFT_CLICK"] = "|cffeda55fLeft click|r to open Mount Collection."--]] 
---[[Translation missing --]]
---[[ L["LDB_TIP_NO_FAVORITES_RIGHT_CLICK"] = "|cffeda55fRight click|r to select different Favorite Profile."--]] 
---[[Translation missing --]]
---[[ L["LDB_TIP_NO_FAVORITES_TITLE"] = "You have not selected any mount as favorite yet."--]] 
+L["LDB_TIP_NO_FAVORITES_LEFT_CLICK"] = "Faites un |cffeda55fClic gauche|r pour ouvrir la Collection des montures."
+L["LDB_TIP_NO_FAVORITES_RIGHT_CLICK"] = "Faites un |cffeda55fClic droit|r pour sélectionner un Profil favori différent."
+L["LDB_TIP_NO_FAVORITES_TITLE"] = "Vous n'avez pas encore sélectionné de monture comme favorite."
 L["LINK_WOWHEAD"] = "Lien vers Wowhead"
 L["Mite"] = "Mite"
 L["Only tradable"] = "Uniquement échangeable"
 L["Passenger"] = "Passagers"
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_INFO"] = "You can assign a pet to this mount. It's going to be summoned as well, when you mount up.|n|nAll assignments are shared with all your characters.|n|nYou can use right-click on a pet entry to summon it manually.|n|nPlease be aware that most ground pets won't fly with you and just disappear when you take off. Also, flying pets are usually slower than you. So they might need some time to catch up to you.|n|nAuto summoning pets is only active in world content."--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_NONE"] = "No Pet"--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TITLE"] = "Assign Pet to Mount"--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TOOLTIP_CURRENT"] = "Current assigned Pet:"--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TOOLTIP_LEFT"] = "|cffeda55fLeft click|r to open pet assignment."--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TOOLTIP_RIGHT"] = "|cffeda55fRight click|r to assign active pet to mount."--]] 
+L["PET_ASSIGNMENT_INFO"] = "Vous pouvez assigner une mascotte à cette monture. Elle sera également invoquée lorsque vous monterez sur la monture.|n|nToutes les assignations sont partagées avec chacun de vos personnages.|n|nVous pouvez faire un clic droit sur la ligne d'une mascotte pour l'invoquer manuellement.|n|nNotez que la plupart des mascottes terrestres ne voleront pas avec vous et disparaîtront dès que vous décollerez. De plus, les mascottes volantes sont généralement plus lentes que vous. Elles peuvent donc avoir besoin d'un peu de temps pour vous rattraper.|n|nL'invocation automatique des mascottes n'est active que pour le contenu hors-instances."
+L["PET_ASSIGNMENT_NONE"] = "Pas de mascotte"
+L["PET_ASSIGNMENT_TITLE"] = "Assigner la mascotte à la monture"
+L["PET_ASSIGNMENT_TOOLTIP_CURRENT"] = "Mascotte assignée actuellement :"
+L["PET_ASSIGNMENT_TOOLTIP_LEFT"] = "Faites un |cffeda55fClic gauche|r pour ouvrir l'assignation de mascottes."
+L["PET_ASSIGNMENT_TOOLTIP_RIGHT"] = "Faites un |cffeda55fClic droit|r pour assigner la mascotte active à la monture."
 L["Reset filters"] = "Réinitialiser les filtres"
 L["ROTATE_DOWN"] = "Pivoter vers le bas"
 L["ROTATE_UP"] = "Pivoter vers le haut"
@@ -1521,13 +1566,11 @@ L["STATS_TIP_LEARNED_DATE_HEAD"] = "Date d’obtention"
 L["STATS_TIP_RARITY_DESCRIPTION"] = "% de personnages qui possèdent cette monture"
 L["STATS_TIP_RARITY_HEAD"] = "Rareté"
 L["STATS_TIP_TRAVEL_DISTANCE_HEAD"] = "Longueur des trajets"
---[[Translation missing --]]
---[[ L["STATS_TIP_TRAVEL_TIME_DAYS"] = "in days"--]] 
+L["STATS_TIP_TRAVEL_TIME_DAYS"] = "en jours"
 L["STATS_TIP_TRAVEL_TIME_HEAD"] = "Durée des trajets"
 L["STATS_TIP_TRAVEL_TIME_TEXT"] = "en heures:minutes:secondes"
 L["STATS_TIP_USAGE_COUNT_HEAD"] = "Nombre d’utilisations"
---[[Translation missing --]]
---[[ L["SYNC_TARGET_TIP_FLAVOR"] = "Get ready for a mount off!"--]] 
+L["SYNC_TARGET_TIP_FLAVOR"] = "Préparez-vous à une compétition de montures !"
 L["SYNC_TARGET_TIP_TEXT"] = "Sélectionne automatiquement la même monture que la cible."
 L["SYNC_TARGET_TIP_TITLE"] = "Synchroniser avec la cible"
 L["TOGGLE_COLOR"] = "Afficher la variante de couleur suivante"
@@ -1547,9 +1590,6 @@ L["SETTING_HEAD_ABOUT"] = "À propos"
 L["SETTING_HEAD_BEHAVIOUR"] = "Comportement"
 L["SETTING_MOUNT_COUNT"] = "Afficher le nombre personnel de montures"
 L["SETTING_MOUNTSPECIAL_BUTTON"] = "Afficher le bouton pour le /mountspecial"
-L["SETTING_MOVE_EQUIPMENT_SLOT"] = "Déplacer l'emplacement d'équipement"
-L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_DISPLAY"] = "à l'intérieur de la fenêtre"
-L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_TOP"] = "sur la barre du haut"
 L["SETTING_PERSONAL_FILTER"] = "Appliquer des filtres uniquement à ce personnage"
 L["SETTING_PERSONAL_HIDDEN_MOUNTS"] = "Appliquer les montures cachées uniquement à ce personnage"
 L["SETTING_PERSONAL_UI"] = "Appliquer les paramètres d’interface uniquement à ce personnage"
@@ -1558,22 +1598,23 @@ L["SETTING_SEARCH_FAMILY_NAME"] = "Rechercher également avec le nom des famille
 L["SETTING_SEARCH_MORE"] = "Rechercher également dans le texte de la description"
 L["SETTING_SEARCH_NOTES"] = "Rechercher également dans vos propres notes"
 L["SETTING_SHOW_DATA"] = "Afficher les données des montures dans le journal"
+L["SETTING_SHOW_FILTER_PROFILES_IN_MENU"] = "Afficher les profils de filtre dans le menu de filtre."
 L["SETTING_SHOW_RESIZE_EDGE"] = "Activer la marge dans le coin inférieur pour redimensionner la fenêtre"
---[[Translation missing --]]
---[[ L["SETTING_SUMMONPREVIOUSPET"] = "Summon previous active pet again when dismounting."--]] 
+L["SETTING_SHOW_TOOLBAR_BUTTONS"] = "Afficher les boutons de la barre d'outils"
+L["SETTING_SUMMONPREVIOUSPET"] = "Invoquer à nouveau la mascotte active précédemment lorsque vous descendez de monture."
 L["SETTING_TRACK_USAGE"] = "Suivre le comportement d’utilisation des montures sur tous les personnages"
 L["SETTING_YCAMERA"] = "Débloquer la rotation sur l’axe Y avec la souris dans la fenêtre d’affichage"
 
     -- Families
 L["Airplanes"] = "Avions"
 L["Airships"] = "Dirigeables"
+L["Albatross"] = "Albatros"
 L["Alpacas"] = "Alpagas"
 L["Amphibian"] = "Amphibien"
 L["Animite"] = "Animacarus"
 L["Aqir Flyers"] = "Mouches Aqir"
 L["Arachnids"] = "Arachnides"
 L["Armoredon"] = "Armoredon"
-L["Assault Wagons"] = "Chariots de combat"
 L["Basilisks"] = "Basilics"
 L["Bats"] = "Chauves-souris"
 L["Bears"] = "Ours"
@@ -1581,13 +1622,14 @@ L["Beetle"] = "Scarabées"
 L["Bipedal Cat"] = "Chats bipèdes"
 L["Birds"] = "Oiseaux"
 L["Boars"] = "Sangliers"
-L["Book"] = "Livre"
 L["Bovids"] = "Bovidés"
 L["Broom"] = "Balai"
 L["Brutosaurs"] = "Brutosaures"
 L["Camels"] = "Dromadaires"
 L["Carnivorans"] = "Carnivores"
 L["Carpets"] = "Tapis"
+--[[Translation missing --]]
+--[[ L["Carrion"] = "Carrion"--]] 
 L["Cats"] = "Félins"
 L["Cervid"] = "Cervidés"
 L["Chargers"] = "Destriers"
@@ -1617,6 +1659,7 @@ L["Elementals"] = "Élémentaires"
 L["Falcosaurs"] = "Falcosaures"
 L["Fathom Rays"] = "Raies pélagiques"
 L["Feathermanes"] = "Crins-de-plume"
+L["Felbat"] = "Gangroptère"
 L["Felsabers"] = "Gangresabres"
 L["Fish"] = "Poissons"
 L["Flies"] = "Mouches"
@@ -1632,16 +1675,15 @@ L["Gronnlings"] = "Gronnlins"
 L["Gryphons"] = "Griffons"
 L["Gyrocopters"] = "Gyrocoptère"
 L["Hands"] = "Mains"
-L["Hawkstriders"] = "Faucon-pérégrins"
 --[[Translation missing --]]
---[[ L["Hedgehog"] = "Hedgehog"--]] 
+--[[ L["Harrower"] = "Harrower"--]] 
+L["Hawkstriders"] = "Faucon-pérégrins"
+L["Hedgehog"] = "Hérisson"
 L["Hippogryphs"] = "Hippogriffes"
 L["Horned Steeds"] = "Palefrois à cornes"
 L["Horses"] = "Chevaux"
 L["Hounds"] = "Molosses"
---[[Translation missing --]]
---[[ L["Hover Board"] = "Hover Board"--]] 
-L["Hovercraft"] = "Aéroglisseurs"
+L["Hover Board"] = "Hover Board"
 L["Humanoids"] = "Humanoïdes"
 L["Hyenas"] = "Hyènes"
 L["Infernals"] = "Infernaux"
@@ -1654,10 +1696,10 @@ L["Krolusks"] = "Krolusks"
 L["Larion"] = "Volion"
 L["Lions"] = "Lions"
 L["Lupine"] = "Lupins"
---[[Translation missing --]]
---[[ L["Lynx"] = "Lynx"--]] 
+L["Lynx"] = "Lynx"
 L["Mammoths"] = "Mammouths"
 L["Mana Rays"] = "Raies de mana"
+L["Mana Wyrm"] = "Wyrm de mana"
 L["Manasabers"] = "Sabres-de-mana"
 L["Mauler"] = "Marteleurs"
 L["Mechanical Animals"] = "Animaux mécaniques"
@@ -1666,8 +1708,8 @@ L["Mechanical Cats"] = "Félins mécaniques"
 L["Mechanical Steeds"] = "Palefrois mécaniques"
 L["Mechanostriders"] = "Mécanotrotteurs"
 L["Mecha-suits"] = "Armures mécaniques"
---[[Translation missing --]]
---[[ L["Meeksi"] = "Meeksi"--]] 
+L["Meeksi"] = "Meeksi"
+L["Mite"] = "Acarus"
 L["Mole"] = "Taupe"
 L["Mollusc"] = "Mollusques"
 L["Moose"] = "Élans"
@@ -1685,9 +1727,14 @@ L["Owl"] = "Chouettes"
 L["Owlbear"] = "Chouettes-ours"
 L["Ox"] = "Buffle"
 L["Pandaren Phoenixes"] = "Phénix pandarens"
+L["Pangolin"] = "Pangolin"
 L["Parrots"] = "Psittaciformes"
 L["Peafowl"] = "Paon"
+--[[Translation missing --]]
+--[[ L["Petalwing"] = "Petalwing"--]] 
 L["Phoenixes"] = "Phénix"
+--[[Translation missing --]]
+--[[ L["Plant"] = "Plant"--]] 
 L["Proto-Drakes"] = "Proto-drakes"
 L["Pterrordaxes"] = "Pterreurdactyles"
 L["Quilen"] = "Quilens"
@@ -1696,8 +1743,7 @@ L["Rams"] = "Béliers"
 L["Raptora"] = "Raptoras"
 L["Raptors"] = "Raptors"
 L["Rats"] = "Rats"
---[[Translation missing --]]
---[[ L["Raven"] = "Raven"--]] 
+L["Raven"] = "Corbeau"
 L["Rays"] = "Raies"
 L["Razorwing"] = "Rasailes"
 L["Reptiles"] = "Reptiles"
@@ -1712,9 +1758,11 @@ L["Sabers"] = "Smilodons"
 L["Scorpions"] = "Scorpides"
 L["Sea Serpents"] = "Serpents de mer"
 L["Seahorses"] = "Hippocampes"
-L["Seat"] = "Sièges"
+L["Shalewing"] = "Aile-de-schiste"
+L["Shardhides"] = "Сuirasaure"
 L["Silithids"] = "Silithides"
 L["Skyrazor"] = "Rasoir-céleste"
+L["Slateback"] = "Ardospine"
 L["Slug"] = "Limaces"
 L["Snail"] = "Escargots"
 L["Snapdragons"] = "Mordragons"
@@ -1733,6 +1781,7 @@ L["Tauralus"] = "Tauralus"
 L["Thunder Lizard"] = "Lézard-tonnerre"
 L["Tigers"] = "Tigres"
 L["Toads"] = "Crapauds"
+L["Turkey"] = "Dinde"
 L["Turtles"] = "Tortues"
 L["Undead Drakes"] = "Drakes morts-vivants"
 L["Undead Steeds"] = "Palefrois morts-vivants"
@@ -1740,6 +1789,8 @@ L["Undead Wolves"] = "Loups morts-vivants"
 L["Ungulates"] = "Ongulés"
 L["Ur'zul"] = "Ur'zul"
 L["Vehicles"] = "Véhicules"
+L["Void Creeper"] = "Rampant du Vide"
+L["Void Flyer"] = "Voltigeur du Vide"
 L["Vombata"] = "Vombata"
 L["Vulpin"] = "Vulpins"
 L["Vultures"] = "Vautours"
@@ -1757,90 +1808,55 @@ L["Yetis"] = "Yétis"
 
 
 elseif locale == "itIT" then
-    --[[Translation missing --]]
---[[ L["ANIMATION_FLY"] = "Fly"--]] 
---[[Translation missing --]]
---[[ L["ANIMATION_FLY_IDLE"] = "Fly Idle"--]] 
---[[Translation missing --]]
---[[ L["ANIMATION_RUN"] = "Run"--]] 
---[[Translation missing --]]
---[[ L["ANIMATION_STAND"] = "Stand"--]] 
---[[Translation missing --]]
---[[ L["ANIMATION_WALK"] = "ANIMATION_WALK"--]] 
---[[Translation missing --]]
---[[ L["ANIMATION_WALK_BACK"] = "Walk Backwards"--]] 
---[[Translation missing --]]
---[[ L["ASK_FAVORITE_PROFILE_NAME"] = "Enter Profile Name:"--]] 
---[[Translation missing --]]
---[[ L["AUTO_ROTATE"] = "Rotate automatically"--]] 
---[[Translation missing --]]
---[[ L["Black Market"] = "Black Market"--]] 
---[[Translation missing --]]
---[[ L["CLICK_TO_SHOW_LINK"] = "Click to Show Link"--]] 
---[[Translation missing --]]
---[[ L["COMPARTMENT_TOOLTIP"] = [=[|cffeda55fLeft-Click|r to toggle showing the mount collection.
-|cffeda55fRight-Click|r to open addon options.]=]--]] 
---[[Translation missing --]]
---[[ L["CONFIRM_FAVORITE_PROFILE_DELETION"] = [=[Are you sure you want to delete the profile "%s"?
-All current character assignments will be reset to the default profile "%s".]=]--]] 
---[[Translation missing --]]
---[[ L["COPY_POPUP"] = "press CTRL+C to copy"--]] 
---[[Translation missing --]]
---[[ L["DRESSUP_LABEL"] = "Journal"--]] 
+    L["ANIMATION_FLY"] = "Volare"
+L["ANIMATION_FLY_IDLE"] = "Volare inattivo"
+L["ANIMATION_RUN"] = "Correre"
+L["ANIMATION_STAND"] = "In piedi"
+L["ANIMATION_WALK"] = "ANIMATION_WALK"
+L["ANIMATION_WALK_BACK"] = "Camminare all'indietro"
+L["ASK_FAVORITE_PROFILE_NAME"] = "Inserisci il nome del profilo:"
+L["AUTO_ROTATE"] = "Ruota automaticamente"
+L["Black Market"] = "Mercato nero"
+L["CLICK_TO_SHOW_LINK"] = "Clicca per mostrare il collegamento"
+L["COMPARTMENT_TOOLTIP"] = "|cffeda55fClic sinistro|r per attivare/disattivare la visualizzazione della raccolta di mount. |cffeda55fClic destro|r per aprire le opzioni del componente aggiuntivo."
+L["CONFIRM_FAVORITE_PROFILE_DELETION"] = "Vuoi davvero eliminare il profilo \"%s\"? Tutte le assegnazioni dei personaggi attuali verranno ripristinate al profilo predefinito \"%s\"."
+L["DRESSUP_LABEL"] = "Giornale"
 --[[Translation missing --]]
 --[[ L["EVENT_PLUNDERSTORM"] = "Plunderstorm"--]] 
---[[Translation missing --]]
---[[ L["EVENT_SCARAB"] = "Call of the Scarab"--]] 
---[[Translation missing --]]
---[[ L["EVENT_SECRETS"] = "Secrets of Azeroth"--]] 
+L["EVENT_SCARAB"] = "Richiamo dello Scarabeo"
+L["EVENT_SECRETS"] = "Secrets of Azeroth"
 --[[Translation missing --]]
 --[[ L["Family"] = "Family"--]] 
 --[[Translation missing --]]
 --[[ L["FAVOR_AUTO"] = "Add new mounts automatically"--]] 
 --[[Translation missing --]]
 --[[ L["FAVOR_DISPLAYED"] = "All Displayed"--]] 
---[[Translation missing --]]
---[[ L["FAVORITE_ACCOUNT_PROFILE"] = "Account"--]] 
---[[Translation missing --]]
---[[ L["FAVORITE_PROFILE"] = "Profile"--]] 
---[[Translation missing --]]
---[[ L["FILTER_ONLY"] = "only"--]] 
+L["FAVORITE_ACCOUNT_PROFILE"] = "Account"
+L["FAVORITE_PROFILE"] = "Profilo"
+L["FILTER_ONLY"] = "soltanto"
 --[[Translation missing --]]
 --[[ L["FILTER_ONLY_LATEST"] = "Only latest additions"--]] 
---[[Translation missing --]]
---[[ L["FILTER_RETIRED"] = "No longer available"--]] 
---[[Translation missing --]]
---[[ L["FILTER_SECRET"] = "Hidden by the game"--]] 
---[[Translation missing --]]
---[[ L["Hidden"] = "Hidden"--]] 
---[[Translation missing --]]
---[[ L["LDB_TIP_NO_FAVORITES_LEFT_CLICK"] = "|cffeda55fLeft click|r to open Mount Collection."--]] 
---[[Translation missing --]]
---[[ L["LDB_TIP_NO_FAVORITES_RIGHT_CLICK"] = "|cffeda55fRight click|r to select different Favorite Profile."--]] 
---[[Translation missing --]]
---[[ L["LDB_TIP_NO_FAVORITES_TITLE"] = "You have not selected any mount as favorite yet."--]] 
---[[Translation missing --]]
---[[ L["LINK_WOWHEAD"] = "Link to Wowhead"--]] 
---[[Translation missing --]]
---[[ L["Mite"] = "Mite"--]] 
+L["FILTER_PROFILE"] = "Profili"
+L["FILTER_PROFILE_TOOLTIP_TEXT"] = "Carica rapidamente le impostazioni predefinite di filtro e ricerca.|n|cffeda55fFai clic con il tasto sinistro|r per caricare il profilo del filtro.|n|cffeda55fFai clic con il tasto destro|r per salvare il profilo del filtro."
+L["FILTER_PROFILE_TOOLTIP_TITLE"] = "Profili filtro"
+L["FILTER_RETIRED"] = "Non più disponibile"
+L["FILTER_SECRET"] = "Nascosto dal gioco"
+L["Hidden"] = "Nascosta"
+L["LDB_TIP_NO_FAVORITES_LEFT_CLICK"] = "|cffeda55fFare clic con il tasto sinistro|r per aprire la raccolta di supporti."
+L["LDB_TIP_NO_FAVORITES_RIGHT_CLICK"] = "|cffeda55fFai clic con il tasto destro del mouse|r per selezionare un profilo preferito diverso."
+L["LDB_TIP_NO_FAVORITES_TITLE"] = "Non hai ancora selezionato nessuna cavalcatura come preferita."
+L["LINK_WOWHEAD"] = "Collegamento al Wowhead"
+L["Mite"] = "Acaro"
 --[[Translation missing --]]
 --[[ L["Only tradable"] = "Only tradable"--]] 
---[[Translation missing --]]
---[[ L["Passenger"] = "Passenger"--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_INFO"] = "You can assign a pet to this mount. It's going to be summoned as well, when you mount up.|n|nAll assignments are shared with all your characters.|n|nYou can use right-click on a pet entry to summon it manually.|n|nPlease be aware that most ground pets won't fly with you and just disappear when you take off. Also, flying pets are usually slower than you. So they might need some time to catch up to you.|n|nAuto summoning pets is only active in world content."--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_NONE"] = "No Pet"--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TITLE"] = "Assign Pet to Mount"--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TOOLTIP_CURRENT"] = "Current assigned Pet:"--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TOOLTIP_LEFT"] = "|cffeda55fLeft click|r to open pet assignment."--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TOOLTIP_RIGHT"] = "|cffeda55fRight click|r to assign active pet to mount."--]] 
---[[Translation missing --]]
---[[ L["Reset filters"] = "Reset filters"--]] 
+L["Passenger"] = "Passeggero"
+L["PET_ASSIGNMENT_INFO"] = "Puoi assegnare un animale domestico a questa cavalcatura. Verrà evocato anche lui quando salirai in sella.|n|nTutti gli incarichi sono condivisi con tutti i tuoi personaggi.|n|nPuoi usare il tasto destro del mouse sulla voce di un animale domestico per evocarlo manualmente.|n|nTieni presente che la maggior parte degli animali domestici terrestri non volerà con te e scomparirà quando decollerai. Inoltre, gli animali domestici volanti sono solitamente più lenti di te. Quindi potrebbero aver bisogno di un po' di tempo per raggiungerti.|n|nL'evocazione automatica degli animali domestici è attiva solo nei contenuti del mondo."
+L["PET_ASSIGNMENT_NONE"] = "Nessun animale domestico"
+L["PET_ASSIGNMENT_TITLE"] = "Assegna l'animale domestico alla cavalcatura"
+L["PET_ASSIGNMENT_TOOLTIP_CURRENT"] = "Animale domestico attualmente assegnato:"
+L["PET_ASSIGNMENT_TOOLTIP_LEFT"] = "|cffeda55fFai clic con il tasto sinistro|r per aprire l'assegnazione dell'animale domestico."
+L["PET_ASSIGNMENT_TOOLTIP_RIGHT"] = "|cffeda55fFai clic con il tasto destro|r per assegnare l'animale domestico attivo alla cavalcatura."
+L["Reset filters"] = "Reimposta i filtri"
 --[[Translation missing --]]
 --[[ L["ROTATE_DOWN"] = "Rotate Down"--]] 
 --[[Translation missing --]]
@@ -1887,18 +1903,14 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[ L["STATS_TIP_USAGE_COUNT_HEAD"] = "Usage count"--]] 
 --[[Translation missing --]]
 --[[ L["SYNC_TARGET_TIP_FLAVOR"] = "Get ready for a mount off!"--]] 
---[[Translation missing --]]
---[[ L["SYNC_TARGET_TIP_TEXT"] = "Automatically select the mount of your current target."--]] 
---[[Translation missing --]]
---[[ L["SYNC_TARGET_TIP_TITLE"] = "Sync Journal with Target"--]] 
+L["SYNC_TARGET_TIP_TEXT"] = "Seleziona automaticamente la cavalcatura del tuo bersaglio attuale."
+L["SYNC_TARGET_TIP_TITLE"] = "Sincronizza il diario con la destinazione"
 --[[Translation missing --]]
 --[[ L["TOGGLE_COLOR"] = "Show next color variation"--]] 
---[[Translation missing --]]
---[[ L["Transform"] = "Transform"--]] 
+L["Transform"] = "Trasformare"
 
     -- Settings
---[[Translation missing --]]
---[[ L["DISPLAY_ALL_SETTINGS"] = "Display all settings"--]] 
+L["DISPLAY_ALL_SETTINGS"] = "Visualizza tutte le impostazioni"
 --[[Translation missing --]]
 --[[ L[ [=[RESET_WINDOW_SIZE
 ]=] ] = "Reset journal size"--]] 
@@ -1923,12 +1935,6 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["SETTING_MOUNTSPECIAL_BUTTON"] = "Show /mountspecial button"--]] 
 --[[Translation missing --]]
---[[ L["SETTING_MOVE_EQUIPMENT_SLOT"] = "Move equipment slot"--]] 
---[[Translation missing --]]
---[[ L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_DISPLAY"] = "inside display"--]] 
---[[Translation missing --]]
---[[ L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_TOP"] = "within top bar"--]] 
---[[Translation missing --]]
 --[[ L["SETTING_PERSONAL_FILTER"] = "Apply filters only to this character"--]] 
 --[[Translation missing --]]
 --[[ L["SETTING_PERSONAL_HIDDEN_MOUNTS"] = "Apply hidden mounts only to this character"--]] 
@@ -1944,575 +1950,362 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[ L["SETTING_SEARCH_NOTES"] = "Search also in own notes"--]] 
 --[[Translation missing --]]
 --[[ L["SETTING_SHOW_DATA"] = "Show mount data in display"--]] 
+L["SETTING_SHOW_FILTER_PROFILES_IN_MENU"] = "Mostra i profili dei filtri nel menu dei filtri."
 --[[Translation missing --]]
 --[[ L["SETTING_SHOW_RESIZE_EDGE"] = "Activate edge in bottom corner to resize window"--]] 
 --[[Translation missing --]]
---[[ L["SETTING_SUMMONPREVIOUSPET"] = "Summon previous active pet again when dismounting."--]] 
+--[[ L["SETTING_SHOW_TOOLBAR_BUTTONS"] = "Show toolbar buttons"--]] 
+L["SETTING_SUMMONPREVIOUSPET"] = "Evoca nuovamente l'animale domestico attivo precedente quando scendi."
 --[[Translation missing --]]
 --[[ L["SETTING_TRACK_USAGE"] = "Track mount usage behavior on all characters"--]] 
 --[[Translation missing --]]
 --[[ L["SETTING_YCAMERA"] = "Unlock Y rotation with mouse in display"--]] 
 
     -- Families
+L["Airplanes"] = "Aerei"
+L["Airships"] = "Dirigibili"
+L["Albatross"] = "Albatros"
+L["Alpacas"] = "Alpacas"
+L["Amphibian"] = "Anfibia"
+L["Animite"] = "Acaro dell'Animum"
+L["Aqir Flyers"] = "Aqir Volantini"
+L["Arachnids"] = "Aracnidi"
+L["Armoredon"] = "Coraceronte"
+L["Basilisks"] = "Basilischi"
+L["Bats"] = "Pipistrelli"
+L["Bears"] = "Orso"
+L["Beetle"] = "Scarabeo"
+L["Bipedal Cat"] = "Sognartigli"
+L["Birds"] = "Uccelli"
+L["Boars"] = "Cinghiali"
+L["Bovids"] = "Bovidi"
+L["Broom"] = "Scopa"
+L["Brutosaurs"] = "Brutosauro"
+L["Camels"] = "Cammelli"
+L["Carnivorans"] = "Carnivori"
+L["Carpets"] = "Tappeti"
 --[[Translation missing --]]
---[[ L["Airplanes"] = "Airplanes"--]] 
---[[Translation missing --]]
---[[ L["Airships"] = "Airships"--]] 
---[[Translation missing --]]
---[[ L["Alpacas"] = "Alpacas"--]] 
---[[Translation missing --]]
---[[ L["Amphibian"] = "Amphibian"--]] 
---[[Translation missing --]]
---[[ L["Animite"] = "Animite"--]] 
---[[Translation missing --]]
---[[ L["Aqir Flyers"] = "Aqir Flyers"--]] 
---[[Translation missing --]]
---[[ L["Arachnids"] = "Arachnids"--]] 
---[[Translation missing --]]
---[[ L["Armoredon"] = "Armoredon"--]] 
---[[Translation missing --]]
---[[ L["Assault Wagons"] = "Assault Wagons"--]] 
---[[Translation missing --]]
---[[ L["Basilisks"] = "Basilisks"--]] 
---[[Translation missing --]]
---[[ L["Bats"] = "Bats"--]] 
---[[Translation missing --]]
---[[ L["Bears"] = "Bears"--]] 
---[[Translation missing --]]
---[[ L["Beetle"] = "Beetle"--]] 
---[[Translation missing --]]
---[[ L["Bipedal Cat"] = "Bipedal Cat"--]] 
---[[Translation missing --]]
---[[ L["Birds"] = "Birds"--]] 
---[[Translation missing --]]
---[[ L["Boars"] = "Boars"--]] 
---[[Translation missing --]]
---[[ L["Book"] = "Book"--]] 
---[[Translation missing --]]
---[[ L["Bovids"] = "Bovids"--]] 
---[[Translation missing --]]
---[[ L["Broom"] = "Broom"--]] 
---[[Translation missing --]]
---[[ L["Brutosaurs"] = "Brutosaurs"--]] 
---[[Translation missing --]]
---[[ L["Camels"] = "Camels"--]] 
---[[Translation missing --]]
---[[ L["Carnivorans"] = "Carnivorans"--]] 
---[[Translation missing --]]
---[[ L["Carpets"] = "Carpets"--]] 
---[[Translation missing --]]
---[[ L["Cats"] = "Cats"--]] 
---[[Translation missing --]]
---[[ L["Cervid"] = "Cervid"--]] 
---[[Translation missing --]]
---[[ L["Chargers"] = "Chargers"--]] 
---[[Translation missing --]]
---[[ L["Chickens"] = "Chickens"--]] 
---[[Translation missing --]]
---[[ L["Clefthooves"] = "Clefthooves"--]] 
---[[Translation missing --]]
---[[ L["Cloud Serpents"] = "Cloud Serpents"--]] 
---[[Translation missing --]]
---[[ L["Core Hounds"] = "Core Hounds"--]] 
---[[Translation missing --]]
---[[ L["Crabs"] = "Crabs"--]] 
---[[Translation missing --]]
---[[ L["Cranes"] = "Cranes"--]] 
---[[Translation missing --]]
---[[ L["Crawgs"] = "Crawgs"--]] 
+--[[ L["Carrion"] = "Carrion"--]] 
+L["Cats"] = "Gattini"
+L["Cervid"] = "Cervide"
+L["Chargers"] = "Destriero"
+L["Chickens"] = "Polli"
+L["Clefthooves"] = "Mammuceronte"
+L["Cloud Serpents"] = "Serpenti delle nuvole"
+L["Core Hounds"] = "Segugi del nucleo"
+L["Crabs"] = "Granchi"
+L["Cranes"] = "Gru"
+L["Crawgs"] = "Crawgs"
 L["Crocolisks"] = "Crocolisco"
---[[Translation missing --]]
---[[ L["Crows"] = "Crows"--]] 
---[[Translation missing --]]
---[[ L["Demonic Hounds"] = "Demonic Hounds"--]] 
---[[Translation missing --]]
---[[ L["Demonic Steeds"] = "Demonic Steeds"--]] 
---[[Translation missing --]]
---[[ L["Demons"] = "Demons"--]] 
---[[Translation missing --]]
---[[ L["Devourer"] = "Devourer"--]] 
---[[Translation missing --]]
---[[ L["Dinosaurs"] = "Dinosaurs"--]] 
+L["Crows"] = "Corvi"
+L["Demonic Hounds"] = "Segugi demoniaci"
+L["Demonic Steeds"] = "Destrieri demoniaci"
+L["Demons"] = "Demoni"
+L["Devourer"] = "Divoratore"
+L["Dinosaurs"] = "Dinosauri"
 --[[Translation missing --]]
 --[[ L["Dire Wolves"] = "Dire Wolves"--]] 
---[[Translation missing --]]
---[[ L["Direhorns"] = "Direhorns"--]] 
---[[Translation missing --]]
---[[ L["Discs"] = "Discs"--]] 
---[[Translation missing --]]
---[[ L["Dragonhawks"] = "Dragonhawks"--]] 
---[[Translation missing --]]
---[[ L["Drakes"] = "Drakes"--]] 
---[[Translation missing --]]
---[[ L["Dreamsaber"] = "Dreamsaber"--]] 
---[[Translation missing --]]
---[[ L["Eagle"] = "Eagle"--]] 
---[[Translation missing --]]
---[[ L["Elekks"] = "Elekks"--]] 
---[[Translation missing --]]
---[[ L["Elementals"] = "Elementals"--]] 
---[[Translation missing --]]
---[[ L["Falcosaurs"] = "Falcosaurs"--]] 
---[[Translation missing --]]
---[[ L["Fathom Rays"] = "Fathom Rays"--]] 
---[[Translation missing --]]
---[[ L["Feathermanes"] = "Feathermanes"--]] 
---[[Translation missing --]]
---[[ L["Felsabers"] = "Felsabers"--]] 
---[[Translation missing --]]
---[[ L["Fish"] = "Fish"--]] 
---[[Translation missing --]]
---[[ L["Flies"] = "Flies"--]] 
+L["Direhorns"] = "Cornofurente"
+L["Discs"] = "Disco"
+L["Dragonhawks"] = "Dragofalco"
+L["Drakes"] = "Draghi"
+L["Dreamsaber"] = "Fieronirica"
+L["Eagle"] = "Aquila"
+L["Elekks"] = "Elekk"
+L["Elementals"] = "Elemental"
+L["Falcosaurs"] = "Falcosauro"
+L["Fathom Rays"] = "Manta delle Profondità"
+L["Feathermanes"] = "Piumanto"
+L["Felbat"] = "Vilpipistrello"
+L["Felsabers"] = "Vilfiera"
+L["Fish"] = "Pescare"
+L["Flies"] = "Volare"
 --[[Translation missing --]]
 --[[ L["Flying Steeds"] = "Flying Steeds"--]] 
---[[Translation missing --]]
---[[ L["Foxes"] = "Foxes"--]] 
---[[Translation missing --]]
---[[ L["Gargon"] = "Gargon"--]] 
---[[Translation missing --]]
---[[ L["Gargoyle"] = "Gargoyle"--]] 
---[[Translation missing --]]
---[[ L["Goats"] = "Goats"--]] 
---[[Translation missing --]]
---[[ L["Gorger"] = "Gorger"--]] 
---[[Translation missing --]]
---[[ L["Gorm"] = "Gorm"--]] 
+L["Foxes"] = "Volpi"
+L["Gargon"] = "Gargon"
+L["Gargoyle"] = "Gargoyle"
+L["Goats"] = "Capre"
+L["Gorger"] = "Divoratore"
+L["Gorm"] = "Gorm"
 --[[Translation missing --]]
 --[[ L["Grand Drakes"] = "Grand Drakes"--]] 
+L["Gronnlings"] = "Protogronn"
+L["Gryphons"] = "Grifoni"
+L["Gyrocopters"] = "Girocottero"
+L["Hands"] = "Mani"
 --[[Translation missing --]]
---[[ L["Gronnlings"] = "Gronnlings"--]] 
---[[Translation missing --]]
---[[ L["Gryphons"] = "Gryphons"--]] 
---[[Translation missing --]]
---[[ L["Gyrocopters"] = "Gyrocopters"--]] 
---[[Translation missing --]]
---[[ L["Hands"] = "Hands"--]] 
---[[Translation missing --]]
---[[ L["Hawkstriders"] = "Hawkstriders"--]] 
---[[Translation missing --]]
---[[ L["Hedgehog"] = "Hedgehog"--]] 
---[[Translation missing --]]
---[[ L["Hippogryphs"] = "Hippogryphs"--]] 
+--[[ L["Harrower"] = "Harrower"--]] 
+L["Hawkstriders"] = "Zampalesta"
+L["Hedgehog"] = "Riccio"
+L["Hippogryphs"] = "Ippogrifi"
 --[[Translation missing --]]
 --[[ L["Horned Steeds"] = "Horned Steeds"--]] 
---[[Translation missing --]]
---[[ L["Horses"] = "Horses"--]] 
---[[Translation missing --]]
---[[ L["Hounds"] = "Hounds"--]] 
---[[Translation missing --]]
---[[ L["Hover Board"] = "Hover Board"--]] 
---[[Translation missing --]]
---[[ L["Hovercraft"] = "Hovercraft"--]] 
---[[Translation missing --]]
---[[ L["Humanoids"] = "Humanoids"--]] 
---[[Translation missing --]]
---[[ L["Hyenas"] = "Hyenas"--]] 
---[[Translation missing --]]
---[[ L["Infernals"] = "Infernals"--]] 
---[[Translation missing --]]
---[[ L["Insects"] = "Insects"--]] 
---[[Translation missing --]]
---[[ L["Jellyfish"] = "Jellyfish"--]] 
+L["Horses"] = "Cavalle"
+L["Hounds"] = "Segugi"
+L["Hover Board"] = "Hoverboard"
+L["Humanoids"] = "Umanoidi"
+L["Hyenas"] = "Lene"
+L["Infernals"] = "Infernali"
+L["Insects"] = "Insetti"
+L["Jellyfish"] = "Medusa"
 --[[Translation missing --]]
 --[[ L["Jet Aerial Units"] = "Jet Aerial Units"--]] 
---[[Translation missing --]]
---[[ L["Kites"] = "Kites"--]] 
---[[Translation missing --]]
---[[ L["Kodos"] = "Kodos"--]] 
---[[Translation missing --]]
---[[ L["Krolusks"] = "Krolusks"--]] 
---[[Translation missing --]]
---[[ L["Larion"] = "Larion"--]] 
---[[Translation missing --]]
---[[ L["Lions"] = "Lions"--]] 
---[[Translation missing --]]
---[[ L["Lupine"] = "Lupine"--]] 
---[[Translation missing --]]
---[[ L["Lynx"] = "Lynx"--]] 
---[[Translation missing --]]
---[[ L["Mammoths"] = "Mammoths"--]] 
---[[Translation missing --]]
---[[ L["Mana Rays"] = "Mana Rays"--]] 
---[[Translation missing --]]
---[[ L["Manasabers"] = "Manasabers"--]] 
---[[Translation missing --]]
---[[ L["Mauler"] = "Mauler"--]] 
---[[Translation missing --]]
---[[ L["Mechanical Animals"] = "Mechanical Animals"--]] 
---[[Translation missing --]]
---[[ L["Mechanical Birds"] = "Mechanical Birds"--]] 
---[[Translation missing --]]
---[[ L["Mechanical Cats"] = "Mechanical Cats"--]] 
---[[Translation missing --]]
---[[ L["Mechanical Steeds"] = "Mechanical Steeds"--]] 
---[[Translation missing --]]
---[[ L["Mechanostriders"] = "Mechanostriders"--]] 
+L["Kites"] = "Aquiloni"
+L["Kodos"] = "Kodo"
+L["Krolusks"] = "Krolusk"
+L["Larion"] = "Larion"
+L["Lions"] = "Leoni"
+L["Lupine"] = "Lupino"
+L["Lynx"] = "Lince"
+L["Mammoths"] = "Mammut"
+L["Mana Rays"] = "Manta del Mana"
+L["Mana Wyrm"] = "Dragone di Mana"
+L["Manasabers"] = "Manafiera"
+L["Mauler"] = "Mazzuolatore"
+L["Mechanical Animals"] = "Animali meccanici"
+L["Mechanical Birds"] = "Uccelli meccanici"
+L["Mechanical Cats"] = "Gatti meccanici"
+L["Mechanical Steeds"] = "Destrieri meccanici"
+L["Mechanostriders"] = "Tecnostruzzo"
 --[[Translation missing --]]
 --[[ L["Mecha-suits"] = "Mecha-suits"--]] 
---[[Translation missing --]]
---[[ L["Meeksi"] = "Meeksi"--]] 
---[[Translation missing --]]
---[[ L["Mole"] = "Mole"--]] 
---[[Translation missing --]]
---[[ L["Mollusc"] = "Mollusc"--]] 
---[[Translation missing --]]
---[[ L["Moose"] = "Moose"--]] 
---[[Translation missing --]]
---[[ L["Moth"] = "Moth"--]] 
---[[Translation missing --]]
---[[ L["Motorcycles"] = "Motorcycles"--]] 
---[[Translation missing --]]
---[[ L["Mountain Horses"] = "Mountain Horses"--]] 
---[[Translation missing --]]
---[[ L["Murloc"] = "Murloc"--]] 
---[[Translation missing --]]
---[[ L["Mushan"] = "Mushan"--]] 
---[[Translation missing --]]
---[[ L["Nether Drakes"] = "Nether Drakes"--]] 
---[[Translation missing --]]
---[[ L["Nether Rays"] = "Nether Rays"--]] 
+L["Meeksi"] = "Meeksi"
+L["Mite"] = "Acaro"
+L["Mole"] = "Talpa"
+L["Mollusc"] = "Molluschi"
+L["Moose"] = "Alce"
+L["Moth"] = "Falena"
+L["Motorcycles"] = "Motociclette"
+L["Mountain Horses"] = "Cavalli di montagna"
+L["Murloc"] = "Murloc"
+L["Mushan"] = "Mushan"
+L["Nether Drakes"] = "Draco Fatuo"
+L["Nether Rays"] = "Manta Fatua"
 --[[Translation missing --]]
 --[[ L["N'Zoth Serpents"] = "N'Zoth Serpents"--]] 
---[[Translation missing --]]
---[[ L["Others"] = "Others"--]] 
---[[Translation missing --]]
---[[ L["Ottuk"] = "Ottuk"--]] 
---[[Translation missing --]]
---[[ L["Owl"] = "Owl"--]] 
---[[Translation missing --]]
---[[ L["Owlbear"] = "Owlbear"--]] 
---[[Translation missing --]]
---[[ L["Ox"] = "Ox"--]] 
+L["Others"] = "Altri"
+L["Ottuk"] = "Lontruk"
+L["Owl"] = "Gufo"
+L["Owlbear"] = "dell'Orsogufo"
+L["Ox"] = "Bue"
 --[[Translation missing --]]
 --[[ L["Pandaren Phoenixes"] = "Pandaren Phoenixes"--]] 
+L["Pangolin"] = "Armadillo"
+L["Parrots"] = "Pappagalli"
+L["Peafowl"] = "Pavone"
 --[[Translation missing --]]
---[[ L["Parrots"] = "Parrots"--]] 
---[[Translation missing --]]
---[[ L["Peafowl"] = "Peafowl"--]] 
+--[[ L["Petalwing"] = "Petalwing"--]] 
 --[[Translation missing --]]
 --[[ L["Phoenixes"] = "Phoenixes"--]] 
 --[[Translation missing --]]
---[[ L["Proto-Drakes"] = "Proto-Drakes"--]] 
---[[Translation missing --]]
---[[ L["Pterrordaxes"] = "Pterrordaxes"--]] 
---[[Translation missing --]]
---[[ L["Quilen"] = "Quilen"--]] 
---[[Translation missing --]]
---[[ L["Rabbit"] = "Rabbit"--]] 
---[[Translation missing --]]
---[[ L["Rams"] = "Rams"--]] 
+--[[ L["Plant"] = "Plant"--]] 
+L["Proto-Drakes"] = "Proto-Draco"
+L["Pterrordaxes"] = "Pterrordattilo"
+L["Quilen"] = "Quilen"
+L["Rabbit"] = "Coniglio"
+L["Rams"] = "Arieti"
 --[[Translation missing --]]
 --[[ L["Raptora"] = "Raptora"--]] 
---[[Translation missing --]]
---[[ L["Raptors"] = "Raptors"--]] 
---[[Translation missing --]]
---[[ L["Rats"] = "Rats"--]] 
---[[Translation missing --]]
---[[ L["Raven"] = "Raven"--]] 
---[[Translation missing --]]
---[[ L["Rays"] = "Rays"--]] 
---[[Translation missing --]]
---[[ L["Razorwing"] = "Razorwing"--]] 
---[[Translation missing --]]
---[[ L["Reptiles"] = "Reptiles"--]] 
---[[Translation missing --]]
---[[ L["Rhinos"] = "Rhinos"--]] 
---[[Translation missing --]]
---[[ L["Riverbeasts"] = "Riverbeasts"--]] 
+L["Raptors"] = "Rapaci"
+L["Rats"] = "Ratti"
+L["Raven"] = "Corvo"
+L["Rays"] = "Pastinaca"
+L["Razorwing"] = "Alafina"
+L["Reptiles"] = "Rettili"
+L["Rhinos"] = "Rinoceronti"
+L["Riverbeasts"] = "Bestia dei Fiumi"
 --[[Translation missing --]]
 --[[ L["Roc"] = "Roc"--]] 
---[[Translation missing --]]
---[[ L["Rockets"] = "Rockets"--]] 
---[[Translation missing --]]
---[[ L["Rodent"] = "Rodent"--]] 
---[[Translation missing --]]
---[[ L["Ruinstriders"] = "Ruinstriders"--]] 
---[[Translation missing --]]
---[[ L["Rylaks"] = "Rylaks"--]] 
---[[Translation missing --]]
---[[ L["Sabers"] = "Sabers"--]] 
---[[Translation missing --]]
---[[ L["Scorpions"] = "Scorpions"--]] 
---[[Translation missing --]]
---[[ L["Sea Serpents"] = "Sea Serpents"--]] 
---[[Translation missing --]]
---[[ L["Seahorses"] = "Seahorses"--]] 
---[[Translation missing --]]
---[[ L["Seat"] = "Seat"--]] 
---[[Translation missing --]]
---[[ L["Silithids"] = "Silithids"--]] 
---[[Translation missing --]]
---[[ L["Skyrazor"] = "Skyrazor"--]] 
---[[Translation missing --]]
---[[ L["Slug"] = "Slug"--]] 
---[[Translation missing --]]
---[[ L["Snail"] = "Snail"--]] 
---[[Translation missing --]]
---[[ L["Snapdragons"] = "Snapdragons"--]] 
---[[Translation missing --]]
---[[ L["Spider Tanks"] = "Spider Tanks"--]] 
---[[Translation missing --]]
---[[ L["Spiders"] = "Spiders"--]] 
---[[Translation missing --]]
---[[ L["Sporebat"] = "Sporebat"--]] 
---[[Translation missing --]]
---[[ L["Stag"] = "Stag"--]] 
+L["Rockets"] = "Razzi"
+L["Rodent"] = " Roditore"
+L["Ruinstriders"] = "Calcarovina"
+L["Rylaks"] = "Rylak"
+L["Sabers"] = "Denti a sciabola"
+L["Scorpions"] = "Scorpioni"
+L["Sea Serpents"] = "Serpe di Mare"
+L["Seahorses"] = "Cavallucci marini"
+L["Shalewing"] = "Alaroccia"
+L["Shardhides"] = "Pellescheggia"
+L["Silithids"] = "Silitide"
+L["Skyrazor"] = "Sferzacieli"
+L["Slateback"] = "Scistodorso"
+L["Slug"] = "Una lumaca senza guscio"
+L["Snail"] = "Lumaca"
+L["Snapdragons"] = "Drago Carnivoro"
+L["Spider Tanks"] = "Carroragno"
+L["Spiders"] = "Ragni"
+L["Sporebat"] = "Sporofago"
+L["Stag"] = "Cervo"
 --[[Translation missing --]]
 --[[ L["Steeds"] = "Steeds"--]] 
---[[Translation missing --]]
---[[ L["Stingrays"] = "Stingrays"--]] 
---[[Translation missing --]]
---[[ L["Stone Cats"] = "Stone Cats"--]] 
---[[Translation missing --]]
---[[ L["Stone Drakes"] = "Stone Drakes"--]] 
---[[Translation missing --]]
---[[ L["Talbuks"] = "Talbuks"--]] 
---[[Translation missing --]]
---[[ L["Tallstriders"] = "Tallstriders"--]] 
+L["Stingrays"] = "Razze"
+L["Stone Cats"] = "Gatto di pietra"
+L["Stone Drakes"] = "Draco di Pietra"
+L["Talbuks"] = "Talbuk"
+L["Tallstriders"] = "Zampalunga"
 --[[Translation missing --]]
 --[[ L["Talonbirds"] = "Talonbirds"--]] 
---[[Translation missing --]]
---[[ L["Tauralus"] = "Tauralus"--]] 
---[[Translation missing --]]
---[[ L["Thunder Lizard"] = "Thunder Lizard"--]] 
---[[Translation missing --]]
---[[ L["Tigers"] = "Tigers"--]] 
---[[Translation missing --]]
---[[ L["Toads"] = "Toads"--]] 
---[[Translation missing --]]
---[[ L["Turtles"] = "Turtles"--]] 
+L["Tauralus"] = "Tauralus"
+L["Thunder Lizard"] = "Sauro del Tuono"
+L["Tigers"] = "Tigri"
+L["Toads"] = "Rospi"
+L["Turkey"] = "Tacchino"
+L["Turtles"] = "Tartarughe"
 --[[Translation missing --]]
 --[[ L["Undead Drakes"] = "Undead Drakes"--]] 
 --[[Translation missing --]]
 --[[ L["Undead Steeds"] = "Undead Steeds"--]] 
 --[[Translation missing --]]
 --[[ L["Undead Wolves"] = "Undead Wolves"--]] 
---[[Translation missing --]]
---[[ L["Ungulates"] = "Ungulates"--]] 
---[[Translation missing --]]
---[[ L["Ur'zul"] = "Ur'zul"--]] 
---[[Translation missing --]]
---[[ L["Vehicles"] = "Vehicles"--]] 
---[[Translation missing --]]
---[[ L["Vombata"] = "Vombata"--]] 
---[[Translation missing --]]
---[[ L["Vulpin"] = "Vulpin"--]] 
---[[Translation missing --]]
---[[ L["Vultures"] = "Vultures"--]] 
+L["Ungulates"] = "Ungulati"
+L["Ur'zul"] = "Ur'zul"
+L["Vehicles"] = "Veicoli"
+L["Void Creeper"] = "Strisciante del Vuoto"
+L["Void Flyer"] = "Volatile del Vuoto"
+L["Vombata"] = "Vombatide"
+L["Vulpin"] = "Volpino"
+L["Vultures"] = "Avvoltoi"
 --[[Translation missing --]]
 --[[ L["War Wolves"] = "War Wolves"--]] 
---[[Translation missing --]]
---[[ L["Wasp"] = "Wasp"--]] 
---[[Translation missing --]]
---[[ L["Water Striders"] = "Water Striders"--]] 
---[[Translation missing --]]
---[[ L["Wilderlings"] = "Wilderlings"--]] 
---[[Translation missing --]]
---[[ L["Wind Drakes"] = "Wind Drakes"--]] 
---[[Translation missing --]]
---[[ L["Wolfhawks"] = "Wolfhawks"--]] 
---[[Translation missing --]]
---[[ L["Wolves"] = "Wolves"--]] 
---[[Translation missing --]]
---[[ L["Worm"] = "Worm"--]] 
---[[Translation missing --]]
---[[ L["Wyverns"] = "Wyverns"--]] 
---[[Translation missing --]]
---[[ L["Yaks"] = "Yaks"--]] 
---[[Translation missing --]]
---[[ L["Yetis"] = "Yetis"--]] 
+L["Wasp"] = "Vespa"
+L["Water Striders"] = "Gerride"
+L["Wilderlings"] = "Selvante"
+L["Wind Drakes"] = " Draco del Vento"
+L["Wolfhawks"] = "Falcolupo"
+L["Wolves"] = "Lupi"
+L["Worm"] = "Verme"
+L["Wyverns"] = "Viverne"
+L["Yaks"] = "Yak"
+L["Yetis"] = "Yeti"
 
 
 elseif locale == "koKR" then
-    --[[Translation missing --]]
---[[ L["ANIMATION_FLY"] = "Fly"--]] 
---[[Translation missing --]]
---[[ L["ANIMATION_FLY_IDLE"] = "Fly Idle"--]] 
---[[Translation missing --]]
---[[ L["ANIMATION_RUN"] = "Run"--]] 
---[[Translation missing --]]
---[[ L["ANIMATION_STAND"] = "Stand"--]] 
---[[Translation missing --]]
---[[ L["ANIMATION_WALK"] = "ANIMATION_WALK"--]] 
---[[Translation missing --]]
---[[ L["ANIMATION_WALK_BACK"] = "Walk Backwards"--]] 
---[[Translation missing --]]
---[[ L["ASK_FAVORITE_PROFILE_NAME"] = "Enter Profile Name:"--]] 
---[[Translation missing --]]
---[[ L["AUTO_ROTATE"] = "Rotate automatically"--]] 
+    L["ANIMATION_FLY"] = "파리"
+L["ANIMATION_FLY_IDLE"] = "제자리에서 비행하다"
+L["ANIMATION_RUN"] = "달리다"
+L["ANIMATION_STAND"] = "서다"
+L["ANIMATION_WALK"] = "가다"
+L["ANIMATION_WALK_BACK"] = "뒤로 물러나다"
+L["ASK_FAVORITE_PROFILE_NAME"] = "프로필 이름을 입력하세요:"
+L["AUTO_ROTATE"] = "자동으로 회전"
 L["Black Market"] = "암시장"
---[[Translation missing --]]
---[[ L["CLICK_TO_SHOW_LINK"] = "Click to Show Link"--]] 
---[[Translation missing --]]
---[[ L["COMPARTMENT_TOOLTIP"] = [=[|cffeda55fLeft-Click|r to toggle showing the mount collection.
-|cffeda55fRight-Click|r to open addon options.]=]--]] 
---[[Translation missing --]]
---[[ L["CONFIRM_FAVORITE_PROFILE_DELETION"] = [=[Are you sure you want to delete the profile "%s"?
-All current character assignments will be reset to the default profile "%s".]=]--]] 
---[[Translation missing --]]
---[[ L["COPY_POPUP"] = "press CTRL+C to copy"--]] 
+L["CLICK_TO_SHOW_LINK"] = "링크를 표시하려면 클릭하세요"
+L["COMPARTMENT_TOOLTIP"] = "|cffeda55f마운트 컬렉션을 표시하려면 왼쪽 클릭|r을 누르세요. |cffeda55f마우스 오른쪽 클릭|r을 눌러 애드온 옵션을 여세요."
+L["CONFIRM_FAVORITE_PROFILE_DELETION"] = "\"%s\" 프로필을 삭제하시겠습니까? 현재 모든 캐릭터 할당이 기본 프로필 \"%s\"로 재설정됩니다."
 L["DRESSUP_LABEL"] = "도감"
---[[Translation missing --]]
---[[ L["EVENT_PLUNDERSTORM"] = "Plunderstorm"--]] 
---[[Translation missing --]]
---[[ L["EVENT_SCARAB"] = "Call of the Scarab"--]] 
---[[Translation missing --]]
---[[ L["EVENT_SECRETS"] = "Secrets of Azeroth"--]] 
+L["EVENT_PLUNDERSTORM"] = "약탈폭풍"
+L["EVENT_SCARAB"] = "스카라베의 부름"
+L["EVENT_SECRETS"] = "아제로스의 비밀"
 L["Family"] = "종류"
---[[Translation missing --]]
---[[ L["FAVOR_AUTO"] = "Add new mounts automatically"--]] 
+L["FAVOR_AUTO"] = "새로운 마운트를 자동으로 추가합니다"
 L["FAVOR_DISPLAYED"] = "모두 표시"
---[[Translation missing --]]
---[[ L["FAVORITE_ACCOUNT_PROFILE"] = "Account"--]] 
---[[Translation missing --]]
---[[ L["FAVORITE_PROFILE"] = "Profile"--]] 
---[[Translation missing --]]
---[[ L["FILTER_ONLY"] = "only"--]] 
---[[Translation missing --]]
---[[ L["FILTER_ONLY_LATEST"] = "Only latest additions"--]] 
---[[Translation missing --]]
---[[ L["FILTER_RETIRED"] = "No longer available"--]] 
---[[Translation missing --]]
---[[ L["FILTER_SECRET"] = "Hidden by the game"--]] 
+L["FAVORITE_ACCOUNT_PROFILE"] = "계정"
+L["FAVORITE_PROFILE"] = "윤곽"
+L["FILTER_ONLY"] = "오직"
+L["FILTER_ONLY_LATEST"] = "최신 추가 사항만"
+L["FILTER_PROFILE"] = "프로필"
+L["FILTER_PROFILE_TOOLTIP_TEXT"] = "미리 정의된 필터와 검색 설정을 빠르게 불러옵니다.|n|cffeda55f필터 프로필을 불러오려면 왼쪽 클릭|r을 클릭하세요.|n|cffeda55f필터 프로필을 저장하려면 오른쪽 클릭|r을 클릭하세요."
+L["FILTER_PROFILE_TOOLTIP_TITLE"] = "필터 프로필."
+L["FILTER_RETIRED"] = "더 이상 사용할 수 없습니다"
+L["FILTER_SECRET"] = "게임에 의해 숨겨짐"
 L["Hidden"] = "숨김"
---[[Translation missing --]]
---[[ L["LDB_TIP_NO_FAVORITES_LEFT_CLICK"] = "|cffeda55fLeft click|r to open Mount Collection."--]] 
---[[Translation missing --]]
---[[ L["LDB_TIP_NO_FAVORITES_RIGHT_CLICK"] = "|cffeda55fRight click|r to select different Favorite Profile."--]] 
---[[Translation missing --]]
---[[ L["LDB_TIP_NO_FAVORITES_TITLE"] = "You have not selected any mount as favorite yet."--]] 
---[[Translation missing --]]
---[[ L["LINK_WOWHEAD"] = "Link to Wowhead"--]] 
---[[Translation missing --]]
---[[ L["Mite"] = "Mite"--]] 
+L["LDB_TIP_NO_FAVORITES_LEFT_CLICK"] = "|cffeda55f마운트 컬렉션을 열려면 왼쪽 클릭|r을 클릭하세요."
+L["LDB_TIP_NO_FAVORITES_RIGHT_CLICK"] = "|cffeda55f마우스 오른쪽 버튼을 클릭|r하여 다른 즐겨찾는 프로필을 선택하세요."
+L["LDB_TIP_NO_FAVORITES_TITLE"] = "아직 즐겨찾기에 등록한 마운트가 없습니다."
+L["LINK_WOWHEAD"] = "링크로 Wowhead"
+L["Mite"] = "매우 조그만 것"
 L["Only tradable"] = "교환가능"
 L["Passenger"] = "승객"
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_INFO"] = "You can assign a pet to this mount. It's going to be summoned as well, when you mount up.|n|nAll assignments are shared with all your characters.|n|nYou can use right-click on a pet entry to summon it manually.|n|nPlease be aware that most ground pets won't fly with you and just disappear when you take off. Also, flying pets are usually slower than you. So they might need some time to catch up to you.|n|nAuto summoning pets is only active in world content."--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_NONE"] = "No Pet"--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TITLE"] = "Assign Pet to Mount"--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TOOLTIP_CURRENT"] = "Current assigned Pet:"--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TOOLTIP_LEFT"] = "|cffeda55fLeft click|r to open pet assignment."--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TOOLTIP_RIGHT"] = "|cffeda55fRight click|r to assign active pet to mount."--]] 
+L["PET_ASSIGNMENT_INFO"] = "이 탈것에 애완동물을 배정할 수 있습니다. 탑승 시 애완동물도 소환됩니다.|n|n모든 배정은 모든 캐릭터와 공유됩니다.|n|n펫 항목을 마우스 오른쪽 버튼으로 클릭하여 수동으로 소환할 수 있습니다.|n|n대부분의 지상 애완동물은 플레이어와 함께 날지 않고, 플레이어가 이륙하면 사라집니다. 또한, 비행 애완동물은 일반적으로 플레이어보다 느리기 때문에 플레이어를 따라잡는 데 시간이 걸릴 수 있습니다.|n|n펫 자동 소환은 월드 콘텐츠에서만 활성화됩니다."
+L["PET_ASSIGNMENT_NONE"] = "애완동물이 없는"
+L["PET_ASSIGNMENT_TITLE"] = "애완동물을 마운트에 할당하세요"
+L["PET_ASSIGNMENT_TOOLTIP_CURRENT"] = "현재 배정된 반려동물:"
+L["PET_ASSIGNMENT_TOOLTIP_LEFT"] = "|cffeda55f반려동물 과제를 열려면 왼쪽 클릭|r을 클릭하세요."
+L["PET_ASSIGNMENT_TOOLTIP_RIGHT"] = "|cffeda55f마우스 오른쪽 버튼 클릭|r을 눌러 활성화된 애완동물을 탈것에 할당하세요."
 L["Reset filters"] = "필터 초기화"
 L["ROTATE_DOWN"] = "아래로 회전"
 L["ROTATE_UP"] = "위로 회전"
 L["SORT_BY_FAMILY"] = "종류"
 L["SORT_BY_LAST_USAGE"] = "마지막 사용"
---[[Translation missing --]]
---[[ L["SORT_BY_LEARNED_DATE"] = "Date of receipt"--]] 
+L["SORT_BY_LEARNED_DATE"] = "수령일"
 L["SORT_BY_TRAVEL_DISTANCE"] = "이동 거리"
 L["SORT_BY_TRAVEL_DURATION"] = "이동 시간"
 L["SORT_BY_USAGE_COUNT"] = "사용 횟수"
 L["SORT_FAVORITES_FIRST"] = "즐겨찾기 먼저"
 L["SORT_REVERSE"] = "역순 정렬"
---[[Translation missing --]]
---[[ L["SORT_UNOWNED_BOTTOM"] = "Unowned at Bottom"--]] 
---[[Translation missing --]]
---[[ L["SORT_UNUSABLE_BOTTOM"] = "Unusable after Usable"--]] 
---[[Translation missing --]]
---[[ L["SPECIAL_TIP"] = "Starts the special animation of your mount in game."--]] 
---[[Translation missing --]]
---[[ L["STATS_TIP_CUSTOMIZATION_COUNT_HEAD"] = "Count of collected customization options"--]] 
+L["SORT_UNOWNED_BOTTOM"] = "아래에서 수신되지 않음"
+L["SORT_UNUSABLE_BOTTOM"] = "사용 가능 후 사용 불가능"
+L["SPECIAL_TIP"] = "게임에서 탈것의 특별 애니메이션을 시작합니다."
+L["STATS_TIP_CUSTOMIZATION_COUNT_HEAD"] = "수집된 사용자 정의 옵션 수"
 L["STATS_TIP_LEARNED_DATE_HEAD"] = "보유일"
---[[Translation missing --]]
---[[ L["STATS_TIP_RARITY_DESCRIPTION"] = "% of characters who own this mount"--]] 
+L["STATS_TIP_RARITY_DESCRIPTION"] = "이 마운트를 소유한 캐릭터의 %"
 L["STATS_TIP_RARITY_HEAD"] = "품질"
 L["STATS_TIP_TRAVEL_DISTANCE_HEAD"] = "이동 거리"
---[[Translation missing --]]
---[[ L["STATS_TIP_TRAVEL_TIME_DAYS"] = "in days"--]] 
+L["STATS_TIP_TRAVEL_TIME_DAYS"] = "일 단위로 "
 L["STATS_TIP_TRAVEL_TIME_HEAD"] = "이동 시간"
 L["STATS_TIP_TRAVEL_TIME_TEXT"] = "시간:분:초"
 L["STATS_TIP_USAGE_COUNT_HEAD"] = "사용 횟수"
---[[Translation missing --]]
---[[ L["SYNC_TARGET_TIP_FLAVOR"] = "Get ready for a mount off!"--]] 
---[[Translation missing --]]
---[[ L["SYNC_TARGET_TIP_TEXT"] = "Automatically select the mount of your current target."--]] 
---[[Translation missing --]]
---[[ L["SYNC_TARGET_TIP_TITLE"] = "Sync Journal with Target"--]] 
---[[Translation missing --]]
---[[ L["TOGGLE_COLOR"] = "Show next color variation"--]] 
+L["SYNC_TARGET_TIP_FLAVOR"] = "여러분의 마운트를 자랑할 준비를 하세요!"
+L["SYNC_TARGET_TIP_TEXT"] = "현재 대상의 마운트를 자동으로 선택합니다."
+L["SYNC_TARGET_TIP_TITLE"] = "대상과 저널 동기화"
+L["TOGGLE_COLOR"] = "다음 색상 변형 표시"
 L["Transform"] = "변환"
 
     -- Settings
 L["DISPLAY_ALL_SETTINGS"] = "모든 설정 표시"
---[[Translation missing --]]
---[[ L[ [=[RESET_WINDOW_SIZE
-]=] ] = "Reset journal size"--]] 
---[[Translation missing --]]
---[[ L["SETTING_ABOUT_AUTHOR"] = "Author"--]] 
+L[ [=[RESET_WINDOW_SIZE
+]=] ] = "저널 크기 재설정"
+L["SETTING_ABOUT_AUTHOR"] = "작가"
 L["SETTING_ACHIEVEMENT_POINTS"] = "업적 점수 표시"
---[[Translation missing --]]
---[[ L["SETTING_COLOR_NAMES"] = "Colorize names in list based on rarity"--]] 
+L["SETTING_COLOR_NAMES"] = "희귀도에 따라 목록의 이름에 색상 지정"
 L["SETTING_COMPACT_LIST"] = "간소한 목록"
 L["SETTING_CURSOR_KEYS"] = "위 아래 화살표 키로 목록 탐색하기"
---[[Translation missing --]]
---[[ L["SETTING_DISPLAY_BACKGROUND"] = "Change background color in display"--]] 
+L["SETTING_DISPLAY_BACKGROUND"] = "디스플레이의 배경색 변경"
 L["SETTING_HEAD_ABOUT"] = "정보"
---[[Translation missing --]]
---[[ L["SETTING_HEAD_BEHAVIOUR"] = "Behavior"--]] 
+L["SETTING_HEAD_BEHAVIOUR"] = "행동"
 L["SETTING_MOUNT_COUNT"] = "개인 탈것 수 표시"
---[[Translation missing --]]
---[[ L["SETTING_MOUNTSPECIAL_BUTTON"] = "Show /mountspecial button"--]] 
---[[Translation missing --]]
---[[ L["SETTING_MOVE_EQUIPMENT_SLOT"] = "Move equipment slot"--]] 
---[[Translation missing --]]
---[[ L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_DISPLAY"] = "inside display"--]] 
---[[Translation missing --]]
---[[ L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_TOP"] = "within top bar"--]] 
+L["SETTING_MOUNTSPECIAL_BUTTON"] = "/mountspecial 버튼 표시"
 L["SETTING_PERSONAL_FILTER"] = "이 캐릭터에만 필터 적용"
---[[Translation missing --]]
---[[ L["SETTING_PERSONAL_HIDDEN_MOUNTS"] = "Apply hidden mounts only to this character"--]] 
+L["SETTING_PERSONAL_HIDDEN_MOUNTS"] = "숨겨진 마운트를 이 캐릭터에만 적용합니다."
 L["SETTING_PERSONAL_UI"] = "이 캐릭터에게만 인터페이스 설정 적용"
 L["SETTING_PREVIEW_LINK"] = "탈것 미리보기에 수집품 버튼 표시"
---[[Translation missing --]]
---[[ L["SETTING_SEARCH_FAMILY_NAME"] = "Search also by family name"--]] 
---[[Translation missing --]]
---[[ L["SETTING_SEARCH_MORE"] = "Search also in description text"--]] 
---[[Translation missing --]]
---[[ L["SETTING_SEARCH_NOTES"] = "Search also in own notes"--]] 
---[[Translation missing --]]
---[[ L["SETTING_SHOW_DATA"] = "Show mount data in display"--]] 
---[[Translation missing --]]
---[[ L["SETTING_SHOW_RESIZE_EDGE"] = "Activate edge in bottom corner to resize window"--]] 
---[[Translation missing --]]
---[[ L["SETTING_SUMMONPREVIOUSPET"] = "Summon previous active pet again when dismounting."--]] 
---[[Translation missing --]]
---[[ L["SETTING_TRACK_USAGE"] = "Track mount usage behavior on all characters"--]] 
+L["SETTING_SEARCH_FAMILY_NAME"] = "가족으로도 검색하세요"
+L["SETTING_SEARCH_MORE"] = "설명 텍스트에서도 검색"
+L["SETTING_SEARCH_NOTES"] = "자신의 노트에서도 검색"
+L["SETTING_SHOW_DATA"] = "디스플레이에 마운트 데이터 표시"
+L["SETTING_SHOW_FILTER_PROFILES_IN_MENU"] = "필터 메뉴에서 필터 프로필을 표시합니다."
+L["SETTING_SHOW_RESIZE_EDGE"] = "창 크기를 조정하려면 하단 모서리의 가장자리를 활성화하세요."
+L["SETTING_SHOW_TOOLBAR_BUTTONS"] = "툴바 버튼 표시"
+L["SETTING_SUMMONPREVIOUSPET"] = "내릴 때 이전에 활성화되어 있던 애완동물을 다시 소환합니다."
+L["SETTING_TRACK_USAGE"] = "모든 캐릭터의 마운트 사용 동작 추적"
 L["SETTING_YCAMERA"] = "표시 화면에서 마우스로 Y 축 회전 잠금 해제"
 
     -- Families
 L["Airplanes"] = "비행기"
 L["Airships"] = "비행선"
+L["Albatross"] = "알바트로스"
 L["Alpacas"] = "알파카"
 L["Amphibian"] = "양서류"
 L["Animite"] = "령진드기"
 L["Aqir Flyers"] = "아퀴르 날벌레"
 L["Arachnids"] = "거미"
---[[Translation missing --]]
---[[ L["Armoredon"] = "Armoredon"--]] 
-L["Assault Wagons"] = "공성차량"
+L["Armoredon"] = "장갑무소"
 L["Basilisks"] = "바실리스크"
 L["Bats"] = "박쥐"
 L["Bears"] = "곰"
---[[Translation missing --]]
---[[ L["Beetle"] = "Beetle"--]] 
---[[Translation missing --]]
---[[ L["Bipedal Cat"] = "Bipedal Cat"--]] 
+L["Beetle"] = "딱정벌레"
+L["Bipedal Cat"] = "꿈갈퀴"
 L["Birds"] = "새"
 L["Boars"] = "멧돼지"
-L["Book"] = "책"
 L["Bovids"] = "노루"
 L["Broom"] = "빗자루"
 L["Brutosaurs"] = "브루토사우루스"
 L["Camels"] = "낙타"
 L["Carnivorans"] = "육식동물"
 L["Carpets"] = "카페트"
+--[[Translation missing --]]
+--[[ L["Carrion"] = "Carrion"--]] 
 L["Cats"] = "고양이과"
 L["Cervid"] = "원시사슴"
 L["Chargers"] = "군마"
@@ -2535,18 +2328,17 @@ L["Direhorns"] = "다이어혼"
 L["Discs"] = "원반"
 L["Dragonhawks"] = "용매"
 L["Drakes"] = "비룡"
---[[Translation missing --]]
---[[ L["Dreamsaber"] = "Dreamsaber"--]] 
+L["Dreamsaber"] = "꿈표범"
 L["Eagle"] = "독수리"
 L["Elekks"] = "엘레크"
 L["Elementals"] = "정령"
 L["Falcosaurs"] = "팔코사우루스"
 L["Fathom Rays"] = "심해 가오리"
 L["Feathermanes"] = "뾰족갈기"
+L["Felbat"] = "지옥 박쥐"
 L["Felsabers"] = "지옥표범"
 L["Fish"] = "물고기"
---[[Translation missing --]]
---[[ L["Flies"] = "Flies"--]] 
+L["Flies"] = "파리"
 L["Flying Steeds"] = "비행군마"
 L["Foxes"] = "여우"
 L["Gargon"] = "가르곤"
@@ -2559,16 +2351,15 @@ L["Gronnlings"] = "그론링"
 L["Gryphons"] = "그리폰"
 L["Gyrocopters"] = "자이로콥터"
 L["Hands"] = "손"
-L["Hawkstriders"] = "매타조"
 --[[Translation missing --]]
---[[ L["Hedgehog"] = "Hedgehog"--]] 
+--[[ L["Harrower"] = "Harrower"--]] 
+L["Hawkstriders"] = "매타조"
+L["Hedgehog"] = "고슴도치"
 L["Hippogryphs"] = "히포그리프"
 L["Horned Steeds"] = "뿔 군마"
 L["Horses"] = "말"
 L["Hounds"] = "사냥개"
---[[Translation missing --]]
---[[ L["Hover Board"] = "Hover Board"--]] 
-L["Hovercraft"] = "호버크래프트"
+L["Hover Board"] = "호버보드"
 L["Humanoids"] = "휴머노이드"
 L["Hyenas"] = "하이에나"
 L["Infernals"] = "지옥불정령"
@@ -2581,10 +2372,10 @@ L["Krolusks"] = "크롤러스크"
 L["Larion"] = "깃사자"
 L["Lions"] = "사자"
 L["Lupine"] = "원시늑대"
---[[Translation missing --]]
---[[ L["Lynx"] = "Lynx"--]] 
+L["Lynx"] = "스라소니"
 L["Mammoths"] = "매머드"
 L["Mana Rays"] = "마나 가오리"
+L["Mana Wyrm"] = "마나 지룡"
 L["Manasabers"] = "마나호랑이"
 L["Mauler"] = "싸움꾼"
 L["Mechanical Animals"] = "기계형 야수"
@@ -2593,10 +2384,9 @@ L["Mechanical Cats"] = "기계형 고양이"
 L["Mechanical Steeds"] = "기계형 군마"
 L["Mechanostriders"] = "기계타조"
 L["Mecha-suits"] = "메카수트"
---[[Translation missing --]]
---[[ L["Meeksi"] = "Meeksi"--]] 
---[[Translation missing --]]
---[[ L["Mole"] = "Mole"--]] 
+L["Meeksi"] = "미크시"
+L["Mite"] = "진드기"
+L["Mole"] = "두더지"
 L["Mollusc"] = "연체동물"
 L["Moose"] = "엘크"
 L["Moth"] = "나방"
@@ -2609,17 +2399,18 @@ L["Nether Rays"] = "황천 가오리"
 L["N'Zoth Serpents"] = "느조스 뱀"
 L["Others"] = "기타"
 L["Ottuk"] = "오투크"
---[[Translation missing --]]
---[[ L["Owl"] = "Owl"--]] 
---[[Translation missing --]]
---[[ L["Owlbear"] = "Owlbear"--]] 
---[[Translation missing --]]
---[[ L["Ox"] = "Ox"--]] 
+L["Owl"] = "올빼미"
+L["Owlbear"] = "올빼미곰의"
+L["Ox"] = "황소"
 L["Pandaren Phoenixes"] = "판다렌 불사조"
+L["Pangolin"] = "천산갑"
 L["Parrots"] = "앵무새"
+L["Peafowl"] = "공작새"
 --[[Translation missing --]]
---[[ L["Peafowl"] = "Peafowl"--]] 
+--[[ L["Petalwing"] = "Petalwing"--]] 
 L["Phoenixes"] = "불사조"
+--[[Translation missing --]]
+--[[ L["Plant"] = "Plant"--]] 
 L["Proto-Drakes"] = "원시 비룡"
 L["Pterrordaxes"] = "테러닥스"
 L["Quilen"] = "기렌"
@@ -2628,8 +2419,7 @@ L["Rams"] = "산양"
 L["Raptora"] = "육식조"
 L["Raptors"] = "랩터"
 L["Rats"] = "쥐"
---[[Translation missing --]]
---[[ L["Raven"] = "Raven"--]] 
+L["Raven"] = "갈가마귀"
 L["Rays"] = "가오리"
 L["Razorwing"] = "칼날날개"
 L["Reptiles"] = "파충류"
@@ -2644,19 +2434,18 @@ L["Sabers"] = "표범"
 L["Scorpions"] = "전갈"
 L["Sea Serpents"] = "바다뱀"
 L["Seahorses"] = "해마"
---[[Translation missing --]]
---[[ L["Seat"] = "Seat"--]] 
+L["Shalewing"] = "혈암날개"
+L["Shardhides"] = "파편가죽"
 L["Silithids"] = "실리시드"
---[[Translation missing --]]
---[[ L["Skyrazor"] = "Skyrazor"--]] 
+L["Skyrazor"] = "하늘발톱"
+L["Slateback"] = "점판등"
 L["Slug"] = "민달팽이"
 L["Snail"] = "달팽이"
 L["Snapdragons"] = "치악룡"
 L["Spider Tanks"] = "거미 전차"
 L["Spiders"] = "거미"
 L["Sporebat"] = "포자박쥐"
---[[Translation missing --]]
---[[ L["Stag"] = "Stag"--]] 
+L["Stag"] = "순록"
 L["Steeds"] = "군마"
 L["Stingrays"] = "독침가오리"
 L["Stone Cats"] = "고양이 석상"
@@ -2665,10 +2454,10 @@ L["Talbuks"] = "탈부크"
 L["Tallstriders"] = "타조"
 L["Talonbirds"] = "탈론 버드"
 L["Tauralus"] = "타우랄러스"
---[[Translation missing --]]
---[[ L["Thunder Lizard"] = "Thunder Lizard"--]] 
+L["Thunder Lizard"] = "천둥도마뱀"
 L["Tigers"] = "호랑이"
 L["Toads"] = "두꺼비"
+L["Turkey"] = "칠면조"
 L["Turtles"] = "거북이"
 L["Undead Drakes"] = "언데드 비룡"
 L["Undead Steeds"] = "언데드 군마"
@@ -2676,6 +2465,8 @@ L["Undead Wolves"] = "언데드 늑대"
 L["Ungulates"] = "유제류"
 L["Ur'zul"] = "우르줄"
 L["Vehicles"] = "차량"
+L["Void Creeper"] = "공허 살금벌레"
+L["Void Flyer"] = "공허 비행수"
 L["Vombata"] = "봄바타"
 L["Vulpin"] = "여우"
 L["Vultures"] = "독수리"
@@ -2686,8 +2477,7 @@ L["Wilderlings"] = "야생룡"
 L["Wind Drakes"] = "바람 비룡"
 L["Wolfhawks"] = "늑대매"
 L["Wolves"] = "늑대"
---[[Translation missing --]]
---[[ L["Worm"] = "Worm"--]] 
+L["Worm"] = "벌레"
 L["Wyverns"] = "와이번"
 L["Yaks"] = "야크"
 L["Yetis"] = "예티"
@@ -2700,63 +2490,42 @@ L["ANIMATION_RUN"] = "Correr"
 L["ANIMATION_STAND"] = "Parado"
 L["ANIMATION_WALK"] = "ANIMAÇÂO_DE_CAMINHADA"
 L["ANIMATION_WALK_BACK"] = "Andar pra trás"
---[[Translation missing --]]
---[[ L["ASK_FAVORITE_PROFILE_NAME"] = "Enter Profile Name:"--]] 
+L["ASK_FAVORITE_PROFILE_NAME"] = "Digite o nome do perfil:"
 L["AUTO_ROTATE"] = "Girar automaticamente"
 L["Black Market"] = "Mercado Negro"
---[[Translation missing --]]
---[[ L["CLICK_TO_SHOW_LINK"] = "Click to Show Link"--]] 
+L["CLICK_TO_SHOW_LINK"] = "Clique para mostrar o link"
 L["COMPARTMENT_TOOLTIP"] = "|cffeda55fClique esquerdo|r para alternar a exibição da coleção de montarias. |cffeda55fClique direito|r para abrir opções de addons."
---[[Translation missing --]]
---[[ L["CONFIRM_FAVORITE_PROFILE_DELETION"] = [=[Are you sure you want to delete the profile "%s"?
-All current character assignments will be reset to the default profile "%s".]=]--]] 
---[[Translation missing --]]
---[[ L["COPY_POPUP"] = "press CTRL+C to copy"--]] 
+L["CONFIRM_FAVORITE_PROFILE_DELETION"] = "Tem certeza de que deseja excluir o perfil \"%s\"? Todas as atribuições de personagens atuais serão redefinidas para o perfil padrão \"%s\"."
 L["DRESSUP_LABEL"] = "Diário"
---[[Translation missing --]]
---[[ L["EVENT_PLUNDERSTORM"] = "Plunderstorm"--]] 
---[[Translation missing --]]
---[[ L["EVENT_SCARAB"] = "Call of the Scarab"--]] 
---[[Translation missing --]]
---[[ L["EVENT_SECRETS"] = "Secrets of Azeroth"--]] 
+L["EVENT_PLUNDERSTORM"] = "Plunderstorm"
+L["EVENT_SCARAB"] = "Chamado do Escaravelho"
+L["EVENT_SECRETS"] = "Segredos de Azeroth"
 L["Family"] = "Família"
---[[Translation missing --]]
---[[ L["FAVOR_AUTO"] = "Add new mounts automatically"--]] 
+L["FAVOR_AUTO"] = "Adicionar novas montarias automaticamente"
 L["FAVOR_DISPLAYED"] = "Exibir todos"
---[[Translation missing --]]
---[[ L["FAVORITE_ACCOUNT_PROFILE"] = "Account"--]] 
---[[Translation missing --]]
---[[ L["FAVORITE_PROFILE"] = "Profile"--]] 
+L["FAVORITE_ACCOUNT_PROFILE"] = "Conta"
+L["FAVORITE_PROFILE"] = "Perfil"
 L["FILTER_ONLY"] = "só esse"
 L["FILTER_ONLY_LATEST"] = "Apenas adições mais recentes"
---[[Translation missing --]]
---[[ L["FILTER_RETIRED"] = "No longer available"--]] 
+L["FILTER_PROFILE"] = "Perfis"
+L["FILTER_PROFILE_TOOLTIP_TEXT"] = "Carregue rapidamente seu filtro predefinido e configurações de pesquisa.|n|cffeda55fClique com o botão esquerdo|r para carregar o perfil do filtro.|n|cffeda55fClique com o botão direito|r para salvar o perfil do filtro."
+L["FILTER_PROFILE_TOOLTIP_TITLE"] = "Perfis de filtro"
+L["FILTER_RETIRED"] = "Indisponível"
 L["FILTER_SECRET"] = "Oculto pelo jogo"
 L["Hidden"] = "Oculto"
---[[Translation missing --]]
---[[ L["LDB_TIP_NO_FAVORITES_LEFT_CLICK"] = "|cffeda55fLeft click|r to open Mount Collection."--]] 
---[[Translation missing --]]
---[[ L["LDB_TIP_NO_FAVORITES_RIGHT_CLICK"] = "|cffeda55fRight click|r to select different Favorite Profile."--]] 
---[[Translation missing --]]
---[[ L["LDB_TIP_NO_FAVORITES_TITLE"] = "You have not selected any mount as favorite yet."--]] 
---[[Translation missing --]]
---[[ L["LINK_WOWHEAD"] = "Link to Wowhead"--]] 
---[[Translation missing --]]
---[[ L["Mite"] = "Mite"--]] 
+L["LDB_TIP_NO_FAVORITES_LEFT_CLICK"] = "|cffeda55fClique Esq.|r para abrir a Coleção de Montarias."
+L["LDB_TIP_NO_FAVORITES_RIGHT_CLICK"] = "|cffeda55fClique Direito|r para selecionar um Perfil Favorito diferente."
+L["LDB_TIP_NO_FAVORITES_TITLE"] = "Você ainda não selecionou nenhuma montaria como favorita."
+L["LINK_WOWHEAD"] = "Link pro Wowhead"
+L["Mite"] = "Ácaros"
 L["Only tradable"] = "Apenas negociável"
 L["Passenger"] = "Passageiro"
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_INFO"] = "You can assign a pet to this mount. It's going to be summoned as well, when you mount up.|n|nAll assignments are shared with all your characters.|n|nYou can use right-click on a pet entry to summon it manually.|n|nPlease be aware that most ground pets won't fly with you and just disappear when you take off. Also, flying pets are usually slower than you. So they might need some time to catch up to you.|n|nAuto summoning pets is only active in world content."--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_NONE"] = "No Pet"--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TITLE"] = "Assign Pet to Mount"--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TOOLTIP_CURRENT"] = "Current assigned Pet:"--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TOOLTIP_LEFT"] = "|cffeda55fLeft click|r to open pet assignment."--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TOOLTIP_RIGHT"] = "|cffeda55fRight click|r to assign active pet to mount."--]] 
+L["PET_ASSIGNMENT_INFO"] = "Você pode atribuir um mascote à esta montaria. Ele também será invocado quando você montar.|n|nTodas as atribuições são compartilhadas com todos os seus personagens.|n|nVocê pode clicar com o botão direito do mouse em um mascote para invocá-lo manualmente.|n|nLembre-se de que a maioria dos mascotes terrestres não voam com você e simplesmente desaparecem quando você voar. Além disso, mascotes voadores geralmente são mais lentos que você. Portanto, eles podem precisar de um tempo para alcançá-lo.|n|nA invocação automática de mascotes só está ativa em conteúdo no mundo."
+L["PET_ASSIGNMENT_NONE"] = "Nenhum Mascote"
+L["PET_ASSIGNMENT_TITLE"] = "Atribuir mascote à montaria"
+L["PET_ASSIGNMENT_TOOLTIP_CURRENT"] = "Mascote atualmente atribuído:"
+L["PET_ASSIGNMENT_TOOLTIP_LEFT"] = "|cffeda55fClique Esq.|r para abrir a atribuição de mascotes."
+L["PET_ASSIGNMENT_TOOLTIP_RIGHT"] = "|cffeda55fClique Direito|r para atribuir o mascote ativo à montaria."
 L["Reset filters"] = "Resetar filtros "
 L["ROTATE_DOWN"] = "Girar para Baixo"
 L["ROTATE_UP"] = "Girar para Cima"
@@ -2776,17 +2545,13 @@ L["STATS_TIP_LEARNED_DATE_HEAD"] = "Data de obtenção"
 L["STATS_TIP_RARITY_DESCRIPTION"] = "% de personagens que possuem essa montaria"
 L["STATS_TIP_RARITY_HEAD"] = "Raridade"
 L["STATS_TIP_TRAVEL_DISTANCE_HEAD"] = "Distância percorrida"
---[[Translation missing --]]
---[[ L["STATS_TIP_TRAVEL_TIME_DAYS"] = "in days"--]] 
+L["STATS_TIP_TRAVEL_TIME_DAYS"] = "em dias"
 L["STATS_TIP_TRAVEL_TIME_HEAD"] = "Tempo percorrido"
 L["STATS_TIP_TRAVEL_TIME_TEXT"] = "em horas:minutos:segundos"
 L["STATS_TIP_USAGE_COUNT_HEAD"] = "Contagem de uso"
---[[Translation missing --]]
---[[ L["SYNC_TARGET_TIP_FLAVOR"] = "Get ready for a mount off!"--]] 
---[[Translation missing --]]
---[[ L["SYNC_TARGET_TIP_TEXT"] = "Automatically select the mount of your current target."--]] 
---[[Translation missing --]]
---[[ L["SYNC_TARGET_TIP_TITLE"] = "Sync Journal with Target"--]] 
+L["SYNC_TARGET_TIP_FLAVOR"] = "É hora do duelo de montarias!"
+L["SYNC_TARGET_TIP_TEXT"] = "Selecionar automaticamente a mesma montaria do seu alvo atual."
+L["SYNC_TARGET_TIP_TITLE"] = "Sincronizar diário com o alvo"
 L["TOGGLE_COLOR"] = "Mostrar próxima variação de cor"
 L["Transform"] = "Transformar"
 
@@ -2804,51 +2569,49 @@ L["SETTING_HEAD_ABOUT"] = "Sobre"
 L["SETTING_HEAD_BEHAVIOUR"] = "Comportamento"
 L["SETTING_MOUNT_COUNT"] = "Mostrar contagem de montaria pessoal"
 L["SETTING_MOUNTSPECIAL_BUTTON"] = "Mostrar botão de /mountspecial"
-L["SETTING_MOVE_EQUIPMENT_SLOT"] = "Mover slot de equipamento"
-L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_DISPLAY"] = "exibição interna"
-L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_TOP"] = "na barra superior"
 L["SETTING_PERSONAL_FILTER"] = "Aplicar filtros apenas para este personagem"
 L["SETTING_PERSONAL_HIDDEN_MOUNTS"] = "Aplicar montarias ocultas apenas para este personagem"
 L["SETTING_PERSONAL_UI"] = "Aplicar configurações de inferface apenas para este personagem"
 L["SETTING_PREVIEW_LINK"] = "Mostrar Botão de Coleção na pré-visualização de montaria"
---[[Translation missing --]]
---[[ L["SETTING_SEARCH_FAMILY_NAME"] = "Search also by family name"--]] 
+L["SETTING_SEARCH_FAMILY_NAME"] = "Pesquisar também por família"
 L["SETTING_SEARCH_MORE"] = "Pesquisar também no texto de descrição"
 L["SETTING_SEARCH_NOTES"] = "Pesquisar também nas próprias notas"
---[[Translation missing --]]
---[[ L["SETTING_SHOW_DATA"] = "Show mount data in display"--]] 
+L["SETTING_SHOW_DATA"] = "Exibir dados da montaria"
+L["SETTING_SHOW_FILTER_PROFILES_IN_MENU"] = [=[Mostrar perfis de filtro no menu de filtros.
+]=]
 L["SETTING_SHOW_RESIZE_EDGE"] = "Ativar a borda no canto inferior para redimensionar a janela"
---[[Translation missing --]]
---[[ L["SETTING_SUMMONPREVIOUSPET"] = "Summon previous active pet again when dismounting."--]] 
+L["SETTING_SHOW_TOOLBAR_BUTTONS"] = "Exibir botões da barra de ferramentas"
+L["SETTING_SUMMONPREVIOUSPET"] = "Invoca o mascote ativo anterior novamente ao desmontar."
 L["SETTING_TRACK_USAGE"] = "Rastreie o comportamento de uso da montaria em todos os personagens"
 L["SETTING_YCAMERA"] = "Desbloquear rotação vertical com o mouse na tela"
 
     -- Families
 L["Airplanes"] = "Aviões"
 L["Airships"] = "Dirigíveis"
+L["Albatross"] = "Albatroz"
 L["Alpacas"] = "Alpacas"
 L["Amphibian"] = "Anfíbios"
 L["Animite"] = "Animácaros"
 L["Aqir Flyers"] = "Aqir Voadores "
 L["Arachnids"] = "Aracnídeos"
-L["Armoredon"] = "Armadurado"
-L["Assault Wagons"] = "Carroças de Assalto"
+L["Armoredon"] = "Armadurados"
 L["Basilisks"] = "Basiliscos"
 L["Bats"] = "Morcegos"
 L["Bears"] = "Ursos"
-L["Beetle"] = "Besouro"
-L["Bipedal Cat"] = "Gato Bípede"
+L["Beetle"] = "Besouros"
+L["Bipedal Cat"] = "Gatos Bípedes"
 L["Birds"] = "Aves"
 L["Boars"] = "Javalis"
-L["Book"] = "Livro"
 L["Bovids"] = "Bovídeos"
-L["Broom"] = "Vassoura"
+L["Broom"] = "Vassouras"
 L["Brutosaurs"] = "Brutossauros"
 L["Camels"] = "Camelos"
 L["Carnivorans"] = "Carnívoros"
 L["Carpets"] = "Tapetes"
+--[[Translation missing --]]
+--[[ L["Carrion"] = "Carrion"--]] 
 L["Cats"] = "Gatos"
-L["Cervid"] = "Cervídeo"
+L["Cervid"] = "Cervídeos"
 L["Chargers"] = "Corcéis"
 L["Chickens"] = "Galinhas"
 L["Clefthooves"] = "Fenocerontes"
@@ -2862,127 +2625,131 @@ L["Crows"] = "Corvos"
 L["Demonic Hounds"] = "Cães Demoníacos"
 L["Demonic Steeds"] = "Corcéis Demoníacos"
 L["Demons"] = "Demônios"
-L["Devourer"] = "Devorador"
+L["Devourer"] = "Devoradores"
 L["Dinosaurs"] = "Dinossauros"
 L["Dire Wolves"] = "Lobos Hediondos"
 L["Direhorns"] = "Escornantes"
 L["Discs"] = "Discos"
 L["Dragonhawks"] = "Falcodragos"
 L["Drakes"] = "Dracos"
-L["Dreamsaber"] = "Sabre-do-sonho"
-L["Eagle"] = "Águia"
+L["Dreamsaber"] = "Sabres-do-sonho"
+L["Eagle"] = "Águias"
 L["Elekks"] = "Elekks"
 L["Elementals"] = "Elementais"
 L["Falcosaurs"] = "Falcossauros"
 L["Fathom Rays"] = "Raias-Profundas"
 L["Feathermanes"] = "Aquifélix"
+L["Felbat"] = "Morcevil"
 L["Felsabers"] = "Sabrevis"
-L["Fish"] = "Peixe"
+L["Fish"] = "Peixes"
 L["Flies"] = "Moscas"
 L["Flying Steeds"] = "Corcéis Voadores"
 L["Foxes"] = "Raposas"
-L["Gargon"] = "Gargono"
-L["Gargoyle"] = "Gárgula"
+L["Gargon"] = "Gargonos"
+L["Gargoyle"] = "Gárgulas"
 L["Goats"] = "Bodes"
-L["Gorger"] = "Engolidor"
+L["Gorger"] = "Engolidores"
 L["Gorm"] = "Gorm"
 L["Grand Drakes"] = "Dracos Grandes"
 L["Gronnlings"] = "Gronnídeos"
 L["Gryphons"] = "Grifos"
-L["Gyrocopters"] = "Girocóptero"
+L["Gyrocopters"] = "Girocópteros"
 L["Hands"] = "Mãos"
-L["Hawkstriders"] = "Falcostruzes"
 --[[Translation missing --]]
---[[ L["Hedgehog"] = "Hedgehog"--]] 
+--[[ L["Harrower"] = "Harrower"--]] 
+L["Hawkstriders"] = "Falcostruzes"
+L["Hedgehog"] = "Ouriços"
 L["Hippogryphs"] = "Hipogrifos"
 L["Horned Steeds"] = "Corcéis com Chifres"
 L["Horses"] = "Cavalos"
 L["Hounds"] = "Cães"
---[[Translation missing --]]
---[[ L["Hover Board"] = "Hover Board"--]] 
-L["Hovercraft"] = "Aerodeslizador"
+L["Hover Board"] = "Hoverboards"
 L["Humanoids"] = "Humanoides"
 L["Hyenas"] = "Hienas"
 L["Infernals"] = "Infernais"
 L["Insects"] = "Insetos"
-L["Jellyfish"] = "Água-viva"
+L["Jellyfish"] = "Águas-vivas"
 L["Jet Aerial Units"] = "Unidades Aéreas a Jato"
 L["Kites"] = "Pipas"
 L["Kodos"] = "Kodos"
 L["Krolusks"] = "Croluscos"
-L["Larion"] = "Larião"
+L["Larion"] = "Lariões"
 L["Lions"] = "Leões"
-L["Lupine"] = "Lupino"
---[[Translation missing --]]
---[[ L["Lynx"] = "Lynx"--]] 
+L["Lupine"] = "Lupinos"
+L["Lynx"] = "Linces"
 L["Mammoths"] = "Mamutes"
 L["Mana Rays"] = "Arraias de Mana"
+L["Mana Wyrm"] = "Moreia de Mana"
 L["Manasabers"] = "Manassabres"
-L["Mauler"] = "Espancador"
+L["Mauler"] = "Espancadores"
 L["Mechanical Animals"] = "Animais Mecânicos"
 L["Mechanical Birds"] = "Pássaros Mecânicos"
 L["Mechanical Cats"] = "Gatos Mecânicos"
 L["Mechanical Steeds"] = "Corcéis Mecânicos"
 L["Mechanostriders"] = "Mecanostruzes"
 L["Mecha-suits"] = "Mecatrajes"
---[[Translation missing --]]
---[[ L["Meeksi"] = "Meeksi"--]] 
---[[Translation missing --]]
---[[ L["Mole"] = "Mole"--]] 
-L["Mollusc"] = "Molusco"
-L["Moose"] = "Alce"
-L["Moth"] = "Mariposa"
+L["Meeksi"] = "Miksi"
+L["Mite"] = "Ácaro"
+L["Mole"] = "Toupeiras"
+L["Mollusc"] = "Moluscos"
+L["Moose"] = "Alces"
+L["Moth"] = "Mariposas"
 L["Motorcycles"] = "Motocicletas"
 L["Mountain Horses"] = "Cavalos da Montanha"
-L["Murloc"] = "Murloc"
-L["Mushan"] = "Mushan"
+L["Murloc"] = "Murlocs"
+L["Mushan"] = "Mushans"
 L["Nether Drakes"] = "Dracos Etéreos"
 L["Nether Rays"] = "Arraias Etéreas "
 L["N'Zoth Serpents"] = "Serpentes de N'Zoth"
 L["Others"] = "Outros"
-L["Ottuk"] = "Lontruk"
-L["Owl"] = "Coruja"
-L["Owlbear"] = "Urso Coruja"
-L["Ox"] = "Boi"
+L["Ottuk"] = "Lontruks"
+L["Owl"] = "Corujas"
+L["Owlbear"] = "Ursos-Coruja"
+L["Ox"] = "Bois"
 L["Pandaren Phoenixes"] = "Fênix Pandarênicas"
+L["Pangolin"] = "Pangolin"
 L["Parrots"] = "Papagaios"
-L["Peafowl"] = "Pavão"
+L["Peafowl"] = "Pavões"
+--[[Translation missing --]]
+--[[ L["Petalwing"] = "Petalwing"--]] 
 L["Phoenixes"] = "Fênix"
+--[[Translation missing --]]
+--[[ L["Plant"] = "Plant"--]] 
 L["Proto-Drakes"] = "Protodracos"
 L["Pterrordaxes"] = "Pterrordaxes"
 L["Quilen"] = "Quílen"
-L["Rabbit"] = "Coelho"
+L["Rabbit"] = "Coelhos"
 L["Rams"] = "Carneiros"
 L["Raptora"] = "Raptora"
 L["Raptors"] = "Raptores"
 L["Rats"] = "Ratos"
---[[Translation missing --]]
---[[ L["Raven"] = "Raven"--]] 
+L["Raven"] = "Corvos"
 L["Rays"] = "Arraias"
-L["Razorwing"] = "Talhasa"
+L["Razorwing"] = "Talhasas"
 L["Reptiles"] = "Répteis"
 L["Rhinos"] = "Rinocerontes"
 L["Riverbeasts"] = "Feras-do-rio"
 L["Roc"] = "Rocas"
 L["Rockets"] = "Foguetes"
-L["Rodent"] = "Roedor"
-L["Ruinstriders"] = "Andarilho das Ruínas"
+L["Rodent"] = "Roedores"
+L["Ruinstriders"] = "Andarilhos das Ruínas"
 L["Rylaks"] = "Rylaks"
 L["Sabers"] = "Sabres"
 L["Scorpions"] = "Escorpiões"
-L["Sea Serpents"] = "Serpente Marinha"
+L["Sea Serpents"] = "Serpentes Marinhas"
 L["Seahorses"] = "Cavalos-marinhos"
-L["Seat"] = "Assento"
+L["Shalewing"] = "Asesquisto"
+L["Shardhides"] = "Couraça-de-cristal"
 L["Silithids"] = "Silitídeos"
---[[Translation missing --]]
---[[ L["Skyrazor"] = "Skyrazor"--]] 
-L["Slug"] = "Lesma"
-L["Snail"] = "Caracol"
+L["Skyrazor"] = "Cindecéus"
+L["Slateback"] = "Costadura"
+L["Slug"] = "Lesmas"
+L["Snail"] = "Caracóis"
 L["Snapdragons"] = "Dracoliscos"
 L["Spider Tanks"] = "Tanques Aranha"
 L["Spiders"] = "Aranhas"
-L["Sporebat"] = "Quirósporo"
-L["Stag"] = "Cervo"
+L["Sporebat"] = "Quirósporos"
+L["Stag"] = "Cervos"
 L["Steeds"] = "Corcéis"
 L["Stingrays"] = "Arraias Aguilhantes"
 L["Stone Cats"] = "Gatos de Pedra"
@@ -2991,9 +2758,10 @@ L["Talbuks"] = "Talbulques"
 L["Tallstriders"] = "Moas"
 L["Talonbirds"] = "Pássaros-garra"
 L["Tauralus"] = "Tauralus"
-L["Thunder Lizard"] = "Lagarto Trovejante"
+L["Thunder Lizard"] = "Lagartos Trovejantes"
 L["Tigers"] = "Tigres"
 L["Toads"] = "Sapos"
+L["Turkey"] = "Peru"
 L["Turtles"] = "Tartarugas"
 L["Undead Drakes"] = "Dracos Mortos-vivos"
 L["Undead Steeds"] = "Corcéis Mortos-vivos"
@@ -3001,18 +2769,19 @@ L["Undead Wolves"] = "Lobos Mortos-vivos"
 L["Ungulates"] = "Ungulados"
 L["Ur'zul"] = "Ur'zul"
 L["Vehicles"] = "Veículos"
-L["Vombata"] = "Vombate"
-L["Vulpin"] = "Vulpino"
+L["Void Creeper"] = "Rastejante do Caos"
+L["Void Flyer"] = "Voador do Caos"
+L["Vombata"] = "Vombates"
+L["Vulpin"] = "Vulpinos"
 L["Vultures"] = "Abutres"
 L["War Wolves"] = "Lobos de Guerra"
-L["Wasp"] = "Vespa"
-L["Water Striders"] = "Caminhante das Águas "
+L["Wasp"] = "Vespas"
+L["Water Striders"] = "Caminhantes das Águas "
 L["Wilderlings"] = "Silvestritos"
 L["Wind Drakes"] = "Dracos do Vento"
 L["Wolfhawks"] = "Falcolobos"
 L["Wolves"] = "Lobos"
---[[Translation missing --]]
---[[ L["Worm"] = "Worm"--]] 
+L["Worm"] = "Minhocas"
 L["Wyverns"] = "Mantícoras"
 L["Yaks"] = "Iaques"
 L["Yetis"] = "Yetis"
@@ -3023,68 +2792,44 @@ elseif locale == "ruRU" then
 L["ANIMATION_FLY_IDLE"] = "Полет на месте"
 L["ANIMATION_RUN"] = "Бег"
 L["ANIMATION_STAND"] = "Стойка"
-L["ANIMATION_WALK"] = "Ходьба"
+L["ANIMATION_WALK"] = "ANIMATION_WALK"
 L["ANIMATION_WALK_BACK"] = "Ходьба назад"
---[[Translation missing --]]
---[[ L["ASK_FAVORITE_PROFILE_NAME"] = "Enter Profile Name:"--]] 
+L["ASK_FAVORITE_PROFILE_NAME"] = "Введите имя профиля:"
 L["AUTO_ROTATE"] = "Вращать автоматически"
 L["Black Market"] = "Черный рынок"
---[[Translation missing --]]
---[[ L["CLICK_TO_SHOW_LINK"] = "Click to Show Link"--]] 
---[[Translation missing --]]
---[[ L["COMPARTMENT_TOOLTIP"] = [=[|cffeda55fLeft-Click|r to toggle showing the mount collection.
-|cffeda55fRight-Click|r to open addon options.]=]--]] 
---[[Translation missing --]]
---[[ L["CONFIRM_FAVORITE_PROFILE_DELETION"] = [=[Are you sure you want to delete the profile "%s"?
-All current character assignments will be reset to the default profile "%s".]=]--]] 
---[[Translation missing --]]
---[[ L["COPY_POPUP"] = "press CTRL+C to copy"--]] 
+L["CLICK_TO_SHOW_LINK"] = "Нажмите, чтобы показать ссылку"
+L["COMPARTMENT_TOOLTIP"] = "|cffeda55fЩелкните левой кнопкой мыши|r чтобы включить отображение коллекции средств передвижения. |cffeda55fЩелкните правой кнопкой мыши|r чтобы открыть опции аддона."
+L["CONFIRM_FAVORITE_PROFILE_DELETION"] = "Вы уверены, что хотите удалить профиль «%s»? Все текущие назначения для персонажей будут сброшены по умолчанию «%s»."
 L["DRESSUP_LABEL"] = "Журнал"
---[[Translation missing --]]
---[[ L["EVENT_PLUNDERSTORM"] = "Plunderstorm"--]] 
---[[Translation missing --]]
---[[ L["EVENT_SCARAB"] = "Call of the Scarab"--]] 
---[[Translation missing --]]
---[[ L["EVENT_SECRETS"] = "Secrets of Azeroth"--]] 
+L["EVENT_PLUNDERSTORM"] = "Пиратская Буря"
+L["EVENT_SCARAB"] = "Зов скарабея"
+L["EVENT_SECRETS"] = "Тайны Азерота"
 L["Family"] = "Семейства"
---[[Translation missing --]]
---[[ L["FAVOR_AUTO"] = "Add new mounts automatically"--]] 
+L["FAVOR_AUTO"] = "Добавлять автоматически новые средства передвижения "
 L["FAVOR_DISPLAYED"] = "Показать всех"
---[[Translation missing --]]
---[[ L["FAVORITE_ACCOUNT_PROFILE"] = "Account"--]] 
---[[Translation missing --]]
---[[ L["FAVORITE_PROFILE"] = "Profile"--]] 
---[[Translation missing --]]
---[[ L["FILTER_ONLY"] = "only"--]] 
+L["FAVORITE_ACCOUNT_PROFILE"] = "Аккаунт"
+L["FAVORITE_PROFILE"] = "Профиль"
+L["FILTER_ONLY"] = "только"
 L["FILTER_ONLY_LATEST"] = "Только последний патч"
---[[Translation missing --]]
---[[ L["FILTER_RETIRED"] = "No longer available"--]] 
+L["FILTER_PROFILE"] = "Профиль"
+L["FILTER_PROFILE_TOOLTIP_TEXT"] = "Быстрая загрузка предопределенных фильтров и настроек поиска.|n|cffeda55fЩелкните левой кнопкой мыши|r, чтобы загрузить профиль фильтра.|n|cffeda55fЩелкните правой кнопкой мыши|r, чтобы сохранить профиль фильтра."
+L["FILTER_PROFILE_TOOLTIP_TITLE"] = "Фильтрация Профилей"
+L["FILTER_RETIRED"] = "Более не доступно"
 L["FILTER_SECRET"] = "Скрытые игрой"
 L["Hidden"] = "Скрытые"
---[[Translation missing --]]
---[[ L["LDB_TIP_NO_FAVORITES_LEFT_CLICK"] = "|cffeda55fLeft click|r to open Mount Collection."--]] 
---[[Translation missing --]]
---[[ L["LDB_TIP_NO_FAVORITES_RIGHT_CLICK"] = "|cffeda55fRight click|r to select different Favorite Profile."--]] 
---[[Translation missing --]]
---[[ L["LDB_TIP_NO_FAVORITES_TITLE"] = "You have not selected any mount as favorite yet."--]] 
---[[Translation missing --]]
---[[ L["LINK_WOWHEAD"] = "Link to Wowhead"--]] 
---[[Translation missing --]]
---[[ L["Mite"] = "Mite"--]] 
+L["LDB_TIP_NO_FAVORITES_LEFT_CLICK"] = "Щелкните |cffeda55fлевой кнопкой мыши|r, чтобы открыть коллекцию средств передвижения."
+L["LDB_TIP_NO_FAVORITES_RIGHT_CLICK"] = "Щелкните |cffeda55fправой кнопкой мыши|r, чтобы выбрать другой профиль избранного."
+L["LDB_TIP_NO_FAVORITES_TITLE"] = "Вы пока что не выбрали ни одно средство передвижения в качестве избранного."
+L["LINK_WOWHEAD"] = "Ссылка на Wowhead"
+L["Mite"] = "Клещи"
 L["Only tradable"] = "Только передающиеся"
 L["Passenger"] = "Пассажирские"
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_INFO"] = "You can assign a pet to this mount. It's going to be summoned as well, when you mount up.|n|nAll assignments are shared with all your characters.|n|nYou can use right-click on a pet entry to summon it manually.|n|nPlease be aware that most ground pets won't fly with you and just disappear when you take off. Also, flying pets are usually slower than you. So they might need some time to catch up to you.|n|nAuto summoning pets is only active in world content."--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_NONE"] = "No Pet"--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TITLE"] = "Assign Pet to Mount"--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TOOLTIP_CURRENT"] = "Current assigned Pet:"--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TOOLTIP_LEFT"] = "|cffeda55fLeft click|r to open pet assignment."--]] 
---[[Translation missing --]]
---[[ L["PET_ASSIGNMENT_TOOLTIP_RIGHT"] = "|cffeda55fRight click|r to assign active pet to mount."--]] 
+L["PET_ASSIGNMENT_INFO"] = "Вы можете назначить питомца для этого средства передвижения. Он также будет призван, когда вы призовете средство передвижения.|n|nВсе назначения общие для всех ваших персонажей.|n|nВы можете щёлкнуть правой кнопкой мыши по названию питомца, чтобы призвать его вручную.|n|nОбратите внимание, что большинство наземных питомцев не будут летать вместе с вами и просто исчезнут, когда вы взлетите. Кроме того, летающие питомцы обычно медленнее вас. Поэтому им может потребоваться некоторое время, чтобы догнать вас.|n|nАвтоматический призыв питомцев активен только в мировом контенте."
+L["PET_ASSIGNMENT_NONE"] = "Без питомца"
+L["PET_ASSIGNMENT_TITLE"] = "Назначить питомца для средства передвижения"
+L["PET_ASSIGNMENT_TOOLTIP_CURRENT"] = "Текущий назначенный питомец:"
+L["PET_ASSIGNMENT_TOOLTIP_LEFT"] = "|cffeda55fЩелкните левой кнопкой мыши|r, чтобы открыть назначение питомца."
+L["PET_ASSIGNMENT_TOOLTIP_RIGHT"] = "|cffeda55fЩелкните правой кнопкой мыши|r, чтобы назначить активного питомца для средства передвижения."
 L["Reset filters"] = "Сбросить фильтры"
 L["ROTATE_DOWN"] = "Вращение вниз"
 L["ROTATE_UP"] = "Вращение вверх"
@@ -3104,17 +2849,13 @@ L["STATS_TIP_LEARNED_DATE_HEAD"] = "Дата получения"
 L["STATS_TIP_RARITY_DESCRIPTION"] = "% персонажей у которых есть это средство передвижения"
 L["STATS_TIP_RARITY_HEAD"] = "Редкость"
 L["STATS_TIP_TRAVEL_DISTANCE_HEAD"] = "Преодоленное расстояние"
---[[Translation missing --]]
---[[ L["STATS_TIP_TRAVEL_TIME_DAYS"] = "in days"--]] 
+L["STATS_TIP_TRAVEL_TIME_DAYS"] = "в днях"
 L["STATS_TIP_TRAVEL_TIME_HEAD"] = "Продолжительность поездки"
 L["STATS_TIP_TRAVEL_TIME_TEXT"] = "В часах:минутах:секундах"
 L["STATS_TIP_USAGE_COUNT_HEAD"] = "Количество использований"
---[[Translation missing --]]
---[[ L["SYNC_TARGET_TIP_FLAVOR"] = "Get ready for a mount off!"--]] 
---[[Translation missing --]]
---[[ L["SYNC_TARGET_TIP_TEXT"] = "Automatically select the mount of your current target."--]] 
---[[Translation missing --]]
---[[ L["SYNC_TARGET_TIP_TITLE"] = "Sync Journal with Target"--]] 
+L["SYNC_TARGET_TIP_FLAVOR"] = "Приготовься к демонстрации средств передвижения!"
+L["SYNC_TARGET_TIP_TEXT"] = "Автоматически выбирать средство передвижения как у вашей текущей цели."
+L["SYNC_TARGET_TIP_TITLE"] = "Синхронизировать журнал с целью"
 L["TOGGLE_COLOR"] = "Показать следующую вариацию цвета"
 L["Transform"] = "Трансформация"
 
@@ -3132,35 +2873,31 @@ L["SETTING_HEAD_ABOUT"] = "О моде"
 L["SETTING_HEAD_BEHAVIOUR"] = "Поведение"
 L["SETTING_MOUNT_COUNT"] = "Показать персональный счетчик транспорта"
 L["SETTING_MOUNTSPECIAL_BUTTON"] = "Отобразить кнопку \"/mountspecial\" или \"/трюк\""
-L["SETTING_MOVE_EQUIPMENT_SLOT"] = "Переместить ячейку предметов для транспорта"
-L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_DISPLAY"] = "В окне обзора"
-L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_TOP"] = "На верхней панели"
 L["SETTING_PERSONAL_FILTER"] = "Применить фильтры только для этого персонажа"
 L["SETTING_PERSONAL_HIDDEN_MOUNTS"] = "Применить скрытый транспорт только для этого персонажа"
 L["SETTING_PERSONAL_UI"] = "Применить настройки интерфейса только для этого персонажа"
 L["SETTING_PREVIEW_LINK"] = "Показать кнопку коллекции на экрана обзора транспорта"
---[[Translation missing --]]
---[[ L["SETTING_SEARCH_FAMILY_NAME"] = "Search also by family name"--]] 
+L["SETTING_SEARCH_FAMILY_NAME"] = "Искать так же по названию семейства"
 L["SETTING_SEARCH_MORE"] = "Искать также в описании транспорта"
 L["SETTING_SEARCH_NOTES"] = "Искать также в собственных заметках"
---[[Translation missing --]]
---[[ L["SETTING_SHOW_DATA"] = "Show mount data in display"--]] 
+L["SETTING_SHOW_DATA"] = "Показывать информацию о средстве передвижения на экране"
+L["SETTING_SHOW_FILTER_PROFILES_IN_MENU"] = "Показывать фильтрацию профилей в меню фильтров."
 L["SETTING_SHOW_RESIZE_EDGE"] = "Активация края в нижнем углу, чтобы изменять размер окна"
---[[Translation missing --]]
---[[ L["SETTING_SUMMONPREVIOUSPET"] = "Summon previous active pet again when dismounting."--]] 
+L["SETTING_SHOW_TOOLBAR_BUTTONS"] = "Показать кнопки панели инструментов"
+L["SETTING_SUMMONPREVIOUSPET"] = "Призывать при спешивании предыдущего активного питомца."
 L["SETTING_TRACK_USAGE"] = "Отслеживание использования транспорта для всех персонажей"
 L["SETTING_YCAMERA"] = "Разблокировать вертикальное вращение транспорта с помощью мыши"
 
     -- Families
 L["Airplanes"] = "Самолеты"
 L["Airships"] = "Воздушные Судна"
+L["Albatross"] = "Альбатросы"
 L["Alpacas"] = "Альпаки"
 L["Amphibian"] = "Амфибии"
 L["Animite"] = "Анимаклещи"
 L["Aqir Flyers"] = "Акиры Летуны"
 L["Arachnids"] = "Арахниды"
 L["Armoredon"] = "Бронедоны"
-L["Assault Wagons"] = "Штурмовые Повозки"
 L["Basilisks"] = "Василиски"
 L["Bats"] = "Летучие мыши"
 L["Bears"] = "Медведи"
@@ -3168,13 +2905,14 @@ L["Beetle"] = "Жуки"
 L["Bipedal Cat"] = "Ящеры из Сна"
 L["Birds"] = "Птицы"
 L["Boars"] = "Кабаны"
-L["Book"] = "Книги"
 L["Bovids"] = "Полорогие"
 L["Broom"] = "Метлы"
 L["Brutosaurs"] = "Брутозавры"
 L["Camels"] = "Верблюды"
 L["Carnivorans"] = "Плотоядные"
 L["Carpets"] = "Ковры"
+--[[Translation missing --]]
+--[[ L["Carrion"] = "Carrion"--]] 
 L["Cats"] = "Кошки"
 L["Cervid"] = "Сервиды"
 L["Chargers"] = "Скакуны"
@@ -3204,6 +2942,7 @@ L["Elementals"] = "Элементали"
 L["Falcosaurs"] = "Грифозавры"
 L["Fathom Rays"] = "Глубинные Скаты"
 L["Feathermanes"] = "Пернатые"
+L["Felbat"] = "Сквернотопыри"
 L["Felsabers"] = "Саблезубы"
 L["Fish"] = "Рыбы"
 L["Flies"] = "Мухи"
@@ -3219,16 +2958,15 @@ L["Gronnlings"] = "Малые гронны"
 L["Gryphons"] = "Грифоны"
 L["Gyrocopters"] = "Гирокоптеры"
 L["Hands"] = "Руки"
-L["Hawkstriders"] = "Крылобеги"
 --[[Translation missing --]]
---[[ L["Hedgehog"] = "Hedgehog"--]] 
+--[[ L["Harrower"] = "Harrower"--]] 
+L["Hawkstriders"] = "Крылобеги"
+L["Hedgehog"] = "Ежики"
 L["Hippogryphs"] = "Гиппогрифы"
 L["Horned Steeds"] = "Рогатые Скакуны"
 L["Horses"] = "Скакуны"
 L["Hounds"] = "Гончие"
---[[Translation missing --]]
---[[ L["Hover Board"] = "Hover Board"--]] 
-L["Hovercraft"] = "Везделеты"
+L["Hover Board"] = "Ховерборды"
 L["Humanoids"] = "Гуманоиды"
 L["Hyenas"] = "Гиены"
 L["Infernals"] = "Инферналы"
@@ -3241,10 +2979,10 @@ L["Krolusks"] = "Кролуски"
 L["Larion"] = "Ларионы"
 L["Lions"] = "Львы"
 L["Lupine"] = "Люпины"
---[[Translation missing --]]
---[[ L["Lynx"] = "Lynx"--]] 
+L["Lynx"] = "Рыси"
 L["Mammoths"] = "Мамонты"
 L["Mana Rays"] = "Манаскаты"
+L["Mana Wyrm"] = "Маназмеи"
 L["Manasabers"] = "Манапарды"
 L["Mauler"] = "Терзатели"
 L["Mechanical Animals"] = "Механические Животные"
@@ -3253,10 +2991,9 @@ L["Mechanical Cats"] = "Механические Кошки"
 L["Mechanical Steeds"] = "Механические Скакуны"
 L["Mechanostriders"] = "Механодолгоноги"
 L["Mecha-suits"] = "Мехакостюмы"
---[[Translation missing --]]
---[[ L["Meeksi"] = "Meeksi"--]] 
---[[Translation missing --]]
---[[ L["Mole"] = "Mole"--]] 
+L["Meeksi"] = "Микси"
+L["Mite"] = "Клещи"
+L["Mole"] = "Кроты"
 L["Mollusc"] = "Моллюски"
 L["Moose"] = "Лоси"
 L["Moth"] = "Мотыльки"
@@ -3273,9 +3010,14 @@ L["Owl"] = "Совы"
 L["Owlbear"] = "Совомедведи"
 L["Ox"] = "Волы"
 L["Pandaren Phoenixes"] = "Пандаренские Фениксы"
+L["Pangolin"] = "Панголины"
 L["Parrots"] = "Попугаи"
 L["Peafowl"] = "Павлины"
+--[[Translation missing --]]
+--[[ L["Petalwing"] = "Petalwing"--]] 
 L["Phoenixes"] = "Фениксы"
+--[[Translation missing --]]
+--[[ L["Plant"] = "Plant"--]] 
 L["Proto-Drakes"] = "Протодраконы"
 L["Pterrordaxes"] = "Терродактили"
 L["Quilen"] = "Цийлини"
@@ -3284,8 +3026,7 @@ L["Rams"] = "Бараны"
 L["Raptora"] = "Рапторы"
 L["Raptors"] = "Ящеры"
 L["Rats"] = "Крысы"
---[[Translation missing --]]
---[[ L["Raven"] = "Raven"--]] 
+L["Raven"] = "Вороны"
 L["Rays"] = "Скаты"
 L["Razorwing"] = "Острокрылы"
 L["Reptiles"] = "Рептилии"
@@ -3300,10 +3041,11 @@ L["Sabers"] = "Саблезубы"
 L["Scorpions"] = "Скорпионы"
 L["Sea Serpents"] = "Морские Змеи"
 L["Seahorses"] = "Морские коньки"
-L["Seat"] = "Повозки"
+L["Shalewing"] = "Глинокрылы"
+L["Shardhides"] = "Сланцевики"
 L["Silithids"] = "Силитиды"
---[[Translation missing --]]
---[[ L["Skyrazor"] = "Skyrazor"--]] 
+L["Skyrazor"] = "Рассекатели небес"
+L["Slateback"] = "Сланцеспин"
 L["Slug"] = "Слизняки"
 L["Snail"] = "Улитки"
 L["Snapdragons"] = "Вараны"
@@ -3322,6 +3064,7 @@ L["Tauralus"] = "Тауралы"
 L["Thunder Lizard"] = "Громоспины"
 L["Tigers"] = "Тигры"
 L["Toads"] = "Жабы"
+L["Turkey"] = "Индюшки"
 L["Turtles"] = "Черепахи"
 L["Undead Drakes"] = "Драконы Нежить"
 L["Undead Steeds"] = "Скакуны Нежить"
@@ -3329,6 +3072,8 @@ L["Undead Wolves"] = "Волки Нежить"
 L["Ungulates"] = "Копытные"
 L["Ur'zul"] = "Ур'зул"
 L["Vehicles"] = "Транспортные средства"
+L["Void Creeper"] = "Шаркун Бездны"
+L["Void Flyer"] = "Летун Бездны"
 L["Vombata"] = "Вомбаты"
 L["Vulpin"] = "Лисохвосты"
 L["Vultures"] = "Падальщики"
@@ -3339,8 +3084,7 @@ L["Wilderlings"] = "Чащобники"
 L["Wind Drakes"] = "Драконы Ветра"
 L["Wolfhawks"] = "Звероястребы"
 L["Wolves"] = "Волки"
---[[Translation missing --]]
---[[ L["Worm"] = "Worm"--]] 
+L["Worm"] = "Черви"
 L["Wyverns"] = "Виверны"
 L["Yaks"] = "Яки"
 L["Yetis"] = "Йети"
@@ -3359,7 +3103,6 @@ L["Black Market"] = "黑市"
 L["CLICK_TO_SHOW_LINK"] = "点击显示链接"
 L["COMPARTMENT_TOOLTIP"] = "|cffeda55f左键点击|r切换显示坐骑收藏。|cffeda55f右键点击|r打开插件选项。"
 L["CONFIRM_FAVORITE_PROFILE_DELETION"] = "确定要删除配置文件“%s”吗？所有当前的角色分配都将重置为默认配置文件“%s”。"
-L["COPY_POPUP"] = "按 CTRL+C 复制"
 L["DRESSUP_LABEL"] = "日志"
 L["EVENT_PLUNDERSTORM"] = "霸业风暴"
 L["EVENT_SCARAB"] = "甲虫的召唤"
@@ -3371,6 +3114,9 @@ L["FAVORITE_ACCOUNT_PROFILE"] = "账号"
 L["FAVORITE_PROFILE"] = "配置文件"
 L["FILTER_ONLY"] = "仅"
 L["FILTER_ONLY_LATEST"] = "仅有最新添加的内容"
+L["FILTER_PROFILE"] = "配置文件"
+L["FILTER_PROFILE_TOOLTIP_TEXT"] = "快速载入预设的筛选与搜索设置。|n|cffeda55f点击|r 载入筛选配置。|n|cffeda55f右击|r 保存筛选配置"
+L["FILTER_PROFILE_TOOLTIP_TITLE"] = "过滤配置文件"
 L["FILTER_RETIRED"] = "不再可用"
 L["FILTER_SECRET"] = "被游戏隐藏的"
 L["Hidden"] = "隐藏"
@@ -3430,9 +3176,6 @@ L["SETTING_HEAD_ABOUT"] = "关于"
 L["SETTING_HEAD_BEHAVIOUR"] = "行为"
 L["SETTING_MOUNT_COUNT"] = "显示个人坐骑数量"
 L["SETTING_MOUNTSPECIAL_BUTTON"] = "显示“/mountspecial”（展示特殊动作）按钮"
-L["SETTING_MOVE_EQUIPMENT_SLOT"] = "移动坐骑装备插槽"
-L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_DISPLAY"] = "内部显示"
-L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_TOP"] = "顶部栏内"
 L["SETTING_PERSONAL_FILTER"] = "仅对这个角色应用过滤器"
 L["SETTING_PERSONAL_HIDDEN_MOUNTS"] = "仅对这个角色应用坐骑隐藏"
 L["SETTING_PERSONAL_UI"] = "仅对这个角色应用界面设置"
@@ -3441,7 +3184,9 @@ L["SETTING_SEARCH_FAMILY_NAME"] = "也可以搜索系列名"
 L["SETTING_SEARCH_MORE"] = "也同时在描述文本中搜索"
 L["SETTING_SEARCH_NOTES"] = "也同时在自己的笔记中搜索"
 L["SETTING_SHOW_DATA"] = "在屏幕上显示坐骑数据"
+L["SETTING_SHOW_FILTER_PROFILES_IN_MENU"] = "再过滤菜单显示过滤配置文件。"
 L["SETTING_SHOW_RESIZE_EDGE"] = "激活底角边缘以调整窗口尺寸"
+L["SETTING_SHOW_TOOLBAR_BUTTONS"] = "显示工具栏按钮"
 L["SETTING_SUMMONPREVIOUSPET"] = "下马时再次召唤前一只宠物。"
 L["SETTING_TRACK_USAGE"] = "跟踪所有角色的坐骑使用行为"
 L["SETTING_YCAMERA"] = "展示窗解锁鼠标Y轴旋转"
@@ -3449,13 +3194,13 @@ L["SETTING_YCAMERA"] = "展示窗解锁鼠标Y轴旋转"
     -- Families
 L["Airplanes"] = "飞行器"
 L["Airships"] = "飞艇"
+L["Albatross"] = "信天翁"
 L["Alpacas"] = "羊驼"
 L["Amphibian"] = "两栖"
 L["Animite"] = "心蛛"
 L["Aqir Flyers"] = "亚基飞虫"
 L["Arachnids"] = "蛛类"
 L["Armoredon"] = "厚甲龙"
-L["Assault Wagons"] = "攻城车"
 L["Basilisks"] = "蜥蜴"
 L["Bats"] = "蝙蝠"
 L["Bears"] = "熊"
@@ -3463,13 +3208,14 @@ L["Beetle"] = "甲虫"
 L["Bipedal Cat"] = "梦爪獍"
 L["Birds"] = "鸟类"
 L["Boars"] = "野猪"
-L["Book"] = "书"
 L["Bovids"] = "牛"
 L["Broom"] = "扫帚"
 L["Brutosaurs"] = "雷龙"
 L["Camels"] = "骆驼"
 L["Carnivorans"] = "食肉动物"
 L["Carpets"] = "飞毯"
+--[[Translation missing --]]
+--[[ L["Carrion"] = "Carrion"--]] 
 L["Cats"] = "猫科"
 L["Cervid"] = "元鹿"
 L["Chargers"] = "战马"
@@ -3499,6 +3245,7 @@ L["Elementals"] = "元素"
 L["Falcosaurs"] = "猎龙"
 L["Fathom Rays"] = "深水鳐"
 L["Feathermanes"] = "羽鬃兽"
+L["Felbat"] = "魔蝠"
 L["Felsabers"] = "邪刃豹"
 L["Fish"] = "鱼"
 L["Flies"] = "苍蝇"
@@ -3514,15 +3261,15 @@ L["Gronnlings"] = "小戈隆"
 L["Gryphons"] = "狮鹫"
 L["Gyrocopters"] = "旋翼"
 L["Hands"] = "手"
-L["Hawkstriders"] = "陆行鸟"
 --[[Translation missing --]]
---[[ L["Hedgehog"] = "Hedgehog"--]] 
+--[[ L["Harrower"] = "Harrower"--]] 
+L["Hawkstriders"] = "陆行鸟"
+L["Hedgehog"] = "刺猬"
 L["Hippogryphs"] = "角鹰"
 L["Horned Steeds"] = "角马"
 L["Horses"] = "马"
 L["Hounds"] = "犬"
 L["Hover Board"] = "悬浮滑板"
-L["Hovercraft"] = "气垫船"
 L["Humanoids"] = "人型"
 L["Hyenas"] = "狼"
 L["Infernals"] = "地狱火"
@@ -3535,10 +3282,10 @@ L["Krolusks"] = "三叶虫"
 L["Larion"] = "翼狮"
 L["Lions"] = "狮"
 L["Lupine"] = "元狼"
---[[Translation missing --]]
---[[ L["Lynx"] = "Lynx"--]] 
+L["Lynx"] = "山猫"
 L["Mammoths"] = "猛犸象"
 L["Mana Rays"] = "法力鳐"
+L["Mana Wyrm"] = "法力浮龙"
 L["Manasabers"] = "魔刃豹"
 L["Mauler"] = "重殴者"
 L["Mechanical Animals"] = "机械生物"
@@ -3548,6 +3295,7 @@ L["Mechanical Steeds"] = "机械马"
 L["Mechanostriders"] = "机械陆行鸟"
 L["Mecha-suits"] = "机甲"
 L["Meeksi"] = "米克西"
+L["Mite"] = "的幼虫"
 L["Mole"] = "鼹鼠"
 L["Mollusc"] = "软体动物"
 L["Moose"] = "驼鹿"
@@ -3565,9 +3313,14 @@ L["Owl"] = "猫头鹰"
 L["Owlbear"] = "月兽"
 L["Ox"] = "公牛"
 L["Pandaren Phoenixes"] = "熊猫人凤凰"
+L["Pangolin"] = "穿山甲"
 L["Parrots"] = "鹦鹉"
 L["Peafowl"] = "孔雀"
+--[[Translation missing --]]
+--[[ L["Petalwing"] = "Petalwing"--]] 
 L["Phoenixes"] = "凤凰"
+--[[Translation missing --]]
+--[[ L["Plant"] = "Plant"--]] 
 L["Proto-Drakes"] = "始祖幼龙"
 L["Pterrordaxes"] = "啸天龙"
 L["Quilen"] = "魁麟"
@@ -3576,8 +3329,7 @@ L["Rams"] = "公羊"
 L["Raptora"] = "元鹰"
 L["Raptors"] = "迅猛龙"
 L["Rats"] = "鼠"
---[[Translation missing --]]
---[[ L["Raven"] = "Raven"--]] 
+L["Raven"] = "乌鸦"
 L["Rays"] = "鳐"
 L["Razorwing"] = "刀翼兽"
 L["Reptiles"] = "爬虫"
@@ -3592,9 +3344,12 @@ L["Sabers"] = "刃豹"
 L["Scorpions"] = "蝎子"
 L["Sea Serpents"] = "海蛇"
 L["Seahorses"] = "海马"
-L["Seat"] = "座椅"
+L["Shalewing"] = [=[岩翼
+]=]
+L["Shardhides"] = "碎皮雄兽"
 L["Silithids"] = "异种蝎"
 L["Skyrazor"] = "剃天者"
+L["Slateback"] = "岩背兽"
 L["Slug"] = "蛞蝓"
 L["Snail"] = "蜗牛"
 L["Snapdragons"] = "毒鳍龙"
@@ -3613,6 +3368,7 @@ L["Tauralus"] = "荒牛"
 L["Thunder Lizard"] = "雷霆蜥蜴"
 L["Tigers"] = "虎"
 L["Toads"] = "蟾蜍"
+L["Turkey"] = "火鸡"
 L["Turtles"] = "龟"
 L["Undead Drakes"] = "不死幼龙"
 L["Undead Steeds"] = "不死战马"
@@ -3620,6 +3376,8 @@ L["Undead Wolves"] = "不死战狼"
 L["Ungulates"] = "有蹄类"
 L["Ur'zul"] = "乌祖尔"
 L["Vehicles"] = "载具"
+L["Void Creeper"] = "虚空蠕行者"
+L["Void Flyer"] = "虚空飞镰虫"
 L["Vombata"] = "元袋熊"
 L["Vulpin"] = "狡狐"
 L["Vultures"] = "秃鹫"
@@ -3664,8 +3422,6 @@ elseif locale == "zhTW" then
 --[[ L["CONFIRM_FAVORITE_PROFILE_DELETION"] = [=[Are you sure you want to delete the profile "%s"?
 All current character assignments will be reset to the default profile "%s".]=]--]] 
 --[[Translation missing --]]
---[[ L["COPY_POPUP"] = "press CTRL+C to copy"--]] 
---[[Translation missing --]]
 --[[ L["DRESSUP_LABEL"] = "Journal"--]] 
 --[[Translation missing --]]
 --[[ L["EVENT_PLUNDERSTORM"] = "Plunderstorm"--]] 
@@ -3687,6 +3443,12 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[ L["FILTER_ONLY"] = "only"--]] 
 --[[Translation missing --]]
 --[[ L["FILTER_ONLY_LATEST"] = "Only latest additions"--]] 
+--[[Translation missing --]]
+--[[ L["FILTER_PROFILE"] = "Profile"--]] 
+--[[Translation missing --]]
+--[[ L["FILTER_PROFILE_TOOLTIP_TEXT"] = "Quickly load your predefined filter and search settings.|n|cffeda55fLeft-Click|r to load filter profile.|n|cffeda55fRight-Click|r to save filter profile."--]] 
+--[[Translation missing --]]
+--[[ L["FILTER_PROFILE_TOOLTIP_TITLE"] = "Filter Profiles"--]] 
 --[[Translation missing --]]
 --[[ L["FILTER_RETIRED"] = "No longer available"--]] 
 --[[Translation missing --]]
@@ -3803,12 +3565,6 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["SETTING_MOUNTSPECIAL_BUTTON"] = "Show /mountspecial button"--]] 
 --[[Translation missing --]]
---[[ L["SETTING_MOVE_EQUIPMENT_SLOT"] = "Move equipment slot"--]] 
---[[Translation missing --]]
---[[ L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_DISPLAY"] = "inside display"--]] 
---[[Translation missing --]]
---[[ L["SETTING_MOVE_EQUIPMENT_SLOT_OPTION_TOP"] = "within top bar"--]] 
---[[Translation missing --]]
 --[[ L["SETTING_PERSONAL_FILTER"] = "Apply filters only to this character"--]] 
 --[[Translation missing --]]
 --[[ L["SETTING_PERSONAL_HIDDEN_MOUNTS"] = "Apply hidden mounts only to this character"--]] 
@@ -3825,7 +3581,11 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["SETTING_SHOW_DATA"] = "Show mount data in display"--]] 
 --[[Translation missing --]]
+--[[ L["SETTING_SHOW_FILTER_PROFILES_IN_MENU"] = "Show filter profiles in filter menu."--]] 
+--[[Translation missing --]]
 --[[ L["SETTING_SHOW_RESIZE_EDGE"] = "Activate edge in bottom corner to resize window"--]] 
+--[[Translation missing --]]
+--[[ L["SETTING_SHOW_TOOLBAR_BUTTONS"] = "Show toolbar buttons"--]] 
 --[[Translation missing --]]
 --[[ L["SETTING_SUMMONPREVIOUSPET"] = "Summon previous active pet again when dismounting."--]] 
 --[[Translation missing --]]
@@ -3839,6 +3599,8 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["Airships"] = "Airships"--]] 
 --[[Translation missing --]]
+--[[ L["Albatross"] = "Albatross"--]] 
+--[[Translation missing --]]
 --[[ L["Alpacas"] = "Alpacas"--]] 
 --[[Translation missing --]]
 --[[ L["Amphibian"] = "Amphibian"--]] 
@@ -3850,8 +3612,6 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[ L["Arachnids"] = "Arachnids"--]] 
 --[[Translation missing --]]
 --[[ L["Armoredon"] = "Armoredon"--]] 
---[[Translation missing --]]
---[[ L["Assault Wagons"] = "Assault Wagons"--]] 
 --[[Translation missing --]]
 --[[ L["Basilisks"] = "Basilisks"--]] 
 --[[Translation missing --]]
@@ -3867,8 +3627,6 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["Boars"] = "Boars"--]] 
 --[[Translation missing --]]
---[[ L["Book"] = "Book"--]] 
---[[Translation missing --]]
 --[[ L["Bovids"] = "Bovids"--]] 
 --[[Translation missing --]]
 --[[ L["Broom"] = "Broom"--]] 
@@ -3880,6 +3638,8 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[ L["Carnivorans"] = "Carnivorans"--]] 
 --[[Translation missing --]]
 --[[ L["Carpets"] = "Carpets"--]] 
+--[[Translation missing --]]
+--[[ L["Carrion"] = "Carrion"--]] 
 --[[Translation missing --]]
 --[[ L["Cats"] = "Cats"--]] 
 --[[Translation missing --]]
@@ -3939,6 +3699,8 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["Feathermanes"] = "Feathermanes"--]] 
 --[[Translation missing --]]
+--[[ L["Felbat"] = "Felbat"--]] 
+--[[Translation missing --]]
 --[[ L["Felsabers"] = "Felsabers"--]] 
 --[[Translation missing --]]
 --[[ L["Fish"] = "Fish"--]] 
@@ -3969,6 +3731,8 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["Hands"] = "Hands"--]] 
 --[[Translation missing --]]
+--[[ L["Harrower"] = "Harrower"--]] 
+--[[Translation missing --]]
 --[[ L["Hawkstriders"] = "Hawkstriders"--]] 
 --[[Translation missing --]]
 --[[ L["Hedgehog"] = "Hedgehog"--]] 
@@ -3982,8 +3746,6 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[ L["Hounds"] = "Hounds"--]] 
 --[[Translation missing --]]
 --[[ L["Hover Board"] = "Hover Board"--]] 
---[[Translation missing --]]
---[[ L["Hovercraft"] = "Hovercraft"--]] 
 --[[Translation missing --]]
 --[[ L["Humanoids"] = "Humanoids"--]] 
 --[[Translation missing --]]
@@ -4015,6 +3777,8 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["Mana Rays"] = "Mana Rays"--]] 
 --[[Translation missing --]]
+--[[ L["Mana Wyrm"] = "Mana Wyrm"--]] 
+--[[Translation missing --]]
 --[[ L["Manasabers"] = "Manasabers"--]] 
 --[[Translation missing --]]
 --[[ L["Mauler"] = "Mauler"--]] 
@@ -4032,6 +3796,8 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[ L["Mecha-suits"] = "Mecha-suits"--]] 
 --[[Translation missing --]]
 --[[ L["Meeksi"] = "Meeksi"--]] 
+--[[Translation missing --]]
+--[[ L["Mite"] = "Mite"--]] 
 --[[Translation missing --]]
 --[[ L["Mole"] = "Mole"--]] 
 --[[Translation missing --]]
@@ -4067,11 +3833,17 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["Pandaren Phoenixes"] = "Pandaren Phoenixes"--]] 
 --[[Translation missing --]]
+--[[ L["Pangolin"] = "Pangolin"--]] 
+--[[Translation missing --]]
 --[[ L["Parrots"] = "Parrots"--]] 
 --[[Translation missing --]]
 --[[ L["Peafowl"] = "Peafowl"--]] 
 --[[Translation missing --]]
+--[[ L["Petalwing"] = "Petalwing"--]] 
+--[[Translation missing --]]
 --[[ L["Phoenixes"] = "Phoenixes"--]] 
+--[[Translation missing --]]
+--[[ L["Plant"] = "Plant"--]] 
 --[[Translation missing --]]
 --[[ L["Proto-Drakes"] = "Proto-Drakes"--]] 
 --[[Translation missing --]]
@@ -4119,11 +3891,15 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["Seahorses"] = "Seahorses"--]] 
 --[[Translation missing --]]
---[[ L["Seat"] = "Seat"--]] 
+--[[ L["Shalewing"] = "Shalewing"--]] 
+--[[Translation missing --]]
+--[[ L["Shardhides"] = "Shardhides"--]] 
 --[[Translation missing --]]
 --[[ L["Silithids"] = "Silithids"--]] 
 --[[Translation missing --]]
 --[[ L["Skyrazor"] = "Skyrazor"--]] 
+--[[Translation missing --]]
+--[[ L["Slateback"] = "Slateback"--]] 
 --[[Translation missing --]]
 --[[ L["Slug"] = "Slug"--]] 
 --[[Translation missing --]]
@@ -4161,6 +3937,8 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[Translation missing --]]
 --[[ L["Toads"] = "Toads"--]] 
 --[[Translation missing --]]
+--[[ L["Turkey"] = "Turkey"--]] 
+--[[Translation missing --]]
 --[[ L["Turtles"] = "Turtles"--]] 
 --[[Translation missing --]]
 --[[ L["Undead Drakes"] = "Undead Drakes"--]] 
@@ -4174,6 +3952,10 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[ L["Ur'zul"] = "Ur'zul"--]] 
 --[[Translation missing --]]
 --[[ L["Vehicles"] = "Vehicles"--]] 
+--[[Translation missing --]]
+--[[ L["Void Creeper"] = "Void Creeper"--]] 
+--[[Translation missing --]]
+--[[ L["Void Flyer"] = "Void Flyer"--]] 
 --[[Translation missing --]]
 --[[ L["Vombata"] = "Vombata"--]] 
 --[[Translation missing --]]
@@ -4204,3 +3986,6 @@ All current character assignments will be reset to the default profile "%s".]=]-
 --[[ L["Yetis"] = "Yetis"--]] 
 
 end
+
+-- update labels for keyboard bindings (see: Bindings.xml)
+BINDING_NAME_MJE_RANDOM_MOUNT = MOUNT_JOURNAL_SUMMON_RANDOM_FAVORITE_MOUNT

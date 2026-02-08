@@ -1,58 +1,66 @@
-local _, addon = ...;
-local L = addon.Localization.GetDefaultLocale();
-addon.L = L;
+local _, addon = ...
+local L = addon.Localization.NewDefaultLocale()
 
-addon.Plugins:LoadLocalization(L);
+KrowiEVU.PluginsApi:LoadPluginLocalization(L)
 
--- [[ https://legacy.curseforge.com/wow/addons/krowi-extended-vendor-ui/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-05-15 18-40-46 ]] --
+-- [[ Exported at 2026-01-15 22-18-34 ]] --
 L["Are you sure you want to hide the options button?"] = [=[Are you sure you want to hide the options button?
 The options button can be shown again via {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {general} {arrow} {options}]=]
 L["Arsenals"] = true
-L["Author"] = true
-L["Build"] = true
-L["Checked"] = true
 L["Columns"] = true
 L["Columns first"] = true
-L["CurseForge"] = true
-L["CurseForge Desc"] = "Open a popup dialog with a link to the {addonName} {curseForge} page."
 L["Custom"] = true
 L["Default filters"] = true
-L["Default value"] = true
 L["Deselect All"] = true
-L["Discord"] = true
-L["Discord Desc"] = "Open a popup dialog with a link to the {serverName} Discord server. Here you can post comments, reports, remarks, ideas or anything else related."
+L["Direction"] = true
 L["Ensembles"] = true
+L["Enter housing quantity"] = "Enter housing quantity (1-999):"
+L["Enter number of columns"] = "Enter number of columns (2-99):"
+L["Enter number of rows"] = "Enter number of rows (1-99):"
 L["Filters"] = true
-L["Hide"] = true
 L["Hide collected"] = true
-L["Icon Left click"] = "for quick layout options."
-L["Icon Right click"] = "for Options."
+L["Housing"] = true
+L["Housing Quantity"] = true
+L["Icon Left click"] = "Open Merchant Window Options"
+L["Icon Right click"] = "Open Options"
 L["Illusions"] = "Illusions (experimental)"
-L["Left click"] = true
 L["Mounts"] = true
 L["Only show"] = true
 L["Options button"] = true
 L["Options Desc"] = "Open the options that are also available from the options button in the merchant window."
 L["Other"] = true
 L["Pets"] = true
-L["Plugins"] = true
+L["Plugin_CanIMogIt_Desc"] = [=[This plugin fixes the overlay icons on vendor items when different filters are applied.
+
+There are no options.]=]
+L["Plugin_CanIMogIt_Name"] = "Can I Mog It"
+L["Plugin_ElvUI_Desc"] = [=[Each of the options below is controlled by ElvUI and is purely informational.
+
+To change these, go to Game Menu -> ElvUI -> Skins and check the desired options. See each option below for what to check.
+]=]
+L["Plugin_ElvUI_Name"] = "ElvUI"
+L["Plugin_ElvUI_SkinMerchant"] = "Skin Merchant"
+L["Plugin_ElvUI_SkinMerchant_Desc"] = [=[Applies the ElvUI skin to the Merchant Frame.
+-> Blizzard + Merchant Frame]=]
+L["Plugin_ElvUI_SkinMiscFrames"] = "Skin Misc Frames"
+L["Plugin_ElvUI_SkinMiscFrames_Desc"] = [=[Applies the ElvUI skin to the Filter Menu and Options Menu.
+-> Blizzard + Misc Frames]=]
+L["Plugin_ElvUI_SkinTooltip"] = "Skin Tooltip"
+L["Plugin_ElvUI_SkinTooltip_Desc"] = [=[Applies the ElvUI skin to the Tooltips.
+-> Blizzard + Tooltip]=]
 L["Recipes"] = true
-L["Right click"] = true
+L["RememberFilter"] = "Remember filter"
+L["RememberSearch"] = "Remember search"
+L["RememberSearchBetweenVendors"] = "Remember search between vendors"
 L["Rows"] = true
 L["Rows first"] = true
 L["Select All"] = true
+L["Set custom"] = true
 L["Show Hide option"] = "Show '{hide}' option"
 L["Show Hide option Desc"] = "Show the '{hide}' option in the {optionsButton} drop down."
-L["Show minimap icon"] = true
-L["Show minimap icon Desc"] = "Show / hide the minimap icon."
 L["Show options button"] = true
 L["Show options button Desc"] = "Show / hide the options button in the merchant window."
+L["Token Banner"] = true
 L["Toys"] = true
-L["Unchecked"] = true
-L["Wago"] = true
-L["Wago Desc"] = "Open a popup dialog with a link to the {addonName} {wago} page."
-L["WoWInterface"] = true
-L["WoWInterface Desc"] = "Open a popup dialog with a link to the {addonName} {woWInterface} page."

@@ -1,7 +1,7 @@
 --[[
 
 	This file is part of 'Masque', an add-on for World of Warcraft. For bug reports,
-	docuementation and license information, please visit https://github.com/SFX-WoW/Masque.
+	documentation and license information, please visit https://github.com/SFX-WoW/Masque.
 
 	* File...: Masque.lua
 	* Author.: StormFX
@@ -41,11 +41,11 @@ local L = Core.Locale
 local Masque = LibStub("AceAddon-3.0"):NewAddon(MASQUE)
 
 -- API Version
-local API_VERSION = 110000
+local API_VERSION = 110210
 
 -- Client Version
 local WOW_VERSION = select(4, GetBuildInfo()) or 0
-local WOW_RETAIL = ((WOW_VERSION > 100000) and true) or nil
+local WOW_RETAIL = ((WOW_VERSION > 110000) and true) or nil
 
 ----------------------------------------
 -- Utility
@@ -54,44 +54,9 @@ local WOW_RETAIL = ((WOW_VERSION > 100000) and true) or nil
 -- Updates saved variables and related settings.
 local function UpdateDB()
 	local db = Core.db.profile
-	local Version = db.API_VERSION
-
-	-- Migrate saved variables for API updates.
-	-- SkinID Migration @ 100002
-	if Version < 100002 then
-		local GetSkinID = Core.GetSkinID
-
-		for _, gDB in pairs(db.Groups) do
-			local SkinID = gDB.SkinID
-			local NewID = GetSkinID(SkinID)
-
-			-- Client-Specific Skin
-			if SkinID == "Default" then
-				gDB.SkinID = Core.DEFAULT_SKIN_ID
-
-			-- Other
-			elseif NewID then
-				gDB.SkinID = NewID
-			end
-		end
-
-	-- Namespace Migration @ 100105
-	elseif Version < 100105 then
-		db.Developer.Debug = db.Debug
-
-		local Interface = db.Interface
-
-		Interface.AltSort = db.AltSort
-		Interface.SkinInfo = db.SkinInfo
-		Interface.StandAlone = db.StandAlone
-
-		db.AltSort = nil
-		db.Debug = nil
-		db.SkinInfo = nil
-		db.StandAlone = nil
-	end
 
 	db.API_VERSION = API_VERSION
+	db.CB_Warn = nil
 
 	-- Refresh Settings
 	Core:UpdateIconPosition()
@@ -117,7 +82,7 @@ Core.WOW_VERSION = WOW_VERSION
 Core.WOW_RETAIL = WOW_RETAIL
 
 -- Add-On Info
-Core.Version = "11.1.5"
+Core.Version = "11.2.10"
 Core.Discord = "https://discord.gg/7MTWRgDzz8"
 
 Core.Authors = {
@@ -172,9 +137,6 @@ function Masque:OnInitialize()
 	local Defaults = {
 		profile = {
 			API_VERSION = 0,
-			CB_Warn = {
-				["*"] = true
-			},
 			Developer = {
 				Debug = false,
 			},
@@ -194,6 +156,7 @@ function Masque:OnInitialize()
 			},
 			Interface = {
 				AltSort = false,
+				ProfileFontFix = true,
 				SkinInfo = true,
 				StandAlone = true,
 			},
@@ -205,7 +168,6 @@ function Masque:OnInitialize()
 			},
 			Effects = {
 				Castbar = true,
-				-- Cooldown = true, -- Disabled by Blizzard
 				Interrupt = true,
 				Reticle = true,
 			},

@@ -1,3 +1,4 @@
+if BBF.isMidnight then return end
 local specIDToName = {
     -- Death Knight
     [250] = "Blood", [251] = "Frost", [252] = "Unholy",
@@ -79,12 +80,13 @@ local hidePetName
 local isAddonLoaded = C_AddOns.IsAddOnLoaded
 local changeUnitFrameFont
 local targetAndFocusArenaNamePartyOverride
-local classicFramesMode
+local forceCenterNameSetting
 local rpNames
 local rpNamesFirst
 local rpNamesLast
 local rpNamesColor
 local showLastNameNpc
+local classColorPartyNames
 
 local function GetRPNameColor(unit)
     if not UnitExists(unit) then return end
@@ -119,6 +121,7 @@ function BBF.UpdateUserTargetSettings()
     hidePartyNames = BetterBlizzFramesDB.hidePartyNames
     hidePartyRoles = BetterBlizzFramesDB.hidePartyRoles
     removeRealmNames = BetterBlizzFramesDB.removeRealmNames
+    classColorPartyNames = BetterBlizzFramesDB.classColorPartyNames
     classColorFrames = BetterBlizzFramesDB.classColorFrames
     classColorTargetNames = BetterBlizzFramesDB.classColorTargetNames
     showSpecName = BetterBlizzFramesDB.showSpecName
@@ -131,8 +134,8 @@ function BBF.UpdateUserTargetSettings()
     hideTargetToTName = BetterBlizzFramesDB.hideTargetToTName
     hideFocusToTName = BetterBlizzFramesDB.hideFocusToTName
     classColorLevelText = BetterBlizzFramesDB.classColorTargetNames and BetterBlizzFramesDB.classColorLevelText
-    centerNames = BetterBlizzFramesDB.centerNames or BetterBlizzFramesDB.classicFrames
-    classicFramesMode = BetterBlizzFramesDB.classicFrames
+    centerNames = BetterBlizzFramesDB.centerNames or BetterBlizzFramesDB.classicFrames or BetterBlizzFramesDB.noPortraitModes
+    forceCenterNameSetting = BetterBlizzFramesDB.classicFrames or BetterBlizzFramesDB.noPortraitModes
     playerFrameOCD = BetterBlizzFramesDB.playerFrameOCD and not BetterBlizzFramesDB.playerFrameOCDTextureBypass
     playerFrameOCDTextureBypass = BetterBlizzFramesDB.playerFrameOCDTextureBypass
     hidePlayerName = BetterBlizzFramesDB.hidePlayerName
@@ -152,23 +155,35 @@ local function CenterPlayerName()
     name:SetJustifyH("CENTER")
     name:SetJustifyV(PlayerName:GetJustifyV())
     name:ClearAllPoints()
-    if playerFrameOCD and not classicFramesMode then
+    if playerFrameOCD and not forceCenterNameSetting then
         name:SetPoint("TOP", healthBar, "TOP", 0, 14.5)
     else
-        local xPos = classicFramesMode and 1.5 or true and -2 or 0
-        local yPos = BetterBlizzFramesDB.symmetricPlayerFrame and 15 or classicFramesMode and 7.5 or 14.5
+        local xPos = forceCenterNameSetting and 1.5 or BetterBlizzFramesDB.noPortraitModes and 0 or true and -2 or 0
+        local yPos = BetterBlizzFramesDB.noPortraitModes and 14 or forceCenterNameSetting and 7.5 or BetterBlizzFramesDB.symmetricPlayerFrame and 15 or 14.5
         name:SetPoint("TOP", healthBar, "TOP", xPos, yPos)
     end
 end
 
 local function CenterXName(fontObject, healthBar, ToT, pet)
     fontObject:ClearAllPoints()
-    if not (classicFramesMode and ToT) then
+    if not (forceCenterNameSetting and ToT) then
         fontObject:SetJustifyH("CENTER")
     end
-    local xPos = ToT and (classicFramesMode and 8 or -2) or (classicFramesMode and 0) or 2
-    local yPos = ((pet and classicFramesMode) and 2 or pet and 2) or ToT and (classicFramesMode and -18 or 12) or (classicFramesMode and 6.3 or 14)
-    fontObject:SetPoint(pet and "BOTTOM" or "TOP", healthBar, "TOP", xPos, yPos)
+    local xPos = (pet and BetterBlizzFramesDB.noPortraitModes and 16) or (ToT and BetterBlizzFramesDB.noPortraitModes and 0) or (ToT and (forceCenterNameSetting and 8 or -2)) or (forceCenterNameSetting and 0) or BetterBlizzFramesDB.noPortraitModes and -1 or 2
+    local yPos = (BetterBlizzFramesDB.noPortraitModes and ((pet and 2) or 13)) or ((pet and forceCenterNameSetting) and 2 or pet and 2) or ToT and (forceCenterNameSetting and -18 or 12) or (forceCenterNameSetting and 6.3 or 14)
+    if ToT and BetterBlizzFramesDB.noPortraitModes then
+        fontObject:SetJustifyH("CENTER")
+        xPos = xPos -1
+    end
+    if pet and BetterBlizzFramesDB.noPortraitModes then
+        fontObject:SetJustifyH("CENTER")
+        fontObject:SetPoint("CENTER", PetFrameTexture, "CENTER", 1.5, 22)
+    else
+        fontObject:SetPoint(pet and "BOTTOM" or "TOP", healthBar, "TOP", xPos, yPos)
+    end
+    if BetterBlizzFramesDB.classicFrames and ToT then
+        fontObject:SetJustifyH("LEFT")
+    end
 end
 
 
@@ -192,6 +207,9 @@ end
 local function GetLocalizedSpecs()
     local specs = {}
 
+    local GetNumSpecializationsForClassID = GetNumSpecializationsForClassID or C_SpecializationInfo.GetNumSpecializationsForClassID
+    local GetSpecializationInfoForClassID = GetSpecializationInfoForClassID or C_SpecializationInfo.GetSpecializationInfoForClassID
+
     for classID = 1, GetNumClasses() do
         local _, class = GetClassInfo(classID)
         local classMale = LOCALIZED_CLASS_NAMES_MALE[class]
@@ -209,6 +227,99 @@ local function GetLocalizedSpecs()
         end
     end
 
+    -- Blizzard API poopoo. Not possible to get gendered specNames AFAIK.
+    -- And some classes were even missing from LOCALIZED_CLASS_NAMES_MALE and LOCALIZED_CLASS_NAMES_FEMALE
+    -- Thanks to Dardo7 @ Discord for helping get all the correct Spanish data.
+    if GetLocale() == "esES" then
+        local esES_overrides = {
+            ["Armas Guerrero"] = 71,
+            ["Armas Guerrera"] = 71,
+            ["Furia Guerrero"] = 72,
+            ["Furia Guerrera"] = 72,
+            ["Protección Guerrero"] = 73,
+            ["Protección Guerrera"] = 73,
+
+            ["Sagrado Paladín"] = 65,
+            ["Sagrada Paladín"] = 65,
+            ["Protección Paladín"] = 66,
+            ["Reprensión Paladín"] = 70,
+
+            ["Bestias Cazador"] = 253,
+            ["Bestias Cazadora"] = 253,
+            ["Puntería Cazador"] = 254,
+            ["Puntería Cazadora"] = 254,
+            ["Supervivencia Cazador"] = 255,
+            ["Supervivencia Cazadora"] = 255,
+
+            ["Asesinato Pícaro"] = 259,
+            ["Asesinato Pícara"] = 259,
+            ["Forajido Pícaro"] = 260,
+            ["Forajida Pícara"] = 260,
+            ["Sutileza Pícaro"] = 261,
+            ["Sutileza Pícara"] = 261,
+
+            ["Disciplina Sacerdote"] = 256,
+            ["Disciplina Sacerdotisa"] = 256,
+            ["Sagrado Sacerdote"] = 257,
+            ["Sagrada Sacerdotisa"] = 257,
+            ["Sombra Sacerdote"] = 258,
+            ["Sombra Sacerdotisa"] = 258,
+
+            ["Sangre Caballero de la Muerte"] = 250,
+            ["Sangre Caballera de la Muerte"] = 250,
+            ["Escarcha Caballero de la Muerte"] = 251,
+            ["Escarcha Caballera de la Muerte"] = 251,
+            ["Profano Caballero de la Muerte"] = 252,
+            ["Profana Caballera de la Muerte"] = 252,
+
+            ["Elemental Chamán"] = 262,
+            ["Mejora Chamán"] = 263,
+            ["Restauración Chamán"] = 264,
+
+            ["Arcano Mago"] = 62,
+            ["Arcana Maga"] = 62,
+            ["Fuego Mago"] = 63,
+            ["Fuego Maga"] = 63,
+            ["Escarcha Mago"] = 64,
+            ["Escarcha Maga"] = 64,
+
+            ["Aflicción Brujo"] = 265,
+            ["Aflicción Bruja"] = 265,
+            ["Demonología Brujo"] = 266,
+            ["Demonología Bruja"] = 266,
+            ["Destrucción Brujo"] = 267,
+            ["Destrucción Bruja"] = 267,
+
+            ["Maestro cervecero Monje"] = 268,
+            ["Maestra cervecera Monje"] = 268,
+            ["Tejedor de niebla Monje"] = 270,
+            ["Tejedora de niebla Monje"] = 270,
+            ["Viajero del viento Monje"] = 269,
+            ["Viajera del viento Monje"] = 269,
+
+            ["Equilibrio Druida"] = 102,
+            ["Feral Druida"] = 103,
+            ["Guardián Druida"] = 104,
+            ["Guardiana Druida"] = 104,
+            ["Restauración Druida"] = 105,
+
+            ["Devastación Cazador de demonios"] = 577,
+            ["Devastación Cazadora de demonios"] = 577,
+            ["Venganza Cazador de demonios"] = 581,
+            ["Venganza Cazadora de demonios"] = 581,
+
+            ["Devastación Evocador"] = 1467,
+            ["Devastación Evocadora"] = 1467,
+            ["Preservación Evocador"] = 1468,
+            ["Preservación Evocadora"] = 1468,
+            ["Aumento Evocador"] = 1473,
+            ["Aumento Evocadora"] = 1473,
+        }
+        for k, v in pairs(esES_overrides) do
+            specs[k] = v
+        end
+    end
+
     return specs
 end
 
@@ -218,7 +329,7 @@ local ALL_SPECS = GetLocalizedSpecs()
 -- Caching Tables
 BBA.SpecCache = {}
 local SpecCache = BBA.SpecCache  -- Stores GUID -> specID
-local GetUnitTooltip = C_TooltipInfo.GetUnit
+local GetUnitTooltip = C_TooltipInfo and C_TooltipInfo.GetUnit or function() return nil end
 
 -- Function to retrieve the specialization ID of a unit
 local function GetSpecID(unit)
@@ -291,17 +402,8 @@ local function GetSpecName(unit)
     return specID and (shortArenaSpecName and specIDToNameShort[specID] or specIDToName[specID]) or nil
 end
 
-function BBF.HealerPortrait()
-    hooksecurefunc("UnitFramePortrait_Update", function(self)
-        if self.unit ~= "player" then
-            if IsSpecHealer(self.unit) then
-                SetPortraitTexture(self.portrait, "player")
-            end
-        end
-    end)
-end
-
 local function ShowLastNameOnlyNpc(frame, name)
+    if not name then return end
     local creatureType = frame.unit and UnitCreatureType(frame.unit)
     if creatureType == "Totem" then
         -- Use first word (e.g., "Stoneclaw" from "Stoneclaw Totem")
@@ -426,8 +528,21 @@ local function CompactPartyFrameNameChanges(frame)
                 frame.name.recolored = nil
             end
         end
-    elseif removeRealmNames then
+        return
+    end
+    if removeRealmNames then
         frame.name:SetText(GetNameWithoutRealm(frame))
+    end
+    if classColorPartyNames then
+        if frame.unit and (UnitIsPlayer(frame.unit) or C_LFGInfo.IsInLFGFollowerDungeon()) then
+            local _, class = UnitClass(frame.unit)
+            if class then
+                local color = RAID_CLASS_COLORS[class]
+                if color then
+                    frame.name:SetVertexColor(color.r, color.g, color.b)
+                end
+            end
+        end
     end
 end
 
@@ -454,6 +569,26 @@ local function PartyFrameNameChange(frame)
     end
     if not changeUnitFrameFont then
         frame.bbfName:SetFont(frame.Name:GetFont())
+    end
+
+    local _, fontSize = frame.bbfName:GetFont()
+    local baseWidth = frame.Name:GetWidth()
+    local extraWidth = 0
+    if fontSize and fontSize > 10 then
+        extraWidth = math.floor((fontSize - 10) / 2) * 15
+    end
+    frame.bbfName:SetWidth(baseWidth + extraWidth)
+
+    if classColorPartyNames then
+        if frame.unit and (UnitIsPlayer(frame.unit) or C_LFGInfo.IsInLFGFollowerDungeon()) then
+            local _, class = UnitClass(frame.unit)
+            if class then
+                local color = RAID_CLASS_COLORS[class]
+                if color then
+                    frame.bbfName:SetVertexColor(color.r, color.g, color.b)
+                end
+            end
+        end
     end
     if partyArenaNames and IsActiveBattlefieldArena() then
         SetArenaName(frame, frame.unit, frame.bbfName)
@@ -490,7 +625,8 @@ if not EditModeManagerFrame:UseRaidStylePartyFrames() then
     }
 
     for _, frame in ipairs(frames) do
-        hooksecurefunc(frame.Name, "SetText", function(self)
+        local name = frame.Name or frame.name
+        hooksecurefunc(name, "SetText", function(self)
             PartyFrameNameChange(frame)
         end)
         C_Timer.After(1, function()
@@ -583,6 +719,9 @@ local function InitializeFontString(frame)
     -- Set initial text from the original FontString
     frame.bbfName:SetText(name:GetText())
     hooksecurefunc(name, "SetText", function()
+        if (centerNames or forceCenterNameSetting) and not BetterBlizzFramesDB.classicFrames then
+            frame.bbfName:SetJustifyH("CENTER")
+        end
         frame.bbfName:SetSize(name:GetSize())
     end)
 
@@ -712,6 +851,29 @@ local function SetPartyFont(font, size, outline, size2)
         local partyFrameMember = _G["PartyFrame"]["MemberFrame"..i]
         if partyFrameMember then
             partyFrameMember.bbfName:SetFont(font, size, outline)
+        end
+        local hbc = partyFrameMember.HealthBarContainer
+        local mb = partyFrameMember.ManaBar
+        if hbc.LeftText then
+            hbc.LeftText:SetFont(font, size2, outline)
+        end
+        if hbc.RightText then
+            hbc.RightText:SetFont(font, size2, outline)
+        end
+        if hbc.TextString then
+            hbc.TextString:SetFont(font, size2, outline)
+        end
+        if hbc.CenterText then
+            hbc.CenterText:SetFont(font, size2, outline)
+        end
+        if mb.LeftText then
+            mb.LeftText:SetFont(font, size2, outline)
+        end
+        if mb.RightText then
+            mb.RightText:SetFont(font, size2, outline)
+        end
+        if mb.TextString then
+            mb.TextString:SetFont(font, size2, outline)
         end
     end
 end
@@ -858,36 +1020,76 @@ end
 
 
 
-local function SetActionBarFonts(font, size, kbSize, outline, kbOutline)
-    -- Define lists of button prefixes for hotkeys and macro names
-    local buttons = {
+local function SetActionBarFonts(font, size, kbSize, outline, kbOutline, chargeSize)
+    -- Blizzard action bars
+    local blizzButtons = {
         "ActionButton", "MultiBarBottomLeftButton", "MultiBarBottomRightButton",
         "MultiBarRightButton", "MultiBarLeftButton", "MultiBar5Button",
         "MultiBar6Button", "MultiBar7Button", "PetActionButton"
     }
 
-    for _, buttonPrefix in ipairs(buttons) do
+    for _, buttonPrefix in ipairs(blizzButtons) do
         for i = 1, 12 do
-            -- Set font for hotkey text
             local hotKeyText = _G[buttonPrefix .. i .. "HotKey"]
             if hotKeyText then
                 local ogFont, ogSize, ogOutline = hotKeyText:GetFont()
-                local outline = outline or ogOutline
-                if outline == "NONE" then
-                    outline = nil
-                end
-                hotKeyText:SetFont(font or ogFont, kbSize or ogSize, kbOutline)
+                local finalOutline = kbOutline or (ogOutline ~= "NONE" and ogOutline) or nil
+                hotKeyText:SetFont((hotKeyText:GetText() == "●" and ogFont) or font or ogFont, kbSize or ogSize, finalOutline)
             end
 
-            -- Set font for macro name text
             local macroText = _G[buttonPrefix .. i .. "Name"]
             if macroText then
                 local ogFont, ogSize, ogOutline = macroText:GetFont()
-                local outline = outline or ogOutline
-                if outline == "NONE" then
-                    outline = nil
-                end
-                macroText:SetFont(font or ogFont, size or ogSize, outline)
+                local finalOutline = outline or (ogOutline ~= "NONE" and ogOutline) or nil
+                macroText:SetFont(font or ogFont, size or ogSize, finalOutline)
+            end
+
+            local chargeText = _G[buttonPrefix .. i .. "Count"]
+            if chargeText and BetterBlizzFramesDB.actionBarChangeCharge then
+                local ogFont, ogSize, ogOutline = chargeText:GetFont()
+                local finalOutline = kbOutline or (ogOutline ~= "NONE" and ogOutline) or nil
+                chargeText:SetFont(font or ogFont, chargeSize or ogSize, finalOutline)
+            end
+        end
+    end
+
+    -- Dominos action bars
+    local NUM_ACTIONBAR_BUTTONS = NUM_ACTIONBAR_BUTTONS or 12
+    local DOMINOS_NUM_MAX_BUTTONS = 14 * NUM_ACTIONBAR_BUTTONS
+    local dominosBars = {
+        {name = "DominosActionButton", count = DOMINOS_NUM_MAX_BUTTONS},
+        {name = "MultiBar5ActionButton", count = 12},
+        {name = "MultiBar6ActionButton", count = 12},
+        {name = "MultiBar7ActionButton", count = 12},
+        {name = "MultiBarRightActionButton", count = 12},
+        {name = "MultiBarLeftActionButton", count = 12},
+        {name = "MultiBarBottomRightActionButton", count = 12},
+        {name = "MultiBarBottomLeftActionButton", count = 12},
+        {name = "DominosPetActionButton", count = 12},
+        {name = "DominosStanceButton", count = 12},
+    }
+
+    for _, bar in ipairs(dominosBars) do
+        for i = 1, bar.count do
+            local hotKeyText = _G[bar.name .. i .. "HotKey"]
+            if hotKeyText then
+                local ogFont, ogSize, ogOutline = hotKeyText:GetFont()
+                local finalOutline = kbOutline or (ogOutline ~= "NONE" and ogOutline) or nil
+                hotKeyText:SetFont((hotKeyText:GetText() == "●" and ogFont) or font or ogFont, kbSize or ogSize, finalOutline)
+            end
+
+            local macroText = _G[bar.name .. i .. "Name"]
+            if macroText then
+                local ogFont, ogSize, ogOutline = macroText:GetFont()
+                local finalOutline = outline or (ogOutline ~= "NONE" and ogOutline) or nil
+                macroText:SetFont(font or ogFont, size or ogSize, finalOutline)
+            end
+
+            local chargeText = _G[bar.name .. i .. "Count"]
+            if chargeText and BetterBlizzFramesDB.actionBarChangeCharge then
+                local ogFont, ogSize, ogOutline = chargeText:GetFont()
+                local finalOutline = kbOutline or (ogOutline ~= "NONE" and ogOutline) or nil
+                chargeText:SetFont(font or ogFont, chargeSize or ogSize, finalOutline)
             end
         end
     end
@@ -905,117 +1107,6 @@ function BBF.SetCustomFonts()
     if db.changeAllFontsIngame then
         local fontName = db.allIngameFont
         local fontPath = LSM:Fetch(LSM.MediaType.FONT, fontName)
-
-        local ForcedFontSize = { 9, 9, 14, 14, 12, 64, 64 }
-        local FontObjects = {
-            SystemFont_NamePlateCastBar,
-            SystemFont_NamePlateFixed,
-            SystemFont_LargeNamePlateFixed,
-            SystemFont_LargeNamePlate,
-            SystemFont_NamePlate,
-            SystemFont_World,
-            SystemFont_World_ThickOutline,
-            SystemFont_Outline_Small,
-            SystemFont_Outline,
-            SystemFont_InverseShadow_Small,
-            SystemFont_Med2,
-            SystemFont_Med3,
-            SystemFont_Shadow_Med3,
-            SystemFont_Huge1,
-            SystemFont_Huge1_Outline,
-            SystemFont_OutlineThick_Huge2,
-            SystemFont_OutlineThick_Huge4,
-            SystemFont_OutlineThick_WTF,
-            NumberFont_GameNormal,
-            NumberFont_Shadow_Small,
-            NumberFont_OutlineThick_Mono_Small,
-            NumberFont_Shadow_Med,
-            NumberFont_Normal_Med,
-            NumberFont_Outline_Med,
-            NumberFont_Outline_Large,
-            NumberFont_Outline_Huge,
-            Fancy22Font,
-            QuestFont_Huge,
-            QuestFont_Outline_Huge,
-            QuestFont_Super_Huge,
-            QuestFont_Super_Huge_Outline,
-            SplashHeaderFont,
-            Game10Font_o1,
-            Game11Font,
-            Game12Font,
-            Game13Font,
-            Game13FontShadow,
-            Game15Font,
-            Game18Font,
-            Game20Font,
-            Game24Font,
-            Game27Font,
-            Game30Font,
-            Game32Font,
-            Game36Font,
-            Game48Font,
-            Game48FontShadow,
-            Game60Font,
-            Game72Font,
-            Game11Font_o1,
-            Game12Font_o1,
-            Game13Font_o1,
-            Game15Font_o1,
-            QuestFont_Enormous,
-            DestinyFontLarge,
-            CoreAbilityFont,
-            DestinyFontHuge,
-            QuestFont_Shadow_Small,
-            MailFont_Large,
-            SpellFont_Small,
-            InvoiceFont_Med,
-            InvoiceFont_Small,
-            Tooltip_Med,
-            Tooltip_Small,
-            AchievementFont_Small,
-            ReputationDetailFont,
-            FriendsFont_Normal,
-            FriendsFont_Small,
-            FriendsFont_Large,
-            FriendsFont_UserText,
-            GameFont_Gigantic,
-            GameFontNormalMed3,
-            ChatBubbleFont,
-            Fancy16Font,
-            Fancy18Font,
-            Fancy20Font,
-            Fancy24Font,
-            Fancy27Font,
-            Fancy30Font,
-            Fancy32Font,
-            Fancy48Font,
-            SystemFont_Tiny2,
-            SystemFont_Tiny,
-            SystemFont_Shadow_Small,
-            SystemFont_Small,
-            SystemFont_Small2,
-            SystemFont_Shadow_Small2,
-            SystemFont_Shadow_Med1_Outline,
-            SystemFont_Shadow_Med1,
-            QuestFont_Large,
-            SystemFont_Large,
-            SystemFont_Shadow_Large_Outline,
-            SystemFont_Shadow_Med2,
-            SystemFont_Shadow_Large,
-            SystemFont_Shadow_Large2,
-            SystemFont_Shadow_Huge1,
-            SystemFont_Huge2,
-            SystemFont_Shadow_Huge2,
-            SystemFont_Shadow_Huge3,
-            SystemFont_Shadow_Outline_Huge3,
-            SystemFont_Shadow_Outline_Huge2,
-            SystemFont_Med1,
-            SystemFont_WTF2,
-            SystemFont_Outline_WTF2,
-            GameTooltipHeader,
-            System_IME,
-            Number12Font_o1,
-        }
 
         -- Backup function for the chat font
         local function BackupChatFont()
@@ -1037,14 +1128,73 @@ function BBF.SetCustomFonts()
 
         local function SetAllFonts()
             SetChatFont()
-            for i, FontObject in pairs(FontObjects) do
-                local _, size, style = FontObject:GetFont()
-                FontObject:SetFont(fontPath, ForcedFontSize[i] or size, style)
+
+            local forcedFontSizes = {
+                ["SystemFont_NamePlateCastBar"] = 9,
+                ["SystemFont_NamePlateFixed"] = 9,
+                ["SystemFont_LargeNamePlateFixed"] = 14,
+                ["SystemFont_LargeNamePlate"] = 14,
+                ["SystemFont_NamePlate"] = 12,
+            }
+
+            local fontObjectNames = GetFonts()
+            for index, fontObjectName in ipairs(fontObjectNames) do
+                local FontObject = _G[fontObjectName]
+                if FontObject then
+                    local _, size, style = FontObject:GetFont()
+
+                    if forcedFontSizes[fontObjectName] then
+                        size = forcedFontSizes[fontObjectName]
+                    end
+
+                    if size > 0 then
+                        FontObject:SetFont(fontPath, size, style)
+                    end
+                end
             end
 
             for _, frame in ipairs(frames) do
                 local _, size, style = frame.bbfName:GetFont()
                 frame.bbfName:SetFont(fontPath, size, style)
+            end
+
+            -- Override action bar hotkey font for "●" symbol
+            local blizzButtons = {
+                "ActionButton", "MultiBarBottomLeftButton", "MultiBarBottomRightButton",
+                "MultiBarRightButton", "MultiBarLeftButton", "MultiBar5Button",
+                "MultiBar6Button", "MultiBar7Button", "PetActionButton"
+            }
+
+            for _, buttonPrefix in ipairs(blizzButtons) do
+                for i = 1, 12 do
+                    local hotKeyText = _G[buttonPrefix .. i .. "HotKey"]
+                    if hotKeyText and hotKeyText:GetText() == "●" then
+                        hotKeyText:SetFont("Fonts\\ARIALN.TTF", 12, "OUTLINE")
+                    end
+                end
+            end
+            local NUM_ACTIONBAR_BUTTONS = NUM_ACTIONBAR_BUTTONS or 12
+            local DOMINOS_NUM_MAX_BUTTONS = 14 * NUM_ACTIONBAR_BUTTONS
+            local dominosBars = {
+                {name = "DominosActionButton", count = DOMINOS_NUM_MAX_BUTTONS},
+                {name = "MultiBar5ActionButton", count = 12},
+                {name = "MultiBar6ActionButton", count = 12},
+                {name = "MultiBar7ActionButton", count = 12},
+                {name = "MultiBarRightActionButton", count = 12},
+                {name = "MultiBarLeftActionButton", count = 12},
+                {name = "MultiBarBottomRightActionButton", count = 12},
+                {name = "MultiBarBottomLeftActionButton", count = 12},
+                {name = "DominosPetActionButton", count = 12},
+                {name = "DominosStanceButton", count = 12},
+            }
+
+            for _, bar in ipairs(dominosBars) do
+                for i = 1, bar.count do
+                    local hotKeyText = _G[bar.name .. i .. "HotKey"]
+                    if hotKeyText and hotKeyText:GetText() == "●" then
+                        hotKeyText:SetFont("Fonts\\ARIALN.TTF", 12, "OUTLINE")
+                    end
+                end
             end
         end
 
@@ -1106,8 +1256,8 @@ function BBF.SetCustomFonts()
         local kbSize = db.actionBarKeyFontSize or 10
         local outline = db.actionBarFontOutline or "THINOUTLINE"
         local kbOutline = db.actionBarKeyFontOutline or "THINOUTLINE"
-
-        SetActionBarFonts(fontPath, fontSize, kbSize, outline, kbOutline)
+        local chargeSize = db.actionBarChargeFontSize or 14
+        SetActionBarFonts(fontPath, fontSize, kbSize, outline, kbOutline, chargeSize)
     end
 
     if db.changeUnitFrameValueFont then
@@ -1117,6 +1267,16 @@ function BBF.SetCustomFonts()
         local outline = db.unitFrameValueFontOutline or "THINOUTLINE"
 
         SetUnitFramesValuesFont(fontPath, fontSize, outline)
+    end
+
+    if BetterBlizzFramesDB.noPortraitModes then
+        BBF.UpdateNoPortraitText(TargetFrame, "target")
+        BBF.UpdateNoPortraitText(FocusFrame, "focus")
+        BBF.UpdateNoPortraitText(PlayerFrame, "player")
+        BBF.UpdateNoPortraitText(TargetFrame, "tot")
+        BBF.UpdateNoPortraitText(FocusFrame, "tot")
+        BBF.UpdateNoPortraitText(PetFrame, "pet")
+        BBF.UpdateNoPortraitText(nil, "party")
     end
 end
 
@@ -1151,7 +1311,7 @@ end
 C_Timer.After(1, UpdateNamePositionForClassic)
 
 local function ClassColorName(textObject, unit)
-    local color = BBF.getUnitColor(unit)
+    local color = BBF.getUnitColor(unit, (BetterBlizzFramesDB.customHealthbarColors and BetterBlizzFramesDB.customColorsUnitFrames) or nil, true)
     if color then
         textObject:SetTextColor(color.r, color.g, color.b)
     else
@@ -1545,6 +1705,12 @@ function BBF.AllNameChanges()
             PartyFrameNameChange(frame)
             HideRoleIconDefault(frame)
         end
+    else
+        for i = 1, 5 do
+            local frame = _G["CompactPartyFrameMember" .. i]
+            CompactPartyFrameNameChanges(frame)
+            HideRoleIcon(frame)
+        end
     end
 
     if HealthBarColorDB then
@@ -1671,7 +1837,7 @@ function BBF.FontColors()
         end
     end
 
-    if db.actionBarFontColor then
+    if db.actionBarFontColor and not db.hideActionBarHotKey then
         local color = db.actionBarFontColorRGB
         local function isBlizzardWhite(r)
             return math.abs(r - 0.8) < 0.01

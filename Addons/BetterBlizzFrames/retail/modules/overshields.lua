@@ -1,3 +1,4 @@
+if BBF.isMidnight then return end
 ----------------------------------------------------
 ---- Overshields is a fork by Casper Storm of the abandoned DerangementShieldMeters addon by Derangement
 ---- with a tweak from me, Bodify, to get rid of a minor bug

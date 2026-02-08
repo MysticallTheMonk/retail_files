@@ -140,6 +140,7 @@ local defaults = {
                 [tostring(addon.SPELLCATEGORY.CROWDCONTROL)] = 70,
                 [tostring(addon.SPELLCATEGORY.BURST)] = 90,
                 [tostring(addon.SPELLCATEGORY.HEAL)] = 80,
+                [tostring(addon.SPELLCATEGORY.MOBILITY)] = 70,
                 [tostring(addon.SPELLCATEGORY.OTHERS)] = 10,
             },
         },
@@ -223,33 +224,31 @@ local function FillDefaults()
     addon.FillDefaultToAuraOptions(defaults.profile.nameplatesEnemy.debuffWhiteList, addon.DebuffList);
     addon.FillDefaultToAuraOptions(defaults.profile.nameplatesEnemy.buffWhiteList, addon.BuffList);
 
-    if addon.PROJECT_MAINLINE then
-        defaults.profile.arenaFrames.standaloneBars = {};
-        for i = 1, 6 do
-            local groupName = "Bar ".. i;
-            defaults.profile.arenaFrames.standaloneBars[groupName] = {
-                name = groupName,
-                enabled = false,
+    defaults.profile.arenaFrames.standaloneBars = {};
+    for i = 1, 6 do
+        local groupName = "Bar ".. i;
+        defaults.profile.arenaFrames.standaloneBars[groupName] = {
+            name = groupName,
+            enabled = false,
 
-                growDirection = addon.STANDALONE_GROW_DIRECTION.CENTER,
-                columns = 8,
-                growUpward = true,
-                offsetX = 0,
-                offsetY = 0,
+            growDirection = addon.STANDALONE_GROW_DIRECTION.CENTER,
+            columns = 8,
+            growUpward = true,
+            offsetX = 0,
+            offsetY = 0,
 
-                iconSize = 32,
-                iconPadding = 2,
-                unusedIconAlpha = 0.5,
-                usedIconAlpha = 1,
-                showUnusedIcons = false,
-                hideCountDownNumbers = false,
-                spellList = {},
-            };
-        end
-
-        addon.SetupAllSpells(defaults.profile.arenaFrames.spellList, addon.SpellData);
-        addon.SetupInterrupts(defaults.profile.arenaFrames.standaloneBars["Bar 1"].spellList, addon.SpellData);
+            iconSize = 32,
+            iconPadding = 2,
+            unusedIconAlpha = 0.5,
+            usedIconAlpha = 1,
+            showUnusedIcons = false,
+            hideCountDownNumbers = false,
+            spellList = {},
+        };
     end
+
+    addon.SetupAllSpells(defaults.profile.arenaFrames.spellList, addon.SpellData);
+    addon.SetupInterrupts(defaults.profile.arenaFrames.standaloneBars["Bar 1"].spellList, addon.SpellData);
 end
 
 function SweepyBoop:SetupBlizzardOptions()
@@ -306,11 +305,16 @@ function SweepyBoop:OnInitialize()
     end
     self.db = LibStub("AceDB-3.0"):New("SweepyBoopDB", defaults, true);
 
-    options.args.nameplatesFriendly = addon.GetFriendlyNameplateOptions(3);
-    options.args.nameplatesEnemy = addon.GetEnemyNameplateOptions(4);
+    if ( not addon.PROJECT_TBC) then
+        options.args.nameplatesFriendly = addon.GetFriendlyNameplateOptions(3);
+        options.args.nameplatesEnemy = addon.GetEnemyNameplateOptions(4);
+    end
+
+    if ( not addon.PROJECT_MAINLINE ) then
+        options.args.arenaFrames = addon.GetArenaFrameOptions(5);
+    end
 
     if addon.PROJECT_MAINLINE then
-        options.args.arenaFrames = addon.GetArenaFrameOptions(5);
         options.args.raidFrames = addon.GetRaidFrameOptions(6);
         options.args.misc = addon.GetMiscOptions(7, icon, SweepyBoopLDB);
     end
@@ -359,16 +363,13 @@ function SweepyBoop:OnInitialize()
     -- Register callback (https://www.wowace.com/projects/ace3/pages/ace-db-3-0-tutorial)
     self.db.RegisterCallback(self, "OnProfileChanged", "RefreshConfig");
     self.db.RegisterCallback(self, "OnProfileReset", "RefreshConfig");
-
-    -- Nameplate module needs optimization to eat less CPU
-    -- Setup nameplate modules
     self:SetupNameplateModules();
 
-    -- Only nameplate modules for Classic currently
-    -- If only enabling nameplates, 7 ms / Sec CPU, otherwise 11 ms / Sec CPU
-    if ( not addon.PROJECT_MAINLINE ) then return end
+    if ( not addon.PROJECT_MAINLINE ) then
+        self:SetupArenaCooldownTracker();
+    end
 
-    self:SetupArenaCooldownTracker();
+    if ( not addon.PROJECT_MAINLINE ) then return end
 
     self:SetupHealerIndicator();
 
@@ -376,22 +377,20 @@ function SweepyBoop:OnInitialize()
     self:SetupRaidFrameAggroHighlight();
     self:SetupRaidFrameAuraModule();
 
-
     self:SetupQueueReminder();
     self:SetupCombatIndicator();
-    self:SetupHealerInCrowdControl();
+    --self:SetupHealerInCrowdControl();
     self:SetupArenaSurrender();
     self:SetupHideBlizzArenaFrames();
     self:SetupAlwaysShowDruidComboPoints();
     self:SetupRangeChecker();
-    self:SetupFixBlizzardCastbars();
 end
 
 function SweepyBoop:RefreshConfig()
-    if addon.PROJECT_MAINLINE then
-        self:HideTestArenaCooldownTracker();
-        self:HideTestArenaStandaloneBars();
+    self:HideTestArenaCooldownTracker();
+    self:HideTestArenaStandaloneBars();
 
+    if addon.PROJECT_MAINLINE then
         self:SetupCombatIndicator();
         self:HideTestHealerInCrowdControl();
     end

@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 -- Premade Groups Filter
 -------------------------------------------------------------------------------
--- Copyright (C) 2024 Bernhard Saumweber
+-- Copyright (C) 2026 Bernhard Saumweber
 --
 -- This program is free software; you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ L["addon.name.long"] = "Premade Groups Filter"
 
 L["error.syntax"] = "|cffff0000Error en la sintaxis de la expresión avanzada|r\n\nEsto significa que no se ha construido de la manera correcta, por ejemplo, se te olvido poner un paréntesis o escribiste 'tanks=1' en vez de 'tanks==1'.\n\nError detallado:\n|cffaaaaaa%s|r"
 L["error.semantic"] = "|cffff0000Error Semántico en la expresión|r\n\nEsto signuifica que la sintaxis es correcta, pero lo mas seguro es que hayas escrito las variables mal, por ejemplo, tansk en vez de tanks.\n\nError detallado:\n|cffaaaaaa%s|r"
-L["error.semantic.protected"] = "|cffff0000Error Semántico en la expresión|r\n\nLas palabras clave 'name', 'comment' und 'findnumber' ya no están soportadas. Por favor, elimínalos de tu expresión de filtro avanzada o presiona el botón de reinicio.\n\nComenzando con el Battle for Azeroth Prepatch, esos valores ahora están protegidos por Blizzard y ya no pueden ser leídos por ningún addon.\n\nUtilice la barra de búsqueda predeterminada situada encima de la lista de grupos para filtrar los nombres de los grupos.\n\nError detallado:\n|cffaaaaaa%s|r"
+L["error.semantic.protected"] = "|cffff0000Error Semántico en la expresión|r\n\nLas palabras clave 'name', 'comment' ya no están soportadas. Por favor, elimínalos de tu expresión de filtro avanzada o presiona el botón de reinicio.\n\nComenzando con el Battle for Azeroth Prepatch, esos valores ahora están protegidos por Blizzard y ya no pueden ser leídos por ningún addon.\n\nUtilice la barra de búsqueda predeterminada situada encima de la lista de grupos para filtrar los nombres de los grupos.\n\nError detallado:\n|cffaaaaaa%s|r"
 L["message.settingsupgraded"] = "Premade Groups Filter: Configuración migrada a la versión %s"
 
 L["dialog.settings"] = GAMEMENU_OPTIONS
@@ -52,6 +52,8 @@ L["dialog.heals"]      = "Heals .............................."
 L["dialog.dps"]        = "DPS ................................"
 L["dialog.mprating"]   = "Cal. M+"
 L["dialog.pvprating"]  = "Calificación JcJ ..................."
+L["dialog.delvetier"]  = "Nivel de Profundidades ............."
+L["dialog.delvetier.tooltip"] = "Algunos jugadores no establecen correctamente el nivel de las Profundidades, sino que solo lo mencionan en el nombre del grupo. Los addons no pueden leer el nombre. Usad el campo de búsqueda estándar para obtener mejores resultados."
 L["dialog.defeated"]   = "Bosses de raid muertos"
 L["dialog.sorting"] = "Ordenación"
 L["dialog.usepgf.tooltip"] = "Activa o desactiva Premade Groups Filter"
@@ -88,9 +90,10 @@ L["dialog.tooltip.timewalking"] = "seleccionar mazmorra de timewalking"
 L["dialog.tooltip.arena"] = "seleccionar tipo de arena específica"
 L["dialog.tooltip.warmode"] = "warmode enabled"
 L["dialog.copy.url.keywords"] = "Presione CTRL+C para copiar el enlace a la lista de palabras clave"
-L["dialog.filters.group"] = "Group"
-L["dialog.filters.dungeons"] = "Dungeons"
-L["dialog.filters.advanced"] = "Advanced Filter Expression"
+L["dialog.filters.group"] = "Grupo"
+L["dialog.filters.dungeons"] = "Mazmorras"
+L["dialog.filters.delves"] = "Profundidades"
+L["dialog.filters.advanced"] = "Expresión de filtro avanzada"
 L["dialog.partyfit"] = "Party Fit"
 L["dialog.partyfit.tooltip"] = "Show only groups that still have slots for all your party members roles. Also works if you are alone."
 L["dialog.notdeclined"] = "Not Declined"
@@ -104,6 +107,14 @@ L["dialog.matchingid.tooltip"] = "Show only groups that have the exact same inst
 L["dialog.needsbl"] = "Necesita Ansia de Sangre"
 L["dialog.needsbl.tooltip"] = "Muestra solo los grupos que aún no tienen una clase que proporcione Ansia de Sangre/Heroísmo."
 L["dialog.cancelOldestApp"] = "Haz clic para cancelar la más antigua"
+L["dialog.button.selectall.title"] = "T"
+L["dialog.button.selectall.tooltip"] = "Seleccionar todo"
+L["dialog.button.selectnone.title"] = "N"
+L["dialog.button.selectnone.tooltip"] = "No seleccionar nada"
+L["dialog.button.selectbountiful.title"] = "P"
+L["dialog.button.selectbountiful.tooltip"] = "Seleccionar profundidades pródigas"
+L["dialog.button.selectinvert.title"] = "I"
+L["dialog.button.selectinvert.tooltip"] = "Invertir selección"
 
 L["settings.dialogMovable.title"] = "Diálogo móvil"
 L["settings.dialogMovable.tooltip"] = "Le permite mover el cuadro de diálogo con el mouse. El clic derecho restablece la posición."
@@ -139,3 +150,5 @@ L["settings.rioRatingColors.title"] = "Calificación en colores de Raider.IO"
 L["settings.rioRatingColors.tooltip"] = "Usa el esquema de colores de Raider.IO para calificaciones de Míticas+ si el complemento Raider.IO está cargado."
 L["settings.cancelOldestApp.title"] = "Cancelar la aplicación más antigua"
 L["settings.cancelOldestApp.tooltip"] = "Si tienes el máximo de aplicaciones pendientes, haz clic en cualquier grupo para cancelar tu aplicación más antigua primero. Luego haz clic de nuevo para postularte."
+L["settings.compactListEntries.title"] = "Entradas de lista compactas"
+L["settings.compactListEntries.tooltip"] = "Oculta el estilo de juego para que los elementos de la lista de grupos ocupen menos espacio vertical (como antes de la actualización de contenido previa a la expansión de Midnight)."

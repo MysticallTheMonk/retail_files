@@ -72,16 +72,9 @@ local function replaceTextWithLinks()
         end
     elseif ADDON.DB.Source.Shop[spellId] or sourceType == 10 then
         -- https://warcraft.wiki.gg/wiki/Hyperlinks#storecategory can only open to certain categories. mounts are not among them yet. (see: SetItemRef)
-        local text = "|cffffd000|Hitem:mje_openstore|h["..BATTLE_PET_SOURCE_10.."]|h|r"
+        local text = "|cffffd000|Hstorecategory:services|h["..BATTLE_PET_SOURCE_10.."]|h|r"
         MountJournal.MountDisplay.InfoButton.Source:SetText(text)
     end
 end
 
 ADDON.Events:RegisterCallback("OnUpdateMountDisplay", replaceTextWithLinks, 'ReplaceText')
-
-hooksecurefunc("SetItemRef", function(link)
-    local linkType, itemId = strsplit(":", link)
-    if linkType == "item" and itemId == "mje_openstore" then
-        SetStoreUIShown(true)
-    end
-end)

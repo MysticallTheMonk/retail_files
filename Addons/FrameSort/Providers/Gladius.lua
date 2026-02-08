@@ -1,21 +1,29 @@
 ---@type string, Addon
 local _, addon = ...
-local wow = addon.WoW.Api
 local fsFrame = addon.WoW.Frame
 local fsProviders = addon.Providers
-local fsCompare = addon.Collections.Comparer
-local fsLuaEx = addon.Collections.LuaEx
+local fsCompare = addon.Modules.Sorting.Comparer
+local fsLuaEx = addon.Language.LuaEx
 local fsEnumerable = addon.Collections.Enumerable
+local fsLog = addon.Logging.Log
+local wow = addon.WoW.Api
+local wowEx = addon.WoW.WowEx
+local events = addon.WoW.Events
 local M = {}
+local useEvents = false
 local sortCallbacks = {}
 
 fsProviders.Gladius = M
 table.insert(fsProviders.All, M)
 
-local function RequestSort()
+local function RequestSort(reason)
     for _, callback in ipairs(sortCallbacks) do
-        callback(M)
+        callback(M, reason)
     end
+end
+
+local function OnUpdateUnit()
+    RequestSort("UpdateUnit hook")
 end
 
 function M:Name()
@@ -23,32 +31,48 @@ function M:Name()
 end
 
 function M:Enabled()
-    return wow.GetAddOnEnableState(nil, "Gladius") ~= 0
-end
-
-function M:Init()
-    if Gladius and Gladius.UpdateUnit then
-        -- UpdateUnit moves the arena1 frame, so we need to resort
-        wow.hooksecurefunc(Gladius, "UpdateUnit", function()
-            RequestSort()
-        end)
-    end
+    return wowEx.IsAddOnEnabled("Gladius")
 end
 
 function M:RegisterRequestSortCallback(callback)
+    if not callback then
+        fsLog:Bug("Gladius:RegisterRequestSortCallback() - callback must not be nil.")
+        return
+    end
+
     sortCallbacks[#sortCallbacks + 1] = callback
 end
 
-function M:RegisterContainersChangedCallback(_) end
+function M:RegisterContainersChangedCallback() end
+
+function M:ProcessEvent(event)
+    if not useEvents then
+        return
+    end
+
+    if event == events.ARENA_OPPONENT_UPDATE then
+        RequestSort(event)
+    elseif event == events.ARENA_PREP_OPPONENT_SPECIALIZATIONS then
+        RequestSort(event)
+    end
+end
 
 function M:Containers()
-    ---@type FrameContainer[]
     local containers = {}
+
+    if not M:Enabled() then
+        return containers
+    end
+
+    if not Gladius then
+        return
+    end
+
     local function getFrames()
         -- in test mode, get the number of frames shown
         local isTest = fsLuaEx:SafeGet(Gladius, { "test" })
         local testCount = fsLuaEx:SafeGet(Gladius, { "testCount" })
-        local count = isTest and testCount or wow.GetNumArenaOpponentSpecs()
+        local count = isTest and testCount or wowEx.ArenaOpponentsCount()
 
         return fsEnumerable
             :From({
@@ -67,7 +91,8 @@ function M:Containers()
     local profileKey = fsLuaEx:SafeGet(Gladius2DB, { "profileKeys", charKey })
     local profile = fsLuaEx:SafeGet(Gladius2DB, { "profiles", profileKey })
 
-    containers[#containers + 1] = {
+    ---@type FrameContainer
+    local arena = {
         Frame = wow.UIParent,
         Type = fsFrame.ContainerType.EnemyArena,
         LayoutType = fsFrame.LayoutType.Hard,
@@ -93,6 +118,10 @@ function M:Containers()
             }
         end,
         PostSort = function()
+            if not GladiusButtonBackground then
+                return
+            end
+
             local frames = getFrames()
 
             if #frames == 0 then
@@ -104,13 +133,33 @@ function M:Containers()
             end)
 
             local topFrame = frames[1]
-    		local left, right = topFrame:GetHitRectInsets()
+            local left, _ = topFrame:GetHitRectInsets()
 
             -- refer to Gladius.lua:632
-            local padding = fsLuaEx:SafeGet(Gladius, { "db", "backgroundPadding"} ) or 0
-            GladiusButtonBackground:SetPoint("TOPLEFT", topFrame, - padding + left, padding)
+            local padding = fsLuaEx:SafeGet(Gladius, { "db", "backgroundPadding" }) or 0
+            GladiusButtonBackground:SetPoint("TOPLEFT", topFrame, -padding + left, padding)
         end,
     }
 
+    containers[#containers + 1] = arena
+
     return containers
+end
+
+function M:Init()
+    if not M:Enabled() then
+        return
+    end
+
+    if not Gladius then
+        return
+    end
+
+    if Gladius.UpdateUnit then
+        wow.hooksecurefunc(Gladius, "UpdateUnit", OnUpdateUnit)
+    else
+        fsLog:Bug("Gladius:UpdateUnit is nil.")
+
+        useEvents = true
+    end
 end

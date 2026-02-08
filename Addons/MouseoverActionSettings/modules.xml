@@ -2,7 +2,7 @@
 <!--ActionBars-->
     <Script file="Modules/ActionBars/MultiBarBottomLeft.lua"/>
     <Script file="Modules/ActionBars/MultiBarBottomRight.lua"/>
-    <Script file="Modules/ActionBars/MainMenuBar.lua"/>
+    <Script file="Modules/ActionBars/MainActionBar.lua"/>
     <Script file="Modules/ActionBars/MultiBarRight.lua"/>
     <Script file="Modules/ActionBars/MultiBarLeft.lua"/>
     <Script file="Modules/ActionBars/MultiBar5.lua"/>

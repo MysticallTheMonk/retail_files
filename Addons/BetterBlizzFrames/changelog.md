@@ -1,3 +1,765 @@
+# BetterBlizzFrames 1.8.9d
+## Midnight/Prepatch
+### Bugfix
+- Fix lua errors from now new restrictions from Blizzard related to castbar types (uninterruptible status).
+    This means currently not possible to color/texture an uninterruptible cast without some sort of wonky workaround maybe.
+    Disabled for now and will just color depending on cast/channel, this may be confusing on uninterruptible casts.
+    Consider disabling castbar color/texture and for now until maybe a solution arrives.
+
+# BetterBlizzFrames 1.8.9c
+## Midnight/Prepatch
+### Bugfix
+- Fix forcing manabars borders to show with Pixel No Portrait setting even though "Hide Target/Focus Manabar" was enabled.
+
+# BetterBlizzFrames 1.8.9b
+## Midnight/Prepatch
+### New
+- Add sub-setting to the party range alpha setting that keeps the background always solid non-transparent. This is enabled by default now (as it was before).
+- Add variable to skip bug warning on login (will remove this ofc when I feel like it), type: /run BetterBlizzFramesDB.skipBugWarning = true
+### Bugfix
+- Fix nil frame error
+- Fix some locale issues for gui tooltips
+
+# BetterBlizzFrames 1.8.9
+## Midnight/Prepatch
+### New
+- Show CD Timer on Auras (Buffs & Debuffs) and size setting for it.
+- Split "Hide Target/Focus Auras" into "Hide Target/Focus Buffs/Debuffs".
+- Add Wolf profile (www.twitch.tv/wolfzx)
+- Add Trimaz profile (www.twitch.tv/trimaz_wow)
+### Tweak
+- Force show No Portrait pixel border on manabar on targets without mana as well for consistency.
+- Add new damage meter header to dark mode.
+### Bugfix
+- Fix aura stack scale setting not being properly implemented, size slider works now.
+- Fix No Portrait's border glow texture not being the smaller one when manabar was hidden.
+- Fix own Pet detection in Class Icon/Party Pointer now that Blizzard allowed it again.
+- Fix lua error on login as petclass with texture changes enabled.
+- Fixes to No Portrait setting Healthbar getting weird on party frames (hopefully)
+- Many minor misc things I've probably forgot to mention. Please continue to report bugs and thank you so much!
+## All classics
+### Tweak
+- TBC: Add missing roots to Loss of Control setting.
+- Fix Class Icons setting to work on default party frames.
+## Note
+- Spec name stuff might be dead, probably, we'll see.
+- The game is still undergoing tons of changes and in an extremly buggy state despite being in Prepatch and releasing in a few weeks. Many things are getting restricted and unrestricted and its a pain to develop for as we have no idea what is happening most of the time. 
+
+# BetterBlizzFrames 1.8.8e
+## Midnight/Prepatch
+### Bugfix
+- Fix party name width error
+
+# BetterBlizzFrames 1.8.8d
+## Midnight/Prepatch
+### Tweak
+- Improve Target/Focus CC icon now that Blizzard unrestricted things again. Could do with more testing and tweaks.
+### Bugfix
+- Fix "CDM: Center Icons" (Misc) setting having some gap issues. Ty to Kaje@CurseForge for sending fix.
+- Fix PartyFrame Range Alpha setting unintentionally affecting nameplates.
+- Fix two midnight secret errors.
+
+# BetterBlizzFrames 1.8.8c
+## Midnight/Prepatch
+### Tweak
+- Update mes profile
+
+# BetterBlizzFrames 1.8.8b
+## Midnight/Prepatch
+### New
+- Add CompactPartyFrame out-of-range alpha setting. (General)
+### Tweak
+- Remove some dead code which could potentially cause game crash for some people since we are playing the Alpha (Prepatch).
+## All versions
+### Tweak
+- Add /rl command to reload ui.
+- Don't attempt to make SettingsPanel moveable if MoveAny is loaded.
+
+# BetterBlizzFrames 1.8.8
+## Midnight/Prepatch
+### New
+- Add Mysticall profile! (www.twitch.tv/mysticallx). Thank you for sharing! <3
+### Bugfix
+- Fix "No Portrait" Target of Target background being sized wrong with hide mana setting.
+- Fix custom background color on raidframes not activating.
+- Add forbidden check for hide absorb setting fixing lua errors
+## The Burning Crusade
+### Tweak
+- Fix missing fix: Fix default TargetFrameToT and FocusFrameToT position on TBC. You will have to tweak your ToT positions. 0,0 is default. It was changed +18 x-axis and -5 y-axis.
+
+# BetterBlizzFrames 1.8.7j
+## Midnight/Prepatch
+### Tweak
+- Update Aeghis profile
+
+# BetterBlizzFrames 1.8.7i
+## Midnight
+### Bugfix
+- Ignore "Show last name only" setting as this now contains secret and causes errors. Dont think theres a workaround but not looking into it right now. Assuming its gone.
+
+# BetterBlizzFrames 1.8.7h
+## The Burning Crusade
+### New
+- Add Edit Mode Transparency slider in the Edit Mode settings (top right).
+### Tweak
+- Fix default TargetFrameToT and FocusFrameToT position on TBC. You will have to tweak your ToT positions. 0,0 is default. It was changed +18 x-axis and -5 y-axis.
+
+# BetterBlizzFrames 1.8.7g
+## Midnight
+### Tweak
+- Added back Player Auras gap settings in the buffs & debuffs section.
+## The Burning Crusade
+### Bugfix
+- Fix names on default party frames.
+- Fix default background color for TargetFrame for Blizzard.
+- Fix talent tree icons being scrambled due to class portrait setting.
+- Fix tooltip for Hide Player Power in gui.
+## Era
+### Tweak
+- Add font settings support for Verz's MiniHealthNumbers addon.
+
+
+# BetterBlizzFrames 1.8.7f
+## The Burning Crusade
+### Tweak
+- Update aura stuff with late changes made to mop version. Hopefully things like the glows etc are positioned correctly now with all sorts of settings. If you notice anything weird please let me know.
+### Bugfix
+- Fix some bugs caused by leftover retail code in tbc version.
+
+# BetterBlizzFrames 1.8.7e
+## The Burning Crusade
+### Tweak
+- Remove Player Castbar handling by BBF in TBC since this is now handled by Edit Mode instead. Your player castbar mightve moved due to this so make sure to re-adjust it in edit mode.
+#### Bugfix
+- Fix a nil error due to darkmode castbar logic looking for old castbar name
+- Fix some old aura settings needing update for TBC. Causing Masque support to break and a few other things.
+
+# BetterBlizzFrames 1.8.7d
+## The Burning Crusade
+### Bugfix
+- Fix issue with OCD Tweaks setting causing healthbars and stuff to be in wrong positions.
+
+# BetterBlizzFrames 1.8.7c
+## The Burning Crusade
+### Tweak
+- Fix healthbar height for large healthbar setting.
+## All versions
+### Tweak
+- Classics: Fix ToT Portrait for Class Portrait setting. Also fix it messing up Character Panel icon.
+- Class Color Names setting now also supports the custom colors and also forces reaction colors on npcs instead of gray color if tapped unit.
+- Fix font settings for default party frame names and increase width for larger font sizes.
+### Bugfix
+- Classics: Fix missing gui element causing "Class Color Names" to not show/hide the Level option on click.
+- Classics: Fix DarkMode for Auras.
+- Fix Format Numbers not working properly on first login on game launch.
+
+# BetterBlizzFrames 1.8.7b
+## Classic Era
+### Tweak
+- Add font settings support for TargetHealthPlus addon.
+## All versions
+### Tweak
+- Swapped out Blizzards fade functions with own copy to avoid potential taint/combat issues.
+- Removed Double Press setting.
+
+# BetterBlizzFrames 1.8.7
+## All versions
+### New
+- Misc: Keybind Double Press. Activate keybind presses both on key down and key up. (Default ActionBars only)
+## Bugfix
+- Classics: Fix some issues with Hide Level settings and Bigger Healthbars
+## Retail & Midnight
+### Tweak
+- No Portrait: Tweak Group Indicator to not show background.
+## The Burning Crusade
+### Bugfix
+- Fix a lua error due to old API call on TBC client regards to hiding level.
+## Mists of Pandaria
+### Bugfix
+- Fix a lua error due to wrong player castbar name on MoP.
+## Classic Era
+### Tweak
+- Rare elites now get the rare silver dragon frametexture instead of the normal gold elite dragon, as in newer expansions.
+
+# BetterBlizzFrames 1.8.6e
+## The Burning Crusade
+### Tweak
+- Remove Thorns from PvP Buffs whitelist import.
+
+# BetterBlizzFrames 1.8.6d
+## The Burning Crusade
+### Tweak
+- Fix Queue Timer window size.
+
+# BetterBlizzFrames 1.8.6c
+## The Burning Crusade
+### Tweak
+- Loss of Control feature now adjusted for TBC. Might still need more tweaks please let me know.
+- Some more spell ids adjusted around in the addon.
+## Mists of Pandaria
+### Bugfix
+- Fix darkmode for default party frames causing lua error due to PartyFrame being different in MoP and TBC.
+## All versions
+### Tweak
+- Add back code to force certain nameplate font sizes for "Change all fonts" setting to hopefully avoid some users having massive nameplate names.
+- Retail & Midnight: "Hide PlayerFrame 2nd Resource" (Misc) now works with Classic Frames setting enabled as well.
+
+# BetterBlizzFrames 1.8.6b
+## The Burning Crusade
+### Tweak
+- Hide default PlayerFrame Background when BBF Background Texture is enabled and tweak its position slighly.
+
+# BetterBlizzFrames 1.8.6
+## The Burning Crusade
+- Early and scuffed TBC support. Aka made the addon launch and fixed the obvious things that presented itself while standing still after login. Anything else is experimental so use at own risk.
+## All versions
+### Tweak
+- Update the "One font for all text ingame" setting to use proper API to get all fonts instead of a hardcoded list of fonts. Still certain fonts that are not possible to change via this method (like floating dmg numbers) but should cover more.
+- Fix some localization issues.
+## Retail & Midnight
+### Tweak
+- Tweak target of target debuffs positions for No Portrait settings.
+- Midnight: Tweak darkmode aura border position and fix pixel border being set on debuffs without that setting being enabled.
+## Classics
+### Bugfix
+- Fix missing "Focus ToT" text in gui on MoP
+
+# BetterBlizzFrames 1.8.5b
+## Retail & Midnight
+### Tweak
+- Fix PetFrame's clickable area. (By default from Blizzard only clickable on Portrait instead of entire frame like everything else in the game)
+## Classics
+### Bugfix
+- Fix issue with one localization key causing string.format to error and causing it not to load the gui.
+
+# BetterBlizzFrames 1.8.5
+## All versions
+### New
+- Localization support! Thank you so much to 007bb who has added localization support with English and Korean included. And some cleanup in some of the code.
+## Retail & Midnight
+### Tweak
+- Fix No Portrait settings click area and edit mode selection highlight.
+- Adjust threat glow on Classic Frames setting to fit the frame better, especially on Minus mobs.
+- Tweak castbar positioning to not be affected by hidden auras when "Show Buffs/Debuffs" is disabled.
+### Bugfix
+- Fix health background for No Portrait setting being positioned wrong when targeting Minus mobs.
+- Retail: Fix Target/Focus castbar flashing wrong texture and color at the end of a cast when interrupt color was enabled.
+- Fix PlayerFrame's "Hide Resource/Power" setting sometimes causing lua errors for Brewmaster monk due to some old code that needed change due to Blizzard changes.
+## Classic Era
+### Bugfix
+- Fix some castbar logic trying to adjust for FocusFrame (which doesnt exist on Era) causing a lua error.
+
+# BetterBlizzFrames 1.8.4d
+## Retail & Midnight
+### Tweak
+- Fixup OCD Tweaks a little due to new secret values.
+- Fix default background color for no portrait not being active accidentally turning it off due to the custom background color setting.
+- Tweak background color mask to it doesnt bleed on edges.
+### Bugfix
+- Classic Frames: Fix error on aug evoker due to a missing value.
+
+# BetterBlizzFrames 1.8.4c
+## Retail & Midnight
+### Tweaks
+- Custom Health/Mana Colors now works for transparancy as well like intended.
+- Some settings extended to BossFrames, with more to come later. In this go: Darkmode, Hide reputation color (will trigger if either Target/Focus is selected), "Hide Threat" and "Hide Combat Glow".
+- Opening settings in combat no longer possible, even when already loaded (due to restrictions/bug on Beta). Now avoids error by waiting and settings will instead wait for combat drop to open.
+- Add a variable that lets you skip "No Portrait" setting on Target and/or Player. To enable do "/run BetterBlizzFramesDB.noPortraitSkipPlayer" or SkipTarget
+### Bugfix
+- Midnight: Fix lua error caused by "Hide Minimap Buttons" (when mousing over to show).
+- Fix Classic Frames setting in combination with hide level still showing level and wrong glow texture on some types of npcs.
+
+# BetterBlizzFrames 1.8.4b
+## Mists of Pandaria
+### Bugfix
+- Fix missing parentheses on function call causing addon to not load properly.
+
+# BetterBlizzFrames 1.8.4
+## GitHub
+- With this version and forward my addons will also have GitHub releases. Huge thanks to zerbiniandrea for the pull request with everything set up for me to get quicky started with this.
+## Retail & Midnight
+### New
+- New "Class Color Friendlist" setting (Misc)
+- New "Pixel Border" setting for CompactPartyFrames. Makes things a bit cleaner than Blizzard default. (This setting also auto toggles on Hide RaidFrame Background and Background Texture Change)
+- "New Role Icons" setting for raidstyle partyframes that replaces the role icons with the more modern ones from the game. (General, PartyFrames)
+- New setting to hide the background texture on RaidFrames (Misc)
+- New "Hide All Absorb Glow" setting that hides the Absorb glow usually resting at full health on all frames (Misc)
+- The raidframe and unitframe background color setting now lets you change texture as well. (Font & Textures / Custom Colors in General)
+### Bugfix
+- Hide BossFrames setting potentially fixed with new workaround.
+- Fix Classic Frames setting not applying correct texture set to target/focus. Midnight secrets related issue.
+- Fix No Portrait settings causing a lua error on combat drop due to a mistake. (Also tweak them to hopefully be more reliable, Thank you to Verz for helping with this)
+- Fix "UnitFrame Background Color" setting not being able to change color of healthbars (not party ones).
+### Tweak
+- CompactParty-PetFrames now also get background color.
+- Fix Resto Druid specific setting causing manabar to be shown while in Cat/Bear when selected to hide mana.
+## All versions
+### New
+- New "Zoom ActionBar Icons" setting that crops the icon textures a bit on default action bars.
+- Add a new setting to disable all castbar movement from BBF. Not recommended but useful for those who might have conflicting addons without options to turn it off there. This WILL make the castbar act weird if you have aura settings enabled (and no other addon to deal with it). Again; Not recommended.
+### Tweak
+- "Change UnitFrame Font" now also changes the font of the Player/Target/Focus castbar.
+
+
+# BetterBlizzFrames 1.8.3 & 1.8.3b
+## Note
+- Very busy, lots of work. If you want these Custom Color settings for Era/MoP please be vocal and let me know and I'll try get them done soon but for now only Retail & Midnight.
+## Retail & Midnight
+### New
+- Custom Colors setting under "All Frames". Lets you recolor health, mana and background color for everything.
+- Hide RaidFrame background setting.
+- Midnight: Right-click options for "Hide Dispel Overlay" setting to keep border and/or gradient.
+### Tweak
+- Adjust Simple Castbar setting for Player Castbar to move icon up slightly to properly align left side with the slimmer castbar.
+- Misc setting "UnitFrame Background Color" has been moved to inside of "Custom Color Health/Mana" on the general page and also been split up into health & mana.
+- Elite Icon now present on No Portrait settings. (Hide option still available if you want it gone)
+- Delete unused Library included.
+- Fix opening settings causing errors on Midnight Beta due to new changes from Blizzard.
+### Bugfix
+- 11.2.7: Fix for Blizzard renaming the main action bar causing havoc.
+- Wrath/TitanForge: Fix toc file not loading all files.
+- Classic Frames: Fixed errors (by removal) caused by ToT Debuff refresh updates since Blizzard removed it.
+- Fix No Portrait settings causing text on alt manabar to not be visible.
+- Fix Player Castbar Icon X/Y Sliders not being setup correctly and adjusting wrong and irrelevant values. Should now be working properly.
+- Fix a protected call issue caused by a hook into Player Castbars' SetScale function when "Cast Bar Underneath" was selected in Edit Mode on PlayerFrame. This would cause a lua error in Edit Mode when opening CDM settings and possibly other things. Recommend turning that off if you have it on regardless since you can adjust it with BBF anyway.
+- Midnight: Fix up cast colors for Midnight
+- Midnight: Fix up interrupt color/icon stuff for Midnight
+- Fix elite dragon texture on No Portrait settings.
+
+
+# BetterBlizzFrames 1.8.2b
+## All versions
+### Tweak
+- Class color stuff now supports party npcs in follower dungeons.
+- Improve "UnitFrame Backgound Texture Color" setting to properly fit with all settings.
+- Fix channel cast coloring for Classic Castbars / Cast color settings. typo, channel ~= channeled
+### Bugfix
+- Midnight & Retail: Fix "Hide PlayerFrame Mana" (which also hides PetFrame Mana) not changing the frame textur on PetFrame with the Pixel Border setting off.
+## Retail
+### Bugfix
+- Fix the slider tip text being anchored wrong causing it to be stuck on screen after opening settings.
+## Midnight
+### New
+- New "Hide Range Icon" setting for Party/RaidFrames hiding the new Midnight range eye icon.
+### Bugfix
+- Fix Interrupt Icon being enabled if target/focus setting for it was enabled was even though the main setting was off.
+
+# BetterBlizzFrames 1.8.2
+## Midnight & Retail
+### New
+- Midnight: New "Hide Dispel Overlay" setting for Party/RaidFrames
+- New Venruki Profile (www.twitch.tv/venruki)
+- New Player Castbar Icon X/Y Offset sliders in Castbar section
+- New Player/Target/Focus Castbar and Castbar Icon Hide options.
+- New Class Color Names setting for Party/RaidFrames.
+- New "Hide ActionBar Active Overlay" (Misc) that hides the green overlay on placement spells, for example Ice Wall when that is being placed.
+### Tweak
+- Update Mes Profile
+- Midnight: Removed Cooldown Manager section (since most of this is in the default Cooldown Manger now)
+- Midnight: "Center Icons" for Cooldown Manager has been moved to Misc and the rest has been removed since not needed due to upgrades from Blizzard.
+- Midnight: Disable blue legacy blue combo points temporarily while waiting for Blizzard to re-open it to avoid errors.
+- Some No Portrait Pixel Mode tweaks. Still not perfect. Timesink of the century, can't prio it atm.
+### Bugfix
+- Fix issue with No Portrait setting healthbar getting weird on Evoker (Aug?) class.
+- Fix ToT Name position on Classic Frames setting.
+- Fix new Demon Hunter specs Soul Fragment bar for Classic Frames setting.
+- Fix some issues with UnitFrame Background Color combined with No Portrait settings.
+## All versions
+### Tweak
+- Improve Clickthrough setting for Player/Target/Focus making it force frames clickthrough as combat starts so you don't end up with clickable frames if you were holding down shift as combat started.
+
+# BetterBlizzFrames 1.8.1c
+## Midnight
+### Bugfix
+- Minor bugfix due to comparing a now secret value in the new Beta.
+
+# BetterBlizzFrames 1.8.1b
+## Midnight & Retail
+- Fix default party frames causing lua error in combat. This is a temporary workaround.
+Unfortunately this means party frames can't be updated during combat causing them to look off if they need to be updated in combat.
+I'm not 100% sure how I will deal with this atm. Annoying Blizzard shit...
+- Reverted the "click area fix for unitframes" since it was causing a few issues, like no Clique support and no tooltip.
+I'll fix this up at a later time again, Beta is down as of writing this and I want to get this minor patch with a fix out to avoid errors.
+
+# BetterBlizzFrames 1.8.1
+## All versions
+### New
+- Hide PetFrame setting.
+## Midnight & Retail
+### New
+- New "Keep Fancy Mana" setting for the "Change UnitFrame Manabar Texture" setting. Keeps the default texture and color for the bars that have fancy textures. Things like Insanity, Lunar Power, Fury etc.
+- Added new "Blizzard Retail Bar Crop" textures. Cropping off a bit of the dark edges. This will be enabled by default when enabling the No Portrait Pixel Border setting from now on (if texture change was not already enabled). Texture swap needs to be enabled for the Pixel Border settings due to the original texture not actually filling the entire texture space.
+### Tweak
+- Improve coloring on the 2nd resource bar.
+- Force hide the Leatrix Plus class color reputation thing on PlayerFrame if "No Portrait" is enabled.
+- "Hide Player Mana" now also hides Pet Mana.
+### Bugfixes
+- Fix Demon Hunter's new spec not being accounted for in some settings. "Hide PlayerFrame 2nd Resource" for example.
+- Fix click area for all the UnitFrames when No Portrait is enabled.
+- Fix some Midnight errors here and there on Retail code that is now restricted and needs workarounds.
+## Some notes
+- Many settings planned, lots of my plate.
+- Currently the "No Portrait Pixel Border" setting is difficult to get pixel perfect on every possible resolution and ui scale. Tweaking your settings might solve it. I will experiment more with it but it will take some time to get perfect. Any feedback in regards to it is greatly appreciated and please note your resolution, ui scale, and the scale of your frames in edit mode.
+- Currently on Beta some things are intentionally disabled while working on a fix or will be scrapped if completely restricted. 
+
+
+# BetterBlizzFrames 1.8.0
+## Midnight & Retail
+### New
+- New Pixel Border setting for No Portrait.
+- New Pixel Border Auras setting
+- New settings to hide manabar for target/focus (Misc)
+- New settings to hide player manabar (Misc)
+- New setting to hide alt resource (alt mana, stagger, evoker thing) (Misc)
+- Midnight: Hide Target/Focus Auras re-added.
+### Bugfixes
+- A lot of tweaks and fixes for the No Portrait setting. Probably new issues added too. Please report issues and if things look off and should be adjusted!
+- 1.8.0b: Minor tweaks with some missed stuff.
+- 1.8.0c: Fix backwards setting enforcing meaning you got stuck in No Portrait Pixel Border mode. Oops. Chat Im cooked after entire day of working on addon. Need bed.
+
+
+# BetterBlizzFrames 1.7.9b
+## Midnight & Retail
+### Tweak
+- Many tweaks to No Portrait setting to make it better.
+- Dark Mode now also darkens the buff bar borders from Cooldown Manager.
+
+# BetterBlizzFrames 1.7.9
+## Midnight & Retail
+### New
+- New "No Portrait" setting. Not well tested, please report any issues :x
+- Midnight: BigDebuffs for enemy units while in arena works again.
+### Tweak
+- Hide Shadow setting that hides the background behind names on UnitFrame now also toggles on "Hide Reputation Color" for both Target & Focus since this is the look most people are going for enabling this. Avoiding some confusion (potentially adding some too but als).
+### Bugfixes
+- Misc midnight related bugfixes/temporarily disabling stuff to avoid errors.
+
+# BetterBlizzFrames 1.7.8d
+## Midnight
+- Few more fixes for Midnight
+
+# BetterBlizzFrames 1.7.8c
+## Midnight
+- Many fixes for Midnight. Damn you Blizzurd.
+- Aura settings for Target/Focus should now work again too (minus the filtering etc ofc, just size and position)
+
+# BetterBlizzFrames 1.7.8b
+## Midnight & Retail
+### Bugfix
+- Fix dark mode castbar settings not working due to a capitalization mistake.
+
+# BetterBlizzFrames 1.7.8
+## MIDNIGHT
+- Midnight support is live. Keep in mind this is an early version. Lots of work is still required. Please report bugs. Settings might be unresponsive either because they need new methods to work or because they are getting removed.
+- 1.7.8b: Enable new BigDebuffs setting by default. Rip to a real one you will be missed. 
+## All versions
+### Bugfix
+- Fix font changes causing the range dot hotkey text on action buttons with no keybind to appear as a square (due to new font missing that sign). Keep default font for dot.
+
+# BetterBlizzFrames 1.7.7c
+## Retail
+### Note
+- Midnight support is moving along well. Aura filtering is gone as expected. Will launch an early version that works on Alpha probably in a weeks time. Any help testing that and reporting issues will help a ton.
+### Bugfix
+- Fix Castbar Texture Change for modern castbars hiding the entire new texture due to the mask texture accidentally pathing towards my other addon sArena Reloaded after forgetting to change path in the copypaste towards BetterBlizzFrames.
+
+# BetterBlizzFrames 1.7.7b
+## All versions
+### Tweak
+- Fix DarkMode: Castbars not applying to Party & Pet Castbars.
+## Retail
+### Bugfix
+- Fix castbar texture change from Font & Texture section not working on Party & Pet castbars for modern castbars.
+
+# BetterBlizzFrames 1.7.7
+## All versions
+- ActionBar charges can now also be changed font for in Font & Textures section
+- Classic versions have had some more settings added to the Font & Textures that were missing. Color etc.
+## Retail
+### New
+- Added Pmake profile (www.twitch.tv/pmakewow)
+- Added my own personal profile (i havent played since march or so)
+- Castbar Texture change now also available for modern (non-classic) castbars in the Font & Texture section.
+
+
+# BetterBlizzFrames 1.7.6d
+## Retail
+### New
+- Simple Castbar setting for Target, Focus & Party castbars. Removes text background and moves the text up into the castbar.
+### Bugfix
+- Fix Legacy Combo Points for Other Classes not working for DeathKnight due to it checking Runic Power and not Runes because Blizzards API here is unique for DK only.
+
+# BetterBlizzFrames 1.7.6c
+## All versions
+### Bugfix
+- Fix Dark Mode changing action bar colors regardless if actionbar setting was enabled or not. This change only matters for when other addons were trying to do things with actionbar colors and clashing with the BBF setting that shouldnt have been active.
+
+# BetterBlizzFrames 1.7.6b
+## All versions
+### New
+- Class Color Health: New "Keep friendly units green" setting. Shift+RightClick "Class Color Health" setting to enable.
+
+# BetterBlizzFrames 1.7.6
+## All versions
+### New
+- Buffs & Debuffs: Add new Ctrl+Alt+Rightclick option for important color that colors ALL whitelist auras at once. This is irreversible so only do this if you are planning and wanting to easily change the color on every single aura at once.
+## Retail
+### Tweak
+- Desaturate Classic Frames textures when using Class Color FrameTexture.
+- Class Color FrameTexture: Also color PetFrame after Player class.
+- Change method of hiding Action Bar Quality Icon to avoid resets where it pops back up.
+## Mists of Pandaria
+- Add Hunter Silence Shot for Interrupt Icon and Castbar Interrupt Color. Thanks to Snackqt @ CurseForge.
+
+
+# BetterBlizzFrames 1.7.5e
+## Retail
+### Tweak
+- Potential fix for Hiding Boss Frames. (This still got kinda messed up in 11.1.7 cuz Blizzard changes and im not sure if this will work, report pls)
+- Minor Dark Mode Color tweaks, most for while Classic Frames is enabled.
+- Add missing spanish spec names to spec detection. Thanks to Dardo7 @ Discord
+- Minor tweaks to OCD setting and its gray lines behind PlayerFrame. They were sticking out slightly. (meant to hide gaps between frametexture and healthbar etc)
+- Changed method of hiding action bar hotkeys and macro names. Hopefully text wont pop back up now, if it does please report it.
+- Player Castbar setting "Simple Castbar" now puts an outline on castbar text to make it easier to read.
+## Classics
+### Bugfix
+- Fix issue with castbar texture layering after introducing texture settings.
+
+
+# BetterBlizzFrames 1.7.5d
+## Retail
+### Bugfix
+- Christmas lights on classic frames healthbar has been cancelled. Second attempt. (I forgot how much Blizzard hates touching this and it needs to only be done once to avoid it going crazy.)
+
+# BetterBlizzFrames 1.7.5c
+## Retail
+### Bugfix
+- Fix Classic Frames setting having issues with texture and color after recent change
+
+# BetterBlizzFrames 1.7.5b
+## Retail
+### Tweak
+- Revert decision for Format Numbers to show extra decimal. It is now instead an optional setting that is off by default. Right click Format Numbers to enable extra decimal.
+
+# BetterBlizzFrames 1.7.5
+## All versions
+### New
+- Add new Spec Icon portrait settings under All Frames. On Retail it is its own setting. On Classics this is a right-click option on Class Portraits to use spec icons instead. On Classic and MoP this requires Details and will not always have spec info available.
+- Change castbar texture (Font & Texture) (on Retail it's only while Classic Frames is enabled for now. If you want this for modern castbars too let your voice be heard)
+- Change name background texture (Font & Texture) (on Retail only while Classic Frames is enabled) This was possible before but only if also changing healthbar texture.
+### Tweak
+- Added some custom code for Buff & Debuff filtering that allows you to for example anchor a WeakAura to a specific aura on TargetFrame/FocusFrame. I don't intend to do much with this but now it is for Classics too. If this sounds interesting to you and you want to know how it works just ask me about it on the Discord.
+- Classics: Fixed party castbar finished cast flash not being properly sized
+### Bugfix
+- Fix LossOfControl frame moving when scaling it anything other than 1. If this fix issues for you please let me know.
+## Retail
+### New
+- Added Mes Profile (www.twitch.tv/notmes). Thank you <3
+- Classic Castbars: Modern Spark setting.
+### Tweak
+- Tweak darkmode colors a little bit for when Classic Frames is enabled, especially for windwalker chi.
+- Tweak darkmode player auras buff border size a little for smaller icon sizes, thicker border on smaller sizes for a more visually appealing border.
+- If hide actionbar hotkey and actionbar hotkey color is both set the color portion will cancel.
+- Tweak GladTracker a bit.
+- Format Numbers now show three decimals for billions and two decimals for millions.
+### Bugfix
+- Fix Classic Frames healthbar texture on Player Pet being halved in some specific cases.
+- Fix Classic Frames setting reskinning Pet healthbar unintentionally (should only be on if user picks healthbar texture change in Font & Texture section)
+
+
+
+
+# BetterBlizzFrames 1.7.4f
+## All classics
+### Bugfix
+- Fix Elite Frame texture setting not working unless Bigger Healthbars was enabled.
+
+
+# BetterBlizzFrames 1.7.4e
+## Retail
+### Tweak
+- Kalvish profile update
+- Made some tweaks for ppl who have "Attach castbar to PlayerFrame" setting enabled. You may have to re-adjust your settings due to this.
+### Bugfix
+- Fix interrupt cast color coloring un-interruptible casts unintentionally.
+- Fix the new glad tracker not being enabled on login.
+
+
+# BetterBlizzFrames 1.7.4d
+## Retail
+### New
+- Gladiator/Legend/Strategist win progress tracker on Honor panel. Enabled by default. Only shows if you have 1 win or more.
+### Tweak
+- Aeghis profile update
+### Bugfix
+- Fix some Elite Frame Texture modes not hiding PlayerLevel with Classic Frames enabled where it makes sense.
+## Mists of Pandaria
+### Tweak
+- Raise DK's RuneFrame FrameStrata so runes don't appear behind FrameTexture.
+
+# BetterBlizzFrames 1.7.4c
+## All versions
+### Bugfix
+- Fix healthbar texture change not applying to PlayerFrame name background on login/reload for Classic Frames.
+
+# BetterBlizzFrames 1.7.4b
+## Classics
+### New
+- Added "Elite Texture" setting for PlayerFrame. Right click setting to change between 3 options.
+### Bugfix
+- Fix Hide Player Resource setting causing lua errors on Paladin.
+
+# BetterBlizzFrames 1.7.4
+## Retail
+### Tweak
+- Castbar glows on Player Castbar looked wonky when reducing the castbar width. Should be fixed.
+- Added some custom code for Buff & Debuff filtering that allows you to for example anchor a WeakAura to a specific aura on TargetFrame/FocusFrame. I don't intend to do much with this, if you want to know how it works just ask me about it on the Discord.
+## Mists of Pandaria
+### New
+- Aeghis profile for MoP
+- Added color options to Font settings in Fonts & Textures section like on Retail.
+- New setting to hide Druids Eclipse Bar Text in Misc section.
+### Bugfix
+- Fix some issues with background color on minus frames (small unitframes)
+
+
+# BetterBlizzFrames 1.7.3e
+## Retail
+### Bugfix
+- Fix some scaling issues with aura glows (Important, Pandemic, etc).
+## Mists of Pandaria
+### Tweak
+- Living Bomb now shows Pandemic Glow when its below 3 seconds left instead of the default 5 (explode refresh window)
+## All versions
+### Tweak
+- Buffs & Debuffs: Unselecting Filtered Buffs Icon now also deletes its saved position. Use that should the icon ever accidentally get saved in some hidden location.
+
+
+
+# BetterBlizzFrames 1.7.3d
+## Retail
+### Tweak
+- Fix some lines from OCD Tweaks setting meant to fill gaps on PlayerFrame gaps still showing when using MiniFrame setting for PlayerFrame.
+## MoP/Cata/Wrath
+### Tweak
+- Settings with checks for Dragonflight UI now only sends a chat message it might conflict with DFUI but does not turn the setting off unless specificaly mentioned.
+
+# BetterBlizzFrames 1.7.3c
+## MoP/Cata/Wrath
+### Tweak
+- Added check for Dragonflight UI before enabling OCD Tweaks and Class Color Frames to avoid conflicts. Will be turned off if DF UI is enabled (Use the settings in DF UI instead for those).
+- SettingsPanel now resets to its default location between reloads as intended. If you really dont want to be able to drag-and-move this at all then type /run BetterBlizzFramesDB.dontMoveSettingsPanel = true
+
+# BetterBlizzFrames 1.7.3b
+## Retail
+### Bugfix
+- Fix "Color FrameTexture" setting not working properly for Target ToT and Focus ToT
+## Cata/Wrath
+### Bugfix
+- Fix new Format Numbers lua file missing reference in the toc file on Wrath/Cata causing lua errors
+
+# BetterBlizzFrames 1.7.3
+## Retail
+### New
+- Hide ActionBar1 (Misc) (Edit Mode wont let you)
+### Bugfix
+- Fix font settings for default PartyFrames' health & mana text not working.
+- Fix issue with healthbar color + changed texture
+## Mists of Pandaria
+### New
+- Format Numbers setting (under "All Frames" in /bbf). 
+### Tweak
+- Minor tweaks to Important Glow texture positions and some minor bugfixes with its size depending on settings.
+## All versions
+### Bugfix
+- Fix some minor issues with castbar "ToT Offset" settings impacting both default castbar movement and with Aura Filtering enabled.
+
+
+# BetterBlizzFrames 1.7.2d
+## Retail
+### Bugfix
+- Fix errror in Format Numbers due to nil unit on dead check.
+
+# BetterBlizzFrames 1.7.2b-c
+## Retail
+### Tweak
+- Add missing AlternateFrameTexture (Shadow Priest etc) to "Color Frame Texture" setting.
+### Bugfix
+- Fix "Simple Castbar" setting for Player Castbar sometimes displaying text shadow texture again.
+- Fix Format Numbers displaying numbers when unit was dead.
+- Fix overlapping alternate manabar text with always show manabar for rdruid setting.
+## Mists of Pandaria
+### New
+- Added Icon XY sliders for Player Castbar Icon
+### Tweak
+- Player Castbar Icon moved down 2 pixels to align properly with the castbar.
+### Bugfix
+- Bigger Healthbars: Fix TargetFrame/FocusFrame threat glow texture sometimes resetting to the smaller healthbar size texture.
+- Fix "Color Level Text" not being displayed and toggled properly.
+
+
+# BetterBlizzFrames 1.7.2
+## Retail
+### New
+- New Player Castbar setting: "Simple Castbar". Hides the text background on the player castbar and moves the text up inside of the castbar.
+### Bugfix
+- Fix "Fade MicroMenu" setting fully hiding BagsBar. Also tweaked how it fades things a bit.
+## Mists of Pandaria
+### Tweak
+- Dark Mode: Added Priest's Shadow Orbs background texture to dark mode.
+- LossOfControl: Add missing some missing interrupts and fixed some durations. Thank you to Moonfirebeam & Jumpsuitpally for reporting <3
+- Player CastingBar has had it's position moved up 9 pixels to match Blizzard's location for it. You might have to move it back down 9 pixels to fit your UI. Apologies for the inconvenience. It has also recieved a very minor tweak to its border size.
+### Bugfix
+- Buffs & Debuffs: Important Glow & Purge Glow had their positioned tweaked and fixed a bit.
+- Fix "Hide Arena Frames" setting to not cause lua errors due to Blizzard changes in 11.1.7 (thats also active on classics)
+- Fix background color on unitframes not being positioned correctly while using Bigger Healthbars and targeting a "minus" mob.
+
+
+
+# BetterBlizzFrames 1.7.1l
+## Retail
+### Bugfix
+- Fix some bugs with Cooldown Manager settings. Properly centers the "Tracked Buffs" bar and no longer shows some icons that should be hidden (like non-active buffs). Vertical layout however is still not properly supported.
+- Fix "UnitFrame Background Color" setting not being positioned correctly on the FocusFrame.
+## Cata/MoP
+### Tweak
+- Remove custom Dampening Display since Blizzard added it by default.
+## All versions
+### Tweak
+- Dark Mode: Now colors Bartender4 oldschool ActionBar art as well.
+### Bugfix
+- Fix Queue Timer playing the alert sound for 5sec left when already accepted into the Dungeon.
+- Classics: Fix an issue with font replacement causing it to not properly change font on everything it should.
+
+
+# BetterBlizzFrames 1.7.1k
+## Cata/MoP
+### Bugfix
+- Fix nil error due to a copypaste error between BetterBlizzCC & BetterBlizzFrames
+
+# BetterBlizzFrames 1.7.1j
+## All versions
+### Tweak
+- Dominos support for ActionBar Font Change & Hiding Macro/Hotkey Text.
+- Classics: Added instructions on how to import custom fonts and textures to that section.
+## Cata/MoP
+### Tweak
+- Blizzard added LossOfControl by default for MoP. The BBF version still has a few improvements but also limited to PvP only spells for the most part. So if the setting is enabled it will show the BBF version everywhere except for instanced PvE content.
+### Bugfix
+- Fix healthbar texture change not changing the name background texture of FocusFrame.
+## Retail
+### New
+- Added Clasic Frames specific right-click subsetting for "Change UnitFrame HealthBar Texture" that also changes the name background texture.
+
+# BetterBlizzFrames 1.7.1i
+## Retail
+### New
+- Hide ActionBar Crafting Quality Icon setting.
+- Dark Mode: Elite Texture, for Target/Focus Elite Texture. 
+## Mists of Pandaria
+### Tweak
+- Added missing Eclipse Bar and Shadow Orbs to "Hide Player Resource" setting.
+
 # BetterBlizzFrames 1.7.1h
 ## Retail
 ### Bugfix

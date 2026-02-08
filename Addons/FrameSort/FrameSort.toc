@@ -1,4 +1,4 @@
-## Interface: 30300
+## Interface: 120001, 120000, 110207, 50503, 40402, 38000, 30405, 30300, 20505, 11508
 ## Title: FrameSort
 ## Notes: Places the player frame at the top/middle/bottom (configurable) of party/raid frames.
 ## Notes-esES: Coloca el marco del jugador en la parte superior/media/inferior (configurable) de los marcos de grupo/raid.
@@ -10,10 +10,10 @@
 ## Notes-zhCN: 将玩家框架放置在团队/团队框架的顶部/中间/底部（可配置）。
 ## Notes-zhTW: 將玩家框架放置在團隊/團隊框架的頂部/中間/底部（可配置）。
 ## Author: Verz
-## Version: 6.17.3
+## Version: 7.13.0
 ## SavedVariables: FrameSortDB
 ## IconTexture: Interface\AddOns\FrameSort\Media\icon.blp
-## Dependencies: CompactRaidFrame
-## OptionalDeps: Cell, ElvUI, Grid2, Gladius, GladiusEx, ShadowedUnitFrames
+## OptionalDeps: BattleGroundEnemies, Cell, ElvUI, Gladdy, Gladius, GladiusEx, Grid2, ShadowedUnitFrames
+## X-Curse-Project-ID: 709847
 
-Load-Classic.xml
+Load.xml

@@ -1,0 +1,12 @@
+<!--
+    Copyright (c) 2023 Krowi
+    Licensed under the terms of the LICENSE file in this repository.
+ -->
+
+<Ui>
+	<Script file='LibStub.lua'/>
+    <Script file='CallbackHandler.lua' />
+    <Script file='LibDataBroker.lua' />
+    
+    <Script file='AceLocale-3.0.lua' />
+</Ui>

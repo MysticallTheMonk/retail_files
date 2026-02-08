@@ -1,0 +1,7 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Script file="AddonMixin.lua"/>
+  <Script file="ModuleMixin.lua"/>
+  <Script file="HookRegistryMixin.lua"/>
+  <Script file="EventRegistryMixin.lua"/>
+  <Script file="ColorMixin.lua"/>
+</Ui>

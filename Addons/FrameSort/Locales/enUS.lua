@@ -1,12 +1,13 @@
 local _, addon = ...
-local L = addon.Locale
+local L = addon.Locale.enUS
 
 -- # Main Options screen #
 -- used in FrameSort - 1.2.3 version header, %s is the version number
 L["FrameSort - %s"] = nil
-L["There are some issuse that may prevent FrameSort from working correctly."] = nil
+L["There are some issues that may prevent FrameSort from working correctly."] = nil
 L["Please go to the Health Check panel to view more details."] = nil
-L["Role/spec"] = nil
+L["Role"] = nil
+L["Spec"] = nil
 L["Group"] = nil
 L["Alphabetical"] = nil
 L["Arena - 2v2"] = nil
@@ -47,7 +48,7 @@ It replaces the internal Blizzard sorting method with our own.
 This is the same as the 'SetFlowSortFunction' script but with FrameSort configuration.
 \n
 Pros:
- - More stable/reliable as it leverages Blizzard's internal sorting methods."] = nil
+ - More stable/reliable as it leverages Blizzard's internal sorting methods.
 \n
 Cons:
  - Only sorts Blizzard party frames, nothing else.
@@ -59,12 +60,28 @@ L["Reload"] = nil
 
 -- # Ordering screen #
 L["Ordering"] = nil
-L["Specify the ordering you wish to use when sorting by role."] = nil
+L["Specify the ordering you wish to use when sorting by spec."] = nil
 L["Tanks"] = nil
 L["Healers"] = nil
 L["Casters"] = nil
 L["Hunters"] = nil
 L["Melee"] = nil
+
+-- # Spec Priority screen # --
+L["Spec Priority"] = nil
+L["Spec Type"] = nil
+L["Choose a spec type, then drag and drop to control priority."] = nil
+L["Tank"] = nil
+L["Healer"] = nil
+L["Caster"] = nil
+L["Hunter"] = nil
+L["Melee"] = nil
+L["Reset this type"] = nil
+L["Spec query note"] = [[
+Please note spec information is queried from the server which takes 1-2 seconds per player.
+\n
+This means it may take a short while before we can sort accurately.
+]]
 
 -- # Auto Leader screen #
 L["Auto Leader"] = nil
@@ -98,10 +115,12 @@ L["Target enemy frame 3's pet"] = nil
 L["Focus enemy frame 1"] = nil
 L["Focus enemy frame 2"] = nil
 L["Focus enemy frame 3"] = nil
-L["Cycle to the next frame"] = nil
-L["Cycle to the previous frame"] = nil
 L["Target the next frame"] = nil
 L["Target the previous frame"] = nil
+L["Cycle to the next frame"] = nil
+L["Cycle to the previous frame"] = nil
+L["Cycle to the next dps"] = nil
+L["Cycle to the previous dps"] = nil
 
 -- # Keybindings screen #
 L["Keybindings"] = nil
@@ -148,7 +167,16 @@ L["Macro_Example3"] = [[#FrameSort EnemyHealer, EnemyHealer
 
 -- %d is the number for example 1/2/3
 L["Example %d"] = nil
-L["Supported variables:"] = nil
+L["Discord Bot Blurb"] = [[
+Need help creating a macro?
+\n
+Head over to the FrameSort discord server and use our AI powered macro bot!
+\n
+Simply '@Macro Bot' with your question in the #macro-bot-channel.
+]]
+
+-- # Macro Variables screen # --
+L["Macro Variables"] = nil
 L["The first DPS that's not you."] = nil
 L["Add a number to choose the Nth target, e.g., DPS2 selects the 2nd DPS."] = nil
 L["Variables are case-insensitive so 'fRaMe1', 'Dps', 'enemyhealer', etc., will all work."] = nil
@@ -173,37 +201,27 @@ L["Addons"] = nil
 L["Addons_Supported_Description"] = [[
 FrameSort supports the following:
 \n
-Blizzard
- - Party: yes
- - Raid: yes
- - Arena: yes
+  - Blizzard: party, raid, arena.
 \n
-ElvUI
- - Party: yes
- - Raid: no
- - Arena: no
+  - ElvUI: party.
 \n
-sArena
- - Arena: yes
+  - sArena: arena.
 \n
-Gladius
- - Arena: yes
- - Bicmex version: yes
+  - Gladius: arena.
 \n
-GladiusEx
- - Party: yes
- - Arena: yes
+  - GladiusEx: party, arena.
 \n
-Cell
- - Party: yes
- - Raid: yes, only when using combined groups.
+  - Cell: party, raid (only when using combined groups).
 \n
-Shadowed Unit Frames
- - Party: yes
- - Arena: yes
+  - Shadowed Unit Frames: party, arena.
 \n
-Grid2
- - Party/raid: yes
+  - Grid2: party, raid.
+\n
+  - BattleGroundEnemies: party, arena.
+\n
+  - Gladdy: arena.
+\n
+  - Arena Core: 0.9.1.7+.
 \n
 ]]
 
@@ -216,10 +234,10 @@ L["Retrieved an ordered array of arena unit tokens."] = nil
 L["Register a callback function to run after FrameSort sorts frames."] = nil
 L["Retrieve an ordered array of party frames."] = nil
 L["Change a FrameSort setting."] = nil
+L["Get the frame number of a unit."] = nil
 L["View a full listing of all API methods on GitHub."] = nil
 
--- # Help screen #
-L["Help"] = nil
+-- # Discord screen #
 L["Discord"] = nil
 L["Need help with something?"] = nil
 L["Talk directly with the developer on Discord."] = nil
@@ -249,5 +267,40 @@ L["Traditional mode can't apply spacing, consider removing spacing or using the 
 L["Blizzard sorting functions not tampered with"] = nil
 L['"%s" may cause conflicts, consider disabling it'] = nil
 L["No conflicting addons"] = nil
-L["Main tank and assist setting disabled"] = nil
-L["Please disable the 'Display Main Tank and Assist' option in Options -> Interface -> Raid Frames"] = nil
+
+-- # Log Screen -- #
+L["Log"] = nil
+L["FrameSort log to help with diagnosing issues."] = nil
+L["Copy Log"] = nil
+
+-- # Notifications -- #
+L["Can't do that during combat."] = nil
+
+-- # Nameplates screen #
+L["Nameplates"] = "Nameplates"
+L["Friendly Nameplates"] = "Friendly Nameplates"
+L["Enemy Nameplates"] = "Enemy Nameplates"
+L["NameplatesBlurb"] = [[
+Replace Blizzard and Platynator nameplate text with FrameSort variables.
+\n
+Supported variables:
+  - $framenumber
+  - $name
+  - $unit
+  - $spec
+\n
+Examples:
+  - Frame - $framenumber
+  - $framenumber - $spec
+  - $name - $spec
+]]
+
+-- # Miscellaneous screen #
+L["Miscellaneous"] = nil
+L["Various tweaks you can apply."] = nil
+L["Player top of role"] = nil
+L["Places you at the top of your corresponding role (healer/tank/dps)."] = nil
+
+-- # Language screen #
+L["Language"] = nil
+L["Specify the language we use."] = nil

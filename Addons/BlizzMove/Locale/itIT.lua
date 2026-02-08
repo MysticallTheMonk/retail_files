@@ -25,6 +25,8 @@ L["Clear"] = "Clear"
 --[[Translation missing --]]
 L["Clear the search filter."] = "Clear the search filter."
 --[[Translation missing --]]
+L["Click to copy PayPal link."] = "Click to copy PayPal link."
+--[[Translation missing --]]
 L["Copy the text from the popup window, and report it to the addon author."] = "Copy the text from the popup window, and report it to the addon author."
 --[[Translation missing --]]
 L["Copy the text from this popup window, and report it to the addon author."] = "Copy the text from this popup window, and report it to the addon author."
@@ -46,6 +48,8 @@ L["Detached windows can be moved and resized independently from the parent."] = 
 L["Do not remember"] = "Do not remember"
 --[[Translation missing --]]
 L["Enable the Blizzmove_Debug plugin, to find more debugging information."] = "Enable the Blizzmove_Debug plugin, to find more debugging information."
+--[[Translation missing --]]
+L["Failed to make frame movable:"] = "Failed to make frame movable:"
 --[[Translation missing --]]
 L["Filter"] = "Filter"
 --[[Translation missing --]]
@@ -70,6 +74,8 @@ L["How should frame positions be remembered?"] = "How should frame positions be 
 L["How should frame scales be remembered?"] = "How should frame scales be remembered?"
 --[[Translation missing --]]
 L["If enabled BlizzMove requires to hold SHIFT to move frames."] = "If enabled BlizzMove requires to hold SHIFT to move frames."
+--[[Translation missing --]]
+L["If you like this addon and want to support its development, consider donating:"] = "If you like this addon and want to support its development, consider donating:"
 --[[Translation missing --]]
 L["In Session"] = "In Session"
 --[[Translation missing --]]

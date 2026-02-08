@@ -1,0 +1,12 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+
+    <Script file="LibPleebug-1.lua"/>
+    <!-- Optional: CPU profiling (requires AddOnProfiler enabled) -->
+    <Script file="LibPleebug-1_CPU.lua"/>
+    <Script file="LibPleebug-1_Diagram.lua"/>
+    <Script file="LibPleebug-1_Window.lua"/>
+
+
+
+
+</Ui>

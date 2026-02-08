@@ -1,0 +1,36 @@
+## Interface: 120000
+## Version: 4.2.2
+## Title: RaidFrameSettings
+## Author: Slothpala
+## AddonCompartmentFunc: RaidFrameSettings_OpenSettings
+## IconTexture: Interface\AddOns\RaidFrameSettings\Data\Textures\Icon.tga
+## SavedVariables: RaidFrameSettingsDB
+## OptionalDeps: Ace3, LibSharedMedia-3.0
+## X-Curse-Project-ID: 688930
+
+embeds.xml
+
+Locales\locales.xml
+
+SharedMedia\RegisterMedia.lua
+
+Init.lua
+Framework\framework.xml
+InitAddon.lua
+
+UnitCache.lua
+CallbackRegistry.lua
+FrameEnvironment.lua
+
+DB.lua
+
+modules.xml
+
+
+
+Utils\RosterIterator.lua
+Utils\GroupType.lua
+Utils\ProfileLoader.lua
+
+
+RaidFrameSettings.lua

@@ -1,8 +1,45 @@
 # TomTom
 
-## [v4.0.11-release](https://github.com/jnwhiteh/TomTom/tree/v4.0.11-release) (2025-06-19)
-[Full Changelog](https://github.com/jnwhiteh/TomTom/commits/v4.0.11-release) [Previous Releases](https://github.com/jnwhiteh/TomTom/releases)
+## [v4.2.15-release](https://github.com/jnwhiteh/TomTom/tree/v4.2.15-release) (2026-01-25)
+[Full Changelog](https://github.com/jnwhiteh/TomTom/commits/v4.2.15-release) [Previous Releases](https://github.com/jnwhiteh/TomTom/releases)
 
+- Add split configuration for addon compartment button  
+- Remove AceEvent so TomTom can't get blamed  
+- Update TOC for 12.0  
+- Fix opening options with /tomtom  
+- Add control-enter to paste window for easy submit  
+- Update TOC for TBC Anniversary  
+- Update TOC to work for retail + beta + PTR  
+- Fix duplicate localization  
+- Update HBD again, maybe fix issues  
+- Update HBD embed and TOC for 12.0.1  
+- More efficiently compute the distance and angle  
+    If the minimap waypoint isn't shown, we should still function  
+    and not invoke all of those computations in HBD.  
+- Update frFR Localization  
+- Update TOC  
+- Update HBD to work properly with some Midnight zones  
+- Add a minimap button for /ttpaste  
+    Can be configured in the options window or /ttpaste minimap  
+- Added text color customization  
+- Fix missing label and update localization  
+- Add new /ttpaste window  
+- Update localization  
+- Fix an issue with the purple ring theme  
+- Update HereBeDragons  
+- Add support for minimap and worldmap themes  
+- Add support for modern and modern-top-down themes  
+- Move some small util functions  
+- Add new modern theme, as default  
+- Add credits to addon options panel  
+- Update TomTom Logo and add license for new assets  
+- Update TOC for 11.2.5  
+- Initial support for Midnight  
+- Update embedded libraries  
+- Fix remove waypoint  
+- Re-implement dropdowns using MenuUtil  
+- Update TOC for 11.2  
+- Update TOC for Mists  
 - Fix an issue with release  
 - Update for 11.0.7  
 - Update TOC for 11.0.5  
@@ -656,45 +693,3 @@
     * Added a "Send Waypoint" option, needs testing  
     * Fixed an issue with the waypoint arrow when using minimap rotation  
     * Added the waypoint removal (all, zone) options to the crazy arrow right-click  
-- * Added alpha for border  
-- * Fix a bug where the "Enable" checkbox wasn't working for minimap or worldmap waypoints  
-- * Added a right-click option to clear the current waypoint on the arrow  
-- * Fixing an issue where crazy arrow would appear even when disabled  
-    * Updated externals to fix config issue  
-- * Fixed waypoints not automatically clearing when that option is set  
-- Removed Dongle from scm control  
-- * Added version information to TomTom  
-- * Added version number to .toc  
-- * Make sure to return the uid from AddZWaypoints  
-- * Fixed the parenting of the options panel  
-- * Added property so zips are generated properly  
-- * Removed Dongle from .toc  
-    * Updated externals  
-    * Updated localization file  
-- Fixed an issue  
-- Fixed the parsing of the description part of the slash comman  
-- * Fixed the loading of arrows from storage, and enabled right-click to set as crazy arrow  
-- Lots of changes, including a working slash command  
-- Major update to TomTom, everything except CrazyTaxi queuing "works"  
-- * Made changes to allow for better operations with 2.4  
-- Moving over to AceDB and removing dependecy on Dongle  
-    * Reconfigured options screens  
-- Removed override of GetBuildInfo.  
-- * Fixed the size of the tooltip.. thanks Kergoth  
-- * Fixed a bug that could occur when zoning into instances  
-- * Merging all changes from 2.4 branch  
-    * Configuration dialog should work on 2.3 and 2.4  
-- * Updating externals  
-- * Re-generated the localiztion file  
-- I changed things  
-- * Added an option to clear waypoints (set the distance > 0)  
-    * Altered the callback system to allow for arbitrary distance callbacks  
-- * Re-working the internals of TomTom yet again.  Tooltips for minimap nodes should work  
-- * Uhh.. return  
-- * Fixed the error upon login  
-    * Added a middle color, which is used for proper shading between good and bad  
-    * Fixed the coloring of the crazy arrow so it properly turns green when you're "Arrived"  
-- * Updated Astrolabe externals  
-- * Reworking of the Waypoints API... callbacks are broken as a result  
-- * Enable a /way command, fix a bunch of things, control-right click works  
-- * Remove inline groups, which hopefully will motivate me to not let this look stupid  

@@ -1,0 +1,9 @@
+<!--
+    Copyright (c) 2023 Krowi
+    Licensed under the terms of the LICENSE file in this repository.
+ -->
+
+<Ui>
+	<Script file='Krowi_PopupDialog.lua'/>
+    <Include file='Localization\Files.xml' />
+</Ui>

@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 -- Premade Groups Filter
 -------------------------------------------------------------------------------
--- Copyright (C) 2024 Bernhard Saumweber
+-- Copyright (C) 2026 Bernhard Saumweber
 --
 -- This program is free software; you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -44,6 +44,14 @@ local PGFSettingsTable = {
         title = L["settings.coloredGroupTexts.title"],
         tooltip = L["settings.coloredGroupTexts.tooltip"],
         visible = true,
+    },
+    {
+        key = "compactListEntries",
+        type = "checkbox",
+        title = L["settings.compactListEntries.title"],
+        tooltip = L["settings.compactListEntries.tooltip"],
+        visible = PGF.IsRetail(),
+        callback = function(value) PGF.CompactListEntries_UpdateListScrollBox() end,
     },
     {
         type = "header",

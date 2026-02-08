@@ -2,15 +2,13 @@ local ADDON_NAME, ADDON = ...
 
 local HANDLE_NAME = ADDON_NAME..'-follow-target'
 
-local active = false
-
 local function stopWatchingTarget()
     ADDON.Events:UnregisterCallback("OnMountUpTarget", HANDLE_NAME)
     ADDON.Events:UnregisterCallback("CastMountTarget", HANDLE_NAME)
 end
 
 local function toggleWatcher()
-    if active then
+    if ADDON.settings.ui.syncTarget then
         ADDON.Events:RegisterCallback("OnMountUpTarget", function(_, mountId)
             ADDON.Api:SetSelected(mountId)
         end, HANDLE_NAME)
@@ -28,7 +26,7 @@ local function toggleWatcher()
 end
 
 local function UpdateTexture(button)
-    button.texture:SetDesaturated(not active)
+    button.texture:SetDesaturated(not ADDON.settings.ui.syncTarget)
 end
 
 local function BuildToggle()
@@ -69,7 +67,7 @@ local function BuildToggle()
     end
 
     button:HookScript("OnClick", function()
-        active = not active
+        ADDON.settings.ui.syncTarget = not ADDON.settings.ui.syncTarget
         UpdateTexture(button)
         toggleWatcher()
     end)
@@ -83,6 +81,8 @@ local function BuildToggle()
     button:HookScript("OnLeave", function()
         GameTooltip:Hide()
     end)
+
+    button:SetAttribute("MJE_ToolbarIndex", "SyncTarget")
 
     return button
 end

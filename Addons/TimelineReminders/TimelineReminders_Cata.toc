@@ -1,0 +1,50 @@
+## Interface: 40400
+## Version: 1.60
+## Title: Timeline Reminders
+## Author: Naemesis
+## IconTexture: Interface\AddOns\TimelineReminders\Media\Textures\logo_secondary.blp
+## X-Flavor: Cata
+## SavedVariables: LiquidRemindersSaved
+## OptionalDeps: ViragDevTool, MRT, WeakAuras, Liquid, Pescorus
+
+embeds.xml
+LRFont.xml
+
+Compatibility.lua
+GlobalSettings.lua
+Locales.lua
+Modernize.lua
+Utility.lua
+TextFormatter.lua
+TimelineData.lua
+
+# Timeline data
+TimelineData/tier-12.xml
+
+# Interface
+Interface/Widgets/Button.lua
+Interface/Widgets/Slider.lua
+Interface/Widgets/CheckButton.lua
+Interface/Widgets/Window.lua
+Interface/Widgets/Dropdown.lua
+Interface/Widgets/ProfileDropdown.lua
+Interface/Widgets/EditBox.lua
+Interface/Widgets/SpellIcon.lua
+Interface/Widgets/ColorPicker.lua
+
+Interface/ConfirmWindow.lua
+Interface/ProfileWindow.lua
+Interface/Timeline.lua
+Interface/ReminderConfig.lua
+Interface/Settings.lua
+Interface/ImportExport.lua
+Interface/Interface.lua
+
+# Display
+Display/NoteInterpreter.lua
+Display/Anchor.lua
+Display/TextReminder.lua
+Display/SpellReminder.lua
+Display/Display.lua
+
+TimelineReminders.lua

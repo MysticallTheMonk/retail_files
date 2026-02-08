@@ -1,0 +1,200 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <Frame name="LibEQOL5024a08_SettingsListSectionHintTemplate" mixin="SettingsListSectionHeaderMixin" virtual="true">
+        <Size x="30" y="29"/>
+        <Layers>
+        <Layer level="OVERLAY">
+            <FontString parentKey="Title" inherits="GameFontHighlightSmall" justifyH="LEFT" justifyV="TOP">
+            <Anchors>
+                <Anchor point="TOPLEFT" x="35" y="0"/>
+            </Anchors>
+            </FontString>
+        </Layer>
+        </Layers>
+        <Frames>
+            <Frame parentKey="NewFeature" inherits="NewFeatureLabelTemplate" frameStrata="HIGH" scale=".8" frameLevel="100" hidden="true">
+                <Size x="1" y="1"/>
+                <Anchors>
+                <Anchor point="BOTTOMRIGHT" x="16" y="-10" relativeKey="$parent.Title" relativePoint="LEFT"/>
+                </Anchors>
+            </Frame>
+        </Frames>
+        <Scripts>
+        <OnLoad method="OnLoad"/>
+        </Scripts>
+    </Frame>
+
+     <Button name="LibEQOL5024a08_MultiDropdownTemplate"
+        virtual="true"
+        inherits="SettingsDropdownControlTemplate"
+        mixin="LibEQOL_MultiDropdownMixin">
+        <Layers>
+            <Layer level="ARTWORK">
+                <!-- Kleiner Summary-Text unterhalb vom Label -->
+                <FontString parentKey="Summary" inherits="GameFontHighlightSmall" justifyH="LEFT" maxLines="1">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Text" relativePoint="BOTTOMLEFT" x="0" y="-2"/>
+                        <Anchor point="RIGHT" x="-4" y="0"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Button>
+
+	<Frame name="LibEQOL5024a08_ColorSwatchTemplate" mixin="ColorSwatchMixin" propagateMouseInput="Both" virtual="true">
+		<Size x="16" y="16"/>
+		<Layers>
+			<Layer level="BACKGROUND" textureSubLevel="-3">
+				<Texture name="$parentSwatchBg" parentKey="SwatchBg" texelSnappingBias="0.0" snapToPixelGrid="false">
+					<Size x="14" y="14"/>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+					<Color color="HIGHLIGHT_FONT_COLOR"/>
+				</Texture>
+			</Layer>
+			<Layer level="BACKGROUND" textureSubLevel="-2">
+				<Texture parentKey="InnerBorder" texelSnappingBias="0.0" snapToPixelGrid="false">
+					<Size x="12" y="12"/>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+					<Color color="BLACK_FONT_COLOR"/>
+				</Texture>
+			</Layer>
+			<Layer level="BACKGROUND" textureSubLevel="-1">
+				<Texture parentKey="Color" texelSnappingBias="0.0" snapToPixelGrid="false">
+					<Size x="10" y="10"/>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+					<Color color="HIGHLIGHT_FONT_COLOR"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnShow>
+				PixelUtil.SetSize(self.SwatchBg, 14, 14);
+				PixelUtil.SetSize(self.InnerBorder, 12, 12);
+				PixelUtil.SetSize(self.Color, 10, 10);
+			</OnShow>
+			<OnEnter method="OnEnter"/>
+			<OnLeave method="OnLeave"/>
+		</Scripts>
+	</Frame>
+
+	<Frame name="LibEQOL5024a08_ColorOverrideTemplate" virtual="true">
+		<Size x="300" y="20"/>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString parentKey="Text" inherits="OptionsFontSmall" justifyH="LEFT">
+					<Size x="0" y="10"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0" y="-5"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button parentKey="ColorSwatch" inherits="LibEQOL5024a08_ColorSwatchTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.Text" relativePoint="TOPLEFT" x="192" y="3"/>
+				</Anchors>
+			</Button>
+		</Frames>
+	</Frame>
+
+    <Button name="LibEQOL5024a08_ScrollDropdownTemplate"
+        virtual="true"
+        inherits="SettingsDropdownControlTemplate"
+        mixin="LibEQOL_ScrollDropdownMixin">
+    </Button>
+
+    <Frame name="LibEQOL5024a08_InputControlTemplate"
+        virtual="true"
+        inherits="SettingsListElementTemplate"
+        mixin="LibEQOL_InputControlMixin">
+        <Size x="280" y="26"/>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+        </Scripts>
+    </Frame>
+
+    <Frame name="LibEQOL5024a08_ColorOverridesPanel" mixin="LibEQOL_ColorOverridesMixin" virtual="true">
+		<Size x="200" y="60"/>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString parentKey="Header" inherits="GameFontNormal" justifyH="LEFT">
+					<Size x="0" y="20"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="37" y="0"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame parentKey="List" inherits="VerticalLayoutFrame">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.Header" relativePoint="BOTTOMLEFT" x="15" y="-10"/>
+				</Anchors>
+				<KeyValues>
+					<KeyValue key="spacing" value="10" type="number"/>
+				</KeyValues>
+			</Frame>
+			<Frame parentKey="NewFeature" inherits="NewFeatureLabelTemplate" scale="0.8">
+				<Anchors>
+					<Anchor point="RIGHT" relativeKey="$parent.Header" relativePoint="LEFT" x="16" y="7"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad method="OnLoad"/>
+		</Scripts>
+	</Frame>
+
+	<Frame name="LibEQOL5024a08_ColorOverridesPanelNoHead" 
+		mixin="LibEQOL_ColorOverridesMixin" 
+		inherits="SettingsListElementTemplate"
+		virtual="true"
+	>		
+	<Size x="200" y="25"/>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString parentKey="Header" inherits="GameFontNormal" justifyH="LEFT">
+					<Size x="0" y="0"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="37" y="0"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame parentKey="List" inherits="VerticalLayoutFrame">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.Header" relativePoint="BOTTOMLEFT" x="15" y="0"/>
+				</Anchors>
+				<KeyValues>
+					<KeyValue key="spacing" value="10" type="number"/>
+				</KeyValues>
+			</Frame>
+			<Frame parentKey="NewFeature" inherits="NewFeatureLabelTemplate" scale="0.8">
+				<Anchors>
+					<Anchor point="RIGHT" relativeKey="$parent.Header" relativePoint="LEFT" x="16" y="7"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad method="OnLoad"/>
+		</Scripts>
+	</Frame>
+
+	<Frame name="LibEQOL5024a08_SoundDropdownTemplate"
+		inherits="SettingsListElementTemplate"
+		mixin="LibEQOL_SoundDropdownMixin"
+		virtual="true"
+	>
+	<Size x="200" y="25"/>
+		<Scripts>
+			<OnLoad method="OnLoad"/>
+		</Scripts>
+	</Frame>
+</Ui>

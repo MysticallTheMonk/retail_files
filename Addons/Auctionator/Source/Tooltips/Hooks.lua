@@ -28,6 +28,13 @@ TooltipHandlers["SetBuybackItem"] = function(tip, slotIndex)
   Auctionator.Tooltip.ShowTipWithPricing(tip, itemLink, itemCount)
 end
 
+local GetMerchantItemInfo = GetMerchantItemInfo or function(index)
+  local info = C_MerchantFrame.GetItemInfo(index);
+  if info then
+    return info.name, info.texture, info.price, info.stackCount, info.numAvailable, info.isPurchasable, info.isUsable, info.hasExtendedCost, info.currencyID, info.spellID;
+  end
+end
+
 -- This is called when mousing over an item in a merchant window (Merchant Pane)
 TooltipHandlers["SetMerchantItem"] = function(tip, index)
   local itemLink = GetMerchantItemLink(index)
@@ -58,8 +65,6 @@ if GameTooltip.SetRecipeReagentItem then -- Dragonflight onwards
   -- Reagent in Dragonflight recipe tradeskill page, only for reagents without a
   -- quality rating.
   TooltipHandlers["SetRecipeReagentItem"] = function( tip, recipeID, slotID )
-    local itemLink = C_TradeSkillUI.GetRecipeFixedReagentItemLink(recipeID, slotID)
-
     local recipeLevel
     if ProfessionsFrame and ProfessionsFrame.CraftingPage:IsVisible() then
       recipeLevel = ProfessionsFrame.CraftingPage.SchematicForm:GetCurrentRecipeLevel()
@@ -72,6 +77,8 @@ if GameTooltip.SetRecipeReagentItem then -- Dragonflight onwards
     for _, reagentSlotSchematic in ipairs(schematic.reagentSlotSchematics) do
       if reagentSlotSchematic.dataSlotIndex == slotID then
         local itemCount = reagentSlotSchematic.quantityRequired
+        local _, itemLink = GetItemInfo(reagentSlotSchematic.reagents[1].itemID)
+
         Auctionator.Tooltip.ShowTipWithPricing(tip, itemLink, itemCount)
         break
       end
@@ -301,7 +308,14 @@ end
 -- retain stack size information
 if TooltipDataProcessor and C_TooltipInfo then
   local function ValidateTooltip(tooltip)
-    return tooltip == GameTooltip or tooltip == GameTooltipTooltip or tooltip == ItemRefTooltip or tooltip == GarrisonShipyardMapMissionTooltipTooltip or (not tooltip:IsForbidden() and (tooltip:GetName() or ""):match("^NotGameTooltip"))
+    if tooltip == GameTooltip or tooltip == GameTooltipTooltip or tooltip == ItemRefTooltip or tooltip == GarrisonShipyardMapMissionTooltipTooltip then
+      return true
+    end
+    if tooltip:IsForbidden() then
+      return false
+    end
+    local name = tooltip:GetName() or ""
+    return name:match("^NotGameTooltip") or name:match("^RSMap") -- Standard protocol, or RareScanner
   end
   TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, function(tooltip, data)
     if ValidateTooltip(tooltip) then
@@ -325,7 +339,7 @@ else
 end
 
 EventUtil.ContinueOnAddOnLoaded("Blizzard_ProfessionsTemplates", function()
-  hooksecurefunc(Professions, "SetupQualityReagentTooltip", function(slot, transaction, noInstruction)
+  local function QualityTooltip(slot, transaction, noInstruction)
     local display = {}
     local quantities = Professions.GetQuantitiesAllocated(transaction, slot:GetReagentSlotSchematic())
     for index, reagentDetails in ipairs(slot:GetReagentSlotSchematic().reagents) do
@@ -340,8 +354,21 @@ EventUtil.ContinueOnAddOnLoaded("Blizzard_ProfessionsTemplates", function()
     end)
 
     Auctionator.Tooltip.AddReagentsAuctionTip(GameTooltip, display)
-  end)
-  hooksecurefunc(Professions, "AddCommonOptionalTooltipInfo", function(item)
-    Auctionator.Tooltip.AddReagentsAuctionTip(GameTooltip, {{itemID = item:GetItemID(), itemCount = 1}})
-  end)
+  end
+  local function OptionalTooltip(item)
+  end
+  if Professions.SetupQualityReagentTooltip then
+    hooksecurefunc(Professions, "SetupQualityReagentTooltip", QualityTooltip)
+    hooksecurefunc(Professions, "AddCommonOptionalTooltipInfo", function(item)
+      Auctionator.Tooltip.AddReagentsAuctionTip(GameTooltip, {{itemID = item:GetItemID(), itemCount = 1}})
+    end)
+  elseif Professions.SetupReagentQualityPickerTooltip then
+    hooksecurefunc(Professions, "SetupReagentQualityPickerTooltip", QualityTooltip)
+    hooksecurefunc(Professions, "SetupOptionalReagentTooltip", function(slot, transaction)
+      local reagent = slot.Button:GetReagent()
+      if reagent and reagent.itemID then
+        Auctionator.Tooltip.AddReagentsAuctionTip(GameTooltip, {{itemID = reagent.itemID, itemCount = 1}})
+      end
+    end)
+  end
 end)

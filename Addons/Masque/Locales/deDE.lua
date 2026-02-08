@@ -39,7 +39,7 @@ L["Advanced"] = "Erweitert "
 L["Advanced Settings"] = "Erweiterte Einstellungen "
 L["Cast Animations"] = "Zauber Animationen "
 L["Cooldown Animations"] = "Abklingzeit Animationen"
-L["Enable animations when action button cooldowns finish."] = "Aktivieren Sie Animationen, wenn die Abklingzeit von Aktionstasten endet.  "
+-- L["Enable animations when action button cooldowns finish."] = "Enable animations when action button cooldowns finish."
 L["Enable cast animations on action buttons."] = "Aktivieren Sie Cast-Animationen auf Aktionsschaltflächen. "
 L["Enable interrupt animations on action buttons."] = "Aktivieren Sie Unterbrechungsanimationen auf Aktionsschaltflächen. "
 L["Enable targeting reticles on action buttons."] = "Aktivieren Sie Ziel Makierungen auf Aktionstasten."
@@ -57,19 +57,19 @@ L["This section will allow you to adjust button settings for the default interfa
 -- Blizzard Classic Skin
 ---
 
-L["The default Classic button style."] = "Das klassische Tasten Design. "
+L["The default classic button style."] = "Das klassische Tasten Design. "
 
 ----------------------------------------
 -- Blizzard Modern Skin
 ---
 
-L["The default Dragonflight button style."] = "Das Standart Dragonflight Tasten Design."
+L["The default modern button style."] = "Das Standart Dragonflight Tasten Design."
 
 ----------------------------------------
 -- Classic Enhanced Skin
 ---
 
-L["A modified version of the Classic button style."] = "Eine optisch verbesserte Version der Standardschaltflächen des Spiels."
+L["An enhanced version of the classic button style."] = "Eine optisch verbesserte Version der Standardschaltflächen des Spiels."
 
 ----------------------------------------
 -- Core Settings
@@ -110,13 +110,13 @@ L["This section will allow you to adjust Masque's interface and performance sett
 -- Installed Skins
 ---
 
-L["Author"] = "Autor"
-L["Authors"] = "Autoren"
-L["Compatible"] = "Kompatibel"
-L["Description"] = "Beschreibung"
+-- L["Author"] = "Author"
+-- L["Authors"] = "Authors"
+-- L["Compatible"] = "Compatible"
+-- L["Description"] = "Description"
 L["Discord"] = "Discord"
-L["Installed Skins"] = "Installierte Optiken"
-L["No description available."] = "Keine Beschreibung verfügbar."
+-- L["Installed Skins"] = "Installed Skins"
+-- L["No description available."] = "No description available."
 L["Status"] = "Status"
 L["The status of this skin is unknown."] = "Der Status dieser Optik ist unbekannt."
 L["This section provides information on any skins you have installed."] = "In diesem Abschnitt finden Sie Informationen zu den von Ihnen installierten Designs."
@@ -135,12 +135,14 @@ L["Add-On Compartment"] = "Addon Abteil  "
 L["Alternate Sorting"] = "Alternative Sortierung "
 L["Causes the skins included with Masque to be listed above third-party skins."] = "Bewirkt, dass die in Masque enthaltenen Skins vor den Skins von Drittanbietern aufgeführt werden."
 L["Click to reload the interface."] = "Klicken, um die Benutzeroberfläche neu zu laden."
+-- L["Increases the font size of the text on Ace3 profile panels."] = "Increases the font size of the text on Ace3 profile panels."
 L["Interface"] = "Interface"
 L["Interface Settings"] = "Interfaceeinstellungen"
 L["Load the skin information panel."] = "Lade das Design Informations Fenster."
 L["Menu Icon"] = "Menü-Symbol"
 L["Minimap"] = "Minikarte"
 L["None"] = "Keine "
+-- L["Profile Panel Font Fix"] = "Profile Panel Font Fix"
 L["Reload Interface"] = "Benutzeroberfläche neu laden."
 L["Requires an interface reload."] = "Benötigt ein Neuladen des Benutzeroberfläche"
 L["Select where Masque's menu icon is displayed."] = "Auswahl wo das Menüsymbol von Masque angezeigt wird. "
@@ -160,13 +162,13 @@ L["Unavailable in combat."] = "Nicht verfügbar im Kampf."
 -- Modern Enhanced Skin
 ---
 
-L["An enhanced version of the Dragonflight button style."] = "Eine verbesserte Version des Dragonflight Button Styles. "
+L["An enhanced version of the modern button style."] = "Eine verbesserte Version des Dragonflight Button Styles. "
 
 ----------------------------------------
 -- Profile Settings
 ---
 
-L["Profile Settings"] = "Profileinstellungen."
+-- L["Profile Settings"] = "Profile Settings"
 
 ----------------------------------------
 -- Skin Settings
@@ -176,9 +178,9 @@ L["Adjust the scale of this group's skin."] = "Einstellung der skalierung des Gr
 L["Backdrop"] = "Hintergrund Einstellungen"
 L["Checked"] = "Ausgewählt"
 L["Color"] = "Farbe"
-L["Colors"] = "Farben"
+-- L["Colors"] = "Colors"
 L["Cooldown"] = "Abklingzeit"
-L["Disable"] = "Deaktivieren"
+-- L["Disable"] = "Disable"
 L["Disable the skinning of this group."] = "Deaktiviert die Aussehensveränderung dieser Gruppe."
 L["Enable"] = "Aktivieren"
 L["Enable skin scaling."] = "Aktivieren Sie die Designskalierung. "
@@ -186,11 +188,11 @@ L["Enable the Backdrop texture."] = "Aktiviert die Hintergrundtextur."
 L["Enable the Gloss texture."] = "Aktiviere die Glanztextur."
 L["Enable the Shadow texture."] = "Schatten Texture aktivieren "
 L["Flash"] = "Leuchten"
-L["Global"] = "Global"
+-- L["Global"] = "Global"
 L["Global Settings"] = "Globale Einstellungen"
 L["Gloss"] = "Glanz"
-L["Highlight"] = "Hervorheben"
-L["Normal"] = "Normal"
+-- L["Highlight"] = "Highlight"
+-- L["Normal"] = "Normal"
 L["Pulse"] = "Pulsieren "
 L["Pushed"] = "Gedrückt"
 L["Reset all skin options to the defaults."] = "Setzt alle Optikoptionen auf Standard zurück."

@@ -6,6 +6,8 @@ local TempDataProvider = addon.TempDataProvider;
 local GetAppliedEnhancement = addon.GetAppliedEnhancement;
 local GetNewGemID = addon.GetNewGemID;
 local PixelPerfectController = addon.PixelPerfectController;
+local EquipmentManager_UnpackLocation = addon.TransitionAPI.EquipmentManager_UnpackLocation;
+local SharedBlackScreen = addon.SharedBlackScreen;
 
 local L = Narci.L;
 
@@ -288,6 +290,9 @@ end
 NarciEquipmentOptionMixin = CreateFromMixins(NarciAnimatedSizingFrameMixin);
 
 function NarciEquipmentOptionMixin:OnLoad()
+    self.OnLoad = nil;
+    self:SetScript("OnLoad", nil);
+
     MainFrame = self;
     ItemButtonHighlight = self.ItemList.ScrollChild.HighlightFrame;
 
@@ -305,8 +310,7 @@ function NarciEquipmentOptionMixin:OnLoad()
     self:SetParent(Narci_Character);
     addon.AssignEnchantButtonWidgets();
 
-    self.OnLoad = nil;
-    self:SetScript("OnLoad", nil);
+    SharedBlackScreen:AddOwner(self);
 end
 
 function NarciEquipmentOptionMixin:RegisterEventsForNarcissus(state)
@@ -363,7 +367,7 @@ function NarciEquipmentOptionMixin:CloseUI(delay)
         self:SetScript("OnUpdate", nil);
         self.countdown = nil;
         self:Hide();
-        Narci_FlyoutBlack:Out();
+        SharedBlackScreen:TryHide();
     end
 end
 
@@ -465,9 +469,8 @@ function NarciEquipmentOptionMixin:SetFromSlotButton(slotButton, returnHome)
 
     TempDataProvider:SetSubset(slotID);
 
-    Narci_FlyoutBlack:In();
-    Narci_FlyoutBlack:RaiseFrameLevel(slotButton);
-
+    SharedBlackScreen:TryShow();
+    SharedBlackScreen:RaiseFrameLevel(slotButton);
 
     if validForEnchant then
         self.meunButtons[2]:Enable();

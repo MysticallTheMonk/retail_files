@@ -29,6 +29,7 @@ function ProfileSettings:New(savedVariables)
     obj.tooltipPrintSpellId = false
     obj.tooltipStopScroll = true
     obj.iconClickAddsSpellToBlocklist = false
+    obj.iconClickAddsItemToBlocklist = false
 
     ---@type number[]
     obj.blocklist = {
@@ -36,6 +37,9 @@ function ProfileSettings:New(savedVariables)
         75, --Auto Shot
         7384, --Overpower
     }
+
+    ---@type number[]
+    obj.itemBlocklist = {}
 
     ---@type {[UnitType]: UnitSettings}
     obj.unitSettings = {}
@@ -111,6 +115,9 @@ function ProfileSettings:SetFromSavedVariables(savedVariables)
     if type(savedVariables.iconClickAddsSpellToBlocklist) == "boolean" then
         self.iconClickAddsSpellToBlocklist = savedVariables.iconClickAddsSpellToBlocklist
     end
+    if type(savedVariables.iconClickAddsItemToBlocklist) == "boolean" then
+        self.iconClickAddsItemToBlocklist = savedVariables.iconClickAddsItemToBlocklist
+    end
 
     -- Support for V1
     if type(savedVariables.TrGCDQueueFr) == "table" then
@@ -164,6 +171,15 @@ function ProfileSettings:SetFromSavedVariables(savedVariables)
             end
         end
     end
+
+    self.itemBlocklist = {}
+    if type(savedVariables.itemBlocklist) == "table" then
+        for i, v in ipairs(savedVariables.itemBlocklist) do
+            if type(v) == "number" then
+                self.itemBlocklist[i] = v
+            end
+        end
+    end
 end
 
 function ProfileSettings:GetSavedVariables()
@@ -185,6 +201,7 @@ function ProfileSettings:GetSavedVariables()
     savedVariables.TooltipSpellID = self.tooltipPrintSpellId
     savedVariables.TooltipStopMove = self.tooltipStopScroll
     savedVariables.iconClickAddsSpellToBlocklist = self.iconClickAddsSpellToBlocklist
+    savedVariables.iconClickAddsItemToBlocklist = self.iconClickAddsItemToBlocklist
 
     savedVariables.layouts = {}
     for layoutType, layoutSettings in pairs(self.layoutSettings) do
@@ -199,6 +216,11 @@ function ProfileSettings:GetSavedVariables()
     savedVariables.TrGCDBL = {}
     for _, v in ipairs(self.blocklist) do
         table.insert(savedVariables.TrGCDBL, v)
+    end
+
+    savedVariables.itemBlocklist = {}
+    for _, v in ipairs(self.itemBlocklist) do
+        table.insert(savedVariables.itemBlocklist, v)
     end
 
     return savedVariables

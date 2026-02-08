@@ -18,6 +18,7 @@ function BBF.HideArenaFrames()
 
     -- Change parent and hide
     local function MalwareProtector()
+        if InCombatLockdown() then return end
         local instanceType = select(2, IsInInstance())
         local prepFrame = _G["ArenaPrepFrames"]
         local enemyFrame = _G["ArenaEnemyFrames"]

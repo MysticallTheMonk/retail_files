@@ -1,3 +1,4 @@
+local L = BBF.L
 local function sum(t)
     local sum = 0
     for k,v in pairs(t) do
@@ -41,7 +42,6 @@ local function addToMasque(frameName, masqueGroup)
     if frame and not frame.bbfMsq then
         masqueGroup:AddButton(frame)
         frame.bbfMsq = true
-        --print(frame:GetName())
     end
 end
 
@@ -151,7 +151,7 @@ local targetToTCastbarAdjustment
 local targetAndFocusAuraScale = 1
 local targetAndFocusVerticalGap = 4
 local targetDetachCastbar
-local focusToTCastbarAdjustment = 0
+local focusToTCastbarAdjustment
 local targetStaticCastbar
 local showHiddenAurasIcon
 local playerAuraSpacingX = 0
@@ -507,11 +507,7 @@ local function adjustCastbar(self, frame)
                 local minOffset = -40
                 -- Choose the more negative value
                 yOffset = min(minOffset, yOffset)
-                if frame == TargetFrameSpellBar then
-                    yOffset = yOffset + targetToTAdjustmentOffsetY
-                elseif frame == FocusFrameSpellBar then
-                    yOffset = yOffset + focusToTAdjustmentOffsetY
-                end
+                yOffset = yOffset + targetToTAdjustmentOffsetY
             end
 
             meta.SetPoint(self, "TOPLEFT", parent, "BOTTOMLEFT", xOffset + targetCastBarXPos, yOffset + targetCastBarYPos);
@@ -542,6 +538,7 @@ local function adjustCastbar(self, frame)
                 local minOffset = -40
                 -- Choose the more negative value
                 yOffset = min(minOffset, yOffset)
+                yOffset = yOffset + focusToTAdjustmentOffsetY
             end
 
             meta.SetPoint(self, "TOPLEFT", parent, "BOTTOMLEFT", xOffset + focusCastBarXPos, yOffset + focusCastBarYPos);
@@ -565,7 +562,7 @@ local function DefaultCastbarAdjustment(self, frame)
 
     -- Adjustments for ToT and specific frame adjustments
     if (not useSpellbarAnchor) and parentFrame.haveToT and not (buffsOnTopReverseCastbarMovement and parentFrame.buffsOnTop) then
-        local totAdjustment = ((TargetFrameSpellBar and targetToTCastbarAdjustment) or (FocusFrameSpellBar and focusToTCastbarAdjustment))
+        local totAdjustment = ((frame == TargetFrameSpellBar and targetToTCastbarAdjustment) or (frame == FocusFrameSpellBar and focusToTCastbarAdjustment))
         if totAdjustment then
             pointY = parentFrame.smallSize and -48 or -23
             if frame == TargetFrameSpellBar then
@@ -1259,6 +1256,25 @@ local function AdjustAuras(self, frameType)
                 if shouldShowAura then
                     auraFrame:Show()
 
+                    -- Attach weakauras to certain named auraframes
+                    if BBF.globalAuraFrames and BBF.globalAuraFrames[auraData.spellId] then
+                        if frameType == "target" then
+                            if not _G["BBFTargetAura"..auraData.name] then
+                                _G["BBFTargetAura"..auraData.name] = CreateFrame("Frame", "BBFTargetAura"..auraData.name, UIParent)
+                                _G["BBFTargetAura"..auraData.name]:SetAllPoints(auraFrame)
+                            else
+                                _G["BBFTargetAura"..auraData.name]:SetAllPoints(auraFrame)
+                            end
+                        else
+                            if not _G["BBFFocusAura"..auraData.name] then
+                                _G["BBFFocusAura"..auraData.name] = CreateFrame("Frame", "BBFFocusAura"..auraData.name, UIParent)
+                                _G["BBFFocusAura"..auraData.name]:SetAllPoints(auraFrame)
+                            else
+                                _G["BBFFocusAura"..auraData.name]:SetAllPoints(auraFrame)
+                            end
+                        end
+                    end
+
                     if (auraData.isStealable or (auraData.dispelName == "Magic" and ((not isFriend and auraData.isHelpful) or (isFriend and auraData.isHarmful)))) then
                         auraFrame.isPurgeable = true
                     else
@@ -1284,7 +1300,7 @@ local function AdjustAuras(self, frameType)
                                 }
                                 if thisAuraData then
                                     local iconTexture = thisAuraData.icon and "|T" .. thisAuraData.icon .. ":16:16|t" or ""
-                                    print("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: " .. iconTexture .. " " .. (thisAuraData.name or "Unknown") .. "  |A:worldquest-icon-engineering:14:14|a ID: " .. (thisAuraData.spellId or "Unknown"))
+                                    BBF.Print(iconTexture .. " " .. (thisAuraData.name or L["Label_Unknown"]) .. "  |A:worldquest-icon-engineering:14:14|a ID: " .. (thisAuraData.spellId or L["Label_Unknown"]))
                                     auraFrame.bbfPrinted = true
                                     auraFrame.bbfLastPrintedAuraID = currentAuraID
     
@@ -1313,12 +1329,6 @@ local function AdjustAuras(self, frameType)
                         auraFrame.isCompacted = false
                     end
     
-                    -- if auraFrame.Stealable and auraFrame.Stealable:IsShown() then
-                    --     auraFrame.Stealable:SetScale(userPurgeableAuraSize)
-                    --     print("setting size")
-                    -- end
-    
-                    --stealableTexture:SetScale(3)
     
                     if not auraFrame.GlowFrame then
                         auraFrame.GlowFrame = CreateFrame("Frame", nil, auraFrame)
@@ -1754,7 +1764,7 @@ local function CreateToggleIcon()
 
             BBF.RefreshAllAuraFrames()
 
-            print("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: Hidden Icon Direction set to: " .. BetterBlizzFramesDB.hiddenIconDirection)
+            BBF.Print(string.format(L["Print_Hidden_Icon_Direction_Set"], BetterBlizzFramesDB.hiddenIconDirection))
 
         elseif IsShiftKeyDown() then
             -- Reset position to default
@@ -1786,7 +1796,7 @@ local function CreateToggleIcon()
     toggleIcon:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_BOTTOMLEFT", 0, -10)
         GameTooltip:AddLine("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames")
-        GameTooltip:AddLine("Filtered buffs. Click to show/hide.\nShift+Alt+RightClick to blacklist buffs.\n\nCtrl+LeftClick to move.\nShift+LeftClick to reset position.\nAlt+LeftClick to change direction.\n\n(You can hide this icon in settings)", 1, 1, 1, true)
+        GameTooltip:AddLine(L["Tooltip_Filtered_Buffs_Icon_Classic"], 1, 1, 1, true)
         GameTooltip:Show()
         if not self.isAurasShown then
             ShowHiddenAuras()
@@ -1825,6 +1835,21 @@ local function CreateToggleIcon()
 
     toggleIconGlobal = toggleIcon
     return toggleIcon
+end
+
+function BBF.UpdateHiddenAuraButtonPos()
+    if not toggleIconGlobal then return end
+    toggleIconGlobal:ClearAllPoints()
+    if BetterBlizzFramesDB.toggleIconPosition then
+        local pos = BetterBlizzFramesDB.toggleIconPosition
+        toggleIconGlobal:SetPoint(pos[1], UIParent, pos[3], pos[4], pos[5])
+    else
+        if BuffFrame.CollapseAndExpandButton then
+            toggleIconGlobal:SetPoint("LEFT", BuffFrame.CollapseAndExpandButton, "RIGHT", 0, 0)
+        else
+            toggleIconGlobal:SetPoint("TOPLEFT", BuffFrame, "TOPRIGHT", 2 + BetterBlizzFramesDB.playerAuraSpacingX, 0)
+        end
+    end
 end
 
 local BuffFrame = BuffFrame
@@ -2076,7 +2101,7 @@ local function PersonalBuffFrameFilterAndGrid(self)
 
                 --                 if auraData and (not auraFrame.bbfPrinted or auraFrame.bbfLastPrintedAuraIndex ~= currentAuraIndex) then
                 --                     local iconTexture = auraData.icon and "|T" .. auraData.icon .. ":16:16|t" or ""
-                --                     print("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: " .. iconTexture .. " " .. (auraData.name or "Unknown") .. "  |A:worldquest-icon-engineering:14:14|a ID: " .. (auraData.spellId or "Unknown"))
+                --                     BBF.Print(iconTexture .. " " .. (auraData.name or "Unknown") .. "  |A:worldquest-icon-engineering:14:14|a ID: " .. (auraData.spellId or "Unknown"))
                 --                     auraFrame.bbfPrinted = true
                 --                     auraFrame.bbfLastPrintedAuraIndex = currentAuraIndex  -- Store the index of the aura that was just printed
                 --                     -- Cancel existing timer if any
@@ -2258,7 +2283,7 @@ local function PersonalDebuffFrameFilterAndGrid(self)
         warningTexture:EnableMouse(true)
         warningTexture:SetScript("OnEnter", function(self)
             GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-            GameTooltip:SetText("BetterBlizzFrames\nDoT Detected", 1, 1, 1)
+            GameTooltip:SetText(L["DoT_Detected_Tooltip"], 1, 1, 1)
             GameTooltip:Show()
         end)
 
@@ -2281,23 +2306,6 @@ local function PersonalDebuffFrameFilterAndGrid(self)
             local auraFrame = _G[debuffName]
             auraFrame.Icon = icon
             if auraFrame and auraFrame:IsShown() then
---[[
-                if auraInfo then
-                    print("Aura Data:")
-                    for k, v in pairs(auraInfo) do
-                        print(k, v)
-                    end
-                else
-                    print("No aura data available.")
-                end
-]]
-                --local spellID = select(10, UnitAura("player", auraInfo.index));
-                --if ShouldHideSpell(spellID) then
-                -- if MasquePlayerAuras and not auraFrame.added then
-                --     MasquePlayerAuras:AddButton(auraFrame)
-                --     auraFrame.added = true
-                -- end
-                --buffFrame.Icon = _G[icon]
 
                 local spellName, icon, count, dispelName, duration, expirationTime, sourceUnit, isStealable, nameplateShowPersonal, spellId, canApplyAura, isBossDebuff, castByPlayer, nameplateShowAll, timeMod = UnitDebuff("player", i)
                 auraFrame.spellId = spellId
@@ -2343,7 +2351,7 @@ local function PersonalDebuffFrameFilterAndGrid(self)
 
                 --             if auraData and (not auraFrame.bbfPrinted or auraFrame.bbfLastPrintedAuraIndex ~= currentAuraIndex) then
                 --                 local iconTexture = auraData.icon and "|T" .. auraData.icon .. ":16:16|t" or ""
-                --                 print("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: " .. iconTexture .. " " .. (auraData.name or "Unknown") .. "  |A:worldquest-icon-engineering:14:14|a ID: " .. (auraData.spellId or "Unknown"))
+                --                 BBF.Print(iconTexture .. " " .. (auraData.name or "Unknown") .. "  |A:worldquest-icon-engineering:14:14|a ID: " .. (auraData.spellId or "Unknown"))
                 --                 auraFrame.bbfPrinted = true
                 --                 auraFrame.bbfLastPrintedAuraIndex = currentAuraIndex
                 --                 -- Cancel existing timer if any
@@ -2422,7 +2430,6 @@ local function PersonalDebuffFrameFilterAndGrid(self)
                     auraFrame:Show();
                     auraFrame:ClearAllPoints();
                     auraFrame:SetPoint("TOPRIGHT", BuffFrame, "TOPRIGHT", -xOffset, -yOffset);
-                    --print(auraFrame:GetSize())
 
                     -- Update column and row counters
                     currentCol = currentCol + 1;
@@ -2538,7 +2545,7 @@ function BBF.RefreshAllAuraFrames()
     else
         if not auraMsgSent then
             auraMsgSent = true
-            DEFAULT_CHAT_FRAME:AddMessage("|A:gmchat-icon-blizz:16:16|a Better|cff00c0ffBlizz|rFrames: You need to enable aura settings for blacklist and whitelist etc to work.")
+            BBF.Print(L["Print_Need_Enable_Aura_Settings"])
             C_Timer.After(9, function()
                 auraMsgSent = false
             end)
@@ -2838,7 +2845,7 @@ function BBF.HookPlayerAndTargetAuras()
     end
 
     --Hook Target & Focus Castbars
-    if not targetCastbarsHooked then
+    if not targetCastbarsHooked and not BetterBlizzFramesDB.disableCastbarMovement then
         hooksecurefunc(TargetFrame.spellbar, "SetPoint", function()
             if shouldAdjustCastbar then
                 adjustCastbar(TargetFrame.spellbar, TargetFrameSpellBar)
@@ -2853,6 +2860,11 @@ function BBF.HookPlayerAndTargetAuras()
         --         DefaultCastbarAdjustment(FocusFrame.spellbar, FocusFrameSpellBar)
         --     end
         -- end);
+        targetCastbarsHooked = true
+    end
+
+    if BetterBlizzFramesDB.disableCastbarMovement then
+        TargetFrame.staticCastbar = true
     end
 
     if not smokeBombDetector then

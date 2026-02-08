@@ -52,8 +52,10 @@
 ---@field TooltipSpellID? boolean
 ---@field TooltipStopMove? boolean
 ---@field iconClickAddsSpellToBlocklist? boolean
+---@field iconClickAddsItemToBlocklist? boolean
 ---@field TrGCDQueueFr? UnitVariablesV1[]
 ---@field TrGCDBL? number[]
+---@field itemBlocklist? number[]
 
 ---@class GlobalSavedVariablesV1
 ---@field version? 1
@@ -105,7 +107,9 @@
 ---@field TooltipSpellID? boolean
 ---@field TooltipStopMove? boolean
 ---@field iconClickAddsSpellToBlocklist? boolean
+---@field iconClickAddsItemToBlocklist? boolean
 ---@field TrGCDBL? number[]
+---@field itemBlocklist? number[]
 
 ---@class GlobalSavedVariablesV2
 ---@field version? 2

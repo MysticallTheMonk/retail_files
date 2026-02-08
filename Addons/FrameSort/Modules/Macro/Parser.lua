@@ -1,8 +1,12 @@
 ---@type string, Addon
 local _, addon = ...
 local wow = addon.WoW.Api
+local wowEx = addon.WoW.WowEx
+local capabilities = addon.WoW.Capabilities
 local fsEnumerable = addon.Collections.Enumerable
 local fsUnit = addon.WoW.Unit
+local fsInspector = addon.Modules.Inspector
+local fsLog = addon.Logging.Log
 ---@class MacroParser
 local M = {}
 addon.Modules.Macro.Parser = M
@@ -13,69 +17,58 @@ local shortHeaderPattern = "#[Ff][Ss]"
 local longHeaderPattern = "#[Ff][Rr][Aa][Mm][Ee][Ss][Oo][Rr][Tt]"
 local shortSyntax = "@"
 local longSyntax = "target="
-local alphanumericWord = "([%w]+)"
-local shortPattern = shortSyntax .. alphanumericWord
-local longPattern = longSyntax .. alphanumericWord
+local unitToken = "([^%s,%]]+)"
+local shortPattern = shortSyntax .. unitToken
+local longPattern = longSyntax .. unitToken
 
-local WowRole = {
-    Tank = "TANK",
-    Healer = "HEALER",
-    DPS = "DAMAGER",
-}
-
----Returns the start and end index of the nth target selector, e.g. @raid1, @player, @placeholder, target=player
+---Returns the start and end index of the nth target selector, e.g. raid1, player, placeholder, target=player
 ---@param str string
 ---@param occurrence number? the nth occurrence to find
 ---@return number? start, number? end
 local function NthSelector(str, occurrence)
-    local startPos = nil
-    local endPos = nil
+    local unitStart, unitEnd
+    local searchFrom = 1
     local n = 0
 
-    -- find the nth "@"
     while n < occurrence do
         n = n + 1
 
-        local shortStartPos, shortEndPos = string.find(str, shortPattern, endPos and endPos + 1 or nil)
-        local longStartPos, longEndPos = string.find(str, longPattern, endPos and endPos + 1 or nil)
+        local s1, e1 = string.find(str, shortPattern, searchFrom)
+        local s2, e2 = string.find(str, longPattern, searchFrom)
 
-        -- check to see which selector comes first in the macro
-        -- return the earliest
-        if shortStartPos and shortStartPos <= (longStartPos or shortStartPos) then
-            startPos = shortStartPos
-            endPos = shortEndPos
-        elseif longStartPos and longStartPos <= (shortStartPos or longStartPos) then
-            -- skip past the "target=" to the unit
-            longStartPos = longStartPos + string.len(longSyntax) - 1
-
-            startPos = longStartPos
-            endPos = longEndPos
+        if s1 and (not s2 or s1 <= s2) then
+            -- unit starts after '@'
+            unitStart = s1 + 1
+            unitEnd = e1
+            searchFrom = e1 + 1
+        elseif s2 then
+            -- unit starts after 'target='
+            unitStart = s2 + #longSyntax
+            unitEnd = e2
+            searchFrom = e2 + 1
         else
             return nil, nil
         end
     end
 
-    return startPos, endPos
+    return unitStart, unitEnd
 end
 
----Replaces all, or the nth occurrence of an "@unit" instance with the specified unit
+---Replaces the nth occurrence of an unit token with the specified unit
 ---@param body string
 ---@param unit string
 ---@param occurrence number the nth selector to replace
 ---@return string? the new body text, or nil if invalid
 local function ReplaceSelector(body, unit, occurrence)
-    local startPos = nil
-    local endPos = nil
-
-    startPos, endPos = NthSelector(body, occurrence)
+    local startPos, endPos = NthSelector(body, occurrence)
     if not startPos or not endPos then
         return nil
     end
+    if startPos < 1 or endPos > #body then
+        return nil
+    end
 
-    local newBody = string.sub(body, 0, startPos)
-    newBody = newBody .. unit
-    newBody = newBody .. string.sub(body, endPos + 1)
-    return newBody
+    return string.sub(body, 1, startPos - 1) .. unit .. string.sub(body, endPos + 1)
 end
 
 local function GetSelectors(body)
@@ -102,7 +95,7 @@ local function GetSelectors(body)
     return selectors
 end
 
-local function UnitForSelector(selector, friendlyUnits, enemyUnits)
+function M:UnitForSelector(selector, friendlyUnits, enemyUnits)
     local lowercase = string.lower(selector)
 
     -- tanktarget, healertarget, etc
@@ -110,7 +103,7 @@ local function UnitForSelector(selector, friendlyUnits, enemyUnits)
         local withoutTarget = string.gsub(lowercase, "target", "")
         withoutTarget = string.gsub(withoutTarget, "tg", "")
 
-        local unit = UnitForSelector(withoutTarget, friendlyUnits, enemyUnits)
+        local unit = M:UnitForSelector(withoutTarget, friendlyUnits, enemyUnits)
 
         if unit and unit ~= "none" then
             unit = unit .. "target"
@@ -137,7 +130,7 @@ local function UnitForSelector(selector, friendlyUnits, enemyUnits)
     -- enemy pet frame
     if type == "enemyframepet" or type == "efp" then
         local player = enemyUnits[number] or "none"
-        return fsUnit:PetFor(player)
+        return fsUnit:PetFor(player, true)
     end
 
     -- enemy frame
@@ -158,8 +151,12 @@ local function UnitForSelector(selector, friendlyUnits, enemyUnits)
 
     -- other dps
     if type == "otherdps" or type == "od" then
+        if not capabilities.HasRoleAssignments() then
+            return "none"
+        end
+
         return fsEnumerable:From(friendlyUnits):Nth(number or 1, function(x)
-            return wow.UnitGroupRolesAssigned(x) == WowRole.DPS and not wow.UnitIsUnit(x, "player")
+            return wow.UnitGroupRolesAssigned(x) == wowEx.Role.Dps and not wow.UnitIsUnit(x, "player")
         end) or "none"
     end
 
@@ -169,27 +166,28 @@ local function UnitForSelector(selector, friendlyUnits, enemyUnits)
 
     -- enemy arena
     if enemyTank or enemyHealer or enemyDps then
-        if not wow.IsRetail() then
+        if not capabilities.HasSpecializations() then
             return "none"
         end
 
-        assert(enemyUnits)
+        if not enemyUnits then
+            fsLog:Bug("EnemyUnits must not be nil.")
+            return "none"
+        end
+
+        if #enemyUnits == 0 then
+            return "none"
+        end
 
         return fsEnumerable:From(enemyUnits):Nth(number or 1, function(x)
-            local id = tonumber(string.match(x, "%d+"))
-
-            if not id then
-                return false
-            end
-
-            local specId = wow.GetArenaOpponentSpec(id)
+            local specId = fsInspector:EnemyUnitSpec(x)
 
             if not specId then
                 return false
             end
 
             local _, _, _, _, role, _, _ = wow.GetSpecializationInfoByID(specId)
-            return (enemyTank and role == WowRole.Tank) or (enemyHealer and role == WowRole.Healer) or (enemyDps and role == WowRole.DPS)
+            return (enemyTank and role == wowEx.Role.Tank) or (enemyHealer and role == wowEx.Role.Healer) or (enemyDps and role == wowEx.Role.Dps)
         end) or "none"
     end
 
@@ -199,9 +197,13 @@ local function UnitForSelector(selector, friendlyUnits, enemyUnits)
     local dps = type == "dps" or type == "d"
 
     if tank or healer or dps then
+        if not capabilities.HasRoleAssignments() then
+            return "none"
+        end
+
         return fsEnumerable:From(friendlyUnits):Nth(number or 1, function(x)
             local role = wow.UnitGroupRolesAssigned(x)
-            return (tank and role == WowRole.Tank) or (healer and role == WowRole.Healer) or (dps and role == WowRole.DPS)
+            return (tank and role == wowEx.Role.Tank) or (healer and role == wowEx.Role.Healer) or (dps and role == wowEx.Role.Dps)
         end) or "none"
     end
 
@@ -218,12 +220,27 @@ end
 ---@param enemyUnits string[] sorted enemy unit ids.
 ---@return string? the new macro body, or nil if invalid
 function M:GetNewBody(body, friendlyUnits, enemyUnits)
+    if not body then
+        fsLog:Error("Parser:GetNewBody() - body must not be nil.")
+        return nil
+    end
+
+    if not friendlyUnits then
+        fsLog:Error("Parser:GetNewBody() - friendlyUnits must not be nil.")
+        return body
+    end
+
+    if not enemyUnits then
+        fsLog:Error("Parser:GetNewBody() - enemyUnits must not be nil.")
+        return body
+    end
+
     local newBody = body
     local selectors = GetSelectors(body)
 
     for i, selector in ipairs(selectors) do
         if string.lower(selector) ~= skipSelector then
-            local unit = UnitForSelector(selector, friendlyUnits, enemyUnits)
+            local unit = M:UnitForSelector(selector, friendlyUnits, enemyUnits)
             local tmp = ReplaceSelector(newBody, unit, i)
 
             if tmp then

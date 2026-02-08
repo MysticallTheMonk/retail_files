@@ -52,6 +52,8 @@ local function UpdateHealerIndicator()
         size = GladiusClassIconFramearena1 and GladiusClassIconFramearena1:GetSize();
     elseif sArena then
         size = sArenaEnemyFrame1 and sArenaEnemyFrame1.ClassIcon and sArenaEnemyFrame1.ClassIcon:GetSize();
+    elseif ArenaLiveUnitFrames then
+        size = ALUF_ArenaEnemyFramesArenaEnemyFrame1 and ALUF_ArenaEnemyFramesArenaEnemyFrame1Portrait and ALUF_ArenaEnemyFramesArenaEnemyFrame1Portrait:GetSize();
     end
     if ( not size ) then
         HideHealerIndicator();
@@ -63,6 +65,8 @@ local function UpdateHealerIndicator()
         scale = GladiusButtonFramearena1 and GladiusButtonFramearena1:GetScale();
     elseif sArena then
         scale = sArena:GetScale();
+    elseif ArenaLiveUnitFrames then
+        scale = ALUF_ArenaEnemyFrames:GetScale();
     end
     if ( not scale ) then
         HideHealerIndicator();
@@ -74,6 +78,8 @@ local function UpdateHealerIndicator()
         frame = _G["GladiusClassIconFramearena" .. healerIndex];
     elseif sArena then
         frame = _G["sArenaEnemyFrame" .. healerIndex] and _G["sArenaEnemyFrame" .. healerIndex].ClassIcon;
+    elseif ArenaLiveUnitFrames then
+        frame = _G["ALUF_ArenaEnemyFramesArenaEnemyFrame" .. healerIndex] and _G["ALUF_ArenaEnemyFramesArenaEnemyFrame" .. healerIndex .. "PortraitTexture"];
     end
     if ( not frame ) then
         HideHealerIndicator();
@@ -93,7 +99,7 @@ function SweepyBoop:SetupHealerIndicator()
     frame:RegisterEvent(addon.PLAYER_ENTERING_WORLD);
     frame:RegisterEvent(addon.ARENA_PREP_OPPONENT_SPECIALIZATIONS);
     frame:SetScript("OnEvent", function ()
-        if ( not SweepyBoop.db.profile.misc.healerIndicator ) or ( not ( Gladius or sArena ) ) then -- take away the option, always enabled
+        if ( not SweepyBoop.db.profile.misc.healerIndicator ) or ( not ( Gladius or sArena or ArenaLiveUnitFrames ) ) then -- take away the option, always enabled
             HideHealerIndicator();
             return;
         end

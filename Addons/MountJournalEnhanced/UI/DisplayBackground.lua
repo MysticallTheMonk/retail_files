@@ -16,8 +16,8 @@ ADDON:RegisterUISetting('displayBackground', "original", ADDON.L.SETTING_DISPLAY
     end
 end, {
     ["original"] = CHAT_DEFAULT,
-    ["green"] = ICON_TAG_RAID_TARGET_TRIANGLE3:gsub("^.", string.upper),
-    ["blue"] = ICON_TAG_RAID_TARGET_SQUARE3:gsub("^.", string.upper),
+    ["green"] = ICON_TAG_RAID_TARGET_TRIANGLE3:gsub("^%l", string.upper),
+    ["blue"] = ICON_TAG_RAID_TARGET_SQUARE3:gsub("^%l", string.upper),
 })
 
 ADDON.Events:RegisterCallback("loadUI", function()

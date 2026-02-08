@@ -1,0 +1,17 @@
+Copyright (c) 2024-2026 Arc. All rights reserved.
+
+You MAY:
+* Use this add-on for personal use without restrictions
+* Study and learn from this code
+* Use portions of this code with prior permission from the author
+
+You MAY NOT:
+* Sell, monetize, or use commercially in any form
+* Redistribute without written permission
+* Use the add-on name or author name to endorse derivative works
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. THE AUTHOR
+SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM
+USE OF THIS SOFTWARE.
+
+Want to use this code? Just ask first!

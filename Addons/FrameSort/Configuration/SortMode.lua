@@ -10,6 +10,7 @@ addon.Configuration.GroupSortMode = {
 
 ---@class PlayerSortModeEnum
 addon.Configuration.PlayerSortMode = {
+    None = "None",
     Top = "Top",
     Middle = "Middle",
     Bottom = "Bottom",

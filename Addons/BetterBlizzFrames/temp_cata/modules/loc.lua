@@ -1,7 +1,8 @@
+local L = BBF.L
 local interruptSpells = {
     [1766] = 5,  -- Kick (Rogue)
     [2139] = 6,  -- Counterspell (Mage)
-    [6552] = 5,  -- Pummel (Warrior)
+    [6552] = 4,  -- Pummel (Warrior)
     [132409] = 6, -- Spell Lock (Warlock)
     [19647] = 6, -- Spell Lock (Warlock, pet)
     [47528] = 4,  -- Mind Freeze (Death Knight)
@@ -11,20 +12,20 @@ local interruptSpells = {
     [93985] = 4,  -- Skull Bash (Druid)
     [116705] = 4, -- Spear Hand Strike (Monk)
     [147362] = 3, -- Counter Shot (Hunter)
-    [183752] = 4, -- Disrupt (Demon Hunter)
-    [187707] = 3, -- Muzzle (Hunter)
-    [212619] = 6, -- Call Felhunter (Warlock)
-    [31935] = 4,  -- Avenger's Shield (Paladin)
-    [217824] = 5, -- Shield of Virtue (Protection PvP Talent)
-    [351338] = 5, -- Quell (Evoker)
-	[33871] = 6, 	-- Shield Bash (Warrior)
+    [31935] = 3,  -- Avenger's Shield (Paladin)
+    [78675] = 5, -- Solar Beam
+    [113286] = 5, -- Solar Beam (Symbiosis)
+    [26679] = 5, 	-- Deadly Throw (Rogue) (4-6 sec interrupt depending on combos(3-5))
+
+	[33871] = 8, 	-- Shield Bash (Warrior)
 	[24259] = 6, 	-- Spell Lock (Warlock)
 	[43523] = 5,	-- Unstable Affliction (Warlock)
 	--[16979] = 4, 	-- Feral Charge (Druid)
-	[26679] = 5, 	-- Deadly Throw (Rogue)
-
-    [78675] = 5, -- Solar Beam
-    [113286] = 5, -- Solar Beam (Symbiosis)
+    [119911] = 6, -- Optical Blast (Warlock Observer)
+    [115781] = 6, -- Optical Blast (Warlock Observer)
+    [102060] = 4, -- Disrupting Shout
+    [26090] = 2, -- Pummel (Gorilla)
+    [50479] = 2, -- Nethershock
     [97547] = 5, -- Solar Beam
 }
 
@@ -38,6 +39,7 @@ local spellLockReducer = {
 local interruptEvents = {
     ["SPELL_INTERRUPT"] = true,
     ["SPELL_CAST_SUCCESS"] = true,
+    ["SPELL_AURA_APPLIED"] = true, -- For Deadly Throw
 }
 
 local spellList = {
@@ -367,6 +369,7 @@ local function isHardCC(type)
     return hardCCSet[type]
 end
 
+-- Poor and quick implementation of LoC frame before MoP Beta finally added native. Meant to improve later but ya know..
 function BBF.SetupLoCFrame()
     if not BetterBlizzFramesDB.enableLoCFrame then return end
     if not BBF.isMoP then
@@ -377,24 +380,26 @@ function BBF.SetupLoCFrame()
     else
         spellList[99] = "Disoriented" -- Disorienting Roar (MoP only, 30sec debuff in cata)
     end
-    if LossOfControlFrame then
-        print("BBF: LossOfControlFrame found. Returning Early. Report to @bodify")
-        return
-    end
     local f = CreateFrame("Frame")
 
-    local parentFrame = CreateFrame("Frame", "LossOfControlParentFrame", UIParent)
+    local parentFrame = CreateFrame("Frame", "BBFLossOfControlParentFrame", UIParent)
     parentFrame:SetScale(BetterBlizzFramesDB.lossOfControlScale or 1)
 
     local iconOnlyMode = BetterBlizzFramesDB.lossOfControlIconOnly
 
     -- === Frame Creation ===
-    local frame = CreateFrame("Frame", "LossOfControlFrame", parentFrame, "BackdropTemplate")
+    local frame = CreateFrame("Frame", "BBFLossOfControlFrame", parentFrame, "BackdropTemplate")
     frame:SetSize(256, 58)
     frame:SetPoint("CENTER", UIParent, "CENTER")
     frame:SetFrameStrata("MEDIUM")
     frame:SetToplevel(true)
     frame:Hide()
+
+    if LossOfControlFrame then
+        LossOfControlFrame:SetScale(BetterBlizzFramesDB.lossOfControlScale or 1)
+        --LossOfControlFrame:ClearAllPoints()
+        --LossOfControlFrame:SetPoint("CENTER", UIParent, "CENTER", BetterBlizzCCDB.xPos or 0, BetterBlizzCCDB.yPos or 0)
+    end
 
     -- === Pop-In Animation with Overshoot + Bounce ===
     frame.fadeInScale = frame:CreateAnimationGroup()
@@ -452,6 +457,7 @@ function BBF.SetupLoCFrame()
         frame.duration = nil
         frame.expiration = nil
         frame.lockedBy = nil
+        frame.returnEarly = nil
     end)
 
 
@@ -542,6 +548,12 @@ function BBF.SetupLoCFrame()
     frame.blackBg:SetAlpha(LossOfControlFrameAlphaBg)
     frame.RedLineTop:SetAlpha(LossOfControlFrameAlphaLines)
     frame.RedLineBottom:SetAlpha(LossOfControlFrameAlphaLines)
+
+    if LossOfControlFrame then
+        LossOfControlFrame.blackBg:SetAlpha(LossOfControlFrameAlphaBg)
+        LossOfControlFrame.RedLineTop:SetAlpha(LossOfControlFrameAlphaLines)
+        LossOfControlFrame.RedLineBottom:SetAlpha(LossOfControlFrameAlphaLines)
+    end
 
     local function GetSchoolInfo(school)
         local schoolNames = {
@@ -735,13 +747,13 @@ function BBF.SetupLoCFrame()
 
             local r, g, b = 1, 0.819, 0
             if main.type == "Silenced" and interrupt then
-                frame.AbilityName:SetText("Silenced+")
+                frame.AbilityName:SetText(L["Label_Silenced"])
                 _, r, g, b = GetSchoolInfo(interrupt.school)
             elseif main == interrupt then
-                frame.AbilityName:SetText("Interrupted")
+                frame.AbilityName:SetText(L["Label_Interrupted"])
                 _, r, g, b = GetSchoolInfo(interrupt.school)
             else
-                frame.AbilityName:SetText(main.type or "unknown")
+                frame.AbilityName:SetText(main.type or L["Unknown"])
             end
             frame.AbilityName:SetTextColor(r, g, b)
 
@@ -805,15 +817,16 @@ function BBF.SetupLoCFrame()
     end
 
     -- === Event Registration ===
-    f:SetScript("OnEvent", function(_, _, unit)
-        if unit == "player" then checkAuras() end
+    f:SetScript("OnEvent", function()
+        if frame.returnEarly then return end
+        checkAuras()
     end)
     f:RegisterUnitEvent("UNIT_AURA", "player")
 
     -- === Timer Update ===
     frame:SetScript("OnUpdate", function(self)
         local now = GetTime()
-        if self.expiration then
+        if self.expiration and not self.returnEarly then
             local timeLeft = self.expiration - now
 
             if timeLeft <= 0 then
@@ -844,13 +857,28 @@ function BBF.SetupLoCFrame()
         local duration = interruptSpells[spellID]
         if not duration then return end
 
-        if event == "SPELL_CAST_SUCCESS" then
+        if event ~= "SPELL_INTERRUPT" then
             -- Check if the unit was casting or channeling AND if it was interruptible
             local _, _, _, _, _, _, notInterruptibleChannel = UnitChannelInfo("player")
 
+            local ccData
             local schoolName = GetSchoolInfo(school) or ""
-            if schoolName == "Interrupted" then return end -- avoid showing on casts like first aid etc
-            if notInterruptibleChannel ~= false then -- nil when not channeling
+            if schoolName == "Interrupted" then
+                for i = 1, C_LossOfControl.GetActiveLossOfControlDataCount() do
+                    local cc = C_LossOfControl.GetActiveLossOfControlData(i)
+                    if cc and cc.locType == "SCHOOL_INTERRUPT" then
+                        ccData = cc
+                        break
+                    end
+                end
+                if ccData then
+                    school = ccData.lockoutSchool
+                    duration = ccData.duration
+                else
+                    return
+                end
+            end -- avoid showing on casts like first aid etc
+            if not ccData and notInterruptibleChannel ~= false then -- nil when not channeling
                 return
             end
         end
@@ -887,4 +915,31 @@ function BBF.SetupLoCFrame()
         checkAuras() -- force update
 
     end)
+
+    if BBF.isMoP then
+        local f = CreateFrame("Frame")
+        f:RegisterEvent("PLAYER_ENTERING_WORLD")
+        f:Hide()
+
+        local function ShowOriginalLoC(showOg)
+            if showOg then
+                LossOfControlFrame:SetParent(UIParent)
+                BBFLossOfControlParentFrame:SetParent(f)
+                BBFLossOfControlFrame.returnEarly = true
+            else
+                LossOfControlFrame:SetParent(f)
+                BBFLossOfControlParentFrame:SetParent(UIParent)
+                BBFLossOfControlFrame.returnEarly = nil
+            end
+        end
+
+        f:SetScript("OnEvent", function(_, event, arg1)
+            local _, instanceType = IsInInstance()
+            if instanceType == "party" or instanceType == "raid" or instanceType == "scenario" then
+                ShowOriginalLoC(true)
+            else
+                ShowOriginalLoC(false)
+            end
+        end)
+    end
 end

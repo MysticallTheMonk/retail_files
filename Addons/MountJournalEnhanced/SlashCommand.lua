@@ -26,11 +26,7 @@ function SlashCmdList.MOUNTJOURNALENHANCED(input)
                 spellId = string.match(input, "spell:(%d+):")
             end
             if not spellId then
-                if C_Spell and C_Spell.GetSpellIDForSpellIdentifier then
-                    spellId = C_Spell.GetSpellIDForSpellIdentifier(setMount)
-                elseif GetSpellInfo then
-                    _, _, _, _, _, _, spellId = GetSpellInfo(setMount)
-                end
+                spellId = C_Spell.GetSpellIDForSpellIdentifier(setMount)
             end
             if spellId then
                 local mountId = C_MountJournal.GetMountFromSpell(spellId)

@@ -1,0 +1,14 @@
+## Interface: 120001, 120000, 110207
+## Title: sArena |cffff8000Reloaded|r
+## Notes: Enhanced Arena Frames
+## Version: v2.3.4b
+## Author: Stako, "reloaded" by Bodify
+## IconTexture: 135884
+## OptionalDeps: sArena, sArena_Updated2_by_sammers
+## X-Category: PvP/Arena
+## X-Credits: Tekkub, Starship, Kouri, Kollektiv, Lyn, haste, evl, Zork, jturel, wardz, A3st (delayy), sammers21, Aeded, Xaryu, Mageiden, Probably more...
+## SavedVariables: sArena_ReloadedDB
+## X-Curse-Project-ID: 1351104
+## X-Wago-ID: 5NRebvG3
+
+sArena.xml

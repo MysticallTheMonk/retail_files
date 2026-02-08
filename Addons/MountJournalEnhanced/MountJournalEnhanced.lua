@@ -7,6 +7,11 @@ ADDON.isClassic = not ADDON.isRetail
 ADDON.Events = CreateFromMixins(EventRegistry)
 ADDON.Events:OnLoad()
 ADDON.Events:SetUndefinedEventsAllowed(true)
+-- Polyfill for split Unregister behaviour in 12.0
+-- Later: remove after classic has it
+if not ADDON.Events.UnregisterEventsByEventTable then
+    ADDON.Events.UnregisterEventsByEventTable = ADDON.Events.UnregisterEvents
+end
 
 local function InitUI()
     local updateUI = function ()
@@ -67,7 +72,7 @@ local function initialize()
     if MountJournal then
         ADDON.Events:UnregisterFrameEvent("ADDON_LOADED")
         ADDON.Events:TriggerEvent("OnJournalLoaded")
-        ADDON.Events:UnregisterEvents({"OnJournalLoaded"})
+        ADDON.Events:UnregisterEventsByEventTable({"OnJournalLoaded"})
     end
 
     if not loggedIn and IsLoggedIn() then
@@ -77,7 +82,7 @@ local function initialize()
         ADDON.Events:TriggerEvent("OnInit")
         ADDON.Events:TriggerEvent("OnLogin")
         ADDON.Events:TriggerEvent("AfterLogin")
-        ADDON.Events:UnregisterEvents({"OnInit", "OnLogin", "AfterLogin"})
+        ADDON.Events:UnregisterEventsByEventTable({"OnInit", "OnLogin", "AfterLogin"})
         ADDON.Events:UnregisterFrameEvent("PLAYER_ENTERING_WORLD")
     end
 end
@@ -104,7 +109,7 @@ EventRegistry:RegisterCallback("MountJournal.OnShow", function()
         ADDON.Events:TriggerEvent("preloadUI")
         ADDON.Events:TriggerEvent("loadUI")
         ADDON.Events:TriggerEvent("postloadUI")
-        ADDON.Events:UnregisterEvents({"preloadUI", "loadUI", "postloadUI"})
+        ADDON.Events:UnregisterEventsByEventTable({"preloadUI", "loadUI", "postloadUI"})
 
         local selected = ADDON.Api:GetSelected()
         if selected == nil or selected == select(12, C_MountJournal.GetDisplayedMountInfo(1)) then
@@ -115,25 +120,3 @@ EventRegistry:RegisterCallback("MountJournal.OnShow", function()
         end
     end
 end, ADDON_NAME)
-
-StaticPopupDialogs["MJE_COPY"] = {
-    text = ADDON.L.COPY_POPUP,
-    button1 = CLOSE,
-    OnShow = function(self, data)
-        local function close(editBox) editBox:GetParent():Hide() end
-        self.editBox:SetScript("OnEscapePressed", close)
-        self.editBox:SetScript("OnEnterPressed", close)
-        self.editBox:SetScript("OnKeyUp", function(editBox, key)
-            if IsControlKeyDown() and key == "C" then
-                close(editBox)
-            end
-        end)
-        self.editBox:SetText(data)
-        self.editBox:HighlightText()
-    end,
-    hasEditBox = true,
-    editBoxWidth = 300,
-    timeout = 0,
-    whileDead = true,
-    hideOnEscape = true,
-}

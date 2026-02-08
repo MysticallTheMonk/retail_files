@@ -16,8 +16,6 @@ local BUTTON_LEVEL_OFFSET = 12;
 local CATE_OFFSET = 64;
 local WIDGET_GAP = 16;
 
-local IS_DRAGONFLIGHT = addon.IsDragonflight();
-
 local L = Narci.L;
 local BIND_ACTION_NARCISSUS = "CLICK Narci_MinimapButton:LeftButton";
 _G["BINDING_NAME_"..BIND_ACTION_NARCISSUS] = L["Binding Name Open Narcissus"];
@@ -35,6 +33,7 @@ local Clipboard;
 local DB;
 local CURRENT_CATE_ID;
 local RENDER_RANGE = DEFAULT_FRAME_HEIGHT;
+local NUM_CATE = 0;
 
 local GAMEPAD_ENABLED = false;      --Determine if we need to enable game pad surrpot
 local SCROLL_LOCKED = false;        --Lock scroll if user is assigning a hotkey
@@ -45,7 +44,7 @@ local tinsert = table.insert;
 local GetCursorPosition = GetCursorPosition;
 local SliderUpdator = CreateFrame("Frame");
 
-local CreditList = {};
+local CreditList = addon.CreditList;
 
 local function SetTextColorByID(fontString, id)
     if id == 3 then
@@ -175,8 +174,18 @@ function NarciSettingsSharedButtonMixin:SetState(state)
     end
 
     if self.children then
-        for i = 1, #self.children do
-            self.children[i]:SetShown(state);
+        for _, obj in ipairs(self.children) do
+            if state then
+                if obj.SetEnabled then
+                    obj:SetEnabled(true);
+                end
+                obj:SetAlpha(1);
+            else
+                if obj.SetEnabled then
+                    obj:SetEnabled(false);
+                end
+                obj:SetAlpha(0.25);
+            end
         end
     end
 end
@@ -278,11 +287,11 @@ local function SetCategory(id)
     for i, b in ipairs(CategoryButtons) do
         if i == id then
             b.selected = true;
-            SetTextColorByID(b.ButtonText, 3);
+            SetTextColorByID(b.Label, 3);
         else
             if b.selected then
                 b.selected = nil;
-                SetTextColorByID(b.ButtonText, 1);
+                SetTextColorByID(b.Label, 1);
             end
         end
     end
@@ -304,20 +313,20 @@ local function FindCurrentCategory(offset)
     if matchID ~= CURRENT_CATE_ID then
         CURRENT_CATE_ID = matchID;
         SetCategory(matchID);
-        CreditList:OnFocused(matchID == CREDIT_TAB_ID);
     end
+    CreditList:OnFocused(matchID == CREDIT_TAB_ID, offset);
 
     UpdateRenderArea(offset);
 end
 
 
 local function CategoryButton_SetLabel(self, text)
-    self.ButtonText:SetText(text);
-    local numLines = self.ButtonText:GetNumLines();
+    self.Label:SetText(text);
+    local numLines = self.Label:GetNumLines();
     if numLines > 1 then
         self:SetHeight(40);
-        if self.ButtonText:IsTruncated() then
-            self.ButtonText:SetFontObject("NarciFontMedium12");
+        if self.Label:IsTruncated() then
+            self.Label:SetFontObject("NarciFontMedium12");
         end
         return 40;
     else
@@ -340,12 +349,12 @@ local function CategoryButton_OnClick(self)
 end
 
 local function CategoryButton_OnEnter(self)
-    SetTextColorByID(self.ButtonText, 3);
+    SetTextColorByID(self.Label, 3);
 end
 
 local function CategoryButton_OnLeave(self)
     if not self.selected then
-        SetTextColorByID(self.ButtonText, 1);
+        SetTextColorByID(self.Label, 1);
     end
 end
 
@@ -697,6 +706,21 @@ local function ModelHitRectShrinkage_OnValueChanged(self, value)
     SettingFunctions.SetModelHitRectShrinkage(value);
 end
 
+local function CameraAutoZoomIn_SetupDescription(self)
+    if DB[self.key] then
+        if self.description then
+            self.description:SetText(L["Camera Auto Zoom In On"])
+        end
+    else
+        if self.description then
+            self.description:SetText(L["Camera Auto Zoom In Off"])
+        end
+    end
+end
+
+local function CameraAutoZoomIn_OnValueChanged(self, value)
+    CameraAutoZoomIn_SetupDescription(self);
+end
 
 local function CameraTransition_SetupDescription(self)
     if DB[self.key] then
@@ -755,16 +779,30 @@ local function CameraUseBustShot_OnValueChanged(self, value)
     SettingFunctions.SetDefaultZoomClose(value);
 end
 
-
-local function GemManagerToggle_OnValueChanged(self, state)
-    if (not state) and Narci_EquipmentOption then
-        Narci_EquipmentOption:CloseUI();
+local function TransmogFrameToggle_OnValueChanged(self, state)
+    if state then
+        addon.TransmogUIManager.EnableModule();
+        return
     end
+
+    if (not state and addon.TransmogUIManager.IsModuleLoaded()) then
+        AlertMessageFrame:ShowRequiresReload();
+    end
+end
+
+local function WardrobeCollectionToggle_OnValueChanged(self, state)
+    SettingFunctions.WardrobeCollectionSetsCheckbox(state);
 end
 
 local function DressingRoomToggle_OnValueChanged(self, state)
     if (state and not NarciDressingRoomOverlay) or (not state and NarciDressingRoomOverlay) then
         AlertMessageFrame:ShowRequiresReload();
+    end
+end
+
+local function GemManagerToggle_OnValueChanged(self, state)
+    if (not state) and Narci_EquipmentOption then
+        Narci_EquipmentOption:CloseUI();
     end
 end
 
@@ -785,258 +823,6 @@ end
 
 local function ConduitTooltipToggle_OnValueChanged(self, state)
     SettingFunctions.EnableConduitTooltip(state);
-end
-
-
--- dropping hearts when creadit list is focused
-local LoveGenerator = {};
-
-function LoveGenerator.HeartAnimationOnStop(animGroup)
-    local tex = animGroup:GetParent();
-    tex:Hide();
-    tinsert(LoveGenerator.recyledTextures, tex);
-end
-
-function LoveGenerator:GetHeart()
-    if not self.textures then
-        self.textures = {};
-    end
-    if not self.recyledTextures then
-        self.recyledTextures = {};
-    end
-
-    if #self.recyledTextures > 0 then
-        return table.remove(self.recyledTextures, #self.recyledTextures)
-    else
-        local tex = MainFrame.HeartContainer:CreateTexture(nil, "OVERLAY", "NarciPinkHeartTemplate", 2);
-        tex.FlyDown:SetScript("OnFinished", LoveGenerator.HeartAnimationOnStop);
-        tex.FlyDown:SetScript("OnStop", LoveGenerator.HeartAnimationOnStop);
-        self.textures[ #self.textures + 1 ] = tex;
-        return tex
-    end
-end
-
-function LoveGenerator:CreateHeartAtCursorPosition()
-    if MainFrame.HeartContainer:IsMouseOver() then
-        local heart = self:GetHeart();
-
-        local px, py = GetCursorPosition();
-        local scale = MainFrame:GetEffectiveScale();
-        px, py = px / scale, py / scale;
-    
-        local d = math.max(py - MainFrame:GetBottom() + 16, 0); --distance
-        local depth = math.random(1, 8);
-        local scale = 0.25 + 0.25 * depth;
-        local size = 32 * scale;
-        local alpha = 1.35 - 0.15 * depth;
-        local v = 20 + 10 * depth;
-        local t= d / v;
-
-        if alpha > 0.67 then
-            alpha = 0.67;
-        end
-
-        heart.FlyDown.Translation:SetOffset(0, -d);
-        heart.FlyDown.Translation:SetDuration(t);
-        heart:ClearAllPoints();
-        heart:SetPoint("CENTER", UIParent, "BOTTOMLEFT" , px, py);
-    
-        heart:SetSize(size, size);
-        heart:SetAlpha(alpha);
-        heart.FlyDown:Play();
-        heart:Show();
-    end
-end
-
-function LoveGenerator:StopAnimation()
-    if self.textures then
-        for _, tex in ipairs(self.textures) do
-            tex.FlyDown:Stop();
-        end
-    end
-end
-
-
-
-function CreditList:CreateList(parent, anchorTo, fromOffsetY)
-    local active = {"Albator S.", "Lala.Marie", "Erik Shafer", "Celierra&Darvian", "Pierre-Yves Bertolus", "Terradon", "Miroslav Kovac", "Ryan Zerbin", "Helene Rigo", "Kit M"};
-    local inactive = {"Alex Boehm", "Solanya", "Elexys", "Ben Ashley", "Knightlord", "Brian Haberer", "Andrew Phoenix", "Nantangitan", "Blastflight", "Lars Norberg", "Valnoressa", "Nimrodan", "Brux",
-        "Karl", "Webb", "acein", "Christian Williamson", "Tzutzu", "Anthony Cordeiro", "Nina Recchia", "heiteo", "Psyloken", "Jesse Blick", "Victor Torres", "Nisutec", "Tezenari", "Gina"};
-    local special = {"Marlamin | WoW.tools", "Keyboardturner | Avid Bug Finder(Generator)", "Meorawr | Wondrous Wisdomball", "Ghost | Real Person", "Hubbotu | Translator - Russian", "Romanv | Translator - Spanish", "Onizenos | Translator - Portuguese"};
-
-    local aciveColor = "|cff914270";
-
-    local numTotal = #active;
-    local mergedList = active;
-    local totalHeight;
-
-    for i = 1, #active do
-        active[i] = aciveColor ..active[i].."|r";
-    end
-
-    for i = 1, #inactive do
-        numTotal = numTotal + 1;
-        mergedList[numTotal] = inactive[i];
-    end
-
-    local upper = string.upper;
-    local gsub = string.gsub;
-
-    table.sort(mergedList, function(a, b)
-        return upper( gsub(a, aciveColor, "") ) < upper( gsub(b, aciveColor, "") )
-    end);
-
-
-    local header = parent:CreateFontString(nil, "OVERLAY", "NarciFontMedium13");
-    header:SetPoint("TOP", anchorTo, "TOP", 0, fromOffsetY);
-    header:SetText(string.upper("Patrons"));
-    SetTextColorByID(header, 1);
-
-    totalHeight = header:GetHeight() + 12;
-    fromOffsetY = fromOffsetY - totalHeight;
-
-    local numRow = math.ceil(numTotal/3);
-
-    local sidePadding = PADDING_H + BUTTON_LEVEL_OFFSET;
-    self.sidePadding = sidePadding;
-    self.anchorTo = anchorTo;
-    self.parent = parent;
-
-    local colWidth = (MainFrame.ScrollFrame:GetWidth() - sidePadding*2) / 3;
-    local text;
-    local fontString;
-    local height;
-
-    local i = 0;
-    local maxHeight = 0;
-    local totalTextWidth = 0;
-    local width = 0;
-
-    local fontStrings = {};
-
-    for col = 1, 3 do
-        fontString = parent:CreateFontString(nil, "OVERLAY", "NarciFontMedium13");
-        fontString:SetWidth(colWidth);
-        fontString:SetPoint("TOPLEFT", anchorTo, "TOPLEFT", 0, fromOffsetY);
-        fontString:SetJustifyH("LEFT");
-        fontString:SetJustifyV("TOP");
-        fontString:SetSpacing(8);
-        fontStrings[col] = fontString;
-        SetTextColorByID(fontString, 1);
-
-        text = nil;
-        for row = 1, numRow do
-            i = i + 1;
-            if mergedList[i] then
-                if text then
-                    text = text .. "\n" .. mergedList[i];
-                else
-                    text = mergedList[i];
-                end
-            end
-        end
-
-        fontString:SetText(text);
-        height = fontString:GetHeight();
-        width = fontString:GetWrappedWidth();
-        totalTextWidth = totalTextWidth + width;
-
-        if height > maxHeight then
-            maxHeight = height;
-        end
-    end
-
-    self.totalTextWidth = totalTextWidth;
-    self.fontStrings = fontStrings;
-    self.offsetY = fromOffsetY;
-
-    fromOffsetY = fromOffsetY - maxHeight - 48;
-
-    local header2 = parent:CreateFontString(nil, "OVERLAY", "NarciFontMedium13");
-    header2:SetPoint("TOP", anchorTo, "TOP", 0, fromOffsetY);
-    header2:SetText(string.upper("special thanks"));
-    SetTextColorByID(header2, 1);
-
-
-    text = nil;
-    for i = 1, #special do
-        if i == 1 then
-            text = special[i];
-        else
-            text = text .. "\n" .. special[i];
-        end
-    end
-
-    fromOffsetY = fromOffsetY - header2:GetHeight() - 12;
-
-    fontString = parent:CreateFontString(nil, "OVERLAY", "NarciFontMedium13");
-    fontString:SetPoint("TOPLEFT", anchorTo, "TOPLEFT", sidePadding, fromOffsetY);
-    fontString:SetJustifyH("LEFT");
-    fontString:SetJustifyV("TOP");
-    fontString:SetSpacing(8);
-    fontString:SetText(text);
-    SetTextColorByID(fontString, 1);
-
-    self.specialNames = fontString;
-    self.specialNamesOffsetY = fromOffsetY;
-
-    totalHeight = Round0(header:GetTop() - fontString:GetBottom() + 36);
-
-    self:UpdateAlignment();
-
-    active = nil;
-    inactive = nil;
-
-    return totalHeight
-end
-
-function CreditList:UpdateAlignment()
-    if self.fontStrings then
-        local offsetX = self.sidePadding;
-        local parentWidth = MainFrame.ScrollFrame:GetWidth();
-
-        local gap = (parentWidth - self.sidePadding*2 - self.totalTextWidth) * 0.5;
-        for col = 1, 3 do
-            self.fontStrings[col]:ClearAllPoints();
-            self.fontStrings[col]:SetPoint("TOPLEFT", self.anchorTo, "TOPLEFT", offsetX, self.offsetY);
-            offsetX = offsetX + self.fontStrings[col]:GetWrappedWidth() + gap;
-        end
-
-        local specialNameWidth = self.specialNames:GetWrappedWidth();
-        offsetX = (parentWidth - specialNameWidth) * 0.5;
-        self.specialNames:SetPoint("TOPLEFT", self.anchorTo, "TOPLEFT", offsetX, self.specialNamesOffsetY);
-    end
-end
-
-function CreditList.TimerOnUpdate(f, elapsed)
-    f.t = f.t + elapsed;
-    if f.t > 3 then
-        f.t = 0;
-        LoveGenerator:CreateHeartAtCursorPosition();
-    end
-end
-
-function CreditList:OnFocused(state)
-    if state then
-        if not self.focused then
-            self.focused = true;
-            self.parent.t = 0;
-            self.parent:SetScript("OnUpdate", CreditList.TimerOnUpdate);
-            FadeFrame(MainFrame.HeartContainer, 0.5, 1);
-        end
-    else
-        if self.focused then
-            self.focused = nil;
-            self.parent:SetScript("OnUpdate", nil);
-            FadeFrame(MainFrame.HeartContainer, 0.5, 0);
-        end
-    end
-end
-
-function CreditList:StopAnimation()
-    if self.focused then
-        LoveGenerator:StopAnimation();
-    end
 end
 
 
@@ -1275,8 +1061,6 @@ function MinimapButtonSkin.CreateOptions(parentLabel, parent, anchorTo, fromOffs
     self.buttons = {};
     self.anchorTo = anchorTo;
     self.container = CreateFrame("Frame", nil, parent);
-    --self.container:Hide();
-    --self.container:SetAlpha(0);
 
     local col, row = 1, 1;
     local b;
@@ -1310,6 +1094,12 @@ function MinimapButtonSkin.CreateOptions(parentLabel, parent, anchorTo, fromOffs
 
     newObj.UpdateState = function()
         MinimapButtonSkin:UpdateState();
+    end
+
+    newObj.SetEnabled = function(_, state)
+        for _, obj in ipairs(self.buttons) do
+            obj:SetEnabled(state);
+        end
     end
 
     return newHeight, newObj
@@ -1791,6 +1581,19 @@ local function AddObjectAsChild(childObject, isTextObject)
     end
 end
 
+local function AttachNewFeatureLabel(widget, offset)
+    local newFeatureLabel = widget:CreateTexture(nil, "OVERLAY");
+    newFeatureLabel:SetSize(20, 20);
+    newFeatureLabel:SetTexture("Interface\\AddOns\\Narcissus\\Art\\SettingsFrame\\NewFeatureDiamond.png");
+    newFeatureLabel:SetAlpha(1);
+    if widget.Label then
+        local width = widget.Label:GetWrappedWidth();
+        newFeatureLabel:SetPoint("LEFT", widget.Label, "LEFT", width - 2, 3);
+    else
+        newFeatureLabel:SetPoint("LEFT", widget, "LEFT", offset or 0, 0);
+    end
+end
+
 local function CreateWidget(parent, anchorTo, offsetX, offsetY, widgetData)
     if widgetData.validityCheckFunc then
         if not widgetData.validityCheckFunc() then
@@ -1815,12 +1618,6 @@ local function CreateWidget(parent, anchorTo, offsetX, offsetY, widgetData)
         local extraOffset = WIDGET_GAP * widgetData.extraTopPadding;
         offsetY = offsetY - extraOffset;
         height = height + extraOffset;
-    end
-
-    if widgetData.isNew then
-        if widgetData.text then
-            widgetData.text = NARCI_NEW_ENTRY_PREFIX..widgetData.text.."|r"
-        end
     end
 
     if isTextObject then
@@ -1956,6 +1753,11 @@ local function CreateWidget(parent, anchorTo, offsetX, offsetY, widgetData)
 
         height = height + WIDGET_GAP;
 
+        obj.SetEnabled = function(_, state)
+            slider:EnableMouse(state);
+            slider:EnableMouseMotion(state);
+        end
+
         --local left = MainFrame.ScrollFrame:GetLeft();
         --local right = slider:GetRight() + PADDING_H;
         --print(left - right);
@@ -1997,6 +1799,10 @@ local function CreateWidget(parent, anchorTo, offsetX, offsetY, widgetData)
         end
     end
 
+    if widgetData.isNewFeature and obj.Label then
+        AttachNewFeatureLabel(obj, -20);
+    end
+
     return obj, Round0(height)
 end
 
@@ -2008,7 +1814,7 @@ local Categories = {
             {type = "header", level = 0, text = L["Character Panel"]},
             {type = "slider", level = 1, key = "GlobalScale", text = UI_SCALE, onValueChangedFunc = CharacterUIScale_OnValueChanged, minValue = 0.7, maxValue = 1, valueStep = 0.1, },
             {type = "slider", level = 1, key = "BaseLineOffset", text = L["Baseline Offset"], validityCheckFunc = IsUsingUltraWideMonitor, onValueChangedFunc = UltraWideOffset_OnValueChanged, minValue = 0, maxValue = ULTRAWIDE_MAX_OFFSET, valueStep = ULTRAWIDE_STEP, },
-            {type = "checkbox", level = 1, key = "MissingEnchantAlert", text = L["Missing Enchant Alert"], onValueChangedFunc = ShowMisingEnchantAlert_OnValueChanged, validityCheckFunc = ShowMisingEnchantAlert_IsValid, isNew = false},
+            {type = "checkbox", level = 1, key = "MissingEnchantAlert", text = L["Missing Enchant Alert"], onValueChangedFunc = ShowMisingEnchantAlert_OnValueChanged, validityCheckFunc = ShowMisingEnchantAlert_IsValid},
             {type = "checkbox", level = 1, key = "DetailedIlvlInfo", text = L["Show Detailed Stats"], onValueChangedFunc = ShowDetailedStats_OnValueChanged},
             {type = "checkbox", level = 1, key = "AFKScreen", text = L["AFK Screen Description"], onValueChangedFunc = AFKToggle_OnValueChanged, },
                 {type = "checkbox", level = 3, key = "AKFScreenDelay", text = L["AFK Screen Delay"], onValueChangedFunc = nil, isChild = true},
@@ -2051,10 +1857,11 @@ local Categories = {
     {name = L["Camera"], level = 1, key = "camera",
         widgets = {
             {type = "header", level = 0, text = L["Camera"]},
-            {type = "checkbox", level = 1, key = "CameraTransition", text = L["Camera Transition"], onValueChangedFunc = CameraTransition_OnValueChanged, description = L["Camera Transition Description Off"], setupFunc = CameraTransition_SetupDescription},
-            {type = "checkbox", level = 1, key = "CameraOrbit", text = L["Orbit Camera"], onValueChangedFunc = CameraOrbitToggle_OnValueChanged, description = L["Orbit Camera Description On"], setupFunc = CameraOrbitToggle_SetupDescription},
+            {type = "checkbox", level = 1, key = "CameraAutoZoomIn", text = L["Camera Auto Zoom In"], onValueChangedFunc = CameraAutoZoomIn_OnValueChanged, description = L["Camera Auto Zoom In Off"], setupFunc = CameraAutoZoomIn_SetupDescription, isNewFeature = true},
+            {type = "checkbox", level = 3, key = "CameraTransition", text = L["Camera Transition"], isChild = true, onValueChangedFunc = CameraTransition_OnValueChanged, description = L["Camera Transition Description Off"], setupFunc = CameraTransition_SetupDescription},
+            {type = "checkbox", level = 3, key = "CameraOrbit", text = L["Orbit Camera"], isChild = true, onValueChangedFunc = CameraOrbitToggle_OnValueChanged, description = L["Orbit Camera Description On"], setupFunc = CameraOrbitToggle_SetupDescription},
+            {type = "checkbox", level = 3, key = "UseBustShot", text = L["Use Bust Shot"], isChild = true, onValueChangedFunc = CameraUseBustShot_OnValueChanged},
             {type = "checkbox", level = 1, key = "CameraSafeMode", text = L["Camera Safe Mode"], onValueChangedFunc = CameraSafeToggle_OnValueChanged, description = L["Camera Safe Mode Description"], validityCheckFunc = CameraSafeToggle_IsValid},
-            {type = "checkbox", level = 1, key = "UseBustShot", text = L["Use Bust Shot"], onValueChangedFunc = CameraUseBustShot_OnValueChanged},
         },
     },
 
@@ -2080,10 +1887,11 @@ local Categories = {
             {type = "subheader", level = 1, text = L["Screenshot Quality Description"]},
             {type = "slider", level = 1, key = "ModelPanelScale", text = L["Panel Scale"], onValueChangedFunc = ModelPanelScale_OnValueChanged, minValue = 0.8, maxValue = 1, valueStep = 0.1, extraTopPadding = 1, valueFormatFunc = Round1},
             {type = "slider", level = 1, key = "ShrinkArea", text = L["Interactive Area"], onValueChangedFunc = ModelHitRectShrinkage_OnValueChanged, minValue = 0, maxValue = MAX_MODEL_SHRINKAGE, valueFormatFunc = GetOppositeValue, convertionFunc = Round0},
-            {type = "checkbox", level = 1, key = "SpeedyScreenshotAlert", text = L["Speedy Screenshot Alert"], onValueChangedFunc = SpeedyScreenshotAlert_OnValueChanged},
+            --{type = "checkbox", level = 1, key = "SpeedyScreenshotAlert", text = L["Speedy Screenshot Alert"], onValueChangedFunc = SpeedyScreenshotAlert_OnValueChanged},
         },
     },
 
+    --[[    --Module Removed
     {name = "NPC", level = 0,  key = "npc",
         widgets = {
             {type = "header", level = 0, text = L["Creature Tooltip"]},
@@ -2095,22 +1903,23 @@ local Categories = {
                 {type = "checkbox", level = 3, text = "Select Languages", isChild = true, setupFunc = LanguageSelector.SetupToggle},
         },
     },
+    --]]
 
     {name = L["Extensions"], level = 0, key = "extensions",
         widgets = {
             {type = "header", level = 0, text = L["Extensions"]},
-            {type = "checkbox", level = 1, key = "GemManager", text = L["Gem List"], onValueChangedFunc = GemManagerToggle_OnValueChanged, description = L["Gemma Description"]},
+            {type = "checkbox", level = 1, key = "TransmogFrame", text = L["Transmog UI"], onValueChangedFunc = TransmogFrameToggle_OnValueChanged, description = L["Transmog UI Description"], isNewFeature = true},
+            {type = "checkbox", level = 1, key = "WardrobeCollectionSetsCheckbox", text = L["ModuleName WardrobeCollection"], onValueChangedFunc = WardrobeCollectionToggle_OnValueChanged, description = L["ModuleDescription WardrobeCollection"], isNewFeature = true},
             {type = "checkbox", level = 1, key = "DressingRoom", text = L["Dressing Room"], onValueChangedFunc = DressingRoomToggle_OnValueChanged, description = L["Dressing Room Description"]},
+            {type = "checkbox", level = 1, key = "GemManager", text = L["Gem List"], onValueChangedFunc = GemManagerToggle_OnValueChanged, description = L["Gemma Description"]},
             {type = "checkbox", level = 1, key = "SoloQueueLFRDetails", text = L["LFR Wing Details"], onValueChangedFunc = LFRWingDetails_OnValueChanged, description = L["LFR Wing Details Description"]},
             {type = "subheader", level = 1, text = L["Expansion Features"], extraTopPadding = 1},
             {type = "checkbox", level = 1, key = "PaperDollWidget", text = L["Paperdoll Widget"], onValueChangedFunc = PaperDollWidgetToggle_OnValueChanged, showFeaturePreview = true, onEnterFunc = FeaturePreview.ShowPreview, onLeaveFunc = FeaturePreview.HidePreview},
                 {type = "checkbox", level = 2, key = "PaperDollWidget_ClassSet", text = L["Class Set Indicator"], isChild = true, onValueChangedFunc = PaperDollWidget_Update},
-                {type = "checkbox", level = 2, key = "PaperDollWidget_Remix", text = L["Remix Gem Manager"], isChild = true, onValueChangedFunc = PaperDollWidget_Update},
+                --{type = "checkbox", level = 2, key = "PaperDollWidget_Remix", text = L["Remix Gem Manager"], isChild = true, onValueChangedFunc = PaperDollWidget_Update},
             --{type = "checkbox", level = 1, key = "ConduitTooltip", text = L["Conduit Tooltip"], onValueChangedFunc = ConduitTooltipToggle_OnValueChanged, showFeaturePreview = true, onEnterFunc = FeaturePreview.ShowPreview, onLeaveFunc = FeaturePreview.HidePreview},
         },
     },
-
-
 
     {name = L["Credits"], level = 0, key = "credits", isBottom = true},
     {name = L["About"], level = 0, key = "about",  isBottom = true,
@@ -2124,7 +1933,7 @@ local function InsertCategory(newCategory)
     tinsert(Categories, #Categories -1, newCategory);
 end
 
-if IS_DRAGONFLIGHT then
+do  --Talent Tree
     local function ShowTreeCase1(self, state)
         SettingFunctions.ShowMiniTalentTreeForPaperDoll(state);
     end
@@ -2301,6 +2110,7 @@ local function SetupFrame()
     DB = NarcissusDB;
 
     local f = MainFrame;
+
     local texPath = "Interface\\AddOns\\Narcissus\\Art\\SettingsFrame\\";
 
     f.CategoryFrame:SetWidth(DEFAULT_LEFT_WIDTH);
@@ -2338,29 +2148,29 @@ local function SetupFrame()
     for i, cateData in ipairs(Categories) do
         if (not cateData.validityCheckFunc) or (cateData.validityCheckFunc and cateData.validityCheckFunc()) then
             p = p + 1;
-            obj = CreateFrame("Button", nil, f.CategoryFrame, "NarciSettingsCategoryButtonTemplate");
-            CategoryButtons[p] = obj;
+            local categoryButton = CreateFrame("Button", nil, f.CategoryFrame, "NarciSettingsCategoryButtonTemplate");
+            CategoryButtons[p] = categoryButton;
             CategoryOffsets[p] = totalScrollHeight - PADDING_H;
-    
-            obj.id = p;
-            obj.level = cateData.level;
-            obj.key = cateData.key;
-    
-            obj:SetScript("OnClick", CategoryButton_OnClick);
-            obj:SetScript("OnEnter", CategoryButton_OnEnter);
-            obj:SetScript("OnLeave", CategoryButton_OnLeave);
-    
-            obj:SetWidth(DEFAULT_LEFT_WIDTH);
-            obj:SetHitRectInsets(0, 8, 0, 0);
-            obj.ButtonText:SetPoint("LEFT", obj, "LEFT", PADDING_H + CATE_LEVEL_OFFSET*cateData.level, 0);
-    
-            SetTextColorByID(obj.ButtonText, 1);
-    
+
+            categoryButton.id = p;
+            categoryButton.level = cateData.level;
+            categoryButton.key = cateData.key;
+
+            categoryButton:SetScript("OnClick", CategoryButton_OnClick);
+            categoryButton:SetScript("OnEnter", CategoryButton_OnEnter);
+            categoryButton:SetScript("OnLeave", CategoryButton_OnLeave);
+
+            categoryButton:SetWidth(DEFAULT_LEFT_WIDTH);
+            categoryButton:SetHitRectInsets(0, 8, 0, 0);
+            categoryButton.Label:SetPoint("LEFT", categoryButton, "LEFT", PADDING_H + CATE_LEVEL_OFFSET*cateData.level, 0);
+
+            SetTextColorByID(categoryButton.Label, 1);
+
             CategoryTabs[p] = CreateFrame("Frame", nil, f.ScrollFrame.ScrollChild);
-    
+
             if cateData.isBottom then
                 bottomIndex = bottomIndex + 1;
-                obj:SetPoint("BOTTOMLEFT", f.CategoryFrame, "BOTTOMLEFT", 0, PADDING_V + (2 - bottomIndex) * cateButtonHeight);
+                categoryButton:SetPoint("BOTTOMLEFT", f.CategoryFrame, "BOTTOMLEFT", 0, PADDING_V + (2 - bottomIndex) * cateButtonHeight);
                 if cateData.key == "about" then
                     --About Tab
                 else
@@ -2368,32 +2178,41 @@ local function SetupFrame()
                     totalScrollHeight = math.ceil(totalScrollHeight/frameHeight) * frameHeight;
                     totalScrollHeight = totalScrollHeight + WIDGET_GAP;
                     CategoryOffsets[p] = totalScrollHeight - PADDING_H;
-    
+
                     height = CreditList:CreateList(CategoryTabs[p], f.ScrollFrame.ScrollChild, -totalScrollHeight);
                     totalScrollHeight = totalScrollHeight + height;
                 end
             else
-                obj:SetPoint("TOPLEFT", f.CategoryFrame, "TOPLEFT", 0, -PADDING_V -totalCateHeight);
+                categoryButton:SetPoint("TOPLEFT", f.CategoryFrame, "TOPLEFT", 0, -PADDING_V -totalCateHeight);
             end
-    
-            cateHeight = CategoryButton_SetLabel(obj, cateData.name);
+
+            cateHeight = CategoryButton_SetLabel(categoryButton, cateData.name);
             totalCateHeight = totalCateHeight + cateHeight;
-    
+
+            local anyNewFeature;
+
             if cateData.widgets then
-                for j = 1, #cateData.widgets do
-                    obj, height = CreateWidget(CategoryTabs[p], f.ScrollFrame.ScrollChild, PADDING_H, -totalScrollHeight, cateData.widgets[j]);
+                for _, widgetData in ipairs(cateData.widgets) do
+                    obj, height = CreateWidget(CategoryTabs[p], f.ScrollFrame.ScrollChild, PADDING_H, -totalScrollHeight, widgetData);
                     totalScrollHeight =  totalScrollHeight + height;
                     if obj then
                         obj.categoryID = p;
+                        if widgetData.isNewFeature then
+                            anyNewFeature = true;
+                        end
                     end
                 end
             end
-    
+
+            if anyNewFeature then
+                AttachNewFeatureLabel(categoryButton, -2);
+            end
+
             if i == numCate then
                 --About List
                 AboutTab:CreateTab(CategoryTabs[p], f.ScrollFrame.ScrollChild, -totalScrollHeight);
             end
-    
+
             totalScrollHeight = totalScrollHeight + CATE_OFFSET;
         end
     end
@@ -2454,6 +2273,8 @@ local function SetupFrame()
     MainFrame:RegisterEvent("UI_SCALE_CHANGED");
 
     Categories = nil;
+
+    C_TooltipInfo.GetHyperlink("|Hitem:71086:6226:173127::::::60:577:::3:6660:7575:7696|r");    --Cache
 end
 
 
@@ -2461,6 +2282,7 @@ NarciSettingsFrameMixin = {};
 
 function NarciSettingsFrameMixin:OnLoad()
     MainFrame = self;
+    CreditList.MainFrame = MainFrame;
 
     local panel = NarciInterfaceOptionsPanel;
     panel:HookScript("OnShow", function(f)
@@ -2472,7 +2294,7 @@ function NarciSettingsFrameMixin:OnLoad()
         MainFrame:CloseUI();
     end);
 
-    if IS_DRAGONFLIGHT and SettingsPanel then
+    if SettingsPanel then
         self.Background = CreateFrame("Frame", nil, SettingsPanel);
         self.Background:SetFrameStrata("LOW");
         self.Background:SetFixedFrameStrata(true);
@@ -3132,11 +2954,12 @@ local RESERVED_KEYS = {
 
 local function ClearBindingKey(actionName)
     local key1, key2 = GetBindingKey(actionName);
+    local bindingContext = C_KeyBindings.GetBindingContextForAction(actionName);
     if key1 then
-        SetBinding(key1, nil, 1);
+        SetBinding(key1, nil, bindingContext);
     end
     if key2 then
-        SetBinding(key2, nil, 1);
+        SetBinding(key2, nil, bindingContext);
     end
     SaveBindings(1);
 end
@@ -3248,6 +3071,10 @@ function NarciSettingsKeybindingButton:OnHide()
     end
 end
 
+function NarciSettingsKeybindingButton:OnShow()
+    self:UpdateState();
+end
+
 function NarciSettingsKeybindingButton:IsFocused()
     return (self:IsMouseOver() and self:IsVisible()) or (AlertMessageFrame:IsVisible() and AlertMessageFrame:IsMouseOver());
 end
@@ -3281,7 +3108,9 @@ function NarciSettingsKeybindingButton:AttemptToBind(override)
         return
     else
         ClearBindingKey(self.actionName);
-        if SetBinding(self.newKey, self.actionName, 1) then
+        local bindingContext = C_KeyBindings.GetBindingContextForAction(action);
+        local result = SetBinding(self.newKey, self.actionName, bindingContext);
+        if result then
             --Successful
             self.TextBackground.AnimFadeOut:Stop();
             self.TextBackground:SetColorTexture(0.35, 0.61, 0.38);  --green

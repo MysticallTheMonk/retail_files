@@ -57,19 +57,19 @@ L["This section will allow you to adjust button settings for the default interfa
 -- Blizzard Classic Skin
 ---
 
-L["The default Classic button style."] = "默认的经典按钮样式。"
+L["The default classic button style."] = "默认的经典按钮样式。"
 
 ----------------------------------------
 -- Blizzard Modern Skin
 ---
 
-L["The default Dragonflight button style."] = "默认的巨龙时代按钮样式。"
+L["The default modern button style."] = "默认的巨龙时代按钮样式。"
 
 ----------------------------------------
 -- Classic Enhanced Skin
 ---
 
-L["A modified version of the Classic button style."] = "一款游戏默认按钮样式的改进版本。"
+L["An enhanced version of the classic button style."] = "一款游戏默认按钮样式的改进版本。"
 
 ----------------------------------------
 -- Core Settings
@@ -135,12 +135,14 @@ L["Add-On Compartment"] = "插件列表"
 L["Alternate Sorting"] = "另一种排序"
 L["Causes the skins included with Masque to be listed above third-party skins."] = "使 Masque 内置的皮肤排在第三方皮肤之上。"
 L["Click to reload the interface."] = "点击重载界面。"
+-- L["Increases the font size of the text on Ace3 profile panels."] = "Increases the font size of the text on Ace3 profile panels."
 L["Interface"] = "界面"
 L["Interface Settings"] = "界面设置"
 L["Load the skin information panel."] = "载入这个皮肤信息面板。"
 L["Menu Icon"] = "菜单图标"
 L["Minimap"] = "小地图"
 L["None"] = "无"
+-- L["Profile Panel Font Fix"] = "Profile Panel Font Fix"
 L["Reload Interface"] = "重载界面"
 L["Requires an interface reload."] = "需要重载当前界面。"
 L["Select where Masque's menu icon is displayed."] = "选择 Masque 菜单图标的显示位置。"
@@ -160,7 +162,7 @@ L["Unavailable in combat."] = "战斗中不可用。"
 -- Modern Enhanced Skin
 ---
 
-L["An enhanced version of the Dragonflight button style."] = "巨龙时代按钮样式的增强版。"
+L["An enhanced version of the modern button style."] = "巨龙时代按钮样式的增强版。"
 
 ----------------------------------------
 -- Profile Settings

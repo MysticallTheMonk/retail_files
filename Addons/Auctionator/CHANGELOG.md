@@ -1,6 +1,6 @@
 # Auctionator
 
-## [281](https://github.com/Auctionator/Auctionator/tree/281) (2025-06-16)
-[Full Changelog](https://github.com/Auctionator/Auctionator/compare/280...281) 
+## [315](https://github.com/TheMouseNest/Auctionator/tree/315) (2026-02-02)
+[Full Changelog](https://github.com/TheMouseNest/Auctionator/compare/314...315) 
 
-- Update toc for 11.1.7  
+- Fix tooltips on classic  

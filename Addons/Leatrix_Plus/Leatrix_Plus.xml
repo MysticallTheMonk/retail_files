@@ -4,6 +4,7 @@
 			<KeyValue key="scrollBarX" value="-16" type="number"/>
 			<KeyValue key="scrollBarTopY" value="0" type="number"/>
 			<KeyValue key="scrollBarBottomY" value="0" type="number"/>
+			<KeyValue key="scrollBarTemplate" value="MinimalScrollBar" type="string"/>
 		</KeyValues>
 		<ScrollChild>
 			<EditBox parentKey="EditBox" multiLine="true" countInvisibleLetters="true" autoFocus="false">
@@ -24,9 +25,10 @@
 	</ScrollFrame>
 	<ScrollFrame name="LeaPlusSellJunkScrollFrameTemplate" inherits="ScrollFrameTemplate" virtual="true">
 		<KeyValues>
-			<KeyValue key="scrollBarX" value="6" type="number"/>
+			<KeyValue key="scrollBarX" value="8" type="number"/>
 			<KeyValue key="scrollBarTopY" value="0" type="number"/>
 			<KeyValue key="scrollBarBottomY" value="-2" type="number"/>
+			<KeyValue key="scrollBarTemplate" value="MinimalScrollBar" type="string"/>
 		</KeyValues>
 		<ScrollChild>
 			<EditBox parentKey="EditBox" multiLine="true" countInvisibleLetters="true" autoFocus="false">
@@ -47,9 +49,10 @@
 	</ScrollFrame>
 	<ScrollFrame name="LeaPlusMuteCustomSoundsScrollFrameTemplate" inherits="ScrollFrameTemplate" virtual="true">
 		<KeyValues>
-			<KeyValue key="scrollBarX" value="6" type="number"/>
+			<KeyValue key="scrollBarX" value="8" type="number"/>
 			<KeyValue key="scrollBarTopY" value="0" type="number"/>
 			<KeyValue key="scrollBarBottomY" value="-2" type="number"/>
+			<KeyValue key="scrollBarTemplate" value="MinimalScrollBar" type="string"/>
 		</KeyValues>
 		<ScrollChild>
 			<EditBox parentKey="EditBox" multiLine="true" countInvisibleLetters="true" autoFocus="false">
@@ -66,9 +69,10 @@
 	</ScrollFrame>
 	<ScrollFrame name="LeaPlusEnhanceMinimapExcludeButtonsScrollFrameTemplate" inherits="ScrollFrameTemplate" virtual="true">
 		<KeyValues>
-			<KeyValue key="scrollBarX" value="6" type="number"/>
+			<KeyValue key="scrollBarX" value="8" type="number"/>
 			<KeyValue key="scrollBarTopY" value="0" type="number"/>
 			<KeyValue key="scrollBarBottomY" value="-2" type="number"/>
+			<KeyValue key="scrollBarTemplate" value="MinimalScrollBar" type="string"/>
 		</KeyValues>
 		<ScrollChild>
 			<EditBox parentKey="EditBox" multiLine="true" countInvisibleLetters="true" autoFocus="false">
@@ -88,6 +92,35 @@
 			<KeyValue key="scrollBarX" value="12" type="number"/>
 			<KeyValue key="scrollBarTopY" value="0" type="number"/>
 			<KeyValue key="scrollBarBottomY" value="-2" type="number"/>
+			<KeyValue key="scrollBarTemplate" value="MinimalScrollBar" type="string"/>
 		</KeyValues>
 	</ScrollFrame>
+	<Slider name="LeaPlusConfigurationPanelSliderTemplate" orientation="HORIZONTAL" enableMouse="true" virtual="true">
+		<HitRectInsets>
+			<AbsInset left="0" right="0" top="-10" bottom="-10"/>
+		</HitRectInsets>
+		<Layers>
+			<Layer>
+				<Texture parentKey="Left" atlas="Minimal_SliderBar_Left" useAtlasSize="true">
+					<Anchors>
+						<Anchor point="LEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="Right" atlas="Minimal_SliderBar_Right" useAtlasSize="true">
+					<Anchors>
+						<Anchor point="RIGHT"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="Middle" atlas="_Minimal_SliderBar_Middle" useAtlasSize="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.Left" relativePoint="TOPRIGHT"/>
+						<Anchor point="TOPRIGHT" relativeKey="$parent.Right" relativePoint="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<ThumbTexture parentKey="Thumb" atlas="Minimal_SliderBar_Button" useAtlasSize="false">
+			<Size x="16" y="16"/>
+		</ThumbTexture>
+	</Slider>
 </Ui>

@@ -2,7 +2,7 @@
 local _, addon = ...
 local fsConfig = addon.Configuration
 local wow = addon.WoW.Api
-local L = addon.Locale
+local L = addon.Locale.Current
 local M = {}
 fsConfig.Panels.SortingMethod = M
 
@@ -39,7 +39,7 @@ function M:Build(parent)
     reloadButton:SetPoint("TOPLEFT", reloadReminder, 0, -verticalSpacing * 1.5)
     reloadButton:SetWidth(100)
     reloadButton:SetText(L["Reload"])
-    reloadButton:HookScript("OnClick", function()
+    reloadButton:SetScript("OnClick", function()
         wow.ReloadUI()
     end)
     reloadButton:SetShown(false)
@@ -55,7 +55,7 @@ function M:Build(parent)
         reloadButton:SetShown(true)
     end
 
-    secure:HookScript("OnClick", function()
+    secure:SetScript("OnClick", function()
         if not secure:GetChecked() then
             secure:SetChecked(true)
             return
@@ -64,7 +64,7 @@ function M:Build(parent)
         setSortingMethod(fsConfig.SortingMethod.Secure)
     end)
 
-    traditional:HookScript("OnClick", function()
+    traditional:SetScript("OnClick", function()
         if not traditional:GetChecked() then
             traditional:SetChecked(true)
             return

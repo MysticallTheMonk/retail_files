@@ -1,0 +1,37 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/UI.xsd">
+  <Frame name="RaidFrameSettings_AnchorTemplate" virtual="true">
+    <Size y="50"/>
+    <Layers>
+      <Layer level="ARTWORK">
+        <FontString parentKey="settings_text" inherits="GameFontNormalLeft" justifyH="LEFT">
+          <Anchors>
+            <Anchor point="LEFT" x="15" y="0"/>
+          </Anchors>
+        </FontString>
+      </Layer>
+      <Layer level="ARTWORK">
+        <FontString parentKey="dropdown_transition_text" inherits="GameFontNormalLeft" justifyH="LEFT">
+          <Anchors>
+            <Anchor point="LEFT" x="15" y="0"/>
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
+    <Frames>
+      <DropdownButton parentKey="point_dropdown" inherits="WowStyle1DropdownTemplate">
+        <Anchors>
+          <Anchor point="LEFT" x="200" y="0"/>
+        </Anchors>
+      </DropdownButton>
+      <DropdownButton parentKey="relative_point_dropdown" inherits="WowStyle1DropdownTemplate">
+        <Anchors>
+          <Anchor point="LEFT" x="200" y="0"/>
+        </Anchors>
+      </DropdownButton>
+      <Slider parentKey="offset_x_slider" orientation="HORIZONTAL" inherits="MinimalSliderWithSteppersTemplate">
+      </Slider>
+      <Slider parentKey="offset_y_slider" orientation="HORIZONTAL" inherits="MinimalSliderWithSteppersTemplate">
+      </Slider>
+		</Frames>
+  </Frame>
+</Ui>

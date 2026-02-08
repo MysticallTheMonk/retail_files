@@ -12,13 +12,11 @@ addon.SpellData = {
     -- General
 
     -- Death Knight
-    -- Abomination Limb
-    [383269] = {
+    [439843] = {
         class = addon.DEATHKNIGHT,
+        spec = { specID.BLOOD, specID.FROST_DK },
         category = category.BURST,
-        cooldown = 120,
-        duration = 12,
-        index = addon.SPELLPRIORITY.HIGH,
+        cooldown = 30,
     },
     -- Unholy
     -- Raise Abomination
@@ -93,21 +91,12 @@ addon.SpellData = {
         duration = 10,
         index = addon.SPELLPRIORITY.HIGH,
     },
-    -- Empower Rune Weapon
-    [47568] = {
+    -- Reaper's Mark
+    [439843] = {
         class = addon.DEATHKNIGHT,
-        spec = { specID.FROST_DK },
+        spec = { specID.BLOOD, specID.FROST_DK },
         category = category.BURST,
-        cooldown = 120,
-        duration = 20,
-    },
-    -- Chill Streak
-    [305392] = {
-        class = addon.DEATHKNIGHT,
-        spec = { specID.FROST_DK },
-        category = category.BURST,
-        cooldown = 45,
-        duration = 4,
+        cooldown = 30,
     },
     -- Interrupt
     -- Mind Freeze
@@ -115,6 +104,7 @@ addon.SpellData = {
         class = addon.DEATHKNIGHT,
         category = category.INTERRUPT,
         cooldown = 15,
+        reduce_on_interrupt = 3,
         baseline = true,
     },
     -- Shambling Rush
@@ -130,7 +120,7 @@ addon.SpellData = {
     -- Death Grip
     [49576] = {
         class = addon.DEATHKNIGHT,
-        category = category.OTHERS,
+        category = category.MOBILITY,
         cooldown = 25,
         charges = true, -- Death's Echo is almost always picked
         baseline = true,
@@ -186,12 +176,13 @@ addon.SpellData = {
         category = category.DEFENSIVE,
         cooldown = 40, -- Anti-Magic Barrier almost always picked
         default = true,
-        -- Not set as baseline, since it can be replaced by Spellwarden
+        baseline = true,
     },
         -- Anti-Magic Shell (Spellwarden)
         [410358] = {
             parent = 48707,
             cooldown = 30,
+            use_parent_icon = true,
         },
     -- Anti-Magic Zone
     [51052] = {
@@ -363,18 +354,24 @@ addon.SpellData = {
     [278326] = {
         cooldown = 10,
         class = addon.DEMONHUNTER,
-        category = category.OTHERS,
+        category = category.DISPEL,
         baseline = true,
     },
     -- Vengeful Retreat
     [198793] = {
         class = addon.DEMONHUNTER,
-        category = category.OTHERS,
+        category = category.MOBILITY,
         cooldown = { default = 20, [specID.VENGEANCE] = 25 },
         baseline = true,
     },
 
     -- Druid
+    -- Wild Charge
+    [102401] = {
+        class = addon.DRUID,
+        category = category.MOBILITY,
+        cooldown = 15,
+    },
     -- Convoke the Spirits
     [391528] = {
         class = addon.DRUID,
@@ -477,7 +474,7 @@ addon.SpellData = {
     },
     -- Maim
     [22570] = {
-        cooldown = 20,
+        cooldown = 30,
         class = addon.DRUID,
         category = category.STUN
     },
@@ -572,6 +569,13 @@ addon.SpellData = {
         category = category.HEAL,
         baseline = true,
     },
+    -- Frenzied Regeneration
+    [22842] = {
+        cooldown = 28,
+        class = addon.DRUID,
+        category = category.HEAL,
+        baseline = true,
+    },
     -- Incarnation: Tree of Life
     [33891] = {
         class = addon.DRUID,
@@ -631,6 +635,13 @@ addon.SpellData = {
     },
 
     -- Evoker
+    -- Verdant Embrace
+    [360995] = {
+        class = addon.EVOKER,
+        category = category.DEFENSIVE,
+        cooldown = 16, -- 24s baseline, -2s from 4-piece bonus (4s but 50% in PvP), -6 from talent Wind Rider
+        baseline = true,
+    },
     -- Devastation
     -- Deep Breath
     [357210] = {
@@ -714,14 +725,6 @@ addon.SpellData = {
         category = category.DEFENSIVE,
         cooldown = 60,
     },
-    -- Nullifying Shroud
-    [378464] = {
-        class = addon.EVOKER,
-        category = category.DEFENSIVE,
-        cooldown = 90,
-        baseline = true,
-        default = true,
-    },
     -- Time Stop
     [378441] = {
         class = addon.EVOKER,
@@ -793,7 +796,7 @@ addon.SpellData = {
     -- Rescue
     [370665] = {
         class = addon.EVOKER,
-        category = category.OTHERS,
+        category = category.DEFENSIVE,
         cooldown = 60,
         baseline = true,
     },
@@ -852,6 +855,22 @@ addon.SpellData = {
         duration = 20,
         baseline = true, -- technically a talent, but always picked
         default = true,
+    },
+    -- Flanking Strike
+    [269751] = {
+        class = addon.HUNTER,
+        spec = { specID.SURVIVAL },
+        category = category.BURST,
+        cooldown = 30,
+        baseline = true,
+    },
+    -- Fury of the Eagle
+    [203415] = {
+        class = addon.HUNTER,
+        spec = { specID.SURVIVAL },
+        category = category.BURST,
+        cooldown = 45,
+        baseline = true,
     },
     -- Marksmanship
     -- Trueshot
@@ -915,6 +934,7 @@ addon.SpellData = {
         [474421] = {
             parent = 19577,
             use_parent_icon = true,
+            replace_parent_icon = true,
         },
     -- Freezing Trap
     [187650] = {
@@ -923,6 +943,11 @@ addon.SpellData = {
         category = category.CROWDCONTROL,
         baseline = true,
     },
+        -- Diamond Ice
+        [203340] = {
+            parent = 187650,
+            use_parent_icon = true,
+        },
     -- Binding Shot
     [109248] = {
         cooldown = 45,
@@ -1004,14 +1029,14 @@ addon.SpellData = {
     [190925] = {
         class = addon.HUNTER,
         spec = { specID.SURVIVAL },
-        category = category.OTHERS,
+        category = category.MOBILITY,
         cooldown = 20,
         baseline = true,
     },
     -- Tranquilizing Shot
     [19801] = {
         class = addon.HUNTER,
-        category = category.OTHERS,
+        category = category.DISPEL,
         cooldown = 10,
         baseline = true,
     },
@@ -1190,7 +1215,7 @@ addon.SpellData = {
     },
     -- Dragon's Breath
     [31661] = {
-        cooldown = { default = 45, [specID.FROST_MAGE] = 31.5 },
+        cooldown = 32,
         class = addon.MAGE,
         category = category.CROWDCONTROL,
         baseline = true, -- technically a talent, but always picked
@@ -1232,14 +1257,14 @@ addon.SpellData = {
     [1953] = {
         cooldown = 11, -- 15s - 4s from Flow of Time
         class = addon.MAGE,
-        category = category.OTHERS,
+        category = category.MOBILITY,
         -- Not baseline since it can be replaced by Shimmer
     },
     -- Shimmer
     [212653] = {
         cooldown = 21, -- 25s - 4s from Flow of Time
         class = addon.MAGE,
-        category = category.OTHERS,
+        category = category.MOBILITY,
         charges = true,
     },
     -- Blast Wave
@@ -1364,6 +1389,7 @@ addon.SpellData = {
     -- Revival
     [115310] = {
         cooldown = 150,
+        opt_lower_cooldown = 126,
         class = addon.MONK,
         spec = { specID.MISTWEAVER },
         category = category.DEFENSIVE,
@@ -1375,6 +1401,8 @@ addon.SpellData = {
         [388615] = {
             parent = 115310,
             use_parent_icon = true,
+            replace_parent_icon = true,
+            opt_lower_cooldown = 126,
         },
     -- Fortifying Brew
     [115203] = {
@@ -1432,7 +1460,7 @@ addon.SpellData = {
     -- Tiger's Lust
     [116841] = {
         class = addon.MONK,
-        category = category.OTHERS,
+        category = category.MOBILITY,
         cooldown = 30,
         baseline = true,
     },
@@ -1453,6 +1481,13 @@ addon.SpellData = {
         spec = { specID.WINDWALKER, specID.BREWMASTER },
         category = category.DISPEL,
         trackEvent = addon.SPELL_DISPEL,
+    },
+    -- Clash
+    [324312] = {
+        class = addon.MONK,
+        category = category.MOBILITY,
+        cooldown = 60,
+        baseline = true, -- technically a talent, but always picked
     },
 
     -- Paladin
@@ -1533,9 +1568,9 @@ addon.SpellData = {
         -- Blessing of SpellWarding
         [204018] = {
             -- Available to all specs
-            baseline = false, -- to avoid inheriting parent baseline property
             parent = 1022,
             use_parent_icon = true, -- different abilities but sharing cooldown
+            replace_parent_icon = true,
         },
     -- Lay on Hands
     [633] = {
@@ -1660,7 +1695,7 @@ addon.SpellData = {
     [1044] = {
         cooldown = 25,
         class = addon.PALADIN,
-        category = category.OTHERS,
+        category = category.MOBILITY,
         baseline = true,
     },
     -- Dispel
@@ -2197,7 +2232,7 @@ addon.SpellData = {
         class = addon.ROGUE,
         spec = { specID.SUBTLETY, specID.ASSASSINATION },
         charges = true,
-        category = category.OTHERS,
+        category = category.MOBILITY,
         baseline = true,
     },
     -- Grappling Hook
@@ -2206,7 +2241,7 @@ addon.SpellData = {
         class = addon.ROGUE,
         spec = { specID.OUTLAW },
         charges = true,
-        category = category.OTHERS,
+        category = category.MOBILITY,
         baseline = true,
     },
     -- Dismantle
@@ -2219,7 +2254,7 @@ addon.SpellData = {
     [2983] = {
         cooldown = 60,
         class = addon.ROGUE,
-        category = category.OTHERS,
+        category = category.MOBILITY,
         baseline = true,
     },
 
@@ -2431,7 +2466,7 @@ addon.SpellData = {
     [378773] = {
         cooldown = 12,
         class = addon.SHAMAN,
-        category = category.OTHERS,
+        category = category.DISPEL,
     },
     -- Nature's Swiftness
     [378081] = {
@@ -2789,7 +2824,7 @@ addon.SpellData = {
         cooldown = 17,
         class = addon.WARRIOR,
         charges = true,
-        category = category.OTHERS,
+        category = category.MOBILITY,
         baseline = true,
     },
     -- Spell Reflection
@@ -2819,7 +2854,7 @@ addon.SpellData = {
     [52174] = {
         cooldown = 30,
         class = addon.WARRIOR,
-        category = category.OTHERS,
+        category = category.MOBILITY,
         baseline = true, -- technically a talent, but always picked
     },
     -- Disarm
@@ -3104,7 +3139,6 @@ for _, spell in pairs(addon.SpellData) do
         spell.category = spell.category or parent.category;
         spell.trackPet = spell.trackPet or parent.trackPet;
         spell.trackEvent = spell.trackEvent or parent.trackEvent;
-        spell.baseline = spell.baseline or parent.baseline;
         spell.index = spell.index or parent.index;
         spell.default = spell.default or parent.default;
     end

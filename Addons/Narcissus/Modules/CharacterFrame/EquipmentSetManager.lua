@@ -1,3 +1,5 @@
+local _, addon = ...
+
 Narci_EquipmentSetManager = {};
 
 local ESM = Narci_EquipmentSetManager;
@@ -14,7 +16,6 @@ local ICON_NEW_SET = "Interface\\AddOns\\Narcissus\\Art\\Widgets\\EquipmentSetMa
 local ICON_SELECTED = "  |TInterface\\AddOns\\Narcissus\\Art\\Widgets\\Arrows\\Tick:12:12:0:0:64:64:0:64:0:64|t";
 local SETBUTTON_HEIGHT = 48;
 
-local _;
 local FadeFrame = NarciFadeUI.Fade;
 local GetItemStats = NarciAPI_GetItemStats;
 local SmartFontType = NarciAPI.SmartFontType;
@@ -24,8 +25,11 @@ local C_EquipmentSet = C_EquipmentSet;
 local GetNumEquipmentSets = C_EquipmentSet.GetNumEquipmentSets;     --Returns the number of saved equipment sets.
 local GetItemLocations = C_EquipmentSet.GetItemLocations;
 local GetEquipmentSetInfo = C_EquipmentSet.GetEquipmentSetInfo;
-local UnpackLocation = EquipmentManager_UnpackLocation;
+local UnpackLocation = addon.TransitionAPI.EquipmentManager_UnpackLocation;
+local Secret_Multiply = addon.TransitionAPI.Secret_Multiply;
 local GetItemInventoryType = C_Item.GetItemInventoryType;
+local UIColorThemeUtil = addon.UIColorThemeUtil;
+local SharedBlackScreen = addon.SharedBlackScreen;
 
 local After = C_Timer.After;
 local sin = math.sin;
@@ -33,7 +37,6 @@ local cos = math.cos;
 local max = math.max;
 local pi = math.pi;
 
-local NarciThemeUtil = NarciThemeUtil;
 
 -----------------------------------------------------------------------------------
 --[[ LibEasing
@@ -221,13 +224,13 @@ local function FadeInTalentIcons(button, action)
 end
 
 local function SetBackgroundColor(self)
-    local r, g, b = NarciThemeUtil:GetColor();
+    local r, g, b = UIColorThemeUtil:GetActiveColor();
     self.Bar2:SetColorTexture(r, g, b, 0.75);
     self.Color:SetColorTexture(r, g, b, 0.75);
 end
 
 local function AnimateBackgroundColor(self)
-    local r, g, b = NarciThemeUtil:GetColor();
+    local r, g, b = UIColorThemeUtil:GetActiveColor();
 
     self.Color:SetColorTexture(r, g, b, 0.75);
     self.BarColors = {r, g, b};
@@ -354,14 +357,14 @@ local HealthFactor = 1;
 
 local function GetHPFactor()
     --Calculate stamina → Health conversion rate
-    local ConversionRate; 
+    local conversionRate;
     local stamina, _, posBuff, negBuff = UnitStat("player", LE_UNIT_STAT_STAMINA);
-    local BasicStamima = stamina - posBuff - negBuff;
-    local Health = UnitHealth("player");
+    local basicStamima = stamina - posBuff - negBuff;
+    local health = UnitHealth("player");
     if stamina == 0 then
-        ConversionRate = 20;
+        conversionRate = 20;
     else
-        ConversionRate = Health / stamina;
+        conversionRate = Secret_Multiply(health, 1/stamina);
     end
 
     --Calculate stamina gain from current equipment
@@ -376,7 +379,11 @@ local function GetHPFactor()
         end
     end
 
-    HealthFactor = ConversionRate * stamina / (StaminaFromItems + BasicStamima) ;
+    if conversionRate then
+        HealthFactor = conversionRate * stamina / (StaminaFromItems + basicStamima) ;
+    else
+        HealthFactor = 1;
+    end
 end
 
 --[[    --Deprecated Method
@@ -745,9 +752,9 @@ end
 
 local function ShowFlyoutBlack(state)
     if state then
-        Narci_FlyoutBlack:In();
+        SharedBlackScreen:TryShow();
     else
-        Narci_FlyoutBlack:Out();
+        SharedBlackScreen:TryHide();
     end
 end
 
@@ -801,7 +808,10 @@ local function ShowIconSelector(SetButton)
     end
     Selector:SetPoint("BOTTOMRIGHT", Narci_EquipmentSetManagerFrame, "BOTTOMLEFT", -4, 0);
     FadeFrame(Selector, 0.15, 1);
+
+    SharedBlackScreen:AddOwner(Selector);
     ShowFlyoutBlack(true);
+
     return specName, specIcon;
 end
 
@@ -904,7 +914,7 @@ local function PlayHighlight(self)
     Highlight:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0);
     Highlight:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", 0, 0);
 
-    local r, g, b = NarciThemeUtil:GetColor();
+    local r, g, b = UIColorThemeUtil:GetActiveColor();
     local w = 0.4;
     r, g, b = r + w, g + w, b + w;
 
@@ -1351,7 +1361,7 @@ NarciViewUtil.showSetsCallBack = function()         --NarciViewUtil is declared 
     local Overlay1 = EquipmentSetManagerFrame.ListScrollFrame.OverlayFrame1;
     local SaveItemButton =  Overlay1.SaveItem;
     local SaveTalentButton =  Overlay1.SaveTalent;
-    local r, g, b = NarciThemeUtil:GetColor();
+    local r, g, b = UIColorThemeUtil:GetActiveColor();
     SaveItemButton.r, SaveItemButton.g, SaveItemButton.b = r, g, b;
     SaveTalentButton.r, SaveTalentButton.g, SaveTalentButton.b = r, g, b;
 end

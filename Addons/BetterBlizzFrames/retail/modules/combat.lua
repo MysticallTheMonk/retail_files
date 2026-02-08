@@ -255,7 +255,18 @@ function BBF.RacialIndicator(unitFrame, unit)
     unitFrame.racialIndicator:SetPoint("CENTER", unitFrame, "CENTER", xPos, yPos)
     unitFrame.racialIndicator:SetScale(scale)
 
-    if darkModeOn then
+    if BetterBlizzFramesDB.classColorFrameTexture and UnitIsPlayer(unit) then
+        -- Get class color of the unit
+        local _, class = UnitClass(unit)
+        local classColor = class and RAID_CLASS_COLORS[class]
+        if classColor then
+            unitFrame.racialIndicator.border:SetVertexColor(classColor.r, classColor.g, classColor.b)
+        elseif darkModeOn then
+            unitFrame.racialIndicator.border:SetVertexColor(vertexColor, vertexColor, vertexColor)
+        else
+            unitFrame.racialIndicator.border:SetVertexColor(1, 1, 0)
+        end
+    elseif darkModeOn then
         unitFrame.racialIndicator.border:SetVertexColor(vertexColor, vertexColor, vertexColor)
     else
         unitFrame.racialIndicator.border:SetVertexColor(1, 1, 0)

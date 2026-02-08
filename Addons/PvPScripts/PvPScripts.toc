@@ -1,4 +1,4 @@
-## Interface: 110007
+## Interface: 120000
 ## Title: PvPScripts
 ## Notes: Scripts for PvP
 
@@ -21,3 +21,4 @@ surrender.lua
 ##fadeSevenActionbar.lua
 ##fadeFiveActionbar.lua
 ##fadeSixActionbar.lua
+autoCollapseBuffs.lua

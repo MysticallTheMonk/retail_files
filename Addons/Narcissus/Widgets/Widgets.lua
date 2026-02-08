@@ -972,7 +972,7 @@ function NarciSearchBoxSharedMixin:OnLoad()
         if frame.total >= frame.duration then
             frame:Hide();
             if self.onSearchFunc then
-                self.onSearchFunc( self:GetText() )
+                self.onSearchFunc( self:GetText() );
             end
         end
     end)
@@ -982,6 +982,7 @@ function NarciSearchBoxSharedMixin:OnLoad()
 end
 
 function NarciSearchBoxSharedMixin:OnShow()
+    if self.noAutoFocus then return end;
     self:SetFocus();
 end
 
@@ -1053,6 +1054,13 @@ function NarciSearchBoxSharedMixin:OnLeave()
     end
 end
 
+function NarciSearchBoxSharedMixin:GetValidText()
+    local str = strtrim(self:GetText());
+    if str ~= "" then
+        return str
+    end
+end
+
 
 --------------------------------------------------------------------------------------------------
 --Show a L/R mark next to the item border
@@ -1097,10 +1105,10 @@ local CreateKeyChordStringUsingMetaKeyState = CreateKeyChordStringUsingMetaKeySt
 --Name: Clipboard
 --Notes: Highlight the border when gaining focus. Show visual feedback (glow) after pressing Ctrl+C
 
-local HotkeyListener = CreateFrame("Frame");
+local HotkeyListener = CreateFrame("Frame", nil, nil, "NarciPropagateKeyboardInputTemplate");
 HotkeyListener:SetFrameStrata("TOOLTIP");
 HotkeyListener:Hide();
-HotkeyListener:SetPropagateKeyboardInput(true);
+--HotkeyListener:SetPropagateKeyboardInput(true);
 HotkeyListener:SetScript("OnKeyDown", function(self, key)
     local keys = CreateKeyChordStringUsingMetaKeyState(key);
     if keys == "CTRL-C" or key == "COMMAND-C" then
@@ -1171,7 +1179,12 @@ function NarciResponsiveEditBoxSharedMixin:OnHide()
 end
 
 function NarciResponsiveEditBoxSharedMixin:OnTextChanged(userInput)
-
+    if userInput then
+        if self.forbidEdit then
+            self:QuitEdit();
+            self:SetText(self.protectedText);
+        end
+    end
 end
 
 function NarciResponsiveEditBoxSharedMixin:SetDefaultCursorPosition(offset)
@@ -1201,7 +1214,7 @@ function NarciResponsiveClipboardMixin:OnTextChanged(userInput)
     end
 end
 
-function NarciResponsiveEditBoxSharedMixin:OnHide()
+function NarciResponsiveClipboardMixin:OnHide()
     self:QuitEdit();
     self.copiedText = nil;
 end
@@ -1210,6 +1223,17 @@ end
 NarciScrollEditBoxMixin = CreateFromMixins(NarciFrameBorderMixin);
 
 function NarciScrollEditBoxMixin:SetText(str)
+    self.ScrollFrame.EditBox.forbidEdit = nil;
+    self.ScrollFrame.EditBox.protectedText = "";
+    self.ScrollFrame.EditBox:SetText(str);
+    After(0, function()
+        self:UpdateScrollRange(true);
+    end);
+end
+
+function NarciScrollEditBoxMixin:SetProtectedText(str)
+    self.ScrollFrame.EditBox.forbidEdit = true;
+    self.ScrollFrame.EditBox.protectedText = str;
     self.ScrollFrame.EditBox:SetText(str);
     After(0, function()
         self:UpdateScrollRange(true);
@@ -1320,17 +1344,13 @@ end
 
 function NarciVerticalLineSliderMixin:OnEnter()
     self:FadeIn();
+    self:RegisterEvent("GLOBAL_MOUSE_UP");
 end
 
 function NarciVerticalLineSliderMixin:OnLeave()
     if not self:IsDraggingThumb() then
         self:FadeOut();
-    end
-end
-
-function NarciVerticalLineSliderMixin:OnMouseUp()
-    if not self:IsMouseOver() then
-        self:FadeOut();
+        self:UnregisterEvent("GLOBAL_MOUSE_UP");
     end
 end
 
@@ -1342,6 +1362,16 @@ end
 function NarciVerticalLineSliderMixin:FadeOut()
     FadeFrame(self.Background, 0.25, 0.4);
     self.Thumb:SetVertexColor(0.5, 0.5, 0.5);
+end
+
+function NarciVerticalLineSliderMixin:OnHide()
+    self:UnregisterEvent("GLOBAL_MOUSE_UP");
+end
+
+function NarciVerticalLineSliderMixin:OnEvent()
+    if (not self:IsMouseMotionFocus()) then
+        self:OnLeave();
+    end
 end
 
 
@@ -1606,11 +1636,12 @@ end
 
 local function ClearBindingKey(actionName)
     local key1, key2 = GetBindingKey(actionName);
+    local bindingContext = C_KeyBindings.GetBindingContextForAction(actionName);
     if key1 then
-        SetBinding(key1, nil, 1);
+        SetBinding(key1, nil, bindingContext);
     end
     if key2 then
-        SetBinding(key2, nil, 1);
+        SetBinding(key2, nil, bindingContext);
     end
     SaveBindings(1);
 end
@@ -1739,7 +1770,8 @@ function NarciGenericKeyBindingButtonMixin:VerifyKey(override)
             return true
         else
             ClearBindingKey(self.actionName);
-            if SetBinding(key, self.actionName, 1) then
+            local bindingContext = C_KeyBindings.GetBindingContextForAction(self.actionName);
+            if SetBinding(key, self.actionName, bindingContext) then
                 SaveBindings(1);    --account wide
                 self:ExitKeyBinding(true);
             else

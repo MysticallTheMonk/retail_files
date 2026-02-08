@@ -7,7 +7,6 @@
 	<Script file="Icon.lua"/>
 	<Script file="Gloss.lua"/>
 	<Script file="Shadow.lua"/>
-	<Script file="SlotIcon.lua"/>
 	<Script file="Text.lua"/>
 	<Script file="Texture.lua"/>
 	<Script file="IconBorder.lua"/>
@@ -15,4 +14,5 @@
 	<Script file="QuestBorder.lua"/>
 	<Script file="Cooldown.lua"/>
 	<Script file="SpellAlert.lua"/>
+	<Script file="AssistedCombat.lua"/>
 </Ui>

@@ -1,0 +1,373 @@
+<Ui xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+    <Script file="Ace3\LibStub\LibStub.lua"/>
+    <Include file="Ace3\CallbackHandler-1.0\CallbackHandler-1.0.xml"/>
+    <Script file="Ace3\Libs\LibSharedMedia-3.0\LibSharedMedia-3.0.lua"/>
+    <Include file="Ace3\AceDB-3.0\AceDB-3.0.xml"/>
+    <Include file="Ace3\AceDBOptions-3.0\AceDBOptions-3.0.xml"/>
+    <Include file="Ace3\AceConsole-3.0\AceConsole-3.0.xml"/>
+    <Include file="Ace3\AceGUI-3.0\AceGUI-3.0.xml"/>
+    <Include file="Ace3\AceGUI-3.0-SharedMediaWidgets\widget.xml"/>
+    <Include file="Ace3\AceConfig-3.0\AceConfig-3.0.xml"/>
+    <Script file="Ace3\Libs\LibDeflate\LibDeflate.lua"/>
+    <Script file="Ace3\Libs\LibSerialize\LibSerialize.lua"/>
+
+    <Script file="sArena_Init.lua"/>
+    <Include file="Locales\locales.xml"/>
+    <Script file="Data\Interrupts\InterruptList_Wrath.lua"/>
+    <Script file="Data\SpecSpells\SpecSpells_Wrath.lua"/>
+    <Script file="Data\DRs\DrList_Wrath.lua"/>
+    <Script file="Data\Profiles.lua"/>
+    <Script file="Data\Auras\AuraList_Wrath.lua"/>
+    <Script file="Modules\Interrupt.lua"/>
+    <Script file="sArena.lua"/>
+    <Script file="Modules\SpecFinder.lua"/>
+    <Script file="Modules\Racials.lua"/>
+    <Script file="Modules\Dispels.lua"/>
+    <Script file="Modules\DiminishingReturns.lua"/>
+    <Script file="Config.lua"/>
+    <Script file="Modules\Auras.lua"/>
+    <Script file="Modules\Trinkets.lua"/>
+    <Script file="Modules\ModernCastbar.lua"/>
+    <Script file="Modules\ImportExport.lua"/>
+    <Script file="Layouts\BlizzArena.lua"/>
+    <Script file="Layouts\BlizzRetail.lua"/>
+    <Script file="Layouts\BlizzCompact.lua"/>
+    <Script file="Layouts\BlizzTourney.lua"/>
+    <Script file="Layouts\BlizzTarget.lua"/>
+    <Script file="Layouts\Gladiuish.lua"/>
+    <Script file="Layouts\Pixelated.lua"/>
+    <Script file="Layouts\Xaryu.lua"/>
+
+    <Frame name="sArenaDRFrameTemplate" enablemouse="true" movable="true" hidden="true" virtual="true">
+        <Size x="40" y="40"/>
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture parentKey="Border" file="Interface\Buttons\UI-Quickslot-Depress"/>
+            </Layer>
+            
+            <Layer level="ARTWORK">
+                <Texture parentKey="Icon">
+                    <TexCoords left="0.08" right="0.92" top="0.08" bottom="0.92"/>
+                </Texture>
+            </Layer>
+        </Layers>
+
+        <Frames>
+            <Cooldown parentKey="Cooldown" drawBling="false" hideCountdownNumbers="false" inherits="CooldownFrameTemplate">
+                <SwipeTexture>
+                    <Color r="0" g="0" b="0" a="0.6"/>
+                </SwipeTexture>
+                <Scripts>
+                    <OnLoad>
+                        self:SetDrawBling(false)
+			            self:SetReverse(true)
+                        for _, region in next, { self:GetRegions() } do
+                            if region:GetObjectType() == "FontString" then
+                                self.Text = region;
+                                self.Text.fontFile = region:GetFont();
+                            end
+                        end
+                        self.parent = self:GetParent();
+                    </OnLoad>
+                    <OnShow>
+                        self.parent:GetParent():UpdateDRPositions();
+                    </OnShow>
+                    <OnHide>
+                        self.parent:Hide();
+                        self.parent.severity = 1;
+                        self.parent:GetParent():UpdateDRPositions();
+                    </OnHide>
+                </Scripts>
+            </Cooldown>
+            <Frame parentKey="DRTextFrame" frameStrata="HIGH" setAllPoints="true">
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="DRText" font="Interface\AddOns\sArena_Reloaded\Textures\arialn.ttf" justifyH="RIGHT" justifyV="BOTTOM" outline="NORMAL">
+                            <FontHeight>
+                                <AbsValue val="14"/>
+                            </FontHeight>
+                            <Anchors>
+                                <Anchor point="BOTTOMRIGHT" x="4" y="-4"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+        </Frames>
+
+        <Scripts>
+            <OnLoad>
+                self.severity = 1;
+            </OnLoad>
+        </Scripts>
+    </Frame>
+
+    <StatusBar name="sArenaCastBarFrameTemplate" enablemouse="true" movable="true" virtual="true" hidden="true">
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture setAllPoints="true">
+                    <Color r="0" g="0" b="0" a="0.5"/>
+                </Texture>
+            </Layer>
+
+            <Layer level="ARTWORK">
+                <Texture parentKey="BorderShield" file="Interface\CastingBar\UI-CastingBar-Arena-Shield" hidden="true">
+                    <Size x="42" y="42"/>
+                    <Anchors>
+                        <Anchor point="LEFT" x="-25" y="0"/>
+                    </Anchors>
+                </Texture>
+                <FontString parentKey="Text" inherits="GameFontHighlightSmall" setAllPoints="true"/>
+                <Texture parentKey="Icon">
+                    <Size x="16" y="16"/>
+                    <Anchors>
+                        <Anchor point="RIGHT" relativePoint="LEFT" x="-5" y="0"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+
+            <Layer level="OVERLAY">
+                <Texture parentKey="Spark" file="Interface\CastingBar\UI-CastingBar-Spark" alphaMode="ADD">
+                    <Size x="14" y="37"/>
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
+                </Texture>
+                <Texture parentKey="Flash" alphaMode="ADD"> 
+                    <!-- this needs to be here so the generic unit frame code will work right --> 
+                    <Size x="256" y="64"/>
+                    <Anchors>
+                        <Anchor point="TOP" x="0" y="28"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad function="CastingBarFrame_OnLoad"/>
+            <OnEvent function="CastingBarFrame_OnEvent"/>
+            <OnUpdate function="CastingBarFrame_OnUpdate"/>
+            <OnShow function="CastingBarFrame_OnShow"/>
+        </Scripts>
+        <BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+        <BarColor r="1.0" g="0.7" b="0.0"/>
+    </StatusBar>
+
+    <Frame name="sArenaIconFrameTemplate" enablemouse="true" movable="true" virtual="true">
+        <Layers>
+            <Layer level="OVERLAY" textureSubLevel="1">
+                <Texture parentKey="Texture" setAllPoints="true"/>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Cooldown parentKey="Cooldown" hideCountdownNumbers="false" inherits="CooldownFrameTemplate">
+                <Scripts>
+                    <OnLoad>
+                        self:SetDrawBling(false)
+                        for _, region in next, { self:GetRegions() } do
+                            if region:GetObjectType() == "FontString" then
+                                self.Text = region;
+                                self.Text.fontFile = region:GetFont();
+                            end
+                        end
+                    </OnLoad>
+                </Scripts>
+            </Cooldown>
+        </Frames>
+    </Frame>
+
+    <Frame name="sArenaWidgetFrameTemplate" enablemouse="true" movable="true" virtual="true" hidden="true">
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture parentKey="Texture" setAllPoints="true"/>
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <Button name="sArenaEnemyUnitFrameTemplate" frameStrata="MEDIUM" frameLevel="3" mixin="sArenaFrameMixin" hidden="true" virtual="true" inherits="SecureActionButtonTemplate">
+        <Layers>
+            <Layer level="BORDER" textureSubLevel="1">
+                <!-- Health/power bar is in this layer -->
+                <Texture parentKey="myHealPredictionBar" inherits="MyHealPredictionBarTemplate"/>
+                <Texture parentKey="otherHealPredictionBar" inherits="OtherHealPredictionBarTemplate"/>
+                <Texture parentKey="totalAbsorbBar" inherits="TotalAbsorbBarTemplate">
+                    <KeyValues>
+                        <KeyValue key="fillTexture" value="Interface\RaidFrame\Shield-Fill" type="string"/>
+                    </KeyValues>
+                </Texture>
+            </Layer>
+
+            <Layer level="ARTWORK" textureSubLevel="1">
+                <Texture parentKey="healAbsorbBar" inherits="HealAbsorbBarTemplate"/>
+            </Layer>
+
+            <Layer level="ARTWORK" textureSubLevel="2">
+                <Texture parentKey="frameTexture" hidden="true"/>
+            </Layer>
+
+            <Layer level="ARTWORK" textureSubLevel="3">
+                <FontString parentKey="Name" inherits="GameFontNormalSmall"/>
+                <FontString parentKey="SpecNameText" inherits="GameFontNormalSmall"/>
+                <FontString parentKey="HealthText"/>
+                <FontString parentKey="PowerText"/>
+                <Texture parentKey="overAbsorbGlow" inherits="OverAbsorbGlowTemplate"/>
+                <Texture parentKey="overHealAbsorbGlow" inherits="OverHealAbsorbGlowTemplate"/>
+                <Texture parentKey="totalAbsorbBarOverlay" inherits="TotalAbsorbBarOverlayTemplate"/>
+            </Layer>
+
+            <Layer level="OVERLAY" textureSubLevel="7">
+                <Texture parentKey="DeathIcon" atlas="DeathIcon" hidden="true">
+                    <TexCoords left="0" right="1" top="0" bottom="0.5"/>
+                </Texture>
+                <FontString parentKey="AuraStacks" inherits="SystemFont_Shadow_Small2"/>
+                <FontString parentKey="DispelStacks" inherits="SystemFont_Shadow_Small2"/>
+            </Layer>
+        </Layers>
+
+        <Frames>
+            <StatusBar parentKey="HealthBar" drawLayer="BORDER" useParentLevel="true">
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <Texture parentKey="hpUnderlay" setAllPoints="true">
+                            <Color r="0" g="0" b="0" a="0.6"/>
+                        </Texture>
+                    </Layer>
+                </Layers>
+            </StatusBar>
+            <StatusBar parentKey="PowerBar" drawLayer="BORDER" useParentLevel="true">
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <Texture parentKey="ppUnderlay" setAllPoints="true">
+                            <Color r="0" g="0" b="0" a="0.6"/>
+                        </Texture>
+                    </Layer>
+                </Layers>
+            </StatusBar>
+            <StatusBar parentKey="CastBar" inherits="sArenaCastBarFrameTemplate"/>
+            <Frame parentKey="ClassIcon" frameLevel="7" enablemouse="true" movable="true">
+                <Layers>
+                    <Layer level="BORDER" textureSubLevel="1">
+                        <Texture parentKey="Texture" setAllPoints="true"/>
+                        <MaskTexture parentKey="Mask" file="Interface\CharacterFrame\TempPortraitAlphaMask" setAllPoints="true"/>
+                    </Layer>
+                </Layers>
+                <Frames>
+                    <Cooldown parentKey="Cooldown" drawLayer="BORDER" useParentLevel="true" reverse="true" hideCountdownNumbers="false" inherits="CooldownFrameTemplate">
+                        <Scripts>
+                            <OnLoad>
+                                for _, region in next, { self:GetRegions() } do
+                                    if region:GetObjectType() == "FontString" then
+                                        self.Text = region;
+                                        self.Text.fontFile = region:GetFont();
+                                    end
+                                end
+                                self:SetAllPoints(self:GetParent().Texture)
+                                self:SetSwipeTexture(1)
+                                self:SetSwipeColor(0, 0, 0, 0.55)
+                                self:SetDrawBling(false)
+                            </OnLoad>
+                        </Scripts>
+                    </Cooldown>
+                </Frames>
+            </Frame>
+            <Frame parentKey="SpecIcon" frameLevel="8" enablemouse="true" movable="true">
+                <Layers>
+                    <Layer level="ARTWORK" textureSubLevel="2">
+                        <Texture parentKey="Texture" setAllPoints="true"/>
+                        <MaskTexture parentKey="Mask" setAllPoints="true" file="Interface\CharacterFrame\TempPortraitAlphaMask"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <Frame parentKey="WidgetOverlay" frameLevel="10" setAllPoints="true">
+                <Frames>
+                    <Frame parentKey="targetIndicator" inherits="sArenaWidgetFrameTemplate">
+                        <KeyValues>
+                            <KeyValue key="atlas" value="TargetCrosshairs" type="string"/>
+                        </KeyValues>
+                    </Frame>
+                    <Frame parentKey="focusIndicator" inherits="sArenaWidgetFrameTemplate">
+                        <KeyValues>
+                            <KeyValue key="atlas" value="Waypoint-MapPin-Untracked" type="string"/>
+                        </KeyValues>
+                    </Frame>
+                    <Frame parentKey="combatIndicator" inherits="sArenaWidgetFrameTemplate">
+                        <KeyValues>
+                            <KeyValue key="atlas" value="Food" type="string"/>
+                        </KeyValues>
+                    </Frame>
+                    <Frame parentKey="partyTarget1" inherits="sArenaWidgetFrameTemplate">
+                        <KeyValues>
+                            <KeyValue key="atlas" value="GM-icon-headCount" type="string"/>
+                            <KeyValue key="desaturated" value="true" type="boolean"/>
+                        </KeyValues>
+                    </Frame>
+                    <Frame parentKey="partyTarget2" inherits="sArenaWidgetFrameTemplate">
+                        <KeyValues>
+                            <KeyValue key="atlas" value="GM-icon-headCount" type="string"/>
+                            <KeyValue key="desaturated" value="true" type="boolean"/>
+                        </KeyValues>
+                    </Frame>
+                </Frames>
+            </Frame>
+
+            <Frame parentKey="Trinket" inherits="sArenaIconFrameTemplate"/>
+            <Frame parentKey="Racial" inherits="sArenaIconFrameTemplate"/>
+            <Frame parentKey="Dispel" inherits="sArenaIconFrameTemplate"/>
+
+            <Frame parentKey="Incapacitate" inherits="sArenaDRFrameTemplate"/>
+            <Frame parentKey="Stun" inherits="sArenaDRFrameTemplate"/>
+            <Frame parentKey="RandomStun" inherits="sArenaDRFrameTemplate"/>
+            <Frame parentKey="RandomRoot" inherits="sArenaDRFrameTemplate"/>
+			<Frame parentKey="Root" inherits="sArenaDRFrameTemplate"/>
+			<Frame parentKey="Disarm" inherits="sArenaDRFrameTemplate"/>
+			<Frame parentKey="Fear" inherits="sArenaDRFrameTemplate"/>
+            <Frame parentKey="Disorient" inherits="sArenaDRFrameTemplate"/>
+			<Frame parentKey="Silence" inherits="sArenaDRFrameTemplate"/>
+			<Frame parentKey="Horror" inherits="sArenaDRFrameTemplate"/>
+			<Frame parentKey="MindControl" inherits="sArenaDRFrameTemplate"/>
+			<Frame parentKey="Cyclone" inherits="sArenaDRFrameTemplate"/>
+			<Frame parentKey="Charge" inherits="sArenaDRFrameTemplate"/>
+        </Frames>
+
+        <Scripts>
+            <OnEvent method="OnEvent"/>
+            <OnLoad method="OnLoad"/>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
+        </Scripts>
+    </Button>
+
+    <Frame name="sArena" mixin="sArenaMixin" movable="true" parent="UIParent">
+        <Size x="1" y="1"/>
+        <Frames>
+            <Button name="sArenaEnemyFrame1" parentKey="arena1" inherits="sArenaEnemyUnitFrameTemplate" id="1">
+                <Anchors>
+                    <Anchor point="CENTER"/>
+                </Anchors>
+            </Button>
+            <Button name="sArenaEnemyFrame2" parentKey="arena2" inherits="sArenaEnemyUnitFrameTemplate" id="2"/>
+            <Button name="sArenaEnemyFrame3" parentKey="arena3" inherits="sArenaEnemyUnitFrameTemplate" id="3"/>
+            <Button name="sArenaEnemyFrame4" parentKey="arena4" inherits="sArenaEnemyUnitFrameTemplate" id="4"/>
+            <Button name="sArenaEnemyFrame5" parentKey="arena5" inherits="sArenaEnemyUnitFrameTemplate" id="5"/>
+            
+            <Frame parentKey="ShadowsightTimer" hidden="true">
+                <Size x="250" y="20"/>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Text" inherits="GameFontNormalSmall">
+                            <Anchors>
+                                <Anchor point="CENTER" relativePoint="CENTER" x="0" y="0"/>
+                            </Anchors>
+                            <Color r="1.0" g="0.8" b="0.0"/>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+        </Frames>
+
+        <Scripts>
+            <OnEvent method="OnEvent"/>
+            <OnLoad method="OnLoad"/>
+        </Scripts>
+    </Frame>
+</Ui>

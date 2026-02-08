@@ -1,0 +1,9 @@
+<!--
+    Copyright (c) 2026 Krowi
+    Licensed under the terms of the LICENSE file in this repository.
+ -->
+
+<Ui>
+    <Script file='Krowi_Currency.lua'/>
+    <Include file='Localization\Files.xml' />
+</Ui>

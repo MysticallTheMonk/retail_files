@@ -1,0 +1,56 @@
+## Interface: 20505
+## Title: SweepyBoop's PvP Helper
+## Author: SweepyBoop
+## Version: @project-version@
+## SavedVariables: SweepyBoopDB
+## OptionalDeps: Ace3
+## IconTexture: Interface\AddOns\SweepyBoop\Art\Logo
+
+Libs\LibStub\LibStub.lua
+Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
+Libs\AceAddon-3.0\AceAddon-3.0.xml
+Libs\AceEvent-3.0\AceEvent-3.0.xml
+Libs\AceDB-3.0\AceDB-3.0.xml
+Libs\AceDBOptions-3.0\AceDBOptions-3.0.xml
+Libs\AceConsole-3.0\AceConsole-3.0.xml
+Libs\AceGUI-3.0\AceGUI-3.0.xml
+Libs\AceConfig-3.0\AceConfig-3.0.xml
+Libs\AceSerializer-3.0\AceSerializer-3.0.xml
+Libs\LibDeflate\LibDeflate.lua
+Libs\LibCustomGlow-1.0\LibCustomGlow-1.0.xml
+Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
+Libs\LibDBIcon-1.0\LibDBIcon-1.0.lua
+
+Common\Constants.lua
+Common\SpellData_TBC.lua
+Common\UnitInfoHelpers.lua
+Common\NpcData.lua
+Common\AuraData.lua
+Common\DRList.lua
+Common\MasqueHelper.lua
+Common\AceGUIWidget-InlineLink.lua
+
+Core.lua
+
+Profiles\Helpers.lua
+
+Nameplates\Nameplates.xml
+Nameplates\Helpers.lua
+Nameplates\ClassIcons.lua
+Nameplates\PetIcons.lua
+Nameplates\NameplateFilter.lua
+Nameplates\SpecIcons.lua
+Nameplates\AuraFilter.lua
+Nameplates\Nameplates.lua
+Nameplates\Options.lua
+
+ArenaFrames\IconGroupUtil.lua
+ArenaFrames\IconTemplates.lua
+ArenaFrames\CooldownTracking.xml
+ArenaFrames\CooldownTrackingTemplates.lua
+ArenaFrames\ArenaCooldowns.lua
+ArenaFrames\HealerIndicator.lua
+ArenaFrames\RangeIndicators.lua
+ArenaFrames\Options.lua
+
+Internal\Debug.lua

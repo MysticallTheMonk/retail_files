@@ -1,8 +1,6 @@
-local hidingArenaFrames = nil
-
 function BBF.HideArenaFrames()
-    if hidingArenaFrames then return end
-    hidingArenaFrames = true
+    if CompactArenaFrame.isHidden then return end
+    CompactArenaFrame.isHidden = true
     local ArenaAntiMalware = CreateFrame("Frame")
     ArenaAntiMalware:Hide()
 
@@ -42,9 +40,5 @@ function BBF.HideArenaFrames()
     CompactArenaFrameTitle:HookScript("OnLoad", MalwareProtector)
     CompactArenaFrameTitle:HookScript("OnShow", MalwareProtector)
 
-    CompactArenaFrame.isHidden = true
-
-    if CompactArenaFrame or CompactArenaFrameTitle then
-        MalwareProtector()
-    end
+    MalwareProtector()
 end

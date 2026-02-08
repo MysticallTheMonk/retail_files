@@ -380,11 +380,11 @@ local function DisplayProgress(id, flags)
             numCompleted = 0;
             numIncomplete = 0;
         else
-            local criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString;
+            local criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID;
 
             for i = 1, numCriteria do
-                criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString = GetAchievementCriteriaInfo(id, i);
-                --print("criteriaType: "..criteriaType)     --debug
+                criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID = GetAchievementCriteriaInfo(id, i);
+                --print(criteriaString, "criteriaType: "..criteriaType, "criteriaID: "..criteriaID, "assetID: "..assetID)     --debug
 
                 if criteriaType == 8 and assetID then     --Meta, CRITERIA_TYPE_ACHIEVEMENT
                     if completed then
@@ -3836,7 +3836,7 @@ do
     function BookmarkIconMixin:OnEnter()
         local tooltip = GameTooltip;
         tooltip:SetOwner(self, "ANCHOR_RIGHT");
-        tooltip:SetText(L["To Do List"], 1, 1, 1, true);
+        tooltip:SetText(L["To Do List"], 1, 1, 1, 1, true);
         tooltip:AddLine(L["Instruction Remove From To Do List"], 1, 0.82, 0, true);
         tooltip:Show();
     end
@@ -4137,7 +4137,7 @@ end
 local function OnAchivementEarned(achievementID)
     DataProvider:UpdateAchievementCache(achievementID);
     RefreshInspection(achievementID);
-    
+
     local categoryID = DataProvider:GetAchievementCategory(achievementID);
     if categoryID then
         DataProvider.achievementOrderCache[categoryID] = {};
@@ -4159,10 +4159,11 @@ end
 local EventListener = CreateFrame("Frame");
 EventListener:RegisterEvent("ACHIEVEMENT_EARNED");
 EventListener:RegisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED");
+EventListener:RegisterEvent("CONTENT_TRACKING_UPDATE");
 
 EventListener:SetScript("OnEvent", function(self, event, ...)
     if event == "ACHIEVEMENT_EARNED" then
-        local achievementID = ...;
+        local achievementID = ...
         OnAchivementEarned(achievementID);
         if not self.pauseUpdate then
             self.pauseUpdate = true;
@@ -4173,9 +4174,13 @@ EventListener:SetScript("OnEvent", function(self, event, ...)
         end
     elseif event == "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
         UpdateTrackAchievements();
+    elseif event == "CONTENT_TRACKING_UPDATE" then
+        local type, id, isTracked = ...
+        if type == 2 then
+            UpdateTrackAchievements();
+        end
     end
 end)
-
 
 
 addon.ReskinButton = ReskinButton;

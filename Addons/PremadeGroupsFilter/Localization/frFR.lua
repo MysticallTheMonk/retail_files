@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 -- Premade Groups Filter
 -------------------------------------------------------------------------------
--- Copyright (C) 2024 Bernhard Saumweber
+-- Copyright (C) 2026 Bernhard Saumweber
 --
 -- This program is free software; you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -28,8 +28,10 @@ L["addon.name.long"] = "Premade Groups Filter"
 
 L["error.syntax"] = "|cffff0000Erreur de syntaxe dans le filtre d’expression|r\n\nCela signifie que votre expression de filtre pour la recherche avancée est incorrecte. Par exemple, il peut manquer une parenthèse, ou alors vous avez écrit 'tanks=1' au lieu de 'tanks==1'.\n\nMessage d’erreur détaillé :\n|cffaaaaaa%s|r"
 L["error.semantic"] = "|cffff0000Erreur sémantique dans le filtre d’expression|r\n\nLa syntaxe est juste mais le nom d’une variable est incorrect. Exemple : tansk au lieu de tanks.\n\nMessage d’erreur détaillé :\n|cffaaaaaa%s|r"
-L["error.semantic.protected"] = "|cffff0000Erreur sémantique dans le filtre d’expression|r\n\nLes mots-clés 'name', 'comment' et 'findnumber' ne sont plus pris en charge. Veuillez les supprimer de votre expression de filtre avancé ou appuyer sur le bouton de réinitialisation.\n\nÀ partir du pré-patch de Battle for Azeroth, ces valeurs sont protégées par Blizzard et ne peuvent plus être lues par aucun addon.\n\nUtilisez la barre de recherche par défaut au-dessus de la liste des groupes pour filtrer les noms manuellement.\n\nMessage d’erreur détaillé :\n|cffaaaaaa%s|r"
+L["error.semantic.protected"] = "|cffff0000Erreur sémantique dans le filtre d’expression|r\n\nLes mots-clés 'name' et 'comment' ne sont plus pris en charge. Veuillez les supprimer de votre expression de filtre avancé ou appuyer sur le bouton de réinitialisation.\n\nÀ partir du pré-patch de Battle for Azeroth, ces valeurs sont protégées par Blizzard et ne peuvent plus être lues par aucun addon.\n\nUtilisez la barre de recherche par défaut au-dessus de la liste des groupes pour filtrer les noms manuellement.\n\nMessage d’erreur détaillé :\n|cffaaaaaa%s|r"
 L["message.settingsupgraded"] = "Premade Groups Filter : paramètres migrés vers la version %s"
+L["message.sortingoverwritten"] = "Premade Groups Filter : l’ordre de tri des groupes prédéfinis par défaut a été remplacé par l’addon %s."
+L["message.sortingrestored"] = "Premade Groups Filter : l’ordre de tri des groupes prédéfinis par défaut a été restauré par l’addon %s."
 
 L["dialog.settings"] = GAMEMENU_OPTIONS
 L["dialog.reset"] = "Réinitialiser"
@@ -52,6 +54,8 @@ L["dialog.heals"]      = "Soigneurs .........................."
 L["dialog.dps"]        = "DPS ................................"
 L["dialog.mprating"]   = "Cl. M+ ............................."
 L["dialog.pvprating"]  = "Classement JcJ ....................."
+L["dialog.delvetier"]  = "Niveau de Gouffres"
+L["dialog.delvetier.tooltip"] = "Certains joueurs ne définissent pas correctement le niveau des Gouffres, mais le mentionnent uniquement dans le nom du groupe. Les addons ne peuvent pas lire le nom. Utilisez le champ de recherche standard pour de meilleurs résultats."
 L["dialog.defeated"]   = "Boss de raid vaincus"
 L["dialog.sorting"] = "Tri"
 L["dialog.usepgf.tooltip"] = "Activer / désactiver Premade Groups Filter"
@@ -94,6 +98,7 @@ L["dialog.tooltip.warmode"] = "mode guerre activé"
 L["dialog.copy.url.keywords"] = "Ctrl + C pour copier le lien vers la liste des mots-clés"
 L["dialog.filters.group"] = "Groupe"
 L["dialog.filters.dungeons"] = "Donjons"
+L["dialog.filters.delves"] = "Gouffres"
 L["dialog.filters.advanced"] = "Expression de filtre avancée"
 L["dialog.partyfit"] = "Rôles spécifiques"
 L["dialog.partyfit.tooltip"] = "Afficher seulement les groupes qui ont encore des places pour tous les rôles des membres de mon groupe. Fonctionne également si vous êtes seul."
@@ -108,6 +113,14 @@ L["dialog.matchingid.tooltip"] = "Afficher seulement les groupes qui ont exactem
 L["dialog.needsbl"] = "Besoin de furie sanguinaire"
 L["dialog.needsbl.tooltip"] = "Afficher seulement les groupes qui n’ont pas encore de classe ayant Furie sanguinaire (ou sort équivalent)."
 L["dialog.cancelOldestApp"] = "Cliquez pour annuler la plus ancienne"
+L["dialog.button.selectall.title"] = "T"
+L["dialog.button.selectall.tooltip"] = "Tout sélectionner"
+L["dialog.button.selectnone.title"] = "A"
+L["dialog.button.selectnone.tooltip"] = "Aucun"
+L["dialog.button.selectbountiful.title"] = "G"
+L["dialog.button.selectbountiful.tooltip"] = "Sélectionner gouffres abondants"
+L["dialog.button.selectinvert.title"] = "I"
+L["dialog.button.selectinvert.tooltip"] = "Inverser la sélection"
 
 L["settings.dialogMovable.title"] = "Déverrouiller la fenêtre PGF"
 L["settings.dialogMovable.tooltip"] = "Verrouiller / déverrouiller la fenêtre Premade Groups Filter. Clic droit pour réinitialiser la position."
@@ -143,3 +156,5 @@ L["settings.rioRatingColors.title"] = "Couleurs de Raider.IO"
 L["settings.rioRatingColors.tooltip"] = "Si l’addon Raider.IO est installé et chargé, PGF utilisera la palette de couleur définie par Raider.IO."
 L["settings.cancelOldestApp.title"] = "Annuler la plus ancienne candidature"
 L["settings.cancelOldestApp.tooltip"] = "Si vous avez atteint le nombre maximal de candidatures en attente, cliquez sur un groupe pour annuler la candidature la plus ancienne, puis cliquez à nouveau pour postuler."
+L["settings.compactListEntries.title"] = "Entrées de liste compactes"
+L["settings.compactListEntries.tooltip"] = "Masque le style de jeu afin que les entrées de la liste des groupes prennent moins d’espace vertical (comme avant la mise à jour de prélancement de Midnight)."

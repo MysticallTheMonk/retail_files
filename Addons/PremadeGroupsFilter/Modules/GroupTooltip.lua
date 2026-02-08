@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 -- Premade Groups Filter
 -------------------------------------------------------------------------------
--- Copyright (C) 2024 Bernhard Saumweber
+-- Copyright (C) 2026 Bernhard Saumweber
 --
 -- This program is free software; you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ function PGF.AddClassSpecListing(tooltip, resultID, searchResultInfo)
     for _, m in pairs(members) do
         local roleClassSpec
         if m.specLocalized and m.specLocalized ~= "" then -- no real specs in classic editions
-            roleClassSpec = string.format("%s %s - %s %s", m.roleMarkup, m.classLocalized, m.specLocalized, m.leaderMarkup)
+            roleClassSpec = string.format("%s %s - %s %s %s", m.roleMarkup, m.classLocalized, m.specLocalized, m.leaderMarkup, m.leaverMarkup)
         else
             roleClassSpec = string.format("%s %s %s", m.roleMarkup, m.classLocalized, m.leaderMarkup)
         end

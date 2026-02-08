@@ -2,7 +2,7 @@
 local _, addon = ...
 local fsConfig = addon.Configuration
 local wow = addon.WoW.Api
-local L = addon.Locale
+local L = addon.Locale.Current
 local M = {}
 fsConfig.Panels.Keybinding = M
 
@@ -32,10 +32,12 @@ local function SetBindingNames()
     _G["BINDING_NAME_CLICK FSFocusEnemy1:LeftButton"] = L["Focus enemy frame 1"]
     _G["BINDING_NAME_CLICK FSFocusEnemy2:LeftButton"] = L["Focus enemy frame 2"]
     _G["BINDING_NAME_CLICK FSFocusEnemy3:LeftButton"] = L["Focus enemy frame 3"]
-    _G["BINDING_NAME_CLICK FSCycleNextFrame:LeftButton"] = L["Cycle to the next frame"]
-    _G["BINDING_NAME_CLICK FSCyclePreviousFrame:LeftButton"] = L["Cycle to the previous frame"]
     _G["BINDING_NAME_CLICK FSTargetNextFrame:LeftButton"] = L["Target the next frame"]
     _G["BINDING_NAME_CLICK FSTargetPreviousFrame:LeftButton"] = L["Target the previous frame"]
+    _G["BINDING_NAME_CLICK FSCycleNextFrame:LeftButton"] = L["Cycle to the next frame"]
+    _G["BINDING_NAME_CLICK FSCyclePreviousFrame:LeftButton"] = L["Cycle to the previous frame"]
+    _G["BINDING_NAME_CLICK FSCycleNextDpsFrame:LeftButton"] = L["Cycle to the next dps"]
+    _G["BINDING_NAME_CLICK FSCyclePreviousDpsFrame:LeftButton"] = L["Cycle to the previous dps"]
 end
 
 function M:Build(parent)

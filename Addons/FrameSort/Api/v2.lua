@@ -1,12 +1,21 @@
 ---@type string, Addon
 local _, addon = ...
 local fsEnumerable = addon.Collections.Enumerable
-local fsCompare = addon.Collections.Comparer
+local fsCompare = addon.Modules.Sorting.Comparer
 local fsSort = addon.Modules.Sorting
-local fsTarget = addon.Modules.Targeting
+local fsRun = addon.Modules
 local fsConfig = addon.Configuration
 local fsFrame = addon.WoW.Frame
 local fsProviders = addon.Providers
+local fsSortedUnits = addon.Modules.Sorting.SortedUnits
+
+---@class ApiV2
+local M = {
+    Sorting = {},
+    Options = {},
+}
+addon.Api.v2 = M
+
 ---@type PlayerSortMode[]
 local playerSortModes = {
     "Top",
@@ -20,15 +29,6 @@ local groupSortModes = {
     "Group",
     "Alphabetical",
 }
-
----@class ApiV2
-local M = {
-    Sorting = {},
-    Options = {},
-    Debugging = {},
-    Logging = {},
-}
-addon.Api.v2 = M
 
 local function VisualOrder(framesOrFunction)
     return fsEnumerable
@@ -66,8 +66,14 @@ local function AreaOptions(area)
 
     if area == "Arena - 2v2" then
         return sorting.Arena.Twos
+    elseif area == "Arena - 3v3" then
+        return sorting.Arena.Default
+    elseif area == "Arena - 5v5" then
+        return sorting.Arena.Default
     elseif area == "Arena - Default" then
         return sorting.Arena.Default
+    elseif area == "EnemyArena" then
+        return sorting.EnemyArena
     elseif area == "Dungeon" then
         return sorting.Dungeon
     elseif area == "Raid" then
@@ -97,17 +103,11 @@ end
 local function GetFrames(type)
     local frames = {}
 
-    for _, provider in ipairs(fsProviders:Enabled()) do
+    for _, provider in ipairs(fsProviders:EnabledNotSelfManaged()) do
         frames[provider:Name()] = VisualOrder(fsFrame:GetFrames(provider, type))
     end
 
     return frames
-end
-
----Enables/disables logging.
-function M.Logging:SetEnabled(enable)
-    addon.DB.Options.Logging.Enabled = enable
-    fsConfig:NotifyChanged()
 end
 
 ---Register a callback to invoke after sorting has been performed.
@@ -151,12 +151,12 @@ end
 
 ---Returns a sorted array of friendly unit tokens.
 function M.Sorting:GetFriendlyUnits()
-    return fsTarget:FriendlyUnits()
+    return fsSortedUnits:FriendlyUnits()
 end
 
 ---Returns a sorted array of enemy unit tokens.
 function M.Sorting:GetEnemyUnits()
-    return fsTarget:EnemyUnits()
+    return fsSortedUnits:ArenaUnits()
 end
 
 ---Gets the player sort mode.
@@ -176,7 +176,7 @@ function M.Options:SetPlayerSortMode(area, mode)
     options.PlayerSortMode = mode
 
     fsConfig:NotifyChanged()
-    fsSort:Run()
+    fsRun:Run()
 end
 
 ---Sets the group sort mode.
@@ -189,7 +189,7 @@ function M.Options:SetGroupSortMode(area, mode)
     options.GroupSortMode = mode
 
     fsConfig:NotifyChanged()
-    fsSort:Run()
+    fsRun:Run()
 end
 
 ---Gets the group sort mode.
@@ -216,7 +216,7 @@ function M.Options:SetEnabled(area, enabled)
     fsConfig:NotifyChanged()
 
     if enabled then
-        fsSort:Run()
+        fsRun:Run()
     end
 end
 
@@ -235,7 +235,7 @@ function M.Options:SetReverse(area, reverse)
     options.Reverse = reverse
 
     fsConfig:NotifyChanged()
-    fsSort:Run()
+    fsRun:Run()
 end
 
 ---Gets the current spacing values.
@@ -254,5 +254,5 @@ function M.Options:SetSpacing(area, horizontal, vertical)
     options.Vertical = vertical
 
     fsConfig:NotifyChanged()
-    fsSort:Run()
+    fsRun:Run()
 end

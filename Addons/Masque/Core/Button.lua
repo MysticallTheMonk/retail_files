@@ -16,7 +16,7 @@ local _, Core = ...
 -- Lua API
 ---
 
-local pairs, type = pairs, type
+local _G, pairs, type = _G, pairs, type
 
 ----------------------------------------
 -- WoW API
@@ -29,11 +29,8 @@ local GetContainerNumSlots = ContainerFrame_GetContainerNumSlots or C_Container.
 -- Internal
 ---
 
--- @ Masque
-local WOW_RETAIL = Core.WOW_RETAIL
-
 -- @ Skins\Blizzard_*
-local DEFAULT_SKIN = Core.DEFAULT_SKIN
+local DEF_SKIN = Core.DEFAULT_SKIN
 
 -- @ Skins\Skins
 local Skin_Data = Core.Skins
@@ -42,48 +39,44 @@ local Skin_Data = Core.Skins
 local ActionTypes, AuraTypes, EmptyTypes = Core.ActionTypes, Core.AuraTypes, Core.EmptyTypes
 local ItemTypes, RegTypes = Core.ItemTypes, Core.RegTypes
 
--- @ Core\Utility
-local GetScale, GetTypeSkin = Core.GetScale, Core.GetTypeSkin
+-- @ Core\Core
+local GetMasqueConfig = Core.GetMasqueConfig
 
 -- @ Core\Regions\Icon
 local SetEmpty = Core.SetEmpty
 
 -- @ Core\Regions\*
-local SkinAutoCast, SkinBackdrop, SkinCooldown = Core.SkinAutoCast, Core.SkinBackdrop, Core.SkinCooldown
-local SkinGloss, SkinIcon, SkinIconBorder = Core.SkinGloss, Core.SkinIcon, Core.SkinIconBorder
-local SkinMask, SkinNewItem, SkinNormal = Core.SkinMask, Core.SkinNewItem, Core.SkinNormal
-local SkinQuestBorder, SkinShadow, SkinSlotIcon = Core.SkinQuestBorder, Core.SkinShadow, Core.SkinSlotIcon
-local SkinText, SkinTexture, UpdateSpellAlert = Core.SkinText, Core.SkinTexture, Core.UpdateSpellAlert
+local Skin_AutoCast, Skin_Backdrop, Skin_Cooldown = Core.Skin_AutoCast, Core.Skin_Backdrop, Core.Skin_Cooldown
+local Skin_Gloss, Skin_Icon, Skin_IconBorder = Core.Skin_Gloss, Core.Skin_Icon, Core.Skin_IconBorder
+local Skin_Mask, Skin_NewItem, Skin_Normal = Core.Skin_Mask, Core.Skin_NewItem, Core.Skin_Normal
+local Skin_QuestBorder, Skin_Shadow, Skin_Text = Core.Skin_QuestBorder, Core.Skin_Shadow, Core.Skin_Text
+local Skin_Texture, Update_SpellAlert, Update_AssistedCombatHighlight = Core.Skin_Texture, Core.Update_SpellAlert, Core.Update_AssistedCombatHighlight
 
 ----------------------------------------
 -- Locals
 ---
 
 local Empty_Table = {}
-local Is_Background = {
+
+local IsBackground = {
 	[136511] = true,
 	["Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag"] = true,
 	[4701874] = true,
 	["Interface\\ContainerFrame\\BagsItemSlot2x"] = true,
 }
 
--- Work-around for a bug introduced in 11.1.0.
-local function GetIconTexture(Button)
-	return Button.Icon or Button.icon or _G[Button:GetName().."IconTexture"]
-end
-
 ----------------------------------------
--- Functions
+-- Helpers
 ---
 
--- Function to toggle the icon backdrops.
-local function SetIconBackdrop(Button, Limit)
-	local Region = GetIconTexture(Button)
+-- Toggles the `Icon` backdrops on item buttons.
+local function SetItemButtonTexture(Button, Limit)
+	local Region = Button.Icon or Button.icon or _G[Button:GetName().."IconTexture"]
 
 	local Texture = Region:GetTexture()
 	local Alpha, IsEmpty = 1, nil
 
-	if Is_Background[Texture] then
+	if IsBackground[Texture] then
 		Alpha = 0
 		IsEmpty = true
 	end
@@ -92,63 +85,71 @@ local function SetIconBackdrop(Button, Limit)
 	SetEmpty(Button, IsEmpty, Limit)
 end
 
--- Function to toggle the button art.
+-- Toggles the button art on action buttons.
 local function UpdateButtonArt(Button)
+	local _mcfg = Button._MSQ_CFG
+	local Enabled = _mcfg and _mcfg.Enabled
+
 	local Slot_Art, Slot_Background = Button.SlotArt, Button.SlotBackground
 
-	if Button.__MSQ_Enabled then
+	if Enabled then
 		if Slot_Art then
 			Slot_Art:SetTexture()
 			Slot_Art:Hide()
 		end
+
 		if Slot_Background then
 			Slot_Background:SetTexture()
 			Slot_Background:Hide()
 		end
+
 	else
 		if Slot_Art then
 			Slot_Art:SetAtlas("UI-HUD-ActionBar-IconFrame-Slot")
 		end
+
 		if Slot_Background then
 			Slot_Background:SetAtlas("UI-HUD-ActionBar-IconFrame-Background")
 		end
 	end
 end
 
--- Function to update the textures.
+-- Updates the state textures on bag buttons.
 local function UpdateTextures(Button, Limit)
-	local Skin = Button.__MSQ_Skin
+	local _mcfg = Button._MSQ_CFG
+	local Skin = _mcfg and _mcfg.Skin
 
-	if Skin then
-		local IsEmpty
-		local BagID = Button.GetBagID and Button:GetBagID()
+	if not Skin then return end
 
-		if BagID then
-			local Size = GetContainerNumSlots(BagID)
-			IsEmpty = (Size == 0) or nil
-		end
+	local IsEmpty
+	local BagID = Button.GetBagID and Button:GetBagID()
 
-		SetEmpty(Button, IsEmpty, Limit)
+	if BagID then
+		local Size = GetContainerNumSlots(BagID)
+		IsEmpty = (Size == 0) or nil
+	end
 
-		local Normal = Button:GetNormalTexture()
-		local Pushed = Button:GetPushedTexture()
-		local Highlight = Button:GetHighlightTexture()
-		local SlotHighlight = Button.SlotHighlightTexture
+	SetEmpty(Button, IsEmpty, Limit)
 
-		local xScale, yScale = GetScale(Button)
+	local Normal = Button:GetNormalTexture()
+	local Pushed = Button:GetPushedTexture()
+	local Highlight = Button:GetHighlightTexture()
+	local SlotHighlight = Button.SlotHighlightTexture
 
-		if Normal then
-			SkinNormal(Normal, Button, Skin.Normal, Button.__MSQ_Normal_Color, xScale, yScale)
-		end
-		if Pushed then
-			SkinTexture("Pushed", Pushed, Button, Skin.Pushed, Button.__MSQ_Pushed_Color, xScale, yScale)
-		end
-		if Highlight then
-			SkinTexture("Highlight", Highlight, Button, Skin.Highlight, Button.__MSQ_Highlight_Color, xScale, yScale)
-		end
-		if SlotHighlight then
-			SkinTexture("SlotHighlight", SlotHighlight, Button, Skin.SlotHighlight, Button.__MSQ_SlotHighlight_Color, xScale, yScale)
-		end
+	if Normal then
+		Skin_Normal(Normal, Button, Skin.Normal, _mcfg.Color_Normal)
+	end
+
+	if Pushed then
+		Skin_Texture("Pushed", Pushed, Button, Skin.Pushed, _mcfg.Color_Pushed)
+	end
+
+	if Highlight then
+		Skin_Texture("Highlight", Highlight, Button, Skin.Highlight, _mcfg.Color_Highlight)
+	end
+
+	if SlotHighlight then
+		Skin_Texture("SlotHighlight", SlotHighlight, Button, Skin.SlotHighlight, _mcfg.Color_SlotHighlight)
 	end
 end
 
@@ -156,51 +157,65 @@ end
 -- Hooks
 ---
 
--- Hook to counter 10.0 Icon backdrops.
+-- Hook to counter 'Icon' backdrops for item buttons.
+-- @ Interface/AddOns/Blizzard_ItemButton/Mainline/ItemButtonTemplate.lua
 local function Hook_SetItemButtonTexture(Button, Texture)
-	if Button.__MSQ_Exit_SetItemButtonTexture then return end
+	if Button._MSQ_Exit_SetItemButtonTexture then return end
 
-	SetIconBackdrop(Button)
+	SetItemButtonTexture(Button)
 end
 
--- Hook to counter 10.0 Action button texture changes.
+-- Hook to counter action button texture changes.
+-- @ Interface/AddOns/Blizzard_ActionBar/Mainline/ActionButton.lua
 local function Hook_UpdateButtonArt(Button)
-	if Button.__MSQ_Exit_UpdateArt then return end
+	if Button._MSQ_Exit_UpdateButtonArt then return end
+
+	local _mcfg = Button._MSQ_CFG
 
 	UpdateButtonArt(Button)
 
-	if not Button.__MSQ_Enabled then return end
+	local Enabled = _mcfg and _mcfg.Enabled
 
-	local Skin = Button.__MSQ_Skin
+	if not Enabled then return end
+
+	local Skin = _mcfg.Skin
 
 	if Skin then
-		local Normal = Button.NormalTexture
-		local Pushed = Button.PushedTexture
-		local xScale, yScale = GetScale(Button)
+		local Normal = Button:GetNormalTexture()
+		local Pushed = Button:GetPushedTexture()
 
 		if Normal then
-			SkinNormal(Normal, Button, Skin.Normal, Button.__MSQ_Normal_Color, xScale, yScale)
+			Skin_Normal(Normal, Button, Skin.Normal, _mcfg.Color_Normal)
 		end
+
 		if Pushed then
-			SkinTexture("Pushed", Pushed, Button, Skin.Pushed, Button.__MSQ_Pushed_Color, xScale, yScale)
+			Skin_Texture("Pushed", Pushed, Button, Skin.Pushed, _mcfg.Color_Pushed)
 		end
 	end
 end
 
--- Hook to counter 10.0 HotKey position changes.
+-- Hook to counter `HotKey` position changes.
+-- @ Interface/AddOns/Blizzard_ActionBar/Mainline/ActionButton.lua
 local function Hook_UpdateHotKeys(Button, ActionButtonType)
-	if Button.__MSQ_Exit_UpdateHotKeys then return end
+	if Button._MSQ_Exit_UpdateHotKeys then return end
 
-	local HotKey, Skin = Button.HotKey, Button.__MSQ_Skin
+	local _mcfg = Button._MSQ_CFG
+	local Enabled = _mcfg and _mcfg.Enabled
+
+	if not Enabled then return end
+
+	local HotKey = Button.HotKey
+	local Skin = _mcfg.Skin
 
 	if (HotKey and HotKey:GetText() ~= "") and Skin then
-		SkinText("HotKey", HotKey, Button, Skin.HotKey, GetScale(Button))
+		Skin_Text("HotKey", HotKey, Button, Skin.HotKey)
 	end
 end
 
--- Hook to counter 10.0 Bag button texture changes.
+-- Hook to counter bag button state texture changes.
+-- @ Interface/AddOns/Blizzard_ActionBar/Mainline/MainMenuBarBagButtons.lua
 local function Hook_UpdateTextures(Button)
-	if Button.__MSQ_Exit_UpdateTextures then return end
+	if Button._MSQ_Exit_UpdateTextures then return end
 
 	UpdateTextures(Button)
 end
@@ -208,6 +223,12 @@ end
 ----------------------------------------
 -- Core
 ---
+
+-- Blizzard Skins
+local BaseSkin = {
+	["Blizzard Classic"] = true,
+	["Blizzard Modern"] = true,
+}
 
 -- List of methods to hook.
 local Hook_Methods = {
@@ -217,88 +238,145 @@ local Hook_Methods = {
 	UpdateTextures = Hook_UpdateTextures,
 }
 
--- Applies a skin to a button and its associated layers.
+-- Internal skin handler for buttons.
 function Core.SkinButton(Button, Regions, SkinID, Backdrop, Shadow, Gloss, Colors, Scale, Pulse)
 	if not Button then return end
 
-	local bType = Button.__MSQ_bType
-	local Skin, Disabled
+	-- Get the button's settings table.
+	local _mcfg = GetMasqueConfig(Button)
+
+	-- Force an update.
+	_mcfg:ForceUpdate()
+
+	local bType = _mcfg.bType
+	local Enabled = true
+	local Skin
 
 	if SkinID then
-		Skin = Skin_Data[SkinID] or DEFAULT_SKIN
-		Button.__MSQ_Skin = Skin
-	else
-		local Addon = Button.__MSQ_Addon or false
+		Skin = Skin_Data[SkinID] or DEF_SKIN
+		_mcfg.Skin = Skin
 
-		Skin = Skin_Data[Addon] or DEFAULT_SKIN
-		Button.__MSQ_Skin = nil
-		Disabled = true
+	else
+		local Addon = _mcfg.Addon or false
+
+		Skin = Skin_Data[Addon] or DEF_SKIN
+		SkinID = Skin.SkinID or false
+
+		_mcfg.Skin = nil
+
+		Enabled = nil
 		Pulse = true
 	end
 
-	local Enabled = not Disabled
+	-- Update the basics
+	_mcfg.Shape = Skin.Shape
+	_mcfg.Enabled = Enabled
+	_mcfg.BaseSkin = BaseSkin[SkinID]
 
-	Button.__MSQ_Enabled = (Enabled and true) or nil
-	Button.__MSQ_Scale = Scale
-	Button.__MSQ_Shape = Skin.Shape
+	Scale = Scale or 1
+
+	_mcfg:UpdateScale(Button, Scale)
+
+	local IsActionType = ActionTypes[bType]
 
 	-- Set/remove type flags.
-	Button.__MSQ_IsAction = ActionTypes[bType]
-	Button.__MSQ_IsAura = AuraTypes[bType]
-	Button.__MSQ_IsItem = ItemTypes[bType]
+	_mcfg.IsAction = IsActionType
+	_mcfg.IsAura = AuraTypes[bType]
+	_mcfg.IsItem = ItemTypes[bType]
+	_mcfg.IsEmptyType = EmptyTypes[bType]
 
-	local Empty_Type = EmptyTypes[bType]
-	Button.__MSQ_Empty_Type = Empty_Type
+	local Disabled = not Enabled
 
 	if Disabled or type(Colors) ~= "table" then
 		Colors = Empty_Table
 	end
 
-	local xScale, yScale = GetScale(Button)
+	-- [[ Mask ]]
 
-	-- Mask
-	local Skin_Mask = Skin.Mask
+	local Mask_Skin = Skin.Mask
 
-	if Skin_Mask then
-		if type(Skin_Mask) == "table" then
-			Skin_Mask = GetTypeSkin(Button, bType, Skin_Mask)
+	if Mask_Skin then
+		if type(Mask_Skin) == "table" then
+			Mask_Skin = _mcfg:GetTypeSkin(Button, Mask_Skin)
 		end
 
-		SkinMask(nil, Button, Skin_Mask, xScale, yScale)
+		Skin_Mask(Button, Mask_Skin)
 	end
 
-	-- Backdrop
+	-- [[ Backdrop ]]
+
 	local FloatingBG = Button.FloatingBG or Regions.Backdrop
 
 	if Disabled then
 		Backdrop = (FloatingBG and true) or false
 	end
 
-	SkinBackdrop(Backdrop, FloatingBG, Button, Skin.Backdrop, Colors.Backdrop, xScale, yScale)
+	Skin_Backdrop(Backdrop, FloatingBG, Button, Skin.Backdrop, Colors.Backdrop)
 
-	-- Icon/SlotIcon
-	if bType == "Backpack" and WOW_RETAIL then
-		SkinSlotIcon(Enabled, Button, Skin.SlotIcon, xScale, yScale)
-	else
-		local Icon = Regions.Icon
+	-- [[ Icon ]]
 
-		if Icon then
-			SkinIcon(Icon, Button, Skin.Icon, xScale, yScale)
+	local Hide_Icon
+
+	if bType == "Backpack" then
+		local Normal_Skin = _mcfg:GetTypeSkin(Button, Skin.Normal)
+		local Normal_Atlas = Normal_Skin.Atlas
+
+		if (type(Normal_Atlas) == "string") and (Normal_Atlas:lower() == "bag-main") then
+			Hide_Icon = true
 		end
 	end
 
-	-- Shadow
-	Shadow = (Shadow and Enabled) or false
-	SkinShadow(Shadow, Button, Skin.Shadow, Colors.Shadow, xScale, yScale)
+	local Icon = Regions.Icon
 
-	-- Normal
+	if Icon then
+		Skin_Icon(Icon, Button, Skin.Icon, Hide_Icon)
+	end
+
+	-- [[ Shadow ]]
+
+	Shadow = (Shadow and Enabled) or nil
+
+	Skin_Shadow(Shadow, Button, Skin.Shadow, Colors.Shadow)
+
+	-- [[ Normal ]]
+
 	local Normal = Regions.Normal
 
 	if Normal ~= false then
-		SkinNormal(Normal, Button, Skin.Normal, Colors.Normal, xScale, yScale)
+		Skin_Normal(Normal, Button, Skin.Normal, Colors.Normal)
 	end
 
-	-- FontStrings and Textures
+	-- [[ IconBorder ]]
+
+	local IconBorder = Regions.IconBorder
+
+	if IconBorder then
+		Skin_IconBorder(IconBorder, Button, Skin.IconBorder)
+	end
+
+	-- [[ Gloss ]]
+
+	Gloss = (Gloss and Enabled) or nil
+	Skin_Gloss(Gloss, Button, Skin.Gloss, Colors.Gloss)
+
+	-- [[ NewItem ]]
+
+	local NewItem = Regions.NewItem
+
+	if NewItem then
+		Skin_NewItem(NewItem, Button, Skin.NewItem)
+	end
+
+	-- [[ QuestBorder ]]
+
+	local QuestBorder = Regions.QuestBorder
+
+	if QuestBorder then
+		Skin_QuestBorder(QuestBorder, Button, Skin.QuestBorder)
+	end
+
+	-- [[ Iteration ]]
+
 	local Layers = RegTypes[bType] or RegTypes.Legacy
 
 	for Layer, Info in pairs(Layers) do
@@ -306,99 +384,100 @@ function Core.SkinButton(Button, Regions, SkinID, Backdrop, Shadow, Gloss, Color
 			local Region = Regions[Layer]
 
 			if Region then
+				-- Text
 				if Info.Type == "FontString" then
-					SkinText(Layer, Region, Button, Skin[Layer], xScale, yScale)
+					Skin_Text(Layer, Region, Button, Skin[Layer])
+
+				-- Texture
 				else
-					SkinTexture(Layer, Region, Button, Skin[Layer], Colors[Layer], xScale, yScale)
+					Skin_Texture(Layer, Region, Button, Skin[Layer], Colors[Layer])
 				end
 			end
 		end
 	end
 
-	-- Dragonflight Stuff
-	if WOW_RETAIL then
-		-- Toggle Icon backdrops.
-		if Button.SetItemButtonTexture then
-			SetIconBackdrop(Button, true)
-		end
+	-- [[ Type-Specific Functions ]]
 
-		-- Set the button art.
-		if Button.UpdateButtonArt then
-			UpdateButtonArt(Button)
-		end
+	-- Toggle item button backdrops.
+	if Button.SetItemButtonTexture then
+		SetItemButtonTexture(Button, true)
+	end
 
-		-- Update the textures.
-		if Button.UpdateTextures then
-			UpdateTextures(Button, true)
-		end
+	-- Update action button art.
+	if Button.UpdateButtonArt then
+		UpdateButtonArt(Button)
+	end
 
-		-- Hooks
-		for Method, Hook in pairs(Hook_Methods) do
-			if Button[Method] then
-				local Hook_Key = "__MSQ_Hook_"..Method
-				local Exit_Key = "__MSQ_Exit_"..Method
+	-- Update bag button textures.
+	if Button.UpdateTextures then
+		UpdateTextures(Button, true)
+	end
 
-				if Disabled then
-					Button[Exit_Key] = true
-				else
-					if not Button[Hook_Key] then
-						hooksecurefunc(Button, Method, Hook)
-						Button[Hook_Key] = true
-					end
+	-- [[ Hooks ]]
 
-					Button[Exit_Key] = nil
+	for Method, Hook in pairs(Hook_Methods) do
+		if Button[Method] then
+			local Hook_Key = "_MSQ_Hook_"..Method
+			local Exit_Key = "_MSQ_Exit_"..Method
+
+			if Disabled then
+				Button[Exit_Key] = true
+
+			else
+				if not Button[Hook_Key] then
+					hooksecurefunc(Button, Method, Hook)
+					Button[Hook_Key] = true
 				end
+
+				Button[Exit_Key] = nil
 			end
 		end
 	end
 
-	-- IconBorder
-	local IconBorder = Regions.IconBorder
+	-- [[ Cooldown ]]
 
-	if IconBorder then
-		SkinIconBorder(IconBorder, Button, Skin.IconBorder, xScale, yScale)
-	end
-
-	-- Gloss
-	Gloss = (Gloss and Enabled) or false
-	SkinGloss(Gloss, Button, Skin.Gloss, Colors.Gloss, xScale, yScale)
-
-	-- NewItem
-	local NewItem = Regions.NewItem
-
-	if NewItem then
-		SkinNewItem(NewItem, Button, Skin.NewItem, xScale, yScale)
-	end
-
-	-- QuestBorder
-	local QuestBorder = Regions.QuestBorder
-
-	if QuestBorder then
-		SkinQuestBorder(QuestBorder, Button, Skin.QuestBorder, xScale, yScale)
-	end
-
-	-- Cooldown
 	local Cooldown = Regions.Cooldown
 
 	if Cooldown then
-		SkinCooldown(Cooldown, Button, Skin.Cooldown, Colors.Cooldown, xScale, yScale, Pulse)
+		Skin_Cooldown(Cooldown, Button, Skin.Cooldown, Colors.Cooldown, Pulse)
 	end
 
-	-- ChargeCooldown
-	local Charge = Regions.ChargeCooldown or Button.chargeCooldown
-	local ChargeSkin = Skin.ChargeCooldown
+	-- [[ LoC Cooldown ]]
 
-	Button.__MSQ_Charge_Skin = ChargeSkin
+	if IsActionType then
+		local CooldownLoC = Regions.CooldownLoC
 
-	if Charge then
-		SkinCooldown(Charge, Button, ChargeSkin, nil, xScale, yScale, Pulse)
+		if CooldownLoC then
+			Skin_Cooldown(CooldownLoC, Button, Skin.CooldownLoC, nil, nil, true)
+		end
 	end
 
-	-- AutoCast Frame
-	if bType == "Pet" then
-		SkinAutoCast(Button, Skin, xScale, yScale)
+	-- [[ ChargeCooldown ]]
+
+	local ChargeCooldown = Regions.ChargeCooldown or Button.chargeCooldown
+	local ChargeCooldown_Skin = Skin.ChargeCooldown
+
+	_mcfg.Skin_ChargeCooldown = ChargeCooldown_Skin
+
+	if ChargeCooldown then
+		Skin_Cooldown(ChargeCooldown, Button, ChargeCooldown_Skin)
 	end
 
-	-- SpellAlert
-	UpdateSpellAlert(Button)
+	-- [[ AutoCast ]]
+
+	if IsActionType then
+		Skin_AutoCast(Button, Skin)
+	end
+
+	-- [[ SpellAlert ]]
+
+	Update_SpellAlert(Button)
+
+	-- [[ AssistedCombatHighlight ]]
+
+	local AssistedCombatHighlight = Button.AssistedCombatHighlightFrame
+
+	if AssistedCombatHighlight then
+		Update_AssistedCombatHighlight(AssistedCombatHighlight.Flipbook, Button)
+	end
 end

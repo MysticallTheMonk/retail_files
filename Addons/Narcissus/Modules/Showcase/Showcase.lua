@@ -7,6 +7,7 @@ local UseCurrentClassBackground = addon.UseCurrentClassBackground;
 local UseCurrentRaceBackground = addon.UseCurrentRaceBackground;
 local UseModelBackgroundImage = addon.UseModelBackgroundImage;
 local IsPlayerInAlteredForm = addon.TransitionAPI.IsPlayerInAlteredForm;
+local MixScripts = addon.PrivateAPI.MixScripts;
 
 local FadeFrame = NarciFadeUI.Fade;
 local GetAnimationName = NarciAnimationInfo.GetOfficialName;
@@ -17,6 +18,7 @@ local GetCursorPosition = GetCursorPosition;
 local GetCursorDelta = GetCursorDelta;
 local IsHiddenVisual = C_TransmogCollection.IsAppearanceHiddenVisual;
 local GetPhysicalScreenSize = GetPhysicalScreenSize;
+local InCombatLockdown = InCombatLockdown;
 
 
 local ROTATION_PERIOD = 1/8;
@@ -145,6 +147,140 @@ end
 DropDownOptions.imageSizeValid = DropDownOptions.imageSizeWithText;
 
 
+local FadeFramecripts = {};
+do
+    local function FadeOptionFrame_OnUpdate(self, elapsed)
+        if self.toAlpha > self.alpha then
+            self.alpha = self.alpha + elapsed * 4;
+            if self.alpha >= self.toAlpha then
+                self.alpha = self.toAlpha;
+                self:SetScript("OnUpdate", nil);
+            end
+        elseif self.toAlpha < self.alpha then
+            self.alpha = self.alpha - elapsed * 4;
+            if self.alpha <= self.toAlpha then
+                self.alpha = self.toAlpha;
+                self:SetScript("OnUpdate", nil);
+            end
+        else
+            self:SetScript("OnUpdate", nil);
+        end
+        self:SetAlpha(self.alpha);
+    end
+
+    function FadeFramecripts.OnEnter(self)
+        self.toAlpha = 1;
+        if self.alpha == 1 then
+            self:SetScript("OnUpdate", nil);
+        else
+            self:SetScript("OnUpdate", FadeOptionFrame_OnUpdate);
+        end
+    end
+
+    function FadeFramecripts.OnLeave(self)
+        if not self:IsMouseOver() or (MainFrame.BackdropSelect:HasFocus()) then
+            self.toAlpha = 0;
+            self:SetScript("OnUpdate", FadeOptionFrame_OnUpdate);
+        end
+    end
+
+    function FadeFramecripts.OnHide(self)
+        self:SetScript("OnUpdate", nil);
+        self.alpha = 0;
+        self:SetAlpha(0);
+    end
+end
+
+
+local SyncButtonScripts = {};
+do
+    function SyncButtonScripts.OnClick(self)
+        self.AnimRotate:Play();
+        MainFrame:SyncModel();
+    end
+
+    function SyncButtonScripts.OnEnter(self)
+        FadeFramecripts.OnEnter(FadeOptionFrame);
+        FadeFrame(self.Icon, 0.15, 1);
+        FadeFrame(self.Label, 0.15, 1);
+    end
+
+    function SyncButtonScripts.OnLeave(self)
+        FadeFramecripts.OnLeave(FadeOptionFrame);
+        if not self.AnimRotate:IsPlaying() then
+            FadeFrame(self.Icon, 0.25, 0.5);
+        end
+        FadeFrame(self.Label, 0.25, 0);
+    end
+end
+
+local function SyncButton_OnAnimFinished(self)
+    local button = self:GetParent();
+    if not button:IsMouseOver() then
+        FadeFrame(button.Icon, 0.5, 0.5);
+    end
+end
+
+
+local ItemNameToggleScripts = {};
+do
+    ItemNameToggleScripts.OnEnter = SyncButtonScripts.OnEnter;
+
+    function ItemNameToggleScripts.OnLeave(self)
+        FadeFrame(self.Icon, 0.25, 0.5);
+        FadeFrame(self.Label, 0.25, 0);
+        FadeFramecripts.OnLeave(FadeOptionFrame);
+    end
+
+    function ItemNameToggleScripts.OnClick(self)
+        local state = not DB.ShowItemName;
+        DB.ShowItemName = state;
+        MainFrame:ShowItemText(state);
+    end
+end
+
+
+local TopLevelButtonScripts = {};
+do
+    TopLevelButtonScripts.OnEnter = SyncButtonScripts.OnEnter;
+    TopLevelButtonScripts.OnLeave = ItemNameToggleScripts.OnLeave;
+
+    function TopLevelButtonScripts.SetState(state)
+        local self = FadeOptionFrame.TopLevelButton;
+        if state then
+            self.Label:SetText(L["Lower Level"]);
+            self.Icon:SetTexCoord(0.5, 1, 0, 1);
+            MainFrame:SetFrameStrata("DIALOG");
+        else
+            self.Label:SetText(L["Raise Level"]);
+            self.Icon:SetTexCoord(0, 0.5, 0, 1);
+            MainFrame:SetFrameStrata("MEDIUM");
+        end
+    end
+
+    function TopLevelButtonScripts.OnClick(self)
+        DB.BringToFront = not DB.BringToFront;
+        TopLevelButtonScripts.SetState(DB.BringToFront)
+    end
+end
+
+
+local CloseButtonScripts = {};
+do
+    function CloseButtonScripts.OnEnter(self)
+        self.Icon:SetVertexColor(0.84, 0.08, 0.15);
+    end
+
+    function CloseButtonScripts.OnLeave(self)
+        self.Icon:SetVertexColor(0.4, 0.4, 0.4);
+    end
+
+    function CloseButtonScripts.OnClick(self)
+        MainFrame:Close();
+    end
+end
+
+
 local function LoadSettings()
     NarciTurntableOptions = NarciTurntableOptions or {};
     DB = NarciTurntableOptions;
@@ -198,6 +334,8 @@ local function LoadSettings()
         MainFrame.createSplash = true;
         --/run NarciTurntableOptions.ShowSplash = true
     end
+
+    TopLevelButtonScripts.SetState(DB.BringToFront);
 end
 
 
@@ -249,32 +387,6 @@ local function SetUpDropDown(parentButton, menuName)
         p:Hide();
     end
 end
-
-local function MixScripts(object, scripts)
-    for name, script in pairs(scripts) do
-        object:SetScript(name, script);
-    end
-end
-
-local function FadeOptionFrame_OnUpdate(self, elapsed)
-    if self.toAlpha > self.alpha then
-        self.alpha = self.alpha + elapsed * 4;
-        if self.alpha >= self.toAlpha then
-            self.alpha = self.toAlpha;
-            self:SetScript("OnUpdate", nil);
-        end
-    elseif self.toAlpha < self.alpha then
-        self.alpha = self.alpha - elapsed * 4;
-        if self.alpha <= self.toAlpha then
-            self.alpha = self.toAlpha;
-            self:SetScript("OnUpdate", nil);
-        end
-    else
-        self:SetScript("OnUpdate", nil);
-    end
-    self:SetAlpha(self.alpha);
-end
-
 
 
 local ItemTexts = {
@@ -348,118 +460,12 @@ function SourceCacher:Stop()
 end
 
 
-local FadeFramecripts = {};
-
-function FadeFramecripts.OnEnter(self)
-    self.toAlpha = 1;
-    if self.alpha == 1 then
-        self:SetScript("OnUpdate", nil);
-    else
-        self:SetScript("OnUpdate", FadeOptionFrame_OnUpdate);
-    end
-end
-
-function FadeFramecripts.OnLeave(self)
-    if not self:IsMouseOver() or (MainFrame.BackdropSelect:HasFocus()) then
-        self.toAlpha = 0;
-        self:SetScript("OnUpdate", FadeOptionFrame_OnUpdate);
-    end
-end
-
-function FadeFramecripts.OnHide(self)
-    self:SetScript("OnUpdate", nil);
-    self.alpha = 0;
-    self:SetAlpha(0);
-end
-
-
-local SyncButtonScripts = {};
-
-function SyncButtonScripts.OnClick(self)
-    self.AnimRotate:Play();
-    MainFrame:SyncModel();
-end
-
-function SyncButtonScripts.OnEnter(self)
-    FadeFramecripts.OnEnter(FadeOptionFrame);
-    FadeFrame(self.Icon, 0.15, 1);
-    FadeFrame(self.Label, 0.15, 1);
-end
-
-function SyncButtonScripts.OnLeave(self)
-    FadeFramecripts.OnLeave(FadeOptionFrame);
-    if not self.AnimRotate:IsPlaying() then
-        FadeFrame(self.Icon, 0.25, 0.5);
-    end
-    FadeFrame(self.Label, 0.25, 0);
-end
-
-local function SyncButton_OnAnimFinished(self)
-    local button = self:GetParent();
-    if not button:IsMouseOver() then
-        FadeFrame(button.Icon, 0.5, 0.5);
-    end
-end
-
-
-local ItemNameToggleScripts = {};
-
-ItemNameToggleScripts.OnEnter = SyncButtonScripts.OnEnter;
-
-function ItemNameToggleScripts.OnLeave(self)
-    FadeFrame(self.Icon, 0.25, 0.5);
-    FadeFrame(self.Label, 0.25, 0);
-    FadeFramecripts.OnLeave(FadeOptionFrame);
-end
-
-function ItemNameToggleScripts.OnClick(self)
-    local state = not DB.ShowItemName;
-    DB.ShowItemName = state;
-    MainFrame:ShowItemText(state);
-end
-
-
-local TopLevelButtonScripts = {};
-
-TopLevelButtonScripts.OnEnter = SyncButtonScripts.OnEnter;
-TopLevelButtonScripts.OnLeave = ItemNameToggleScripts.OnLeave;
-
-function TopLevelButtonScripts.OnClick(self)
-    local state = MainFrame:GetFrameStrata() ~= "DIALOG";
-    if state then
-        self.Label:SetText(L["Lower Level"]);
-        self.Icon:SetTexCoord(0.5, 1, 0, 1);
-        MainFrame:SetFrameStrata("DIALOG");
-    else
-        self.Label:SetText(L["Raise Level"]);
-        self.Icon:SetTexCoord(0, 0.5, 0, 1);
-        MainFrame:SetFrameStrata("MEDIUM");
-    end
-end
-
-local CloseButtonScripts = {};
-
-function CloseButtonScripts.OnEnter(self)
-    self.Icon:SetVertexColor(0.84, 0.08, 0.15);
-end
-
-function CloseButtonScripts.OnLeave(self)
-    self.Icon:SetVertexColor(0.4, 0.4, 0.4);
-end
-
-function CloseButtonScripts.OnClick(self)
-    MainFrame:Close();
-end
-
-
-
 NarciShowcaseSheatheButtonMixin = {};
 
 function NarciShowcaseSheatheButtonMixin:OnLoad()
     SheatheButton = self;
     self.labelText = WEAPON or "weapon";
     self.Icon:SetVertexColor(0.8, 0.8, 0.8);
-    self:SetPropagateKeyboardInput(true);
 end
 
 function NarciShowcaseSheatheButtonMixin:OnEnter()
@@ -479,18 +485,23 @@ function NarciShowcaseSheatheButtonMixin:OnClick()
 end
 
 local function SheatheButton_OnKeyDown(self, key)
+    local propagte;
     if key == self.hotkey then
-        self:SetPropagateKeyboardInput(true);
+        propagte = false;
         self:Click();
     elseif key == "ESCAPE" then
         if DressUpFrame:IsVisible() then
-            self:SetPropagateKeyboardInput(true);
+            propagte = true;
         else
-            self:SetPropagateKeyboardInput(false);
+            propagte = false;
             MainFrame:Close();
         end
     else
-        self:SetPropagateKeyboardInput(true);
+        propagte = true;
+    end
+
+    if not InCombatLockdown() then
+        self:SetPropagateKeyboardInput(propagte);
     end
 end
 
@@ -502,11 +513,18 @@ function NarciShowcaseSheatheButtonMixin:OnShow()
     else
         self.Label:SetText(self.labelText);
     end
-    self:SetScript("OnKeyDown", SheatheButton_OnKeyDown);
+
+    if InCombatLockdown() then
+        NarciAPI.AddToUISpecialFrames(MainFrame, true);
+    else
+        self:SetScript("OnKeyDown", SheatheButton_OnKeyDown);
+        self:SetPropagateKeyboardInput(true);
+    end
 end
 
 function NarciShowcaseSheatheButtonMixin:OnHide()
     self:SetScript("OnKeyDown", nil);
+    NarciAPI.AddToUISpecialFrames(MainFrame, false);
 end
 
 function NarciShowcaseSheatheButtonMixin:UpdateIcon()
@@ -1445,93 +1463,6 @@ local function CreateBackgroundOptions(tab)
     end
 end
 
-local function UpdateMountActor(resetModel)
-    local mountID;
-
-    if MountJournal and MountJournal:IsVisible() and MountJournal.selectedMountID then
-        mountID = MountJournal.selectedMountID;
-    elseif IsMounted() then
-        local UnitBuff = C_UnitAuras.GetBuffDataByIndex;
-        local GetMountFromSpell = C_MountJournal.GetMountFromSpell;
-        local i = 1;
-        local spellID = 0;
-        local auraData;
-        while spellID do
-            auraData = UnitBuff("player", i, "HELPFUL");
-            spellID = auraData and auraData.spellId;
-            if spellID then
-                if auraData.duration == 0 then
-                    mountID = GetMountFromSpell(spellID);
-                    if mountID then
-                        break
-                    else
-                        i = i + 1;
-                    end
-                else
-                    i = i + 1;
-                end
-            else
-                break
-            end
-        end
-    else
-        mountID = MainFrame.mountID;
-    end
-
-    if mountID == MainFrame.mountID and not resetModel then
-        return
-    end
-
-    if mountID and mountID ~= 0 then
-        local creatureDisplayID, _, _, isSelfMount, _, modelSceneID, animID, spellVisualKitID, disablePlayerMountPreview = C_MountJournal.GetMountInfoExtraByID(mountID);
-
-        if not MountActor then
-            MountActor = ModelScene:CreateActor(nil, "NarciAutoFittingActorTemplate");
-            MountActor.actorType = "mount";
-            MountActor:SetUseCenterForOrigin(false, false, false);
-            MountActor:SetPosition(0, 0, 0);
-            --MountActor:SetParticleOverrideScale(0);
-        end
-
-        if resetModel then
-            MountActor:ClearModel();
-        end
-
-        MountActor:Show();
-        MountActor:SetYaw(0);
-
-        local showCustomization = true;
-        MountActor:SetModelByCreatureDisplayID(creatureDisplayID, showCustomization);
-        MountActor.creatureName = C_MountJournal.GetMountInfoByID(mountID);
-
-        if (isSelfMount) then
-            MountActor:SetAnimationBlendOperation(0);   --LE_MODEL_BLEND_OPERATION_NONE
-            MountActor:SetAnimation(618);
-        else
-            MountActor:SetAnimationBlendOperation(1);    --LE_MODEL_BLEND_OPERATION_ANIM
-            MountActor:SetAnimation(0);
-        end
-
-        ANIMATION_ID = 0;
-        IDFrame.EditBox:SetText(0);
-
-        local calcMountScale = MountActor:CalculateMountScale(PlayerActor);
-        local inverseScale = 1 / calcMountScale;
-        PlayerActor:SetScale( inverseScale );
-        PlayerActor:SheatheWeapon(true);
-        PlayerActor:SetYaw(0);
-        PlayerActor:SetUseCenterForOrigin(false, false, false);
-        MountActor:AttachToMount(PlayerActor, animID, spellVisualKitID);    --fun fact: a new player model is generated and attached to the mount
-
-        ACTOR_IS_MOUNT = true;
-        ModelScene.actor = MountActor;
-        ActiveActor = MountActor;
-        MainFrame.mountID = mountID;
-    else
-
-    end
-end
-
 --/script local a = DressUpFrame.ModelScene:GetPlayerActor();if a then a:TryOn(78416) end
 
 ------------------------------------------------------------
@@ -1568,6 +1499,9 @@ function NarciOutfitShowcaseMixin:OnShow()
 end
 
 function NarciOutfitShowcaseMixin:Init()
+    self.Init = nil;
+    NarciOutfitShowcaseMixin.Init = nil;
+
     ModelScene = self.ModelScene;
     ControlPanel = self.ControlPanel;
     UtilityModel = self.ModelScene.UtilityModel;
@@ -1712,9 +1646,7 @@ function NarciOutfitShowcaseMixin:Init()
     --NarciAPI.NineSliceUtil.SetUpBorder(self.DropShadow, "shadowR0");
 
     self.ModelScene.BackdropPreview:SetTexture("Interface/AddOns/Narcissus/Art/Modules/Showcase/BackdropThumbnails", nil, nil, "NEAREST");
-
-    self.Init = nil;
-    NarciOutfitShowcaseMixin.Init = nil;
+    MountToggle:UpdateIcon();
 end
 
 function NarciOutfitShowcaseMixin:UpdateWidgetSize()
@@ -1785,6 +1717,96 @@ function NarciOutfitShowcaseMixin:UpdateSize(resetCamera)
     end
 end
 
+function NarciOutfitShowcaseMixin:UpdateMountActor(resetModel)
+    local mountID;
+
+    if MountJournal and MountJournal:IsVisible() and MountJournal.selectedMountID then
+        mountID = MountJournal.selectedMountID;
+    elseif IsMounted() then
+        local UnitBuff = C_UnitAuras.GetBuffDataByIndex;
+        local GetMountFromSpell = C_MountJournal.GetMountFromSpell;
+        local i = 1;
+        local spellID = 0;
+        local auraData;
+        while spellID do
+            auraData = UnitBuff("player", i, "HELPFUL");
+            spellID = auraData and auraData.spellId;
+            if spellID then
+                if auraData.duration == 0 then
+                    mountID = GetMountFromSpell(spellID);
+                    if mountID then
+                        break
+                    else
+                        i = i + 1;
+                    end
+                else
+                    i = i + 1;
+                end
+            else
+                break
+            end
+        end
+    else
+        mountID = self.mountID;
+    end
+
+    if mountID == self.mountID and not resetModel then
+        return
+    end
+
+    if mountID and mountID ~= 0 then
+        local creatureDisplayID, _, _, isSelfMount, _, modelSceneID, animID, spellVisualKitID, disablePlayerMountPreview = C_MountJournal.GetMountInfoExtraByID(mountID);
+
+        if not MountActor then
+            MountActor = ModelScene:CreateActor(nil, "NarciAutoFittingActorTemplate");
+            MountActor.actorType = "mount";
+            MountActor:SetUseCenterForOrigin(false, false, false);
+            MountActor:SetPosition(0, 0, 0);
+            --MountActor:SetParticleOverrideScale(0);
+        end
+
+        if resetModel then
+            MountActor:ClearModel();
+        end
+
+        MountActor:Show();
+        MountActor:SetYaw(0);
+
+        local showCustomization = true;
+        MountActor:SetModelByCreatureDisplayID(creatureDisplayID, showCustomization);
+        MountActor.creatureName = C_MountJournal.GetMountInfoByID(mountID);
+
+        if (isSelfMount) then
+            MountActor:SetAnimationBlendOperation(0);   --LE_MODEL_BLEND_OPERATION_NONE
+            MountActor:SetAnimation(618);
+        else
+            MountActor:SetAnimationBlendOperation(1);    --LE_MODEL_BLEND_OPERATION_ANIM
+            MountActor:SetAnimation(0);
+        end
+
+        ANIMATION_ID = 0;
+        IDFrame.EditBox:SetText(0);
+
+        local calcMountScale = MountActor:CalculateMountScale(PlayerActor);
+        local inverseScale = 1 / calcMountScale;
+        PlayerActor:SetScale( inverseScale );
+        PlayerActor:SheatheWeapon(true);
+        PlayerActor:SetYaw(0);
+        PlayerActor:SetUseCenterForOrigin(false, false, false);
+
+        if self.mountOnly then
+            PlayerActor:ClearModel();
+        else
+            MountActor:AttachToMount(PlayerActor, animID, spellVisualKitID);    --fun fact: a new player model is generated and attached to the mount
+        end
+
+        ACTOR_IS_MOUNT = true;
+        ModelScene.actor = MountActor;
+        ActiveActor = MountActor;
+        self.mountID = mountID;
+    end
+end
+
 function NarciOutfitShowcaseMixin:SyncModel()
     --retrieve the outfit data from dressing room
     --/run NarciOutfitShowcase:SyncModel()
@@ -1825,7 +1847,7 @@ function NarciOutfitShowcaseMixin:SyncModel()
     PlayerActor:SheatheWeapon(sheatheWeapons);
 
     if self.mountMode then
-        UpdateMountActor(true);
+        self:UpdateMountActor(true);
     end
 
     self:UpdateItemText(transmogInfoList);
@@ -1945,7 +1967,7 @@ function NarciOutfitShowcaseMixin:OnEvent(event, ...)
     elseif event == "PLAYER_LOGOUT" then
         self:OnHide();
     elseif event == "PLAYER_MOUNT_DISPLAY_CHANGED" then
-        UpdateMountActor();
+        self:UpdateMountActor();
     end
 end
 
@@ -2142,14 +2164,16 @@ function NarciOutfitShowcaseMixin:ShowTab(id)
     self.ControlPanel.BackgroundTab:SetShown(id == 4);
 end
 
-function NarciOutfitShowcaseMixin:SetMountMode(state)
+function NarciOutfitShowcaseMixin:SetMountMode(state, mountOnly)
     self.mountMode = state;
     if state then
+        self.mountOnly = mountOnly;
         self:RegisterEvent("PLAYER_MOUNT_DISPLAY_CHANGED");
-        UpdateMountActor();
+        self:UpdateMountActor();
     else
         self:UnregisterEvent("PLAYER_MOUNT_DISPLAY_CHANGED");
         self.mountID = nil;
+        self.mountOnly = nil;
         if ACTOR_IS_MOUNT then
             ACTOR_IS_MOUNT = false;
             PlayerActor:SetUseCenterForOrigin(false, false, true);
@@ -2721,17 +2745,21 @@ function NarciShowcaseMountToggleMixin:OnLeave()
     SetUpTooltipText();
 end
 
-function NarciShowcaseMountToggleMixin:OnClick()
-    MainFrame:SetMountMode(not MainFrame.mountMode);
+function NarciShowcaseMountToggleMixin:OnClick(button)
+    MainFrame:SetMountMode(not MainFrame.mountMode, button == "RightButton");
     SetUpTooltipText();
 end
 
 function NarciShowcaseMountToggleMixin:UpdateIcon()
     if MainFrame.mountMode then
-        self.Icon:SetTexCoord(0.5, 1, 0, 1);
+        if MainFrame.mountOnly then
+            self.Icon:SetTexCoord(0.5, 1, 0.5, 1);
+        else
+            self.Icon:SetTexCoord(0.5, 1, 0, 0.5);
+        end
         self.isOn = true;
     else
-        self.Icon:SetTexCoord(0, 0.5, 0, 1);
+        self.Icon:SetTexCoord(0, 0.5, 0, 0.5);
         self.isOn = nil;
     end
 end

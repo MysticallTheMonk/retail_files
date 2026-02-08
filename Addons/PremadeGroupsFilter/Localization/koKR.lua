@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 -- Premade Groups Filter
 -------------------------------------------------------------------------------
--- Copyright (C) 2024 Bernhard Saumweber
+-- Copyright (C) 2026 Bernhard Saumweber
 --
 -- This program is free software; you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ L["addon.name.long"] = "Premade Groups Filter"
 
 L["error.syntax"] = "|cffff0000필터 표현에 구문 오류|r\n\n이것은 당신의 필터 표현이 올바르게 만들어 지지 않은 걸 의미합니다, 예. 괄호를 빠뜨리거나 'tanks==1' 대신 'tanks=1'이라고 쓴 경우입니다.\n\n자세한 오류 메시지:\n|cffaaaaaa%s|r"
 L["error.semantic"] = "|cffff0000필터 표현에 의미 오류|r\n\n이것은 당신의 필터 표현이 구문은 맞지만, 변수 이름의 철자가 틀린 것 같습니다, 예. tanks 대신 tansk라고 쓴 경우입니다.\n\n자세한 오류 메시지:\n|cffaaaaaa%s|r"
-L["error.semantic.protected"] = "|cffff0000필터 표현에 의미 오류|r\n\n'name', 'comment' 및 'findnumber' 키워드는 더 이상 지원되지 않습니다. 고급 필터 표현식에서 필터를 제거하거나 재설정 버튼을 누르십시오.\n\nBattle for Azeroth Prepatch 로 시작한이 값은 이제 블리자드에 의해 보호되며 더 이상 애드온에서 읽을 수 없습니다.\n\n그룹 목록 위에있는 기본 검색 창을 사용하여 그룹 이름을 필터링하십시오.\n\n자세한 오류 메시지:\n|cffaaaaaa%s|r"
+L["error.semantic.protected"] = "|cffff0000필터 표현에 의미 오류|r\n\n'name' 및 'comment' 키워드는 더 이상 지원되지 않습니다. 고급 필터 표현식에서 필터를 제거하거나 재설정 버튼을 누르십시오.\n\nBattle for Azeroth Prepatch 로 시작한이 값은 이제 블리자드에 의해 보호되며 더 이상 애드온에서 읽을 수 없습니다.\n\n그룹 목록 위에있는 기본 검색 창을 사용하여 그룹 이름을 필터링하십시오.\n\n자세한 오류 메시지:\n|cffaaaaaa%s|r"
 L["message.settingsupgraded"] = "Premade Groups Filter: 버전 %s로 마이그레이션된 설정"
 
 L["dialog.settings"] = GAMEMENU_OPTIONS
@@ -52,6 +52,8 @@ L["dialog.heals"]      = "치유 전담 ..........................."
 L["dialog.dps"]        = "공격 전담 ..........................."
 L["dialog.mprating"]   = "M+ rating"
 L["dialog.pvprating"]  = "PVP rating ........................"
+L["dialog.delvetier"]  = "구렁 단계 ..........................."
+L["dialog.delvetier.tooltip"] = "일부 플레이어는 구렁 단계를 올바르게 설정하지 않고, 그룹 이름에만 표시합니다. 애드온은 이름을 읽을 수 없습니다. 더 나은 결과를 위해 기본 검색 필드를 사용하세요."
 L["dialog.defeated"]   = "우두머리 처치 (공격대만)"
 L["dialog.sorting"] = "정렬"
 L["dialog.usepgf.tooltip"] = "Premade Groups Filter 활성화 또는 비활성화"
@@ -90,6 +92,7 @@ L["dialog.tooltip.warmode"] = "warmode enabled"
 L["dialog.copy.url.keywords"] = "Ctrl+C를 눌러 키워드 목록에 대한 링크 복사"
 L["dialog.filters.group"] = "그룹"
 L["dialog.filters.dungeons"] = "던전"
+L["dialog.filters.delves"] = "구렁"
 L["dialog.filters.advanced"] = "고급 필터 표현식"
 L["dialog.partyfit"] = "파티 적합"
 L["dialog.partyfit.tooltip"] = "모든 파티원의 역할에 맞는 빈자리가 있는 그룹만 표시합니다. 혼자 있을 때도 작동합니다."
@@ -104,6 +107,14 @@ L["dialog.matchingid.tooltip"] = "당신과 동일한 인스턴스 귀속 상태
 L["dialog.needsbl"] = "피의 욕망 필요"
 L["dialog.needsbl.tooltip"] = "피의 욕망/영웅심을 제공하는 클래스가 없는 그룹만 표시합니다."
 L["dialog.cancelOldestApp"] = "가장 오래된 지원서를 취소하려면 클릭"
+L["dialog.button.selectall.title"] = "모"
+L["dialog.button.selectall.tooltip"] = "모두 선택"
+L["dialog.button.selectnone.title"] = "없"
+L["dialog.button.selectnone.tooltip"] = "선택 안 함"
+L["dialog.button.selectbountiful.title"] = "풍"
+L["dialog.button.selectbountiful.tooltip"] = "풍요로운 구렁 선택"
+L["dialog.button.selectinvert.title"] = "반"
+L["dialog.button.selectinvert.tooltip"] = "선택 반전"
 
 L["settings.dialogMovable.title"] = "대화 상자 이동 가능"
 L["settings.dialogMovable.tooltip"] = "마우스로 대화 상자를 이동할 수 있습니다. 마우스 오른쪽 버튼을 클릭하면 위치가 재설정됩니다."
@@ -139,3 +150,5 @@ L["settings.rioRatingColors.title"] = "Raider.IO 색상으로 평가"
 L["settings.rioRatingColors.tooltip"] = "Raider.IO 애드온이 로드된 경우, 신화+ 평가에 Raider.IO 색상 체계를 사용합니다."
 L["settings.cancelOldestApp.title"] = "가장 오래된 지원서 취소"
 L["settings.cancelOldestApp.tooltip"] = "대기 중인 지원서가 최대인 경우, 그룹을 클릭하여 가장 오래된 지원서를 먼저 취소하세요. 그런 다음 다시 클릭하여 지원하세요."
+L["settings.compactListEntries.title"] = "목록 항목 간소화"
+L["settings.compactListEntries.tooltip"] = "플레이 방식을 숨겨 그룹 목록의 항목이 세로 공간을 덜 차지하게 합니다(한밤 확장팩 사전 콘텐츠 업데이트 이전과 동일)."

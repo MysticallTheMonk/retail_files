@@ -16,19 +16,57 @@ local _, Core = ...
 -- Lua API
 ---
 
-local type = type
+local _G, ipairs, type = _G, ipairs, type
 
 ----------------------------------------
--- Functions
+-- Internal
+---
+
+-- @ Skins\Defaults
+local SkinRoot = Core.SKIN_BASE
+
+----------------------------------------
+-- Locals
+---
+
+-- SetPoint Defaults
+local BASE_POINT = SkinRoot.Point
+local BASE_RELPOINT = SkinRoot.RelPoint
+local BASE_OFFSETX = SkinRoot.OffsetX
+local BASE_OFFSETY = SkinRoot.OffsetY
+
+-- Misc Strings
+local STR_ANIMKEY = "FlipAnim"
+
+-- Type Strings
+local TYPE_FLIPBOOK = "FlipBook"
+local TYPE_FUNCTION = "function"
+local TYPE_TABLE = "table"
+
+----------------------------------------
+-- Miscellaneous
 ---
 
 -- An empty function.
-function Core.NoOp() end
+local function NoOp() end
+Core.NoOp = NoOp
 
--- Returns the scale factor for a button.
-local function GetScaleSize(Button)
-	local Scale = (Button and Button.__MSQ_Scale) or 1
-	return 36 / Scale
+----------------------------------------
+-- Animation
+---
+
+-- Returns a flipbook animation from an animation group.
+function Core.GetFlipBookAnimation(AnimGroup)
+	local FlipAnim = AnimGroup.FlipAnim
+
+	if FlipAnim then return FlipAnim end
+
+	for _, Animation in ipairs({AnimGroup:GetAnimations()}) do
+		if Animation and (Animation:GetObjectType() == TYPE_FLIPBOOK) then
+			Animation:SetParentKey(STR_ANIMKEY)
+			return Animation
+		end
+	end
 end
 
 ----------------------------------------
@@ -37,7 +75,7 @@ end
 
 -- Returns a set of color values.
 function Core.GetColor(Color, Alpha)
-	if type(Color) == "table" then
+	if type(Color) == TYPE_TABLE then
 		return Color[1] or 1, Color[2] or 1, Color[3] or 1, Alpha or Color[4] or 1
 	else
 		return 1, 1, 1, Alpha or 1
@@ -48,95 +86,54 @@ end
 -- Points
 ---
 
--- Clears and sets the point(s) for a region.
-function Core.ClearSetPoint(Region, Point, Anchor, RelPoint, OffsetX, OffsetY, SetAllPoints)
-	Anchor = Anchor or Region:GetParent()
+-- Clears and sets the point(s) for a region using skin data.
+function Core.SetSkinPoint(Region, Button, Skin, SetAllPoints, Anchor, Default)
+	local Skin_Anchor = Skin and Skin.Anchor
+
+	Anchor = Anchor or Button
+
+	if Skin_Anchor then
+		local _mcfg = Button._MSQ_CFG
+		local Regions = _mcfg and _mcfg.Regions
+
+		if type(Regions) == TYPE_TABLE then
+			Anchor = Regions[Skin_Anchor] or Anchor
+		end
+	end
 
 	Region:ClearAllPoints()
 
 	if SetAllPoints then
 		Region:SetAllPoints(Anchor)
-	else
-		Region:SetPoint(Point or "CENTER", Anchor, RelPoint or "CENTER", OffsetX or 0, OffsetY or 0)
-	end
-end
-
--- Clears and sets the point(s) for a region using skin data.
-function Core.SetSkinPoint(Region, Button, Skin, Default, SetAllPoints)
-	local Anchor
-	local Skin_Anchor = Skin.Anchor
-
-	if Skin_Anchor then
-		local Regions = Button.__Regions
-
-		if type(Regions) == "table" then
-			Anchor = Regions[Skin_Anchor]
-		end
+		return
 	end
 
-	Region:ClearAllPoints()
+	local Point, RelPoint = BASE_POINT, BASE_RELPOINT
+	local OffsetX, OffsetY = BASE_OFFSETX, BASE_OFFSETY
 
-	if SetAllPoints then
-		Region:SetAllPoints(Anchor or Button)
-	else
-		local Point = Skin.Point
-		local RelPoint = Skin.RelPoint or Point
-
-		if not Point then
-			Point = Default and Default.Point
-
-			if Point then
-				RelPoint = Default.RelPoint or Point
-			else
-				Point = "CENTER"
-				RelPoint = Point
-			end
-		end
-
-		local OffsetX = Skin.OffsetX
-		local OffsetY = Skin.OffsetY
-
-		if Default and not OffsetX and not OffsetY then
-			OffsetX = Default.OffsetX or 0
-			OffsetY = Default.OffsetY or 0
-		end
-
-		Region:SetPoint(Point, Anchor or Button, RelPoint, OffsetX or 0, OffsetY or 0)
+	-- Account for iterated layers.
+	if type(Default) == TYPE_TABLE then
+		Point = Default.Point or Point
+		RelPoint = Default.RelPoint or RelPoint
 	end
+
+	if Skin then
+		Point = Skin.Point or Point
+		RelPoint = Skin.RelPoint or RelPoint
+		OffsetX = Skin.OffsetX or OffsetX
+		OffsetY = Skin.OffsetY or OffsetY
+	end
+
+	Region:SetPoint(Point, Anchor, RelPoint, OffsetX, OffsetY)
 end
 
 ----------------------------------------
--- Scale
----
-
--- Returns the x and y scale of a button.
-function Core.GetScale(Button)
-	local ScaleSize = GetScaleSize(Button)
-	local w, h = Button:GetSize()
-	local x = (w or ScaleSize) / ScaleSize
-	local y = (h or ScaleSize) / ScaleSize
-	return x, y
-end
-
-----------------------------------------
--- Size
----
-
--- Returns a height and width.
-function Core.GetSize(Width, Height, xScale, yScale, Button)
-	local ScaleSize = GetScaleSize(Button)
-	local w = (Width or ScaleSize) * xScale
-	local h = (Height or ScaleSize) * yScale
-	return w, h
-end
-
-----------------------------------------
--- TexCoords
+-- Texture Coordinates
 ---
 
 -- Returns a set of texture coordinates.
 function Core.GetTexCoords(Coords)
-	if type(Coords) == "table" then
+	if type(Coords) == TYPE_TABLE then
 		return Coords[1] or 0, Coords[2] or 1, Coords[3] or 0, Coords[4] or 1
 	else
 		return 0, 1, 0, 1
@@ -144,38 +141,86 @@ function Core.GetTexCoords(Coords)
 end
 
 ----------------------------------------
--- Type Skin
+-- Group Queue
 ---
 
--- Returns a skin based on the button type.
-function Core.GetTypeSkin(Button, Type, Skin)
-	if Button.__MSQ_IsAura then
-		return Skin[Type] or Skin.Aura or Skin
-	elseif Button.__MSQ_IsItem then
-		if Type == "ReagentBag" then
-			return Skin.ReagentBag or Skin.BagSlot or Skin.Item or Skin
-		else
-			return Skin[Type] or Skin.Item or Skin
+-- Self-destructing table to skin groups created prior to the PLAYER_LOGIN event.
+Core.Queue = {
+	Cache = {},
+
+	-- Adds a group to the queue.
+	Add = function(self, Group)
+		self.Cache[#self.Cache + 1] = Group
+		Group.Queued = true
+	end,
+
+	-- Re-Skins all queued groups.
+	ReSkin = function(self)
+		for i = 1, #self.Cache do
+			local Group = self.Cache[i]
+
+			Group:ReSkin(true)
+			Group.Queued = nil
 		end
-	else
-		return Skin[Type] or Skin
+
+		-- GC
+		self.Cache = nil
+		Core.Queue = nil
+	end,
+}
+
+setmetatable(Core.Queue, {__call = Core.Queue.Add})
+
+----------------------------------------
+-- Region Finder
+---
+
+-- Returns a region for a button that uses a template.
+function Core.GetRegion(Button, Info)
+	local Key = Info.Key
+
+	-- Key Reference
+	if Key then
+		local Parent = (Info.Parent and Button[Info.Parent]) or Button
+
+		if type(Parent) == TYPE_TABLE then
+			local Region = Parent[Key]
+
+			if type(Region) == TYPE_TABLE then
+				local rType = Region.GetObjectType and Region:GetObjectType()
+
+				if rType == Info.Type then
+					return Region
+				end
+			end
+		end
+	end
+
+	-- Function Reference
+	local Func = Info.Func
+
+	if Func then
+		local Method = Button[Func]
+
+		if type(Method) == TYPE_FUNCTION then
+			return Method(Button)
+		end
+	end
+
+	-- Global Reference
+	local Name = Info.Name
+
+	if Name then
+		local bName = Button.GetName and Button:GetName()
+
+		if bName then
+			return _G[bName..Name]
+		end
 	end
 end
 
 ----------------------------------------
--- API
+-- API - Deprecated
 ---
 
--- Temporary function to catch add-ons using deprecated API.
-function Core.API:Register(Addon)
-	if type(Addon) ~= "string" then
-		return
-	end
-
-	local Warn = Core.db.profile.CB_Warn
-
-	if Warn[Addon] then
-		print("|cffff8800Masque Warning:|r", Addon, "called the deprecated API method, '|cff0099ffRegister|r'.  Please notify the author or post in the relevant issue on the Masque project page.")
-		Warn[Addon] = false
-	end
-end
+Core.API.Register = NoOp

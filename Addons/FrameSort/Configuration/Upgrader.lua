@@ -8,8 +8,90 @@ local M = {}
 
 addon.Configuration.Upgrader = M
 
+---Removes any erronous values from the options table.
+---@param target table the target table to clean
+---@param template table what the table should look like
+---@param cleanValues any whether or not to clean non-table values, e.g. numbers and strings
+---@param recurse any whether to recursively clean the table
+local function CleanTable(target, template, cleanValues, recurse)
+    -- remove values that aren't ours
+    if type(target) ~= "table" or type(template) ~= "table" then
+        return
+    end
+
+    for key, value in pairs(target) do
+        local templateValue = template[key]
+
+        -- only clean non-table values if told to do so
+        if cleanValues and templateValue == nil then
+            target[key] = nil
+            fsLog:Warning("Removed erroneous db value %s", key)
+        end
+
+        if recurse then
+            if type(value) == "table" and type(templateValue) == "table" then
+                CleanTable(value, templateValue, cleanValues, recurse)
+            elseif type(value) == "table" and type(templateValue) ~= "table" then
+                -- type mismatch: reset this key to default
+                target[key] = templateValue
+                fsLog:Warning("Replaced existing key %s with defaults.", key)
+            end
+        end
+    end
+end
+
+---Recursively adds any missing keys to the target.
+---@param target table the target table to clean
+---@param template table what the table should look like
+local function AddMissing(target, template)
+    if type(target) ~= "table" or type(template) ~= "table" then
+        return
+    end
+
+    for key, value in pairs(template) do
+        if target[key] == nil then
+            if type(value) == "table" then
+                target[key] = wow.CopyTable(value)
+            else
+                target[key] = value
+            end
+
+            fsLog:Warning("Added missing key %s to options table.", key)
+        elseif type(value) == "table" and type(target[key]) == "table" then
+            AddMissing(target[key], value)
+        elseif type(value) == "table" and type(target[key]) ~= "table" then
+            target[key] = wow.CopyTable(value)
+            fsLog:Warning("Replaced existing key %s with defaults.", key)
+        end
+    end
+end
+
+---Returns true if the target has the same set of keys as the template.
+---However the target may also have more keys than template.
+local function HasSameKeys(target, template)
+    for key, value in pairs(template) do
+        if target[key] == nil then
+            return false
+        end
+
+        if type(value) == "table" then
+            if type(target[key]) ~= "table" then
+                return false
+            end
+
+            if not HasSameKeys(target[key], value) then
+                return false
+            end
+        end
+    end
+
+    return true
+end
+
 function M:UpgradeToVersion2(options)
-    assert(options.Version == nil or options.Version == 1)
+    if options.Version ~= nil and options.Version ~= 1 then
+        return false
+    end
 
     options.ArenaEnabled = options.PartySortEnabled
     options.ArenaPlayerSortMode = options.PlayerSortMode
@@ -32,19 +114,26 @@ function M:UpgradeToVersion2(options)
     options.PartySortMode = nil
     options.PlayerSortMode = nil
     options.RaidSortEnabled = nil
-
     options.Version = 2
+
+    return true
 end
 
 function M:UpgradeToVersion3(options)
-    assert(options.Version == 2)
+    if options.Version ~= 2 then
+        return false
+    end
 
     options.ExperimentalEnabled = false
     options.Version = 3
+
+    return true
 end
 
 function M:UpgradeToVersion4(options)
-    assert(options.Version == 3)
+    if options.Version ~= 3 then
+        return false
+    end
 
     options.SortingMethod = {
         TaintlessEnabled = true,
@@ -52,10 +141,14 @@ function M:UpgradeToVersion4(options)
     }
 
     options.Version = 4
+
+    return true
 end
 
 function M:UpgradeToVersion5(options)
-    assert(options.Version == 4)
+    if options.Version ~= 4 then
+        return false
+    end
 
     options.Debug = {
         Enabled = options.DebugEnabled,
@@ -107,10 +200,14 @@ function M:UpgradeToVersion5(options)
     options.ExperimentalEnabled = nil
 
     options.Version = 5
+
+    return true
 end
 
 function M:UpgradeToVersion6(options)
-    assert(options.Version == 5)
+    if options.Version ~= 5 then
+        return false
+    end
 
     options.Appearance = {
         Party = {
@@ -128,59 +225,61 @@ function M:UpgradeToVersion6(options)
     }
 
     options.Version = 6
+
+    return true
 end
 
 function M:UpgradeToVersion7(options)
-    assert(options.Version == 6)
+    if options.Version ~= 6 then
+        return false
+    end
+
+    if not options.Debug then
+        options.Debug = {}
+    end
 
     options.Debug.Enabled = false
     options.Version = 7
+
+    return true
 end
 
 function M:UpgradeToVersion8(options)
-    assert(options.Version == 7)
+    if options.Version ~= 7 then
+        return false
+    end
+
+    if not options.Arena or not options.Dungeon or not options.Raid or not options.World then
+        return false
+    end
 
     options.Arena.Reverse = false
     options.Dungeon.Reverse = false
     options.Raid.Reverse = false
     options.World.Reverse = false
     options.Version = 8
+
+    return true
 end
 
 function M:UpgradeToVersion9(options)
-    assert(options.Version == 8)
+    if options.Version ~= 8 then
+        return false
+    end
 
     options.Debug = nil
     options.Logging = {
         Enabled = false,
     }
     options.Version = 9
-end
 
-local function CleanTable(options, defaults)
-    -- remove values that aren't ours
-    for k, v in pairs(options) do
-        if defaults[k] == nil then
-            options[k] = nil
-        elseif v ~= nil and type(v) == "table" then
-            CleanTable(options[k], defaults[k])
-        end
-    end
-end
-
-local function AddMissing(options, defaults)
-    -- add defaults for any missing values
-    for k, v in pairs(defaults) do
-        if options[k] == nil then
-            options[k] = v
-        elseif type(v) == "table" then
-            AddMissing(options[k], defaults[k])
-        end
-    end
+    return true
 end
 
 function M:UpgradeToVersion10(options)
-    assert(options.Version == 9)
+    if options.Version ~= 9 then
+        return false
+    end
 
     -- encountered a clash with Ability Team Tracker also using the "Options" global variable
     -- so clean up our saved variable for anyone affected
@@ -191,26 +290,26 @@ function M:UpgradeToVersion10(options)
         },
         Arena = {
             Enabled = true,
-            PlayerSortMode = fsConfig.PlayerSortMode.Top,
-            GroupSortMode = fsConfig.GroupSortMode.Group,
+            PlayerSortMode = "Top",
+            GroupSortMode = "Group",
             Reverse = false,
         },
         Dungeon = {
             Enabled = true,
-            PlayerSortMode = fsConfig.PlayerSortMode.Top,
-            GroupSortMode = fsConfig.GroupSortMode.Role,
+            PlayerSortMode = "Top",
+            GroupSortMode = "Role",
             Reverse = false,
         },
         World = {
             Enabled = true,
-            PlayerSortMode = fsConfig.PlayerSortMode.Top,
-            GroupSortMode = fsConfig.GroupSortMode.Group,
+            PlayerSortMode = "Top",
+            GroupSortMode = "Group",
             Reverse = false,
         },
         Raid = {
             Enabled = false,
-            PlayerSortMode = fsConfig.PlayerSortMode.Top,
-            GroupSortMode = fsConfig.GroupSortMode.Role,
+            PlayerSortMode = "Top",
+            GroupSortMode = "Role",
             Reverse = false,
         },
         SortingMethod = {
@@ -234,16 +333,24 @@ function M:UpgradeToVersion10(options)
     }
 
     -- remove clashing values
-    CleanTable(options, v10Defaults)
+    CleanTable(options, v10Defaults, true)
 
     -- add any missing values back
     AddMissing(options, v10Defaults)
 
     options.Version = 10
+
+    return true
 end
 
 function M:UpgradeToVersion11(options)
-    assert(options.Version == 10)
+    if options.Version ~= 10 then
+        return false
+    end
+
+    if not options.Appearance then
+        return false
+    end
 
     options.Appearance.EnemyArena = {
         Spacing = {
@@ -253,22 +360,34 @@ function M:UpgradeToVersion11(options)
     }
 
     options.Version = 11
+
+    return true
 end
 
 function M:UpgradeToVersion12(options)
-    assert(options.Version == 11)
+    if options.Version ~= 11 then
+        return false
+    end
 
     options.EnemyArena = {
         Enabled = false,
-        GroupSortMode = fsConfig.GroupSortMode.Group,
+        GroupSortMode = "Group",
         Reverse = false,
     }
 
     options.Version = 12
+
+    return true
 end
 
 function M:UpgradeToVersion13(options)
-    assert(options.Version == 12)
+    if options.Version ~= 12 then
+        return false
+    end
+
+    if not options.SortingMethod then
+        return false
+    end
 
     local methods = {
         Secure = 1,
@@ -284,10 +403,18 @@ function M:UpgradeToVersion13(options)
     end
 
     options.Version = 13
+
+    return true
 end
 
 function M:UpgradeToVersion14(options)
-    assert(options.Version == 13)
+    if options.Version ~= 13 then
+        return false
+    end
+
+    if not options.SortingMethod then
+        return false
+    end
 
     local methods = {
         Secure = 1,
@@ -301,10 +428,18 @@ function M:UpgradeToVersion14(options)
     end
 
     options.Version = 14
+
+    return true
 end
 
 function M:UpgradeToVersion15(options)
-    assert(options.Version == 14)
+    if options.Version ~= 14 then
+        return false
+    end
+
+    if not options.SortingMethod then
+        return false
+    end
 
     local methods = {
         Secure = 1,
@@ -319,20 +454,36 @@ function M:UpgradeToVersion15(options)
     end
 
     options.Version = 15
+
+    return true
 end
 
 function M:UpgradeToVersion16(options)
-    assert(options.Version == 15)
+    if options.Version ~= 15 then
+        return false
+    end
 
     options.Sorting = {
         RoleOrdering = 1,
     }
 
     options.Version = 16
+
+    return true
 end
 
 function M:UpgradeToVersion17(options)
-    assert(options.Version == 16)
+    if options.Version ~= 16 then
+        return false
+    end
+
+    if not options.Sorting then
+        return false
+    end
+
+    if not options.Appearance or not options.Appearance.Party or not options.Appearance.Raid or not options.Appearance.EnemyArena then
+        return false
+    end
 
     options.Sorting.Method = options.SortingMethod
     options.Sorting.Arena = options.Arena
@@ -355,22 +506,32 @@ function M:UpgradeToVersion17(options)
     }
 
     options.Appearance = nil
-
     options.Version = 17
+
+    return true
 end
 
 function M:UpgradeToVersion18(options)
-    assert(options.Version == 17)
+    if options.Version ~= 17 then
+        return false
+    end
 
     -- missed some areas that were still referencing this instead of Sorting.Method
     -- so clear it again
     options.SortingMethod = nil
-
     options.Version = 18
+
+    return true
 end
 
 function M:UpgradeToVersion19(options)
-    assert(options.Version == 18)
+    if options.Version ~= 18 then
+        return false
+    end
+
+    if not options.Sorting or not options.Sorting.Arena then
+        return false
+    end
 
     local arena = wow.CopyTable(options.Sorting.Arena)
 
@@ -383,20 +544,32 @@ function M:UpgradeToVersion19(options)
     options.Sorting.Arena.Reverse = nil
 
     options.Version = 19
+
+    return true
 end
 
 function M:UpgradeToVersion20(options)
-    assert(options.Version == 19)
+    if options.Version ~= 19 then
+        return false
+    end
 
     options.AutoLeader = {
         Enabled = true,
     }
 
     options.Version = 20
+
+    return true
 end
 
 function M:UpgradeToVersion21(options)
-    assert(options.Version == 20)
+    if options.Version ~= 20 then
+        return false
+    end
+
+    if not options.Sorting then
+        return false
+    end
 
     -- Tank -> Healer - > Dps
     if options.Sorting.RoleOrdering == 1 or not options.Sorting.RoleOrdering then
@@ -429,18 +602,103 @@ function M:UpgradeToVersion21(options)
 
     options.Sorting.RoleOrdering = nil
     options.Version = 21
+
+    return true
 end
 
----Upgrades saved options to the current version.
-function M:UpgradeOptions(options)
-    while (options.Version or 1) < fsConfig.Defaults.Version do
+function M:UpgradeToVersion22(options)
+    if options.Version ~= 21 then
+        return false
+    end
+
+    options.Logging = nil
+    options.Version = 22
+
+    return true
+end
+
+function M:UpgradeToVersion23(options)
+    if options.Version ~= 22 then
+        return false
+    end
+
+    options.Nameplates = {
+        FriendlyEnabled = false,
+        EnemyEnabled = false,
+        FriendlyFormat = "$framenumber",
+        EnemyFormat = "$framenumber",
+    }
+    options.Version = 23
+
+    return true
+end
+
+function M:UpgradeToVersion24(options)
+    if options.Version ~= 23 then
+        return false
+    end
+
+    options.Sorting.Miscellaneous = {
+        PlayerRoleSort = "None",
+    }
+    options.Version = 24
+
+    return true
+end
+
+function M:UpgradeToVersion25(options)
+    if options.Version ~= 24 then
+        return false
+    end
+
+    options.Locale = ""
+    options.Version = 25
+
+    return true
+end
+
+---Upgrades saved variables database to the current version.
+function M:UpgradeDb(db)
+    local options = db.Options
+
+    if options.Version and options.Version > fsConfig.DbDefaults.Options.Version then
+        -- they are running a version ahead of us
+        return false
+    end
+
+    local isCorrupt = false
+
+    while (options.Version or 1) < fsConfig.DbDefaults.Options.Version do
         local currentVersion = options.Version or 1
         local nextVersion = currentVersion + 1
         local next = M["UpgradeToVersion" .. nextVersion]
 
-        assert(next ~= nil)
+        isCorrupt = next == nil
 
-        fsLog:Debug("Upgrading options to version " .. nextVersion .. ".")
-        next(M, options)
+        if isCorrupt then
+            break
+        end
+
+        fsLog:Debug("Upgrading options to version %s.", nextVersion)
+
+        if not next(M, options) then
+            isCorrupt = true
+            break
+        end
     end
+
+    if isCorrupt then
+        return false
+    end
+
+    -- clean any unknown values from our db
+    CleanTable(db, fsConfig.DbDefaults, true, false)
+
+    -- add any missing defaults
+    AddMissing(db, fsConfig.DbDefaults)
+
+    -- make sure the tables match in terms of their keys
+    isCorrupt = not HasSameKeys(options, fsConfig.DbDefaults.Options)
+
+    return not isCorrupt
 end

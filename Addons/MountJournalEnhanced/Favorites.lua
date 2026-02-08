@@ -1,12 +1,14 @@
 local _, ADDON = ...
 
 local function collectFavoredByApi()
+    local c = 0
     local mountIds = C_MountJournal.GetMountIDs()
     local favoredMounts = {}
     for _, mountId in ipairs(mountIds) do
         local _, _, _, _, _, _, isFavorite = C_MountJournal.GetMountInfoByID(mountId)
         if isFavorite then
-            favoredMounts[#favoredMounts+1] = mountId
+            c = c + 1
+            favoredMounts[c] = mountId
         end
     end
 
@@ -14,14 +16,27 @@ local function collectFavoredByApi()
 end
 
 local backgroundTimer
-local function UpdateFavoritesInBackground()
+local function cancelBackgroundTask()
     if backgroundTimer then
         backgroundTimer:Cancel()
     end
+    ADDON.Events:UnregisterFrameEventAndCallback("MOUNT_JOURNAL_SEARCH_UPDATED", 'cleanup-favorite-background')
+end
+local function UpdateFavoritesInBackground()
+    cancelBackgroundTask()
 
     local _, _ , favorites = ADDON.Api:GetFavoriteProfile()
-    local flippedFavorites = CopyValuesAsKeys(favorites)
+    favorites = tFilter(favorites, function(mountId)
+        local _, _, _, _, _, _, _, _, _, shouldHideOnChar = C_MountJournal.GetMountInfoByID(mountId)
+        return not shouldHideOnChar
+    end, true)
+
+    local flippedFavorites = {}
+    for _, v in pairs(favorites) do -- CopyValuesAsKeys() somehow created faulty list
+        flippedFavorites[v] = true
+    end
     local operationCount = #favorites
+    favorites = nil
 
     local favoredByApi = collectFavoredByApi()
 
@@ -36,19 +51,52 @@ local function UpdateFavoritesInBackground()
     end
 
     if operationCount > 0 then
-        backgroundTimer = C_Timer.NewTicker(0.4, function()
-            for mountId, v in pairs(flippedFavorites) do
-                if v or v == false then
-                    local index =  ADDON.Api:MountIdToOriginalIndex(mountId)
-                    if index then
-                        C_MountJournal.SetIsFavorite(index, v ~= false)
+        local lastTickMount, tickTryMount = 0, 0
+        local tickHandler = function()
+            local mountId, shouldBeFavored = next(flippedFavorites)
+            if mountId then
+                if lastTickMount == mountId and tickTryMount >= 3 then
+                    flippedFavorites[mountId] = nil
+                else
+                    if lastTickMount == mountId then
+                        tickTryMount = tickTryMount + 1
+                    else
+                        lastTickMount = mountId
+                        tickTryMount = 1
                     end
 
-                    flippedFavorites[mountId] = nil
-                    break
+                    local index = ADDON.Api:MountIdToOriginalIndex(mountId) -- costly call
+                    if index then
+                        local isFavorite = C_MountJournal.GetIsFavorite(index)
+                        if isFavorite == shouldBeFavored then
+                            flippedFavorites[mountId] = nil
+                        else
+                            C_MountJournal.SetIsFavorite(index, shouldBeFavored)
+                        end
+                    end
                 end
             end
-        end, operationCount)
+
+            if TableIsEmpty(flippedFavorites) then
+                cancelBackgroundTask()
+            end
+        end
+
+        ADDON.Events:RegisterFrameEventAndCallback("MOUNT_JOURNAL_SEARCH_UPDATED", function()
+            local mountId, shouldBeFavored = next(flippedFavorites)
+            if mountId then
+                local _, _, _, _, _, _, isFavorite = C_MountJournal.GetMountInfoByID(mountId)
+                if isFavorite == shouldBeFavored then
+                    flippedFavorites[mountId] = nil
+                end
+            end
+
+            if TableIsEmpty(flippedFavorites) then
+                cancelBackgroundTask()
+            end
+        end, 'cleanup-favorite-background')
+
+        backgroundTimer = C_Timer.NewTicker(0.4, tickHandler)
     end
 end
 

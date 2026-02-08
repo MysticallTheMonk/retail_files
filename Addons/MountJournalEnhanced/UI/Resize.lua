@@ -21,36 +21,16 @@ local function SetJournalSize()
 end
 
 local function BuildResizeButton()
-    local button = CreateFrame("Button", nil, MountJournal)
-    button:SetSize(20, 20)
-    button:SetPoint("BOTTOMRIGHT")
-    button:SetNormalTexture('Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up')
-    button:SetHighlightTexture('Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight')
-    button:SetPushedTexture('Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down')
+    local button = CreateFrame("Button", nil, MountJournal, "PanelResizeButtonTemplate")
+    button:SetScript("OnEnter", nil) -- revert cursor icon
+    button:SetPoint("BOTTOMRIGHT", -3, 3)
     button:SetDontSavePosition(true)
 
-    local ticker
     button:SetScript("OnMouseDown", function()
-        --CollectionsJournal:StartSizing("BOTTOMRIGHT") -- doesn't work since 9.1.5
-        local lastX, lastY = GetCursorPosition()
-        ticker = C_Timer.NewTicker(0.05, function()
-            local currentX, currentY = GetCursorPosition()
-            local w, h = CollectionsJournal:GetSize()
-            local scale = CollectionsJournal:GetEffectiveScale()
-            local minW, minH = CollectionsJournal:GetResizeBounds()
-            CollectionsJournal:SetSize(
-                    max(w - ((lastX - currentX) / scale), minW),
-                    max(h + ((lastY - currentY) / scale), minH)
-            )
-            lastX = currentX
-            lastY = currentY
-        end)
+        CollectionsJournal:StartSizing("BOTTOMRIGHT")
     end)
     button:SetScript("OnMouseUp", function()
-        --CollectionsJournal:StopMovingOrSizing()
-        if ticker then
-            ticker:Cancel()
-        end
+        CollectionsJournal:StopMovingOrSizing()
     end)
 
     return button
@@ -61,7 +41,18 @@ local function init()
 
     ADDON.UI:SaveSize(CJ)
     CJ:SetResizeBounds(CJ:GetWidth(), CJ:GetHeight())
-    CJ:SetClampedToScreen(true)
+    if not InCombatLockdown() then
+        CJ:SetClampedToScreen(true)
+    end
+
+    -- Right Point is originally tied to WardrobeCollectionFrame.ItemsCollectionFrame.PagingFrame.
+    -- That breaks/prevents resizing of the WardrobeCollection and therefore the whole CollectionsJournal.
+    -- see TransmogFrameMixin:OnLoad()
+    -- (since 9.1.5)
+    -- TODO: remove after 12.0 launch
+    if WardrobeTransmogFrame then
+        WardrobeTransmogFrame.ToggleSecondaryAppearanceCheckbox.Label:SetPoint("RIGHT", WardrobeTransmogFrame.ToggleSecondaryAppearanceCheckbox, "RIGHT", 140, 0)
+    end
 
     CJ:HookScript("OnSizeChanged", function(_, width, height)
         if CJ:IsResizable() and CJ.selectedTab == COLLECTIONS_JOURNAL_TAB_INDEX_MOUNTS then
@@ -110,6 +101,9 @@ end, ADDON_NAME .. '_Resize')
 ADDON.Events:RegisterFrameEventAndCallback("PLAYER_REGEN_ENABLED", function()
     if loaded then
         SetJournalSize()
+        if not CollectionsJournal:IsClampedToScreen() then
+            CollectionsJournal:SetClampedToScreen(true)
+        end
         CollectionsJournal:SetResizable(ADDON.settings.ui.showResizeEdge and CollectionsJournal.selectedTab == COLLECTIONS_JOURNAL_TAB_INDEX_MOUNTS)
     end
 end, ADDON_NAME .. '_Resize')

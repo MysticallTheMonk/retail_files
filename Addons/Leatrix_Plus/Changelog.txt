@@ -1,4 +1,102 @@
-﻿11.1.14 - 18th June 2025
+﻿12.0.02 - 28th January 2026
+- Midnight Beta: Updated for game patch 12.0.1.
+- Midnight Beta: For 'Enhance minimap', the 'Show who pinged' setting is not currently available.
+- For 'Automate quests' ('Automation'), fixed a situational issue which caused a Lua error when opening quest windows containing secrets.
+- For 'Automate gossip' ('Automation'), fixed a situational issue which caused a Lua error when opening gossip windows containing secrets.
+- For 'Enhance minimap' ('Interface'), the 'Minimap button bag' setting now has its own cogwheel button above the minimap which you can click to toggle the button bag.  This change is necessary due to game code changes coming in 12.0.1.  The button bag will no longer go off the screen if you have a massive number of minimap buttons.
+- For 'Show cooldowns' ('Interface'), increased the character limit for the spell ID editboxes.  Fixed a minor issue which caused the role icon to be hidden by cooldown icons.
+- For 'Media', added The War Within main title music ('Various' > 'Main Titles').  Added placeholders for Midnight dungeon music.
+
+12.0.01 - 23rd January 2026
+- For 'Invite from whispers' ('Social') fixed an issue which caused a Lua error when receiving secret messages.
+- For 'Recent chat window' ('Chat'), fixed an issue which caused a Lua error when showing chats containing secret messages.
+- For 'Restore chat messages' ('Chat'), fixed an issue which caused a Lua error when saving and restoring chats containing secret messages.
+- For 'Enhance dressup' ('Interface'), fixed a minor issue which caused the mount journal positioning controls to show.
+
+12.0.00 - 21st January 2026
+- Welcome to Midnight!
+- For 'Media', added main title music for Midnight ('Various' > 'Main Titles').
+
+11.2.29.alpha.1 - 17th January 2026
+- For 'Remove transforms' ('System'), added 'Noggenfogger Elixir'.  If enabled, the slow fall and shrink effects of Noggenfogger Elixir will be removed when applied while keeping the skeleton transform intact.
+
+11.2.27 - 7th January 2026
+- Midnight Beta: Updated settings tooltips and help buttons.
+- For 'Release in PvP' ('Automation'), fixed an issue which prevented automatic release in the world zones of Wintergrasp, Tol Barad (PvP) and Ashran.
+
+11.2.26 - 31st December 2025
+- Happy New Year!
+- Midnight Beta: For 'Enhance tooltip' ('Interface'), tooltips will now be color-coded once again and the tooltip settings will now be available.  Note that color coding and many tooltip settings won't apply during instanced combat encounters.
+- Midnight Beta: The 'Disable bag automation' ('System') option is now available once again.
+- For 'Media', added cinematics 'Voidstorm' and 'The Radiant Visions'.  Watch in Movies and listen in Various > Cinematics.
+
+11.2.25 - 24th December 2025
+- Merry Christmas!
+
+11.2.24 - 17th December 2025
+- PTR (12.0.1): Updated for game patch 12.0.1.
+
+11.2.22 - 3rd December 2025
+- Updated for game patch 11.2.7.
+
+11.2.21 - 26th November 2025
+- Midnight Beta: For 'Enhance dressup' ('Interface'), the housing dashboard controls will now be hidden.
+- Updated slider controls and scroll bars used throughout the addon.
+
+11.2.20 - 19th November 2025
+- Midnight Beta: For 'Enhance tooltip' ('Interface'), the 'Hide the health bar' setting is now available.
+- Midnight Beta: For 'Enhance dressup' ('Interface'), the settings now apply to the new transmogrify frame.
+- Midnight Beta: For 'Remove transforms' ('System'), fixed an issue with the 'Fishing' setting which caused a Lua error after casting a channelled spell during an instanced combat encounter.
+- Midnight Beta: Updated deprecated functions.
+- For 'Media', added cinematics 'Tempest Unleashed' and 'Incarnates Released' ('Dragonflight').  Watch in Movies and listen in Various > Cinematics.
+
+11.2.19 - 14th November 2025
+- Midnight Beta: The 'Enhance tooltip' option ('Interface') is now available but currently only for tooltip anchor and scale.
+- Midnight Beta: The 'Enhance dressup' option ('Interface') is now available.  Tooltips for items shown in the dressing room will not currently be shown.
+- Midnight Beta: The 'Show cooldowns' option ('Interface') is now available.  Note that cooldowns will not start during instanced combat encounters.
+- Midnight Beta: The 'Easy item destroy' option ('System') is now available.  Item tooltips will not currently be shown for items that wouldn't normally require you to type delete.
+- Midnight Beta: The 'Remove transforms' option ('System') is now available.
+- Midnight Beta: The 'Disable bag automation' option ('System') is not currently available.
+- Midnight Beta: For 'Sell junk automatically' ('Automation'), item IDs will currently not be shown in item tooltips while the panel is open.
+- Midnight Beta: Fixed a situational Lua error with web link.  Web link will not show for creatures during instanced encounters.
+- Midnight Beta: Fixed an issue with the clear all flares keybinding.
+
+11.2.18 - 11th October 2025
+- Midnight Beta: Preliminary update for Midnight Beta.
+
+11.2.13 - 17th October 2025
+- For 'Mute game sounds' ('System'), added a new setting called 'Yawns' to mute hunter pet cat yawns.
+- Removed the 'Hide command bar' ('Frames') option as it's no longer needed.
+
+11.2.11 - 8th October 2025
+- Updated for game patch 11.2.5.
+
+11.2.09 - 24th September 2025
+- For 'Release in PvP' ('Automation'), fixed a Lua error which appeared when bypassing release by holding down the shift key.
+- Updated deprecated functions.
+
+11.2.08 - 17th September 2025
+- For 'Enhance tooltip' ('Interface'), fixed an issue causing the scale slider to not apply to the Blizzard Settings tooltips.
+- For 'Hide clean-up buttons' ('Frames'), fixed an issue which caused the bag search box to be sized incorrectly.
+- For 'Media', added cinematics 'A Shadowy Invitation' and 'Dimensius Defeat' ('The War Within').  Watch in Movies and listen in Various > Cinematics.
+- Added a new option called 'Use English language' ('Settings').  If enabled, text used throughout the addon will be shown in English regardless of your game locale.
+
+11.2.06 - 3rd September 2025
+- For 'Enhance minimap' ('Interface'), you can now set the square minimap border width.
+
+11.2.03 - 17th August 2025
+- Fixed the Lua error with 'Release in PvP' ('Automation').
+
+11.2.02 - 17th August 2025
+- Fixed the Lua error with 'Party from friends' ('Automation').
+
+11.2.00 - 5th August 2025
+- Updated for game patch 11.2.0.
+
+11.1.15 - 15th July 2025
+- PTR (11.2.0): Preliminary update for game patch 11.2.0.
+
+11.1.14 - 18th June 2025
 - Updated for game patch 11.1.7.
 
 11.1.12 - 6th May 2025

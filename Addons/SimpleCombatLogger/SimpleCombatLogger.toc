@@ -1,0 +1,11 @@
+## Interface: 110207, 120000, 120001
+## Title: SimpleCombatLogger
+## Notes: Automatically combat log for certain instance types and difficulties
+## Author: Chris Sutcliff
+## Version: 1.6.13
+## SavedVariables: SimpleCombatLoggerDB
+## OptionalDeps: Ace3
+## X-Curse-Project-ID: 457620
+
+embeds.xml
+Main.lua

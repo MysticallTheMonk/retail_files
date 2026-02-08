@@ -18,111 +18,111 @@ addon.GetMiscOptions = function (order, icon, SweepyBoopLDB)
                 type = "group",
                 name = "General",
                 args = {
-                    header1 = {
-                        order = 1,
-                        type = "header",
-                        name = "Healer in crowd control reminder in arena",
-                    },
-                    healerInCrowdControl = {
-                        order = 2,
-                        type = "toggle",
-                        width = 0.675,
-                        name = addon.FORMAT_TEXTURE(addon.ICON_PATH("spell_nature_polymorph")) .. " Enabled",
-                        set = function (info, val)
-                            SweepyBoop.db.profile.misc[info[#info]] = val;
-                            SweepyBoop.db.profile.misc.lastModified = GetTime();
-                            SweepyBoop:SetupHealerInCrowdControl();
-                        end
-                    },
-                    healerInCrowdControlSound = {
-                        order = 3,
-                        type = "toggle",
-                        width = 0.75,
-                        name = addon.FORMAT_ATLAS("chatframe-button-icon-voicechat") .. " Play sound",
-                        hidden = function ()
-                            return ( not SweepyBoop.db.profile.misc.healerInCrowdControl );
-                        end
-                    },
-                    healerInCrowdControlTest = {
-                        order = 4,
-                        type = "execute",
-                        width = "half",
-                        name = "Test",
-                        func = "TestHealerInCrowdControl",
-                        hidden = function ()
-                            return ( not SweepyBoop.db.profile.misc.healerInCrowdControl );
-                        end
-                    },
-                    healerInCrowdControlHide = {
-                        order = 5,
-                        type = "execute",
-                        width = "half",
-                        name = "Hide",
-                        func = "HideTestHealerInCrowdControl",
-                        hidden = function ()
-                            return ( not SweepyBoop.db.profile.misc.healerInCrowdControl );
-                        end
-                    },
-                    newline = {
-                        order = 6,
-                        type = "description",
-                        width = "full",
-                        name = "",
-                        hidden = function ()
-                            return ( not SweepyBoop.db.profile.misc.healerInCrowdControl );
-                        end
-                    },
-                    healerInCrowdControlSize = {
-                        order = 7,
-                        type = "range",
-                        width = 0.8,
-                        min = 30,
-                        max = 200,
-                        step = 1,
-                        name = "Icon size",
-                        set = function (info, val)
-                            SweepyBoop.db.profile.misc[info[#info]] = val;
-                            SweepyBoop.db.profile.misc.lastModified = GetTime();
-                            SweepyBoop:UpdateHealerInCrowdControl();
-                        end,
-                        hidden = function ()
-                            return ( not SweepyBoop.db.profile.misc.healerInCrowdControl );
-                        end
-                    },
-                    healerInCrowdControlOffsetX = {
-                        order = 8,
-                        type = "range",
-                        width = 1,
-                        min = -500,
-                        max = 500,
-                        step = 1,
-                        name = "X offset",
-                        set = function (info, val)
-                            SweepyBoop.db.profile.misc[info[#info]] = val;
-                            SweepyBoop.db.profile.misc.lastModified = GetTime();
-                            SweepyBoop:UpdateHealerInCrowdControl();
-                        end,
-                        hidden = function ()
-                            return ( not SweepyBoop.db.profile.misc.healerInCrowdControl );
-                        end
-                    },
-                    healerInCrowdControlOffsetY = {
-                        order = 9,
-                        type = "range",
-                        width = 1,
-                        min = -500,
-                        max = 500,
-                        step = 1,
-                        name = "Y offset",
-                        set = function (info, val)
-                            SweepyBoop.db.profile.misc[info[#info]] = val;
-                            SweepyBoop.db.profile.misc.lastModified = GetTime();
-                            SweepyBoop:UpdateHealerInCrowdControl();
-                        end,
-                        hidden = function ()
-                            return ( not SweepyBoop.db.profile.misc.healerInCrowdControl );
-                        end
-                    },
+                    -- header1 = {
+                    --     order = 1,
+                    --     type = "header",
+                    --     name = "Healer in crowd control reminder in arena",
+                    -- },
+                    -- healerInCrowdControl = {
+                    --     order = 2,
+                    --     type = "toggle",
+                    --     width = 0.675,
+                    --     name = addon.FORMAT_TEXTURE(addon.ICON_PATH("spell_nature_polymorph")) .. " Enabled",
+                    --     set = function (info, val)
+                    --         SweepyBoop.db.profile.misc[info[#info]] = val;
+                    --         SweepyBoop.db.profile.misc.lastModified = GetTime();
+                    --         SweepyBoop:SetupHealerInCrowdControl();
+                    --     end
+                    -- },
+                    -- healerInCrowdControlSound = {
+                    --     order = 3,
+                    --     type = "toggle",
+                    --     width = 0.75,
+                    --     name = addon.FORMAT_ATLAS("chatframe-button-icon-voicechat") .. " Play sound",
+                    --     hidden = function ()
+                    --         return ( not SweepyBoop.db.profile.misc.healerInCrowdControl );
+                    --     end
+                    -- },
+                    -- healerInCrowdControlTest = {
+                    --     order = 4,
+                    --     type = "execute",
+                    --     width = "half",
+                    --     name = "Test",
+                    --     func = "TestHealerInCrowdControl",
+                    --     hidden = function ()
+                    --         return ( not SweepyBoop.db.profile.misc.healerInCrowdControl );
+                    --     end
+                    -- },
+                    -- healerInCrowdControlHide = {
+                    --     order = 5,
+                    --     type = "execute",
+                    --     width = "half",
+                    --     name = "Hide",
+                    --     func = "HideTestHealerInCrowdControl",
+                    --     hidden = function ()
+                    --         return ( not SweepyBoop.db.profile.misc.healerInCrowdControl );
+                    --     end
+                    -- },
+                    -- newline = {
+                    --     order = 6,
+                    --     type = "description",
+                    --     width = "full",
+                    --     name = "",
+                    --     hidden = function ()
+                    --         return ( not SweepyBoop.db.profile.misc.healerInCrowdControl );
+                    --     end
+                    -- },
+                    -- healerInCrowdControlSize = {
+                    --     order = 7,
+                    --     type = "range",
+                    --     width = 0.8,
+                    --     min = 30,
+                    --     max = 200,
+                    --     step = 1,
+                    --     name = "Icon size",
+                    --     set = function (info, val)
+                    --         SweepyBoop.db.profile.misc[info[#info]] = val;
+                    --         SweepyBoop.db.profile.misc.lastModified = GetTime();
+                    --         SweepyBoop:UpdateHealerInCrowdControl();
+                    --     end,
+                    --     hidden = function ()
+                    --         return ( not SweepyBoop.db.profile.misc.healerInCrowdControl );
+                    --     end
+                    -- },
+                    -- healerInCrowdControlOffsetX = {
+                    --     order = 8,
+                    --     type = "range",
+                    --     width = 1,
+                    --     min = -500,
+                    --     max = 500,
+                    --     step = 1,
+                    --     name = "X offset",
+                    --     set = function (info, val)
+                    --         SweepyBoop.db.profile.misc[info[#info]] = val;
+                    --         SweepyBoop.db.profile.misc.lastModified = GetTime();
+                    --         SweepyBoop:UpdateHealerInCrowdControl();
+                    --     end,
+                    --     hidden = function ()
+                    --         return ( not SweepyBoop.db.profile.misc.healerInCrowdControl );
+                    --     end
+                    -- },
+                    -- healerInCrowdControlOffsetY = {
+                    --     order = 9,
+                    --     type = "range",
+                    --     width = 1,
+                    --     min = -500,
+                    --     max = 500,
+                    --     step = 1,
+                    --     name = "Y offset",
+                    --     set = function (info, val)
+                    --         SweepyBoop.db.profile.misc[info[#info]] = val;
+                    --         SweepyBoop.db.profile.misc.lastModified = GetTime();
+                    --         SweepyBoop:UpdateHealerInCrowdControl();
+                    --     end,
+                    --     hidden = function ()
+                    --         return ( not SweepyBoop.db.profile.misc.healerInCrowdControl );
+                    --     end
+                    -- },
 
                     header2 = {
                         order = 10,

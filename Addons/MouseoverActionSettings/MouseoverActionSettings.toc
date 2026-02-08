@@ -1,4 +1,4 @@
-## Interface: 110105
+## Interface: 120000
 ## Title: MouseoverActionSettings
 ## Author: Slothpala
 ## SavedVariables: MouseoverActionSettingsDB
@@ -52,7 +52,7 @@ Statuses/EditMode.lua
 Statuses/UnitExists.lua
 Statuses/Moving.lua
 Statuses/TargetAttackable.lua
-Statuses/Health.lua
+Statuses/Casting.lua
 
 #Prototypes
 Prototypes/MouseoverUnit.lua

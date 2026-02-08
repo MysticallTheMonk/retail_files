@@ -1,0 +1,47 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+    <!-- Raid -->
+    <Script file="TWW/Raids/NerubarPalace/Ulgrax.lua"/>
+    <Script file="TWW/Raids/NerubarPalace/BloodboundHorror.lua"/>
+    <Script file="TWW/Raids/NerubarPalace/Sikran.lua"/>
+    <Script file="TWW/Raids/NerubarPalace/Rashanan.lua"/>
+    <Script file="TWW/Raids/NerubarPalace/BroodtwisterOvinax.lua"/>
+    <Script file="TWW/Raids/NerubarPalace/Kyveza.lua"/>
+    <Script file="TWW/Raids/NerubarPalace/SilkenCourt.lua"/>
+    <Script file="TWW/Raids/NerubarPalace/QueenAnsurek.lua"/>
+
+    <!-- Dungeons -->
+    <Script file="TWW/Dungeons/Season-13/AraKara/Anubzekt.lua"/>
+    <Script file="TWW/Dungeons/Season-13/AraKara/Avanoxx.lua"/>
+    <Script file="TWW/Dungeons/Season-13/AraKara/KikatalTheHarvester.lua"/>
+
+    <Script file="TWW/Dungeons/Season-13/CityOfThreads/OratorKrixvizk.lua"/>
+    <Script file="TWW/Dungeons/Season-13/CityOfThreads/FangsOfTheQueen.lua"/>
+    <Script file="TWW/Dungeons/Season-13/CityOfThreads/TheCoaglamation.lua"/>
+    <Script file="TWW/Dungeons/Season-13/CityOfThreads/IzoTheGrandSplicer.lua"/>
+
+    <Script file="TWW/Dungeons/Season-13/Dawnbreaker/SpeakerShadowcrown.lua"/>
+    <Script file="TWW/Dungeons/Season-13/Dawnbreaker/Anubikkaj.lua"/>
+    <Script file="TWW/Dungeons/Season-13/Dawnbreaker/Rashanan.lua"/>
+
+    <Script file="TWW/Dungeons/Season-13/Stonevault/EDNA.lua"/>
+    <Script file="TWW/Dungeons/Season-13/Stonevault/Skarmorak.lua"/>
+    <Script file="TWW/Dungeons/Season-13/Stonevault/MasterMachinists.lua"/>
+    <Script file="TWW/Dungeons/Season-13/Stonevault/VoidSpeakerEirich.lua"/>
+
+    <Script file="TWW/Dungeons/Season-13/MistsOfTirnaScithe/IngraMaloch.lua"/>
+    <Script file="TWW/Dungeons/Season-13/MistsOfTirnaScithe/Tredova.lua"/>
+
+    <Script file="TWW/Dungeons/Season-13/NecroticWake/AmarthTheHarvester.lua"/>
+    <Script file="TWW/Dungeons/Season-13/NecroticWake/SurgeonStitchflesh.lua"/>
+    <Script file="TWW/Dungeons/Season-13/NecroticWake/NalthorTheRimebinder.lua"/>
+
+    <Script file="TWW/Dungeons/Season-13/SiegeOfBoralus/DreadCaptainLockwood.lua"/>
+    <Script file="TWW/Dungeons/Season-13/SiegeOfBoralus/HadalDarkfathom.lua"/>
+    <Script file="TWW/Dungeons/Season-13/SiegeOfBoralus/ViqGoth.lua"/>
+
+    <Script file="TWW/Dungeons/Season-13/GrimBatol/GeneralUmbriss.lua"/>
+    <Script file="TWW/Dungeons/Season-13/GrimBatol/ForgemasterThrongus.lua"/>
+    <Script file="TWW/Dungeons/Season-13/GrimBatol/DrahgaShadowburner.lua"/>
+    <Script file="TWW/Dungeons/Season-13/GrimBatol/ErudaxTheDukeOfBelow.lua"/>
+</Ui>

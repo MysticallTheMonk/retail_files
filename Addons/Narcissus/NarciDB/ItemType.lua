@@ -30,7 +30,7 @@ local SlotData = {
     [17]= {"SecondaryHandSlot", SECONDARYHANDSLOT, "INVTYPE_WEAPONOFFHAND", 0, true, 128},
     [18]= {"AmmoSlot", RANGEDSLOT, "INVSLOT_RANGED", 0},
     [19]= {"TabardSlot", TABARDSLOT, "INVTYPE_TABARD", 0, true},
-}
+};
 
 local InvTypeXSlotID = {
     INVTYPE_WEAPON = 16,
@@ -338,3 +338,37 @@ end
 
 NarciAPI.GetBagItemsByItemType = GetBagItemsByItemType;
 NarciAPI.GetBagItemEnchancementForSlot = GetBagItemEnchancementForSlot;
+
+
+local OverrideItemIcons = {
+    --[itemID] = icon
+    [246200] = 1322283,
+    [246204] = 4638528,
+    [246208] = 236415,
+    [245999] = 1380367,
+    [246193] = 610472,
+    [246197] = 4638530,
+    [246201] = 610472,
+    [246205] = 136099,
+    [245996] = 4226154,
+    [246000] = 463487,
+    [246190] = 1380367,
+    [246194] = 136099,
+    [246198] = 236415,
+    [246202] = 136014,
+    [246206] = 4638530,
+    [245997] = 463487,
+    [246191] = 1322283,
+    [246195] = 136014,
+    [246199] = 4226154,
+    [246203] = 136126,
+    [246207] = 5764906,
+    [245998] = 4638528,
+    [246192] = 136126,
+    [246196] = 5764906,
+};
+
+local function GetOverrideItemIcon(itemID)
+    return OverrideItemIcons[itemID]
+end
+NarciAPI.GetOverrideItemIcon = GetOverrideItemIcon;

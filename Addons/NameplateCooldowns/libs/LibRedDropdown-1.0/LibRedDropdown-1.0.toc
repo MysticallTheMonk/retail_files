@@ -1,5 +1,0 @@
-## Interface: 110002
-## Title: Lib: LibRedDropdown
-## Notes: This library allows devs to add some standard GUI elements into their addons. Initially this library was created to replace Blizzard's UIDropDownMenu; now it contains 6 controls.
-
-LibRedDropdown-1.0.xml

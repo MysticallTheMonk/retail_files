@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 -- Premade Groups Filter
 -------------------------------------------------------------------------------
--- Copyright (C) 2024 Bernhard Saumweber
+-- Copyright (C) 2026 Bernhard Saumweber
 --
 -- This program is free software; you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ L["addon.name.long"] = "Premade Groups Filter"
 
 L["error.syntax"] = "|cffff0000Syntax error in filter expression|r\n\nThis means your filter expression is not built in the right way, e.g. there is a paranthesis missing or you wrote 'tanks=1' instead of 'tanks==1'.\n\nDetailed error message:\n|cffaaaaaa%s|r"
 L["error.semantic"] = "|cffff0000Semantic error in filter expression|r\n\nThis means your filter expression has correct syntax, but you most likely mispelled the name of a variable, e.g. tansk instead of tanks.\n\nDetailed error message:\n|cffaaaaaa%s|r"
-L["error.semantic.protected"] = "|cffff0000Semantic error in filter expression|r\n\nThe keywords 'name', 'comment' and 'findnumber' are no longer supported. Please remove them from your advanced filter expression or press the reset button.\n\nStarting with the Battle for Azeroth Prepatch, those value are protected by Blizzard and can no longer be evaluated by any addon.\n\nUse the default search bar above the group listing to filter for groups names.\n\nDetailed error message:\n|cffaaaaaa%s|r"
+L["error.semantic.protected"] = "|cffff0000Semantic error in filter expression|r\n\nThe keywords 'name' and 'comment' are no longer supported. Please remove them from your advanced filter expression or press the reset button.\n\nStarting with the Battle for Azeroth Prepatch, those value are protected by Blizzard and can no longer be evaluated by any addon.\n\nUse the default search bar above the group listing to filter for groups names.\n\nDetailed error message:\n|cffaaaaaa%s|r"
 L["message.settingsupgraded"] = "Premade Groups Filter: Migrated settings to version %s"
 L["message.sortingoverwritten"] = "Premade Groups Filter: Default premade group sorting order has been overwritten by addon %s."
 L["message.sortingrestored"] = "Premade Groups Filter: Default premade group sorting order has been restored by addon %s."
@@ -52,6 +52,8 @@ L["dialog.heals"]      = "Heals .............................."
 L["dialog.dps"]        = "DPS ................................"
 L["dialog.mprating"]   = "M+ Rating .........................."
 L["dialog.pvprating"]  = "PVP Rating ........................."
+L["dialog.delvetier"]  = "Delve Tier ........................."
+L["dialog.delvetier.tooltip"] = "Some players do not set the delve tier correctly, but only mention it in the group name. Addons cannot read the name. Use the standard search field for better results."
 L["dialog.defeated"]   = "Raid bosses defeated"
 L["dialog.sorting"] = "Sorting"
 L["dialog.usepgf.tooltip"] = "Enable or disable Premade Groups Filter."
@@ -94,6 +96,7 @@ L["dialog.tooltip.warmode"] = "warmode enabled"
 L["dialog.copy.url.keywords"] = "Press CTRL+C to copy link to list of keywords"
 L["dialog.filters.group"] = "Group"
 L["dialog.filters.dungeons"] = "Dungeons"
+L["dialog.filters.delves"] = "Delves"
 L["dialog.filters.advanced"] = "Advanced Filter Expression"
 L["dialog.partyfit"] = "Party Fit"
 L["dialog.partyfit.tooltip"] = "Show only groups that still have slots for all your party members roles. Also works if you are alone."
@@ -108,6 +111,14 @@ L["dialog.matchingid.tooltip"] = "Show only groups that have the exact same inst
 L["dialog.needsbl"] = "Needs Bloodlust"
 L["dialog.needsbl.tooltip"] = "Shows only groups that do not yet have a class providing bloodlust/heroism."
 L["dialog.cancelOldestApp"] = "Click to cancel oldest application first"
+L["dialog.button.selectall.title"] = "A"
+L["dialog.button.selectall.tooltip"] = "Select all"
+L["dialog.button.selectnone.title"] = "N"
+L["dialog.button.selectnone.tooltip"] = "Select none"
+L["dialog.button.selectbountiful.title"] = "B"
+L["dialog.button.selectbountiful.tooltip"] = "Select bountiful delves"
+L["dialog.button.selectinvert.title"] = "I"
+L["dialog.button.selectinvert.tooltip"] = "Invert selection"
 
 L["settings.dialogMovable.title"] = "Dialog Movable"
 L["settings.dialogMovable.tooltip"] = "Allows you to move the dialog with the mouse. Right-click resets the position."
@@ -143,3 +154,5 @@ L["settings.rioRatingColors.title"] = "Rating in Raider.IO Colors"
 L["settings.rioRatingColors.tooltip"] = "Use the Raider.IO rating color scheme for Mythic+ ratings if the Raider.IO addon is loaded."
 L["settings.cancelOldestApp.title"] = "Cancel Oldest Application"
 L["settings.cancelOldestApp.tooltip"] = "If you have the maximum number of pending applications, click on any group to cancel your oldest application first, then click again to apply."
+L["settings.compactListEntries.title"] = "Compact List Entries"
+L["settings.compactListEntries.tooltip"] = "Hides the playstyle line so items in the group list use less vertical space (as in versions before the Midnight prepatch)."

@@ -7,13 +7,28 @@ local minimapChanged =false
 local hookedTotemBar
 local hookedAuras
 
-local function applySettings(frame, desaturate, colorValue)
+local function applySettings(frame, desaturate, colorValue, hook)
     if frame then
-        if desaturate ~= nil and frame.SetDesaturated then -- Check if SetDesaturated is available
+        if desaturate ~= nil and frame.SetDesaturated then
             frame:SetDesaturated(desaturate)
         end
+
         if frame.SetVertexColor then
-            frame:SetVertexColor(colorValue, colorValue, colorValue) -- Alpha set to 1
+            frame:SetVertexColor(colorValue, colorValue, colorValue)
+            if hook then
+                if not frame.bbfHooked then
+                    frame.bbfHooked = true
+                    frame:SetVertexColor(colorValue, colorValue, colorValue, 1)
+
+                    hooksecurefunc(frame, "SetVertexColor", function(self)
+                        if self.changing or self:IsProtected() then return end
+                        self.changing = true
+                        self:SetDesaturated(desaturate)
+                        self:SetVertexColor(colorValue, colorValue, colorValue, 1)
+                        self.changing = false
+                    end)
+                end
+            end
         end
     end
 end
@@ -46,59 +61,72 @@ function BBF.UpdateUserDarkModeSettings()
 end
 
 local hooked = {}
+local function UpdateFrameAuras(self)
+    if not (darkModeUi and darkModeUiAura) then return end
 
-local function UpdateFrameAuras(pool)
-    for frame, _ in pairs(pool.activeObjects) do
-        if not hooked[frame] then
-            local icon = frame.Icon
-            hooked[frame] = true
+    local maxAuras = MAX_TARGET_BUFFS or 60
+    local auraType = self:GetName().."Buff"
 
-            if not frame.border then
-                local border = CreateFrame("Frame", nil, frame, "BackdropTemplate")
-                border:SetBackdrop({
-                    edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
-                    tileEdge = true,
-                    edgeSize = 8.5,
-                })
+    for i = 1, maxAuras do
+        local auraName = auraType..i
+        local auraFrame = _G[auraName]
 
-                icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-                border:SetPoint("TOPLEFT", icon, "TOPLEFT", -1.5, 1.5)
-                border:SetPoint("BOTTOMRIGHT", icon, "BOTTOMRIGHT", 1.5, -2)
-                frame.border = border
+        if auraFrame and auraFrame:IsShown() then
+            if not hooked[auraFrame] then
+                local icon = _G[auraName.."Icon"]
+                if icon then
+                    auraFrame.Icon = icon
+                    hooked[auraFrame] = true
 
-                -- Set the initial border color
-                border:SetBackdropBorderColor(darkModeColor, darkModeColor, darkModeColor)
-            end
-            if frame.Border then
-                frame.border:Hide()
+                    if not auraFrame.border then
+                        local border = CreateFrame("Frame", nil, auraFrame, "BackdropTemplate")
+                        border:SetBackdrop({
+                            edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+                            tileEdge = true,
+                            edgeSize = 8.5,
+                        })
+
+                        icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+                        border:SetPoint("TOPLEFT", icon, "TOPLEFT", -1.5, 1.5)
+                        border:SetPoint("BOTTOMRIGHT", icon, "BOTTOMRIGHT", 1.5, -2)
+                        auraFrame.border = border
+
+                        -- Set the initial border color
+                        border:SetBackdropBorderColor(darkModeColor, darkModeColor, darkModeColor)
+                    end
+
+                    if auraFrame.Border then
+                        auraFrame.border:Hide()
+                    else
+                        auraFrame.border:Show()
+                    end
+                end
             else
-                frame.border:Show()
+                if auraFrame.Border then
+                    auraFrame.border:Hide()
+                else
+                    auraFrame.border:Show()
+                end
             end
         else
-            if frame.Border then
-                frame.border:Hide()
-            else
-                frame.border:Show()
-            end
+            break
         end
     end
 end
-
 function BBF.DarkModeUnitframeBorders()
-    -- if (BetterBlizzFramesDB.darkModeUiAura and BetterBlizzFramesDB.darkModeUi) then --and not BetterBlizzFramesDB.playerAuraFiltering) then
-    --     if not hookedAuras then
-    --         for poolKey, pool in pairs(TargetFrame.auraPools.pools) do
-    --             hooksecurefunc(pool, "Acquire", UpdateFrameAuras)
-    --             UpdateFrameAuras(pool)
-    --         end
-
-    --         for poolKey, pool in pairs(FocusFrame.auraPools.pools) do
-    --             hooksecurefunc(pool, "Acquire", UpdateFrameAuras)
-    --             UpdateFrameAuras(pool)
-    --         end
-    --         hookedAuras = true
-    --     end
-    -- end
+    if (BetterBlizzFramesDB.darkModeUiAura and BetterBlizzFramesDB.darkModeUi) and not hookedAuras then
+        if TargetFrame_UpdateAuras then
+            hooksecurefunc("TargetFrame_UpdateAuras", function(self)
+                UpdateFrameAuras(self)
+            end)
+        else
+            hooksecurefunc(TargetFrame, "UpdateAuras", function(self)
+                UpdateFrameAuras(self)
+            end)
+        end
+        UpdateFrameAuras(TargetFrame)
+        hookedAuras = true
+    end
 end
 
 BBF.auraBorders = {}  -- BuffFrame aura borders for darkmode
@@ -165,6 +193,28 @@ local function createOrUpdateBorders(frame, colorValue, textureName, bypass)
     end
 end
 
+local BUFF_MAX_DISPLAY = BUFF_MAX_DISPLAY or 32
+local function ProcessBuffButtons()
+    if BuffFrame.allAurasDarkMode then return end
+    for i = 1, BUFF_MAX_DISPLAY do
+        local buffButton = _G["BuffButton"..i]
+        if buffButton then
+            if not BBF.auraBorders[buffButton] then
+                local icon = _G["BuffButton"..i.."Icon"]
+                if icon then
+                    if not buffButton.Icon then
+                        buffButton.Icon = icon
+                    end
+                    createOrUpdateBorders(buffButton, BetterBlizzFramesDB.darkModeColor)
+                end
+                if i == BUFF_MAX_DISPLAY then
+                    BuffFrame.allAurasDarkMode = true
+                end
+            end
+        end
+    end
+end
+
 function BBF.updateTotemBorders()
     local vertexColor = darkModeUi and BetterBlizzFramesDB.darkModeColor or 1
     for i = 1, TotemFrame:GetNumChildren() do
@@ -220,17 +270,32 @@ function BBF.DarkmodeFrames(bypass)
     end
 
     -- Applying borders to BuffFrame
-    -- if BuffFrame then
-    --     for _, frame in pairs({_G.BuffFrame.AuraContainer:GetChildren()}) do
-    --         createOrUpdateBorders(frame, vertexColor)
-    --     end
-    -- end
+    if BuffFrame and _G.BuffFrame.AuraContainer then
+        for _, frame in pairs({_G.BuffFrame.AuraContainer:GetChildren()}) do
+            createOrUpdateBorders(frame, vertexColor)
+        end
+    elseif BuffFrame then
+        if not BuffFrame.bbfHooked then
+            if darkModeUi and darkModeUiAura then
+                hooksecurefunc("BuffFrame_Update", ProcessBuffButtons)
+                BuffFrame.bbfHooked = true
+            end
+        end
+        for i = 1, BUFF_MAX_DISPLAY do
+            local buffButton = _G["BuffButton"..i]
+            if buffButton then
+                local icon = _G["BuffButton"..i.."Icon"]
+                if icon then
+                    buffButton.Icon = icon
+                end
+                createOrUpdateBorders(buffButton, vertexColor)
+            end
+        end
+    end
 
-
-
-    -- if ToggleHiddenAurasButton then
-    --     createOrUpdateBorders(ToggleHiddenAurasButton, vertexColor)
-    -- end
+    if ToggleHiddenAurasButton then
+        createOrUpdateBorders(ToggleHiddenAurasButton, vertexColor)
+    end
 
     BBF.DarkModeUnitframeBorders()
 
@@ -254,7 +319,7 @@ function BBF.DarkmodeFrames(bypass)
         end
     end
 
-    function checkAndApplySettings(object, minimapSat, minimapColor)
+    local function checkAndApplySettings(object, minimapSat, minimapColor)
         if object:IsObjectType("Texture") then
             local texturePath = object:GetTexture()
             if texturePath and string.find(texturePath, "136430") then
@@ -365,31 +430,7 @@ function BBF.DarkmodeFrames(bypass)
     -- end
 
     --castbars
-    if BetterBlizzFramesDB.darkModeCastbars then
-        applySettings(TargetFrame.spellbar.Border, desaturationValue, castbarBorder)
-        --applySettings(TargetFrame.spellbar.BorderShield, desaturationValue, vertexColor)
-        applySettings(TargetFrame.spellbar.Background, desaturationValue, lighterVertexColor)
-
-        --applySettings(FocusFrame.spellbar.Border, desaturationValue, castbarBorder)
-        --applySettings(FocusFrame.spellbar.BorderShield, desaturationValue, vertexColor)
-        --applySettings(FocusFrame.spellbar.Background, desaturationValue, lighterVertexColor)
-
-        applySettings(CastingBarFrame.Border, desaturationValue, castbarBorder)
-        --applySettings(CastingBarFrame.BorderShield, desaturationValue, vertexColor)
-        applySettings(CastingBarFrame.Background, desaturationValue, lighterVertexColor)
-    else
-        applySettings(TargetFrame.spellbar.Border, false, 1)
-        --applySettings(TargetFrame.spellbar.BorderShield, desaturationValue, vertexColor)
-        applySettings(TargetFrame.spellbar.Background, false, 1)
-
-        --applySettings(FocusFrame.spellbar.Border, false, 1)
-        --applySettings(FocusFrame.spellbar.BorderShield, desaturationValue, vertexColor)
-        --applySettings(FocusFrame.spellbar.Background, false, 1)
-
-        applySettings(CastingBarFrame.Border, false, 1)
-        --applySettings(CastingBarFrame.BorderShield, desaturationValue, vertexColor)
-        applySettings(CastingBarFrame.Background, false, 1)
-    end
+    BBF.DarkModeCastbars()
 
 
 
@@ -566,125 +607,76 @@ function BBF.DarkmodeFrames(bypass)
     -- end
 
     -- Actionbars
-    for i = 1, 12 do
-        local buttons = {
-            _G["ActionButton" .. i .. "NormalTexture"],
-            _G["MultiBarBottomLeftButton" .. i .. "NormalTexture"],
-            _G["MultiBarBottomRightButton" .. i .. "NormalTexture"],
-            _G["MultiBarRightButton" .. i .. "NormalTexture"],
-            _G["MultiBarLeftButton" .. i .. "NormalTexture"],
-            _G["MultiBar5Button" .. i .. "NormalTexture"],
-            _G["MultiBar6Button" .. i .. "NormalTexture"],
-            _G["MultiBar7Button" .. i .. "NormalTexture"],
-            _G["PetActionButton" .. i .. "NormalTexture"],
-            _G["StanceButton" .. i .. "NormalTexture"]
-        }
+    if BetterBlizzFramesDB.darkModeActionBars or BBF.actionBarColorEnabled then
+        for i = 1, 12 do
+            local buttons = {
+                _G["ActionButton" .. i .. "NormalTexture"],
+                _G["MultiBarBottomLeftButton" .. i .. "NormalTexture"],
+                _G["MultiBarBottomRightButton" .. i .. "NormalTexture"],
+                _G["MultiBarRightButton" .. i .. "NormalTexture"],
+                _G["MultiBarLeftButton" .. i .. "NormalTexture"],
+                _G["MultiBar5Button" .. i .. "NormalTexture"],
+                _G["MultiBar6Button" .. i .. "NormalTexture"],
+                _G["MultiBar7Button" .. i .. "NormalTexture"],
+                _G["PetActionButton" .. i .. "NormalTexture"],
+                _G["StanceButton" .. i .. "NormalTexture"]
+            }
 
-        for _, button in ipairs(buttons) do
-            applySettings(button, desaturationValue, actionBarColor)
-            BBF.HookVertexColor(button, actionBarColor, actionBarColor, actionBarColor, 1)
-        end
-    end
-
-
-
-    for i = 0, 3 do
-        local buttons = {
-            _G["CharacterBag"..i.."SlotNormalTexture"],
-            _G["MainMenuBarTexture"..i],
-            _G["MainMenuBarTextureExtender"],
-            _G["MainMenuMaxLevelBar"..i],
-            _G["ReputationWatchBar"].StatusBar["XPBarTexture"..i],
-            _G["MainMenuXPBarTexture"..i],
-            _G["SlidingActionBarTexture"..i]
-        }
-        for _, button in ipairs(buttons) do
-            applySettings(button, desaturationValue, actionBarColor)
-            BBF.HookVertexColor(button, actionBarColor, actionBarColor, actionBarColor, 1)
-        end
-    end
-
-    applySettings(MainMenuBarBackpackButtonNormalTexture, desaturationValue, actionBarColor)
-    BBF.HookVertexColor(MainMenuBarBackpackButtonNormalTexture, actionBarColor, actionBarColor, actionBarColor, 1)
-
-
-    -- for _, v in pairs({
-    --     MainMenuBar.BorderArt,
-    --     ActionButton1.RightDivider,
-    --     ActionButton2.RightDivider,
-    --     ActionButton3.RightDivider,
-    --     ActionButton4.RightDivider,
-    --     ActionButton5.RightDivider,
-    --     ActionButton6.RightDivider,
-    --     ActionButton7.RightDivider,
-    --     ActionButton8.RightDivider,
-    --     ActionButton9.RightDivider,
-    --     ActionButton10.RightDivider,
-    --     ActionButton11.RightDivider,
-    -- }) do
-    --     applySettings(v, desaturationValue, actionBarColor)
-    -- end
-
-    for _, v in pairs({
-        MainMenuBarLeftEndCap,
-        MainMenuBarRightEndCap,
-    }) do
-        applySettings(v, desaturationValue, birdColor)
-    end
-
-    local BARTENDER4_NUM_MAX_BUTTONS = 180
-    for i = 1, BARTENDER4_NUM_MAX_BUTTONS do
-        local button = _G["BT4Button" .. i]
-        if button then
-            local normalTexture = button:GetNormalTexture()
-            if normalTexture then
-                applySettings(normalTexture, desaturationValue, actionBarColor)
+            for _, button in ipairs(buttons) do
+                applySettings(button, desaturationValue, actionBarColor)
+                BBF.HookVertexColor(button, actionBarColor, actionBarColor, actionBarColor, 1)
             end
         end
-    end
 
-    local BARTENDER4_PET_BUTTONS = 10
-    for i = 1, BARTENDER4_PET_BUTTONS do
-        local button = _G["BT4PetButton" .. i]
-        if button then
-            local normalTexture = button:GetNormalTexture()
-            if normalTexture then
-                applySettings(normalTexture, desaturationValue, actionBarColor)
+
+
+        for i = 0, 3 do
+            local buttons = {
+                _G["CharacterBag"..i.."SlotNormalTexture"],
+                _G["MainMenuBarTexture"..i],
+                _G["MainMenuBarTextureExtender"],
+                _G["MainMenuMaxLevelBar"..i],
+                _G["ReputationWatchBar"].StatusBar["XPBarTexture"..i],
+                _G["MainMenuXPBarTexture"..i],
+                _G["SlidingActionBarTexture"..i]
+            }
+            for _, button in ipairs(buttons) do
+                applySettings(button, desaturationValue, actionBarColor)
+                BBF.HookVertexColor(button, actionBarColor, actionBarColor, actionBarColor, 1)
             end
         end
-    end
 
-    if BT4BarBlizzardArt and BT4BarBlizzardArt.nineSliceParent then
-        for _, child in ipairs({BT4BarBlizzardArt.nineSliceParent:GetChildren()}) do
-            applySettings(child, desaturationValue, actionBarColor)
-            local DividerArt = child:GetChildren()
-            applySettings(DividerArt, desaturationValue, actionBarColor)
+        applySettings(MainMenuBarBackpackButtonNormalTexture, desaturationValue, actionBarColor)
+        BBF.HookVertexColor(MainMenuBarBackpackButtonNormalTexture, actionBarColor, actionBarColor, actionBarColor, 1)
+
+
+        -- for _, v in pairs({
+        --     MainMenuBar.BorderArt,
+        --     ActionButton1.RightDivider,
+        --     ActionButton2.RightDivider,
+        --     ActionButton3.RightDivider,
+        --     ActionButton4.RightDivider,
+        --     ActionButton5.RightDivider,
+        --     ActionButton6.RightDivider,
+        --     ActionButton7.RightDivider,
+        --     ActionButton8.RightDivider,
+        --     ActionButton9.RightDivider,
+        --     ActionButton10.RightDivider,
+        --     ActionButton11.RightDivider,
+        -- }) do
+        --     applySettings(v, desaturationValue, actionBarColor)
+        -- end
+
+        for _, v in pairs({
+            MainMenuBarLeftEndCap,
+            MainMenuBarRightEndCap,
+        }) do
+            applySettings(v, desaturationValue, birdColor)
         end
-        --for _, child in ipairs({BT4BarBlizzardArt:GetChildren()}) do
-            --applySettings(child, desaturationValue, lighterVertexColor)
-        --end
-    end
 
-    -- Dominos actionbars
-    local NUM_ACTIONBAR_BUTTONS = NUM_ACTIONBAR_BUTTONS
-    local DOMINOS_NUM_MAX_BUTTONS = 14 * NUM_ACTIONBAR_BUTTONS
-    local actionBars = {
-        {name = "DominosActionButton", count = DOMINOS_NUM_MAX_BUTTONS},
-        {name = "MultiBar5ActionButton", count = 12},
-        {name = "MultiBar6ActionButton", count = 12},
-        {name = "MultiBar7ActionButton", count = 12},
-        {name = "MultiBarRightActionButton", count = 12},
-        {name = "MultiBarLeftActionButton", count = 12},
-        {name = "MultiBarBottomRightActionButton", count = 12},
-        {name = "MultiBarBottomLeftActionButton", count = 12},
-        {name = "DominosPetActionButton", count = 12},
-        {name = "DominosStanceButton", count = 12},
-    }
-
-    -- Loop through each bar and apply settings to its buttons
-    for _, bar in ipairs(actionBars) do
-        for i = 1, bar.count do
-            local button = _G[bar.name .. i]
+        local BARTENDER4_NUM_MAX_BUTTONS = 180
+        for i = 1, BARTENDER4_NUM_MAX_BUTTONS do
+            local button = _G["BT4Button" .. i]
             if button then
                 local normalTexture = button:GetNormalTexture()
                 if normalTexture then
@@ -692,12 +684,74 @@ function BBF.DarkmodeFrames(bypass)
                 end
             end
         end
-    end
 
-    for _, v in pairs({BlizzardArtLeftCap, BlizzardArtRightCap}) do
-        if v then
-            applySettings(v, desaturationValue, birdColor)
+        if BlizzardArtTex0 then
+            for i = 0, 3 do
+                local texture = _G["BlizzardArtTex"..i]
+                if texture then
+                    applySettings(texture, desaturationValue, actionBarColor)
+                end
+            end
         end
+
+        local BARTENDER4_PET_BUTTONS = 10
+        for i = 1, BARTENDER4_PET_BUTTONS do
+            local button = _G["BT4PetButton" .. i]
+            if button then
+                local normalTexture = button:GetNormalTexture()
+                if normalTexture then
+                    applySettings(normalTexture, desaturationValue, actionBarColor)
+                end
+            end
+        end
+
+        if BT4BarBlizzardArt and BT4BarBlizzardArt.nineSliceParent then
+            for _, child in ipairs({BT4BarBlizzardArt.nineSliceParent:GetChildren()}) do
+                applySettings(child, desaturationValue, actionBarColor)
+                local DividerArt = child:GetChildren()
+                applySettings(DividerArt, desaturationValue, actionBarColor)
+            end
+            --for _, child in ipairs({BT4BarBlizzardArt:GetChildren()}) do
+                --applySettings(child, desaturationValue, lighterVertexColor)
+            --end
+        end
+
+        -- Dominos actionbars
+        local NUM_ACTIONBAR_BUTTONS = NUM_ACTIONBAR_BUTTONS
+        local DOMINOS_NUM_MAX_BUTTONS = 14 * NUM_ACTIONBAR_BUTTONS
+        local actionBars = {
+            {name = "DominosActionButton", count = DOMINOS_NUM_MAX_BUTTONS},
+            {name = "MultiBar5ActionButton", count = 12},
+            {name = "MultiBar6ActionButton", count = 12},
+            {name = "MultiBar7ActionButton", count = 12},
+            {name = "MultiBarRightActionButton", count = 12},
+            {name = "MultiBarLeftActionButton", count = 12},
+            {name = "MultiBarBottomRightActionButton", count = 12},
+            {name = "MultiBarBottomLeftActionButton", count = 12},
+            {name = "DominosPetActionButton", count = 12},
+            {name = "DominosStanceButton", count = 12},
+            {name = "StanceButton", count = 6},
+        }
+
+        -- Loop through each bar and apply settings to its buttons
+        for _, bar in ipairs(actionBars) do
+            for i = 1, bar.count do
+                local button = _G[bar.name .. i]
+                if button then
+                    local normalTexture = button:GetNormalTexture()
+                    if normalTexture then
+                        applySettings(normalTexture, desaturationValue, actionBarColor, true)
+                    end
+                end
+            end
+        end
+
+        for _, v in pairs({BlizzardArtLeftCap, BlizzardArtRightCap}) do
+            if v then
+                applySettings(v, desaturationValue, birdColor)
+            end
+        end
+        BBF.actionBarColorEnabled = true
     end
 
     -- if not hookedTotemBar and darkModeUi then
@@ -806,5 +860,74 @@ function BBF.CheckForAuraBorders()
                 end
             end
         end
+    end
+end
+
+function BBF.DarkModeCastbars()
+    if BetterBlizzFramesDB.darkModeCastbars then
+        local desaturationValue = BetterBlizzFramesDB.darkModeUi and true or false
+        local vertexColor = BetterBlizzFramesDB.darkModeUi and BetterBlizzFramesDB.darkModeColor or 1
+        local castbarBorder = BetterBlizzFramesDB.darkModeUi and (vertexColor + 0.1) or 1
+        local lighterVertexColor = BetterBlizzFramesDB.darkModeUi and (vertexColor + 0.3) or 1
+        BBF.darkModeCastbars = true
+
+        applySettings(TargetFrame.spellbar.Border, desaturationValue, castbarBorder)
+        --applySettings(TargetFrame.spellbar.BorderShield, desaturationValue, vertexColor)
+        applySettings(TargetFrame.spellbar.Background, desaturationValue, lighterVertexColor)
+
+        --applySettings(FocusFrame.spellbar.Border, desaturationValue, castbarBorder)
+        --applySettings(FocusFrame.spellbar.BorderShield, desaturationValue, vertexColor)
+        --applySettings(FocusFrame.spellbar.Background, desaturationValue, lighterVertexColor)
+
+        applySettings(CastingBarFrame.Border, desaturationValue, castbarBorder)
+        --applySettings(CastingBarFrame.BorderShield, desaturationValue, vertexColor)
+        applySettings(CastingBarFrame.Background, desaturationValue, lighterVertexColor)
+
+        if BetterBlizzFramesDB.showPartyCastbar then
+            for i = 1, 5 do
+                local partyCastbar = _G["Party"..i.."SpellBar"]
+                if partyCastbar then
+                    applySettings(partyCastbar.Border, desaturationValue, castbarBorder)
+                    --applySettings(partyCastbar.BorderShield, desaturationValue, vertexColor)
+                    applySettings(partyCastbar.Background, desaturationValue, lighterVertexColor)
+                end
+            end
+        end
+        local petCastbar = _G["PetSpellBar"]
+        if petCastbar then
+            applySettings(petCastbar.Border, desaturationValue, castbarBorder)
+            --applySettings(petCastbar.BorderShield, desaturationValue, vertexColor)
+            applySettings(petCastbar.Background, desaturationValue, lighterVertexColor)
+        end
+    elseif BBF.darkModeCastbars then
+        applySettings(TargetFrame.spellbar.Border, false, 1)
+        --applySettings(TargetFrame.spellbar.BorderShield, desaturationValue, vertexColor)
+        applySettings(TargetFrame.spellbar.Background, false, 1)
+
+        --applySettings(FocusFrame.spellbar.Border, false, 1)
+        --applySettings(FocusFrame.spellbar.BorderShield, desaturationValue, vertexColor)
+        --applySettings(FocusFrame.spellbar.Background, false, 1)
+
+        applySettings(CastingBarFrame.Border, false, 1)
+        --applySettings(CastingBarFrame.BorderShield, desaturationValue, vertexColor)
+        applySettings(CastingBarFrame.Background, false, 1)
+
+        if BetterBlizzFramesDB.showPartyCastbar then
+            for i = 1, 5 do
+                local partyCastbar = _G["Party"..i.."SpellBar"]
+                if partyCastbar then
+                    applySettings(partyCastbar.Border, false, 1)
+                    --applySettings(partyCastbar.BorderShield, desaturationValue, vertexColor)
+                    applySettings(partyCastbar.Background, false, 1)
+                end
+            end
+        end
+        local petCastbar = _G["PetSpellBar"]
+        if petCastbar then
+            applySettings(petCastbar.Border, false, 1)
+            --applySettings(petCastbar.BorderShield, desaturationValue, vertexColor)
+            applySettings(petCastbar.Background, false, 1)
+        end
+        BBF.darkModeCastbars = nil
     end
 end

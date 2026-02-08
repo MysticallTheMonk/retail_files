@@ -1,6 +1,6 @@
 ﻿
 	----------------------------------------------------------------------
-	-- Leatrix Plus Media
+	-- Leatrix Plus Media for Midnight
 	----------------------------------------------------------------------
 
 	local void, Leatrix_Plus = ...
@@ -743,6 +743,26 @@
 	--	"mus_1100_lost_mines#265028",
 	--})
 
+	-- LeaPlusLC.NewPatch: Dungeons: Midnight (uncomment for 12.0.1)
+	Zn(L["Dungeons"], L["Midnight"], "|cffffd800", {""})
+	Zn(L["Dungeons"], L["Midnight"], "|cffffd800" .. L["Midnight"], {""})
+	Zn(L["Dungeons"], L["Midnight"], L["Blinding Vale"], {"|cffffd800" .. L["Dungeons"] .. ": " .. L["Blinding Vale"], prefol,
+		-- Blinding Vale
+		--"theblindingvale_1#334584", "theblindingvale_2#336175", "theblindingvale_3#334586", "theblindingvale_4#337763", "theblindingvale_5#336751",
+	})
+	Zn(L["Dungeons"], L["Midnight"], L["Maisara Caverns"], {"|cffffd800" .. L["Dungeons"] .. ": " .. L["Maisara Caverns"], prefol,
+		-- Maisara Caverns
+		--"mus_1100_maddening_deep_01#265382",
+	})
+	Zn(L["Dungeons"], L["Midnight"], L["Nexus-Point Xenas"], {"|cffffd800" .. L["Dungeons"] .. ": " .. L["Nexus-Point Xenas"], prefol,
+		-- Nexus-Point Xenas
+		--"nexuspointxenas#335439",
+	})
+	Zn(L["Dungeons"], L["Midnight"], L["Voidscar Arena"], {"|cffffd800" .. L["Dungeons"] .. ": " .. L["Voidscar Arena"], prefol,
+		-- Voidscar Arena
+		--"voidscararena_335461",
+	})
+
 	----------------------------------------------------------------------
 	-- Various
 	----------------------------------------------------------------------
@@ -926,6 +946,8 @@
 		"|Cffffffff" .. L["Dragonflight Legacies (3)"] .. " |r#4854572#350", -- interface/cinematics/dragonflight_100_dt.mp3
 		"|Cffffffff" .. L["The Ebon Scales"] .. " |r#4687624#23", -- interface/cinematics/shadowlands/dragonflight_1001_didc.mp3
 		"|Cffffffff" .. L["The Seed of Hope"] .. " |r#4687619#128", -- interface/cinematics/dragonflight_100_ptw.mp3#4687619
+		"|Cffffffff" .. L["Tempest Unleashed"] .. " |r#4687618#211", -- interface/cinematics/dragonflight_100_prk.mp3 (962)
+		"|Cffffffff" .. L["Incarnates Released"] .. " |r#4687620#63", -- interface/cinematics/dragonflight_100_ike.mp3 (964)
 		"|Cffffffff" .. L["Secrets of the Reach"] .. " |r#4925533#231", -- interface/cinematics/dragonflight_1007_coi.mp3#4925533
 		"|Cffffffff" .. L["Opening The Way"] .. " |r#5161928#181", -- interface/cinematics/dragonflight_101_otw.mp3#5161928
 		"|Cffffffff" .. L["Fyrakk Incinerates Loamm"] .. " |r#5161813#24", -- interface/cinematics/dragonflight_101_mol.mp3
@@ -940,17 +962,25 @@
 
 		-- Cinematic Music: The War Within (movie.dbc)
 		"|cffffd800", "|cffffd800" .. L["The War Within"],
-		"|Cffffffff" .. L["The War Within"] .. " |r#6036525#147", -- 1023
-		"|Cffffffff" .. L["Thrall and Anduin"] .. " |r#6027243#285", -- 1014
-		"|Cffffffff" .. L["Threads of Destiny"] .. " |r#6036526#313", -- 1021
+		"|Cffffffff" .. L["The War Within"] .. " |r#6036525#147", -- interface/cinematics/tww_110_ug.mp3 (1023)
+		"|Cffffffff" .. L["Thrall and Anduin"] .. " |r#6027243#285", -- interface/cinematics/tww_110_ta.mp3 (1014)
+		"|Cffffffff" .. L["Threads of Destiny"] .. " |r#6036526#313", -- interface/cinematics/tww_110_lc.mp3 (1021)
 		"|Cffffffff" .. L["The Story So Far"] .. " |r#6031151#230", -- interface/cinematics/tww_recap_cinematic.mp3#6031151 (1024)
-		"|Cffffffff" .. L["Dalaran Arrives at Khaz Algar"] .. " |r#5932222#83", -- 1010
-		"|Cffffffff" .. L["Magni's Sacrifice"] .. " |r#6036523#208", -- 1013
-		"|Cffffffff" .. L["Ascension Day"] .. " |r#6036522#77", -- 1020
-		"|Cffffffff" .. L["Confronting Xal'atath"] .. " |r#6036524#199", -- 1019
-		"|Cffffffff" .. L["Orweyna's Vision"] .. " |r#6253369#44", -- 1030
-		"|Cffffffff" .. L["Gallywix and Xal'atath"] .. " |r#6638480#169", -- 1028
-		"|Cffffffff" .. L["Undermined"] .. " |r#6641605#77", -- 1029
+		"|Cffffffff" .. L["Dalaran Arrives at Khaz Algar"] .. " |r#5932222#83", -- interface/cinematics/tww_110_tod.mp3 (1010)
+		"|Cffffffff" .. L["Magni's Sacrifice"] .. " |r#6036523#208", -- interface/cinematics/tww_110_mag.mp3 (1013)
+		"|Cffffffff" .. L["Ascension Day"] .. " |r#6036522#77", -- interface/cinematics/tww_110_tcn.mp3 (1020)
+		"|Cffffffff" .. L["Confronting Xal'atath"] .. " |r#6036524#199", -- interface/cinematics/tww_110_xef.mp3 (1019)
+		"|Cffffffff" .. L["Orweyna's Vision"] .. " |r#6253369#44", -- interface/cinematics/tww_1107_owv.mp3 (1030)
+		"|Cffffffff" .. L["Gallywix and Xal'atath"] .. " |r#6638480#169", -- interface/cinematics/tww_111_bri.mp3 (1028) (1045 is an excerpt of 1028)
+		"|Cffffffff" .. L["Undermined"] .. " |r#6641605#77", -- interface/cinematics/tww_111_bro.mp3 (1029)
+		"|Cffffffff" .. L["A Shadowy Invitation"] .. " |r#7242305#91", -- interface/cinematics/tww_112_kid.mp3 (1033)
+		"|Cffffffff" .. L["Dimensius Defeat"] .. " |r#6938026#111", -- interface/cinematics/tww_112_lws.mp3 (1034)
+		"|Cffffffff" .. L["Voidstorm"] .. " |r#7435350#138", -- 
+		"|Cffffffff" .. L["The Radiant Visions"] .. " |r#7464910#89", -- interface/cinematics/tww_1127_scd.mp3 (1052)
+
+		-- Cinematic Music: Midnight (movie.dbc)
+		"|cffffd800", "|cffffd800" .. L["Midnight"],
+		"|Cffffffff" .. L["DO NOT PUSH THIS BUTTON!"] .. " |r#555344#14", -- interface/cinematics/tww_1127_scd.mp3 (1052)
 
 	})
 
@@ -971,13 +1001,16 @@
 	Zn(L["Various"], L["Various"], L["Main Titles"]								, {	"|cffffd800" .. L["Various"] .. ": " .. L["Main Titles"], prefol,
 		"GS_Retail#10924",
 		"GS_BurningCrusade#10925",
-		"GS_LichKing#12765", "GS_Cataclysm#23640",
+		"GS_LichKing#12765",
+		"GS_Cataclysm#23640",
 		"MUS_50_HeartofPandaria_MainTitle#28509",
 		"MUS_60_MainTitle#40169",
 		"MUS_70_MainTitle#56353",
 		"MUS_80_MainTitle#113559",
 		"MUS_90_MainTitle#170711",
-		"MUS_100_theislesawaken_maintitle#218033",
+		"MUS_100_TheIslesAwaken_MainTitle#218033",
+		"MUS_110_TheWarWithin_MainTitle#262929",
+		"MUS_120_Midnight_Maintitle_Beta.mp3#325421", -- Beta
 	}) -- "MUS_1.0_MainTitle_Original#47598"
 
 	Zn(L["Various"], L["Various"], L["Music Rolls"]								, {	"|cffffd800" .. L["Various"] .. ": " .. L["Music Rolls"], prefol, "MUS_61_GarrisonMusicBox_01#49511", "MUS_61_GarrisonMusicBox_02#49512", "MUS_61_GarrisonMusicBox_03#49513", "MUS_61_GarrisonMusicBox_04#49514", "MUS_61_GarrisonMusicBox_05#49515", "MUS_61_GarrisonMusicBox_06#49516", "MUS_61_GarrisonMusicBox_07#49529", "MUS_61_GarrisonMusicBox_08#49530", "MUS_61_GarrisonMusicBox_09#49531", "MUS_61_GarrisonMusicBox_10#49533", "MUS_61_GarrisonMusicBox_11#49535", "MUS_61_GarrisonMusicBox_12#49536", "MUS_61_GarrisonMusicBox_13#49538", "MUS_61_GarrisonMusicBox_14#49539", "MUS_61_GarrisonMusicBox_15#49540", "MUS_61_GarrisonMusicBox_16#49541", "MUS_61_GarrisonMusicBox_17#49543", "MUS_61_GarrisonMusicBox_18#49544", "MUS_61_GarrisonMusicBox_19#49545", "MUS_61_GarrisonMusicBox_20#49546", "MUS_61_GarrisonMusicBox_21#49526", "MUS_61_GarrisonMusicBox_22#49528", "MUS_61_GarrisonMusicBox_23_Alliance#49517", "MUS_61_GarrisonMusicBox_24_Alliance#49518", "MUS_61_GarrisonMusicBox_25_Alliance#49519", "MUS_61_GarrisonMusicBox_26_Alliance#49520", "MUS_61_GarrisonMusicBox_27_Alliance#49521", "MUS_61_GarrisonMusicBox_28_Alliance#49522", "MUS_61_GarrisonMusicBox_29_Alliance#49523", "MUS_61_GarrisonMusicBox_30_Alliance#49524", "MUS_61_GarrisonMusicBox_31_Alliance#49525", "MUS_61_GarrisonMusicBox_23_Horde#49555", "MUS_61_GarrisonMusicBox_24_Horde#49554", "MUS_61_GarrisonMusicBox_25_Horde#49553", "MUS_61_GarrisonMusicBox_26_Horde#49552", "MUS_61_GarrisonMusicBox_27_Horde#49551", "MUS_61_GarrisonMusicBox_28_Horde#49550", "MUS_61_GarrisonMusicBox_29_Horde#49549", "MUS_61_GarrisonMusicBox_30_Horde#49548", "MUS_61_GarrisonMusicBox_31_Horde#49547",})
@@ -1094,6 +1127,8 @@
 		L["Dragonflight Legacies (3)"] .. " |r(968)",
 		L["The Ebon Scales"] .. " |r(969)",
 		L["The Seed of Hope"] .. " |r(963)",
+		L["Tempest Unleashed"] .. " |r(962)",
+		L["Incarnates Released"] .. " |r(964)",
 		L["Secrets of the Reach"] .. " |r(974)",
 		L["Opening The Way"] .. " |r(979)",
 		L["Fyrakk Incinerates Loamm"] .. " |r(981)",
@@ -1121,6 +1156,16 @@
 		L["Orweyna's Vision"] .. " |r(1030)",
 		L["Gallywix and Xal'atath"] .. " |r(1028)",
 		L["Undermined"] .. " |r(1029)",
+		L["A Shadowy Invitation"] .. " |r(1033)",
+		L["Dimensius Defeat"] .. " |r(1034)",
+		L["Voidstorm"] .. " |r(1040)",
+		L["The Radiant Visions"] .. " |r(1052)",
+
+	})
+
+	-- Movies: Midnight
+	Zn(L["Movies"], L["Movies"], L["Midnight"]					, {	"|cffffd800" .. L["Movies"] .. ": " .. L["Midnight"], prefol,
+		L["DO NOT PUSH THIS BUTTON!"] .. " |r(1057)",
 	})
 
 	----------------------------------------------------------------------

@@ -174,7 +174,12 @@ end
 
 ---@private
 function Icon:AddToBlocklist()
-    if ns.settings.activeProfile.iconClickAddsSpellToBlocklist and IsControlKeyDown() and IsAltKeyDown() then
+    if not IsControlKeyDown() or not IsAltKeyDown() then
+        return
+    end
+
+    -- Try to add spell to blocklist
+    if ns.settings.activeProfile.iconClickAddsSpellToBlocklist then
         table.insert(ns.settings.activeProfile.blocklist, self.spellId)
         ns.settings:Save()
         ns.blocklistFrame.syncWithSettings()
@@ -184,6 +189,53 @@ function Icon:AddToBlocklist()
             print("[TrufiGCD]: " .. spellLink .. " spell with ID \"" .. self.spellId .. "\" added to the blocklist")
         else
             print("[TrufiGCD]: A spell with ID \"" .. self.spellId .. "\" added to the blocklist")
+        end
+    end
+
+    -- Try to add item to blocklist if this spell is from an item
+    if ns.settings.activeProfile.iconClickAddsItemToBlocklist then
+        -- Check all equipped items to see if any of them has this spell
+        for slotId = 0, 19 do
+            local itemId = GetInventoryItemID("player", slotId)
+            if itemId then
+                local _, itemSpellId = GetItemSpell(itemId)
+                if itemSpellId and itemSpellId == self.spellId then
+                    table.insert(ns.settings.activeProfile.itemBlocklist, itemId)
+                    ns.settings:Save()
+                    ns.blocklistFrame.syncWithSettings()
+
+                    local itemName = GetItemInfo(itemId)
+                    if itemName then
+                        print("[TrufiGCD]: item \"" .. itemName .. "\" with ID \"" .. itemId .. "\" added to the item blocklist")
+                    else
+                        print("[TrufiGCD]: An item with ID \"" .. itemId .. "\" added to the item blocklist")
+                    end
+                    return
+                end
+            end
+        end
+
+        -- Also check bags for items with this spell
+        for bag = 0, 4 do
+            for slot = 1, C_Container.GetContainerNumSlots(bag) do
+                local itemId = C_Container.GetContainerItemID(bag, slot)
+                if itemId then
+                    local itemSpellName, itemSpellId = GetItemSpell(itemId)
+                    if itemSpellId and itemSpellId == self.spellId then
+                        table.insert(ns.settings.activeProfile.itemBlocklist, itemId)
+                        ns.settings:Save()
+                        ns.blocklistFrame.syncWithSettings()
+
+                        local itemName = GetItemInfo(itemId)
+                        if itemName then
+                            print("[TrufiGCD]: item \"" .. itemName .. "\" with ID \"" .. itemId .. "\" added to the item blocklist")
+                        else
+                            print("[TrufiGCD]: An item with ID \"" .. itemId .. "\" added to the item blocklist")
+                        end
+                        return
+                    end
+                end
+            end
         end
     end
 end

@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 -- Premade Groups Filter
 -------------------------------------------------------------------------------
--- Copyright (C) 2024 Bernhard Saumweber
+-- Copyright (C) 2026 Bernhard Saumweber
 --
 -- This program is free software; you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ L["addon.name.long"] = "Premade Groups Filter"
 
 L["error.syntax"] = "|cffff0000Errore di sintassi nell'espressione del filtro|r\n\nCiò significa che l'espressione del filtro non è costruita nel modo giusto, ad es.  manca una parentesi oppure hai scritto 'tanks=1' invece di 'tanks==1'.\n\nMessaggio di errore dettagliato:\n|cffaaaaaa%s|r"
 L["error.semantic"] = "|cffff0000Errore semantico nell'espressione del filtro|r\n\nCiò significa che l'espressione del filtro ha la sintassi corretta, ma molto probabilmente hai scritto male il nome di una variabile, ad es. serbatoio invece dei serbatoi.\n\nMessaggio di errore dettagliato:\n|cffaaaaaa%s|r"
-L["error.semantic.protected"] = "|cffff0000Errore semantico nell'espressione del filtro|r\n\nLe parole chiave 'nome', 'commento' e 'trovanumero' non sono più supportate. Rimuovili dall'espressione del filtro avanzato o premi il pulsante di ripristino.\n\nA partire dalla prepatch di Battle for Azeroth, questi valori sono protetti da Blizzard e non possono più essere valutati da alcun componente aggiuntivo \n\nUtilizza la barra di ricerca predefinita in alto  l'elenco dei gruppi per filtrare i nomi dei gruppi.\n\nMessaggio di errore dettagliato:\n|cffaaaaaa%s|r"
+L["error.semantic.protected"] = "|cffff0000Errore semantico nell'espressione del filtro|r\n\nLe parole chiave 'nome' e 'commento' non sono più supportate. Rimuovili dall'espressione del filtro avanzato o premi il pulsante di ripristino.\n\nA partire dalla prepatch di Battle for Azeroth, questi valori sono protetti da Blizzard e non possono più essere valutati da alcun componente aggiuntivo \n\nUtilizza la barra di ricerca predefinita in alto  l'elenco dei gruppi per filtrare i nomi dei gruppi.\n\nMessaggio di errore dettagliato:\n|cffaaaaaa%s|r"
 L["message.settingsupgraded"] = "Premade Groups Filter: Impostazioni trasferite alla versione %s"
 
 L["dialog.settings"] = GAMEMENU_OPTIONS
@@ -52,6 +52,8 @@ L["dialog.heals"]      = "Curatori .............................."
 L["dialog.dps"]        = "Assaltatori ................................"
 L["dialog.mprating"]   = "Punt. M+ .........................."
 L["dialog.pvprating"]  = "Punt. PVP ........................."
+L["dialog.delvetier"]  = "Livello delle Scorribande ........."
+L["dialog.delvetier.tooltip"] = "Alcuni giocatori non impostano correttamente il livello delle Scorribande, ma lo menzionano solo nel nome del gruppo. Gli addon non possono leggere il nome. Usate il campo di ricerca standard per risultati migliori."
 L["dialog.defeated"]   = "Boss Sconfitti"
 L["dialog.sorting"] = "Ordinamento"
 L["dialog.usepgf.tooltip"] = "Abilita o disabilita Premade Groups Filter."
@@ -94,6 +96,7 @@ L["dialog.tooltip.warmode"] = "modalità guerra abilitata"
 L["dialog.copy.url.keywords"] = "Premi CTRL+C per copiare il collegamento all'elenco di parole chiave"
 L["dialog.filters.group"] = "Gruppo"
 L["dialog.filters.dungeons"] = "Spedizioni"
+L["dialog.filters.delves"] = "Scorribande"
 L["dialog.filters.advanced"] = "Espressione filtro avanzata"
 L["dialog.partyfit"] = "Party Adatto"
 L["dialog.partyfit.tooltip"] = "Mostra solo i gruppi che dispongono ancora di slot per tutti i ruoli dei membri del gruppo. Funziona anche se sei solo."
@@ -108,6 +111,14 @@ L["dialog.matchingid.tooltip"] = "Mostra solo i gruppi che hanno esattamente lo 
 L["dialog.needsbl"] = "Necessita di Brama di Sangue"
 L["dialog.needsbl.tooltip"] = "Mostra solo i gruppi che non hanno ancora una classe che fornisce Brama di Sangue/Eroismo."
 L["dialog.cancelOldestApp"] = "Clicca per annullare la più vecchia"
+L["dialog.button.selectall.title"] = "T"
+L["dialog.button.selectall.tooltip"] = "Seleziona tutto"
+L["dialog.button.selectnone.title"] = "N"
+L["dialog.button.selectnone.tooltip"] = "Seleziona niente"
+L["dialog.button.selectbountiful.title"] = "S"
+L["dialog.button.selectbountiful.tooltip"] = "Seleziona scorribande fruttuose"
+L["dialog.button.selectinvert.title"] = "I"
+L["dialog.button.selectinvert.tooltip"] = "Inverti selezione"
 
 L["settings.dialogMovable.title"] = "Finestra di dialogo mobile"
 L["settings.dialogMovable.tooltip"] = "Consente di spostare la finestra di dialogo con il mouse. Il clic con il tasto destro reimposta la posizione."
@@ -143,3 +154,5 @@ L["settings.rioRatingColors.title"] = "Punteggio nei colori di Raider.IO"
 L["settings.rioRatingColors.tooltip"] = "Usa lo schema colori di Raider.IO per le punteggi Mitiche+ se l'addon Raider.IO è caricato."
 L["settings.cancelOldestApp.title"] = "Annulla la candidatura più vecchia"
 L["settings.cancelOldestApp.tooltip"] = "Se hai il numero massimo di candidature in attesa, clicca su un gruppo per annullare prima la tua candidatura più vecchia. Poi clicca di nuovo per candidarti."
+L["settings.compactListEntries.title"] = "Voci elenco compatte"
+L["settings.compactListEntries.tooltip"] = "Nasconde lo stile di gioco così le voci nell’elenco dei gruppi occupano meno spazio in verticale (come prima dell’aggiornamento ai contenuti della pre-espansione di Midnight)."

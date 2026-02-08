@@ -1,4 +1,4 @@
-local _, addon = ...;
+local addonName, addon = ...;
 
 addon.CreateIconGroup = function (setPointOptions, growOptions, unit)
     local point, relativeTo, relativePoint, offsetX, offsetY =
@@ -143,6 +143,7 @@ addon.IconGroup_Insert = function (group, icon, index)
         if index then
             group.activeMap[index] = icon;
         end
+
         return;
     end
 
@@ -255,6 +256,10 @@ addon.IconGroup_Wipe = function (group)
         end
         if icon.TargetHighlight then
             icon.TargetHighlight:Hide();
+        end
+        if icon.Name then
+            icon.Name:SetText("");
+            -- Visibility is updated on creation / config change, don't hide here
         end
         icon.started = nil;
         icon:Hide();

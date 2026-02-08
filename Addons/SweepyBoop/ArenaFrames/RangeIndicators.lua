@@ -1,7 +1,6 @@
 local _, addon = ...;
 
 local class = addon.GetUnitClass("player");
-local arenaFramePrefix = ( GladiusEx and "GladiusExButtonFramearena" ) or ( Gladius and "GladiusButtonFramearena" ) or ( sArena and "sArenaEnemyFrame" ) or "CompactArenaFrameMember";
 
 local function EnsureIndicator(frame)
     local config = SweepyBoop.db.profile.misc;
@@ -43,6 +42,7 @@ local function HideIndicator(frame)
 end
 
 local function HideAll()
+    local arenaFramePrefix = addon.GET_ARENA_FRAME_PREFIX();
     for i = 1, addon.MAX_ARENA_SIZE do
         local frame = _G[arenaFramePrefix .. i];
         if frame and frame.rangeIndicator then
@@ -53,6 +53,7 @@ end
 
 local function UpdateIndicators()
     local config = SweepyBoop.db.profile.misc;
+    local arenaFramePrefix = addon.GET_ARENA_FRAME_PREFIX();
     for i = 1, addon.MAX_ARENA_SIZE do
         local frame = _G[arenaFramePrefix .. i];
         if frame and frame:IsShown() then
@@ -62,7 +63,7 @@ local function UpdateIndicators()
             else
                 HideIndicator(frame);
             end
-        else
+        elseif frame then
             HideIndicator(frame);
         end
     end
@@ -91,6 +92,11 @@ function SweepyBoop:TestRangeChecker()
         if ( not frame ) or ( not frame:IsShown() ) then
             sArena:Test();
         end
+    elseif ArenaLiveUnitFrames then
+        local frame = _G["ALUF_ArenaEnemyFramesArenaEnemyFrame1"];
+        if ( not frame ) or ( not frame:IsVisible() ) then
+            ArenaLiveUnitFrames:Test();
+        end
     else
         -- Use Blizzard arena frames
         if ( not CompactArenaFrame:IsShown() ) then
@@ -100,6 +106,8 @@ function SweepyBoop:TestRangeChecker()
             end
         end
     end
+
+    local arenaFramePrefix = addon.GET_ARENA_FRAME_PREFIX();
 
     for i = 1, addon.MAX_ARENA_SIZE do
         local frame = _G[arenaFramePrefix .. i];
@@ -117,6 +125,8 @@ function SweepyBoop:RefreshRangeCheckerTestMode()
     if IsInInstance() then -- Test mode can only be used outside instances
         return;
     end
+
+    local arenaFramePrefix = addon.GET_ARENA_FRAME_PREFIX();
 
     for i = 1, addon.MAX_ARENA_SIZE do
         local frame = _G[arenaFramePrefix .. i];

@@ -1,3 +1,4 @@
+if BBF.isMidnight then return end
 local interruptSpells = {
     1766,  -- Kick (Rogue)
     2139,  -- Counterspell (Mage)

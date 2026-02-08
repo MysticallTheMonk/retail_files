@@ -1,0 +1,38 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/UI.xsd">
+  <Button name="RaidFrameSettings_ColorPickerTemplate" virtual="true">
+     <Size x="50" y ="20"/>
+    <Layers>
+      <Layer level="OVERLAY">
+        <FontString parentKey="text" inherits="GameFontNormal">
+        <Anchors>
+          <Anchor point="LEFT" relativeKey="$parent.button" relativePoint="RIGHT" x="5" y="0"/>
+        </Anchors>
+        </FontString>
+      </Layer>
+		</Layers>
+    <Frames>
+      <Button parentKey="button">
+        <HighlightTexture atlas="ArtifactsFX-YellowRing" setAllPoints="true"/>
+        <Size x="22" y ="22"/>
+        <Anchors>
+          <Anchor point="RIGHT" x="0"/>
+        </Anchors>
+        <Layers>
+					<Layer level="ARTWORK" textureSubLevel="1">
+						<Texture parentKey="background_texture" setAllPoints="true">
+            <Color r="0.2" g="0.2" b="0.2" a="1" />
+						</Texture>
+						<MaskTexture atlas="CircleMaskScalable" useAtlasSize="true" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE" setAllPoints="true">
+							<MaskedTextures>
+								<MaskedTexture childKey="background_texture"/>
+							</MaskedTextures>
+						</MaskTexture>
+					</Layer>
+          <Layer level="ARTWORK" textureSubLevel="2">
+            <Texture parentKey="border" atlas="talents-node-choiceflyout-circle-yellow" useAtlasSize="true" setAllPoints="true"/>
+          </Layer>
+        </Layers>
+      </Button>
+		</Frames>
+  </Button>
+</Ui>

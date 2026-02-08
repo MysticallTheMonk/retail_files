@@ -28,12 +28,14 @@ Metadata.MasqueFriendlyName = "Blizzard Action Bars"
 -- Versions specifies which WoW clients this group supports:
 --  To match it must be >= low and < high.
 --  High number is the first interface unsupported
+--  This can be repeated for multiple ranges
 -- Buttons should contain a list of frame names with an integer value
---  If -2, assume to be a function that returns a table of buttons
+--  If a string, assume to be a function or table of buttons
 --  If -1, assume to be a singular button with that name
 --  If  0, this is a dynamic frame to be skinned later
 --  If >0, attempt to loop through frames with the name prefix suffixed with
 --  the integer range
+-- HookFunction should contain a frame reference and function name to hook
 -- ButtonPools should reference parent frames containing an itemButtonPool
 -- State can be used for storing information about special buttons
 Metadata.Groups = {
@@ -71,24 +73,24 @@ Metadata.Groups = {
 			MultiBarRightButton = NUM_MULTIBAR_BUTTONS
 		}
 	},
-	-- Three new bars for 10.0.0
+	-- Three new bars for 10.0.0, also added in 2.5.5
 	MultiBar5 = {
 		Title = "Action Bar 6",
-		Versions = { 100000, nil },
+		Versions = { 20505, 30000, 100000, nil },
 		Buttons = {
 			MultiBar5Button = NUM_MULTIBAR_BUTTONS
 		}
 	},
 	MultiBar6 = {
 		Title = "Action Bar 7",
-		Versions = { 100000, nil },
+		Versions = { 20505, 30000, 100000, nil },
 		Buttons = {
 			MultiBar6Button = NUM_MULTIBAR_BUTTONS
 		}
 	},
 	MultiBar7 = {
 		Title = "Action Bar 8",
-		Versions = { 100000, nil },
+		Versions = { 20505, 30000, 100000, nil },
 		Buttons = {
 			MultiBar7Button = NUM_MULTIBAR_BUTTONS
 		}
@@ -160,40 +162,80 @@ Metadata.Groups = {
 			-- battle
 		}
 	},
-	CooldownViewer = {
-		Title = "Cooldown Manager",
+	BuffBarCooldownViewer = {
+		Title = "Tracked Bars",
 		Versions = { 110105, nil },
 		-- These are populated after the UI loads when the RefreshLayout
 		-- function is called
 		Delayed = true,
+		HookFunction = 'RefreshLayout',
 		Buttons = {
-			BuffIconCooldownViewer = {
-				GetItemFrames = -2
-			},
-			EssentialCooldownViewer = {
-				GetItemFrames = -2
-			},
-			UtilityCooldownViewer = {
-				GetItemFrames = -2
-			}
+			BuffBarCooldownViewer = 'GetItemIconFrames'
 		}
-	}
+	},
+	BuffIconCooldownViewer = {
+		Title = "Tracked Buffs",
+		Versions = { 110105, nil },
+		-- These are populated after the UI loads when the RefreshLayout
+		-- function is called
+		Delayed = true,
+		HookFunction = 'RefreshLayout',
+		Buttons = {
+			BuffIconCooldownViewer = 'GetItemFrames'
+		}
+	},
+	EssentialCooldownViewer = {
+		Title = "Essential Cooldowns",
+		Versions = { 110105, nil },
+		-- These are populated after the UI loads when the RefreshLayout
+		-- function is called
+		Delayed = true,
+		HookFunction = 'RefreshLayout',
+		Buttons = {
+			EssentialCooldownViewer = 'GetItemFrames'
+		}
+	},
+	UtilityCooldownViewer = {
+		Title = "Utility Cooldowns",
+		Versions = { 110105, nil },
+		-- These are populated after the UI loads when the RefreshLayout
+		-- function is called
+		Delayed = true,
+		HookFunction = 'RefreshLayout',
+		Buttons = {
+			UtilityCooldownViewer = 'GetItemFrames'
+		}
+	},
 }
 
 -- Specify Button Types and Regions for Buttons that need them
 local CooldownViewerMap = {
 	Icon = "Icon",
 	Cooldown = "Cooldown",
-	Count = "ChargeCount.Current",
-	Mask = "Mask"
+	Count = "Count"
+}
+
+local BuffIconViewerMap = {
+	Icon = "Icon",
+	Cooldown = "Cooldown",
+	Count = "Count",
+	DebuffBorder = "DebuffBorderMBB"
+}
+
+-- The BuffBarCooldownViewer Cooldown is on the bar, not the icon
+local BuffBarViewerMap = {
+	Icon = "Icon",
+	Count = "Count",
+	DebuffBorder = "DebuffBorderMBB"
 }
 
 Metadata.Types = {
 	-- This will be passed for all buttons unless it's otherwise overridden
 	DEFAULT = { type = "Action" },
-	BuffIconCooldownViewerGetItemFrames = { type = "Action", map = CooldownViewerMap },
-	EssentialCooldownViewerGetItemFrames = { type = "Action", map = CooldownViewerMap },
-	UtilityCooldownViewerGetItemFrames = { type = "Action", map = CooldownViewerMap }
+	BuffBarCooldownViewer = { type = "Debuff", map = BuffBarViewerMap },
+	BuffIconCooldownViewer = { type = "Debuff", map = BuffIconViewerMap },
+	EssentialCooldownViewer = { type = "Action", map = CooldownViewerMap },
+	UtilityCooldownViewer = { type = "Action", map = CooldownViewerMap }
 }
 
 -- A table indicating the defaults for Options by key.

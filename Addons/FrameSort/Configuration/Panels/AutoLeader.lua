@@ -2,7 +2,7 @@
 local _, addon = ...
 local fsConfig = addon.Configuration
 local wow = addon.WoW.Api
-local L = addon.Locale
+local L = addon.Locale.Current
 local M = {}
 fsConfig.Panels.AutoLeader = M
 
@@ -12,28 +12,24 @@ function M:Build(parent)
     panel.name = L["Auto Leader"]
     panel.parent = parent.name
 
-    local title = panel:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
-    title:SetPoint("TOPLEFT", verticalSpacing, -verticalSpacing)
-    title:SetText(L["Auto Leader"])
+    local enabled = wow.CreateFrame("CheckButton", nil, panel, "UICheckButtonTemplate")
+    enabled:SetPoint("TOPLEFT", verticalSpacing, -verticalSpacing)
+    enabled.Text:SetText(L["Auto Leader"])
+    enabled.Text:SetFontObject("GameFontNormalLarge")
+    enabled:SetChecked(addon.DB.Options.AutoLeader.Enabled or false)
 
     local lines = {
         L["Auto promote healers to leader in solo shuffle."],
         L["Why? So healers can configure target marker icons and re-order party1/2 to their preference."],
     }
 
-    local anchor = fsConfig:TextBlock(lines, panel, title)
-
-    local enabled = wow.CreateFrame("CheckButton", nil, panel, "UICheckButtonTemplate")
-    enabled:SetPoint("TOPLEFT", anchor, "BOTTOMLEFT", -4, -verticalSpacing)
-    enabled.Text:SetText(L["Enabled"])
-    enabled.Text:SetFontObject("GameFontNormalLarge")
-    enabled:SetChecked(addon.DB.Options.AutoLeader.Enabled or false)
+    fsConfig:TextBlock(lines, panel, enabled)
 
     local function OnClick(box)
         addon.DB.Options.AutoLeader.Enabled = box:GetChecked()
     end
 
-    enabled:HookScript("OnClick", OnClick)
+    enabled:SetScript("OnClick", OnClick)
 
     return panel
 end

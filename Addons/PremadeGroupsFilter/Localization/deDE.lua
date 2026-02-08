@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 -- Premade Groups Filter
 -------------------------------------------------------------------------------
--- Copyright (C) 2024 Bernhard Saumweber
+-- Copyright (C) 2026 Bernhard Saumweber
 --
 -- This program is free software; you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ L["addon.name.long"] = "Premade Groups Filter"
 
 L["error.syntax"] = "|cffff0000Syntaxfehler im Filterausdruck|r\n\nDas bedeutet, dass dein Filterausdruck nicht korrekt aufgebaut ist, z.B. fehlt eine schließende Klammer oder du hast 'tanks=1' statt 'tanks==1' geschrieben.\n\nTechnische Fehlermeldung:\n|cffaaaaaa%s|r"
 L["error.semantic"] = "|cffff0000Semantischer Fehler im Filterausdruck|r\n\nDas bedeutet, dass dein Filterausdruck syntaktisch korrekt ist, aber du dich vermutlich beim Namen einer Variable vertippt hast, z.B. tansk statt tanks.\n\nTechnische Fehlermeldung:\n|cffaaaaaa%s|r"
-L["error.semantic.protected"] = "|cffff0000Semantischer Fehler im Filterausdruck|r\n\nDie Filterausdrücke 'name', 'comment' und 'findnumber' werden nicht mehr unterstützt. Bitte entferne sie aus deinem Filterausdruck oder drücke die Zurücksetzen-Schaltfläche.\n\nAb dem Battle for Azeroth Prepatch sind diese Werte durch Blizzard geschützt und können von keinem Addon mehr ausgewertet werden.\n\nBenutze das Standardsuchfeld oberhalb der Gruppenauflistung, um nach Gruppenname zu filtern.\n\nTechnische Fehlermeldung:\n|cffaaaaaa%s|r"
+L["error.semantic.protected"] = "|cffff0000Semantischer Fehler im Filterausdruck|r\n\nDie Filterausdrücke 'name' und 'comment' werden nicht mehr unterstützt. Bitte entferne sie aus deinem Filterausdruck oder drücke die Zurücksetzen-Schaltfläche.\n\nAb dem Battle for Azeroth Prepatch sind diese Werte durch Blizzard geschützt und können von keinem Addon mehr ausgewertet werden.\n\nBenutze das Standardsuchfeld oberhalb der Gruppenauflistung, um nach Gruppenname zu filtern.\n\nTechnische Fehlermeldung:\n|cffaaaaaa%s|r"
 L["message.settingsupgraded"] = "Premade Groups Filter: Einstellungen auf Version %s migriert"
 L["message.sortingoverwritten"] = "Premade Groups Filter: Die standardmäßige Sortierreihenfolge organisierter Gruppen wurde durch das Addon %s überschrieben."
 L["message.sortingrestored"] = "Premade Groups Filter: Die standardmäßige Sortierreihenfolge organisierter Gruppen wurde durch das Addon %s wiederhergestellt."
@@ -54,6 +54,8 @@ L["dialog.heals"]      = "Heiler .................................."
 L["dialog.dps"]        = "DDs ....................................."
 L["dialog.mprating"]   = "M+ Wertung"
 L["dialog.pvprating"]  = "PVP Wertung ............................."
+L["dialog.delvetier"]  = "Tiefen-Stufe ............................"
+L["dialog.delvetier.tooltip"] = "Einige Spieler setzen die Stufe nicht korrekt, sondern erwähnen sie nur im Gruppennamen. Addons können den Namen nicht auslesen. Verwende das Standard-Suchfeld für bessere Ergebnisse."
 L["dialog.defeated"]   = "Besiegte Raid-Bosse"
 L["dialog.sorting"] = "Sortierung"
 L["dialog.usepgf.tooltip"] = "Premade Groups Filter aktivieren oder deaktivieren."
@@ -96,6 +98,7 @@ L["dialog.tooltip.warmode"] = "Kriegsmodus aktiviert"
 L["dialog.copy.url.keywords"] = "Drückt STRG+C, um den Link zur Liste der Schlüsselwörter zu kopieren"
 L["dialog.filters.group"] = "Gruppe"
 L["dialog.filters.dungeons"] = "Dungeons"
+L["dialog.filters.delves"] = "Tiefen"
 L["dialog.filters.advanced"] = "Erweiterter Filterausdruck"
 L["dialog.partyfit"] = "Passende Gruppen"
 L["dialog.partyfit.tooltip"] = "Zeige nur Gruppen, die noch Platz für die Rollen eurer Gruppe haben. Funktioniert auch allein."
@@ -110,6 +113,14 @@ L["dialog.matchingid.tooltip"] = "Zeige nur Gruppen mit exakt der gleichen Insta
 L["dialog.needsbl"] = "Benötigt Kampfrausch"
 L["dialog.needsbl.tooltip"] = "Zeige nur Gruppen, die noch kein Kampfrausch/Heldentum haben."
 L["dialog.cancelOldestApp"] = "Klicken, um älteste Anmeldung abzubrechen"
+L["dialog.button.selectall.title"] = "A"
+L["dialog.button.selectall.tooltip"] = "Alle auswählen"
+L["dialog.button.selectnone.title"] = "N"
+L["dialog.button.selectnone.tooltip"] = "Nichts auswählen"
+L["dialog.button.selectbountiful.title"] = "G"
+L["dialog.button.selectbountiful.tooltip"] = "Großzügige Tiefen auswählen"
+L["dialog.button.selectinvert.title"] = "U"
+L["dialog.button.selectinvert.tooltip"] = "Auswahl umkehren"
 
 L["settings.dialogMovable.title"] = "Dialog verschiebbar"
 L["settings.dialogMovable.tooltip"] = "Ermöglicht das Verschieben des Dialogs mit der Maus. Rechtsklick setzt die Position zurück."
@@ -145,3 +156,5 @@ L["settings.rioRatingColors.title"] = "Wertung in Raider.IO-Farben"
 L["settings.rioRatingColors.tooltip"] = "Benutzt das Raider.IO-Farbschema für Mythisch+ Wertungen, falls das Raider.IO-Addon geladen ist."
 L["settings.cancelOldestApp.title"] = "Älteste Anmeldung abbrechen"
 L["settings.cancelOldestApp.tooltip"] = "Wenn Ihr die maximale Anzahl an Gruppenanmeldungen laufen habt, klickt auf eine Gruppe, um Eure älteste Anfrage abzubrechen. Klickt dann erneut, um Euch zu bewerben."
+L["settings.compactListEntries.title"] = "Kompakte Listeneinträge"
+L["settings.compactListEntries.tooltip"] = "Blendet die Spielstil-Zeile aus, damit Einträge in der Gruppensuche weniger vertikalen Platz benötigen (wie vor dem Midnight-Prepatch)."

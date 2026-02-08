@@ -58,19 +58,19 @@ L["Select to view."] = "Selecciona para ver."
 -- Blizzard Classic Skin
 ---
 
--- L["The default Classic button style."] = "The default Classic button style."
+-- L["The default classic button style."] = "The default classic button style."
 
 ----------------------------------------
 -- Blizzard Modern Skin
 ---
 
--- L["The default Dragonflight button style."] = "The default Dragonflight button style."
+-- L["The default modern button style."] = "The default modern button style."
 
 ----------------------------------------
 -- Classic Enhanced Skin
 ---
 
-L["A modified version of the Classic button style."] = "Una versión mejorada del diseño de los botones por defecto del juego."
+L["An enhanced version of the classic button style."] = "Una versión mejorada del diseño de los botones por defecto del juego."
 
 ----------------------------------------
 -- Core Settings
@@ -136,12 +136,14 @@ L["Websites"] = "Sitios web"
 L["Alternate Sorting"] = "Ordenación alternativa"
 L["Causes the skins included with Masque to be listed above third-party skins."] = "Hace que las skins incluidas con Masque aparezcan por encima de las skins de terceros."
 L["Click to reload the interface."] = "Haz clic para recargar la interfaz."
+-- L["Increases the font size of the text on Ace3 profile panels."] = "Increases the font size of the text on Ace3 profile panels."
 L["Interface"] = "Interfaz"
 L["Interface Settings"] = "Ajustes de interfaz"
 L["Load the skin information panel."] = "Cargar panel de información de apariencias."
 -- L["Menu Icon"] = "Menu Icon"
 -- L["Minimap"] = "Minimap"
 -- L["None"] = "None"
+-- L["Profile Panel Font Fix"] = "Profile Panel Font Fix"
 L["Reload Interface"] = "Recargar interfaz"
 L["Requires an interface reload."] = "Recarga de interfaz requerida."
 -- L["Select where Masque's menu icon is displayed."] = "Select where Masque's menu icon is displayed."
@@ -161,7 +163,7 @@ L["Click to open Masque's settings."] = "Haz clic para abrir los ajustes de Masq
 -- Modern Enhanced Skin
 ---
 
-L["An enhanced version of the Dragonflight button style."] = "Una versión mejorada del estilo de los botones de Dragonflight."
+L["An enhanced version of the modern button style."] = "Una versión mejorada del estilo de los botones de Dragonflight."
 
 ----------------------------------------
 -- Profile Settings

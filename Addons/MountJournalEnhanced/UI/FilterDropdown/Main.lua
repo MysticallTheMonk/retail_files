@@ -17,6 +17,8 @@ local SETTING_HIDDEN = "hidden"
 local SETTING_HIDDEN_INGAME = "hiddenIngame"
 local SETTING_RARITY = "rarity"
 
+ADDON:RegisterUISetting("showFilterProfilesInMenu", true, ADDON.L.SETTING_SHOW_FILTER_PROFILES_IN_MENU)
+
 local function CheckSetting(settings)
     local hasTrue, hasFalse = false, false
     for _, v in pairs(settings) do
@@ -104,7 +106,7 @@ function ADDON.UI.FDD:CreateFilter(root, text, filterKey, filterSettings, withOn
 end
 function ADDON.UI.FDD:CreateFilterSubmenu(root, text, icon, settings)
     local subMenu = root:CreateCheckbox(text, function()
-        local settingHasTrue, settingHasFalse = CheckSetting(settings)
+        local settingHasTrue, _ = CheckSetting(settings)
 
         return settingHasTrue
     end, function(...)
@@ -114,26 +116,27 @@ function ADDON.UI.FDD:CreateFilterSubmenu(root, text, icon, settings)
         return MenuResponse.Refresh
     end)
     subMenu:AddInitializer(function(button)
-        if button.leftTexture2 then
-            local settingHasTrue, settingHasFalse = CheckSetting(settings)
-            if settingHasTrue and settingHasFalse then
-                local dash
-                if button.leftTexture2 then
-                    -- mainline style
-                    dash = button.leftTexture2
-                    dash:SetPoint("CENTER", button.leftTexture1, "CENTER", 0, 1)
-                else
-                    -- classic style
-                    dash = button:AttachTexture()
-                    dash:SetPoint("CENTER", button.leftTexture1)
-                    button.leftTexture1:SetAtlas("common-dropdown-ticksquare-classic", true)
-                end
-
-                dash:SetAtlas("voicechat-icon-loudnessbar-2", true)
-                dash:SetTexCoord(1, 0, 0, 0, 1, 1, 0, 1)
-                dash:SetSize(16, 16)
+        local settingHasTrue, settingHasFalse = CheckSetting(settings)
+        if settingHasTrue and settingHasFalse then
+            local dash
+            if button.leftTexture2 then
+                -- mainline style
+                dash = button.leftTexture2
+                dash:SetPoint("CENTER", button.leftTexture1, "CENTER", 0, 1)
+            else
+                -- classic style
+                dash = button:AttachTexture()
+                dash:SetPoint("CENTER", button.leftTexture1)
+                button.dash = dash
+                button.leftTexture1:SetAtlas("common-dropdown-ticksquare-classic", true)
             end
+            dash:SetAtlas("voicechat-icon-loudnessbar-2", true)
+            dash:SetTexCoord(1, 0, 0, 0, 1, 1, 0, 1)
+            dash:SetSize(16, 16)
         end
+    end)
+    subMenu:AddResetter(function(button)
+        button.dash = nil
     end)
 
     ADDON.UI.FDD:AddIcon(subMenu, icon)
@@ -235,7 +238,6 @@ local function setupSourceMenu(root)
         ADDON.UI.FDD:AddIcon(ADDON.UI.FDD:CreateFilter(eventRoot, GetCategoryInfo(15532), "Anniversary", eventSettings, settings), 1084434, 20, 20, 0, 0.71, 0, 0.71)
         ADDON.UI.FDD:AddIcon(ADDON.UI.FDD:CreateFilter(eventRoot, GetCategoryInfo(158), "Hallow's End", eventSettings, settings), 236552)
         ADDON.UI.FDD:AddIcon(ADDON.UI.FDD:CreateFilter(eventRoot, GetCategoryInfo(156), "Feast of Winter Veil", eventSettings, settings), 133202)
-        ADDON.UI.FDD:AddIcon(ADDON.UI.FDD:CreateFilter(eventRoot, GetCategoryInfo(15536), "Remix: Pandaria", eventSettings, settings), 572034)
     end
 
     ADDON.UI.FDD:AddIcon(ADDON.UI.FDD:CreateFilter(root, BATTLE_PET_SOURCE_1, "Drop", settings, true), 133639)
@@ -308,6 +310,7 @@ local function setupExpansionMenu(root)
         [8] = "Interface\\Addons\\MountJournalEnhanced\\UI\\icons\\expansion\\08_sl.png",
         [9] = "Interface\\Addons\\MountJournalEnhanced\\UI\\icons\\expansion\\09_df.png",
         [10] = "Interface\\Addons\\MountJournalEnhanced\\UI\\icons\\expansion\\10_tww.png",
+        [11] = "Interface\\Addons\\MountJournalEnhanced\\UI\\icons\\expansion\\11_mn.png",
     }
     for i = GetClientDisplayExpansionLevel(), 0,-1 do
         if _G["EXPANSION_NAME" .. i] then
@@ -336,6 +339,11 @@ local function setupFilterMenu(dropdown, root)
 
     root:SetTag("MENU_MOUNT_COLLECTION_FILTER")
 
+    if ADDON.settings.ui.showFilterProfilesInMenu then
+        ADDON.UI.FDD:AddProfiles(root)
+        root:CreateSpacer()
+    end
+
     ADDON.UI.FDD:AddSortMenu(root:CreateButton(RAID_FRAME_SORT_LABEL))
 
     root:CreateSpacer()
@@ -353,10 +361,7 @@ local function setupFilterMenu(dropdown, root)
     setLeftPadding(onlyUsable)
 
     ADDON.UI.FDD:CreateFilter(root, NOT_COLLECTED, SETTING_NOT_COLLECTED)
-    local hiddenIngame = ADDON.UI.FDD:CreateFilter(root, L.FILTER_SECRET, SETTING_HIDDEN_INGAME)
-    hiddenIngame:SetEnabled(function()
-        return ADDON.settings.filter.notCollected
-    end)
+    ADDON.UI.FDD:CreateFilter(root, L.FILTER_SECRET, SETTING_HIDDEN_INGAME)
 
     ADDON.UI.FDD:CreateFilter(root, L.FILTER_ONLY_LATEST, SETTING_ONLY_RECENT)
     ADDON.UI.FDD:CreateFilter(root, L["Only tradable"], SETTING_ONLY_TRADABLE)

@@ -24,11 +24,34 @@
                 <Alpha childKey="flash" smoothing="OUT" duration="1" order="1" fromAlpha="1" toAlpha="0"/>
             </AnimationGroup>
         </Animations>
+        <NormalTexture name="$parentNormalTexture" parentKey="NormalTexture">
+	        <Anchors>
+	            <Anchor point="TOPLEFT" x="-15" y="15"/>
+	            <Anchor point="BOTTOMRIGHT" x="15" y="-15"/>
+	        </Anchors>
+	    </NormalTexture>
+	    <HighlightTexture/>
+	    <PushedTexture/>
         <Layers>
             <Layer level="BACKGROUND">
                 <Texture parentKey="Icon"/>
             </Layer>
             <Layer level="OVERLAY" textureSubLevel="1">
+                <FontString name="$parentName" parentKey="Name" inherits="GameFontHighlightSmallOutline">
+	                <Size>
+	                    <AbsDimension x="36" y="10"/>
+	                </Size>
+	                <FontHeight>
+	                    <AbsValue val="6"/>
+	                </FontHeight>
+	                <Anchors>
+	                    <Anchor point="BOTTOM">
+	                        <Offset>
+	                            <AbsDimension x="0" y="2"/>
+	                        </Offset>
+	                    </Anchor>
+	                </Anchors>
+	            </FontString>
                 <Texture parentKey="flash" hidden="false" alpha="0" alphaMode="ADD" atlas="bags-glow-flash" useAtlasSize="true">
                     <Anchors>
                         <Anchor point="CENTER"/>

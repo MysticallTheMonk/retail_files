@@ -1,3 +1,4 @@
+if BBF.isMidnight then return end
 local LSM = LibStub("LibSharedMedia-3.0")
 
 local function GetMaxAbsorbAuraIcon(unit)

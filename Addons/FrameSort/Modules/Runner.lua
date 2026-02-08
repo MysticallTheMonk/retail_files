@@ -2,169 +2,200 @@
 local _, addon = ...
 local fsProviders = addon.Providers
 local fsScheduler = addon.Scheduling.Scheduler
+local fsInspector = addon.Modules.Inspector
+local fsUnit = addon.WoW.Unit
 local fsLog = addon.Logging.Log
+local fsEnumerable = addon.Collections.Enumerable
 local wow = addon.WoW.Api
-local events = wow.Events
+local events = addon.WoW.Events
 local M = addon.Modules
 local timerFrame = nil
-local eventFrame = nil
-local combatFrame = nil
-local pvpTimerType = 1
 local run = false
-local lgist = wow.IsRetail() and LibStub and LibStub:GetLibrary("LibGroupInSpecT-1.1")
+local runAll = false
+---@type { [FrameProvider]: boolean }
+local runProviders = {}
 
-local function ScheduleSort()
-    run = true
-end
+local function Run(forceRunAll)
+    local ok, result = pcall(function()
+        local all = runAll or forceRunAll
+        local providers = nil
 
-local function OnProviderRequiresSort(provider)
-    fsLog:Debug(string.format("Provider %s requested sort.", provider:Name()))
-    ScheduleSort()
-end
+        runAll = false
 
-local function OnEditModeExited()
-    if fsProviders.Blizzard:Enabled() then
-        ScheduleSort()
-    end
-end
+        if all then
+            -- clear stale requests
+            runProviders = {}
+        else
+            providers = {}
 
-local function OnCombat(_, event)
-    if not run then
-        return
-    end
+            for provider, _ in pairs(runProviders) do
+                providers[#providers + 1] = provider
+            end
 
-    if event == wow.Events.PLAYER_REGEN_DISABLED then
-        -- we are entering combat, last chance to run a sort if one was scheduled
-        -- there is a scenario with Gladius where an enemy stealthy comes out of stealth
-        -- at the same time as the play enters combat, e.g. a rogue cheapshot on you
-        -- at this time an ARENA_OPPONENT_UPDATE is sent with "seen" parameter
-        -- which triggers gladius to reposition it's frames
-        -- by default we would then schedule a sort to occur, but I think it's too late
-        -- as OnUpdate may have already ran this frame, and the next frame we are in lockdown
-        -- this is all conjecture, need to confirm what order of events this happens in
-        -- and whether this is actually needed or not
-        -- TODO: is this required, or will OnUpdate run anyway?
-        M:Run()
-        run = false
-    end
-end
+            runProviders = {}
+        end
 
-local function OnTimer(_, _, timerType, timeSeconds)
-    if timerType ~= pvpTimerType then
-        return
-    end
-
-    -- TODO: I don't think this is required anymore
-    -- it was added to workaround a bug where enemy macros weren't being updated
-    -- but that bug was macro cache related and not a timing issue, so this workaround didn't do anything AFAIK
-    -- would need to do more testing before feeling comfortable to remove this
-    fsScheduler:RunAfter(timeSeconds + 1, function()
-        fsLog:Debug("Timer requested sort.")
-        ScheduleSort()
+        M:Run(providers)
     end)
+
+    if not ok then
+        fsLog:Error("Runner - error: %s.", tostring(result))
+    end
 end
 
 local function OnUpdate()
+    if not run then
+        assert(timerFrame)
+        timerFrame:SetScript("OnUpdate", nil)
+        return
+    end
+
+    run = false
+    Run()
+end
+
+local function ScheduleSort(provider)
+    if provider then
+        runProviders[provider] = true
+    else
+        runAll = true
+    end
+
+    run = true
+
+    assert(timerFrame)
+    timerFrame:SetScript("OnUpdate", OnUpdate)
+end
+
+local function OnProviderRequestedSort(provider, reason)
+    fsLog:Debug("Provider '%s' requested sort due to '%s'.", provider and provider:Name() or "nil", reason or "nil")
+
+    ScheduleSort(provider)
+end
+
+local function OnEnteringWorld()
+    fsLog:Debug("Scheduling sort after loading screen.")
+
+    ScheduleSort()
+end
+
+local function OnEnteringCombat()
     if not run then
         return
     end
 
     run = false
-    M:Run()
+
+    -- we are entering combat, last chance to run a sort if one was scheduled
+    -- there is a scenario with Gladius where an enemy stealthy comes out of stealth
+    -- at the same time as the play enters combat, e.g. a rogue cheapshot on you
+    -- at this time an ARENA_OPPONENT_UPDATE is sent with "seen" parameter
+    -- which triggers gladius to reposition it's frames
+    -- by default we would then schedule a sort to occur, but I think it's too late
+    -- as OnUpdate may have already ran this frame, and the next frame we are in lockdown
+    -- this is all conjecture, need to confirm what order of events this happens in
+    -- and whether this is actually needed or not
+    -- TODO: is this required, or will OnUpdate run anyway?
+    fsLog:Debug("Running sort just before combat starts.")
+    Run(true)
 end
 
-local function OnEvent(_, event)
-    fsLog:Debug("Event: " .. event)
+local function OnInspectorInfo()
+    -- technically it's beneficial if we know at least 2 specs then perform a sort
+    -- but from a practical standpoint it's probably better for performance to wait until we have quorum
+    -- and it might help reduce frame flicker as it reduces sorting noise
+    local units = fsUnit:FriendlyUnits()
 
-    -- flag that a run needs to occur
-    -- the reason we do this instead of just running straight away is because multiple events may have fired during a single frame
-    -- and for efficiency/performance sake we only want to run once
+    if #units == 0 then
+        return
+    end
+
+    local nonPets = fsEnumerable
+        :From(units)
+        :Where(function(unit)
+            return not fsUnit:IsPet(unit)
+        end)
+        :ToTable()
+
+    local knownSpecs = 0
+
+    for i = 1, #nonPets do
+        local unit = nonPets[i]
+        local spec = fsInspector:FriendlyUnitSpec(unit)
+
+        if spec then
+            knownSpecs = knownSpecs + 1
+        end
+    end
+
+    -- re-sort every 5th spec known
+    local everyNth = 5
+    local shouldSort = knownSpecs > 0 and knownSpecs == #nonPets or knownSpecs % everyNth == 0
+
+    if not shouldSort then
+        return
+    end
+
+    fsLog:Debug("Scheduling sort as we have spec quorum of %d/%d.", knownSpecs, #nonPets)
     ScheduleSort()
 end
 
-function M:Run(provider)
+function M:ProcessEvent(event)
+    if event == events.PLAYER_REGEN_DISABLED then
+        OnEnteringCombat()
+    elseif event == events.PLAYER_ENTERING_WORLD then
+        OnEnteringWorld()
+    end
+end
+
+function M:Run(providers)
     fsScheduler:RunWhenCombatEnds(function()
+        local start = wow.GetTimePreciseSec()
+        fsLog:Debug("--- Starting run ---")
+
         -- run auto promotion first
         addon.Modules.AutoLeader:Run()
 
-        -- run hide player first as it may impact the rest
+        -- run hide player next as it may impact the rest
         addon.Modules.HidePlayer:Run()
 
         -- now sort as it affects targeting and macros
-        addon.Modules.Sorting:Run(provider)
+        if providers and #providers > 0 then
+            for _, provider in ipairs(providers) do
+                addon.Modules.Sorting:Run(provider)
+            end
+        else
+            addon.Modules.Sorting:Run()
+        end
 
         addon.Modules.Targeting:Run()
         addon.Modules.Macro:Run()
+        addon.Modules.Nameplates:Run()
+
+        local stop = wow.GetTimePreciseSec()
+        fsLog:Debug("Run time took %fms.", (stop - start) * 1000)
+        fsLog:Debug("--- Finished run ---")
     end, "Runner")
 end
 
 ---Initialises all modules.
 function M:Init()
+    addon.Modules.Sorting.SortedUnits:Init()
     addon.Modules.AutoLeader:Init()
     addon.Modules.HidePlayer:Init()
     addon.Modules.Sorting:Init()
     addon.Modules.Targeting:Init()
     addon.Modules.Macro:Init()
+    addon.Modules.Inspector:Init()
+    addon.Modules.UnitTracker:Init()
+    addon.Modules.Nameplates:Init()
 
     for _, provider in ipairs(fsProviders.All) do
-        -- for any special events that individual providers request a sort for
-        provider:RegisterRequestSortCallback(OnProviderRequiresSort)
+        provider:RegisterRequestSortCallback(OnProviderRequestedSort)
     end
 
-    if wow.EventRegistry then
-        wow.EventRegistry:RegisterCallback(events.EditModeExit, OnEditModeExited)
-    end
+    timerFrame = wow.CreateFrame("Frame")
+    timerFrame:SetScript("OnUpdate", OnUpdate)
 
-    -- delay the event subscriptions to hopefully help with being notified after other addons
-    -- probably not needed anymore now that we sort in OnUpdate
-    fsScheduler:RunWhenEnteringWorld(function()
-        timerFrame = wow.CreateFrame("Frame")
-        timerFrame:HookScript("OnEvent", OnTimer)
-        timerFrame:HookScript("OnUpdate", OnUpdate)
-        timerFrame:RegisterEvent(wow.Events.START_TIMER)
-
-        eventFrame = wow.CreateFrame("Frame")
-        eventFrame:HookScript("OnEvent", OnEvent)
-        eventFrame:RegisterEvent(events.GROUP_ROSTER_UPDATE)
-        eventFrame:RegisterEvent(events.UNIT_PET)
-
-        -- sometimes there is a delay from when a person joins group until their role is assigned
-        -- so trigger a sort once we know their role
-        eventFrame:RegisterEvent(events.PLAYER_ROLES_ASSIGNED)
-
-        if wow.IsRetail() then
-            eventFrame:RegisterEvent(events.ARENA_PREP_OPPONENT_SPECIALIZATIONS)
-
-            -- TODO: is this event required? it's very noisy
-            -- suspect ARENA_PREP_OPPONENT_SPECIALIZATIONS is sufficient for our use
-            eventFrame:RegisterEvent(events.ARENA_OPPONENT_UPDATE)
-        end
-
-        combatFrame = wow.CreateFrame("Frame")
-        combatFrame:HookScript("OnEvent", OnCombat)
-        combatFrame:RegisterEvent(wow.Events.PLAYER_REGEN_DISABLED)
-        combatFrame:RegisterEvent(wow.Events.PLAYER_REGEN_ENABLED)
-
-        -- perform the initial run
-        fsLog:Debug("First run.")
-        M:Run()
-    end)
-
-    if not lgist then
-        return
-    end
-
-    local cb = {}
-    function cb:OnSpecInfo()
-        local pending = lgist:QueuedInspections()
-
-        if pending and #pending > 0 then
-            return
-        end
-
-        fsLog:Debug("LibGroupInSpecT finished gathering spec information, requesting sort.")
-        ScheduleSort()
-    end
-
-    lgist.RegisterCallback(cb, "GroupInSpecT_Update", "OnSpecInfo")
+    fsInspector:RegisterCallback(OnInspectorInfo)
 end

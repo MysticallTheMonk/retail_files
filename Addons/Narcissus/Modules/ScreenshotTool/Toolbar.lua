@@ -137,7 +137,7 @@ local CVAR_UNIT_NAME_VALUES = {			--Unit Name CVars
 
     ["SoftTargetEnemy"] = 1,
     ["SoftTargetInteract"] = 1,
-};
+}
 
 
 local CVAR_CAMERA_BACKUP = {};
@@ -278,7 +278,7 @@ local function EmoteButton_OnClick(self)
         if MainFrame.CameraSettingFrame:IsShown() then
             MainFrame.EmoteFrame:SetPoint("BOTTOMLEFT", MainFrame.CameraSettingFrame, "BOTTOMRIGHT", 0, 0);
         elseif MainFrame.TransmogListFrame:IsShown() then
-            MainFrame.EmoteFrame:SetPoint("BOTTOMLEFT", MainFrame.TransmogListFrame, "BOTTOMLEFT", MainFrame.TransmogListFrame.collapsedWidth + 6, 0);
+            MainFrame.EmoteFrame:SetPoint("BOTTOMLEFT", self, "TOPLEFT", MainFrame.TransmogListFrame.collapsedWidth - 44, 6);
         else
             MainFrame.EmoteFrame:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 4, 6);
         end
@@ -403,7 +403,7 @@ local ToolbarButtonInfo = {
 };
 
 local Layouts = {
-    Narcissus = {"Mog", "Emote", "HideTexts", "TopQuality",
+    Narcissus = {"Mog", "Emote", "HideTexts", "TopQuality", --Debug Including "Camera" when adding profile for new races
         showSwitch = true,
     },
 
@@ -491,7 +491,7 @@ local function ShoulderSlider_OnValueChanged(self, value, userInput)
     end
 
     --self:SetLabel( string.format("Offset |cff62c497%.1f|r", value) );
-    self:SetValueText(string.format("|cff62c497%.1f|r", value));
+    self:SetValueText(string.format("|cff62c497%.2f|r", value));
 
     if userInput then
         SetCVar("test_cameraOverShoulder", -value);
@@ -1045,6 +1045,7 @@ function NarciScreenshotToolbarMixin:OnShow()
     self:RegisterEvent("PLAYER_CAMPING");
     self:RegisterEvent("SCREENSHOT_STARTED");
     self:RegisterEvent("PLAYER_REGEN_DISABLED");
+    self:UseLowerLevel(false);
 end
 
 function NarciScreenshotToolbarMixin:OnHide()
@@ -1106,7 +1107,7 @@ end
 
 function NarciScreenshotToolbarMixin:UseLowerLevel(state)
 	local strata;
-    local level = 10;
+    local level = 50;
 	if state then
 		strata = "BACKGROUND";
 		self:SetAlpha(0);

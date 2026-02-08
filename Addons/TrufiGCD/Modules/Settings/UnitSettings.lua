@@ -4,18 +4,21 @@ local _, ns = ...
 ---@type {[UnitType]: string}
 local unitLabels = {
     player = "Player",
-    party1 = "Party 1",
-    party2 = "Party 2",
-    party3 = "Party 3",
-    party4 = "Party 4",
-    arena1 = "Arena 1",
-    arena2 = "Arena 2",
-    arena3 = "Arena 3",
-    arena4 = "Arena 4",
-    arena5 = "Arena 5",
-    target = "Target",
-    focus = "Focus",
 }
+
+if not ns.constants.IsMidnight then
+    unitLabels.party1 = "Party 1";
+    unitLabels.party2 = "Party 2";
+    unitLabels.party3 = "Party 3";
+    unitLabels.party4 = "Party 4";
+    unitLabels.arena1 = "Arena 1";
+    unitLabels.arena2 = "Arena 2";
+    unitLabels.arena3 = "Arena 3";
+    unitLabels.arena4 = "Arena 4";
+    unitLabels.arena5 = "Arena 5";
+    unitLabels.target = "Target";
+    unitLabels.focus = "Focus";
+end
 
 ---@class UnitSettings
 ---@field x number

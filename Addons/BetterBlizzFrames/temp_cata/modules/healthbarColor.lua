@@ -1,3 +1,4 @@
+local L = BBF.L
 local UnitIsFriend = UnitIsFriend
 local UnitIsEnemy = UnitIsEnemy
 local UnitIsPlayer = UnitIsPlayer
@@ -8,6 +9,8 @@ local LSM = LibStub("LibSharedMedia-3.0")
 local healthbarsHooked = nil
 local classColorsOn
 local colorPetAfterOwner
+local skipPlayer
+local skipFriendly
 
 local function getUnitReaction(unit)
     if UnitIsFriend(unit, "player") then
@@ -159,12 +162,18 @@ local function GetBBPNameplateColor(unit)
     return npcHealthbarColor
 end
 
-local function getUnitColor(unit)
+local function getUnitColor(unit, useCustomColors, txt)
     if not UnitExists(unit) then return end
     if UnitIsPlayer(unit) then
         local color = RAID_CLASS_COLORS[select(2, UnitClass(unit))]
         if color then
-            return {r = color.r, g = color.g, b = color.b}, false
+            if skipFriendly then
+                local reaction = getUnitReaction(unit)
+                return { r = color.r, g = color.g, b = color.b },
+                    ((unit == "player" and skipPlayer) or (skipFriendly and reaction == "FRIENDLY" and unit ~= "player"))
+            else
+                return { r = color.r, g = color.g, b = color.b }, false
+            end
         end
     elseif colorPetAfterOwner and UnitIsUnit(unit, "pet") then
         -- Check if the unit is the player's pet and the setting is enabled
@@ -181,13 +190,13 @@ local function getUnitColor(unit)
             else
                 local reaction = getUnitReaction(unit)
                 if reaction == "HOSTILE" then
-                    if UnitIsTapDenied(unit) then
+                    if UnitIsTapDenied(unit) and not txt then
                         return {r = 0.9, g = 0.9, b = 0.9}, false
                     else
                         return {r = 1, g = 0, b = 0}, false
                     end
                 elseif reaction == "NEUTRAL" then
-                    if UnitIsTapDenied(unit) then
+                    if UnitIsTapDenied(unit) and not txt then
                         return {r = 0.9, g = 0.9, b = 0.9}, false
                     else
                         return {r = 1, g = 1, b = 0}, false
@@ -200,13 +209,13 @@ local function getUnitColor(unit)
             local reaction = getUnitReaction(unit)
 
             if reaction == "HOSTILE" then
-                if UnitIsTapDenied(unit) then
+                if UnitIsTapDenied(unit) and not txt then
                     return {r = 0.9, g = 0.9, b = 0.9}, false
                 else
                     return {r = 1, g = 0, b = 0}, false
                 end
             elseif reaction == "NEUTRAL" then
-                if UnitIsTapDenied(unit) then
+                if UnitIsTapDenied(unit) and not txt then
                     return {r = 0.9, g = 0.9, b = 0.9}, false
                 else
                     return {r = 1, g = 1, b = 0}, false
@@ -220,13 +229,20 @@ end
 BBF.getUnitColor = getUnitColor
 
 local function updateFrameColorToggleVer(frame, unit)
+    if unit == "player" and skipPlayer then
+        frame:SetStatusBarColor(0, 1, 0, 1)
+        return
+    end
     if classColorsOn then
-        if unit == "player" and BetterBlizzFramesDB.classColorFramesSkipPlayer then return end
-        --local color = UnitIsPlayer(unit) and RAID_CLASS_COLORS[select(2, UnitClass(unit))] or getUnitColor(unit) --bad
-        local color = getUnitColor(unit)
+        local color, isFriendly = getUnitColor(unit)
         if color then
-            frame:SetStatusBarDesaturated(true)
-            frame:SetStatusBarColor(color.r, color.g, color.b)
+            if isFriendly and (not frame.bbfChangedTexture or skipFriendly) then
+                frame:SetStatusBarDesaturated(false)
+                frame:SetStatusBarColor(0, 1, 0, 1)
+            else
+                frame:SetStatusBarDesaturated(true)
+                frame:SetStatusBarColor(color.r, color.g, color.b, 1)
+            end
         end
     end
 end
@@ -235,17 +251,37 @@ BBF.updateFrameColorToggleVer = updateFrameColorToggleVer
 
 local function resetFrameColor(frame, unit)
     frame:SetStatusBarDesaturated(false)
-    frame:SetStatusBarColor(0,1,0)
+    frame:SetStatusBarColor(0, 1, 0, 1)
 end
 
+local validUnits = {
+    player = true,
+    target = true,
+    targettarget = true,
+    focus = true,
+    focustarget = true,
+    pet = true,
+    party1 = true,
+    party2 = true,
+    party3 = true,
+    party4 = true,
+}
+
 local function UpdateHealthColor(frame, unit)
-    --local color = UnitIsPlayer(unit) and RAID_CLASS_COLORS[select(2, UnitClass(unit))] or getUnitColor(unit)
-    if not frame then return end
-    if unit == "player" and BetterBlizzFramesDB.classColorFramesSkipPlayer then return end
-    local color = getUnitColor(unit)
+    if not validUnits[unit] then return end
+    if unit == "player" and skipPlayer then
+        frame:SetStatusBarColor(0, 1, 0, 1)
+        return
+    end
+    local color, isFriendly = getUnitColor(unit)
     if color then
-        frame:SetStatusBarDesaturated(true)
-        frame:SetStatusBarColor(color.r, color.g, color.b)
+        if isFriendly and skipFriendly then
+            frame:SetStatusBarDesaturated(true)
+            frame:SetStatusBarColor(0, 1, 0, 1)
+        else
+            frame:SetStatusBarDesaturated(true)
+            frame:SetStatusBarColor(color.r, color.g, color.b, 1)
+        end
     end
 end
 
@@ -256,6 +292,14 @@ end
 function BBF.UpdateFrames()
     classColorsOn = BetterBlizzFramesDB.classColorFrames
     colorPetAfterOwner = BetterBlizzFramesDB.colorPetAfterOwner
+    skipPlayer = BetterBlizzFramesDB.classColorFramesSkipPlayer
+    skipFriendly = BetterBlizzFramesDB.classColorFramesSkipFriendly
+    if C_AddOns.IsAddOnLoaded("DragonflightUI") then
+        if not BBF.dfuiHbWarning then
+            BBF.dfuiHbWarning = true
+            BBF.Print(L["Print_DragonflightUI_Class_Color_Conflict"])
+        end
+    end
     if classColorsOn then
         BBF.HookHealthbarColors()
         if UnitExists("player") then updateFrameColorToggleVer(PlayerFrameHealthBar, "player") end
@@ -267,16 +311,20 @@ function BBF.UpdateFrames()
         if UnitExists("party2") then updateFrameColorToggleVer(PartyMemberFrame2HealthBar, "party2") end
         if UnitExists("party3") then updateFrameColorToggleVer(PartyMemberFrame3HealthBar, "party3") end
         if UnitExists("party4") then updateFrameColorToggleVer(PartyMemberFrame4HealthBar, "party4") end
+        BBF.HealthColorOn = true
     else
-        if UnitExists("player") then resetFrameColor(PlayerFrameHealthBar, "player") end
-        if UnitExists("target") then resetFrameColor(TargetFrameHealthBar, "target") end
-        if UnitExists("focus") then resetFrameColor(FocusFrameHealthBar, "focus") end
-        if UnitExists("targettarget") then resetFrameColor(TargetFrameToTHealthBar, "targettarget") end
-        if UnitExists("focustarget") then resetFrameColor(FocusFrameToTHealthBar, "focustarget") end
-        if UnitExists("party1") then resetFrameColor(PartyMemberFrame1HealthBar, "party1") end
-        if UnitExists("party2") then resetFrameColor(PartyMemberFrame2HealthBar, "party2") end
-        if UnitExists("party3") then resetFrameColor(PartyMemberFrame3HealthBar, "party3") end
-        if UnitExists("party4") then resetFrameColor(PartyMemberFrame4HealthBar, "party4") end
+        if BBF.HealthColorOn then
+            if UnitExists("player") then resetFrameColor(PlayerFrameHealthBar, "player") end
+            if UnitExists("target") then resetFrameColor(TargetFrameHealthBar, "target") end
+            if UnitExists("focus") then resetFrameColor(FocusFrameHealthBar, "focus") end
+            if UnitExists("targettarget") then resetFrameColor(TargetFrameToTHealthBar, "targettarget") end
+            if UnitExists("focustarget") then resetFrameColor(FocusFrameToTHealthBar, "focustarget") end
+            if UnitExists("party1") then resetFrameColor(PartyMemberFrame1HealthBar, "party1") end
+            if UnitExists("party2") then resetFrameColor(PartyMemberFrame2HealthBar, "party2") end
+            if UnitExists("party3") then resetFrameColor(PartyMemberFrame3HealthBar, "party3") end
+            if UnitExists("party4") then resetFrameColor(PartyMemberFrame4HealthBar, "party4") end
+            BBF.HealthColorOn = nil
+        end
     end
     if colorPetAfterOwner then
         if UnitExists("pet") then updateFrameColorToggleVer(PetFrameHealthBar, "pet") end
@@ -287,7 +335,7 @@ function BBF.UpdateFrameColor(frame, unit)
     local color = getUnitColor(unit)
     if color then
         frame:SetStatusBarDesaturated(true)
-        frame:SetStatusBarColor(color.r, color.g, color.b)
+        frame:SetStatusBarColor(color.r, color.g, color.b, 1)
     end
 end
 
@@ -333,19 +381,6 @@ end
 
 function BBF.HookHealthbarColors()
     if not healthbarsHooked and classColorsOn then
---[[
-        hooksecurefunc("UnitFrameHealthBar_RefreshUpdateEvent", function(self) --pet frames only?
-            if self.unit then
-                print(self:GetName())
-                print(self.unit)
-                --UpdateHealthColor(self, self.unit)
-                --UpdateHealthColor(TargetFrameToTHealthBar, "targettarget")
-                --UpdateHealthColor(FocusFrameToT.HealthBar, "focustarget")
-            end
-        end)
-]]
-
-
         hooksecurefunc("UnitFrameHealthBar_Update", function(self, unit)
             if unit then
                 UpdateHealthColor(self, unit)
@@ -370,6 +405,7 @@ function BBF.HookHealthbarColors()
 end
 
 function BBF.PlayerReputationColor()
+    if BetterBlizzFramesDB.biggerHealthbars then return end
     BBF.HookAndDo(PlayerFrameBackground, "SetSize", function(frame, width, height, flag)
         frame:SetSize(120, 41, flag)
     end)
@@ -398,13 +434,23 @@ function BBF.PlayerReputationColor()
             local color = getUnitColor("player")
             if color then
                 reputationFrame:SetSize(119, 19)
-                reputationTexture:SetTexture(137017)
+                if not BetterBlizzFramesDB.changeUnitFrameHealthbarTexture then
+                    reputationTexture:SetTexture(137017)
+                else
+                    local texture = BBF.LSM:Fetch(BBF.LSM.MediaType.STATUSBAR, BetterBlizzFramesDB.unitFrameHealthbarTexture)
+                    reputationTexture:SetTexture(texture)
+                end
                 reputationTexture:SetDesaturated(true)
                 reputationTexture:SetVertexColor(color.r, color.g, color.b)
                 reputationTexture:SetTexCoord(0, 1, 0, 1)
             end
         else
-            reputationTexture:SetTexture(137017)
+            if not BetterBlizzFramesDB.changeUnitFrameHealthbarTexture then
+                reputationTexture:SetTexture(137017)
+            else
+                local texture = BBF.LSM:Fetch(BBF.LSM.MediaType.STATUSBAR, BetterBlizzFramesDB.unitFrameHealthbarTexture)
+                reputationTexture:SetTexture(texture)
+            end
             reputationTexture:SetDesaturated(false)
             local r, g, b = UnitSelectionColor("player")
             reputationTexture:SetVertexColor(r, g, b)
@@ -417,6 +463,8 @@ end
 
 local biggerHealthbarHooked
 local frameTextureHooked
+local maxLvl = BBF.isMoP and 90 or BBF.isTBC and 70 or 85
+
 function BBF.BiggerHealthbars(frame, name)
     local texture = _G[frame.."Texture"] or _G[frame.."TextureFrameTexture"]
     local playerGlowTexture = _G["PlayerStatusTexture"]
@@ -430,10 +478,28 @@ function BBF.BiggerHealthbars(frame, name)
     local background = _G[frame.."Background"]
     local deadText = _G[frame.."TextureFrameDeadText"]
 
-    local targetTexture = BetterBlizzFramesDB.hideLevelTextAlways and "Interface\\Addons\\BetterBlizzFrames\\media\\UI-TargetingFrame-NoLevel" or "Interface\\Addons\\BetterBlizzFrames\\media\\UI-TargetingFrame"
+    local noLevelTexture = "Interface\\Addons\\BetterBlizzFrames\\media\\UI-TargetingFrame-NoLevel"
+    local normalTexture = "Interface\\Addons\\BetterBlizzFrames\\media\\UI-TargetingFrame"
+
+    local targetTexture = normalTexture
+    if BetterBlizzFramesDB.hideLevelText then
+        if BetterBlizzFramesDB.hideLevelTextAlways then
+            targetTexture = noLevelTexture
+        elseif frame == "PlayerFrame" and UnitLevel("player") == maxLvl then
+            targetTexture = noLevelTexture
+        end
+    end
     -- Texture
     texture:SetTexture(targetTexture)
     playerGlowTexture:SetTexture("Interface\\Addons\\BetterBlizzFrames\\media\\UI-Player-Status")
+    hooksecurefunc(playerGlowTexture, "SetTexture",
+        function(self, texture)
+            if texture ~= "Interface\\Addons\\BetterBlizzFrames\\media\\UI-Player-Status" then
+                self:SetTexture("Interface\\Addons\\BetterBlizzFrames\\media\\UI-Player-Status")
+                playerGlowTexture:SetHeight(69)
+            end
+        end
+    )
     playerGlowTexture:SetHeight(69)
 
     -- Healthbar
@@ -461,6 +527,14 @@ function BBF.BiggerHealthbars(frame, name)
         BBF.HookAndDo(background, "SetSize", function(frame, width, height, flag)
             frame:SetSize(120, 42, flag)
         end)
+        hooksecurefunc(background, "SetPoint", function(self, point, relativeTo, relativePoint, xOffset, yOffset)
+            if yOffset and yOffset ~= 47 then return end
+            if self.changing then return end
+            self.changing = true
+            self:SetPoint(point, relativeTo, relativePoint, xOffset, (yOffset or 0) - 12)
+            self.changing = false
+        end)
+
         -- BBF.HookAndDo(background, "SetWidth", function(frame, width, height, flag)
         --     frame:SetWidth(119, 42, flag)
         -- end)
@@ -567,26 +641,48 @@ function BBF.BiggerHealthbars(frame, name)
                 elseif (classification == "rare") then
                     frame.borderTexture:SetTexture("Interface\\Addons\\BetterBlizzFrames\\media\\UI-TargetingFrame-Rare")
                 else
-                    frame.borderTexture:SetTexture(targetTexture)
+                    local textureToUse = normalTexture
+                    if BetterBlizzFramesDB.hideLevelText then
+                        if BetterBlizzFramesDB.hideLevelTextAlways or UnitLevel(frame.unit) == maxLvl then
+                            textureToUse = noLevelTexture
+                        end
+                    end
+                    frame.borderTexture:SetTexture(textureToUse)
                 end
             end
         end)
         frameTextureHooked = true
+
+        -- Hide LTP Name background
+        for i = 1, PlayerFrame:GetNumChildren() do
+            local child = select(i, PlayerFrame:GetChildren())
+            if child and child:IsObjectType("Frame") and not child:GetName() then
+                for j = 1, child:GetNumRegions() do
+                    local region = select(j, child:GetRegions())
+                    if region and region:IsObjectType("Texture") then
+                        local texture = region:GetTexture()
+                        if texture == 137017 then
+                        region:SetTexture(nil)
+                        end
+                    end
+                end
+            end
+        end
     end
 end
 
 function BBF.HookBiggerHealthbars()
     if C_AddOns.IsAddOnLoaded("DragonflightUI") then
         if not BBF.DFUIUnsupported then
-            print("|A:gmchat-icon-blizz:16:16|aBetter|cff00c0ffBlizz|rFrames: Bigger Healthbars is not supported with DragonflightUI")
+            BBF.Print(L["Print_Bigger_Healthbars_Not_Supported_DragonflightUI"])
             BBF.DFUIUnsupported = true
         end
         return
     end
     if BetterBlizzFramesDB.biggerHealthbars and not biggerHealthbarHooked then
-        local playerName = FocusFrame.bbfName or PlayerName
-        local targetName = PlayerFrame.bbfName or TargetFrameTextureFrameName
-        local focusName = TargetFrame.bbfName or TargetFrameTextureFrameName
+        local playerName = PlayerFrame.bbfName or PlayerName
+        local targetName = TargetFrame.bbfName or TargetFrameTextureFrameName
+        local focusName = FocusFrame.bbfName or FocusFrameTextureFrameName
         BBF.BiggerHealthbars("PlayerFrame", playerName)
         BBF.BiggerHealthbars("TargetFrame", targetName)
         BBF.BiggerHealthbars("FocusFrame",focusName)

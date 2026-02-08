@@ -1,0 +1,1 @@
+BuffFrame:SetBuffsExpandedState(true)

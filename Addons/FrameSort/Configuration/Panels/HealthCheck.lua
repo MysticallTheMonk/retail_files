@@ -3,7 +3,8 @@ local _, addon = ...
 local wow = addon.WoW.Api
 local fsHealth = addon.Health.HealthCheck
 local fsConfig = addon.Configuration
-local L = addon.Locale
+local fsLog = addon.Logging.Log
+local L = addon.Locale.Current
 local lines = {}
 local M = {}
 fsConfig.Panels.Health = M
@@ -26,8 +27,14 @@ function M:Build(parent)
     helpTitle:SetPoint("TOPLEFT", verticalSpacing, -verticalSpacing)
     helpTitle:SetText(L["Try this"])
 
-    panel:HookScript("OnShow", function()
+    panel:SetScript("OnShow", function()
         local healthy, results = fsHealth:IsHealthy()
+
+        if not healthy then
+            fsLog:Error("Health check failed.")
+        else
+            fsLog:Debug("Health check passed successfully.")
+        end
 
         while #lines < #results do
             local description = panel:CreateFontString(nil, "ARTWORK", "GameFontWhite")
