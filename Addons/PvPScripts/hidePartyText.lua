@@ -1,1 +1,0 @@
-CompactPartyFrameTitle:SetAlpha(0)

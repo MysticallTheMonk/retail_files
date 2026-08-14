@@ -1,1 +1,0 @@
-CompactArenaFrame:HookScript("OnShow", function(self) CompactArenaFrame:Hide() end)

@@ -1,5 +1,0 @@
-<!-- Tabs/Selling/Mixins directory manifest -->
-<Ui xmlns="http://www.blizzard.com/wow/ui/">
-  <Script file="BagUse.lua" />
-  <Script file="BagItemSelected.lua" />
-</Ui>

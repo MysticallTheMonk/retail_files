@@ -1,5 +1,0 @@
-<!-- ResultsListing directory manifest -->
-<Ui xmlns="http://www.blizzard.com/wow/ui/">
-  <Include file="Mixins\Manifest.xml"/>
-  <Include file="Templates\Manifest.xml"/>
-</Ui>

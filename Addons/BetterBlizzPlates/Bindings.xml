@@ -1,5 +1,0 @@
-<Bindings>
-  <Binding category="Better|cff00c0ffBlizz|rPlates" name="Toggle Hide Friendly Healthbars">
-    BBP.ToggleHideHealthbar()
-  </Binding>
-</Bindings>

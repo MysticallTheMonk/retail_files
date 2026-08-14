@@ -1,9 +1,0 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/">
-  <Script file="Categories.lua"/>
-  <Script file="OldCategories.lua"/>
-  <Script file="Advanced.lua"/>
-  <Script file="Mixins\SearchProviderMixin.lua"/>
-  <Script file="Mixins\MultiSearchMixin.lua"/>
-
-  <Include file="Templates.xml" />
-</Ui>

@@ -1,3 +1,0 @@
-<Ui>
-  <Button name="AuctionatorRetailImportColumnDisplayButtonShortTemplate" inherits="ColumnDisplayButtonShortTemplate" virtual="true" />
-</Ui>

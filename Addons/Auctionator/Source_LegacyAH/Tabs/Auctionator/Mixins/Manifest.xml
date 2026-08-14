@@ -1,4 +1,0 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/">
-  <Script file="ScanStatus.lua"/>
-  <Script file="ScanButton.lua"/>
-</Ui>

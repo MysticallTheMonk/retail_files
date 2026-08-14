@@ -1,9 +1,0 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/">
-  <Script file="PanelConfig.lua" />
-
-  <Script file="Configuration.lua"/>
-
-  <Script file="Shopping.lua"/>
-  <Script file="Profile.lua"/>
-  <Script file="Advanced.lua"/>
-</Ui>

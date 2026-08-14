@@ -1,1 +1,0 @@
-SetCVar("scriptErrors", "0")

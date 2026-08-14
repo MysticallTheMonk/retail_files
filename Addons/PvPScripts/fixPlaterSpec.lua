@@ -1,1 +1,0 @@
-Plater.db.profile.indicator_spec_always = true

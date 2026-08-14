@@ -1,9 +1,0 @@
-<Bindings>
-  <Binding category="|cFF74D06CRE|rFlex" name="REFLEXOPEN">
-    if not REFlexFrame:IsVisible() then
-      REFlexFrame:Show()
-    else
-      REFlexFrame:Hide()
-    end
-  </Binding>
-</Bindings>
