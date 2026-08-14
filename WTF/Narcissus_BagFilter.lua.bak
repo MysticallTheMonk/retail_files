@@ -1,2 +1,0 @@
-
-NarcissusBagFilterDB = nil
