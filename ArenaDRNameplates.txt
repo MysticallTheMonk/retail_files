@@ -1,0 +1,1 @@
+ArenaDRNameplates:1:defaults=1;anchorPreset=RIGHT;point=LEFT;relativePoint=RIGHT;offsetX=3;showTimerSwipe=0;timerTextScale=1.1;showDRText=0
