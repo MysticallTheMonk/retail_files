@@ -1,0 +1,83 @@
+Adventure
+	license: Pixel Sagas Freeware Fonts License
+	source: http://www.pixelsagas.com/?download=adventure
+
+All Hooked Up
+	license: Design Science License
+	source: http://dartcanada.tripod.com/Objets/index.html
+
+Bazooka
+	license: Public Domain (?)
+
+Black Chancery
+	license: Public Domain (?)
+
+Celestia (Medium) Redux
+	license: Public Domain
+	source: http://www.mattyhex.net/CMR/
+	version: 1.55
+
+DejaVu (LCG version)
+	license: Bitstream Vera Fonts Copyright / Arev Fonts Copyright / Public Domain
+	source: https://dejavu-fonts.github.io/
+	version: 2.37
+
+Doris PP
+	license: Public Domain (?)
+
+Enigmatic
+	license: Design Science License
+	source: http://dartcanada.tripod.com/Objets/index.html
+
+Fitzgerald
+	license: Design Science License
+	source: http://dartcanada.tripod.com/Objets/index.html
+
+Gentium Plus
+	license: SIL Open Font License
+	source: http://software.sil.org/gentium/
+	version: 6.200
+
+Hack
+	license: MIT License / Bitstream Vera License
+	source: http://sourcefoundry.org/hack/
+	version: 3.003
+
+Liberation
+	license: SIL Open Font License, Version 1.1
+	source: https://github.com/liberationfonts/liberation-fonts/
+	version: 2.1.5
+
+SF Atarian System
+	license: ShyFoundry Freeware EULA
+	source: http://shyfoundry.com/fonts/freeware/sfatarians.html
+
+SF Covington
+	license: ShyFoundry Freeware EULA
+	source: http://shyfoundry.com/fonts/shareware/sfcovingto.html
+
+SF Movie Poster
+	license: ShyFoundry Freeware EULA
+	source: http://shyfoundry.com/fonts/shareware/sfmoviepos.html
+
+SF Wonder Comic
+	license: ShyFoundry Freeware EULA
+	source: http://shyfoundry.com/fonts/shareware/sfwonderco.html
+
+SWF!T
+	license: custom free license (see file/page)
+	source: http://www.orgdot.com/aliasfonts/index.htm
+
+TeX Gyre Adventor
+	license: GUST Font License
+	source: http://www.gust.org.pl/projects/e-foundry/tex-gyre/adventor
+	verison: 2.501
+
+WenQuanYi Zen Hei
+	license: GPL v2 (with font embedding exception)
+	source: http://wqy.sourceforge.net/en/
+	version: 0.9.45
+
+Yellowjacket
+	license: custom free license (see file/page)
+	source: http://www.iconian.com/

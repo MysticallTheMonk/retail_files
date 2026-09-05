@@ -1,0 +1,17 @@
+## Interface: 11508, 20505, 30405, 38000, 40402, 50503, 110207, 120000, 120001
+## Title: SharedMedia
+## Notes: Inserts some media into LibSharedMedia's storage.
+## Version: 3.1.2-201
+## Author: Elkano
+## X-Category: Miscellaneous
+
+## X-Revision: 201
+## X-Date: 2026-01-22T19:34:56Z
+
+## OptionalDeps: LibStub, LibSharedMedia-3.0
+
+#@no-lib-strip@
+embeds.xml
+#@end-no-lib-strip@
+
+SharedMedia.lua

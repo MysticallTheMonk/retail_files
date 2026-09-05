@@ -1,0 +1,108 @@
+------------------------------------------------------------------------
+r201 | elkano | 2026-01-22 19:34:56 +0000 (Thu, 22 Jan 2026) | 1 line
+Changed paths:
+   M /trunk/MyMedia.bat.txt
+   M /trunk/SharedMedia.toc
+
+bump TOC
+------------------------------------------------------------------------
+r200 | elkano | 2024-07-27 15:09:40 +0000 (Sat, 27 Jul 2024) | 2 lines
+Changed paths:
+   M /trunk/INSTRUCTIONS for MyMedia.txt
+   M /trunk/MyMedia.bat.txt
+   M /trunk/SharedMedia.toc
+   D /trunk/SharedMedia_TBC.toc
+   D /trunk/SharedMedia_Vanilla.toc
+   D /trunk/SharedMedia_Wrath.toc
+   M /trunk/fonts/font info.txt
+   M /trunk/fonts/gentium_plus/GentiumPlus-Regular.ttf
+   M /trunk/fonts/gentium_plus/OFL.txt
+
+updates and fixes for 11.0.x
+updated Gentium Plus to 6.200
+------------------------------------------------------------------------
+r199 | elkano | 2023-01-05 13:30:01 +0000 (Thu, 05 Jan 2023) | 1 line
+Changed paths:
+   M /trunk/.pkgmeta
+
+- corrected repo paths
+------------------------------------------------------------------------
+r198 | elkano | 2023-01-05 13:21:18 +0000 (Thu, 05 Jan 2023) | 1 line
+Changed paths:
+   M /trunk/SharedMedia.toc
+   M /trunk/SharedMedia_TBC.toc
+   M /trunk/SharedMedia_Vanilla.toc
+   M /trunk/SharedMedia_Wrath.toc
+
+- incremented version
+------------------------------------------------------------------------
+r197 | elkano | 2023-01-05 13:17:25 +0000 (Thu, 05 Jan 2023) | 2 lines
+Changed paths:
+   M /trunk/MyMedia.bat.txt
+   M /trunk/SharedMedia.toc
+
+- updated TOC for 10.0.2
+
+------------------------------------------------------------------------
+r196 | elkano | 2022-10-30 16:11:32 +0000 (Sun, 30 Oct 2022) | 3 lines
+Changed paths:
+   M /trunk/.pkgmeta
+   M /trunk/MyMedia.bat.txt
+   M /trunk/SharedMedia.lua
+   M /trunk/SharedMedia.toc
+   A /trunk/SharedMedia_TBC.toc
+   A /trunk/SharedMedia_Vanilla.toc
+   A /trunk/SharedMedia_Wrath.toc
+   M /trunk/fonts/font info.txt
+   D /trunk/fonts/gentium_plus/GentiumPlus-R.ttf
+   A /trunk/fonts/gentium_plus/GentiumPlus-Regular.ttf
+   M /trunk/fonts/gentium_plus/OFL.txt
+   M /trunk/fonts/liberation/LiberationMono-Regular.ttf
+   M /trunk/fonts/liberation/LiberationSans-Regular.ttf
+   M /trunk/fonts/liberation/LiberationSerif-Regular.ttf
+
+- updated TOC
+- updated GentiumPlus to 6.101
+- updated Liberation fonts to 2.1.5
+------------------------------------------------------------------------
+r195 | elkano | 2021-05-16 09:50:44 +0000 (Sun, 16 May 2021) | 3 lines
+Changed paths:
+   M /trunk/MyMedia.bat.txt
+   M /trunk/SharedMedia.lua
+   M /trunk/SharedMedia.toc
+   M /trunk/fonts/font info.txt
+   A /trunk/fonts/liberation/LiberationMono-Regular.ttf
+   M /trunk/fonts/liberation/LiberationSans-Regular.ttf
+   M /trunk/fonts/liberation/LiberationSerif-Regular.ttf
+   A /trunk/fonts/tex_gyre_adventor
+   A /trunk/fonts/tex_gyre_adventor/GUST-FONT-LICENSE.txt
+   A /trunk/fonts/tex_gyre_adventor/README-TeX-Gyre-Adventor.txt
+   A /trunk/fonts/tex_gyre_adventor/texgyreadventor-bold.otf
+   A /trunk/fonts/tex_gyre_adventor/texgyreadventor-regular.otf
+
+- updated TOC
+- updated Liberation font and added its monospace variant
+- added TeX Gyre Adventor (regular and bold)
+------------------------------------------------------------------------
+r194 | nevcairiel | 2020-11-23 10:21:14 +0000 (Mon, 23 Nov 2020) | 1 line
+Changed paths:
+   M /trunk/SharedMedia.toc
+
+Update TOC for 9.0.2
+------------------------------------------------------------------------
+r193 | elkano | 2018-07-18 19:33:32 +0000 (Wed, 18 Jul 2018) | 3 lines
+Changed paths:
+   M /trunk/MyMedia.bat.txt
+   M /trunk/SharedMedia.toc
+   A /trunk/embeds.xml
+   M /trunk/fonts/deja_vu/DejaVuLGCSans.ttf
+   M /trunk/fonts/deja_vu/DejaVuLGCSerif.ttf
+   M /trunk/fonts/font info.txt
+   M /trunk/fonts/hack/Hack-Regular.ttf
+   A /trunk/fonts/hack/LICENSE.md
+
+- updated DejaVu to version 2.37
+- updated Hack to version 3.003
+- adjusted MyMedia TOC for WoW 8.0.1
+------------------------------------------------------------------------
+
